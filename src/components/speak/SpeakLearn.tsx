@@ -450,6 +450,15 @@ export function SpeakLearn() {
 
       {transcript}
 
+      <ChallengePanel
+        language={language}
+        level={state.level}
+        active={challenge}
+        onStart={(c) => setChallenge(c)}
+        onSpeakAloud={speakAloud}
+      />
+
+
       <div className="mt-6">
         <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
           Topic starters
