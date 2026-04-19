@@ -264,6 +264,9 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "customTextsAdded",
   "cultureRead",
   "languagesUsed",
+  "cefrLevelsCompleted",
+  "speakSecondsByLang",
+  "xpSessions",
 ];
 
 function todayKey() {
