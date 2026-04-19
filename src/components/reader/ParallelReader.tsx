@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, Library, Type } from "lucide-react";
+import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
-import { ClickableText } from "./ClickableText";
+import { useNotes } from "@/state/notes-state";
+import { AnnotatedSentence } from "./AnnotatedSentence";
 import { WordCard, type WordCardRequest } from "./WordCard";
+import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
+import { NoteBubble } from "./NoteBubble";
+import { NotesPanel } from "./NotesPanel";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
@@ -15,15 +20,19 @@ const SIZE_CLASS: Record<TextSize, string> = {
   L: "text-[20px] leading-[1.9]",
 };
 
+const ACHIEVEMENT_DEEP_READER = "Deep Reader 📚";
+
 export function ParallelReader() {
   const { state, dispatch } = useApp();
   const { selected, state: lib } = useLibrary();
+  const { add: addAnnotation, forText } = useNotes();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+  const [selection, setSelection] = useState<SelectionInfo | null>(null);
+  const [noteBubble, setNoteBubble] = useState<SelectionInfo | null>(null);
 
-  // Auto-generate culture series for current language
   useCultureGenerator();
 
   const leftRef = useRef<HTMLDivElement>(null);
@@ -57,6 +66,116 @@ export function ParallelReader() {
       right.removeEventListener("scroll", onRight);
     };
   }, [syncScroll, selected.id]);
+
+  // Capture selection from either pane
+  useEffect(() => {
+    function handleMouseUp(e: MouseEvent) {
+      // Ignore if clicking on selection menu / bubble (their buttons preventDefault)
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) {
+        setSelection(null);
+        return;
+      }
+      const text = sel.toString().trim();
+      if (text.length < 2) {
+        setSelection(null);
+        return;
+      }
+      const range = sel.getRangeAt(0);
+      const node =
+        range.startContainer.nodeType === Node.ELEMENT_NODE
+          ? (range.startContainer as Element)
+          : range.startContainer.parentElement;
+      const paragraph = node?.closest("p[data-sentence-index]") as HTMLElement | null;
+      if (!paragraph) {
+        setSelection(null);
+        return;
+      }
+      const pane = paragraph.dataset.pane as "left" | "right" | undefined;
+      const idxStr = paragraph.dataset.sentenceIndex;
+      if (!pane || idxStr === undefined) {
+        setSelection(null);
+        return;
+      }
+      const rect = range.getBoundingClientRect();
+      setSelection({
+        text,
+        pane,
+        sentenceIndex: Number(idxStr),
+        x: rect.left + rect.width / 2,
+        y: rect.top,
+      });
+      void e;
+    }
+
+    function handleMouseDown(e: MouseEvent) {
+      // close selection menu when clicking elsewhere (not menu itself)
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-selection-ui]")) return;
+      setSelection(null);
+    }
+
+    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => {
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, []);
+
+  const annotations = forText(selected.id);
+
+  const checkAchievement = (newCount: number) => {
+    if (newCount === 5 && !state.achievements.includes(ACHIEVEMENT_DEEP_READER)) {
+      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACHIEVEMENT_DEEP_READER });
+      toast("✦ Achievement unlocked", {
+        description: `Deep Reader 📚 — 5 notes saved`,
+      });
+    }
+  };
+
+  const handleHighlight = (s: SelectionInfo) => {
+    addAnnotation({
+      textId: selected.id,
+      pane: s.pane,
+      sentenceIndex: s.sentenceIndex,
+      selectedText: s.text,
+    });
+    setSelection(null);
+    window.getSelection()?.removeAllRanges();
+    toast("🌟 Highlighted", { description: `“${truncate(s.text)}”` });
+  };
+
+  const openNoteBubble = (s: SelectionInfo) => {
+    setNoteBubble(s);
+    setSelection(null);
+  };
+
+  const handleSaveNote = (text: string) => {
+    if (!noteBubble || !text) return;
+    addAnnotation({
+      textId: selected.id,
+      pane: noteBubble.pane,
+      sentenceIndex: noteBubble.sentenceIndex,
+      selectedText: noteBubble.text,
+      noteText: text,
+    });
+    dispatch({ type: "ADD_XP", payload: 5 });
+    const newNoteCount = annotations.filter((a) => a.noteText).length + 1;
+    toast("✦ Note saved", { description: "+5 XP" });
+    checkAchievement(newNoteCount);
+    setNoteBubble(null);
+    window.getSelection()?.removeAllRanges();
+  };
+
+  const handleGoTo = (pane: "left" | "right", sentenceIndex: number) => {
+    const container = pane === "left" ? leftRef.current : rightRef.current;
+    if (!container) return;
+    const el = container.querySelector(
+      `p[data-sentence-index="${sentenceIndex}"]`,
+    ) as HTMLElement | null;
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   const handleWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
@@ -153,8 +272,10 @@ export function ParallelReader() {
             </div>
             <div ref={leftRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
+                pane="left"
                 sentences={selected.sentences.map((s) => s.en)}
                 size={size}
+                annotations={annotations}
                 onWordClick={handleWord}
               />
             </div>
@@ -173,8 +294,10 @@ export function ParallelReader() {
             </div>
             <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
+                pane="right"
                 sentences={selected.sentences.map((s) => s.target)}
                 size={size}
+                annotations={annotations}
                 onWordClick={handleWord}
                 accent
               />
@@ -184,6 +307,28 @@ export function ParallelReader() {
       </div>
 
       <LibraryDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+
+      <NotesPanel textId={selected.id} onGoTo={handleGoTo} />
+
+      <div data-selection-ui>
+        <SelectionMenu
+          selection={selection}
+          onHighlight={handleHighlight}
+          onAddNote={openNoteBubble}
+        />
+      </div>
+
+      {noteBubble && (
+        <div data-selection-ui>
+          <NoteBubble
+            x={noteBubble.x}
+            y={noteBubble.y}
+            selectedText={noteBubble.text}
+            onSave={handleSaveNote}
+            onCancel={() => setNoteBubble(null)}
+          />
+        </div>
+      )}
 
       {wordReq && (
         <WordCard
@@ -196,14 +341,22 @@ export function ParallelReader() {
   );
 }
 
+function truncate(s: string, n = 60) {
+  return s.length > n ? s.slice(0, n - 1) + "…" : s;
+}
+
 function Pane({
+  pane,
   sentences,
   size,
+  annotations,
   onWordClick,
   accent,
 }: {
+  pane: "left" | "right";
   sentences: string[];
   size: TextSize;
+  annotations: ReturnType<typeof useNotes>["annotations"];
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
 }) {
@@ -211,15 +364,25 @@ function Pane({
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
     >
-      {sentences.map((s, i) => (
-        <p
-          key={i}
-          data-sentence-index={i}
-          className="mb-6 border-l-2 border-transparent pl-3 transition-colors hover:border-gold/40"
-        >
-          <ClickableText text={s} onWordClick={onWordClick} />
-        </p>
-      ))}
+      {sentences.map((s, i) => {
+        const sentenceAnns = annotations.filter(
+          (a) => a.pane === pane && a.sentenceIndex === i,
+        );
+        return (
+          <p
+            key={i}
+            data-sentence-index={i}
+            data-pane={pane}
+            className="mb-6 border-l-2 border-transparent pl-3 transition-colors hover:border-gold/40"
+          >
+            <AnnotatedSentence
+              text={s}
+              annotations={sentenceAnns}
+              onWordClick={onWordClick}
+            />
+          </p>
+        );
+      })}
     </div>
   );
 }
