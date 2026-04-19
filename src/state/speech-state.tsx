@@ -218,7 +218,7 @@ export function SpeechProvider({
     ) => {
       if (typeof window === "undefined" || !window.speechSynthesis) return;
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = accent;
+      configureUtterance(u, accent, voiceURI);
       u.rate = rate;
       u.onstart = () => {
         setPlaying(true);
@@ -234,7 +234,7 @@ export function SpeechProvider({
       };
       window.speechSynthesis.speak(u);
     },
-    [accent, rate, incListened],
+    [accent, rate, voiceURI, incListened],
   );
 
   const speakWord = useCallback(
@@ -308,6 +308,8 @@ export function SpeechProvider({
       accent,
       setAccent,
       accentsForLanguage,
+      voiceURI,
+      setVoiceURI,
       lastWord,
       setLastWord,
       playing,
@@ -325,6 +327,8 @@ export function SpeechProvider({
       accent,
       setAccent,
       accentsForLanguage,
+      voiceURI,
+      setVoiceURI,
       lastWord,
       setLastWord,
       playing,
