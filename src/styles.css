@@ -270,6 +270,11 @@ ruby {
      instead of widening the line box. */
   transform: translateY(-0.1em);
   user-select: none;
+  /* CRITICAL: let clicks pass through the reading bubble down to the kanji /
+     surrounding kana. Without this, taps on the small hiragana above a kanji
+     do nothing, and taps near the edge of a kana run hit the neighboring
+     <rt> instead of the kana, so words feel un-clickable. */
+  pointer-events: none;
 }
 /* When a sentence row contains ruby, keep the line box exactly as the parent
    line-height dictates — never let ruby grow it. */
