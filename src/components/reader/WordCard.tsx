@@ -5,6 +5,7 @@ import { lookupWord, type WordCardData } from "@/server/word-lookup.functions";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
 import { useApp, type Language } from "@/state/app-state";
+import { configureUtterance } from "@/lib/voices";
 
 const LOCALE: Record<Language, string> = {
   Spanish: "es-ES",
