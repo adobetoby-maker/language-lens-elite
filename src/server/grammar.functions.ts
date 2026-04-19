@@ -31,10 +31,44 @@ export interface LessonExample {
   english: string;
 }
 
+/**
+ * Splits a word into the unchanging root/stem and the changing ending so
+ * learners can SEE what part transforms. E.g. Japanese 行く (iku, "to go"):
+ * root "i" (行) + ending "ku".
+ */
+export interface MorphPart {
+  word: string;
+  romanization?: string;
+  root: string;
+  ending: string;
+  gloss: string;
+}
+
+export interface ConjugationRow {
+  form: string; // e.g. "Polite present", "Negative", "Te-form"
+  root: string;
+  ending: string;
+  full: string; // root + ending in target script
+  romanization?: string;
+  english: string;
+}
+
+export interface MorphologyBreakdown {
+  summary: string;
+  base: MorphPart;
+  table: ConjugationRow[];
+}
+
 export interface LessonContent {
   explanation: string;
   examples: LessonExample[];
   keyRule: string;
+  /**
+   * Present whenever the concept involves a word whose ROOT stays fixed
+   * while an ending changes (verb conjugation, noun declension, adjective
+   * inflection). Omitted for purely syntactic topics like word order.
+   */
+  morphology?: MorphologyBreakdown;
 }
 
 export type QuizQuestionType = "fill_blank" | "multiple_choice";
