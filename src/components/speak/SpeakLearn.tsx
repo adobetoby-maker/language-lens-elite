@@ -106,6 +106,10 @@ export function SpeakLearn() {
   }, []);
 
   useEffect(() => {
+    setChallenge(null);
+  }, [language]);
+
+  useEffect(() => {
     transcriptRef.current?.scrollTo({
       top: transcriptRef.current.scrollHeight,
       behavior: "smooth",
