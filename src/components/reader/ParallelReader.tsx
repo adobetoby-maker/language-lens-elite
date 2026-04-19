@@ -55,16 +55,20 @@ export function ParallelReader() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FURIGANA_KEY);
-      if (raw === "off" || raw === "above" || raw === "inline") {
+      if (raw === "off" || raw === "above") {
         setFuriganaMode(raw);
+      } else if (raw === "inline") {
+        setFuriganaMode("above");
       }
       const rawScript = localStorage.getItem(FURIGANA_SCRIPT_KEY);
       if (rawScript === "hiragana" || rawScript === "romaji") {
         setFuriganaScript(rawScript);
       }
       const rawRomaja = localStorage.getItem(ROMAJA_KEY);
-      if (rawRomaja === "off" || rawRomaja === "above" || rawRomaja === "inline") {
+      if (rawRomaja === "off" || rawRomaja === "above") {
         setRomajaMode(rawRomaja);
+      } else if (rawRomaja === "inline") {
+        setRomajaMode("above");
       }
     } catch {
       /* ignore */
