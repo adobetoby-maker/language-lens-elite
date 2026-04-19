@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppProvider } from "@/state/app-state";
+import { LibraryProvider } from "@/state/library-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
@@ -21,13 +22,15 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <AppProvider>
-      <div className="min-h-screen bg-background text-foreground">
-        <TopNav />
-        <StatusBar />
-        <main className="mx-auto max-w-7xl px-6 py-12">
-          <TabShell />
-        </main>
-      </div>
+      <LibraryProvider>
+        <div className="min-h-screen bg-background text-foreground">
+          <TopNav />
+          <StatusBar />
+          <main className="mx-auto max-w-7xl px-6 py-12">
+            <TabShell />
+          </main>
+        </div>
+      </LibraryProvider>
     </AppProvider>
   );
 }
