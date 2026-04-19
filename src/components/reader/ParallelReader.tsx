@@ -23,7 +23,7 @@ const SIZE_CLASS: Record<TextSize, string> = {
   L: "text-[20px] leading-[1.9]",
 };
 
-const ACHIEVEMENT_DEEP_READER = "Deep Reader 📚";
+
 
 export function ParallelReader() {
   const { state, dispatch } = useApp();
