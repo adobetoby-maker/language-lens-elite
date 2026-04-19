@@ -110,6 +110,11 @@ export interface AppState {
   customTextsAdded: number;
   cultureRead: string[]; // culture entry ids the learner opened
   languagesUsed: Language[]; // distinct order of selection
+  cefrLevelsCompleted: string[]; // e.g. ["A1","A2"]
+  speakSecondsByLang: Partial<Record<Language, number>>;
+
+  // Activity bar chart data — last up to 7 daily totals
+  xpSessions: { date: string; xp: number }[];
 
   // Celebration trigger
   pendingLevelUp: XpTier | null;
@@ -130,6 +135,8 @@ export type AppAction =
   | { type: "ADD_NOTE"; payload: Note }
   | { type: "INC_COUNTER"; payload: keyof Pick<AppState, "wordsLookedUp" | "notesSaved" | "tutorMessages" | "conversationExchanges" | "lessonsCompleted" | "customTextsAdded"> }
   | { type: "MARK_CULTURE_READ"; payload: string }
+  | { type: "MARK_CEFR_COMPLETE"; payload: string }
+  | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
   | { type: "DISMISS_LEVEL_UP" }
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
@@ -152,6 +159,9 @@ const initialState: AppState = {
   customTextsAdded: 0,
   cultureRead: [],
   languagesUsed: ["Spanish"],
+  cefrLevelsCompleted: [],
+  speakSecondsByLang: {},
+  xpSessions: [],
   pendingLevelUp: null,
   hydrated: false,
 };
