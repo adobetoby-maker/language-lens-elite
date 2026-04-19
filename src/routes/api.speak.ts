@@ -7,11 +7,14 @@ const MessageSchema = z.object({
 });
 
 const BodySchema = z.object({
-  mode: z.enum(["chat", "tip"]),
+  mode: z.enum(["chat", "tip", "challenge"]),
   language: z.string().min(1).max(40),
   level: z.string().min(1).max(40),
   messages: z.array(MessageSchema).min(1).max(40).optional(),
   userText: z.string().max(2000).optional(),
+  // Challenge inputs
+  concepts: z.array(z.string().min(1).max(120)).max(20).optional(),
+  kind: z.enum(["grammar", "reach"]).optional(),
 });
 
 function chatSystemPrompt(language: string, level: string) {
