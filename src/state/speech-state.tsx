@@ -10,6 +10,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import type { Language } from "./app-state";
+import { configureUtterance } from "@/lib/voices";
 
 export type SpeechMode = "word" | "sentence" | "paragraph";
 
@@ -54,6 +55,8 @@ interface SpeechCtx {
   accent: string;
   setAccent: (code: string) => void;
   accentsForLanguage: AccentOption[];
+  voiceURI: string | null;
+  setVoiceURI: (uri: string | null) => void;
 
   // Last clicked word (from WordCard)
   lastWord: string | null;
@@ -97,6 +100,7 @@ export function SpeechProvider({
   const accentsForLanguage = ACCENTS_BY_LANGUAGE[language];
   const [rate, setRateState] = useState(1);
   const [accent, setAccentState] = useState(accentsForLanguage[0].code);
+  const [voiceURI, setVoiceURIState] = useState<string | null>(null);
   const [lastWord, setLastWordState] = useState<string | null>(null);
   const [current, setCurrent] = useState<PlaybackInfo | null>(null);
   const [activeSentenceIndex, setActiveSentenceIndex] = useState(-1);
