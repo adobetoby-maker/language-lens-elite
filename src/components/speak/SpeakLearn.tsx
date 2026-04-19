@@ -3,7 +3,8 @@ import { Mic, Square, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useApp, type Language } from "@/state/app-state";
 import { useSpeak } from "@/state/speak-state";
-import { ACCENTS_BY_LANGUAGE } from "@/state/speech-state";
+import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
+import { configureUtterance } from "@/lib/voices";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
