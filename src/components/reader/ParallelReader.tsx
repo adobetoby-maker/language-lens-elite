@@ -3,6 +3,7 @@ import { Volume2, Plus, Type } from "lucide-react";
 import { LIBRARY } from "@/data/library";
 import { useApp } from "@/state/app-state";
 import { ClickableText } from "./ClickableText";
+import { WordCard, type WordCardRequest } from "./WordCard";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,11 +30,12 @@ const SIZE_CLASS: Record<TextSize, string> = {
 };
 
 export function ParallelReader() {
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
   const [textId, setTextId] = useState(LIBRARY[0].id);
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
+  const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
 
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -71,9 +73,8 @@ export function ParallelReader() {
     };
   }, [syncScroll, textId]);
 
-  const handleWord = (word: string) => {
-    // Word-card AI comes in a later prompt.
-    console.log("[LinguaLens] word clicked:", word);
+  const handleWord = (word: string, sentence: string, x: number, y: number) => {
+    setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
 
   const targetLabel =
@@ -249,6 +250,14 @@ export function ParallelReader() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {wordReq && (
+        <WordCard
+          request={wordReq}
+          onClose={() => setWordReq(null)}
+          onXp={(n) => dispatch({ type: "ADD_XP", payload: n })}
+        />
+      )}
     </div>
   );
 }
@@ -261,7 +270,7 @@ function Pane({
 }: {
   sentences: string[];
   size: TextSize;
-  onWordClick: (w: string) => void;
+  onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
 }) {
   return (
