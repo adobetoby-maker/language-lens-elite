@@ -1,19 +1,14 @@
-import { BookOpen, GraduationCap, Mic, LayoutDashboard } from "lucide-react";
+import { GraduationCap, Mic, LayoutDashboard } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { EmptyState } from "./EmptyState";
+import { ParallelReader } from "./reader/ParallelReader";
 
 export function TabShell() {
   const { state } = useApp();
 
   switch (state.currentTab) {
     case "reader":
-      return (
-        <EmptyState
-          icon={BookOpen}
-          title="The Reader"
-          description="Immersive texts in your chosen language — coming soon"
-        />
-      );
+      return <ParallelReader />;
     case "grammar":
       return (
         <EmptyState
