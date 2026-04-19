@@ -5,6 +5,11 @@ import { useApp, type Language } from "@/state/app-state";
 import { useSpeak } from "@/state/speak-state";
 import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
+import { celebrate, looseIncludes } from "@/lib/confetti";
+import {
+  ChallengePanel,
+  type SpeakChallenge,
+} from "@/components/speak/ChallengePanel";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
