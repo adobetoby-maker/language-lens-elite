@@ -430,6 +430,39 @@ export function ParallelReader() {
               )}
             </div>
           )}
+          {selected.language === "Korean" && (
+            <div className="flex items-center gap-2">
+              <Languages className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                Romaja
+              </span>
+              <div className="flex overflow-hidden rounded-full border border-border/70">
+                {(
+                  [
+                    { v: "off", label: "Off" },
+                    { v: "above", label: "Above" },
+                    { v: "inline", label: "On" },
+                  ] as { v: FuriganaMode; label: string }[]
+                ).map(({ v, label }) => (
+                  <button
+                    key={v}
+                    onClick={() => setRomajaMode(v)}
+                    data-active={romajaMode === v}
+                    title={
+                      v === "off"
+                        ? "Hide readings"
+                        : v === "above"
+                          ? "Tiny romaja above each syllable"
+                          : "Romaja sits directly on the syllable"
+                    }
+                    className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
