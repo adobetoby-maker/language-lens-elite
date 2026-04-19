@@ -175,7 +175,6 @@ export function LessonView({
           onClose={() => setShowQuiz(false)}
           onComplete={() => {
             setShowQuiz(false);
-            dispatch({ type: "ADD_XP", payload: 50 });
           }}
         />
       )}
