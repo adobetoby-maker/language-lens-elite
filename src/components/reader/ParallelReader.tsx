@@ -434,20 +434,13 @@ export function ParallelReader() {
                   [
                     { v: "off", label: "Off" },
                     { v: "above", label: "Above" },
-                    { v: "inline", label: "On" },
                   ] as { v: FuriganaMode; label: string }[]
                 ).map(({ v, label }) => (
                   <button
                     key={v}
                     onClick={() => setRomajaMode(v)}
                     data-active={romajaMode === v}
-                    title={
-                      v === "off"
-                        ? "Hide readings"
-                        : v === "above"
-                          ? "Tiny romaja above each syllable"
-                          : "Romaja sits directly on the syllable"
-                    }
+                    title={v === "off" ? "Hide readings" : "Tiny romaja above each syllable"}
                     className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
                   >
                     {label}
