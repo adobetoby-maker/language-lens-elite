@@ -192,4 +192,20 @@
       box-shadow: 0 0 0 14px color-mix(in oklab, var(--gold) 0%, transparent);
     }
   }
+
+  .listening-rings {
+    animation: listeningRings 1.4s ease-out infinite;
+  }
+  @keyframes listeningRings {
+    0% {
+      box-shadow:
+        0 0 0 0 color-mix(in oklab, var(--gold) 55%, transparent),
+        0 0 0 0 color-mix(in oklab, var(--gold) 35%, transparent);
+    }
+    100% {
+      box-shadow:
+        0 0 0 18px color-mix(in oklab, var(--gold) 0%, transparent),
+        0 0 0 36px color-mix(in oklab, var(--gold) 0%, transparent);
+    }
+  }
 }
