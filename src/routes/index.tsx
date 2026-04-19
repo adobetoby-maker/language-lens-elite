@@ -13,6 +13,7 @@ import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
+import { CefrCompletionBridge } from "@/components/CefrCompletionBridge";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -65,6 +66,7 @@ function Index() {
                   </div>
                   <TutorPanel />
                   <LevelUpOverlay />
+                  <CefrCompletionBridge />
                 </TutorProvider>
                 <Toaster
                   theme="dark"
