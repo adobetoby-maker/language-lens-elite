@@ -51,7 +51,7 @@ export function ParallelReader() {
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
 
-  // Hydrate + persist furigana preferences
+  // Hydrate + persist furigana / romaja preferences
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FURIGANA_KEY);
@@ -61,6 +61,10 @@ export function ParallelReader() {
       const rawScript = localStorage.getItem(FURIGANA_SCRIPT_KEY);
       if (rawScript === "hiragana" || rawScript === "romaji") {
         setFuriganaScript(rawScript);
+      }
+      const rawRomaja = localStorage.getItem(ROMAJA_KEY);
+      if (rawRomaja === "off" || rawRomaja === "above" || rawRomaja === "inline") {
+        setRomajaMode(rawRomaja);
       }
     } catch {
       /* ignore */
@@ -80,6 +84,13 @@ export function ParallelReader() {
       /* ignore */
     }
   }, [furiganaScript]);
+  useEffect(() => {
+    try {
+      localStorage.setItem(ROMAJA_KEY, romajaMode);
+    } catch {
+      /* ignore */
+    }
+  }, [romajaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
