@@ -510,7 +510,7 @@ function Pane({
   activeSentenceIndex,
   onWordClick,
   accent,
-  furigana,
+  furiganaMode = "off",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -519,9 +519,10 @@ function Pane({
   activeSentenceIndex: number;
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
-  /** Render Japanese furigana above kanji. Only meaningful for the target pane. */
-  furigana?: boolean;
+  /** Furigana display mode for Japanese target text. */
+  furiganaMode?: FuriganaMode;
 }) {
+  const showFurigana = furiganaMode !== "off";
   return (
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
@@ -541,13 +542,18 @@ function Pane({
               isActive
                 ? "border-gold bg-gold/15"
                 : "border-transparent hover:border-gold/40"
-            } ${furigana ? "furigana-line" : ""}`}
+            } ${furiganaMode === "above" ? "furigana-line" : ""}`}
           >
-            {furigana && sentenceAnns.length === 0 ? (
+            {showFurigana && sentenceAnns.length === 0 ? (
               // Fast path: no annotations on this sentence — render with furigana.
               // Once the user adds notes/highlights we fall back to the annotated
               // renderer (without ruby) for that sentence; readings stay cached.
-              <FuriganaText text={s} fullSentence={s} onWordClick={onWordClick} />
+              <FuriganaText
+                text={s}
+                fullSentence={s}
+                onWordClick={onWordClick}
+                mode={furiganaMode}
+              />
             ) : (
               <AnnotatedSentence
                 text={s}
