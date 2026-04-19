@@ -55,16 +55,20 @@ export function ParallelReader() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FURIGANA_KEY);
-      if (raw === "off" || raw === "above" || raw === "inline") {
+      if (raw === "off" || raw === "above") {
         setFuriganaMode(raw);
+      } else if (raw === "inline") {
+        setFuriganaMode("above");
       }
       const rawScript = localStorage.getItem(FURIGANA_SCRIPT_KEY);
       if (rawScript === "hiragana" || rawScript === "romaji") {
         setFuriganaScript(rawScript);
       }
       const rawRomaja = localStorage.getItem(ROMAJA_KEY);
-      if (rawRomaja === "off" || rawRomaja === "above" || rawRomaja === "inline") {
+      if (rawRomaja === "off" || rawRomaja === "above") {
         setRomajaMode(rawRomaja);
+      } else if (rawRomaja === "inline") {
+        setRomajaMode("above");
       }
     } catch {
       /* ignore */
@@ -388,20 +392,13 @@ export function ParallelReader() {
                   [
                     { v: "off", label: "Off" },
                     { v: "above", label: "Above" },
-                    { v: "inline", label: "On" },
                   ] as { v: FuriganaMode; label: string }[]
                 ).map(({ v, label }) => (
                   <button
                     key={v}
                     onClick={() => setFuriganaMode(v)}
                     data-active={furiganaMode === v}
-                    title={
-                      v === "off"
-                        ? "Hide readings"
-                        : v === "above"
-                          ? "Tiny hiragana above kanji"
-                          : "Reading sits directly on the kanji"
-                    }
+                    title={v === "off" ? "Hide readings" : "Tiny hiragana above kanji"}
                     className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
                   >
                     {label}
@@ -441,20 +438,13 @@ export function ParallelReader() {
                   [
                     { v: "off", label: "Off" },
                     { v: "above", label: "Above" },
-                    { v: "inline", label: "On" },
                   ] as { v: FuriganaMode; label: string }[]
                 ).map(({ v, label }) => (
                   <button
                     key={v}
                     onClick={() => setRomajaMode(v)}
                     data-active={romajaMode === v}
-                    title={
-                      v === "off"
-                        ? "Hide readings"
-                        : v === "above"
-                          ? "Tiny romaja above each syllable"
-                          : "Romaja sits directly on the syllable"
-                    }
+                    title={v === "off" ? "Hide readings" : "Tiny romaja above each syllable"}
                     className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
                   >
                     {label}
