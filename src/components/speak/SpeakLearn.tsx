@@ -109,10 +109,16 @@ export function SpeakLearn() {
       if (sessionStartRef.current != null) {
         const secs = Math.round((Date.now() - sessionStartRef.current) / 1000);
         addSeconds(secs);
+        if (secs > 0) {
+          dispatch({
+            type: "ADD_SPEAK_SECONDS",
+            payload: { lang: language, seconds: secs },
+          });
+        }
         sessionStartRef.current = null;
       }
     };
-  }, [addSeconds]);
+  }, [addSeconds, dispatch, language]);
 
   const speakAloud = (text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
