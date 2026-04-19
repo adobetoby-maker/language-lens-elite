@@ -179,4 +179,17 @@
       transform: translateY(0);
     }
   }
+
+  .tutor-pulse {
+    animation: tutorPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes tutorPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 14px color-mix(in oklab, var(--gold) 0%, transparent);
+    }
+  }
 }
