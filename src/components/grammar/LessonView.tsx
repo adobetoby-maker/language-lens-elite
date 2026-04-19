@@ -9,6 +9,7 @@ import {
   type LessonContent,
 } from "@/server/grammar.functions";
 import { ClickableText } from "@/components/reader/ClickableText";
+import { FuriganaText } from "@/components/reader/FuriganaText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import { QuizCard } from "./QuizCard";
 import { MorphologyCard } from "./MorphologyCard";
@@ -144,8 +145,14 @@ export function LessonView({
                   </div>
                   {content.examples.map((ex, i) => (
                     <div key={i} className="contents">
-                      <div className="border-b border-border/40 px-5 py-4 font-display text-[16px] leading-relaxed text-foreground md:border-r">
-                        <ClickableText text={ex.target} onWordClick={handleWord} />
+                      <div
+                        className={`border-b border-border/40 px-5 py-4 font-display text-[16px] leading-relaxed text-foreground md:border-r ${state.selectedLanguage === "Japanese" ? "furigana-line" : ""}`}
+                      >
+                        {state.selectedLanguage === "Japanese" ? (
+                          <FuriganaText text={ex.target} onWordClick={handleWord} />
+                        ) : (
+                          <ClickableText text={ex.target} onWordClick={handleWord} />
+                        )}
                       </div>
                       <div className="border-b border-border/40 px-5 py-4 font-display text-[15px] italic leading-relaxed text-muted-foreground">
                         {ex.english}
