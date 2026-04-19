@@ -37,7 +37,7 @@ export function WordCard({
   onXp: (n: number) => void;
 }) {
   const lookup = useServerFn(lookupWord);
-  const { setLastWord } = useSpeech();
+  const { setLastWord, accent, voiceURI } = useSpeech();
   const tutor = useTutor();
   const { dispatch } = useApp();
   const [card, setCard] = useState<WordCardData | null>(null);
@@ -112,7 +112,8 @@ export function WordCard({
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     const text = card?.headword ?? request.word;
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = LOCALE[request.language];
+    const locale = accent || LOCALE[request.language];
+    configureUtterance(utter, locale, voiceURI);
     utter.rate = 0.9;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
