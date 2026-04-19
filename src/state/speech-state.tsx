@@ -36,6 +36,7 @@ export const ACCENTS_BY_LANGUAGE: Record<Language, AccentOption[]> = {
   ],
   Italian: [{ code: "it-IT", label: "Italy (it-IT)" }],
   Japanese: [{ code: "ja-JP", label: "Japan (ja-JP)" }],
+  Korean: [{ code: "ko-KR", label: "South Korea (ko-KR)" }],
   Portuguese: [
     { code: "pt-BR", label: "Brazil (pt-BR)" },
     { code: "pt-PT", label: "Portugal (pt-PT)" },

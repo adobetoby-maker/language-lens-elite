@@ -7,6 +7,7 @@ import { useNotes } from "@/state/notes-state";
 import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
 import { FuriganaText, type FuriganaScript } from "./FuriganaText";
+import { HangulText } from "./HangulText";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
@@ -19,16 +20,17 @@ import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 type TextSize = "S" | "M" | "L";
 
 /**
- * Furigana display modes:
+ * Furigana display modes (also reused for Korean romaja):
  *  - "off"     : no readings shown
- *  - "above"   : tiny hiragana floats above the kanji (default; line height stays)
- *  - "inline"  : reading sits directly ON TOP of the kanji as a faint overlay,
+ *  - "above"   : tiny reading floats above the character (default; line height stays)
+ *  - "inline"  : reading sits directly ON TOP of the character as a faint overlay,
  *                so the original sentence rhythm is preserved 1:1.
  */
 type FuriganaMode = "off" | "above" | "inline";
 
 const FURIGANA_KEY = "lingualens.reader.furigana.v1";
 const FURIGANA_SCRIPT_KEY = "lingualens.reader.furigana.script.v1";
+const ROMAJA_KEY = "lingualens.reader.romaja.v1";
 
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
@@ -47,8 +49,9 @@ export function ParallelReader() {
   const [syncScroll, setSyncScroll] = useState(true);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
+  const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
 
-  // Hydrate + persist furigana preferences
+  // Hydrate + persist furigana / romaja preferences
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FURIGANA_KEY);
@@ -58,6 +61,10 @@ export function ParallelReader() {
       const rawScript = localStorage.getItem(FURIGANA_SCRIPT_KEY);
       if (rawScript === "hiragana" || rawScript === "romaji") {
         setFuriganaScript(rawScript);
+      }
+      const rawRomaja = localStorage.getItem(ROMAJA_KEY);
+      if (rawRomaja === "off" || rawRomaja === "above" || rawRomaja === "inline") {
+        setRomajaMode(rawRomaja);
       }
     } catch {
       /* ignore */
@@ -77,6 +84,13 @@ export function ParallelReader() {
       /* ignore */
     }
   }, [furiganaScript]);
+  useEffect(() => {
+    try {
+      localStorage.setItem(ROMAJA_KEY, romajaMode);
+    } catch {
+      /* ignore */
+    }
+  }, [romajaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
@@ -416,6 +430,39 @@ export function ParallelReader() {
               )}
             </div>
           )}
+          {selected.language === "Korean" && (
+            <div className="flex items-center gap-2">
+              <Languages className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                Romaja
+              </span>
+              <div className="flex overflow-hidden rounded-full border border-border/70">
+                {(
+                  [
+                    { v: "off", label: "Off" },
+                    { v: "above", label: "Above" },
+                    { v: "inline", label: "On" },
+                  ] as { v: FuriganaMode; label: string }[]
+                ).map(({ v, label }) => (
+                  <button
+                    key={v}
+                    onClick={() => setRomajaMode(v)}
+                    data-active={romajaMode === v}
+                    title={
+                      v === "off"
+                        ? "Hide readings"
+                        : v === "above"
+                          ? "Tiny romaja above each syllable"
+                          : "Romaja sits directly on the syllable"
+                    }
+                    className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
@@ -489,6 +536,9 @@ export function ParallelReader() {
                   selected.language === "Japanese" ? furiganaMode : "off"
                 }
                 furiganaScript={furiganaScript}
+                romajaMode={
+                  selected.language === "Korean" ? romajaMode : "off"
+                }
               />
             </div>
           </div>
@@ -546,6 +596,7 @@ function Pane({
   accent,
   furiganaMode = "off",
   furiganaScript = "hiragana",
+  romajaMode = "off",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -556,10 +607,15 @@ function Pane({
   accent?: boolean;
   /** Furigana display mode for Japanese target text. */
   furiganaMode?: FuriganaMode;
-  /** Which script to render in the ruby labels. */
+  /** Which script to render in the ruby labels (Japanese). */
   furiganaScript?: FuriganaScript;
+  /** Romaja display mode for Korean target text. */
+  romajaMode?: FuriganaMode;
 }) {
   const showFurigana = furiganaMode !== "off";
+  const showRomaja = romajaMode !== "off";
+  const lineNeedsExtraLeading =
+    furiganaMode === "above" || romajaMode === "above";
   return (
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
@@ -569,6 +625,8 @@ function Pane({
           (a) => a.pane === pane && a.sentenceIndex === i,
         );
         const isActive = activeSentenceIndex === i;
+        const useRubyRenderer =
+          (showFurigana || showRomaja) && sentenceAnns.length === 0;
         return (
           <p
             key={i}
@@ -579,19 +637,29 @@ function Pane({
               isActive
                 ? "border-gold bg-gold/15"
                 : "border-transparent hover:border-gold/40"
-            } ${furiganaMode === "above" ? "furigana-line" : ""}`}
+            } ${lineNeedsExtraLeading ? "furigana-line" : ""}`}
           >
-            {showFurigana && sentenceAnns.length === 0 ? (
-              // Fast path: no annotations on this sentence — render with furigana.
-              // Once the user adds notes/highlights we fall back to the annotated
-              // renderer (without ruby) for that sentence; readings stay cached.
-              <FuriganaText
-                text={s}
-                fullSentence={s}
-                onWordClick={onWordClick}
-                mode={furiganaMode === "inline" ? "inline" : "above"}
-                script={furiganaScript}
-              />
+            {useRubyRenderer ? (
+              // Fast path: no annotations on this sentence — render with
+              // furigana/romaja. Once the user adds notes/highlights we fall
+              // back to the annotated renderer (without ruby) for that
+              // sentence; readings stay cached.
+              showFurigana ? (
+                <FuriganaText
+                  text={s}
+                  fullSentence={s}
+                  onWordClick={onWordClick}
+                  mode={furiganaMode === "inline" ? "inline" : "above"}
+                  script={furiganaScript}
+                />
+              ) : (
+                <HangulText
+                  text={s}
+                  fullSentence={s}
+                  onWordClick={onWordClick}
+                  mode={romajaMode === "inline" ? "inline" : "above"}
+                />
+              )
             ) : (
               <AnnotatedSentence
                 text={s}

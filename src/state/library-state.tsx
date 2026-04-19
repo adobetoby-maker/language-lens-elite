@@ -35,6 +35,7 @@ const FLAG_BY_LANGUAGE: Record<Language, string> = {
   German: "🇩🇪",
   Italian: "🇮🇹",
   Japanese: "🇯🇵",
+  Korean: "🇰🇷",
   Portuguese: "🇧🇷",
 };
 
@@ -257,6 +258,74 @@ const CULTURE_EXTRA: LibraryEntry[] = [
         en: "The wind passed through the street, carrying away the smell of rain and a small piece of my heart.",
         target:
           "風が通りを抜けていき、雨のにおいと、僕の心のほんの小さなかけらを連れ去っていった。",
+      },
+    ],
+  },
+  {
+    id: "culture-ko-heungbu-nolbu",
+    title: "흥부와 놀부 — Heungbu and Nolbu",
+    subtitle: "Korean folk tale",
+    language: "Korean",
+    targetLabel: "한국어",
+    section: "culture",
+    flag: "🇰🇷",
+    available: true,
+    sentences: [
+      {
+        en: "Long, long ago there lived two brothers, Nolbu the elder and Heungbu the younger.",
+        target: "옛날 옛적에 놀부라는 형과 흥부라는 동생, 두 형제가 살고 있었습니다.",
+      },
+      {
+        en: "Nolbu was greedy and cruel, but Heungbu was kind and gentle to everyone.",
+        target: "놀부는 욕심이 많고 마음씨가 사나웠지만, 흥부는 누구에게나 친절하고 마음씨가 고왔습니다.",
+      },
+      {
+        en: "When their father died, Nolbu took all the wealth and drove Heungbu out of the house.",
+        target: "아버지가 돌아가시자, 놀부는 모든 재산을 차지하고 흥부를 집에서 쫓아냈습니다.",
+      },
+      {
+        en: "One spring day, Heungbu mended the broken leg of a swallow with great care.",
+        target: "어느 봄날, 흥부는 다리가 부러진 제비를 정성껏 치료해 주었습니다.",
+      },
+      {
+        en: "The next year the swallow returned and dropped a single gourd seed at his door.",
+        target: "다음 해 봄, 제비가 돌아와 흥부의 집 앞에 박씨 하나를 떨어뜨렸습니다.",
+      },
+      {
+        en: "From the gourds that grew, gold and treasures poured out, and Heungbu became rich.",
+        target: "그 박이 자라 열매를 가르자 금과 보물이 쏟아져 나왔고, 흥부는 부자가 되었습니다.",
+      },
+    ],
+  },
+  {
+    id: "culture-ko-seoul-cafe",
+    title: "서울의 어느 카페에서 — At a Café in Seoul",
+    subtitle: "A modern slice of Seoul",
+    language: "Korean",
+    targetLabel: "한국어",
+    section: "culture",
+    flag: "🇰🇷",
+    available: true,
+    sentences: [
+      {
+        en: "It was a quiet afternoon in a small café in Seochon, with autumn light falling through the window.",
+        target: "서촌의 작은 카페, 창문으로 가을 햇살이 들어오는 조용한 오후였습니다.",
+      },
+      {
+        en: "She ordered a warm latte and opened a worn notebook on the wooden table.",
+        target: "그녀는 따뜻한 라떼를 주문하고, 나무 탁자 위에 낡은 노트를 펼쳤습니다.",
+      },
+      {
+        en: "Outside, students were laughing on their way home, their backpacks bouncing lightly.",
+        target: "밖에서는 학생들이 가방을 흔들며 집으로 가는 길에 웃고 있었습니다.",
+      },
+      {
+        en: "She thought about the trip to Jeju she had been planning for years.",
+        target: "그녀는 몇 년 동안 계획해 온 제주 여행에 대해 생각했습니다.",
+      },
+      {
+        en: "Tonight, she would finally write the first sentence of her novel.",
+        target: "오늘 밤, 그녀는 마침내 자신의 소설의 첫 문장을 쓸 것입니다.",
       },
     ],
   },

@@ -13,6 +13,7 @@ const LOCALE: Record<Language, string> = {
   German: "de-DE",
   Italian: "it-IT",
   Japanese: "ja-JP",
+  Korean: "ko-KR",
   Portuguese: "pt-PT",
 };
 

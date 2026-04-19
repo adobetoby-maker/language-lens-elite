@@ -37,6 +37,12 @@ const TOPIC_CHIPS: Record<Language, string[]> = {
     "好きな食べ物は? 🍽️",
     "旅行について話そう ✈️",
   ],
+  Korean: [
+    "당신의 도시에 대해 말해주세요 🏙️",
+    "아침에 대해 이야기해 봅시다 ☀️",
+    "좋아하는 음식이 무엇입니까? 🍽️",
+    "여행에 대해 이야기합시다 ✈️",
+  ],
   Portuguese: [
     "Fale sobre sua cidade 🏙️",
     "Descreva sua manhã ☀️",
