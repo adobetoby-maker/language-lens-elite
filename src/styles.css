@@ -246,3 +246,33 @@
   color: color-mix(in oklab, var(--gold) 80%, var(--foreground));
 }
 
+/* ---- Furigana (ruby) styling ---------------------------------------------
+   Goal: tiny hiragana readings above kanji that DO NOT change the line height
+   of the surrounding sentence. We rely on:
+   1. Native <ruby> with `ruby-position: over` (default in modern browsers).
+   2. A very small <rt> font (0.5em) with line-height:1 so the reading fits
+      inside the existing leading.
+   3. The reader paragraphs already use line-height ~1.85, which leaves
+      plenty of room above each glyph for the rt without pushing lines apart.
+*/
+ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+.furigana-rt {
+  font-family: var(--font-mono);
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1;
+  color: color-mix(in oklab, var(--gold) 70%, var(--muted-foreground));
+  letter-spacing: 0.02em;
+  /* Lift readings up slightly so they sit cleanly inside the existing leading
+     instead of widening the line box. */
+  transform: translateY(-0.1em);
+  user-select: none;
+}
+/* When a sentence row contains ruby, keep the line box exactly as the parent
+   line-height dictates — never let ruby grow it. */
+.furigana-line {
+  line-height: inherit;
+}

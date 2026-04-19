@@ -6,6 +6,7 @@ import { useLibrary } from "@/state/library-state";
 import { useNotes } from "@/state/notes-state";
 import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
+import { FuriganaText } from "./FuriganaText";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
@@ -387,6 +388,7 @@ export function ParallelReader() {
                 activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
+                furigana={selected.language === "Japanese"}
               />
             </div>
           </div>
@@ -442,6 +444,7 @@ function Pane({
   activeSentenceIndex,
   onWordClick,
   accent,
+  furigana,
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -450,6 +453,8 @@ function Pane({
   activeSentenceIndex: number;
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
+  /** Render Japanese furigana above kanji. Only meaningful for the target pane. */
+  furigana?: boolean;
 }) {
   return (
     <div
@@ -470,13 +475,20 @@ function Pane({
               isActive
                 ? "border-gold bg-gold/15"
                 : "border-transparent hover:border-gold/40"
-            }`}
+            } ${furigana ? "furigana-line" : ""}`}
           >
-            <AnnotatedSentence
-              text={s}
-              annotations={sentenceAnns}
-              onWordClick={onWordClick}
-            />
+            {furigana && sentenceAnns.length === 0 ? (
+              // Fast path: no annotations on this sentence — render with furigana.
+              // Once the user adds notes/highlights we fall back to the annotated
+              // renderer (without ruby) for that sentence; readings stay cached.
+              <FuriganaText text={s} fullSentence={s} onWordClick={onWordClick} />
+            ) : (
+              <AnnotatedSentence
+                text={s}
+                annotations={sentenceAnns}
+                onWordClick={onWordClick}
+              />
+            )}
           </p>
         );
       })}
