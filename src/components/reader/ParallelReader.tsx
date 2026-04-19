@@ -596,6 +596,7 @@ function Pane({
   accent,
   furiganaMode = "off",
   furiganaScript = "hiragana",
+  romajaMode = "off",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -606,10 +607,15 @@ function Pane({
   accent?: boolean;
   /** Furigana display mode for Japanese target text. */
   furiganaMode?: FuriganaMode;
-  /** Which script to render in the ruby labels. */
+  /** Which script to render in the ruby labels (Japanese). */
   furiganaScript?: FuriganaScript;
+  /** Romaja display mode for Korean target text. */
+  romajaMode?: FuriganaMode;
 }) {
   const showFurigana = furiganaMode !== "off";
+  const showRomaja = romajaMode !== "off";
+  const lineNeedsExtraLeading =
+    furiganaMode === "above" || romajaMode === "above";
   return (
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
@@ -619,6 +625,8 @@ function Pane({
           (a) => a.pane === pane && a.sentenceIndex === i,
         );
         const isActive = activeSentenceIndex === i;
+        const useRubyRenderer =
+          (showFurigana || showRomaja) && sentenceAnns.length === 0;
         return (
           <p
             key={i}
@@ -629,19 +637,29 @@ function Pane({
               isActive
                 ? "border-gold bg-gold/15"
                 : "border-transparent hover:border-gold/40"
-            } ${furiganaMode === "above" ? "furigana-line" : ""}`}
+            } ${lineNeedsExtraLeading ? "furigana-line" : ""}`}
           >
-            {showFurigana && sentenceAnns.length === 0 ? (
-              // Fast path: no annotations on this sentence — render with furigana.
-              // Once the user adds notes/highlights we fall back to the annotated
-              // renderer (without ruby) for that sentence; readings stay cached.
-              <FuriganaText
-                text={s}
-                fullSentence={s}
-                onWordClick={onWordClick}
-                mode={furiganaMode === "inline" ? "inline" : "above"}
-                script={furiganaScript}
-              />
+            {useRubyRenderer ? (
+              // Fast path: no annotations on this sentence — render with
+              // furigana/romaja. Once the user adds notes/highlights we fall
+              // back to the annotated renderer (without ruby) for that
+              // sentence; readings stay cached.
+              showFurigana ? (
+                <FuriganaText
+                  text={s}
+                  fullSentence={s}
+                  onWordClick={onWordClick}
+                  mode={furiganaMode === "inline" ? "inline" : "above"}
+                  script={furiganaScript}
+                />
+              ) : (
+                <HangulText
+                  text={s}
+                  fullSentence={s}
+                  onWordClick={onWordClick}
+                  mode={romajaMode === "inline" ? "inline" : "above"}
+                />
+              )
             ) : (
               <AnnotatedSentence
                 text={s}
