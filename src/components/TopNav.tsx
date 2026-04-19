@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { VoicePicker } from "./VoicePicker";
 
 const LANGUAGES: Language[] = [
   "Spanish",
@@ -73,18 +74,23 @@ export function TopNav() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* Theme toggle */}
-        <button
-          onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}
-          aria-label="Toggle theme"
-          className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 bg-card/60 text-foreground/80 transition-all hover:border-gold/60 hover:text-gold"
-        >
-          {state.darkMode ? (
-            <Sun className="h-4 w-4" strokeWidth={1.6} />
-          ) : (
-            <Moon className="h-4 w-4" strokeWidth={1.6} />
-          )}
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Voice picker */}
+          <VoicePicker />
+
+          {/* Theme toggle */}
+          <button
+            onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}
+            aria-label="Toggle theme"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 bg-card/60 text-foreground/80 transition-all hover:border-gold/60 hover:text-gold"
+          >
+            {state.darkMode ? (
+              <Sun className="h-4 w-4" strokeWidth={1.6} />
+            ) : (
+              <Moon className="h-4 w-4" strokeWidth={1.6} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}

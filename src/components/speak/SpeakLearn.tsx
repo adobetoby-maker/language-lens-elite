@@ -3,7 +3,8 @@ import { Mic, Square, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useApp, type Language } from "@/state/app-state";
 import { useSpeak } from "@/state/speak-state";
-import { ACCENTS_BY_LANGUAGE } from "@/state/speech-state";
+import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
+import { configureUtterance } from "@/lib/voices";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
@@ -75,7 +76,8 @@ export function SpeakLearn() {
     clear,
   } = useSpeak();
   const language = state.selectedLanguage;
-  const accent = ACCENTS_BY_LANGUAGE[language][0].code;
+  const { accent: chosenAccent, voiceURI } = useSpeech();
+  const accent = chosenAccent || ACCENTS_BY_LANGUAGE[language][0].code;
   const chips = TOPIC_CHIPS[language];
 
   const [supported, setSupported] = useState<boolean | null>(null);
@@ -124,7 +126,7 @@ export function SpeakLearn() {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = accent;
+    configureUtterance(u, accent, voiceURI);
     u.rate = 1;
     window.speechSynthesis.speak(u);
   };

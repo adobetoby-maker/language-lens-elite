@@ -10,6 +10,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import type { Language } from "./app-state";
+import { configureUtterance } from "@/lib/voices";
 
 export type SpeechMode = "word" | "sentence" | "paragraph";
 
@@ -54,6 +55,8 @@ interface SpeechCtx {
   accent: string;
   setAccent: (code: string) => void;
   accentsForLanguage: AccentOption[];
+  voiceURI: string | null;
+  setVoiceURI: (uri: string | null) => void;
 
   // Last clicked word (from WordCard)
   lastWord: string | null;
@@ -97,6 +100,7 @@ export function SpeechProvider({
   const accentsForLanguage = ACCENTS_BY_LANGUAGE[language];
   const [rate, setRateState] = useState(1);
   const [accent, setAccentState] = useState(accentsForLanguage[0].code);
+  const [voiceURI, setVoiceURIState] = useState<string | null>(null);
   const [lastWord, setLastWordState] = useState<string | null>(null);
   const [current, setCurrent] = useState<PlaybackInfo | null>(null);
   const [activeSentenceIndex, setActiveSentenceIndex] = useState(-1);
@@ -112,27 +116,45 @@ export function SpeechProvider({
         if (typeof parsed.rate === "number") setRateState(parsed.rate);
         if (typeof parsed.listenedCount === "number")
           setListenedCount(parsed.listenedCount);
+        if (parsed.voiceByLang && typeof parsed.voiceByLang === "object") {
+          const v = parsed.voiceByLang[language];
+          if (typeof v === "string") setVoiceURIState(v);
+        }
       }
     } catch {
       /* ignore */
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Persist
   useEffect(() => {
     try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const prev = raw ? JSON.parse(raw) : {};
+      const voiceByLang = { ...(prev.voiceByLang ?? {}) };
+      if (voiceURI) voiceByLang[language] = voiceURI;
+      else delete voiceByLang[language];
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ rate, listenedCount }),
+        JSON.stringify({ rate, listenedCount, voiceByLang }),
       );
     } catch {
       /* ignore */
     }
-  }, [rate, listenedCount]);
+  }, [rate, listenedCount, voiceURI, language]);
 
-  // Reset accent when language changes
+  // Reset accent + voice when language changes (load voice for new language)
   useEffect(() => {
     setAccentState(accentsForLanguage[0].code);
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      const v = parsed.voiceByLang?.[language];
+      setVoiceURIState(typeof v === "string" ? v : null);
+    } catch {
+      setVoiceURIState(null);
+    }
     // Stop any active speech
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
@@ -170,6 +192,7 @@ export function SpeechProvider({
     setRateState(n);
   }, []);
   const setAccent = useCallback((c: string) => setAccentState(c), []);
+  const setVoiceURI = useCallback((uri: string | null) => setVoiceURIState(uri), []);
   const setLastWord = useCallback((w: string) => setLastWordState(w), []);
 
   const incListened = useCallback(() => {
@@ -195,7 +218,7 @@ export function SpeechProvider({
     ) => {
       if (typeof window === "undefined" || !window.speechSynthesis) return;
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = accent;
+      configureUtterance(u, accent, voiceURI);
       u.rate = rate;
       u.onstart = () => {
         setPlaying(true);
@@ -211,7 +234,7 @@ export function SpeechProvider({
       };
       window.speechSynthesis.speak(u);
     },
-    [accent, rate, incListened],
+    [accent, rate, voiceURI, incListened],
   );
 
   const speakWord = useCallback(
@@ -285,6 +308,8 @@ export function SpeechProvider({
       accent,
       setAccent,
       accentsForLanguage,
+      voiceURI,
+      setVoiceURI,
       lastWord,
       setLastWord,
       playing,
@@ -302,6 +327,8 @@ export function SpeechProvider({
       accent,
       setAccent,
       accentsForLanguage,
+      voiceURI,
+      setVoiceURI,
       lastWord,
       setLastWord,
       playing,
