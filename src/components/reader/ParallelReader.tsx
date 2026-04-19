@@ -388,20 +388,13 @@ export function ParallelReader() {
                   [
                     { v: "off", label: "Off" },
                     { v: "above", label: "Above" },
-                    { v: "inline", label: "On" },
                   ] as { v: FuriganaMode; label: string }[]
                 ).map(({ v, label }) => (
                   <button
                     key={v}
                     onClick={() => setFuriganaMode(v)}
                     data-active={furiganaMode === v}
-                    title={
-                      v === "off"
-                        ? "Hide readings"
-                        : v === "above"
-                          ? "Tiny hiragana above kanji"
-                          : "Reading sits directly on the kanji"
-                    }
+                    title={v === "off" ? "Hide readings" : "Tiny hiragana above kanji"}
                     className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
                   >
                     {label}
