@@ -20,16 +20,17 @@ import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 type TextSize = "S" | "M" | "L";
 
 /**
- * Furigana display modes:
+ * Furigana display modes (also reused for Korean romaja):
  *  - "off"     : no readings shown
- *  - "above"   : tiny hiragana floats above the kanji (default; line height stays)
- *  - "inline"  : reading sits directly ON TOP of the kanji as a faint overlay,
+ *  - "above"   : tiny reading floats above the character (default; line height stays)
+ *  - "inline"  : reading sits directly ON TOP of the character as a faint overlay,
  *                so the original sentence rhythm is preserved 1:1.
  */
 type FuriganaMode = "off" | "above" | "inline";
 
 const FURIGANA_KEY = "lingualens.reader.furigana.v1";
 const FURIGANA_SCRIPT_KEY = "lingualens.reader.furigana.script.v1";
+const ROMAJA_KEY = "lingualens.reader.romaja.v1";
 
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
