@@ -76,7 +76,8 @@ export function SpeakLearn() {
     clear,
   } = useSpeak();
   const language = state.selectedLanguage;
-  const accent = ACCENTS_BY_LANGUAGE[language][0].code;
+  const { accent: chosenAccent, voiceURI } = useSpeech();
+  const accent = chosenAccent || ACCENTS_BY_LANGUAGE[language][0].code;
   const chips = TOPIC_CHIPS[language];
 
   const [supported, setSupported] = useState<boolean | null>(null);
@@ -125,7 +126,7 @@ export function SpeakLearn() {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = accent;
+    configureUtterance(u, accent, voiceURI);
     u.rate = 1;
     window.speechSynthesis.speak(u);
   };
