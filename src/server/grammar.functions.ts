@@ -1,0 +1,204 @@
+import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
+
+export const CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
+export type CefrLevel = (typeof CEFR_LEVELS)[number];
+
+const LevelTitleInput = z.object({
+  language: z.string().min(1).max(40),
+  level: z.enum(CEFR_LEVELS),
+});
+
+const LessonInput = z.object({
+  language: z.string().min(1).max(40),
+  level: z.enum(CEFR_LEVELS),
+  concept: z.string().min(1).max(200),
+});
+
+const QuizInput = z.object({
+  language: z.string().min(1).max(40),
+  concept: z.string().min(1).max(200),
+});
+
+export interface LessonStub {
+  id: string;
+  title: string;
+  concept: string;
+}
+
+export interface LessonExample {
+  target: string;
+  english: string;
+}
+
+export interface LessonContent {
+  explanation: string;
+  examples: LessonExample[];
+  keyRule: string;
+}
+
+export type QuizQuestionType = "fill_blank" | "multiple_choice";
+
+export interface QuizQuestion {
+  type: QuizQuestionType;
+  question: string;
+  options?: string[];
+  answer: string;
+  explanation: string;
+}
+
+export interface QuizPayload {
+  questions: QuizQuestion[];
+}
+
+const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
+
+async function callTool<T>(
+  systemPrompt: string,
+  userPrompt: string,
+  toolName: string,
+  parameters: Record<string, unknown>,
+): Promise<{ data: T | null; error: string | null }> {
+  const KEY = process.env.LOVABLE_API_KEY;
+  if (!KEY) return { data: null, error: "AI is not configured" };
+
+  try {
+    const res = await fetch(GATEWAY, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "google/gemini-3-flash-preview",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
+        tools: [
+          {
+            type: "function",
+            function: { name: toolName, description: "Return structured result.", parameters },
+          },
+        ],
+        tool_choice: { type: "function", function: { name: toolName } },
+      }),
+    });
+
+    if (!res.ok) {
+      if (res.status === 429)
+        return { data: null, error: "Rate limit hit, please retry shortly." };
+      if (res.status === 402)
+        return {
+          data: null,
+          error: "AI credits exhausted. Add funds in Settings → Workspace → Usage.",
+        };
+      const t = await res.text();
+      console.error("AI gateway error", res.status, t);
+      return { data: null, error: "AI request failed." };
+    }
+
+    const json = await res.json();
+    const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+    if (!args) return { data: null, error: "No structured result returned." };
+    return { data: JSON.parse(args) as T, error: null };
+  } catch (e) {
+    console.error("callTool failed", e);
+    return { data: null, error: "Request failed." };
+  }
+}
+
+export const generateLessonTitles = createServerFn({ method: "POST" })
+  .inputValidator((i: unknown) => LevelTitleInput.parse(i))
+  .handler(async ({ data }) => {
+    const system =
+      "You are a master language curriculum designer. Always respond by calling the provided tool. Generate exactly 6 lessons that progress logically through the level.";
+    const user = `Generate 6 grammar lesson titles for a ${data.language} learner at CEFR level ${data.level}. Each lesson needs a short editorial title and a precise grammar concept (one sentence describing what grammar point is taught).`;
+    return callTool<{ lessons: LessonStub[] }>(system, user, "return_lesson_titles", {
+      type: "object",
+      properties: {
+        lessons: {
+          type: "array",
+          minItems: 6,
+          maxItems: 6,
+          items: {
+            type: "object",
+            properties: {
+              id: { type: "string", description: "kebab-case slug" },
+              title: { type: "string" },
+              concept: { type: "string" },
+            },
+            required: ["id", "title", "concept"],
+            additionalProperties: false,
+          },
+        },
+      },
+      required: ["lessons"],
+      additionalProperties: false,
+    });
+  });
+
+export const generateLessonContent = createServerFn({ method: "POST" })
+  .inputValidator((i: unknown) => LessonInput.parse(i))
+  .handler(async ({ data }) => {
+    const system =
+      "You are a brilliant private grammar tutor. Write clearly and warmly. Always respond by calling the provided tool.";
+    const user = `Teach this grammar concept: "${data.concept}" for a ${data.language} learner at CEFR ${data.level}. Provide a clear ~150-word English explanation, exactly 3 example sentences in ${data.language} each with an English translation, and one bold key rule (single sentence).`;
+    return callTool<LessonContent>(system, user, "return_lesson_content", {
+      type: "object",
+      properties: {
+        explanation: { type: "string", minLength: 200 },
+        examples: {
+          type: "array",
+          minItems: 3,
+          maxItems: 3,
+          items: {
+            type: "object",
+            properties: {
+              target: { type: "string" },
+              english: { type: "string" },
+            },
+            required: ["target", "english"],
+            additionalProperties: false,
+          },
+        },
+        keyRule: { type: "string" },
+      },
+      required: ["explanation", "examples", "keyRule"],
+      additionalProperties: false,
+    });
+  });
+
+export const generateLessonQuiz = createServerFn({ method: "POST" })
+  .inputValidator((i: unknown) => QuizInput.parse(i))
+  .handler(async ({ data }) => {
+    const system =
+      "You are an exam writer. Always respond by calling the provided tool. Mix fill-in-the-blank and multiple choice. For fill-in-the-blank, write the sentence with a single ___ blank. For multiple choice, provide 3-4 options including the correct answer. Always include a short explanation.";
+    const user = `Create exactly 3 quiz questions in English (with target ${data.language} content where natural) for the grammar concept "${data.concept}". Mix types.`;
+    return callTool<QuizPayload>(system, user, "return_quiz", {
+      type: "object",
+      properties: {
+        questions: {
+          type: "array",
+          minItems: 3,
+          maxItems: 3,
+          items: {
+            type: "object",
+            properties: {
+              type: { type: "string", enum: ["fill_blank", "multiple_choice"] },
+              question: { type: "string" },
+              options: {
+                type: "array",
+                items: { type: "string" },
+                minItems: 2,
+                maxItems: 4,
+              },
+              answer: { type: "string" },
+              explanation: { type: "string" },
+            },
+            required: ["type", "question", "answer", "explanation"],
+            additionalProperties: false,
+          },
+        },
+      },
+      required: ["questions"],
+      additionalProperties: false,
+    });
+  });
