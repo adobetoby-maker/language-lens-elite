@@ -10,6 +10,7 @@ const COUNTRIES_BY_LANGUAGE: Record<Language, string[]> = {
   German: ["Germany", "Austria", "Switzerland"],
   Italian: ["Italy"],
   Japanese: ["Japan"],
+  Korean: ["South Korea"],
   Portuguese: ["Brazil", "Portugal"],
 };
 
