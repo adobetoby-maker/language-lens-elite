@@ -415,6 +415,8 @@ export function ParallelReader() {
           onXp={(n) => dispatch({ type: "ADD_XP", payload: n })}
         />
       )}
+
+      <MiniPlayer />
     </div>
   );
 }
@@ -428,6 +430,7 @@ function Pane({
   sentences,
   size,
   annotations,
+  activeSentenceIndex,
   onWordClick,
   accent,
 }: {
@@ -435,6 +438,7 @@ function Pane({
   sentences: string[];
   size: TextSize;
   annotations: ReturnType<typeof useNotes>["annotations"];
+  activeSentenceIndex: number;
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
 }) {
@@ -446,12 +450,18 @@ function Pane({
         const sentenceAnns = annotations.filter(
           (a) => a.pane === pane && a.sentenceIndex === i,
         );
+        const isActive = activeSentenceIndex === i;
         return (
           <p
             key={i}
             data-sentence-index={i}
             data-pane={pane}
-            className="mb-6 border-l-2 border-transparent pl-3 transition-colors hover:border-gold/40"
+            data-speaking={isActive || undefined}
+            className={`mb-6 -mx-2 rounded-md border-l-2 px-2 transition-colors ${
+              isActive
+                ? "border-gold bg-gold/15"
+                : "border-transparent hover:border-gold/40"
+            }`}
           >
             <AnnotatedSentence
               text={s}
