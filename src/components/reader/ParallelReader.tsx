@@ -350,6 +350,39 @@ export function ParallelReader() {
         </div>
 
         <div className="flex items-center gap-4">
+          {selected.language === "Japanese" && (
+            <div className="flex items-center gap-2">
+              <Languages className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                Furigana
+              </span>
+              <div className="flex overflow-hidden rounded-full border border-border/70">
+                {(
+                  [
+                    { v: "off", label: "Off" },
+                    { v: "above", label: "Above" },
+                    { v: "inline", label: "On" },
+                  ] as { v: FuriganaMode; label: string }[]
+                ).map(({ v, label }) => (
+                  <button
+                    key={v}
+                    onClick={() => setFuriganaMode(v)}
+                    data-active={furiganaMode === v}
+                    title={
+                      v === "off"
+                        ? "Hide readings"
+                        : v === "above"
+                          ? "Tiny hiragana above kanji"
+                          : "Reading sits directly on the kanji"
+                    }
+                    className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
