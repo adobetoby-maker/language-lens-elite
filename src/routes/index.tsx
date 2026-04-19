@@ -6,9 +6,11 @@ import { LibraryProvider } from "@/state/library-state";
 import { NotesProvider } from "@/state/notes-state";
 import { GrammarProvider } from "@/state/grammar-state";
 import { SpeechProvider } from "@/state/speech-state";
+import { TutorProvider } from "@/state/tutor-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
+import { TutorPanel } from "@/components/tutor/TutorPanel";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -45,13 +47,16 @@ function Index() {
         <NotesProvider>
           <GrammarProvider>
             <SpeechBridge>
-              <div className="min-h-screen bg-background text-foreground">
-                <TopNav />
-                <StatusBar />
-                <main className="mx-auto max-w-7xl px-6 py-12">
-                  <TabShell />
-                </main>
-              </div>
+              <TutorProvider>
+                <div className="min-h-screen bg-background text-foreground">
+                  <TopNav />
+                  <StatusBar />
+                  <main className="mx-auto max-w-7xl px-6 py-12">
+                    <TabShell />
+                  </main>
+                </div>
+                <TutorPanel />
+              </TutorProvider>
               <Toaster
                 theme="dark"
                 position="bottom-right"

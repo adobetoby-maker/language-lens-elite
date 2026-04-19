@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { X, Volume2, MessageCircle, Sparkle } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/server/word-lookup.functions";
 import { useSpeech } from "@/state/speech-state";
+import { useTutor } from "@/state/tutor-state";
 import type { Language } from "@/state/app-state";
 
 const LOCALE: Record<Language, string> = {
@@ -36,6 +37,7 @@ export function WordCard({
 }) {
   const lookup = useServerFn(lookupWord);
   const { setLastWord } = useSpeech();
+  const tutor = useTutor();
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -200,7 +202,12 @@ export function WordCard({
                 <Volume2 className="h-3 w-3" /> Pronounce
               </button>
               <button
-                onClick={() => console.log("[LinguaLens] ask tutor:", card.headword)}
+                onClick={() => {
+                  tutor.prefill(
+                    `Can you explain more about the word "${card.headword}" and how it's used in this sentence?\n\n"${request.sentence}"`,
+                  );
+                  onClose();
+                }}
                 className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/90 transition-colors hover:border-gold/60 hover:text-gold"
               >
                 <MessageCircle className="h-3 w-3" /> Ask Tutor
