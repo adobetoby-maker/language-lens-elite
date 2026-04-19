@@ -2,6 +2,7 @@ import { GraduationCap, Mic, LayoutDashboard } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { EmptyState } from "./EmptyState";
 import { ParallelReader } from "./reader/ParallelReader";
+import { GrammarStudio } from "./grammar/GrammarStudio";
 
 export function TabShell() {
   const { state } = useApp();
@@ -10,13 +11,7 @@ export function TabShell() {
     case "reader":
       return <ParallelReader />;
     case "grammar":
-      return (
-        <EmptyState
-          icon={GraduationCap}
-          title="Grammar Studio"
-          description="Sculpt sentences with intention and clarity"
-        />
-      );
+      return <GrammarStudio />;
     case "speak":
       return (
         <EmptyState
@@ -34,4 +29,6 @@ export function TabShell() {
         />
       );
   }
+  // unreachable, keep tsc happy
+  return <EmptyState icon={GraduationCap} title="" description="" />;
 }
