@@ -236,7 +236,7 @@ export function SpeakLearn() {
       if (full.trim()) {
         speakAloud(full);
         incrementExchanges();
-        awardExchange(exchanges + 1);
+        awardExchange();
       }
     } catch (e: any) {
       setThinking(false);
