@@ -49,6 +49,7 @@ export function ParallelReader() {
   const [syncScroll, setSyncScroll] = useState(true);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
+  const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
 
   // Hydrate + persist furigana preferences
   useEffect(() => {
