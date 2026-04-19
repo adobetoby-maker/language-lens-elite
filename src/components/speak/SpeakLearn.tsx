@@ -5,6 +5,11 @@ import { useApp, type Language } from "@/state/app-state";
 import { useSpeak } from "@/state/speak-state";
 import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
+import { celebrate, looseIncludes } from "@/lib/confetti";
+import {
+  ChallengePanel,
+  type SpeakChallenge,
+} from "@/components/speak/ChallengePanel";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
@@ -90,6 +95,7 @@ export function SpeakLearn() {
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [challenge, setChallenge] = useState<SpeakChallenge | null>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -98,6 +104,10 @@ export function SpeakLearn() {
   useEffect(() => {
     setSupported(getRecognitionCtor() !== null);
   }, []);
+
+  useEffect(() => {
+    setChallenge(null);
+  }, [language]);
 
   useEffect(() => {
     transcriptRef.current?.scrollTo({
@@ -267,6 +277,25 @@ export function SpeakLearn() {
     if (!trimmed) return;
     if (sessionStartRef.current == null) sessionStartRef.current = Date.now();
     const userTurn = addTurn("user", trimmed);
+
+    // Challenge completion check
+    if (challenge) {
+      const target = challenge.keyword || challenge.target;
+      if (looseIncludes(trimmed, target)) {
+        celebrate();
+        const bonus = challenge.kind === "reach" ? 30 : 20;
+        dispatch({ type: "ADD_XP", payload: bonus });
+        toast(
+          challenge.kind === "reach"
+            ? "🎉 Reach word nailed!"
+            : "🎉 Grammar challenge cleared!",
+          { description: `+${bonus} XP — ${challenge.hint}` },
+        );
+        setTipFor(userTurn.id, `Challenge complete: ${challenge.hint}`);
+        setChallenge(null);
+      }
+    }
+
     void streamReply(trimmed);
     void fetchGrammarTip(userTurn.id, trimmed);
   };
@@ -424,6 +453,15 @@ export function SpeakLearn() {
       </header>
 
       {transcript}
+
+      <ChallengePanel
+        language={language}
+        level={state.level}
+        active={challenge}
+        onStart={(c) => setChallenge(c)}
+        onSpeakAloud={speakAloud}
+      />
+
 
       <div className="mt-6">
         <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
