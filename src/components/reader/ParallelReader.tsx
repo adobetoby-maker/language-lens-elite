@@ -270,7 +270,7 @@ function Pane({
 }: {
   sentences: string[];
   size: TextSize;
-  onWordClick: (w: string) => void;
+  onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
 }) {
   return (
