@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, Library, Type } from "lucide-react";
+import { Library, Type } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
 import { useNotes } from "@/state/notes-state";
+import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
 import { NotesPanel } from "./NotesPanel";
+import { ReadAloudToolbar } from "./ReadAloudToolbar";
+import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
@@ -26,6 +29,7 @@ export function ParallelReader() {
   const { state, dispatch } = useApp();
   const { selected, state: lib } = useLibrary();
   const { add: addAnnotation, forText } = useNotes();
+  const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -181,7 +185,80 @@ export function ParallelReader() {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
 
-  const targetLabel = selected.targetLabel;
+  // Find sentence index in the right pane closest to current scroll position
+  const findNearestSentence = (): number => {
+    const container = rightRef.current;
+    if (!container) return 0;
+    const paragraphs = Array.from(
+      container.querySelectorAll<HTMLElement>("p[data-sentence-index]"),
+    );
+    if (paragraphs.length === 0) return 0;
+    const containerTop = container.getBoundingClientRect().top;
+    const targetY = containerTop + 80; // bias just below the sticky header
+    let bestIdx = 0;
+    let bestDist = Infinity;
+    for (const p of paragraphs) {
+      const rect = p.getBoundingClientRect();
+      const dist = Math.abs(rect.top - targetY);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestIdx = Number(p.dataset.sentenceIndex);
+      }
+    }
+    return bestIdx;
+  };
+
+  // All sentences currently visible in the right pane (for paragraph mode)
+  const findVisibleSentences = (): number[] => {
+    const container = rightRef.current;
+    if (!container) return [];
+    const cRect = container.getBoundingClientRect();
+    const paragraphs = Array.from(
+      container.querySelectorAll<HTMLElement>("p[data-sentence-index]"),
+    );
+    const visible: number[] = [];
+    for (const p of paragraphs) {
+      const r = p.getBoundingClientRect();
+      const top = Math.max(r.top, cRect.top);
+      const bottom = Math.min(r.bottom, cRect.bottom);
+      if (bottom - top > 16) visible.push(Number(p.dataset.sentenceIndex));
+    }
+    return visible.length ? visible : [findNearestSentence()];
+  };
+
+  const handleSpeakSentence = () => {
+    const idx = findNearestSentence();
+    const sentence = selected.sentences[idx];
+    if (!sentence) return;
+    speakSentence(sentence.target, idx);
+  };
+
+  const handleSpeakParagraph = () => {
+    const indices = findVisibleSentences();
+    const queue = indices
+      .map((i) => ({ text: selected.sentences[i]?.target ?? "", index: i }))
+      .filter((q) => q.text);
+    if (queue.length === 0) return;
+    speakSentences(queue);
+  };
+
+  // Auto-scroll BOTH panes to keep the active sentence in view
+  useEffect(() => {
+    if (activeSentenceIndex < 0) return;
+    [leftRef, rightRef].forEach((r) => {
+      const c = r.current;
+      if (!c) return;
+      const el = c.querySelector(
+        `p[data-sentence-index="${activeSentenceIndex}"]`,
+      ) as HTMLElement | null;
+      if (!el) return;
+      const cRect = c.getBoundingClientRect();
+      const eRect = el.getBoundingClientRect();
+      if (eRect.top < cRect.top + 60 || eRect.bottom > cRect.bottom - 30) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  }, [activeSentenceIndex]);
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
@@ -250,15 +327,14 @@ export function ParallelReader() {
               />
             </button>
           </label>
-
-          <button
-            onClick={() => console.log("[LinguaLens] read aloud (coming soon)")}
-            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 hover:text-gold"
-          >
-            <Volume2 className="h-3.5 w-3.5" /> Read Aloud
-          </button>
         </div>
       </div>
+
+      {/* Read Aloud toolbar — sits above the reader, biased to the target pane */}
+      <ReadAloudToolbar
+        onSpeakSentence={handleSpeakSentence}
+        onSpeakParagraph={handleSpeakParagraph}
+      />
 
       {/* Reader */}
       <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur">
@@ -276,6 +352,7 @@ export function ParallelReader() {
                 sentences={selected.sentences.map((s) => s.en)}
                 size={size}
                 annotations={annotations}
+                activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
               />
             </div>
@@ -288,7 +365,7 @@ export function ParallelReader() {
           <div className="relative border-t border-border/50 md:border-l-0 md:border-t-0">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
-                {targetLabel}
+                {selected.targetLabel}
               </span>
               <span className="font-display text-xs italic text-muted-foreground">target</span>
             </div>
@@ -298,6 +375,7 @@ export function ParallelReader() {
                 sentences={selected.sentences.map((s) => s.target)}
                 size={size}
                 annotations={annotations}
+                activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
               />
@@ -337,6 +415,8 @@ export function ParallelReader() {
           onXp={(n) => dispatch({ type: "ADD_XP", payload: n })}
         />
       )}
+
+      <MiniPlayer />
     </div>
   );
 }
@@ -350,6 +430,7 @@ function Pane({
   sentences,
   size,
   annotations,
+  activeSentenceIndex,
   onWordClick,
   accent,
 }: {
@@ -357,6 +438,7 @@ function Pane({
   sentences: string[];
   size: TextSize;
   annotations: ReturnType<typeof useNotes>["annotations"];
+  activeSentenceIndex: number;
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
 }) {
@@ -368,12 +450,18 @@ function Pane({
         const sentenceAnns = annotations.filter(
           (a) => a.pane === pane && a.sentenceIndex === i,
         );
+        const isActive = activeSentenceIndex === i;
         return (
           <p
             key={i}
             data-sentence-index={i}
             data-pane={pane}
-            className="mb-6 border-l-2 border-transparent pl-3 transition-colors hover:border-gold/40"
+            data-speaking={isActive || undefined}
+            className={`mb-6 -mx-2 rounded-md border-l-2 px-2 transition-colors ${
+              isActive
+                ? "border-gold bg-gold/15"
+                : "border-transparent hover:border-gold/40"
+            }`}
           >
             <AnnotatedSentence
               text={s}

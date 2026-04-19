@@ -1,0 +1,325 @@
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import { toast } from "sonner";
+import type { Language } from "./app-state";
+
+export type SpeechMode = "word" | "sentence" | "paragraph";
+
+export interface AccentOption {
+  code: string;
+  label: string;
+}
+
+export const ACCENTS_BY_LANGUAGE: Record<Language, AccentOption[]> = {
+  Spanish: [
+    { code: "es-ES", label: "Spain (es-ES)" },
+    { code: "es-MX", label: "México (es-MX)" },
+    { code: "es-AR", label: "Argentina (es-AR)" },
+  ],
+  French: [
+    { code: "fr-FR", label: "France (fr-FR)" },
+    { code: "fr-CA", label: "Québec (fr-CA)" },
+  ],
+  German: [
+    { code: "de-DE", label: "Germany (de-DE)" },
+    { code: "de-AT", label: "Austria (de-AT)" },
+    { code: "de-CH", label: "Switzerland (de-CH)" },
+  ],
+  Italian: [{ code: "it-IT", label: "Italy (it-IT)" }],
+  Japanese: [{ code: "ja-JP", label: "Japan (ja-JP)" }],
+  Portuguese: [
+    { code: "pt-BR", label: "Brazil (pt-BR)" },
+    { code: "pt-PT", label: "Portugal (pt-PT)" },
+  ],
+};
+
+interface PlaybackInfo {
+  mode: SpeechMode;
+  sentenceIndex: number; // -1 for word mode
+  text: string;
+}
+
+interface SpeechCtx {
+  // Settings
+  rate: number;
+  setRate: (n: number) => void;
+  accent: string;
+  setAccent: (code: string) => void;
+  accentsForLanguage: AccentOption[];
+
+  // Last clicked word (from WordCard)
+  lastWord: string | null;
+  setLastWord: (w: string) => void;
+
+  // Live playback
+  playing: boolean;
+  current: PlaybackInfo | null;
+  activeSentenceIndex: number; // -1 if none
+
+  // Controls
+  speakWord: (word?: string) => void;
+  speakSentence: (text: string, sentenceIndex: number) => void;
+  speakSentences: (
+    sentences: { text: string; index: number }[],
+    onMove?: (i: number) => void,
+  ) => void;
+  stop: () => void;
+
+  listenedCount: number;
+}
+
+const Ctx = createContext<SpeechCtx | null>(null);
+
+const ACHIEVEMENT_LISTENER = "Good Listener 👂";
+const STORAGE_KEY = "lingualens.speech.v1";
+
+export function SpeechProvider({
+  children,
+  language,
+  onXp,
+  onAchievement,
+  hasAchievement,
+}: {
+  children: ReactNode;
+  language: Language;
+  onXp: (n: number) => void;
+  onAchievement: (name: string) => void;
+  hasAchievement: (name: string) => boolean;
+}) {
+  const accentsForLanguage = ACCENTS_BY_LANGUAGE[language];
+  const [rate, setRateState] = useState(1);
+  const [accent, setAccentState] = useState(accentsForLanguage[0].code);
+  const [lastWord, setLastWordState] = useState<string | null>(null);
+  const [current, setCurrent] = useState<PlaybackInfo | null>(null);
+  const [activeSentenceIndex, setActiveSentenceIndex] = useState(-1);
+  const [playing, setPlaying] = useState(false);
+  const [listenedCount, setListenedCount] = useState(0);
+
+  // Hydrate
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (typeof parsed.rate === "number") setRateState(parsed.rate);
+        if (typeof parsed.listenedCount === "number")
+          setListenedCount(parsed.listenedCount);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  // Persist
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ rate, listenedCount }),
+      );
+    } catch {
+      /* ignore */
+    }
+  }, [rate, listenedCount]);
+
+  // Reset accent when language changes
+  useEffect(() => {
+    setAccentState(accentsForLanguage[0].code);
+    // Stop any active speech
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setPlaying(false);
+    setCurrent(null);
+    setActiveSentenceIndex(-1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
+
+  // Stop on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  const queueRef = useRef<Array<{ text: string; index: number }>>([]);
+  const cancelledRef = useRef(false);
+
+  const stop = useCallback(() => {
+    cancelledRef.current = true;
+    queueRef.current = [];
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setPlaying(false);
+    setCurrent(null);
+    setActiveSentenceIndex(-1);
+  }, []);
+
+  const setRate = useCallback((n: number) => {
+    setRateState(n);
+  }, []);
+  const setAccent = useCallback((c: string) => setAccentState(c), []);
+  const setLastWord = useCallback((w: string) => setLastWordState(w), []);
+
+  const incListened = useCallback(() => {
+    setListenedCount((c) => {
+      const next = c + 1;
+      onXp(1);
+      if (next === 10 && !hasAchievement(ACHIEVEMENT_LISTENER)) {
+        onAchievement(ACHIEVEMENT_LISTENER);
+        toast("👂 Achievement unlocked", {
+          description: `${ACHIEVEMENT_LISTENER} — 10 sentences read aloud`,
+        });
+      }
+      return next;
+    });
+  }, [hasAchievement, onAchievement, onXp]);
+
+  const speakOne = useCallback(
+    (
+      text: string,
+      sentenceIndex: number,
+      mode: SpeechMode,
+      onEnd?: () => void,
+    ) => {
+      if (typeof window === "undefined" || !window.speechSynthesis) return;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = accent;
+      u.rate = rate;
+      u.onstart = () => {
+        setPlaying(true);
+        setCurrent({ mode, sentenceIndex, text });
+        if (sentenceIndex >= 0) setActiveSentenceIndex(sentenceIndex);
+      };
+      u.onend = () => {
+        if (sentenceIndex >= 0) incListened();
+        onEnd?.();
+      };
+      u.onerror = () => {
+        onEnd?.();
+      };
+      window.speechSynthesis.speak(u);
+    },
+    [accent, rate, incListened],
+  );
+
+  const speakWord = useCallback(
+    (word?: string) => {
+      const target = (word ?? lastWord ?? "").trim();
+      if (!target) {
+        toast("No word selected yet", {
+          description: "Click a word in the reader first.",
+        });
+        return;
+      }
+      stop();
+      cancelledRef.current = false;
+      setTimeout(() => {
+        speakOne(target, -1, "word", () => {
+          setPlaying(false);
+          setCurrent(null);
+        });
+      }, 30);
+    },
+    [lastWord, speakOne, stop],
+  );
+
+  const speakSentence = useCallback(
+    (text: string, sentenceIndex: number) => {
+      stop();
+      cancelledRef.current = false;
+      setTimeout(() => {
+        speakOne(text, sentenceIndex, "sentence", () => {
+          setPlaying(false);
+          setCurrent(null);
+          setActiveSentenceIndex(-1);
+        });
+      }, 30);
+    },
+    [speakOne, stop],
+  );
+
+  const speakSentences = useCallback(
+    (
+      sentences: { text: string; index: number }[],
+      onMove?: (i: number) => void,
+    ) => {
+      if (sentences.length === 0) return;
+      stop();
+      cancelledRef.current = false;
+      queueRef.current = [...sentences];
+
+      const next = () => {
+        if (cancelledRef.current) return;
+        const item = queueRef.current.shift();
+        if (!item) {
+          setPlaying(false);
+          setCurrent(null);
+          setActiveSentenceIndex(-1);
+          return;
+        }
+        onMove?.(item.index);
+        speakOne(item.text, item.index, "paragraph", next);
+      };
+
+      setTimeout(next, 30);
+    },
+    [speakOne, stop],
+  );
+
+  const value = useMemo(
+    () => ({
+      rate,
+      setRate,
+      accent,
+      setAccent,
+      accentsForLanguage,
+      lastWord,
+      setLastWord,
+      playing,
+      current,
+      activeSentenceIndex,
+      speakWord,
+      speakSentence,
+      speakSentences,
+      stop,
+      listenedCount,
+    }),
+    [
+      rate,
+      setRate,
+      accent,
+      setAccent,
+      accentsForLanguage,
+      lastWord,
+      setLastWord,
+      playing,
+      current,
+      activeSentenceIndex,
+      speakWord,
+      speakSentence,
+      speakSentences,
+      stop,
+      listenedCount,
+    ],
+  );
+
+  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+}
+
+export function useSpeech() {
+  const c = useContext(Ctx);
+  if (!c) throw new Error("useSpeech must be used inside SpeechProvider");
+  return c;
+}

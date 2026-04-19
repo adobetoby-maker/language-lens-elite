@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { X, Volume2, MessageCircle, Sparkle } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/server/word-lookup.functions";
+import { useSpeech } from "@/state/speech-state";
 import type { Language } from "@/state/app-state";
 
 const LOCALE: Record<Language, string> = {
@@ -34,6 +35,7 @@ export function WordCard({
   onXp: (n: number) => void;
 }) {
   const lookup = useServerFn(lookupWord);
+  const { setLastWord } = useSpeech();
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -53,9 +55,10 @@ export function WordCard({
     return { left, top };
   })();
 
-  // XP flash on open (once per request)
+  // XP flash on open + record last clicked word
   useEffect(() => {
     onXp(2);
+    setLastWord(request.word);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [request.word, request.x, request.y]);
 
