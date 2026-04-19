@@ -327,15 +327,14 @@ export function ParallelReader() {
               />
             </button>
           </label>
-
-          <button
-            onClick={() => console.log("[LinguaLens] read aloud (coming soon)")}
-            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 hover:text-gold"
-          >
-            <Volume2 className="h-3.5 w-3.5" /> Read Aloud
-          </button>
         </div>
       </div>
+
+      {/* Read Aloud toolbar — sits above the reader, biased to the target pane */}
+      <ReadAloudToolbar
+        onSpeakSentence={handleSpeakSentence}
+        onSpeakParagraph={handleSpeakParagraph}
+      />
 
       {/* Reader */}
       <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur">
@@ -353,6 +352,7 @@ export function ParallelReader() {
                 sentences={selected.sentences.map((s) => s.en)}
                 size={size}
                 annotations={annotations}
+                activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
               />
             </div>
@@ -365,7 +365,7 @@ export function ParallelReader() {
           <div className="relative border-t border-border/50 md:border-l-0 md:border-t-0">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
-                {targetLabel}
+                {selected.targetLabel}
               </span>
               <span className="font-display text-xs italic text-muted-foreground">target</span>
             </div>
@@ -375,6 +375,7 @@ export function ParallelReader() {
                 sentences={selected.sentences.map((s) => s.target)}
                 size={size}
                 annotations={annotations}
+                activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
               />
