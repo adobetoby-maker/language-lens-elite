@@ -488,6 +488,7 @@ export function ParallelReader() {
                 furiganaMode={
                   selected.language === "Japanese" ? furiganaMode : "off"
                 }
+                furiganaScript={furiganaScript}
               />
             </div>
           </div>
