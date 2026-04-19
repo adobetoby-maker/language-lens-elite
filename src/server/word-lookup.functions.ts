@@ -28,7 +28,12 @@ export const lookupWord = createServerFn({ method: "POST" })
     const systemPrompt =
       "You are a precise multilingual dictionary and grammar tutor. Always respond by calling the provided tool with accurate linguistic data.";
 
-    const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. Return the requested fields. The conjugationNote must explain exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
+    const isJapanese = /japanese|日本/i.test(data.language);
+    const phoneticInstruction = isJapanese
+      ? "For the phonetic field, ALWAYS use standard Hepburn romaji (e.g. 'chiisana', 'gakusei', 'tabemasu'). NEVER use IPA symbols like ɕ, ː, ɯ, ɴ. Use only basic Latin letters a-z and apostrophes. Long vowels: write 'ou', 'aa', 'ii' (no macrons)."
+      : "For the phonetic field, use IPA notation.";
+
+    const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. Return the requested fields. ${phoneticInstruction} The conjugationNote must explain exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
 
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -57,7 +62,7 @@ export const lookupWord = createServerFn({ method: "POST" })
                       type: "string",
                       description: "noun, verb, adjective, adverb, pronoun, preposition, etc.",
                     },
-                    phonetic: { type: "string", description: "Pronunciation in IPA" },
+                    phonetic: { type: "string", description: "Pronunciation. For Japanese: Hepburn romaji using only Latin letters (no IPA). For other languages: IPA." },
                     baseDefinition: { type: "string", description: "Simple English meaning" },
                     conjugationNote: {
                       type: "string",
