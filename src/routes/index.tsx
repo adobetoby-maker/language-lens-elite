@@ -41,6 +41,11 @@ function SpeechBridge({ children }: { children: ReactNode }) {
   );
 }
 
+function SpeakBridge({ children }: { children: ReactNode }) {
+  const { state } = useApp();
+  return <SpeakProvider language={state.selectedLanguage}>{children}</SpeakProvider>;
+}
+
 function Index() {
   return (
     <AppProvider>
@@ -48,28 +53,29 @@ function Index() {
         <NotesProvider>
           <GrammarProvider>
             <SpeechBridge>
-              <SpeakProvider language={undefined as never}>
-              <TutorProvider>
-                <div className="min-h-screen bg-background text-foreground">
-                  <TopNav />
-                  <StatusBar />
-                  <main className="mx-auto max-w-7xl px-6 py-12">
-                    <TabShell />
-                  </main>
-                </div>
-                <TutorPanel />
-              </TutorProvider>
-              <Toaster
-                theme="dark"
-                position="bottom-right"
-                toastOptions={{
-                  style: {
-                    background: "var(--card)",
-                    color: "var(--foreground)",
-                    border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                  },
-                }}
-              />
+              <SpeakBridge>
+                <TutorProvider>
+                  <div className="min-h-screen bg-background text-foreground">
+                    <TopNav />
+                    <StatusBar />
+                    <main className="mx-auto max-w-7xl px-6 py-12">
+                      <TabShell />
+                    </main>
+                  </div>
+                  <TutorPanel />
+                </TutorProvider>
+                <Toaster
+                  theme="dark"
+                  position="bottom-right"
+                  toastOptions={{
+                    style: {
+                      background: "var(--card)",
+                      color: "var(--foreground)",
+                      border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                    },
+                  }}
+                />
+              </SpeakBridge>
             </SpeechBridge>
           </GrammarProvider>
         </NotesProvider>
