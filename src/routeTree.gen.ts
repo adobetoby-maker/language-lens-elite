@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
+import { Route as ApiSpeakRouteImport } from './routes/api.speak'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const ApiTutorRoute = ApiTutorRouteImport.update({
   path: '/api/tutor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSpeakRoute = ApiSpeakRouteImport.update({
+  id: '/api/speak',
+  path: '/api/speak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/tutor'
+  fullPaths: '/' | '/api/speak' | '/api/tutor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/tutor'
-  id: '__root__' | '/' | '/api/tutor'
+  to: '/' | '/api/speak' | '/api/tutor'
+  id: '__root__' | '/' | '/api/speak' | '/api/tutor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiSpeakRoute: typeof ApiSpeakRoute
   ApiTutorRoute: typeof ApiTutorRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTutorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/speak': {
+      id: '/api/speak'
+      path: '/api/speak'
+      fullPath: '/api/speak'
+      preLoaderRoute: typeof ApiSpeakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiSpeakRoute: ApiSpeakRoute,
   ApiTutorRoute: ApiTutorRoute,
 }
 export const routeTree = rootRouteImport
