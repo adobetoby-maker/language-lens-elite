@@ -185,7 +185,80 @@ export function ParallelReader() {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
 
-  const targetLabel = selected.targetLabel;
+  // Find sentence index in the right pane closest to current scroll position
+  const findNearestSentence = (): number => {
+    const container = rightRef.current;
+    if (!container) return 0;
+    const paragraphs = Array.from(
+      container.querySelectorAll<HTMLElement>("p[data-sentence-index]"),
+    );
+    if (paragraphs.length === 0) return 0;
+    const containerTop = container.getBoundingClientRect().top;
+    const targetY = containerTop + 80; // bias just below the sticky header
+    let bestIdx = 0;
+    let bestDist = Infinity;
+    for (const p of paragraphs) {
+      const rect = p.getBoundingClientRect();
+      const dist = Math.abs(rect.top - targetY);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestIdx = Number(p.dataset.sentenceIndex);
+      }
+    }
+    return bestIdx;
+  };
+
+  // All sentences currently visible in the right pane (for paragraph mode)
+  const findVisibleSentences = (): number[] => {
+    const container = rightRef.current;
+    if (!container) return [];
+    const cRect = container.getBoundingClientRect();
+    const paragraphs = Array.from(
+      container.querySelectorAll<HTMLElement>("p[data-sentence-index]"),
+    );
+    const visible: number[] = [];
+    for (const p of paragraphs) {
+      const r = p.getBoundingClientRect();
+      const top = Math.max(r.top, cRect.top);
+      const bottom = Math.min(r.bottom, cRect.bottom);
+      if (bottom - top > 16) visible.push(Number(p.dataset.sentenceIndex));
+    }
+    return visible.length ? visible : [findNearestSentence()];
+  };
+
+  const handleSpeakSentence = () => {
+    const idx = findNearestSentence();
+    const sentence = selected.sentences[idx];
+    if (!sentence) return;
+    speakSentence(sentence.target, idx);
+  };
+
+  const handleSpeakParagraph = () => {
+    const indices = findVisibleSentences();
+    const queue = indices
+      .map((i) => ({ text: selected.sentences[i]?.target ?? "", index: i }))
+      .filter((q) => q.text);
+    if (queue.length === 0) return;
+    speakSentences(queue);
+  };
+
+  // Auto-scroll BOTH panes to keep the active sentence in view
+  useEffect(() => {
+    if (activeSentenceIndex < 0) return;
+    [leftRef, rightRef].forEach((r) => {
+      const c = r.current;
+      if (!c) return;
+      const el = c.querySelector(
+        `p[data-sentence-index="${activeSentenceIndex}"]`,
+      ) as HTMLElement | null;
+      if (!el) return;
+      const cRect = c.getBoundingClientRect();
+      const eRect = el.getBoundingClientRect();
+      if (eRect.top < cRect.top + 60 || eRect.bottom > cRect.bottom - 30) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  }, [activeSentenceIndex]);
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
