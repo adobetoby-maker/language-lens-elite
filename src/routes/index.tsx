@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese and Portuguese.",
+          "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese.",
       },
     ],
   }),
