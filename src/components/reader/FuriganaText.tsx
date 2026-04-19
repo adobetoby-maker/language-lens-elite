@@ -135,21 +135,30 @@ export function FuriganaText({
     <>
       {tokens.map((tok, i) => {
         if (tok.reading) {
+          // Native <ruby> with a clickable base span. The <rt> uses
+          // pointer-events:none (see styles.css) so clicks always land on the
+          // base text, not the small reading above it.
           return (
-            <ruby
-              key={i}
-              className="cursor-pointer rounded transition-colors hover:text-gold"
-              onClick={
-                onWordClick
-                  ? (e) => {
-                      e.stopPropagation();
-                      const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                      onWordClick(tok.text, sentence, r.left + r.width / 2, r.bottom);
-                    }
-                  : undefined
-              }
-            >
-              {tok.text}
+            <ruby key={i} className="furigana-ruby">
+              <span
+                className="cursor-pointer rounded transition-colors hover:text-gold"
+                onClick={
+                  onWordClick
+                    ? (e) => {
+                        e.stopPropagation();
+                        const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                        onWordClick(
+                          tok.text,
+                          sentence,
+                          r.left + r.width / 2,
+                          r.bottom,
+                        );
+                      }
+                    : undefined
+                }
+              >
+                {tok.text}
+              </span>
               <rt className="furigana-rt">{tok.reading}</rt>
             </ruby>
           );
