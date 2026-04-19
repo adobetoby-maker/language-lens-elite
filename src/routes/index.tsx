@@ -6,6 +6,7 @@ import { LibraryProvider } from "@/state/library-state";
 import { NotesProvider } from "@/state/notes-state";
 import { GrammarProvider } from "@/state/grammar-state";
 import { SpeechProvider } from "@/state/speech-state";
+import { SpeakProvider } from "@/state/speak-state";
 import { TutorProvider } from "@/state/tutor-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
@@ -47,6 +48,7 @@ function Index() {
         <NotesProvider>
           <GrammarProvider>
             <SpeechBridge>
+              <SpeakProvider language={undefined as never}>
               <TutorProvider>
                 <div className="min-h-screen bg-background text-foreground">
                   <TopNav />
