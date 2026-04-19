@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import { AppProvider } from "@/state/app-state";
 import { LibraryProvider } from "@/state/library-state";
 import { NotesProvider } from "@/state/notes-state";
+import { GrammarProvider } from "@/state/grammar-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
@@ -26,24 +27,26 @@ function Index() {
     <AppProvider>
       <LibraryProvider>
         <NotesProvider>
-          <div className="min-h-screen bg-background text-foreground">
-            <TopNav />
-            <StatusBar />
-            <main className="mx-auto max-w-7xl px-6 py-12">
-              <TabShell />
-            </main>
-          </div>
-          <Toaster
-            theme="dark"
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: "var(--card)",
-                color: "var(--foreground)",
-                border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-              },
-            }}
-          />
+          <GrammarProvider>
+            <div className="min-h-screen bg-background text-foreground">
+              <TopNav />
+              <StatusBar />
+              <main className="mx-auto max-w-7xl px-6 py-12">
+                <TabShell />
+              </main>
+            </div>
+            <Toaster
+              theme="dark"
+              position="bottom-right"
+              toastOptions={{
+                style: {
+                  background: "var(--card)",
+                  color: "var(--foreground)",
+                  border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                },
+              }}
+            />
+          </GrammarProvider>
         </NotesProvider>
       </LibraryProvider>
     </AppProvider>
