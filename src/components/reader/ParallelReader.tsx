@@ -39,6 +39,25 @@ export function ParallelReader() {
 
   useCultureGenerator();
 
+  // Track Culture Series exposure for the "Culture Buff 🌍" achievement
+  useEffect(() => {
+    if (selected.section === "culture" && selected.available) {
+      dispatch({ type: "MARK_CULTURE_READ", payload: selected.id });
+    }
+  }, [selected.id, selected.section, selected.available, dispatch]);
+
+  // Award Culture Buff once every culture entry for the active language has been opened
+  useEffect(() => {
+    const cultureForLang = lib.entries.filter(
+      (e) => e.section === "culture" && e.available && e.language === state.selectedLanguage,
+    );
+    if (cultureForLang.length === 0) return;
+    const allRead = cultureForLang.every((e) => state.cultureRead.includes(e.id));
+    if (allRead && !state.achievements.includes("Culture Buff 🌍")) {
+      dispatch({ type: "ADD_ACHIEVEMENT", payload: "Culture Buff 🌍" });
+    }
+  }, [lib.entries, state.cultureRead, state.achievements, state.selectedLanguage, dispatch]);
+
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const isSyncing = useRef(false);
