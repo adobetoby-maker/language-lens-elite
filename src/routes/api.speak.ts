@@ -139,6 +139,101 @@ export const Route = createFileRoute("/api/speak")({
           }
         }
 
+        // ----- CHALLENGE MODE: generate a target phrase to say -----
+        if (payload.mode === "challenge") {
+          const kind = payload.kind ?? "grammar";
+          const concepts =
+            payload.concepts && payload.concepts.length > 0
+              ? payload.concepts
+              : ["everyday conversation"];
+          const userPrompt =
+            kind === "grammar"
+              ? `The learner has completed these ${payload.language} grammar lessons: ${concepts.join("; ")}. Create ONE short spoken challenge sentence (6-14 words) in ${payload.language} that naturally USES one of these grammar concepts. Then give the English translation and a one-line hint about which concept it practices.`
+              : `Create ONE "reach" vocabulary challenge in ${payload.language} for a ${payload.level} learner: a short useful sentence (6-12 words) containing ONE slightly advanced word the learner probably doesn't know yet. Provide the English translation and a hint that highlights the stretch word with its meaning.`;
+
+          const upstream = await fetch(
+            "https://ai.gateway.lovable.dev/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${KEY}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                model: "google/gemini-3-flash-preview",
+                messages: [
+                  {
+                    role: "system",
+                    content: `You design spoken language challenges. Always respond via the speak_challenge tool only.`,
+                  },
+                  { role: "user", content: userPrompt },
+                ],
+                tools: [
+                  {
+                    type: "function",
+                    function: {
+                      name: "speak_challenge",
+                      description: "A single spoken challenge for the learner.",
+                      parameters: {
+                        type: "object",
+                        properties: {
+                          target: {
+                            type: "string",
+                            description: `The sentence to say in ${payload.language}.`,
+                          },
+                          english: {
+                            type: "string",
+                            description: "Plain English translation.",
+                          },
+                          hint: {
+                            type: "string",
+                            description:
+                              "One-line coaching hint (concept name or stretch word + meaning).",
+                          },
+                          keyword: {
+                            type: "string",
+                            description:
+                              "The single most important word/phrase from `target` to listen for in the learner's speech.",
+                          },
+                        },
+                        required: ["target", "english", "hint", "keyword"],
+                        additionalProperties: false,
+                      },
+                    },
+                  },
+                ],
+                tool_choice: {
+                  type: "function",
+                  function: { name: "speak_challenge" },
+                },
+              }),
+            },
+          );
+
+          if (!upstream.ok) {
+            return new Response(
+              JSON.stringify({ error: "Could not generate a challenge." }),
+              { status: 500, headers: { "Content-Type": "application/json" } },
+            );
+          }
+          try {
+            const data = (await upstream.json()) as any;
+            const args =
+              data?.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+            const parsed = args ? JSON.parse(args) : null;
+            if (!parsed?.target) throw new Error("bad payload");
+            return new Response(JSON.stringify(parsed), {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            });
+          } catch {
+            return new Response(
+              JSON.stringify({ error: "Malformed challenge response." }),
+              { status: 500, headers: { "Content-Type": "application/json" } },
+            );
+          }
+        }
+
         // ----- CHAT MODE: streaming conversation -----
         if (!payload.messages || payload.messages.length === 0) {
           return new Response(
