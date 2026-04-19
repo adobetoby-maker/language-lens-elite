@@ -13,9 +13,11 @@ import { getVoicesForLocale, subscribeVoices, pickVoice } from "@/lib/voices";
 
 export function VoicePicker() {
   const { accent, voiceURI, setVoiceURI } = useSpeech();
-  const [voices, setVoices] = useState(() => getVoicesForLocale(accent));
+  const [mounted, setMounted] = useState(false);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   useEffect(() => {
+    setMounted(true);
     setVoices(getVoicesForLocale(accent));
     return subscribeVoices(() => setVoices(getVoicesForLocale(accent)));
   }, [accent]);
@@ -23,8 +25,8 @@ export function VoicePicker() {
   const active = pickVoice(accent, voiceURI);
   const isGoogle = active?.name.includes("Google") ?? false;
 
-  // Hide entirely if no voices are available for this locale
-  if (voices.length === 0) return null;
+  // Avoid SSR/CSR mismatch — speechSynthesis only exists in the browser.
+  if (!mounted || voices.length === 0) return null;
 
   // Sample sentence per locale for the preview
   const SAMPLES: Record<string, string> = {

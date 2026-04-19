@@ -97,8 +97,173 @@ const CULTURE_SEED: LibraryEntry = {
   available: true,
 };
 
+// ---- Hand-curated Culture Series additions (Italian + Japanese) ----
+const CULTURE_EXTRA: LibraryEntry[] = [
+  {
+    id: "culture-it-piccolo-principe",
+    title: "Il Piccolo Principe — Capitolo I",
+    subtitle: "Antoine de Saint-Exupéry (trad. italiana)",
+    language: "Italian",
+    targetLabel: "Italiano",
+    section: "culture",
+    flag: "🇮🇹",
+    available: true,
+    sentences: [
+      {
+        en: "Once when I was six years old I saw a magnificent picture in a book about the primeval forest, called 'True Stories from Nature.'",
+        target:
+          "Una volta, quando avevo sei anni, vidi un magnifico disegno in un libro sulla foresta vergine che si chiamava «Storie Vissute della Natura».",
+      },
+      {
+        en: "It showed a boa constrictor in the act of swallowing an animal.",
+        target:
+          "Rappresentava un serpente boa nell'atto di inghiottire un animale.",
+      },
+      {
+        en: "I pondered deeply, then, over the adventures of the jungle, and after some work with a coloured pencil I succeeded in making my first drawing.",
+        target:
+          "Riflettei a lungo sulle avventure della giungla e a mia volta riuscii a tracciare, con una matita colorata, il mio primo disegno.",
+      },
+      {
+        en: "I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.",
+        target:
+          "Mostrai il mio capolavoro alle persone grandi e chiesi loro se il disegno faceva paura.",
+      },
+      {
+        en: "They answered: 'Frighten? Why should anyone be frightened by a hat?'",
+        target:
+          "Mi risposero: «Paura? Perché mai uno dovrebbe avere paura di un cappello?».",
+      },
+      {
+        en: "My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant.",
+        target:
+          "Il mio disegno non era il disegno di un cappello. Era il disegno di un boa che digeriva un elefante.",
+      },
+    ],
+  },
+  {
+    id: "culture-it-calvino-marcovaldo",
+    title: "Marcovaldo — Funghi in città",
+    subtitle: "Italo Calvino",
+    language: "Italian",
+    targetLabel: "Italiano",
+    section: "culture",
+    flag: "🇮🇹",
+    available: true,
+    sentences: [
+      {
+        en: "The wind, coming to the city from far away, brings it unusual gifts, noticed only by a few sensitive souls, like sufferers from hay fever.",
+        target:
+          "Il vento, venendo in città da lontano, le porta doni inconsueti, di cui s'accorgono solo poche anime sensibili, come gli allergici ai pollini.",
+      },
+      {
+        en: "One day, on the strip of grass at a tram stop, Marcovaldo's eye fell on something strange.",
+        target:
+          "Un giorno, sulla striscia d'aiola d'un corso cittadino, dove finiva la linea d'un tram, Marcovaldo vide, scendendo dal tram, qualcosa di strano.",
+      },
+      {
+        en: "Mushrooms — real mushrooms — were sprouting right there at the heart of the city.",
+        target:
+          "Dei funghi, veri funghi, stavano spuntando proprio lì, nel cuore della città.",
+      },
+      {
+        en: "It seemed to Marcovaldo that the grey, wretched world surrounding him had suddenly become generous with hidden riches.",
+        target:
+          "A Marcovaldo parve che il mondo grigio e misero che lo circondava diventasse a un tratto generoso di ricchezze nascoste.",
+      },
+      {
+        en: "He returned home with a basket full and the look of a man who has discovered a treasure that the city had reserved only for him.",
+        target:
+          "Tornò a casa con la cesta colma e l'aria di chi ha scoperto un tesoro che la città aveva riservato soltanto per lui.",
+      },
+    ],
+  },
+  {
+    id: "culture-ja-tsuru-no-ongaeshi",
+    title: "鶴の恩返し — The Crane's Return of a Favor",
+    subtitle: "Japanese folk tale",
+    language: "Japanese",
+    targetLabel: "日本語",
+    section: "culture",
+    flag: "🇯🇵",
+    available: true,
+    sentences: [
+      {
+        en: "Long, long ago, in a small village, there lived a kind old man and his wife.",
+        target: "むかしむかし、ある小さな村に、心の優しいおじいさんとおばあさんが住んでいました。",
+      },
+      {
+        en: "One snowy day, the old man found a crane caught in a trap and quietly set it free.",
+        target:
+          "ある雪の降る日、おじいさんは罠にかかった一羽の鶴を見つけ、そっと逃がしてあげました。",
+      },
+      {
+        en: "That night, a young woman knocked on the door and asked to stay until the storm passed.",
+        target:
+          "その夜、一人の若い娘が戸を叩き、嵐が過ぎるまで泊めてほしいと頼みました。",
+      },
+      {
+        en: "She wove a beautiful cloth in a closed room, asking only that no one peek inside.",
+        target:
+          "娘は閉めきった部屋で美しい布を織り、「決して中をのぞかないでください」とだけ頼みました。",
+      },
+      {
+        en: "Unable to resist, the old woman peeked, and saw a crane plucking its own feathers to weave.",
+        target:
+          "我慢できなくなったおばあさんがのぞくと、一羽の鶴が自分の羽を抜いて布を織っていました。",
+      },
+      {
+        en: "Discovered, the crane bowed once and flew silently into the snowy sky, never to return.",
+        target:
+          "見られてしまった鶴は、一度お辞儀をして、雪の空へと静かに飛び去り、二度と戻りませんでした。",
+      },
+    ],
+  },
+  {
+    id: "culture-ja-murakami-kaze",
+    title: "風の歌を聴け — In the Style of Murakami",
+    subtitle: "Inspired by Haruki Murakami",
+    language: "Japanese",
+    targetLabel: "日本語",
+    section: "culture",
+    flag: "🇯🇵",
+    available: true,
+    sentences: [
+      {
+        en: "There is no such thing as perfect writing, just as there is no such thing as perfect despair.",
+        target:
+          "完璧な文章などといったものは存在しない。完璧な絶望が存在しないようにね。",
+      },
+      {
+        en: "On a quiet afternoon, I sat at the counter of a small bar and listened to an old jazz record.",
+        target:
+          "静かな午後、僕は小さなバーのカウンターに座り、古いジャズのレコードに耳を澄ませていた。",
+      },
+      {
+        en: "The bartender wiped a glass without saying a word, as if time itself had been politely asked to wait.",
+        target:
+          "バーテンダーは何も言わずにグラスを拭いていた。まるで時間そのものに「少し待ってくれ」と頼んだみたいに。",
+      },
+      {
+        en: "Outside the window, a thin rain was falling, and somewhere a cat was crying.",
+        target: "窓の外では細い雨が降っていて、どこかで猫が鳴いていた。",
+      },
+      {
+        en: "I thought about her — about the way she used to laugh, and about the things I had never managed to say.",
+        target:
+          "僕は彼女のことを考えていた。あの笑い方のこと、そして、ついに言えなかった言葉のことを。",
+      },
+      {
+        en: "The wind passed through the street, carrying away the smell of rain and a small piece of my heart.",
+        target:
+          "風が通りを抜けていき、雨のにおいと、僕の心のほんの小さなかけらを連れ去っていった。",
+      },
+    ],
+  },
+];
+
 const initial: LibraryState = {
-  entries: [...CLASSIC_STUBS, CULTURE_SEED],
+  entries: [...CLASSIC_STUBS, CULTURE_SEED, ...CULTURE_EXTRA],
   selectedId: "classic-quixote",
   generating: false,
 };
