@@ -7,6 +7,7 @@ import { useNotes } from "@/state/notes-state";
 import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
 import { FuriganaText, type FuriganaScript } from "./FuriganaText";
+import { HangulText } from "./HangulText";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
