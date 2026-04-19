@@ -1,9 +1,10 @@
-import { GraduationCap, LayoutDashboard } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { EmptyState } from "./EmptyState";
 import { ParallelReader } from "./reader/ParallelReader";
 import { GrammarStudio } from "./grammar/GrammarStudio";
 import { SpeakLearn } from "./speak/SpeakLearn";
+import { Dashboard } from "./dashboard/Dashboard";
 
 export function TabShell() {
   const { state } = useApp();
@@ -16,13 +17,7 @@ export function TabShell() {
     case "speak":
       return <SpeakLearn />;
     case "dashboard":
-      return (
-        <EmptyState
-          icon={LayoutDashboard}
-          title="Your Dashboard"
-          description="Progress, streaks and achievements at a glance"
-        />
-      );
+      return <Dashboard />;
   }
   // unreachable, keep tsc happy
   return <EmptyState icon={GraduationCap} title="" description="" />;
