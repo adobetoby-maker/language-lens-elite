@@ -7,7 +7,7 @@ import { useLibrary, flagFor } from "@/state/library-state";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor, type TutorMessage } from "@/state/tutor-state";
 
-const ACHIEVEMENT_CURIOUS = "Curious Learner 🧠";
+
 const LEVEL_TO_CEFR: Record<string, string> = {
   Beginner: "A1–A2",
   Intermediate: "B1–B2",

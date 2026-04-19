@@ -62,9 +62,6 @@ function getRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
   return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 }
 
-const ACH_FIRST = "First Conversation 🗣️";
-const ACH_CONV = "Conversationalist 💬";
-
 export function SpeakLearn() {
   const { state, dispatch } = useApp();
   const {
@@ -126,20 +123,9 @@ export function SpeakLearn() {
     window.speechSynthesis.speak(u);
   };
 
-  const awardExchange = (newCount: number) => {
+  const awardExchange = () => {
     dispatch({ type: "ADD_XP", payload: 10 });
-    if (newCount === 5 && !state.achievements.includes(ACH_FIRST)) {
-      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACH_FIRST });
-      toast("🗣️ Achievement unlocked", {
-        description: `${ACH_FIRST} — 5 exchanges`,
-      });
-    }
-    if (newCount === 20 && !state.achievements.includes(ACH_CONV)) {
-      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACH_CONV });
-      toast("💬 Achievement unlocked", {
-        description: `${ACH_CONV} — 20 exchanges`,
-      });
-    }
+    dispatch({ type: "INC_COUNTER", payload: "conversationExchanges" });
   };
 
   const fetchGrammarTip = async (userId: string, userText: string) => {
