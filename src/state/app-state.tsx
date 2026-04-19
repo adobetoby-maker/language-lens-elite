@@ -186,10 +186,21 @@ function reducer(state: AppState, action: AppAction): AppState {
       const xp = state.xp + action.payload;
       const newTier = tierForXp(xp);
       const leveled = newTier !== state.tier;
+      // Append to today's bucket in xpSessions (keep last 7 days)
+      const today = todayKey();
+      const sessions = [...state.xpSessions];
+      const last = sessions[sessions.length - 1];
+      if (last && last.date === today) {
+        sessions[sessions.length - 1] = { date: today, xp: last.xp + action.payload };
+      } else {
+        sessions.push({ date: today, xp: action.payload });
+      }
+      while (sessions.length > 7) sessions.shift();
       return {
         ...state,
         xp,
         tier: newTier,
+        xpSessions: sessions,
         pendingLevelUp: leveled ? newTier : state.pendingLevelUp,
       };
     }
@@ -207,6 +218,22 @@ function reducer(state: AppState, action: AppAction): AppState {
     case "MARK_CULTURE_READ":
       if (state.cultureRead.includes(action.payload)) return state;
       return { ...state, cultureRead: [...state.cultureRead, action.payload] };
+    case "MARK_CEFR_COMPLETE":
+      if (state.cefrLevelsCompleted.includes(action.payload)) return state;
+      return {
+        ...state,
+        cefrLevelsCompleted: [...state.cefrLevelsCompleted, action.payload],
+      };
+    case "ADD_SPEAK_SECONDS": {
+      const cur = state.speakSecondsByLang[action.payload.lang] ?? 0;
+      return {
+        ...state,
+        speakSecondsByLang: {
+          ...state.speakSecondsByLang,
+          [action.payload.lang]: cur + action.payload.seconds,
+        },
+      };
+    }
     case "DISMISS_LEVEL_UP":
       return { ...state, pendingLevelUp: null };
     case "_DERIVE":
