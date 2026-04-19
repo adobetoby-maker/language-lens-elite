@@ -129,15 +129,6 @@ export function ParallelReader() {
 
   const annotations = forText(selected.id);
 
-  const checkAchievement = (newCount: number) => {
-    if (newCount === 5 && !state.achievements.includes(ACHIEVEMENT_DEEP_READER)) {
-      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACHIEVEMENT_DEEP_READER });
-      toast("✦ Achievement unlocked", {
-        description: `Deep Reader 📚 — 5 notes saved`,
-      });
-    }
-  };
-
   const handleHighlight = (s: SelectionInfo) => {
     addAnnotation({
       textId: selected.id,
@@ -165,9 +156,8 @@ export function ParallelReader() {
       noteText: text,
     });
     dispatch({ type: "ADD_XP", payload: 5 });
-    const newNoteCount = annotations.filter((a) => a.noteText).length + 1;
+    dispatch({ type: "INC_COUNTER", payload: "notesSaved" });
     toast("✦ Note saved", { description: "+5 XP" });
-    checkAchievement(newNoteCount);
     setNoteBubble(null);
     window.getSelection()?.removeAllRanges();
   };
