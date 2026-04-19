@@ -95,6 +95,7 @@ export function SpeakLearn() {
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [challenge, setChallenge] = useState<SpeakChallenge | null>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
