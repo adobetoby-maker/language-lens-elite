@@ -77,6 +77,7 @@ export function AddTextModal({
       });
       libDispatch({ type: "SELECT", payload: id });
       dispatch({ type: "ADD_XP", payload: 15 });
+      dispatch({ type: "INC_COUNTER", payload: "customTextsAdded" });
       onOpenChange(false);
       reset();
     } catch (e) {
