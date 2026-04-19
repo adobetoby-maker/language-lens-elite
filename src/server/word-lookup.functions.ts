@@ -29,9 +29,16 @@ export const lookupWord = createServerFn({ method: "POST" })
       "You are a precise multilingual dictionary and grammar tutor. Always respond by calling the provided tool with accurate linguistic data.";
 
     const isJapanese = /japanese|日本/i.test(data.language);
-    const phoneticInstruction = isJapanese
-      ? "For the phonetic field, ALWAYS use standard Hepburn romaji (e.g. 'chiisana', 'gakusei', 'tabemasu'). NEVER use IPA symbols like ɕ, ː, ɯ, ɴ. Use only basic Latin letters a-z and apostrophes. Long vowels: write 'ou', 'aa', 'ii' (no macrons)."
-      : "For the phonetic field, use IPA notation.";
+    const isKorean = /korean|한국/i.test(data.language);
+    let phoneticInstruction =
+      "For the phonetic field, use IPA notation.";
+    if (isJapanese) {
+      phoneticInstruction =
+        "For the phonetic field, ALWAYS use standard Hepburn romaji (e.g. 'chiisana', 'gakusei', 'tabemasu'). NEVER use IPA symbols like ɕ, ː, ɯ, ɴ. Use only basic Latin letters a-z and apostrophes. Long vowels: write 'ou', 'aa', 'ii' (no macrons).";
+    } else if (isKorean) {
+      phoneticInstruction =
+        "For the phonetic field, ALWAYS use standard Revised Romanization (RR) of Korean (e.g. 'annyeonghaseyo', 'hangugeo', 'gamsahamnida'). NEVER use IPA symbols. Use only basic Latin letters a-z. Apply contextual pronunciation rules (linking, assimilation) as actually pronounced.";
+    }
 
     const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. Return the requested fields. ${phoneticInstruction} The conjugationNote must explain exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
 
