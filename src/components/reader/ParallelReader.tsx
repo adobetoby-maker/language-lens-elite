@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Library, Type } from "lucide-react";
+import { Library, Type, Languages } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -18,6 +18,17 @@ import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
 type TextSize = "S" | "M" | "L";
 
+/**
+ * Furigana display modes:
+ *  - "off"     : no readings shown
+ *  - "above"   : tiny hiragana floats above the kanji (default; line height stays)
+ *  - "inline"  : reading sits directly ON TOP of the kanji as a faint overlay,
+ *                so the original sentence rhythm is preserved 1:1.
+ */
+type FuriganaMode = "off" | "above" | "inline";
+
+const FURIGANA_KEY = "lingualens.reader.furigana.v1";
+
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
   M: "text-[17px] leading-[1.85]",
@@ -33,6 +44,26 @@ export function ParallelReader() {
   const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
+  const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
+
+  // Hydrate + persist furigana preference
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(FURIGANA_KEY);
+      if (raw === "off" || raw === "above" || raw === "inline") {
+        setFuriganaMode(raw);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem(FURIGANA_KEY, furiganaMode);
+    } catch {
+      /* ignore */
+    }
+  }, [furiganaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
