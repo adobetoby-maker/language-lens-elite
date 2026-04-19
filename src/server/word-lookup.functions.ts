@@ -62,7 +62,7 @@ export const lookupWord = createServerFn({ method: "POST" })
                       type: "string",
                       description: "noun, verb, adjective, adverb, pronoun, preposition, etc.",
                     },
-                    phonetic: { type: "string", description: "Pronunciation in IPA" },
+                    phonetic: { type: "string", description: "Pronunciation. For Japanese: Hepburn romaji using only Latin letters (no IPA). For other languages: IPA." },
                     baseDefinition: { type: "string", description: "Simple English meaning" },
                     conjugationNote: {
                       type: "string",
