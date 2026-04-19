@@ -15,6 +15,7 @@ const LANG_FLAGS: Record<Language, string> = {
   German: "🇩🇪",
   Italian: "🇮🇹",
   Japanese: "🇯🇵",
+  Korean: "🇰🇷",
   Portuguese: "🇧🇷",
 };
 
