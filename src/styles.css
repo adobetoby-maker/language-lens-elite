@@ -220,3 +220,29 @@
     }
   }
 }
+
+/* Achievement toast — gold-bordered, editorial */
+.achievement-toast {
+  border: 1px solid color-mix(in oklab, var(--gold) 70%, transparent) !important;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--gold) 14%, var(--card)),
+      var(--card)
+    ) !important;
+  box-shadow: 0 12px 40px -12px color-mix(in oklab, var(--gold) 50%, transparent) !important;
+}
+.achievement-toast [data-title] {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--foreground);
+}
+.achievement-toast [data-description] {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  color: color-mix(in oklab, var(--gold) 80%, var(--foreground));
+}
+
