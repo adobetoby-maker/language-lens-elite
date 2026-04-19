@@ -16,6 +16,7 @@ export type Language =
   | "German"
   | "Italian"
   | "Japanese"
+  | "Korean"
   | "Portuguese";
 
 export type TabKey = "reader" | "grammar" | "speak" | "dashboard";
