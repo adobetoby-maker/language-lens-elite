@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, Library, Type } from "lucide-react";
+import { Library, Type } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
 import { useNotes } from "@/state/notes-state";
+import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
 import { NotesPanel } from "./NotesPanel";
+import { ReadAloudToolbar } from "./ReadAloudToolbar";
+import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
@@ -26,6 +29,7 @@ export function ParallelReader() {
   const { state, dispatch } = useApp();
   const { selected, state: lib } = useLibrary();
   const { add: addAnnotation, forText } = useNotes();
+  const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
