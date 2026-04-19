@@ -21,14 +21,29 @@ export interface SpeakTurn {
 
 interface SpeakCtx {
   turns: SpeakTurn[];
+  exchanges: number;
+  totalSeconds: number;
   addTurn: (role: SpeakRole, text: string, tip?: string | null) => SpeakTurn;
+  appendToTurn: (id: string, chunk: string) => void;
+  setTipFor: (id: string, tip: string | null) => void;
+  incrementExchanges: () => void;
+  addSeconds: (n: number) => void;
   clear: () => void;
 }
 
 const Ctx = createContext<SpeakCtx | null>(null);
 const STORAGE_KEY = "lingualens.speak.v1";
 
-type Store = Record<string, SpeakTurn[]>;
+interface LangStore {
+  turns: SpeakTurn[];
+  exchanges: number;
+  totalSeconds: number;
+}
+type Store = Record<string, LangStore>;
+
+function emptyLang(): LangStore {
+  return { turns: [], exchanges: 0, totalSeconds: 0 };
+}
 
 export function SpeakProvider({
   children,
@@ -43,7 +58,24 @@ export function SpeakProvider({
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setStore(JSON.parse(raw));
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        // Migrate v0 (just turns array) → v1
+        const next: Store = {};
+        for (const k of Object.keys(parsed)) {
+          const v = parsed[k];
+          if (Array.isArray(v)) {
+            next[k] = { turns: v, exchanges: 0, totalSeconds: 0 };
+          } else if (v && typeof v === "object") {
+            next[k] = {
+              turns: Array.isArray(v.turns) ? v.turns : [],
+              exchanges: Number(v.exchanges) || 0,
+              totalSeconds: Number(v.totalSeconds) || 0,
+            };
+          }
+        }
+        setStore(next);
+      }
     } catch {
       /* ignore */
     }
@@ -59,7 +91,7 @@ export function SpeakProvider({
     }
   }, [store, hydrated]);
 
-  const turns = store[language] ?? [];
+  const lang = store[language] ?? emptyLang();
 
   const addTurn = useCallback(
     (role: SpeakRole, text: string, tip?: string | null) => {
@@ -70,22 +102,97 @@ export function SpeakProvider({
         createdAt: Date.now(),
         tip: tip ?? null,
       };
-      setStore((s) => ({
-        ...s,
-        [language]: [...(s[language] ?? []), turn],
-      }));
+      setStore((s) => {
+        const cur = s[language] ?? emptyLang();
+        return { ...s, [language]: { ...cur, turns: [...cur.turns, turn] } };
+      });
       return turn;
     },
     [language],
   );
 
+  const appendToTurn = useCallback(
+    (id: string, chunk: string) => {
+      setStore((s) => {
+        const cur = s[language] ?? emptyLang();
+        return {
+          ...s,
+          [language]: {
+            ...cur,
+            turns: cur.turns.map((t) =>
+              t.id === id ? { ...t, text: t.text + chunk } : t,
+            ),
+          },
+        };
+      });
+    },
+    [language],
+  );
+
+  const setTipFor = useCallback(
+    (id: string, tip: string | null) => {
+      setStore((s) => {
+        const cur = s[language] ?? emptyLang();
+        return {
+          ...s,
+          [language]: {
+            ...cur,
+            turns: cur.turns.map((t) => (t.id === id ? { ...t, tip } : t)),
+          },
+        };
+      });
+    },
+    [language],
+  );
+
+  const incrementExchanges = useCallback(() => {
+    setStore((s) => {
+      const cur = s[language] ?? emptyLang();
+      return { ...s, [language]: { ...cur, exchanges: cur.exchanges + 1 } };
+    });
+  }, [language]);
+
+  const addSeconds = useCallback(
+    (n: number) => {
+      if (n <= 0) return;
+      setStore((s) => {
+        const cur = s[language] ?? emptyLang();
+        return {
+          ...s,
+          [language]: { ...cur, totalSeconds: cur.totalSeconds + n },
+        };
+      });
+    },
+    [language],
+  );
+
   const clear = useCallback(() => {
-    setStore((s) => ({ ...s, [language]: [] }));
+    setStore((s) => ({ ...s, [language]: emptyLang() }));
   }, [language]);
 
   const value = useMemo(
-    () => ({ turns, addTurn, clear }),
-    [turns, addTurn, clear],
+    () => ({
+      turns: lang.turns,
+      exchanges: lang.exchanges,
+      totalSeconds: lang.totalSeconds,
+      addTurn,
+      appendToTurn,
+      setTipFor,
+      incrementExchanges,
+      addSeconds,
+      clear,
+    }),
+    [
+      lang.turns,
+      lang.exchanges,
+      lang.totalSeconds,
+      addTurn,
+      appendToTurn,
+      setTipFor,
+      incrementExchanges,
+      addSeconds,
+      clear,
+    ],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

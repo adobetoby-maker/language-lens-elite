@@ -44,7 +44,6 @@ const TOPIC_CHIPS: Record<Language, string[]> = {
   ],
 };
 
-// Lightweight typing for browser SpeechRecognition
 type SpeechRecognitionLike = {
   lang: string;
   continuous: boolean;
@@ -63,9 +62,21 @@ function getRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
   return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 }
 
+const ACH_FIRST = "First Conversation 🗣️";
+const ACH_CONV = "Conversationalist 💬";
+
 export function SpeakLearn() {
-  const { state } = useApp();
-  const { turns, addTurn, clear } = useSpeak();
+  const { state, dispatch } = useApp();
+  const {
+    turns,
+    exchanges,
+    addTurn,
+    appendToTurn,
+    setTipFor,
+    incrementExchanges,
+    addSeconds,
+    clear,
+  } = useSpeak();
   const language = state.selectedLanguage;
   const accent = ACCENTS_BY_LANGUAGE[language][0].code;
   const chips = TOPIC_CHIPS[language];
@@ -73,28 +84,38 @@ export function SpeakLearn() {
   const [supported, setSupported] = useState<boolean | null>(null);
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
+  const [thinking, setThinking] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const sessionStartRef = useRef<number | null>(null);
 
-  // Detect support after mount (avoid SSR hydration mismatch)
   useEffect(() => {
     setSupported(getRecognitionCtor() !== null);
   }, []);
 
-  // Auto-scroll transcript on new turn
   useEffect(() => {
     transcriptRef.current?.scrollTo({
       top: transcriptRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [turns.length, interim]);
+  }, [turns.length, interim, thinking]);
 
-  // Stop on unmount
+  // Track conversation minutes — start clock on first user turn, flush on unmount
   useEffect(() => {
     return () => {
       recognitionRef.current?.abort();
+      abortRef.current?.abort();
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+      if (sessionStartRef.current != null) {
+        const secs = Math.round((Date.now() - sessionStartRef.current) / 1000);
+        addSeconds(secs);
+        sessionStartRef.current = null;
+      }
     };
-  }, []);
+  }, [addSeconds]);
 
   const speakAloud = (text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -105,15 +126,149 @@ export function SpeakLearn() {
     window.speechSynthesis.speak(u);
   };
 
+  const awardExchange = (newCount: number) => {
+    dispatch({ type: "ADD_XP", payload: 10 });
+    if (newCount === 5 && !state.achievements.includes(ACH_FIRST)) {
+      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACH_FIRST });
+      toast("🗣️ Achievement unlocked", {
+        description: `${ACH_FIRST} — 5 exchanges`,
+      });
+    }
+    if (newCount === 20 && !state.achievements.includes(ACH_CONV)) {
+      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACH_CONV });
+      toast("💬 Achievement unlocked", {
+        description: `${ACH_CONV} — 20 exchanges`,
+      });
+    }
+  };
+
+  const fetchGrammarTip = async (userId: string, userText: string) => {
+    try {
+      const res = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode: "tip",
+          language,
+          level: state.level,
+          userText,
+        }),
+      });
+      if (!res.ok) return;
+      const data = (await res.json()) as { tip: string | null };
+      if (data.tip) setTipFor(userId, data.tip);
+    } catch {
+      /* soft-fail */
+    }
+  };
+
+  const streamReply = async (userText: string) => {
+    setThinking(true);
+    abortRef.current?.abort();
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+
+    // Build history payload from existing turns + new user turn
+    const history = [
+      ...turns.map((t) => ({
+        role: t.role === "user" ? ("user" as const) : ("assistant" as const),
+        content: t.text,
+      })),
+      { role: "user" as const, content: userText },
+    ];
+
+    try {
+      const res = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode: "chat",
+          language,
+          level: state.level,
+          messages: history,
+        }),
+        signal: ctrl.signal,
+      });
+
+      if (!res.ok) {
+        let msg = "AI reply failed.";
+        try {
+          const j = (await res.json()) as { error?: string };
+          if (j.error) msg = j.error;
+        } catch {
+          /* ignore */
+        }
+        toast("Conversation paused", { description: msg });
+        setThinking(false);
+        return;
+      }
+      if (!res.body) {
+        setThinking(false);
+        return;
+      }
+
+      const aiTurn = addTurn("ai", "");
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = "";
+      let full = "";
+      let done = false;
+
+      while (!done) {
+        const { done: d, value } = await reader.read();
+        if (d) break;
+        buf += decoder.decode(value, { stream: true });
+        let idx: number;
+        while ((idx = buf.indexOf("\n")) !== -1) {
+          let line = buf.slice(0, idx);
+          buf = buf.slice(idx + 1);
+          if (line.endsWith("\r")) line = line.slice(0, -1);
+          if (!line || line.startsWith(":")) continue;
+          if (!line.startsWith("data: ")) continue;
+          const data = line.slice(6).trim();
+          if (data === "[DONE]") {
+            done = true;
+            break;
+          }
+          try {
+            const parsed = JSON.parse(data);
+            const delta = parsed?.choices?.[0]?.delta?.content as
+              | string
+              | undefined;
+            if (delta) {
+              full += delta;
+              appendToTurn(aiTurn.id, delta);
+            }
+          } catch {
+            buf = line + "\n" + buf;
+            break;
+          }
+        }
+      }
+
+      setThinking(false);
+      if (full.trim()) {
+        speakAloud(full);
+        incrementExchanges();
+        awardExchange(exchanges + 1);
+      }
+    } catch (e: any) {
+      setThinking(false);
+      if (e?.name !== "AbortError") {
+        toast("Network error", {
+          description: "Couldn't reach the conversation partner.",
+        });
+      }
+    }
+  };
+
   const submitTurn = (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
-    addTurn("user", trimmed);
-    // Phase 1: stub AI reply so the loop is visible. Phase 2 will wire Lovable AI.
-    setTimeout(() => {
-      const reply = "✨ AI conversation coming next phase — your words are saved.";
-      addTurn("ai", reply);
-    }, 250);
+    if (sessionStartRef.current == null) sessionStartRef.current = Date.now();
+    const userTurn = addTurn("user", trimmed);
+    void streamReply(trimmed);
+    void fetchGrammarTip(userTurn.id, trimmed);
   };
 
   const startListening = () => {
@@ -161,9 +316,7 @@ export function SpeakLearn() {
     }
   };
 
-  const stopListening = () => {
-    recognitionRef.current?.stop();
-  };
+  const stopListening = () => recognitionRef.current?.stop();
 
   const sendChip = (text: string) => {
     speakAloud(text);
@@ -214,7 +367,9 @@ export function SpeakLearn() {
                         🔊
                       </button>
                     )}
-                    <span className="leading-relaxed">{t.text}</span>
+                    <span className="leading-relaxed whitespace-pre-wrap">
+                      {t.text || (t.role === "ai" ? "…" : "")}
+                    </span>
                   </div>
                   {t.tip && (
                     <div className="mt-1 inline-block rounded-full border border-gold/40 bg-gold/10 px-2.5 py-0.5 text-xs text-gold">
@@ -231,11 +386,18 @@ export function SpeakLearn() {
                 </div>
               </li>
             )}
+            {thinking && (
+              <li className="flex justify-start">
+                <div className="rounded-2xl rounded-bl-sm border border-gold/20 bg-background/40 px-4 py-2 text-xs text-muted-foreground">
+                  thinking…
+                </div>
+              </li>
+            )}
           </ul>
         )}
       </div>
     ),
-    [turns, interim, isEmpty, language],
+    [turns, interim, isEmpty, language, thinking],
   );
 
   return (
@@ -245,6 +407,9 @@ export function SpeakLearn() {
           <h1 className="font-serif text-4xl text-foreground">Speak & Learn</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             A patient {language} conversation partner. Tap, talk, learn.
+            {exchanges > 0 && (
+              <span className="ml-2 text-gold">· {exchanges} exchanges</span>
+            )}
           </p>
         </div>
         {turns.length > 0 && (
@@ -260,7 +425,6 @@ export function SpeakLearn() {
 
       {transcript}
 
-      {/* Topic chips */}
       <div className="mt-6">
         <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
           Topic starters
@@ -270,7 +434,7 @@ export function SpeakLearn() {
             <button
               key={chip}
               onClick={() => sendChip(chip)}
-              disabled={listening}
+              disabled={listening || thinking}
               className="shrink-0 rounded-full border border-gold/30 bg-background/60 px-4 py-1.5 text-sm text-foreground transition-all hover:border-gold/60 hover:bg-gold/10 disabled:opacity-40"
             >
               {chip}
@@ -279,7 +443,6 @@ export function SpeakLearn() {
         </div>
       </div>
 
-      {/* Mic */}
       <div className="mt-6 flex flex-col items-center gap-3">
         {supported === false ? (
           <div className="rounded-xl border border-border/70 bg-card/60 p-4 text-center text-sm text-muted-foreground">
@@ -291,9 +454,10 @@ export function SpeakLearn() {
           <>
             <button
               onClick={listening ? stopListening : startListening}
+              disabled={thinking}
               aria-label={listening ? "Stop listening" : "Start listening"}
               className={
-                "relative flex h-20 w-20 items-center justify-center rounded-full text-primary-foreground shadow-lg transition-transform active:scale-95 " +
+                "relative flex h-20 w-20 items-center justify-center rounded-full text-primary-foreground shadow-lg transition-transform active:scale-95 disabled:opacity-50 " +
                 (listening
                   ? "bg-gold listening-rings"
                   : "tutor-pulse bg-primary hover:bg-primary/90")
@@ -308,7 +472,9 @@ export function SpeakLearn() {
             <p className="text-sm text-muted-foreground">
               {listening
                 ? "Listening… speak naturally"
-                : "Tap the mic to speak"}
+                : thinking
+                  ? "Partner is replying…"
+                  : "Tap the mic to speak"}
             </p>
           </>
         )}
