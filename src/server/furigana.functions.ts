@@ -23,14 +23,16 @@ export interface FuriganaResult {
   segments: FuriganaSegment[];
 }
 
-const SYSTEM = `You are a precise Japanese reading-aid generator. You split a Japanese sentence into segments and add furigana (hiragana reading) AND romaji (Hepburn romanization) for each kanji compound.
+const SYSTEM = `You are a precise Japanese reading-aid generator. You split a Japanese sentence into segments and add furigana (hiragana reading) AND romaji (Hepburn romanization) for EACH INDIVIDUAL kanji character.
 
 Rules — follow EXACTLY:
-1. Split the sentence into ordered segments. Each kanji compound (one or more consecutive kanji that form a single word) is ONE segment with both hiragana and romaji readings.
-2. Hiragana, katakana, punctuation, numbers, Latin letters, and spaces are segments WITHOUT readings — leave hiragana/romaji fields empty/undefined.
-3. Use modern, contextually correct readings. For inflected verbs like 行きます, the kanji segment is just "行" with reading "い" (romaji "i"), and "きます" is a separate kana segment.
+1. Split the sentence into ordered segments. Each kanji character is its OWN segment with its OWN hiragana + romaji reading. Even when two or more kanji form a compound word (e.g. 学生, 小村, 飛行機), emit ONE segment per kanji so the reading sits directly above each character.
+   - Example: 学生 → [{base:"学", hiragana:"がく", romaji:"gaku"}, {base:"生", hiragana:"せい", romaji:"sei"}]
+   - Example: 小さな村 → [{base:"小", hiragana:"ちい", romaji:"chii"}, {base:"さな"}, {base:"村", hiragana:"むら", romaji:"mura"}]
+2. Hiragana, katakana, punctuation, numbers, Latin letters, and spaces are segments WITHOUT readings — leave hiragana/romaji fields empty/undefined. Group consecutive non-kanji characters into ONE segment.
+3. Use modern, contextually correct readings. Pick the reading each kanji actually contributes inside the word, in context. For inflected verbs like 行きます, the kanji segment is "行" with reading "い" (romaji "i"), and "きます" is a separate kana segment.
 4. Concatenating every "base" in order must reproduce the input EXACTLY — same characters, same order, same punctuation, same spaces.
-5. Use Hepburn romaji (e.g. し → "shi", つ → "tsu", を → "wo", ち → "chi", づ → "zu", じ → "ji"). Long vowels: write as the underlying kana (e.g. とう → "tou", おお → "oo"). No macrons.
+5. Use Hepburn romaji (し→"shi", つ→"tsu", を→"wo", ち→"chi", づ→"zu", じ→"ji"). Long vowels: write the underlying kana (とう→"tou", おお→"oo"). No macrons.
 
 Always respond by calling the provided tool.`;
 
