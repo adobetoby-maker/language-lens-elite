@@ -452,7 +452,9 @@ export function ParallelReader() {
                 activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
-                furigana={selected.language === "Japanese"}
+                furiganaMode={
+                  selected.language === "Japanese" ? furiganaMode : "off"
+                }
               />
             </div>
           </div>
