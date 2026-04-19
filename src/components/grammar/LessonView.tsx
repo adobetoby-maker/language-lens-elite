@@ -11,6 +11,7 @@ import {
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import { QuizCard } from "./QuizCard";
+import { MorphologyCard } from "./MorphologyCard";
 
 const LEVEL_LABEL: Record<CefrLevel, string> = {
   A1: "Beginner",
