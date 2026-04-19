@@ -357,9 +357,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       { id: "Deep Reader 📚", ok: state.notesSaved >= 5 },
       { id: "Good Listener 👂", ok: false /* awarded in speech-state */ },
       { id: "Grammar Apprentice ✏️", ok: state.lessonsCompleted >= 1 },
+      { id: "Grammar Wizard 🧙", ok: state.cefrLevelsCompleted.length >= 1 },
       { id: "Curious Learner 🧠", ok: state.tutorMessages >= 10 },
       { id: "First Conversation 🗣️", ok: state.conversationExchanges >= 5 },
       { id: "Conversationalist 💬", ok: state.conversationExchanges >= 20 },
+      { id: "Culture Buff 🌍", ok: state.cultureRead.length >= 3 },
       { id: "Author ✍️", ok: state.customTextsAdded >= 1 },
       { id: "Polyglot ⭐", ok: state.languagesUsed.length >= 3 },
       { id: "Week Streak 🔥", ok: state.streak >= 7 },
@@ -367,7 +369,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     for (const c of conds) {
       if (c.ok && !state.achievements.includes(c.id)) {
         dispatch({ type: "ADD_ACHIEVEMENT", payload: c.id });
-        toast(`✦ ${c.id}`, { description: "Achievement unlocked" });
+        toast(c.id, {
+          description: "Achievement Unlocked!",
+          className: "achievement-toast",
+        });
       }
     }
   }, [
@@ -375,8 +380,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     state.wordsLookedUp,
     state.notesSaved,
     state.lessonsCompleted,
+    state.cefrLevelsCompleted.length,
     state.tutorMessages,
     state.conversationExchanges,
+    state.cultureRead.length,
     state.customTextsAdded,
     state.languagesUsed.length,
     state.streak,
