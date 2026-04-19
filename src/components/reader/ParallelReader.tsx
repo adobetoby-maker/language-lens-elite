@@ -1,25 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, Plus, Type } from "lucide-react";
-import { LIBRARY } from "@/data/library";
+import { Volume2, Library, Type } from "lucide-react";
 import { useApp } from "@/state/app-state";
+import { useLibrary } from "@/state/library-state";
 import { ClickableText } from "./ClickableText";
 import { WordCard, type WordCardRequest } from "./WordCard";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { LibraryDrawer } from "@/components/library/LibraryDrawer";
+import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
 type TextSize = "S" | "M" | "L";
 
@@ -31,17 +17,18 @@ const SIZE_CLASS: Record<TextSize, string> = {
 
 export function ParallelReader() {
   const { state, dispatch } = useApp();
-  const [textId, setTextId] = useState(LIBRARY[0].id);
+  const { selected, state: lib } = useLibrary();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
-  const [addOpen, setAddOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+
+  // Auto-generate culture series for current language
+  useCultureGenerator();
 
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const isSyncing = useRef(false);
-
-  const text = LIBRARY.find((t) => t.id === textId) ?? LIBRARY[0];
 
   useEffect(() => {
     const left = leftRef.current;
@@ -51,16 +38,14 @@ export function ParallelReader() {
     const onLeft = () => {
       if (!syncScroll || isSyncing.current) return;
       isSyncing.current = true;
-      const ratio =
-        left.scrollTop / Math.max(1, left.scrollHeight - left.clientHeight);
+      const ratio = left.scrollTop / Math.max(1, left.scrollHeight - left.clientHeight);
       right.scrollTop = ratio * (right.scrollHeight - right.clientHeight);
       requestAnimationFrame(() => (isSyncing.current = false));
     };
     const onRight = () => {
       if (!syncScroll || isSyncing.current) return;
       isSyncing.current = true;
-      const ratio =
-        right.scrollTop / Math.max(1, right.scrollHeight - right.clientHeight);
+      const ratio = right.scrollTop / Math.max(1, right.scrollHeight - right.clientHeight);
       left.scrollTop = ratio * (left.scrollHeight - left.clientHeight);
       requestAnimationFrame(() => (isSyncing.current = false));
     };
@@ -71,50 +56,39 @@ export function ParallelReader() {
       left.removeEventListener("scroll", onLeft);
       right.removeEventListener("scroll", onRight);
     };
-  }, [syncScroll, textId]);
+  }, [syncScroll, selected.id]);
 
   const handleWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
 
-  const targetLabel =
-    state.selectedLanguage === "Spanish" ? "Español" : state.selectedLanguage;
+  const targetLabel = selected.targetLabel;
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
-      {/* Library picker */}
+      {/* Library bar */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/50 px-5 py-3 backdrop-blur">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            Library
-          </span>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1.5 font-display text-sm italic text-foreground transition-colors hover:border-gold/60">
-              <span className="text-gold">✦</span>
-              {text.title}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="min-w-[260px]">
-              {LIBRARY.map((t) => (
-                <DropdownMenuItem
-                  key={t.id}
-                  onSelect={() => setTextId(t.id)}
-                  className="flex flex-col items-start gap-0.5 py-2"
-                >
-                  <span className="font-display text-sm">{t.title}</span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {t.subtitle}
-                  </span>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
         <button
-          onClick={() => setAddOpen(true)}
-          className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold transition-all hover:bg-gold/15"
+          onClick={() => setDrawerOpen(true)}
+          className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1.5 font-display text-sm italic text-foreground transition-colors hover:border-gold/60"
         >
-          <Plus className="h-3.5 w-3.5" /> Add Your Own Text
+          <Library className="h-3.5 w-3.5 text-gold" />
+          <span className="text-gold">✦</span>
+          {selected.title}
         </button>
+        <div className="flex items-center gap-2">
+          {lib.generating && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+              ✦ Generating Culture Series…
+            </span>
+          )}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold hover:bg-gold/15"
+          >
+            Open Library
+          </button>
+        </div>
       </div>
 
       {/* Toolbar */}
@@ -170,49 +144,36 @@ export function ParallelReader() {
       {/* Reader */}
       <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* LEFT - English */}
           <div className="relative">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
                 English
               </span>
-              <span className="font-display text-xs italic text-muted-foreground">
-                native
-              </span>
+              <span className="font-display text-xs italic text-muted-foreground">native</span>
             </div>
-            <div
-              ref={leftRef}
-              className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8"
-            >
+            <div ref={leftRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
-                sentences={text.sentences.map((s) => s.en)}
+                sentences={selected.sentences.map((s) => s.en)}
                 size={size}
                 onWordClick={handleWord}
               />
             </div>
           </div>
 
-          {/* Gold divider */}
           <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px md:block">
             <div className="h-full w-full bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
           </div>
 
-          {/* RIGHT - Target */}
           <div className="relative border-t border-border/50 md:border-l-0 md:border-t-0">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
                 {targetLabel}
               </span>
-              <span className="font-display text-xs italic text-muted-foreground">
-                target
-              </span>
+              <span className="font-display text-xs italic text-muted-foreground">target</span>
             </div>
-            <div
-              ref={rightRef}
-              className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8"
-            >
+            <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
-                sentences={text.sentences.map((s) => s.target)}
+                sentences={selected.sentences.map((s) => s.target)}
                 size={size}
                 onWordClick={handleWord}
                 accent
@@ -222,34 +183,7 @@ export function ParallelReader() {
         </div>
       </div>
 
-      {/* Add-your-own modal */}
-      <Dialog open={addOpen} onOpenChange={setAddOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="font-display text-2xl">
-              Add Your Own Text
-            </DialogTitle>
-            <DialogDescription className="font-mono text-[11px] uppercase tracking-[0.18em]">
-              Paste a passage — translation &amp; alignment coming soon
-            </DialogDescription>
-          </DialogHeader>
-          <Textarea
-            placeholder="Paste any passage in English or your target language…"
-            className="min-h-[180px] font-display text-base"
-          />
-          <DialogFooter>
-            <Button variant="ghost" onClick={() => setAddOpen(false)}>
-              Cancel
-            </Button>
-            <Button
-              onClick={() => setAddOpen(false)}
-              className="bg-gold text-midnight hover:bg-gold/90"
-            >
-              Save (soon)
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <LibraryDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
       {wordReq && (
         <WordCard
