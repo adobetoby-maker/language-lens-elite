@@ -3,11 +3,18 @@ import { useApp } from "@/state/app-state";
 
 export function StatusBar() {
   const { state } = useApp();
+  const fiery = state.streak > 1;
 
   const items = [
-    { icon: Flame, label: "Streak", value: `${state.streak} days`, accent: true },
+    {
+      icon: Flame,
+      label: "Streak",
+      value: `${state.streak} day${state.streak === 1 ? "" : "s"}`,
+      accent: true,
+      bold: fiery,
+    },
     { icon: Star, label: "XP", value: state.xp.toString() },
-    { icon: Medal, label: "Level", value: state.level },
+    { icon: Medal, label: "Level", value: state.tier },
   ];
 
   return (
@@ -22,7 +29,11 @@ export function StatusBar() {
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               {item.label}
             </span>
-            <span className="font-mono text-xs font-medium text-foreground">
+            <span
+              className={`font-mono text-xs ${
+                item.bold ? "font-bold text-gold" : "font-medium text-foreground"
+              }`}
+            >
               {item.value}
             </span>
             {i < items.length - 1 && (
