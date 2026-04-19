@@ -13,10 +13,9 @@ import { addFurigana, type FuriganaSegment } from "@/server/furigana.functions";
  * clickable so word lookups continue to work in every mode.
  */
 
-// v2 cache: previous version stored a single html string; we now store
-// segments (base + hiragana + romaji), so the key must be bumped to avoid
-// reading stale data.
-const CACHE_KEY = "lingualens.furigana.v2";
+// v3 cache: prompt now emits one segment per kanji (so the reading sits
+// directly above each character). Bump key to invalidate v2 compound entries.
+const CACHE_KEY = "lingualens.furigana.v3";
 type Cache = Record<string, FuriganaSegment[]>;
 
 let memCache: Cache | null = null;
