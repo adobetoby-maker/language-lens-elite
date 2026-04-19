@@ -394,6 +394,26 @@ export function ParallelReader() {
                   </button>
                 ))}
               </div>
+              {furiganaMode !== "off" && (
+                <div className="flex overflow-hidden rounded-full border border-border/70">
+                  {(
+                    [
+                      { v: "hiragana", label: "あ" },
+                      { v: "romaji", label: "A" },
+                    ] as { v: FuriganaScript; label: string }[]
+                  ).map(({ v, label }) => (
+                    <button
+                      key={v}
+                      onClick={() => setFuriganaScript(v)}
+                      data-active={furiganaScript === v}
+                      title={v === "hiragana" ? "Show kana readings" : "Show romaji (Hepburn)"}
+                      className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <label className="flex cursor-pointer items-center gap-2">
