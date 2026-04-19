@@ -77,12 +77,18 @@ export function FuriganaText({
   text,
   onWordClick,
   fullSentence,
+  mode = "above",
 }: {
   text: string;
   /** Click handler — receives the clean clicked word, the full sentence, and screen coords. */
   onWordClick?: (word: string, sentence: string, x: number, y: number) => void;
   /** The full sentence to pass to onWordClick (defaults to `text`). */
   fullSentence?: string;
+  /**
+   * "above"  : tiny hiragana floats above the kanji (default).
+   * "inline" : reading sits directly ON the kanji as a faint overlay (no extra leading).
+   */
+  mode?: "above" | "inline";
 }) {
   const fetchFurigana = useServerFn(addFurigana);
   const [html, setHtml] = useState<string | null>(() => loadCache()[text] ?? null);
@@ -138,6 +144,35 @@ export function FuriganaText({
           // Native <ruby> with a clickable base span. The <rt> uses
           // pointer-events:none (see styles.css) so clicks always land on the
           // base text, not the small reading above it.
+          if (mode === "inline") {
+            // "Inline" mode: the reading sits directly ON TOP of the kanji
+            // as a faint overlay via CSS ::after (see styles.css). The base
+            // glyph keeps its original size so sentence width/height is
+            // identical to the un-annotated text.
+            return (
+              <span
+                key={i}
+                data-reading={tok.reading}
+                className="furigana-inline cursor-pointer rounded transition-colors hover:text-gold"
+                onClick={
+                  onWordClick
+                    ? (e) => {
+                        e.stopPropagation();
+                        const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                        onWordClick(
+                          tok.text,
+                          sentence,
+                          r.left + r.width / 2,
+                          r.bottom,
+                        );
+                      }
+                    : undefined
+                }
+              >
+                {tok.text}
+              </span>
+            );
+          }
           return (
             <ruby key={i} className="furigana-ruby">
               <span

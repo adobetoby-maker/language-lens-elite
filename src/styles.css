@@ -281,3 +281,43 @@ ruby {
 .furigana-line {
   line-height: inherit;
 }
+
+/* ---- Furigana "inline" mode -----------------------------------------------
+   The reading sits directly ON TOP of the kanji as a faint overlay, so the
+   sentence rhythm matches the original Japanese exactly (no leading change,
+   no horizontal expansion). The base kanji stays fully visible underneath.
+*/
+.furigana-inline {
+  position: relative;
+  /* Keep the kanji unchanged — the overlay floats over it without affecting
+     surrounding glyph spacing. */
+}
+.furigana-inline::after {
+  content: attr(data-reading);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* Smaller than the kanji so it doesn't drown out the underlying character,
+     monospaced + slightly bold so the strokes read clearly even on top of
+     a complex kanji. */
+  font-family: var(--font-mono);
+  font-size: 0.42em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  /* Soft gold pill that contrasts with both light and dark backgrounds while
+     letting the kanji silhouette show through at the edges. */
+  color: var(--midnight, #0b0d12);
+  background: color-mix(in oklab, var(--gold) 78%, transparent);
+  padding: 0.05em 0.25em;
+  border-radius: 0.4em;
+  box-shadow: 0 1px 2px color-mix(in oklab, black 20%, transparent);
+}
+/* In dark mode the pill stays gold but the text becomes the deep midnight. */
+.dark .furigana-inline::after {
+  color: #0b0d12;
+}

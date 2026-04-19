@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Library, Type } from "lucide-react";
+import { Library, Type, Languages } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -18,6 +18,17 @@ import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 
 type TextSize = "S" | "M" | "L";
 
+/**
+ * Furigana display modes:
+ *  - "off"     : no readings shown
+ *  - "above"   : tiny hiragana floats above the kanji (default; line height stays)
+ *  - "inline"  : reading sits directly ON TOP of the kanji as a faint overlay,
+ *                so the original sentence rhythm is preserved 1:1.
+ */
+type FuriganaMode = "off" | "above" | "inline";
+
+const FURIGANA_KEY = "lingualens.reader.furigana.v1";
+
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
   M: "text-[17px] leading-[1.85]",
@@ -33,6 +44,26 @@ export function ParallelReader() {
   const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
+  const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
+
+  // Hydrate + persist furigana preference
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(FURIGANA_KEY);
+      if (raw === "off" || raw === "above" || raw === "inline") {
+        setFuriganaMode(raw);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem(FURIGANA_KEY, furiganaMode);
+    } catch {
+      /* ignore */
+    }
+  }, [furiganaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
@@ -319,6 +350,39 @@ export function ParallelReader() {
         </div>
 
         <div className="flex items-center gap-4">
+          {selected.language === "Japanese" && (
+            <div className="flex items-center gap-2">
+              <Languages className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                Furigana
+              </span>
+              <div className="flex overflow-hidden rounded-full border border-border/70">
+                {(
+                  [
+                    { v: "off", label: "Off" },
+                    { v: "above", label: "Above" },
+                    { v: "inline", label: "On" },
+                  ] as { v: FuriganaMode; label: string }[]
+                ).map(({ v, label }) => (
+                  <button
+                    key={v}
+                    onClick={() => setFuriganaMode(v)}
+                    data-active={furiganaMode === v}
+                    title={
+                      v === "off"
+                        ? "Hide readings"
+                        : v === "above"
+                          ? "Tiny hiragana above kanji"
+                          : "Reading sits directly on the kanji"
+                    }
+                    className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
@@ -388,7 +452,9 @@ export function ParallelReader() {
                 activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
-                furigana={selected.language === "Japanese"}
+                furiganaMode={
+                  selected.language === "Japanese" ? furiganaMode : "off"
+                }
               />
             </div>
           </div>
@@ -444,7 +510,7 @@ function Pane({
   activeSentenceIndex,
   onWordClick,
   accent,
-  furigana,
+  furiganaMode = "off",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -453,9 +519,10 @@ function Pane({
   activeSentenceIndex: number;
   onWordClick: (w: string, sentence: string, x: number, y: number) => void;
   accent?: boolean;
-  /** Render Japanese furigana above kanji. Only meaningful for the target pane. */
-  furigana?: boolean;
+  /** Furigana display mode for Japanese target text. */
+  furiganaMode?: FuriganaMode;
 }) {
+  const showFurigana = furiganaMode !== "off";
   return (
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
@@ -475,13 +542,18 @@ function Pane({
               isActive
                 ? "border-gold bg-gold/15"
                 : "border-transparent hover:border-gold/40"
-            } ${furigana ? "furigana-line" : ""}`}
+            } ${furiganaMode === "above" ? "furigana-line" : ""}`}
           >
-            {furigana && sentenceAnns.length === 0 ? (
+            {showFurigana && sentenceAnns.length === 0 ? (
               // Fast path: no annotations on this sentence — render with furigana.
               // Once the user adds notes/highlights we fall back to the annotated
               // renderer (without ruby) for that sentence; readings stay cached.
-              <FuriganaText text={s} fullSentence={s} onWordClick={onWordClick} />
+              <FuriganaText
+                text={s}
+                fullSentence={s}
+                onWordClick={onWordClick}
+                mode={furiganaMode}
+              />
             ) : (
               <AnnotatedSentence
                 text={s}
