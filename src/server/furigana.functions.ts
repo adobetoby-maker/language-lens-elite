@@ -36,8 +36,6 @@ Rules — follow EXACTLY:
 
 Always respond by calling the provided tool.`;
 
-Always respond by calling the provided tool.`;
-
 export const addFurigana = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => InputSchema.parse(i))
   .handler(async ({ data }): Promise<{ data: FuriganaResult | null; error: string | null }> => {
