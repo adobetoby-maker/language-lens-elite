@@ -1,26 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AppProvider } from "@/state/app-state";
+import { TopNav } from "@/components/TopNav";
+import { StatusBar } from "@/components/StatusBar";
+import { TabShell } from "@/components/TabShell";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "LinguaLens — A Premium Language Learning Experience" },
+      {
+        name: "description",
+        content:
+          "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese and Portuguese.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <AppProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <TopNav />
+        <StatusBar />
+        <main className="mx-auto max-w-7xl px-6 py-12">
+          <TabShell />
+        </main>
+      </div>
+    </AppProvider>
+  );
 }
