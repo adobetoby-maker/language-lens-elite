@@ -589,7 +589,7 @@ function Pane({
                 text={s}
                 fullSentence={s}
                 onWordClick={onWordClick}
-                mode={furiganaMode === "off" ? "above" : furiganaMode}
+                mode={furiganaMode === "inline" ? "inline" : "above"}
                 script={furiganaScript}
               />
             ) : (
