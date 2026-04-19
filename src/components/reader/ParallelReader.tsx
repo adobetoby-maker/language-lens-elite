@@ -545,6 +545,7 @@ function Pane({
   onWordClick,
   accent,
   furiganaMode = "off",
+  furiganaScript = "hiragana",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -555,6 +556,8 @@ function Pane({
   accent?: boolean;
   /** Furigana display mode for Japanese target text. */
   furiganaMode?: FuriganaMode;
+  /** Which script to render in the ruby labels. */
+  furiganaScript?: FuriganaScript;
 }) {
   const showFurigana = furiganaMode !== "off";
   return (
@@ -586,7 +589,8 @@ function Pane({
                 text={s}
                 fullSentence={s}
                 onWordClick={onWordClick}
-                mode={furiganaMode}
+                mode={furiganaMode === "off" ? "above" : furiganaMode}
+                script={furiganaScript}
               />
             ) : (
               <AnnotatedSentence
