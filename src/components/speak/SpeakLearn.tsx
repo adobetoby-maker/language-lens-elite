@@ -273,6 +273,25 @@ export function SpeakLearn() {
     if (!trimmed) return;
     if (sessionStartRef.current == null) sessionStartRef.current = Date.now();
     const userTurn = addTurn("user", trimmed);
+
+    // Challenge completion check
+    if (challenge) {
+      const target = challenge.keyword || challenge.target;
+      if (looseIncludes(trimmed, target)) {
+        celebrate();
+        const bonus = challenge.kind === "reach" ? 30 : 20;
+        dispatch({ type: "ADD_XP", payload: bonus });
+        toast(
+          challenge.kind === "reach"
+            ? "🎉 Reach word nailed!"
+            : "🎉 Grammar challenge cleared!",
+          { description: `+${bonus} XP — ${challenge.hint}` },
+        );
+        setTipFor(userTurn.id, `Challenge complete: ${challenge.hint}`);
+        setChallenge(null);
+      }
+    }
+
     void streamReply(trimmed);
     void fetchGrammarTip(userTurn.id, trimmed);
   };
