@@ -11,6 +11,7 @@ import {
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import { QuizCard } from "./QuizCard";
+import { MorphologyCard } from "./MorphologyCard";
 
 const LEVEL_LABEL: Record<CefrLevel, string> = {
   A1: "Beginner",
@@ -123,6 +124,8 @@ export function LessonView({
                 {content.keyRule}
               </p>
             </div>
+
+            {content.morphology && <MorphologyCard morph={content.morphology} />}
 
             <div className="mb-7">
               <div className="mb-3 flex items-center gap-2">

@@ -31,10 +31,44 @@ export interface LessonExample {
   english: string;
 }
 
+/**
+ * Splits a word into the unchanging root/stem and the changing ending so
+ * learners can SEE what part transforms. E.g. Japanese 行く (iku, "to go"):
+ * root "i" (行) + ending "ku".
+ */
+export interface MorphPart {
+  word: string;
+  romanization?: string;
+  root: string;
+  ending: string;
+  gloss: string;
+}
+
+export interface ConjugationRow {
+  form: string; // e.g. "Polite present", "Negative", "Te-form"
+  root: string;
+  ending: string;
+  full: string; // root + ending in target script
+  romanization?: string;
+  english: string;
+}
+
+export interface MorphologyBreakdown {
+  summary: string;
+  base: MorphPart;
+  table: ConjugationRow[];
+}
+
 export interface LessonContent {
   explanation: string;
   examples: LessonExample[];
   keyRule: string;
+  /**
+   * Present whenever the concept involves a word whose ROOT stays fixed
+   * while an ending changes (verb conjugation, noun declension, adjective
+   * inflection). Omitted for purely syntactic topics like word order.
+   */
+  morphology?: MorphologyBreakdown;
 }
 
 export type QuizQuestionType = "fill_blank" | "multiple_choice";
@@ -139,8 +173,11 @@ export const generateLessonContent = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => LessonInput.parse(i))
   .handler(async ({ data }) => {
     const system =
-      "You are a brilliant private grammar tutor. Write clearly and warmly. Always respond by calling the provided tool.";
-    const user = `Teach this grammar concept: "${data.concept}" for a ${data.language} learner at CEFR ${data.level}. Provide a clear ~150-word English explanation, exactly 3 example sentences in ${data.language} each with an English translation, and one bold key rule (single sentence).`;
+      "You are a brilliant private grammar tutor. Write clearly and warmly. Always respond by calling the provided tool. " +
+      "When the concept involves a word whose ROOT stays fixed while an ENDING changes (verb conjugation, noun declension, adjective inflection, etc.), you MUST include the `morphology` field showing the split. " +
+      "Use the dictionary / base form as `morphology.base` and provide 4–6 rows in `morphology.table` reusing the SAME root with different endings (e.g. Japanese iku → root 'i' (行), endings ka/ki/ku/ke/kō, full forms 行かない / 行きます / 行く / 行けば / 行こう). " +
+      "Always include romanization for non-Latin scripts. Omit `morphology` only for purely syntactic topics like word order or particles that don't inflect.";
+    const user = `Teach this grammar concept: "${data.concept}" for a ${data.language} learner at CEFR ${data.level}. Provide a clear ~150-word English explanation, exactly 3 example sentences in ${data.language} each with an English translation, one bold key rule (single sentence), and — if the concept involves a word that conjugates/inflects — a morphology breakdown showing the unchanging root and the changing endings.`;
     return callTool<LessonContent>(system, user, "return_lesson_content", {
       type: "object",
       properties: {
@@ -160,6 +197,50 @@ export const generateLessonContent = createServerFn({ method: "POST" })
           },
         },
         keyRule: { type: "string" },
+        morphology: {
+          type: "object",
+          description:
+            "Optional. Include when a word's root stays fixed while endings change.",
+          properties: {
+            summary: {
+              type: "string",
+              description:
+                "1–3 sentences describing the root/ending pattern.",
+            },
+            base: {
+              type: "object",
+              properties: {
+                word: { type: "string" },
+                romanization: { type: "string" },
+                root: { type: "string" },
+                ending: { type: "string" },
+                gloss: { type: "string" },
+              },
+              required: ["word", "root", "ending", "gloss"],
+              additionalProperties: false,
+            },
+            table: {
+              type: "array",
+              minItems: 3,
+              maxItems: 6,
+              items: {
+                type: "object",
+                properties: {
+                  form: { type: "string" },
+                  root: { type: "string" },
+                  ending: { type: "string" },
+                  full: { type: "string" },
+                  romanization: { type: "string" },
+                  english: { type: "string" },
+                },
+                required: ["form", "root", "ending", "full", "english"],
+                additionalProperties: false,
+              },
+            },
+          },
+          required: ["summary", "base", "table"],
+          additionalProperties: false,
+        },
       },
       required: ["explanation", "examples", "keyRule"],
       additionalProperties: false,
