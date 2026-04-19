@@ -5,27 +5,32 @@ const InputSchema = z.object({
   text: z.string().min(1).max(2000),
 });
 
-export interface FuriganaResult {
-  /**
-   * The same sentence with kanji wrapped in HTML <ruby> tags.
-   * Example:
-   *   input:  "私は学生です。"
-   *   output: "<ruby>私<rt>わたし</rt></ruby>は<ruby>学生<rt>がくせい</rt></ruby>です。"
-   *
-   * Only kanji get ruby. Hiragana, katakana, punctuation, and spaces are returned
-   * unchanged. The plain-text content (stripping all <rt>…</rt>) MUST equal the input.
-   */
-  html: string;
+/**
+ * A single segment of the analyzed sentence.
+ *  - `base`     : the original characters (kanji compound, kana run, punctuation, etc.)
+ *  - `hiragana` : hiragana reading (only present for kanji segments)
+ *  - `romaji`   : Hepburn romanization (only present for kanji segments)
+ *
+ * Concatenating every `base` in order MUST equal the original input verbatim.
+ */
+export interface FuriganaSegment {
+  base: string;
+  hiragana?: string;
+  romaji?: string;
 }
 
-const SYSTEM = `You are a precise Japanese reading-aid generator. You add furigana (hiragana readings) above kanji using HTML <ruby> tags.
+export interface FuriganaResult {
+  segments: FuriganaSegment[];
+}
+
+const SYSTEM = `You are a precise Japanese reading-aid generator. You split a Japanese sentence into segments and add furigana (hiragana reading) AND romaji (Hepburn romanization) for each kanji compound.
 
 Rules — follow EXACTLY:
-1. Wrap each kanji compound (one or more consecutive kanji that form a single word) in a single <ruby> tag, with the hiragana reading inside <rt>…</rt>.
-2. NEVER add furigana to hiragana, katakana, punctuation, numbers, or Latin characters — leave them exactly as-is.
-3. Use modern, contextually correct readings. For verbs, use the reading appropriate to the inflection (e.g. 行きます → <ruby>行<rt>い</rt></ruby>きます, not <ruby>行きます<rt>いきます</rt></ruby>).
-4. Output the ENTIRE sentence verbatim — same characters, same order, same punctuation, same spaces. The only addition is <ruby>/<rt> tags around kanji.
-5. NO other HTML, no markdown, no explanations, no surrounding tags.
+1. Split the sentence into ordered segments. Each kanji compound (one or more consecutive kanji that form a single word) is ONE segment with both hiragana and romaji readings.
+2. Hiragana, katakana, punctuation, numbers, Latin letters, and spaces are segments WITHOUT readings — leave hiragana/romaji fields empty/undefined.
+3. Use modern, contextually correct readings. For inflected verbs like 行きます, the kanji segment is just "行" with reading "い" (romaji "i"), and "きます" is a separate kana segment.
+4. Concatenating every "base" in order must reproduce the input EXACTLY — same characters, same order, same punctuation, same spaces.
+5. Use Hepburn romaji (e.g. し → "shi", つ → "tsu", を → "wo", ち → "chi", づ → "zu", じ → "ji"). Long vowels: write as the underlying kana (e.g. とう → "tou", おお → "oo"). No macrons.
 
 Always respond by calling the provided tool.`;
 
@@ -35,9 +40,9 @@ export const addFurigana = createServerFn({ method: "POST" })
     const KEY = process.env.LOVABLE_API_KEY;
     if (!KEY) return { data: null, error: "AI is not configured" };
 
-    // Fast path: no kanji → nothing to do. Kanji range: \u4E00-\u9FFF.
+    // Fast path: no kanji → nothing to analyze. One plain segment.
     if (!/[\u4E00-\u9FFF]/.test(data.text)) {
-      return { data: { html: data.text }, error: null };
+      return { data: { segments: [{ base: data.text }] }, error: null };
     }
 
     try {
@@ -51,24 +56,33 @@ export const addFurigana = createServerFn({ method: "POST" })
           model: "google/gemini-3-flash-preview",
           messages: [
             { role: "system", content: SYSTEM },
-            { role: "user", content: `Add furigana to this Japanese sentence:\n\n${data.text}` },
+            { role: "user", content: `Analyze this Japanese sentence:\n\n${data.text}` },
           ],
           tools: [
             {
               type: "function",
               function: {
                 name: "return_furigana",
-                description: "Return the input sentence with <ruby>/<rt> furigana applied to kanji.",
+                description:
+                  "Return ordered segments of the sentence with hiragana + romaji on each kanji compound.",
                 parameters: {
                   type: "object",
                   properties: {
-                    html: {
-                      type: "string",
-                      description:
-                        "The sentence with <ruby>kanji<rt>reading</rt></ruby> applied. Plain text (with <rt>…</rt> stripped) must equal the input.",
+                    segments: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          base: { type: "string" },
+                          hiragana: { type: "string" },
+                          romaji: { type: "string" },
+                        },
+                        required: ["base"],
+                        additionalProperties: false,
+                      },
                     },
                   },
-                  required: ["html"],
+                  required: ["segments"],
                   additionalProperties: false,
                 },
               },
@@ -88,6 +102,9 @@ export const addFurigana = createServerFn({ method: "POST" })
       const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
       if (!args) return { data: null, error: "No furigana returned." };
       const parsed = JSON.parse(args) as FuriganaResult;
+      if (!Array.isArray(parsed.segments)) {
+        return { data: null, error: "Invalid furigana response." };
+      }
       return { data: parsed, error: null };
     } catch (e) {
       console.error("addFurigana failed", e);

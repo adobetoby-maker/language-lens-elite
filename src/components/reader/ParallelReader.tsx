@@ -6,7 +6,7 @@ import { useLibrary } from "@/state/library-state";
 import { useNotes } from "@/state/notes-state";
 import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
-import { FuriganaText } from "./FuriganaText";
+import { FuriganaText, type FuriganaScript } from "./FuriganaText";
 import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
@@ -28,6 +28,7 @@ type TextSize = "S" | "M" | "L";
 type FuriganaMode = "off" | "above" | "inline";
 
 const FURIGANA_KEY = "lingualens.reader.furigana.v1";
+const FURIGANA_SCRIPT_KEY = "lingualens.reader.furigana.script.v1";
 
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
@@ -45,13 +46,18 @@ export function ParallelReader() {
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
+  const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
 
-  // Hydrate + persist furigana preference
+  // Hydrate + persist furigana preferences
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FURIGANA_KEY);
       if (raw === "off" || raw === "above" || raw === "inline") {
         setFuriganaMode(raw);
+      }
+      const rawScript = localStorage.getItem(FURIGANA_SCRIPT_KEY);
+      if (rawScript === "hiragana" || rawScript === "romaji") {
+        setFuriganaScript(rawScript);
       }
     } catch {
       /* ignore */
@@ -64,6 +70,13 @@ export function ParallelReader() {
       /* ignore */
     }
   }, [furiganaMode]);
+  useEffect(() => {
+    try {
+      localStorage.setItem(FURIGANA_SCRIPT_KEY, furiganaScript);
+    } catch {
+      /* ignore */
+    }
+  }, [furiganaScript]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
@@ -381,6 +394,26 @@ export function ParallelReader() {
                   </button>
                 ))}
               </div>
+              {furiganaMode !== "off" && (
+                <div className="flex overflow-hidden rounded-full border border-border/70">
+                  {(
+                    [
+                      { v: "hiragana", label: "あ" },
+                      { v: "romaji", label: "A" },
+                    ] as { v: FuriganaScript; label: string }[]
+                  ).map(({ v, label }) => (
+                    <button
+                      key={v}
+                      onClick={() => setFuriganaScript(v)}
+                      data-active={furiganaScript === v}
+                      title={v === "hiragana" ? "Show kana readings" : "Show romaji (Hepburn)"}
+                      className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <label className="flex cursor-pointer items-center gap-2">
@@ -455,6 +488,7 @@ export function ParallelReader() {
                 furiganaMode={
                   selected.language === "Japanese" ? furiganaMode : "off"
                 }
+                furiganaScript={furiganaScript}
               />
             </div>
           </div>
@@ -511,6 +545,7 @@ function Pane({
   onWordClick,
   accent,
   furiganaMode = "off",
+  furiganaScript = "hiragana",
 }: {
   pane: "left" | "right";
   sentences: string[];
@@ -521,6 +556,8 @@ function Pane({
   accent?: boolean;
   /** Furigana display mode for Japanese target text. */
   furiganaMode?: FuriganaMode;
+  /** Which script to render in the ruby labels. */
+  furiganaScript?: FuriganaScript;
 }) {
   const showFurigana = furiganaMode !== "off";
   return (
@@ -552,7 +589,8 @@ function Pane({
                 text={s}
                 fullSentence={s}
                 onWordClick={onWordClick}
-                mode={furiganaMode}
+                mode={furiganaMode === "inline" ? "inline" : "above"}
+                script={furiganaScript}
               />
             ) : (
               <AnnotatedSentence
