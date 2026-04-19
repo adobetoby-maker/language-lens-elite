@@ -77,12 +77,18 @@ export function FuriganaText({
   text,
   onWordClick,
   fullSentence,
+  mode = "above",
 }: {
   text: string;
   /** Click handler — receives the clean clicked word, the full sentence, and screen coords. */
   onWordClick?: (word: string, sentence: string, x: number, y: number) => void;
   /** The full sentence to pass to onWordClick (defaults to `text`). */
   fullSentence?: string;
+  /**
+   * "above"  : tiny hiragana floats above the kanji (default).
+   * "inline" : reading sits directly ON the kanji as a faint overlay (no extra leading).
+   */
+  mode?: "above" | "inline";
 }) {
   const fetchFurigana = useServerFn(addFurigana);
   const [html, setHtml] = useState<string | null>(() => loadCache()[text] ?? null);
