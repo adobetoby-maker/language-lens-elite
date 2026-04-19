@@ -23,7 +23,7 @@ const SIZE_CLASS: Record<TextSize, string> = {
   L: "text-[20px] leading-[1.9]",
 };
 
-const ACHIEVEMENT_DEEP_READER = "Deep Reader 📚";
+
 
 export function ParallelReader() {
   const { state, dispatch } = useApp();
@@ -38,6 +38,25 @@ export function ParallelReader() {
   const [noteBubble, setNoteBubble] = useState<SelectionInfo | null>(null);
 
   useCultureGenerator();
+
+  // Track Culture Series exposure for the "Culture Buff 🌍" achievement
+  useEffect(() => {
+    if (selected.section === "culture" && selected.available) {
+      dispatch({ type: "MARK_CULTURE_READ", payload: selected.id });
+    }
+  }, [selected.id, selected.section, selected.available, dispatch]);
+
+  // Award Culture Buff once every culture entry for the active language has been opened
+  useEffect(() => {
+    const cultureForLang = lib.entries.filter(
+      (e) => e.section === "culture" && e.available && e.language === state.selectedLanguage,
+    );
+    if (cultureForLang.length === 0) return;
+    const allRead = cultureForLang.every((e) => state.cultureRead.includes(e.id));
+    if (allRead && !state.achievements.includes("Culture Buff 🌍")) {
+      dispatch({ type: "ADD_ACHIEVEMENT", payload: "Culture Buff 🌍" });
+    }
+  }, [lib.entries, state.cultureRead, state.achievements, state.selectedLanguage, dispatch]);
 
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -129,15 +148,6 @@ export function ParallelReader() {
 
   const annotations = forText(selected.id);
 
-  const checkAchievement = (newCount: number) => {
-    if (newCount === 5 && !state.achievements.includes(ACHIEVEMENT_DEEP_READER)) {
-      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACHIEVEMENT_DEEP_READER });
-      toast("✦ Achievement unlocked", {
-        description: `Deep Reader 📚 — 5 notes saved`,
-      });
-    }
-  };
-
   const handleHighlight = (s: SelectionInfo) => {
     addAnnotation({
       textId: selected.id,
@@ -165,9 +175,8 @@ export function ParallelReader() {
       noteText: text,
     });
     dispatch({ type: "ADD_XP", payload: 5 });
-    const newNoteCount = annotations.filter((a) => a.noteText).length + 1;
+    dispatch({ type: "INC_COUNTER", payload: "notesSaved" });
     toast("✦ Note saved", { description: "+5 XP" });
-    checkAchievement(newNoteCount);
     setNoteBubble(null);
     window.getSelection()?.removeAllRanges();
   };

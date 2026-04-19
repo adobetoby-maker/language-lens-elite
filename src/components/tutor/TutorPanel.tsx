@@ -7,7 +7,7 @@ import { useLibrary, flagFor } from "@/state/library-state";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor, type TutorMessage } from "@/state/tutor-state";
 
-const ACHIEVEMENT_CURIOUS = "Curious Learner 🧠";
+
 const LEVEL_TO_CEFR: Record<string, string> = {
   Beginner: "A1–A2",
   Intermediate: "B1–B2",
@@ -63,15 +63,6 @@ export function TutorPanel() {
     [selected],
   );
 
-  const checkAchievement = (count: number) => {
-    if (count >= 10 && !appState.achievements.includes(ACHIEVEMENT_CURIOUS)) {
-      dispatch({ type: "ADD_ACHIEVEMENT", payload: ACHIEVEMENT_CURIOUS });
-      toast("✦ Achievement unlocked", {
-        description: `${ACHIEVEMENT_CURIOUS} — 10 tutor messages`,
-      });
-    }
-  };
-
   const send = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || streaming) return;
@@ -84,11 +75,8 @@ export function TutorPanel() {
       createdAt: Date.now(),
     };
     tutor.addMessage(threadId, userMsg);
-    dispatch({ type: "ADD_XP", payload: 5 });
-
-    const userMsgCount =
-      messages.filter((m) => m.role === "user").length + 1;
-    checkAchievement(userMsgCount);
+    dispatch({ type: "ADD_XP", payload: 10 });
+    dispatch({ type: "INC_COUNTER", payload: "tutorMessages" });
 
     setInput("");
     setStreaming(true);

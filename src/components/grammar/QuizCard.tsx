@@ -142,6 +142,8 @@ export function QuizCard({
     }
     if (correctCount === questions.length) {
       markComplete(state.selectedLanguage, level, lesson.id);
+      dispatch({ type: "INC_COUNTER", payload: "lessonsCompleted" });
+      dispatch({ type: "ADD_XP", payload: 50 });
       fireConfetti();
       toast("✦ Lesson complete", { description: "+50 XP" });
 
@@ -153,6 +155,10 @@ export function QuizCard({
       if (allDone && !gState.badges.includes(BADGE_BY_LEVEL[level])) {
         addBadge(BADGE_BY_LEVEL[level]);
         dispatch({ type: "ADD_ACHIEVEMENT", payload: BADGE_BY_LEVEL[level] });
+        // Also award the universal "Grammar Wizard 🧙" achievement on first full level
+        if (!gState.badges.length) {
+          dispatch({ type: "ADD_ACHIEVEMENT", payload: "Grammar Wizard 🧙" });
+        }
         toast("🏅 Badge unlocked", { description: BADGE_BY_LEVEL[level] });
       }
     }

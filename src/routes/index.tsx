@@ -12,6 +12,7 @@ import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
+import { LevelUpOverlay } from "@/components/LevelUpOverlay";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -63,6 +64,7 @@ function Index() {
                     </main>
                   </div>
                   <TutorPanel />
+                  <LevelUpOverlay />
                 </TutorProvider>
                 <Toaster
                   theme="dark"
