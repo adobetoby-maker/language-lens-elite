@@ -4,7 +4,7 @@ import { X, Volume2, MessageCircle, Sparkle } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/server/word-lookup.functions";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
-import type { Language } from "@/state/app-state";
+import { useApp, type Language } from "@/state/app-state";
 
 const LOCALE: Record<Language, string> = {
   Spanish: "es-ES",
@@ -38,6 +38,7 @@ export function WordCard({
   const lookup = useServerFn(lookupWord);
   const { setLastWord } = useSpeech();
   const tutor = useTutor();
+  const { dispatch } = useApp();
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,10 +58,11 @@ export function WordCard({
     return { left, top };
   })();
 
-  // XP flash on open + record last clicked word
+  // XP flash on open + record last clicked word + count toward "First Word!" achievement
   useEffect(() => {
     onXp(2);
     setLastWord(request.word);
+    dispatch({ type: "INC_COUNTER", payload: "wordsLookedUp" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [request.word, request.x, request.y]);
 
