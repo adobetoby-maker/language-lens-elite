@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      library_books: {
+        Row: {
+          available: boolean
+          chapters: Json
+          created_at: string
+          flag: string
+          id: string
+          language: string
+          section: string
+          subtitle: string
+          target_label: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          available?: boolean
+          chapters?: Json
+          created_at?: string
+          flag?: string
+          id?: string
+          language: string
+          section?: string
+          subtitle?: string
+          target_label: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          available?: boolean
+          chapters?: Json
+          created_at?: string
+          flag?: string
+          id?: string
+          language?: string
+          section?: string
+          subtitle?: string
+          target_label?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
