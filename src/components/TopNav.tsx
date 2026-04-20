@@ -26,22 +26,25 @@ const TABS: { key: TabKey; label: string }[] = [
   { key: "dashboard", label: "Dashboard" },
 ];
 
-export function TopNav() {
+export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
-        {/* Logo */}
-        <div className="flex items-center gap-2.5">
-          <Sparkle
-            className="h-5 w-5 text-gold"
-            strokeWidth={1.5}
-            fill="currentColor"
-          />
-          <span className="font-display text-2xl font-semibold tracking-tight">
-            LinguaLens
-          </span>
+        {/* Logo + Match button */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
+            <Sparkle
+              className="h-5 w-5 text-gold"
+              strokeWidth={1.5}
+              fill="currentColor"
+            />
+            <span className="font-display text-2xl font-semibold tracking-tight">
+              LinguaLens
+            </span>
+          </div>
+          {onOpenMatch && <LanguageMatchButton onClick={onOpenMatch} />}
         </div>
 
         {/* Language selector */}
