@@ -154,10 +154,11 @@ export function ParallelReader() {
     };
   }, [syncScroll, selected.id]);
 
-  // Capture selection from either pane
+  // Capture selection from either pane (mouse + touch).
   useEffect(() => {
-    function handleMouseUp(e: MouseEvent) {
-      // Ignore if clicking on selection menu / bubble (their buttons preventDefault)
+    let pendingTimer: number | null = null;
+
+    function computeSelection() {
       const sel = window.getSelection();
       if (!sel || sel.isCollapsed) {
         setSelection(null);
@@ -192,21 +193,31 @@ export function ParallelReader() {
         x: rect.left + rect.width / 2,
         y: rect.top,
       });
-      void e;
     }
 
-    function handleMouseDown(e: MouseEvent) {
-      // close selection menu when clicking elsewhere (not menu itself)
+    function scheduleCompute() {
+      if (pendingTimer) window.clearTimeout(pendingTimer);
+      // Wait a tick so iOS finishes settling the selection after touch release.
+      pendingTimer = window.setTimeout(computeSelection, 60);
+    }
+
+    function handlePointerDown(e: PointerEvent) {
+      // Don't dismiss when tapping the menu/bubble itself.
       const target = e.target as HTMLElement;
       if (target.closest("[data-selection-ui]")) return;
       setSelection(null);
     }
 
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", scheduleCompute);
+    document.addEventListener("touchend", scheduleCompute);
+    document.addEventListener("selectionchange", scheduleCompute);
+    document.addEventListener("pointerdown", handlePointerDown);
     return () => {
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mousedown", handleMouseDown);
+      if (pendingTimer) window.clearTimeout(pendingTimer);
+      document.removeEventListener("mouseup", scheduleCompute);
+      document.removeEventListener("touchend", scheduleCompute);
+      document.removeEventListener("selectionchange", scheduleCompute);
+      document.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
 
