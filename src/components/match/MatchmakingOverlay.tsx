@@ -357,16 +357,28 @@ export function MatchmakingOverlay({
         )}
 
         {/* Result screen */}
-        {phase === "result" && matchResult && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center px-6">
-            <ResultScreen
-              outcome={matchResult.outcome}
-              rounds={matchResult.rounds}
-              pointsDelta={matchResult.pointsDelta}
-              onAgain={returnToMatchmaking}
-              onClose={onClose}
-            />
-          </div>
+        {phase === "result" && matchResult && opponent && (
+          <EndMatchScreen
+            outcome={matchResult.outcome}
+            rounds={matchResult.rounds}
+            pointsDelta={matchResult.pointsDelta}
+            playerTier={tier}
+            opponentName={opponent.username}
+            opponentTier={opponent.tier}
+            finalWord={matchResult.finalWord}
+            finalCorrectDefinition={matchResult.finalCorrectDefinition}
+            onRematch={returnToMatchmaking}
+            onReturn={onClose}
+          />
+        )}
+
+        {/* Rank-up ceremony — sits ABOVE the result screen */}
+        {pendingRankUp && phase === "result" && (
+          <RankUpCeremony
+            oldTier={oldTierRef.current}
+            newTier={pendingRankUp}
+            onContinue={acknowledgeRankUp}
+          />
         )}
       </div>
     </div>
