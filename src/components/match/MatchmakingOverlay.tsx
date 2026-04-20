@@ -73,8 +73,19 @@ export function MatchmakingOverlay({
   onClose: () => void;
 }) {
   const { state, dispatch } = useApp();
-  const _language = state.selectedLanguage;
-  void _language;
+  const language = state.selectedLanguage;
+  const {
+    tier,
+    points,
+    badge,
+    glowColor,
+    title,
+    addPoints,
+    removePoints,
+    pendingRankUp,
+    acknowledgeRankUp,
+  } = useMatch();
+
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
   const [countdown, setCountdown] = useState<3 | 2 | 1 | "BATTLE">(3);
