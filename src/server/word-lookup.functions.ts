@@ -5,6 +5,7 @@ const InputSchema = z.object({
   word: z.string().min(1).max(100),
   sentence: z.string().min(1).max(2000),
   language: z.string().min(1).max(40),
+  nativeLanguage: z.string().min(1).max(40).optional(),
 });
 
 export interface WordCardData {
@@ -40,7 +41,8 @@ export const lookupWord = createServerFn({ method: "POST" })
         "For the phonetic field, ALWAYS use standard Revised Romanization (RR) of Korean (e.g. 'annyeonghaseyo', 'hangugeo', 'gamsahamnida'). NEVER use IPA symbols. Use only basic Latin letters a-z. Apply contextual pronunciation rules (linking, assimilation) as actually pronounced.";
     }
 
-    const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. Return the requested fields. ${phoneticInstruction} The conjugationNote must explain exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
+    const native = data.nativeLanguage ?? "English";
+    const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. The learner's native language is ${native}; write baseDefinition and exampleTranslation IN ${native}. Return the requested fields. ${phoneticInstruction} The conjugationNote must explain (in ${native}) exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
 
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {

@@ -80,7 +80,7 @@ export function useCultureGenerator() {
         const id = cultureId(lang, country);
         try {
           const res = await generate({
-            data: { country, targetLanguage: lang },
+            data: { country, targetLanguage: lang, nativeLanguage: state.nativeLanguage },
           });
           if (cancelled) break;
           if (res.data) {
@@ -120,7 +120,7 @@ export function useCultureGenerator() {
       cancelled = true;
       dispatch({ type: "SET_GENERATING", payload: false });
     };
-    // Only re-run when language changes
+    // Re-run when target language OR native language changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.selectedLanguage]);
+  }, [state.selectedLanguage, state.nativeLanguage]);
 }

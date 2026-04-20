@@ -1,5 +1,6 @@
 import { Layers } from "lucide-react";
 import type { MorphologyBreakdown } from "@/server/grammar.functions";
+import { useApp } from "@/state/app-state";
 
 /**
  * Visual morphology breakdown — shows the unchanging ROOT in gold and the
@@ -9,6 +10,7 @@ import type { MorphologyBreakdown } from "@/server/grammar.functions";
  * Example (Japanese): "i" stays put, "ku / kimasu / kanai / kō / keba" change.
  */
 export function MorphologyCard({ morph }: { morph: MorphologyBreakdown }) {
+  const { state } = useApp();
   return (
     <div className="mb-7 overflow-hidden rounded-xl border border-gold/30 bg-card/40">
       {/* Header */}
@@ -50,7 +52,7 @@ export function MorphologyCard({ morph }: { morph: MorphologyBreakdown }) {
               <tr className="bg-card/60 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 <th className="px-4 py-2 font-normal">Form</th>
                 <th className="px-4 py-2 font-normal">Root + ending</th>
-                <th className="hidden px-4 py-2 font-normal sm:table-cell">English</th>
+                <th className="hidden px-4 py-2 font-normal sm:table-cell">{state.nativeLanguage}</th>
               </tr>
             </thead>
             <tbody>

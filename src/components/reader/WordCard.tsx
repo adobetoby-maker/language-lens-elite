@@ -40,7 +40,7 @@ export function WordCard({
   const lookup = useServerFn(lookupWord);
   const { setLastWord, accent, voiceURI } = useSpeech();
   const tutor = useTutor();
-  const { dispatch } = useApp();
+  const { state, dispatch } = useApp();
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -95,6 +95,7 @@ export function WordCard({
         word: request.word,
         sentence: request.sentence,
         language: request.language,
+        nativeLanguage: state.nativeLanguage,
       },
     })
       .then((res) => {
@@ -107,7 +108,7 @@ export function WordCard({
     return () => {
       active = false;
     };
-  }, [request.word, request.sentence, request.language, lookup]);
+  }, [request.word, request.sentence, request.language, state.nativeLanguage, lookup]);
 
   const speak = () => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;

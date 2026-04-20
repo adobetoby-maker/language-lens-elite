@@ -19,6 +19,43 @@ export type Language =
   | "Korean"
   | "Portuguese";
 
+// The learner's native ("translation") language — used for the left pane,
+// definitions, lesson explanations, etc. Default English; expandable.
+export type NativeLanguage =
+  | "English"
+  | "Spanish"
+  | "French"
+  | "German"
+  | "Italian"
+  | "Portuguese"
+  | "Dutch"
+  | "Polish"
+  | "Russian"
+  | "Turkish"
+  | "Arabic"
+  | "Hindi"
+  | "Chinese (Simplified)"
+  | "Japanese"
+  | "Korean";
+
+export const NATIVE_LANGUAGES: NativeLanguage[] = [
+  "English",
+  "Spanish",
+  "French",
+  "German",
+  "Italian",
+  "Portuguese",
+  "Dutch",
+  "Polish",
+  "Russian",
+  "Turkish",
+  "Arabic",
+  "Hindi",
+  "Chinese (Simplified)",
+  "Japanese",
+  "Korean",
+];
+
 export type TabKey = "reader" | "grammar" | "speak" | "dashboard";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
@@ -104,6 +141,7 @@ export const ACHIEVEMENTS: Achievement[] = [
 
 export interface AppState {
   selectedLanguage: Language;
+  nativeLanguage: NativeLanguage;
   darkMode: boolean;
   currentTab: TabKey;
   xp: number;
@@ -152,6 +190,7 @@ export interface ClearedChallenge {
 export type AppAction =
   | { type: "HYDRATE"; payload: Partial<AppState> }
   | { type: "SET_LANGUAGE"; payload: Language }
+  | { type: "SET_NATIVE_LANGUAGE"; payload: NativeLanguage }
   | { type: "TOGGLE_DARK_MODE" }
   | { type: "SET_DARK_MODE"; payload: boolean }
   | { type: "SET_TAB"; payload: TabKey }
@@ -170,6 +209,7 @@ export type AppAction =
 
 const initialState: AppState = {
   selectedLanguage: "Spanish",
+  nativeLanguage: "English",
   darkMode: true,
   currentTab: "reader",
   xp: 0,
@@ -206,6 +246,8 @@ function reducer(state: AppState, action: AppAction): AppState {
         : [...state.languagesUsed, action.payload];
       return { ...state, selectedLanguage: action.payload, languagesUsed };
     }
+    case "SET_NATIVE_LANGUAGE":
+      return { ...state, nativeLanguage: action.payload };
     case "TOGGLE_DARK_MODE":
       return { ...state, darkMode: !state.darkMode };
     case "SET_DARK_MODE":
@@ -285,6 +327,7 @@ const STORAGE_KEY = "lingualens.app.v2";
 
 const PERSIST_KEYS: (keyof AppState)[] = [
   "selectedLanguage",
+  "nativeLanguage",
   "darkMode",
   "currentTab",
   "xp",
