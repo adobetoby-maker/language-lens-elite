@@ -96,6 +96,7 @@ export function ParallelReader() {
     }
   }, [romajaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [chapterIndex, setChapterIndex] = useState(0);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
   const [noteBubble, setNoteBubble] = useState<SelectionInfo | null>(null);
