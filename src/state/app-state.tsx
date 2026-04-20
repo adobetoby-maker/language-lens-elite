@@ -117,10 +117,24 @@ export interface AppState {
   // Activity bar chart data — last up to 7 daily totals
   xpSessions: { date: string; xp: number }[];
 
+  // Spoken challenges
+  challengesCleared: number;
+  recentChallenges: ClearedChallenge[]; // most recent first, capped at 5
+
   // Celebration trigger
   pendingLevelUp: XpTier | null;
 
   hydrated: boolean;
+}
+
+export interface ClearedChallenge {
+  id: string;
+  kind: "grammar" | "reach";
+  hint: string;
+  sentence: string;
+  language: Language;
+  xp: number;
+  clearedAt: number;
 }
 
 export type AppAction =
@@ -138,6 +152,7 @@ export type AppAction =
   | { type: "MARK_CULTURE_READ"; payload: string }
   | { type: "MARK_CEFR_COMPLETE"; payload: string }
   | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
+  | { type: "RECORD_CHALLENGE"; payload: ClearedChallenge }
   | { type: "DISMISS_LEVEL_UP" }
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
@@ -163,6 +178,8 @@ const initialState: AppState = {
   cefrLevelsCompleted: [],
   speakSecondsByLang: {},
   xpSessions: [],
+  challengesCleared: 0,
+  recentChallenges: [],
   pendingLevelUp: null,
   hydrated: false,
 };
@@ -237,6 +254,14 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "DISMISS_LEVEL_UP":
       return { ...state, pendingLevelUp: null };
+    case "RECORD_CHALLENGE": {
+      const recent = [action.payload, ...state.recentChallenges].slice(0, 5);
+      return {
+        ...state,
+        challengesCleared: state.challengesCleared + 1,
+        recentChallenges: recent,
+      };
+    }
     case "_DERIVE":
       return state;
     default:
@@ -268,6 +293,8 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "cefrLevelsCompleted",
   "speakSecondsByLang",
   "xpSessions",
+  "challengesCleared",
+  "recentChallenges",
 ];
 
 function todayKey() {

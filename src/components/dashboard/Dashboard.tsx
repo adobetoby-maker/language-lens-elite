@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Flame, Star, BookOpen, Award, Lock } from "lucide-react";
+import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles } from "lucide-react";
 import {
   ACHIEVEMENTS,
   nextTierProgress,
@@ -48,6 +48,12 @@ export function Dashboard() {
     { icon: Star, label: "XP", value: state.xp, isXp: true },
     { icon: BookOpen, label: "Words Looked Up", value: state.wordsLookedUp },
     { icon: Award, label: "Level", value: state.tier },
+    {
+      icon: Trophy,
+      label: "Challenges Cleared",
+      value: state.challengesCleared,
+      hot: state.challengesCleared > 0,
+    },
   ];
 
   const maxSessionXp = useMemo(
@@ -147,6 +153,66 @@ export function Dashboard() {
           <span>{progress.target} XP</span>
         </div>
       </div>
+
+      {/* Spoken Challenges Cleared */}
+      <section className="rounded-2xl border border-border/60 bg-card/60 p-6">
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="flex items-center gap-2 font-display text-2xl italic text-foreground">
+            <Trophy className="h-5 w-5 text-gold" strokeWidth={1.6} />
+            Challenges Cleared
+          </h2>
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            {state.challengesCleared} total · last {state.recentChallenges.length}
+          </span>
+        </div>
+        {state.recentChallenges.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Speak a challenge in <span className="text-gold">Speak & Learn</span> to fill this trophy shelf with mastered sentences.
+          </p>
+        ) : (
+          <ul className="space-y-3">
+            {state.recentChallenges.map((c) => (
+              <li
+                key={c.id}
+                className="group rounded-xl border border-gold/30 bg-gradient-to-br from-gold/10 via-card to-card p-4"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] ${
+                          c.kind === "reach"
+                            ? "border-gold/60 bg-gold/15 text-gold"
+                            : "border-border/60 bg-background/40 text-muted-foreground"
+                        }`}
+                      >
+                        <Sparkles className="h-3 w-3" strokeWidth={1.8} />
+                        {c.kind === "reach" ? "Reach" : "Grammar"}
+                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                        {LANG_FLAGS[c.language] ?? flagFor(c.language)} {c.language}
+                      </span>
+                      <span className="font-mono text-[10px] text-gold">+{c.xp} XP</span>
+                    </div>
+                    <p className="mt-2 font-display text-base italic leading-snug text-foreground">
+                      “{c.sentence}”
+                    </p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {c.hint}
+                    </p>
+                  </div>
+                  <span className="shrink-0 font-mono text-[10px] text-muted-foreground/70">
+                    {new Date(c.clearedAt).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       {/* Achievements grid */}
       <section>

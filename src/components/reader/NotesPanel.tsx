@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ChevronRight, Trash2, NotebookPen } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronRight, Trash2, NotebookPen, Pencil, Check, X } from "lucide-react";
 import { useNotes, type Annotation } from "@/state/notes-state";
 
 export function NotesPanel({
@@ -9,7 +9,7 @@ export function NotesPanel({
   textId: string;
   onGoTo: (pane: "left" | "right", sentenceIndex: number) => void;
 }) {
-  const { forText, remove } = useNotes();
+  const { forText, remove, update } = useNotes();
   const [open, setOpen] = useState(false);
   const list = forText(textId).sort((a, b) => b.createdAt - a.createdAt);
   const noteCount = list.filter((a) => a.noteText).length;
@@ -61,7 +61,13 @@ export function NotesPanel({
           ) : (
             <ul className="space-y-3">
               {list.map((a) => (
-                <NoteCard key={a.id} ann={a} onGoTo={onGoTo} onRemove={() => remove(a.id)} />
+                <NoteCard
+                  key={a.id}
+                  ann={a}
+                  onGoTo={onGoTo}
+                  onRemove={() => remove(a.id)}
+                  onSave={(text) => update(a.id, text)}
+                />
               ))}
             </ul>
           )}
@@ -75,25 +81,94 @@ function NoteCard({
   ann,
   onGoTo,
   onRemove,
+  onSave,
 }: {
   ann: Annotation;
   onGoTo: (pane: "left" | "right", sentenceIndex: number) => void;
   onRemove: () => void;
+  onSave: (text: string) => void;
 }) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(ann.noteText ?? "");
+  const taRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (editing) {
+      taRef.current?.focus();
+      taRef.current?.setSelectionRange(draft.length, draft.length);
+    }
+  }, [editing]);
+
+  const startEdit = () => {
+    setDraft(ann.noteText ?? "");
+    setEditing(true);
+  };
+  const commit = () => {
+    onSave(draft.trim());
+    setEditing(false);
+  };
+  const cancel = () => {
+    setDraft(ann.noteText ?? "");
+    setEditing(false);
+  };
+
   return (
     <li className="group rounded-xl border border-border/60 bg-background/40 p-3 transition-colors hover:border-gold/40">
       <div className="mb-2 rounded-md bg-gold/20 px-2 py-1.5 font-display text-[13px] italic leading-snug text-foreground">
         “{ann.selectedText}”
       </div>
-      {ann.noteText ? (
-        <p className="mb-2 whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-foreground/80">
+
+      {editing ? (
+        <div className="mb-2">
+          <textarea
+            ref={taRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+                e.preventDefault();
+                commit();
+              } else if (e.key === "Escape") {
+                e.preventDefault();
+                cancel();
+              }
+            }}
+            placeholder="Write your thoughts…"
+            className="h-24 w-full resize-none rounded-md border border-gold/40 bg-background/80 px-3 py-2 font-mono text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
+          />
+          <div className="mt-2 flex items-center justify-end gap-2">
+            <button
+              onClick={cancel}
+              className="flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-3 w-3" /> Cancel
+            </button>
+            <button
+              onClick={commit}
+              className="flex items-center gap-1 rounded-full bg-gold px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-midnight hover:opacity-90"
+            >
+              <Check className="h-3 w-3" /> Save
+            </button>
+          </div>
+        </div>
+      ) : ann.noteText ? (
+        <button
+          onClick={startEdit}
+          className="mb-2 block w-full cursor-text rounded-md px-1 py-0.5 text-left whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-foreground/80 transition-colors hover:bg-gold/5"
+          title="Click to edit"
+        >
           {ann.noteText}
-        </p>
+        </button>
       ) : (
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          Highlight only
-        </p>
+        <button
+          onClick={startEdit}
+          className="mb-2 flex w-full items-center gap-1.5 rounded-md border border-dashed border-border/60 px-2 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold"
+        >
+          <Pencil className="h-3 w-3" />
+          Add a note
+        </button>
       )}
+
       <div className="flex items-center justify-between">
         <button
           onClick={() => onGoTo(ann.pane, ann.sentenceIndex)}
@@ -101,13 +176,24 @@ function NoteCard({
         >
           ↳ Go to {ann.pane === "left" ? "English" : "target"}
         </button>
-        <button
-          onClick={onRemove}
-          aria-label="Delete note"
-          className="rounded-full p-1.5 text-muted-foreground opacity-60 transition-colors hover:bg-destructive/15 hover:text-destructive group-hover:opacity-100"
-        >
-          <Trash2 className="h-3.5 w-3.5" />
-        </button>
+        <div className="flex items-center gap-1">
+          {!editing && (
+            <button
+              onClick={startEdit}
+              aria-label="Edit note"
+              className="rounded-full p-1.5 text-muted-foreground opacity-60 transition-colors hover:bg-gold/15 hover:text-gold group-hover:opacity-100"
+            >
+              <Pencil className="h-3.5 w-3.5" />
+            </button>
+          )}
+          <button
+            onClick={onRemove}
+            aria-label="Delete note"
+            className="rounded-full p-1.5 text-muted-foreground opacity-60 transition-colors hover:bg-destructive/15 hover:text-destructive group-hover:opacity-100"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
       </div>
     </li>
   );
