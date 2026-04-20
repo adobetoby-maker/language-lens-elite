@@ -48,6 +48,7 @@ export function AddTextModal({
     setError(null);
     setLoading(false);
     setProgress(null);
+    setChapterStatuses([]);
     setExtracting(false);
   };
 
