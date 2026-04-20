@@ -47,6 +47,7 @@ export function ParallelReader() {
   const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
+  const [autoScroll, setAutoScroll] = useState(false);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
