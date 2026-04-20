@@ -511,7 +511,7 @@ export function ParallelReader() {
             <div ref={leftRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
                 pane="left"
-                sentences={selected.sentences.map((s) => s.en)}
+                sentences={activeSentences.map((s) => s.en)}
                 size={size}
                 annotations={annotations}
                 activeSentenceIndex={activeSentenceIndex}
@@ -534,7 +534,7 @@ export function ParallelReader() {
             <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
                 pane="right"
-                sentences={selected.sentences.map((s) => s.target)}
+                sentences={activeSentences.map((s) => s.target)}
                 size={size}
                 annotations={annotations}
                 activeSentenceIndex={activeSentenceIndex}
