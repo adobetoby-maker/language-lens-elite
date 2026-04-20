@@ -210,13 +210,11 @@ export function ParallelReader() {
 
     document.addEventListener("mouseup", scheduleCompute);
     document.addEventListener("touchend", scheduleCompute);
-    document.addEventListener("selectionchange", scheduleCompute);
     document.addEventListener("pointerdown", handlePointerDown);
     return () => {
       if (pendingTimer) window.clearTimeout(pendingTimer);
       document.removeEventListener("mouseup", scheduleCompute);
       document.removeEventListener("touchend", scheduleCompute);
-      document.removeEventListener("selectionchange", scheduleCompute);
       document.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
