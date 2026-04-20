@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Flame, Star, BookOpen, Award, Lock } from "lucide-react";
+import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles } from "lucide-react";
 import {
   ACHIEVEMENTS,
   nextTierProgress,
