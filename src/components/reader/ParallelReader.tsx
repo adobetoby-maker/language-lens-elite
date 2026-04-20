@@ -299,9 +299,26 @@ export function ParallelReader() {
     return visible.length ? visible : [findNearestSentence()];
   };
 
+  // Resolve which sentences are currently visible based on chapter (if multi-chapter)
+  const chapters = selected.chapters;
+  const safeChapterIndex =
+    chapters && chapters.length > 0
+      ? Math.min(chapterIndex, chapters.length - 1)
+      : 0;
+  const activeSentences =
+    chapters && chapters.length > 0
+      ? chapters[safeChapterIndex].sentences
+      : selected.sentences;
+
+  // Reset chapter to 0 whenever the user opens a different book
+  useEffect(() => {
+    setChapterIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected.id]);
+
   const handleSpeakSentence = () => {
     const idx = findNearestSentence();
-    const sentence = selected.sentences[idx];
+    const sentence = activeSentences[idx];
     if (!sentence) return;
     speakSentence(sentence.target, idx);
   };
@@ -309,7 +326,7 @@ export function ParallelReader() {
   const handleSpeakParagraph = () => {
     const indices = findVisibleSentences();
     const queue = indices
-      .map((i) => ({ text: selected.sentences[i]?.target ?? "", index: i }))
+      .map((i) => ({ text: activeSentences[i]?.target ?? "", index: i }))
       .filter((q) => q.text);
     if (queue.length === 0) return;
     speakSentences(queue);
