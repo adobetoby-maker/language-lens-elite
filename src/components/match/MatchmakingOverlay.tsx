@@ -2,7 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
 import {
+  POINTS_LOSS,
   POINTS_PER_TIER,
+  POINTS_TIE,
+  POINTS_WIN,
   RANK_BADGE,
   RANK_COLOR,
   RANK_ORDER,
@@ -12,6 +15,8 @@ import {
 } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
 import { BattleArena, type BattleResult } from "./BattleArena";
+import { EndMatchScreen } from "./EndMatchScreen";
+import { RankUpCeremony } from "./RankUpCeremony";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
@@ -67,10 +72,19 @@ export function MatchmakingOverlay({
   open: boolean;
   onClose: () => void;
 }) {
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
   const language = state.selectedLanguage;
-  const { tier, points, badge, glowColor, title, addPoints, removePoints } =
-    useMatch();
+  const {
+    tier,
+    points,
+    badge,
+    glowColor,
+    title,
+    addPoints,
+    removePoints,
+    pendingRankUp,
+    acknowledgeRankUp,
+  } = useMatch();
 
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
@@ -79,6 +93,8 @@ export function MatchmakingOverlay({
     outcome: BattleResult["outcome"];
     rounds: number;
     pointsDelta: number;
+    finalWord: string;
+    finalCorrectDefinition: string;
   } | null>(null);
   const timersRef = useRef<number[]>([]);
 
@@ -98,19 +114,30 @@ export function MatchmakingOverlay({
     }
   }, [open]);
 
+  const oldTierRef = useRef<RankTier>(tier);
+
   const handleBattleComplete = (result: BattleResult) => {
     let delta = 0;
+    oldTierRef.current = tier; // snapshot BEFORE we mutate
     if (result.outcome === "victory") {
-      delta = 25;
-      addPoints(25);
+      delta = POINTS_WIN;
+      addPoints(POINTS_WIN);
+      dispatch({ type: "ADD_XP", payload: 25 });
     } else if (result.outcome === "defeat") {
-      delta = -15;
-      removePoints(15);
+      delta = -POINTS_LOSS;
+      removePoints(POINTS_LOSS);
+      dispatch({ type: "ADD_XP", payload: 10 });
     } else {
-      delta = 5;
-      addPoints(5);
+      delta = POINTS_TIE; // 0
+      dispatch({ type: "ADD_XP", payload: 5 });
     }
-    setMatchResult({ outcome: result.outcome, rounds: result.rounds, pointsDelta: delta });
+    setMatchResult({
+      outcome: result.outcome,
+      rounds: result.rounds,
+      pointsDelta: delta,
+      finalWord: result.finalWord,
+      finalCorrectDefinition: result.finalCorrectDefinition,
+    });
     setPhase("result" as MatchPhase);
   };
 
@@ -330,108 +357,35 @@ export function MatchmakingOverlay({
         )}
 
         {/* Result screen */}
-        {phase === "result" && matchResult && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center px-6">
-            <ResultScreen
-              outcome={matchResult.outcome}
-              rounds={matchResult.rounds}
-              pointsDelta={matchResult.pointsDelta}
-              onAgain={returnToMatchmaking}
-              onClose={onClose}
-            />
-          </div>
+        {phase === "result" && matchResult && opponent && (
+          <EndMatchScreen
+            outcome={matchResult.outcome}
+            rounds={matchResult.rounds}
+            pointsDelta={matchResult.pointsDelta}
+            playerTier={tier}
+            opponentName={opponent.username}
+            opponentTier={opponent.tier}
+            finalWord={matchResult.finalWord}
+            finalCorrectDefinition={matchResult.finalCorrectDefinition}
+            onRematch={returnToMatchmaking}
+            onReturn={onClose}
+          />
+        )}
+
+        {/* Rank-up ceremony — sits ABOVE the result screen */}
+        {pendingRankUp && phase === "result" && (
+          <RankUpCeremony
+            oldTier={oldTierRef.current}
+            newTier={pendingRankUp}
+            onContinue={acknowledgeRankUp}
+          />
         )}
       </div>
     </div>
   );
 }
 
-function ResultScreen({
-  outcome,
-  rounds,
-  pointsDelta,
-  onAgain,
-  onClose,
-}: {
-  outcome: BattleResult["outcome"];
-  rounds: number;
-  pointsDelta: number;
-  onAgain: () => void;
-  onClose: () => void;
-}) {
-  const config = {
-    victory: {
-      title: "🏆 VICTORY",
-      sub: "You out-duelled them. Your rank rises.",
-      color: "text-emerald-300",
-      border: "border-emerald-400/60",
-      glow: "rgba(52, 211, 153, 0.45)",
-    },
-    defeat: {
-      title: "💀 DEFEAT",
-      sub: "They studied harder. Train and try again.",
-      color: "text-red-300",
-      border: "border-red-500/60",
-      glow: "rgba(239, 68, 68, 0.45)",
-    },
-    tie: {
-      title: "🤝 STALEMATE",
-      sub: "Evenly matched. Both warriors retreat.",
-      color: "text-gold",
-      border: "border-gold/60",
-      glow: "rgba(201, 168, 76, 0.45)",
-    },
-  } as const;
-  const c = config[outcome];
-  const sign = pointsDelta >= 0 ? "+" : "";
-
-  return (
-    <div
-      className={`match-result-pop relative w-full max-w-xl rounded-3xl border ${c.border} bg-[#0a121f]/90 p-10 text-center backdrop-blur`}
-      style={{ boxShadow: `0 0 80px -10px ${c.glow}` }}
-    >
-      <div className={`font-display text-5xl italic ${c.color}`}>
-        {c.title}
-      </div>
-      <p className="mt-3 font-mono text-xs uppercase tracking-[0.3em] text-white/70">
-        {c.sub}
-      </p>
-      <div className="mt-6 flex items-center justify-center gap-8 font-mono text-[11px] uppercase tracking-[0.25em] text-white/80">
-        <div>
-          Rounds survived
-          <div className="mt-1 font-display text-2xl italic text-white">
-            {rounds}
-          </div>
-        </div>
-        <div>
-          Rank pts
-          <div
-            className={`mt-1 font-display text-2xl italic ${
-              pointsDelta >= 0 ? "text-emerald-300" : "text-red-300"
-            }`}
-          >
-            {sign}
-            {pointsDelta}
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 flex items-center justify-center gap-3">
-        <button
-          onClick={onAgain}
-          className="rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-7 py-3 font-display text-base italic text-[#1a1208] shadow-[0_0_30px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105"
-        >
-          ⚔️ Find another match
-        </button>
-        <button
-          onClick={onClose}
-          className="rounded-full border border-white/30 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80 transition-colors hover:border-gold/60 hover:text-gold"
-        >
-          Leave the arena
-        </button>
-      </div>
-    </div>
-  );
-}
+// (Old inline ResultScreen replaced by EndMatchScreen component.)
 
 function PlayerCard({
   side,

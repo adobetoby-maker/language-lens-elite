@@ -564,3 +564,142 @@ ruby {
   60%  { opacity: 1; transform: scale(1.08); }
   100% { opacity: 1; transform: scale(1); }
 }
+
+/* ============================================================
+   END-OF-MATCH SCREENS — Victory / Defeat / Tie
+   ============================================================ */
+
+/* Victory title bounce-in with golden glow */
+.victory-title {
+  animation: victoryTitle 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes victoryTitle {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.victory-badge-spin {
+  animation: badgeSpin 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes badgeSpin {
+  0%   { transform: rotate(-540deg) scale(0.4); opacity: 0; }
+  70%  { transform: rotate(0deg) scale(1.1); opacity: 1; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+/* Falling gold particles (Victory background) */
+.gold-drop {
+  position: absolute;
+  top: -8px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #fff7c2 0%, #c9a84c 60%, transparent 100%);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.85);
+  animation: goldFall linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes goldFall {
+  0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+}
+
+/* Defeat — brief crimson wash that fades */
+.defeat-title {
+  animation: fadeIn 600ms ease-out both;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.defeat-wash {
+  background: radial-gradient(ellipse at center, rgba(180, 25, 25, 0.55) 0%, rgba(60, 8, 8, 0.4) 50%, transparent 100%);
+  animation: defeatWash 1.4s ease-out both;
+}
+@keyframes defeatWash {
+  0%   { opacity: 1; }
+  35%  { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* Tie — diagonal split gold/silver shimmer */
+.tie-bg {
+  background:
+    linear-gradient(135deg,
+      rgba(201, 168, 76, 0.25) 0%,
+      rgba(201, 168, 76, 0.18) 49%,
+      rgba(168, 169, 173, 0.18) 51%,
+      rgba(168, 169, 173, 0.28) 100%),
+    radial-gradient(ellipse at center, #0e1726 0%, #060a14 100%);
+  animation: tieShimmer 6s ease-in-out infinite;
+  background-size: 200% 200%, 100% 100%;
+}
+@keyframes tieShimmer {
+  0%, 100% { background-position: 0% 50%, 0 0; }
+  50%      { background-position: 100% 50%, 0 0; }
+}
+
+/* ============================================================
+   RANK-UP CEREMONY
+   ============================================================ */
+
+@keyframes flashFade {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Old badge shatters into 8 fragments flying outward */
+.shatter-frag {
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0);
+  animation: shatterFly 700ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+@keyframes shatterFly {
+  0%   { transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-180px) scale(0.4); opacity: 0; }
+}
+
+/* Particles rush inward toward center */
+.rush-particle {
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(220px);
+  animation: rushIn 600ms cubic-bezier(0.5, 0, 0.7, 0) forwards;
+  opacity: 0;
+}
+@keyframes rushIn {
+  0%   { transform: translate(-50%, -50%) rotate(var(--angle)) translateY(220px) scale(0.6); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(1.4); opacity: 0; }
+}
+
+/* New badge assembles with elastic pop */
+.rank-assemble {
+  animation: rankAssemble 800ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes rankAssemble {
+  0%   { opacity: 0; transform: scale(0); filter: brightness(2.5); }
+  60%  { opacity: 1; transform: scale(1.25); filter: brightness(1.4); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+
+/* Rank name BOOMS in */
+.rank-boom {
+  animation: rankBoom 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes rankBoom {
+  0%   { opacity: 0; transform: scale(0.4) translateY(40px); }
+  60%  { opacity: 1; transform: scale(1.08) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Unreal-only shifting aurora background */
+.rank-aurora {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 77, 77, 0.18),
+    rgba(255, 178, 77, 0.18),
+    rgba(255, 227, 77, 0.18),
+    rgba(77, 255, 122, 0.18),
+    rgba(77, 195, 255, 0.18),
+    rgba(166, 77, 255, 0.18),
+    rgba(255, 77, 210, 0.18)
+  );
+  background-size: 400% 400%;
+  animation: rainbowShift 8s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
