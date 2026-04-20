@@ -96,6 +96,7 @@ export function ParallelReader() {
     }
   }, [romajaMode]);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [chapterIndex, setChapterIndex] = useState(0);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const [selection, setSelection] = useState<SelectionInfo | null>(null);
   const [noteBubble, setNoteBubble] = useState<SelectionInfo | null>(null);
@@ -298,9 +299,26 @@ export function ParallelReader() {
     return visible.length ? visible : [findNearestSentence()];
   };
 
+  // Resolve which sentences are currently visible based on chapter (if multi-chapter)
+  const chapters = selected.chapters;
+  const safeChapterIndex =
+    chapters && chapters.length > 0
+      ? Math.min(chapterIndex, chapters.length - 1)
+      : 0;
+  const activeSentences =
+    chapters && chapters.length > 0
+      ? chapters[safeChapterIndex].sentences
+      : selected.sentences;
+
+  // Reset chapter to 0 whenever the user opens a different book
+  useEffect(() => {
+    setChapterIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected.id]);
+
   const handleSpeakSentence = () => {
     const idx = findNearestSentence();
-    const sentence = selected.sentences[idx];
+    const sentence = activeSentences[idx];
     if (!sentence) return;
     speakSentence(sentence.target, idx);
   };
@@ -308,7 +326,7 @@ export function ParallelReader() {
   const handleSpeakParagraph = () => {
     const indices = findVisibleSentences();
     const queue = indices
-      .map((i) => ({ text: selected.sentences[i]?.target ?? "", index: i }))
+      .map((i) => ({ text: activeSentences[i]?.target ?? "", index: i }))
       .filter((q) => q.text);
     if (queue.length === 0) return;
     speakSentences(queue);
@@ -358,6 +376,53 @@ export function ParallelReader() {
           </button>
         </div>
       </div>
+
+      {/* Chapter switcher (only for multi-chapter books) */}
+      {chapters && chapters.length > 1 && (
+        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-2xl border border-gold/30 bg-gold/[0.04] px-5 py-3">
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+            <span>✦</span>
+            <span>Chapter</span>
+            <span className="text-foreground/80">
+              {safeChapterIndex + 1} / {chapters.length}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setChapterIndex((i) => Math.max(0, i - 1))}
+              disabled={safeChapterIndex === 0}
+              className="rounded-full border border-border/70 bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              ← Prev
+            </button>
+            <select
+              value={safeChapterIndex}
+              onChange={(e) => setChapterIndex(Number(e.target.value))}
+              className="max-w-[16rem] truncate rounded-full border border-border/70 bg-background/60 px-3 py-1 font-display text-sm italic text-foreground focus:border-gold/60 focus:outline-none"
+            >
+              {chapters.map((c, i) => (
+                <option key={i} value={i}>
+                  {i + 1}. {c.title}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() =>
+                setChapterIndex((i) => Math.min(chapters.length - 1, i + 1))
+              }
+              disabled={safeChapterIndex === chapters.length - 1}
+              className="rounded-full border border-border/70 bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Next →
+            </button>
+          </div>
+          <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            {activeSentences.length} sentences
+          </span>
+        </div>
+      )}
 
       {/* Toolbar */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
@@ -493,7 +558,7 @@ export function ParallelReader() {
             <div ref={leftRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
                 pane="left"
-                sentences={selected.sentences.map((s) => s.en)}
+                sentences={activeSentences.map((s) => s.en)}
                 size={size}
                 annotations={annotations}
                 activeSentenceIndex={activeSentenceIndex}
@@ -516,7 +581,7 @@ export function ParallelReader() {
             <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
               <Pane
                 pane="right"
-                sentences={selected.sentences.map((s) => s.target)}
+                sentences={activeSentences.map((s) => s.target)}
                 size={size}
                 annotations={annotations}
                 activeSentenceIndex={activeSentenceIndex}

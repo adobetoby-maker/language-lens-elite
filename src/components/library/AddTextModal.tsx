@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { BookUp, Loader2, Sparkle } from "lucide-react";
-import { extractFromFile } from "@/lib/extract-book";
+import { extractFromFile, type BookChunk } from "@/lib/extract-book";
 import {
   Dialog,
   DialogContent,
@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { translateCustomText } from "@/server/library.functions";
-import { useLibrary, flagFor } from "@/state/library-state";
+import { useLibrary, flagFor, type BookChapter } from "@/state/library-state";
 import { useApp } from "@/state/app-state";
 
 export function AddTextModal({
@@ -30,7 +30,11 @@ export function AddTextModal({
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  // When set, this is the source-of-truth for translation (multi-chapter book).
+  // When null, fall back to the pasted `text` field as a single chapter.
+  const [chunks, setChunks] = useState<BookChunk[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -38,8 +42,10 @@ export function AddTextModal({
   const reset = () => {
     setTitle("");
     setText("");
+    setChunks(null);
     setError(null);
     setLoading(false);
+    setProgress(null);
     setExtracting(false);
   };
 
@@ -47,8 +53,8 @@ export function AddTextModal({
     const f = e.target.files?.[0];
     e.target.value = "";
     if (!f) return;
-    if (f.size > 25 * 1024 * 1024) {
-      setError("File too large (max 25 MB).");
+    if (f.size > 50 * 1024 * 1024) {
+      setError("File too large (max 50 MB).");
       return;
     }
     setError(null);
@@ -56,7 +62,9 @@ export function AddTextModal({
     try {
       const book = await extractFromFile(f);
       if (!title.trim()) setTitle(book.title);
-      setText(book.text);
+      setChunks(book.chunks);
+      // Show a small preview of the first chapter so the user can confirm
+      setText(book.chunks[0]?.text.slice(0, 600) ?? "");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Couldn't read that file.");
     } finally {
@@ -65,40 +73,84 @@ export function AddTextModal({
   };
 
   const submit = async () => {
-    setLoading(true);
     setError(null);
+    // Decide what to translate: book chunks (file upload) or pasted text.
+    const sourceChunks: BookChunk[] =
+      chunks && chunks.length > 0
+        ? chunks
+        : [{ title: "Full text", text: text.trim() }];
+
+    if (sourceChunks[0].text.length < 10) {
+      setError("Please paste or upload at least a few sentences.");
+      return;
+    }
+
+    setLoading(true);
+    setProgress({ done: 0, total: sourceChunks.length });
+
     try {
-      const res = await translate({
-        data: {
-          title: title.trim() || "Untitled",
-          text: text.trim(),
-          targetLanguage: state.selectedLanguage,
-          nativeLanguage: state.nativeLanguage,
-        },
-      });
-      if (res.error || !res.data) {
-        setError(res.error ?? "Failed to translate text.");
+      const chapters: BookChapter[] = [];
+      let detected = "";
+      for (let i = 0; i < sourceChunks.length; i++) {
+        const c = sourceChunks[i];
+        const res = await translate({
+          data: {
+            title: c.title,
+            text: c.text,
+            targetLanguage: state.selectedLanguage,
+            nativeLanguage: state.nativeLanguage,
+          },
+        });
+        if (res.error || !res.data) {
+          // If at least one chapter succeeded, keep what we have and warn.
+          if (chapters.length === 0) {
+            setError(res.error ?? "Failed to translate text.");
+            setLoading(false);
+            setProgress(null);
+            return;
+          }
+          setError(`Stopped at chapter ${i + 1}: ${res.error ?? "translation failed"}`);
+          break;
+        }
+        if (!detected) detected = res.data.detectedLanguage;
+        const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
+        chapters.push({
+          title: c.title,
+          sentences: Array.from({ length: len }, (_, j) => ({
+            en: res.data!.leftPaneText[j],
+            target: res.data!.rightPaneText[j],
+          })),
+        });
+        setProgress({ done: i + 1, total: sourceChunks.length });
+      }
+
+      if (chapters.length === 0) {
+        setError("Translation produced no chapters.");
         setLoading(false);
+        setProgress(null);
         return;
       }
-      const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
-      const sentences = Array.from({ length: len }, (_, i) => ({
-        en: res.data!.leftPaneText[i],
-        target: res.data!.rightPaneText[i],
-      }));
+
       const id = `custom-${Date.now()}`;
+      const isMulti = chapters.length > 1;
       libDispatch({
         type: "ADD_ENTRY",
         payload: {
           id,
-          title: res.data.title || title.trim() || "Untitled",
-          subtitle: `Detected: ${res.data.detectedLanguage}`,
+          title: title.trim() || "Untitled",
+          subtitle: isMulti
+            ? `${chapters.length} chapters · ${detected || "detected"}`
+            : `Detected: ${detected || "—"}`,
           language: state.selectedLanguage,
           targetLabel: state.selectedLanguage,
-          sentences,
+          // Mirror chapter 0 into `sentences` for back-compat with anything
+          // that reads it directly.
+          sentences: chapters[0].sentences,
+          chapters,
           section: "custom",
           flag: flagFor(state.selectedLanguage),
           available: true,
+          createdAt: Date.now(),
         },
       });
       libDispatch({ type: "SELECT", payload: id });
@@ -109,8 +161,15 @@ export function AddTextModal({
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed.");
       setLoading(false);
+      setProgress(null);
     }
   };
+
+  const totalChars = chunks
+    ? chunks.reduce((n, c) => n + c.text.length, 0)
+    : text.length;
+  const chapterCount = chunks?.length ?? 0;
+  const canSubmit = (chunks ? chunks.length > 0 : text.trim().length >= 10) && !loading;
 
   return (
     <Dialog
@@ -130,7 +189,19 @@ export function AddTextModal({
         {loading ? (
           <div className="flex flex-col items-center justify-center gap-3 py-10 text-center">
             <Loader2 className="h-6 w-6 animate-spin text-gold" />
-            <p className="font-display text-lg italic">Reading your text…</p>
+            <p className="font-display text-lg italic">
+              {progress && progress.total > 1
+                ? `Translating chapter ${progress.done + (progress.done < progress.total ? 1 : 0)} of ${progress.total}…`
+                : "Reading your text…"}
+            </p>
+            {progress && progress.total > 1 && (
+              <div className="h-1.5 w-64 overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-full bg-gold transition-[width] duration-300"
+                  style={{ width: `${(progress.done / progress.total) * 100}%` }}
+                />
+              </div>
+            )}
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Detecting language &amp; pairing sentences
             </p>
@@ -172,12 +243,17 @@ export function AddTextModal({
             <Textarea
               placeholder="Paste any passage in English or your target language…"
               value={text}
-              onChange={(e) => setText(e.target.value)}
-              className="min-h-[200px] font-display text-base"
+              onChange={(e) => {
+                setText(e.target.value);
+                // Editing the textarea drops back to single-chapter mode.
+                if (chunks) setChunks(null);
+              }}
+              className="min-h-[180px] font-display text-base"
             />
-            {text.length > 0 && (
+            {totalChars > 0 && (
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                {text.length.toLocaleString()} characters ready
+                {totalChars.toLocaleString()} characters
+                {chapterCount > 1 ? ` · will be split into ${chapterCount} chapters` : " ready"}
               </p>
             )}
             {error && (
@@ -191,11 +267,13 @@ export function AddTextModal({
               </Button>
               <Button
                 onClick={submit}
-                disabled={text.trim().length < 10}
+                disabled={!canSubmit}
                 className="bg-gold text-midnight hover:bg-gold/90"
               >
                 <Sparkle className="mr-1 h-3.5 w-3.5" fill="currentColor" />
-                Translate &amp; Add (+15 XP)
+                {chapterCount > 1
+                  ? `Translate ${chapterCount} chapters (+15 XP)`
+                  : "Translate & Add (+15 XP)"}
               </Button>
             </DialogFooter>
           </>
