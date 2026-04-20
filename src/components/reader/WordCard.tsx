@@ -40,7 +40,7 @@ export function WordCard({
   const lookup = useServerFn(lookupWord);
   const { setLastWord, accent, voiceURI } = useSpeech();
   const tutor = useTutor();
-  const { dispatch } = useApp();
+  const { state, dispatch } = useApp();
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
