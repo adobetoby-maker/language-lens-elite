@@ -101,6 +101,7 @@ function DefeatScreen({
   onRematch,
   onReturn,
 }: EndMatchProps) {
+  const animated = useDeferredCount(Math.abs(pointsDelta));
   return (
     <div className="absolute inset-0 z-40 overflow-hidden bg-[#080F1A]">
       <div className="defeat-wash absolute inset-0" />
