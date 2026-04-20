@@ -53,6 +53,5 @@ export function StatusBar() {
         </div>
       </div>
     </div>
-    </div>
   );
 }
