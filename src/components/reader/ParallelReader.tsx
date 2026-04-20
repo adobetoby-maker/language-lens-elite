@@ -486,7 +486,7 @@ export function ParallelReader() {
           <div className="relative">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                English
+                {state.nativeLanguage}
               </span>
               <span className="font-display text-xs italic text-muted-foreground">native</span>
             </div>

@@ -141,7 +141,7 @@ export function LessonView({
                     Target
                   </div>
                   <div className="hidden border-b border-border/50 bg-card/60 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
-                    English
+                    {state.nativeLanguage}
                   </div>
                   {content.examples.map((ex, i) => (
                     <div key={i} className="contents">
