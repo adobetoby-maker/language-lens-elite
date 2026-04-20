@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { Toaster } from "sonner";
 import { AppProvider, useApp } from "@/state/app-state";
 import { LibraryProvider } from "@/state/library-state";
@@ -8,12 +8,14 @@ import { GrammarProvider } from "@/state/grammar-state";
 import { SpeechProvider } from "@/state/speech-state";
 import { SpeakProvider } from "@/state/speak-state";
 import { TutorProvider } from "@/state/tutor-state";
+import { MatchProvider } from "@/state/match-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
 import { CefrCompletionBridge } from "@/components/CefrCompletionBridge";
+import { MatchmakingOverlay } from "@/components/match/MatchmakingOverlay";
 
 export const Route = createFileRoute("/")({
   component: Index,
