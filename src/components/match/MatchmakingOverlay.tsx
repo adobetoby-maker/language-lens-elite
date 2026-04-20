@@ -11,6 +11,7 @@ import {
   type RankTier,
 } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
+import { BattleArena, type BattleResult } from "./BattleArena";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
@@ -32,7 +33,7 @@ const OPPONENT_NAMES: Record<Language, string[]> = {
   Portuguese: ["LucasS_BR", "AnaP_PT", "PedroR_BR", "BeaM_PT", "ThiagoF_BR"],
 };
 
-type MatchPhase = "idle" | "searching" | "found" | "countdown" | "battling";
+type MatchPhase = "idle" | "searching" | "found" | "countdown" | "battling" | "result";
 
 interface Opponent {
   username: string;
@@ -68,11 +69,17 @@ export function MatchmakingOverlay({
 }) {
   const { state } = useApp();
   const language = state.selectedLanguage;
-  const { tier, points, badge, glowColor, title } = useMatch();
+  const { tier, points, badge, glowColor, title, addPoints, removePoints } =
+    useMatch();
 
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
   const [countdown, setCountdown] = useState<3 | 2 | 1 | "BATTLE">(3);
+  const [matchResult, setMatchResult] = useState<{
+    outcome: BattleResult["outcome"];
+    rounds: number;
+    pointsDelta: number;
+  } | null>(null);
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
@@ -87,14 +94,37 @@ export function MatchmakingOverlay({
       setPhase("idle");
       setOpponent(null);
       setCountdown(3);
+      setMatchResult(null);
     }
   }, [open]);
+
+  const handleBattleComplete = (result: BattleResult) => {
+    let delta = 0;
+    if (result.outcome === "victory") {
+      delta = 25;
+      addPoints(25);
+    } else if (result.outcome === "defeat") {
+      delta = -15;
+      removePoints(15);
+    } else {
+      delta = 5;
+      addPoints(5);
+    }
+    setMatchResult({ outcome: result.outcome, rounds: result.rounds, pointsDelta: delta });
+    setPhase("result" as MatchPhase);
+  };
+
+  const returnToMatchmaking = () => {
+    setMatchResult(null);
+    setOpponent(null);
+    setPhase("idle");
+  };
 
   // Esc to close (only when not mid-countdown so we don't strand the player)
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && phase !== "countdown") onClose();
+      if (e.key === "Escape" && phase !== "countdown" && phase !== "battling") onClose();
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -201,7 +231,7 @@ export function MatchmakingOverlay({
         </div>
 
         {/* Close button */}
-        {phase !== "countdown" && (
+        {phase !== "countdown" && phase !== "battling" && (
           <button
             onClick={onClose}
             aria-label="Close Language Match"
@@ -212,58 +242,62 @@ export function MatchmakingOverlay({
         )}
 
         {/* Header */}
-        <div className="absolute inset-x-0 top-10 z-10 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
-            ⚔ Language Match ⚔
+        {phase !== "battling" && phase !== "result" && (
+          <div className="absolute inset-x-0 top-10 z-10 text-center">
+            <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
+              ⚔ Language Match ⚔
+            </div>
+            <h1 className="mt-2 font-display text-4xl italic text-white">
+              The Arena
+            </h1>
           </div>
-          <h1 className="mt-2 font-display text-4xl italic text-white">
-            The Arena
-          </h1>
-        </div>
+        )}
 
         {/* Cards arena */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-          <div className="relative flex w-full max-w-5xl items-center justify-center gap-10">
-            {playerCard}
+        {phase !== "battling" && phase !== "result" && (
+          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
+            <div className="relative flex w-full max-w-5xl items-center justify-center gap-10">
+              {playerCard}
 
-            {/* VS Badge */}
-            {(phase === "found" || phase === "countdown") && (
-              <div
-                key="vs"
-                className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 vs-drop"
-              >
-                <div className="font-display text-7xl italic text-gold drop-shadow-[0_0_30px_rgba(201,168,76,0.7)]">
-                  VS
+              {/* VS Badge */}
+              {(phase === "found" || phase === "countdown") && (
+                <div
+                  key="vs"
+                  className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 vs-drop"
+                >
+                  <div className="font-display text-7xl italic text-gold drop-shadow-[0_0_30px_rgba(201,168,76,0.7)]">
+                    VS
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {opponentCard}
+              {opponentCard}
+            </div>
+
+            {/* Below-cards CTA / status */}
+            <div className="mt-12 flex min-h-[120px] flex-col items-center justify-center text-center">
+              {phase === "idle" && (
+                <button
+                  onClick={startSearch}
+                  className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
+                >
+                  <span>⚔️</span>
+                  <span>Find Match</span>
+                </button>
+              )}
+
+              {phase === "searching" && (
+                <SearchingState onCancel={cancelSearch} />
+              )}
+
+              {phase === "found" && (
+                <div className="font-mono text-xs uppercase tracking-[0.3em] text-gold/80">
+                  Opponent located · Preparing the arena
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Below-cards CTA / status */}
-          <div className="mt-12 flex min-h-[120px] flex-col items-center justify-center text-center">
-            {phase === "idle" && (
-              <button
-                onClick={startSearch}
-                className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
-              >
-                <span>⚔️</span>
-                <span>Find Match</span>
-              </button>
-            )}
-
-            {phase === "searching" && (
-              <SearchingState onCancel={cancelSearch} />
-            )}
-
-            {phase === "found" && (
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-gold/80">
-                Opponent located · Preparing the arena
-              </div>
-            )}
-          </div>
-        </div>
+        )}
 
         {/* Countdown layer */}
         {phase === "countdown" && (
@@ -283,19 +317,117 @@ export function MatchmakingOverlay({
           </div>
         )}
 
-        {/* Battling placeholder (arena coming next phase) */}
-        {phase === "battling" && (
-          <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center">
-            <div className="rounded-3xl border border-gold/40 bg-black/60 px-10 py-8 text-center backdrop-blur">
-              <div className="font-display text-3xl italic text-gold">
-                Arena loading…
-              </div>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/60">
-                The battle ground will be wired in the next prompt
-              </p>
-            </div>
+        {/* Battle arena */}
+        {phase === "battling" && opponent && (
+          <BattleArena
+            playerName="You"
+            playerTier={tier}
+            opponentName={opponent.username}
+            opponentTier={opponent.tier}
+            language={language}
+            onComplete={handleBattleComplete}
+          />
+        )}
+
+        {/* Result screen */}
+        {phase === "result" && matchResult && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center px-6">
+            <ResultScreen
+              outcome={matchResult.outcome}
+              rounds={matchResult.rounds}
+              pointsDelta={matchResult.pointsDelta}
+              onAgain={returnToMatchmaking}
+              onClose={onClose}
+            />
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+function ResultScreen({
+  outcome,
+  rounds,
+  pointsDelta,
+  onAgain,
+  onClose,
+}: {
+  outcome: BattleResult["outcome"];
+  rounds: number;
+  pointsDelta: number;
+  onAgain: () => void;
+  onClose: () => void;
+}) {
+  const config = {
+    victory: {
+      title: "🏆 VICTORY",
+      sub: "You out-duelled them. Your rank rises.",
+      color: "text-emerald-300",
+      border: "border-emerald-400/60",
+      glow: "rgba(52, 211, 153, 0.45)",
+    },
+    defeat: {
+      title: "💀 DEFEAT",
+      sub: "They studied harder. Train and try again.",
+      color: "text-red-300",
+      border: "border-red-500/60",
+      glow: "rgba(239, 68, 68, 0.45)",
+    },
+    tie: {
+      title: "🤝 STALEMATE",
+      sub: "Evenly matched. Both warriors retreat.",
+      color: "text-gold",
+      border: "border-gold/60",
+      glow: "rgba(201, 168, 76, 0.45)",
+    },
+  } as const;
+  const c = config[outcome];
+  const sign = pointsDelta >= 0 ? "+" : "";
+
+  return (
+    <div
+      className={`match-result-pop relative w-full max-w-xl rounded-3xl border ${c.border} bg-[#0a121f]/90 p-10 text-center backdrop-blur`}
+      style={{ boxShadow: `0 0 80px -10px ${c.glow}` }}
+    >
+      <div className={`font-display text-5xl italic ${c.color}`}>
+        {c.title}
+      </div>
+      <p className="mt-3 font-mono text-xs uppercase tracking-[0.3em] text-white/70">
+        {c.sub}
+      </p>
+      <div className="mt-6 flex items-center justify-center gap-8 font-mono text-[11px] uppercase tracking-[0.25em] text-white/80">
+        <div>
+          Rounds survived
+          <div className="mt-1 font-display text-2xl italic text-white">
+            {rounds}
+          </div>
+        </div>
+        <div>
+          Rank pts
+          <div
+            className={`mt-1 font-display text-2xl italic ${
+              pointsDelta >= 0 ? "text-emerald-300" : "text-red-300"
+            }`}
+          >
+            {sign}
+            {pointsDelta}
+          </div>
+        </div>
+      </div>
+      <div className="mt-8 flex items-center justify-center gap-3">
+        <button
+          onClick={onAgain}
+          className="rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-7 py-3 font-display text-base italic text-[#1a1208] shadow-[0_0_30px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105"
+        >
+          ⚔️ Find another match
+        </button>
+        <button
+          onClick={onClose}
+          className="rounded-full border border-white/30 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80 transition-colors hover:border-gold/60 hover:text-gold"
+        >
+          Leave the arena
+        </button>
       </div>
     </div>
   );
