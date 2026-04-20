@@ -117,10 +117,24 @@ export interface AppState {
   // Activity bar chart data — last up to 7 daily totals
   xpSessions: { date: string; xp: number }[];
 
+  // Spoken challenges
+  challengesCleared: number;
+  recentChallenges: ClearedChallenge[]; // most recent first, capped at 5
+
   // Celebration trigger
   pendingLevelUp: XpTier | null;
 
   hydrated: boolean;
+}
+
+export interface ClearedChallenge {
+  id: string;
+  kind: "grammar" | "reach";
+  hint: string;
+  sentence: string;
+  language: Language;
+  xp: number;
+  clearedAt: number;
 }
 
 export type AppAction =
