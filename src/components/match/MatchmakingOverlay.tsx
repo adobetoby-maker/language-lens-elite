@@ -11,6 +11,7 @@ import {
   type RankTier,
 } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
+import { BattleArena, type BattleResult } from "./BattleArena";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
