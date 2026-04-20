@@ -552,4 +552,4 @@ function simulateOpponent(
   return wrong[Math.floor(Math.random() * wrong.length)];
 }
 
-export const useBattleArena = () => null; // (placeholder export to silence unused warnings if ever)
+
