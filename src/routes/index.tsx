@@ -9,6 +9,7 @@ import { SpeechProvider } from "@/state/speech-state";
 import { SpeakProvider } from "@/state/speak-state";
 import { TutorProvider } from "@/state/tutor-state";
 import { MatchProvider } from "@/state/match-state";
+import { LeaderboardProvider } from "@/state/leaderboard-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
@@ -56,6 +57,7 @@ function Index() {
   return (
     <AppProvider>
       <MatchProvider>
+        <LeaderboardProvider>
         <LibraryProvider>
           <NotesProvider>
             <GrammarProvider>
@@ -91,6 +93,7 @@ function Index() {
             </GrammarProvider>
           </NotesProvider>
         </LibraryProvider>
+        </LeaderboardProvider>
       </MatchProvider>
     </AppProvider>
   );
