@@ -72,11 +72,9 @@ export function MatchmakingOverlay({
   open: boolean;
   onClose: () => void;
 }) {
-  const { state } = useApp();
-  const language = state.selectedLanguage;
-  const { tier, points, badge, glowColor, title, addPoints, removePoints } =
-    useMatch();
-
+  const { state, dispatch } = useApp();
+  const _language = state.selectedLanguage;
+  void _language;
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
   const [countdown, setCountdown] = useState<3 | 2 | 1 | "BATTLE">(3);
@@ -84,6 +82,8 @@ export function MatchmakingOverlay({
     outcome: BattleResult["outcome"];
     rounds: number;
     pointsDelta: number;
+    finalWord: string;
+    finalCorrectDefinition: string;
   } | null>(null);
   const timersRef = useRef<number[]>([]);
 
@@ -106,16 +106,24 @@ export function MatchmakingOverlay({
   const handleBattleComplete = (result: BattleResult) => {
     let delta = 0;
     if (result.outcome === "victory") {
-      delta = 25;
-      addPoints(25);
+      delta = POINTS_WIN;
+      addPoints(POINTS_WIN);
+      dispatch({ type: "ADD_XP", payload: 25 });
     } else if (result.outcome === "defeat") {
-      delta = -15;
-      removePoints(15);
+      delta = -POINTS_LOSS;
+      removePoints(POINTS_LOSS);
+      dispatch({ type: "ADD_XP", payload: 10 });
     } else {
-      delta = 5;
-      addPoints(5);
+      delta = POINTS_TIE; // 0
+      dispatch({ type: "ADD_XP", payload: 5 });
     }
-    setMatchResult({ outcome: result.outcome, rounds: result.rounds, pointsDelta: delta });
+    setMatchResult({
+      outcome: result.outcome,
+      rounds: result.rounds,
+      pointsDelta: delta,
+      finalWord: result.finalWord,
+      finalCorrectDefinition: result.finalCorrectDefinition,
+    });
     setPhase("result" as MatchPhase);
   };
 
