@@ -1,9 +1,11 @@
 import { Moon, Sun, Sparkle, ChevronDown } from "lucide-react";
-import { useApp, type Language, type TabKey } from "@/state/app-state";
+import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { VoicePicker } from "./VoicePicker";
@@ -77,6 +79,45 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
         </DropdownMenu>
 
         <div className="flex items-center gap-3">
+          {/* Native language picker */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              title={`Native language: ${state.nativeLanguage}`}
+              className="group inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-gold/50 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <span className="opacity-60">native</span>
+              <span className="text-foreground/90">{state.nativeLanguage}</span>
+              <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="max-h-[60vh] min-w-[200px] overflow-y-auto border-border/70 bg-popover/95 backdrop-blur-xl"
+            >
+              <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                Native language
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {NATIVE_LANGUAGES.map((lang: NativeLanguage) => (
+                <DropdownMenuItem
+                  key={lang}
+                  onSelect={() =>
+                    dispatch({ type: "SET_NATIVE_LANGUAGE", payload: lang })
+                  }
+                  className="font-mono text-xs uppercase tracking-[0.16em]"
+                >
+                  <span
+                    className={
+                      state.nativeLanguage === lang ? "text-gold" : "opacity-60"
+                    }
+                  >
+                    ◈
+                  </span>
+                  {lang}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {/* Voice picker */}
           <VoicePicker />
 
