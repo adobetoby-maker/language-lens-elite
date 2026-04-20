@@ -13,6 +13,7 @@ const LessonInput = z.object({
   language: z.string().min(1).max(40),
   level: z.enum(CEFR_LEVELS),
   concept: z.string().min(1).max(200),
+  nativeLanguage: z.string().min(1).max(40).optional(),
 });
 
 const QuizInput = z.object({
@@ -172,12 +173,13 @@ export const generateLessonTitles = createServerFn({ method: "POST" })
 export const generateLessonContent = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => LessonInput.parse(i))
   .handler(async ({ data }) => {
+    const native = data.nativeLanguage ?? "English";
     const system =
       "You are a brilliant private grammar tutor. Write clearly and warmly. Always respond by calling the provided tool. " +
       "When the concept involves a word whose ROOT stays fixed while an ENDING changes (verb conjugation, noun declension, adjective inflection, etc.), you MUST include the `morphology` field showing the split. " +
       "Use the dictionary / base form as `morphology.base` and provide 4–6 rows in `morphology.table` reusing the SAME root with different endings (e.g. Japanese iku → root 'i' (行), endings ka/ki/ku/ke/kō, full forms 行かない / 行きます / 行く / 行けば / 行こう). " +
       "Always include romanization for non-Latin scripts. Omit `morphology` only for purely syntactic topics like word order or particles that don't inflect.";
-    const user = `Teach this grammar concept: "${data.concept}" for a ${data.language} learner at CEFR ${data.level}. Provide a clear ~150-word English explanation, exactly 3 example sentences in ${data.language} each with an English translation, one bold key rule (single sentence), and — if the concept involves a word that conjugates/inflects — a morphology breakdown showing the unchanging root and the changing endings.`;
+    const user = `Teach this grammar concept: "${data.concept}" for a ${data.language} learner at CEFR ${data.level}. Provide a clear ~150-word explanation IN ${native}, exactly 3 example sentences in ${data.language} each with a ${native} translation (use the field name "english" for the ${native} translation), one bold key rule (single sentence in ${native}), and — if the concept involves a word that conjugates/inflects — a morphology breakdown showing the unchanging root and the changing endings (the "english" field on each row should be the ${native} gloss).`;
     return callTool<LessonContent>(system, user, "return_lesson_content", {
       type: "object",
       properties: {
