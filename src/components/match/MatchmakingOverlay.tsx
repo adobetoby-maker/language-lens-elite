@@ -74,6 +74,12 @@ export function MatchmakingOverlay({
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
   const [countdown, setCountdown] = useState<3 | 2 | 1 | "BATTLE">(3);
+  const [matchResult, setMatchResult] = useState<{
+    outcome: BattleResult["outcome"];
+    rounds: number;
+    pointsDelta: number;
+  } | null>(null);
+  const { addPoints, removePoints } = useMatch();
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
