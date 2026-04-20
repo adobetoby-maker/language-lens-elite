@@ -69,7 +69,8 @@ export function MatchmakingOverlay({
 }) {
   const { state } = useApp();
   const language = state.selectedLanguage;
-  const { tier, points, badge, glowColor, title } = useMatch();
+  const { tier, points, badge, glowColor, title, addPoints, removePoints } =
+    useMatch();
 
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
@@ -79,7 +80,6 @@ export function MatchmakingOverlay({
     rounds: number;
     pointsDelta: number;
   } | null>(null);
-  const { addPoints, removePoints } = useMatch();
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
