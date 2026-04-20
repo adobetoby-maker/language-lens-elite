@@ -50,6 +50,7 @@ function VictoryScreen({
   onRematch,
   onReturn,
 }: EndMatchProps) {
+  const animated = useDeferredCount(pointsDelta);
   return (
     <div className="absolute inset-0 z-40 overflow-hidden bg-[#06101e]">
       <GoldRain count={70} />
