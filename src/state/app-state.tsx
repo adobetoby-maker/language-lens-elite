@@ -254,6 +254,14 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "DISMISS_LEVEL_UP":
       return { ...state, pendingLevelUp: null };
+    case "RECORD_CHALLENGE": {
+      const recent = [action.payload, ...state.recentChallenges].slice(0, 5);
+      return {
+        ...state,
+        challengesCleared: state.challengesCleared + 1,
+        recentChallenges: recent,
+      };
+    }
     case "_DERIVE":
       return state;
     default:
