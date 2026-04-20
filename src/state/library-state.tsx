@@ -360,6 +360,23 @@ function reducer(state: LibraryState, action: Action): LibraryState {
         : [action.payload, ...state.entries];
       return { ...state, entries };
     }
+    case "REMOVE_ENTRY": {
+      const entries = state.entries.filter((e) => e.id !== action.payload);
+      const selectedId =
+        state.selectedId === action.payload
+          ? entries.find((e) => e.available)?.id ?? entries[0]?.id ?? ""
+          : state.selectedId;
+      return { ...state, entries, selectedId };
+    }
+    case "HYDRATE_CUSTOM": {
+      // Merge persisted custom entries on top of seeds, deduping by id.
+      const seedIds = new Set(state.entries.map((e) => e.id));
+      const merged = [
+        ...action.payload.filter((e) => !seedIds.has(e.id)),
+        ...state.entries,
+      ];
+      return { ...state, entries: merged };
+    }
     case "SELECT":
       return { ...state, selectedId: action.payload };
     case "SET_GENERATING":
@@ -368,6 +385,8 @@ function reducer(state: LibraryState, action: Action): LibraryState {
       return state;
   }
 }
+
+const STORAGE_KEY = "lingualens.library.custom.v1";
 
 const Ctx = createContext<{
   state: LibraryState;
@@ -378,6 +397,30 @@ const Ctx = createContext<{
 
 export function LibraryProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initial);
+
+  // Hydrate persisted custom entries on mount
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as LibraryEntry[];
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        dispatch({ type: "HYDRATE_CUSTOM", payload: parsed });
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  // Persist custom entries whenever they change
+  useEffect(() => {
+    try {
+      const customs = state.entries.filter((e) => e.section === "custom");
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(customs));
+    } catch {
+      /* quota exceeded — ignore */
+    }
+  }, [state.entries]);
 
   const selected = useMemo(
     () =>
