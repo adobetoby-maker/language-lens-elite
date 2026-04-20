@@ -51,41 +51,45 @@ function SpeakBridge({ children }: { children: ReactNode }) {
 }
 
 function Index() {
+  const [matchOpen, setMatchOpen] = useState(false);
   return (
     <AppProvider>
-      <LibraryProvider>
-        <NotesProvider>
-          <GrammarProvider>
-            <SpeechBridge>
-              <SpeakBridge>
-                <TutorProvider>
-                  <div className="min-h-screen bg-background text-foreground">
-                    <TopNav />
-                    <StatusBar />
-                    <main className="mx-auto max-w-7xl px-6 py-12">
-                      <TabShell />
-                    </main>
-                  </div>
-                  <TutorPanel />
-                  <LevelUpOverlay />
-                  <CefrCompletionBridge />
-                </TutorProvider>
-                <Toaster
-                  theme="dark"
-                  position="bottom-right"
-                  toastOptions={{
-                    style: {
-                      background: "var(--card)",
-                      color: "var(--foreground)",
-                      border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                    },
-                  }}
-                />
-              </SpeakBridge>
-            </SpeechBridge>
-          </GrammarProvider>
-        </NotesProvider>
-      </LibraryProvider>
+      <MatchProvider>
+        <LibraryProvider>
+          <NotesProvider>
+            <GrammarProvider>
+              <SpeechBridge>
+                <SpeakBridge>
+                  <TutorProvider>
+                    <div className="min-h-screen bg-background text-foreground">
+                      <TopNav onOpenMatch={() => setMatchOpen(true)} />
+                      <StatusBar />
+                      <main className="mx-auto max-w-7xl px-6 py-12">
+                        <TabShell />
+                      </main>
+                    </div>
+                    <TutorPanel />
+                    <LevelUpOverlay />
+                    <CefrCompletionBridge />
+                    <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
+                  </TutorProvider>
+                  <Toaster
+                    theme="dark"
+                    position="bottom-right"
+                    toastOptions={{
+                      style: {
+                        background: "var(--card)",
+                        color: "var(--foreground)",
+                        border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                      },
+                    }}
+                  />
+                </SpeakBridge>
+              </SpeechBridge>
+            </GrammarProvider>
+          </NotesProvider>
+        </LibraryProvider>
+      </MatchProvider>
     </AppProvider>
   );
 }
