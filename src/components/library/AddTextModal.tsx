@@ -229,11 +229,11 @@ export function AddTextModal({
         </DialogHeader>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center gap-3 py-10 text-center">
+          <div className="flex flex-col items-center justify-center gap-3 py-8 text-center">
             <Loader2 className="h-6 w-6 animate-spin text-gold" />
             <p className="font-display text-lg italic">
               {progress && progress.total > 1
-                ? `Translating chapter ${progress.done + (progress.done < progress.total ? 1 : 0)} of ${progress.total}…`
+                ? `Translating ${progress.done} / ${progress.total} chapters…`
                 : "Reading your text…"}
             </p>
             {progress && progress.total > 1 && (
@@ -244,8 +244,31 @@ export function AddTextModal({
                 />
               </div>
             )}
+            {chapterStatuses.length > 1 && (
+              <div className="mt-2 flex max-h-40 max-w-full flex-wrap justify-center gap-1.5 overflow-y-auto px-2">
+                {chapterStatuses.map((s, i) => {
+                  const cls =
+                    s === "done"
+                      ? "bg-gold text-midnight border-gold"
+                      : s === "translating"
+                        ? "bg-gold/20 text-gold border-gold/60 animate-pulse"
+                        : s === "error"
+                          ? "bg-destructive/20 text-destructive border-destructive/60"
+                          : "bg-muted text-muted-foreground border-border";
+                  return (
+                    <span
+                      key={i}
+                      title={`Chapter ${i + 1}: ${s}`}
+                      className={`inline-flex h-6 min-w-[1.75rem] items-center justify-center rounded border px-1.5 font-mono text-[10px] ${cls}`}
+                    >
+                      {i + 1}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              Detecting language &amp; pairing sentences
+              3 chapters in parallel · pairing sentences
             </p>
           </div>
         ) : (
