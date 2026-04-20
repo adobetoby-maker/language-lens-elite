@@ -47,6 +47,7 @@ export function ParallelReader() {
   const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
+  const [autoScroll, setAutoScroll] = useState(false);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
@@ -341,8 +342,9 @@ export function ParallelReader() {
     speakSentences(queue);
   };
 
-  // Auto-scroll BOTH panes to keep the active sentence in view
+  // Auto-scroll BOTH panes to keep the active sentence in view (opt-in)
   useEffect(() => {
+    if (!autoScroll) return;
     if (activeSentenceIndex < 0) return;
     [leftRef, rightRef].forEach((r) => {
       const c = r.current;
@@ -357,7 +359,7 @@ export function ParallelReader() {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
-  }, [activeSentenceIndex]);
+  }, [activeSentenceIndex, autoScroll]);
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
@@ -529,6 +531,25 @@ export function ParallelReader() {
           )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Auto-scroll
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={autoScroll}
+              onClick={() => setAutoScroll((v) => !v)}
+              className="relative h-5 w-10 rounded-full border border-border/70 bg-muted transition-colors data-[on=true]:bg-gold"
+              data-on={autoScroll}
+              title="When ON, the reader follows the spoken sentence. When OFF, the page stays where you scrolled."
+            >
+              <span
+                className="absolute top-0.5 h-4 w-4 rounded-full bg-background transition-transform"
+                style={{ transform: autoScroll ? "translateX(22px)" : "translateX(2px)" }}
+              />
+            </button>
+          </label>
+          <label className="flex cursor-pointer items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
             </span>
             <button
@@ -564,7 +585,7 @@ export function ParallelReader() {
               </span>
               <span className="font-display text-xs italic text-muted-foreground">native</span>
             </div>
-            <div ref={leftRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
+            <div ref={leftRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
               <Pane
                 pane="left"
                 sentences={activeSentences.map((s) => s.en)}
@@ -587,7 +608,7 @@ export function ParallelReader() {
               </span>
               <span className="font-display text-xs italic text-muted-foreground">target</span>
             </div>
-            <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
+            <div ref={rightRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
               <Pane
                 pane="right"
                 sentences={activeSentences.map((s) => s.target)}
