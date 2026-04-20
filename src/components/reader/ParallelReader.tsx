@@ -531,6 +531,25 @@ export function ParallelReader() {
           )}
           <label className="flex cursor-pointer items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Auto-scroll
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={autoScroll}
+              onClick={() => setAutoScroll((v) => !v)}
+              className="relative h-5 w-10 rounded-full border border-border/70 bg-muted transition-colors data-[on=true]:bg-gold"
+              data-on={autoScroll}
+              title="When ON, the reader follows the spoken sentence. When OFF, the page stays where you scrolled."
+            >
+              <span
+                className="absolute top-0.5 h-4 w-4 rounded-full bg-background transition-transform"
+                style={{ transform: autoScroll ? "translateX(22px)" : "translateX(2px)" }}
+              />
+            </button>
+          </label>
+          <label className="flex cursor-pointer items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Sync Scroll
             </span>
             <button
