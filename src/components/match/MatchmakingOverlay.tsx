@@ -268,15 +268,24 @@ export function MatchmakingOverlay({
           ))}
         </div>
 
-        {/* Close button */}
+        {/* Close + corner Leaderboard chip */}
         {phase !== "countdown" && phase !== "battling" && (
-          <button
-            onClick={onClose}
-            aria-label="Close Language Match"
-            className="absolute right-6 top-6 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur transition-colors hover:border-gold/60 hover:text-gold"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          <div className="absolute right-6 top-6 z-20 flex items-center gap-2">
+            <button
+              onClick={() => setShowLeaderboard(true)}
+              aria-label="Open Leaderboard"
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-gold backdrop-blur transition-colors hover:bg-gold/20"
+            >
+              🏅 Leaderboard
+            </button>
+            <button
+              onClick={onClose}
+              aria-label="Close Language Match"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur transition-colors hover:border-gold/60 hover:text-gold"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
         )}
 
         {/* Header */}
@@ -315,13 +324,21 @@ export function MatchmakingOverlay({
             {/* Below-cards CTA / status */}
             <div className="mt-12 flex min-h-[120px] flex-col items-center justify-center text-center">
               {phase === "idle" && (
-                <button
-                  onClick={startSearch}
-                  className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
-                >
-                  <span>⚔️</span>
-                  <span>Find Match</span>
-                </button>
+                <div className="flex flex-col items-center gap-3">
+                  <button
+                    onClick={startSearch}
+                    className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
+                  >
+                    <span>⚔️</span>
+                    <span>Find Match</span>
+                  </button>
+                  <button
+                    onClick={() => setShowLeaderboard(true)}
+                    className="rounded-full border border-white/20 bg-white/5 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/75 transition-colors hover:border-gold/60 hover:text-gold"
+                  >
+                    🏅 Leaderboard
+                  </button>
+                </div>
               )}
 
               {phase === "searching" && (
@@ -380,6 +397,7 @@ export function MatchmakingOverlay({
             finalCorrectDefinition={matchResult.finalCorrectDefinition}
             onRematch={returnToMatchmaking}
             onReturn={onClose}
+            onReview={() => setShowReview(true)}
           />
         )}
 
@@ -390,6 +408,27 @@ export function MatchmakingOverlay({
             newTier={pendingRankUp}
             onContinue={acknowledgeRankUp}
           />
+        )}
+
+        {/* Battle Review panel */}
+        {showReview && matchResult && (
+          <BattleReviewPanel
+            words={matchResult.wordHistory}
+            onClose={() => setShowReview(false)}
+            onPlayAgain={() => {
+              setShowReview(false);
+              returnToMatchmaking();
+            }}
+            onHome={() => {
+              setShowReview(false);
+              onClose();
+            }}
+          />
+        )}
+
+        {/* Leaderboard panel */}
+        {showLeaderboard && (
+          <LeaderboardPanel onClose={() => setShowLeaderboard(false)} />
         )}
       </div>
     </div>
