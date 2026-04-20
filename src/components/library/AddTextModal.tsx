@@ -35,6 +35,8 @@ export function AddTextModal({
   const [chunks, setChunks] = useState<BookChunk[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  type ChapterStatus = "pending" | "translating" | "done" | "error";
+  const [chapterStatuses, setChapterStatuses] = useState<ChapterStatus[]>([]);
   const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -46,6 +48,7 @@ export function AddTextModal({
     setError(null);
     setLoading(false);
     setProgress(null);
+    setChapterStatuses([]);
     setExtracting(false);
   };
 
@@ -87,41 +90,86 @@ export function AddTextModal({
 
     setLoading(true);
     setProgress({ done: 0, total: sourceChunks.length });
+    setChapterStatuses(sourceChunks.map(() => "pending" as ChapterStatus));
 
     try {
-      const chapters: BookChapter[] = [];
+      const results: (BookChapter | null)[] = new Array(sourceChunks.length).fill(null);
       let detected = "";
-      for (let i = 0; i < sourceChunks.length; i++) {
-        const c = sourceChunks[i];
-        const res = await translate({
-          data: {
-            title: c.title,
-            text: c.text,
-            targetLanguage: state.selectedLanguage,
-            nativeLanguage: state.nativeLanguage,
-          },
-        });
-        if (res.error || !res.data) {
-          // If at least one chapter succeeded, keep what we have and warn.
-          if (chapters.length === 0) {
-            setError(res.error ?? "Failed to translate text.");
-            setLoading(false);
-            setProgress(null);
-            return;
+      let firstError: string | null = null;
+      let doneCount = 0;
+      const CONCURRENCY = 3;
+      let cursor = 0;
+
+      const worker = async () => {
+        while (true) {
+          const i = cursor++;
+          if (i >= sourceChunks.length) return;
+          const c = sourceChunks[i];
+          setChapterStatuses((prev) => {
+            const next = [...prev];
+            next[i] = "translating";
+            return next;
+          });
+          try {
+            const res = await translate({
+              data: {
+                title: c.title,
+                text: c.text,
+                targetLanguage: state.selectedLanguage,
+                nativeLanguage: state.nativeLanguage,
+              },
+            });
+            if (res.error || !res.data) {
+              if (!firstError) firstError = res.error ?? "translation failed";
+              setChapterStatuses((prev) => {
+                const next = [...prev];
+                next[i] = "error";
+                return next;
+              });
+            } else {
+              if (!detected) detected = res.data.detectedLanguage;
+              const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
+              results[i] = {
+                title: c.title,
+                sentences: Array.from({ length: len }, (_, j) => ({
+                  en: res.data!.leftPaneText[j],
+                  target: res.data!.rightPaneText[j],
+                })),
+              };
+              setChapterStatuses((prev) => {
+                const next = [...prev];
+                next[i] = "done";
+                return next;
+              });
+            }
+          } catch (e) {
+            if (!firstError) firstError = e instanceof Error ? e.message : "translation failed";
+            setChapterStatuses((prev) => {
+              const next = [...prev];
+              next[i] = "error";
+              return next;
+            });
+          } finally {
+            doneCount++;
+            setProgress({ done: doneCount, total: sourceChunks.length });
           }
-          setError(`Stopped at chapter ${i + 1}: ${res.error ?? "translation failed"}`);
-          break;
         }
-        if (!detected) detected = res.data.detectedLanguage;
-        const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
-        chapters.push({
-          title: c.title,
-          sentences: Array.from({ length: len }, (_, j) => ({
-            en: res.data!.leftPaneText[j],
-            target: res.data!.rightPaneText[j],
-          })),
-        });
-        setProgress({ done: i + 1, total: sourceChunks.length });
+      };
+
+      await Promise.all(
+        Array.from({ length: Math.min(CONCURRENCY, sourceChunks.length) }, () => worker()),
+      );
+
+      const chapters: BookChapter[] = results.filter((r): r is BookChapter => r !== null);
+
+      if (chapters.length === 0) {
+        setError(firstError ?? "Translation produced no chapters.");
+        setLoading(false);
+        setProgress(null);
+        return;
+      }
+      if (firstError && chapters.length < sourceChunks.length) {
+        setError(`${sourceChunks.length - chapters.length} chapter(s) failed: ${firstError}`);
       }
 
       if (chapters.length === 0) {
@@ -181,11 +229,11 @@ export function AddTextModal({
         </DialogHeader>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center gap-3 py-10 text-center">
+          <div className="flex flex-col items-center justify-center gap-3 py-8 text-center">
             <Loader2 className="h-6 w-6 animate-spin text-gold" />
             <p className="font-display text-lg italic">
               {progress && progress.total > 1
-                ? `Translating chapter ${progress.done + (progress.done < progress.total ? 1 : 0)} of ${progress.total}…`
+                ? `Translating ${progress.done} / ${progress.total} chapters…`
                 : "Reading your text…"}
             </p>
             {progress && progress.total > 1 && (
@@ -196,8 +244,31 @@ export function AddTextModal({
                 />
               </div>
             )}
+            {chapterStatuses.length > 1 && (
+              <div className="mt-2 flex max-h-40 max-w-full flex-wrap justify-center gap-1.5 overflow-y-auto px-2">
+                {chapterStatuses.map((s, i) => {
+                  const cls =
+                    s === "done"
+                      ? "bg-gold text-midnight border-gold"
+                      : s === "translating"
+                        ? "bg-gold/20 text-gold border-gold/60 animate-pulse"
+                        : s === "error"
+                          ? "bg-destructive/20 text-destructive border-destructive/60"
+                          : "bg-muted text-muted-foreground border-border";
+                  return (
+                    <span
+                      key={i}
+                      title={`Chapter ${i + 1}: ${s}`}
+                      className={`inline-flex h-6 min-w-[1.75rem] items-center justify-center rounded border px-1.5 font-mono text-[10px] ${cls}`}
+                    >
+                      {i + 1}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              Detecting language &amp; pairing sentences
+              3 chapters in parallel · pairing sentences
             </p>
           </div>
         ) : (
