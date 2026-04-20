@@ -111,6 +111,13 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
               </button>
             );
           })}
+          {onOpenMatch && (
+            <div className="ml-2">
+              <LanguageMatchButton onClick={onOpenMatch} />
+            </div>
+          )}
+        </div>
+      </nav>
         </div>
       </nav>
     </header>
