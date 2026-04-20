@@ -87,7 +87,9 @@ export function MatchmakingOverlay({
     removePoints,
     pendingRankUp,
     acknowledgeRankUp,
+    recordMatch,
   } = useMatch();
+  const { nudgeOnWin } = useLeaderboard();
 
   const [phase, setPhase] = useState<MatchPhase>("idle");
   const [opponent, setOpponent] = useState<Opponent | null>(null);
@@ -98,7 +100,10 @@ export function MatchmakingOverlay({
     pointsDelta: number;
     finalWord: string;
     finalCorrectDefinition: string;
+    wordHistory: ReviewedWord[];
   } | null>(null);
+  const [showReview, setShowReview] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
