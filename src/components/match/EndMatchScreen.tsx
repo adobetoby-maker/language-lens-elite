@@ -30,6 +30,7 @@ export interface EndMatchProps {
   finalCorrectDefinition: string;
   onRematch: () => void;
   onReturn: () => void;
+  onReview?: () => void;
 }
 
 export function EndMatchScreen(props: EndMatchProps) {
