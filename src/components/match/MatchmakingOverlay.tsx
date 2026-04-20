@@ -14,9 +14,12 @@ import {
   type RankTier,
 } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
-import { BattleArena, type BattleResult } from "./BattleArena";
+import { BattleArena, type BattleResult, type ReviewedWord } from "./BattleArena";
 import { EndMatchScreen } from "./EndMatchScreen";
 import { RankUpCeremony } from "./RankUpCeremony";
+import { BattleReviewPanel } from "./BattleReviewPanel";
+import { LeaderboardPanel } from "./LeaderboardPanel";
+import { useLeaderboard } from "@/state/leaderboard-state";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
@@ -118,25 +121,28 @@ export function MatchmakingOverlay({
 
   const handleBattleComplete = (result: BattleResult) => {
     let delta = 0;
-    oldTierRef.current = tier; // snapshot BEFORE we mutate
+    oldTierRef.current = tier;
     if (result.outcome === "victory") {
       delta = POINTS_WIN;
       addPoints(POINTS_WIN);
       dispatch({ type: "ADD_XP", payload: 25 });
+      nudgeOnWin();
     } else if (result.outcome === "defeat") {
       delta = -POINTS_LOSS;
       removePoints(POINTS_LOSS);
       dispatch({ type: "ADD_XP", payload: 10 });
     } else {
-      delta = POINTS_TIE; // 0
+      delta = POINTS_TIE;
       dispatch({ type: "ADD_XP", payload: 5 });
     }
+    recordMatch({ outcome: result.outcome, rounds: result.rounds });
     setMatchResult({
       outcome: result.outcome,
       rounds: result.rounds,
       pointsDelta: delta,
       finalWord: result.finalWord,
       finalCorrectDefinition: result.finalCorrectDefinition,
+      wordHistory: result.wordHistory,
     });
     setPhase("result" as MatchPhase);
   };
