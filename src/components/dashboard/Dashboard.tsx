@@ -43,6 +43,7 @@ function formatDay(date: string) {
 
 export function Dashboard() {
   const { state } = useApp();
+  const m = useMatch();
   const progress = nextTierProgress(state.xp);
 
   const stats = [
