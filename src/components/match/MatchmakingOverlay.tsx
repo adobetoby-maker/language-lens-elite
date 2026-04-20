@@ -114,8 +114,11 @@ export function MatchmakingOverlay({
     }
   }, [open]);
 
+  const oldTierRef = useRef<RankTier>(tier);
+
   const handleBattleComplete = (result: BattleResult) => {
     let delta = 0;
+    oldTierRef.current = tier; // snapshot BEFORE we mutate
     if (result.outcome === "victory") {
       delta = POINTS_WIN;
       addPoints(POINTS_WIN);
