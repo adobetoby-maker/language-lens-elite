@@ -377,6 +377,53 @@ export function ParallelReader() {
         </div>
       </div>
 
+      {/* Chapter switcher (only for multi-chapter books) */}
+      {chapters && chapters.length > 1 && (
+        <div className="mb-4 flex flex-wrap items-center gap-3 rounded-2xl border border-gold/30 bg-gold/[0.04] px-5 py-3">
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+            <span>✦</span>
+            <span>Chapter</span>
+            <span className="text-foreground/80">
+              {safeChapterIndex + 1} / {chapters.length}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setChapterIndex((i) => Math.max(0, i - 1))}
+              disabled={safeChapterIndex === 0}
+              className="rounded-full border border-border/70 bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              ← Prev
+            </button>
+            <select
+              value={safeChapterIndex}
+              onChange={(e) => setChapterIndex(Number(e.target.value))}
+              className="max-w-[16rem] truncate rounded-full border border-border/70 bg-background/60 px-3 py-1 font-display text-sm italic text-foreground focus:border-gold/60 focus:outline-none"
+            >
+              {chapters.map((c, i) => (
+                <option key={i} value={i}>
+                  {i + 1}. {c.title}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() =>
+                setChapterIndex((i) => Math.min(chapters.length - 1, i + 1))
+              }
+              disabled={safeChapterIndex === chapters.length - 1}
+              className="rounded-full border border-border/70 bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Next →
+            </button>
+          </div>
+          <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            {activeSentences.length} sentences
+          </span>
+        </div>
+      )}
+
       {/* Toolbar */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
         <div className="flex items-center gap-2">
