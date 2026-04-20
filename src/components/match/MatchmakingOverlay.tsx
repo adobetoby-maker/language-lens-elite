@@ -2,7 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
 import {
+  POINTS_LOSS,
   POINTS_PER_TIER,
+  POINTS_TIE,
+  POINTS_WIN,
   RANK_BADGE,
   RANK_COLOR,
   RANK_ORDER,
@@ -12,6 +15,8 @@ import {
 } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
 import { BattleArena, type BattleResult } from "./BattleArena";
+import { EndMatchScreen } from "./EndMatchScreen";
+import { RankUpCeremony } from "./RankUpCeremony";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
