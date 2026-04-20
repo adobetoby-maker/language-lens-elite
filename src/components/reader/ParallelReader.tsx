@@ -342,8 +342,9 @@ export function ParallelReader() {
     speakSentences(queue);
   };
 
-  // Auto-scroll BOTH panes to keep the active sentence in view
+  // Auto-scroll BOTH panes to keep the active sentence in view (opt-in)
   useEffect(() => {
+    if (!autoScroll) return;
     if (activeSentenceIndex < 0) return;
     [leftRef, rightRef].forEach((r) => {
       const c = r.current;
@@ -358,7 +359,7 @@ export function ParallelReader() {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
-  }, [activeSentenceIndex]);
+  }, [activeSentenceIndex, autoScroll]);
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
