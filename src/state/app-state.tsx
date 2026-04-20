@@ -152,6 +152,7 @@ export type AppAction =
   | { type: "MARK_CULTURE_READ"; payload: string }
   | { type: "MARK_CEFR_COMPLETE"; payload: string }
   | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
+  | { type: "RECORD_CHALLENGE"; payload: ClearedChallenge }
   | { type: "DISMISS_LEVEL_UP" }
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
