@@ -178,6 +178,8 @@ const initialState: AppState = {
   cefrLevelsCompleted: [],
   speakSecondsByLang: {},
   xpSessions: [],
+  challengesCleared: 0,
+  recentChallenges: [],
   pendingLevelUp: null,
   hydrated: false,
 };
