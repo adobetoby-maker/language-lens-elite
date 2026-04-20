@@ -112,6 +112,11 @@ export function LibraryDrawer({
             onSelect={select}
             currentId={state.selectedId}
             emptyHint="Paste any passage to begin."
+            onDelete={(id) => {
+              if (window.confirm("Remove this book from your library?")) {
+                dispatch({ type: "REMOVE_ENTRY", payload: id });
+              }
+            }}
           />
           <BattleVocabularySection />
         </div>
@@ -204,6 +209,7 @@ function Section({
   onSelect,
   currentId,
   emptyHint,
+  onDelete,
 }: {
   icon: React.ReactNode;
   label: string;
@@ -211,6 +217,7 @@ function Section({
   onSelect: (e: LibraryEntry) => void;
   currentId: string;
   emptyHint?: string;
+  onDelete?: (id: string) => void;
 }) {
   return (
     <section className="mb-7">
@@ -231,6 +238,7 @@ function Section({
               entry={e}
               active={e.id === currentId}
               onSelect={() => onSelect(e)}
+              onDelete={onDelete ? () => onDelete(e.id) : undefined}
             />
           ))}
         </div>
@@ -243,12 +251,20 @@ function BookCard({
   entry,
   active,
   onSelect,
+  onDelete,
 }: {
   entry: LibraryEntry;
   active: boolean;
   onSelect: () => void;
+  onDelete?: () => void;
 }) {
-  const wc = wordCount(entry.sentences);
+  const totalSentences =
+    entry.chapters?.reduce((n, c) => n + c.sentences.length, 0) ?? entry.sentences.length;
+  const allPairs = entry.chapters
+    ? entry.chapters.flatMap((c) => c.sentences)
+    : entry.sentences;
+  const wc = wordCount(allPairs);
+  const chapterCount = entry.chapters?.length ?? 0;
   return (
     <div
       data-active={active}
@@ -267,6 +283,12 @@ function BookCard({
             <>
               <span>·</span>
               <span>{wc} words</span>
+              {chapterCount > 1 && (
+                <>
+                  <span>·</span>
+                  <span className="text-gold">{chapterCount} ch · {totalSentences} sent.</span>
+                </>
+              )}
             </>
           ) : (
             <>
@@ -283,6 +305,16 @@ function BookCard({
       >
         Read
       </button>
+      {onDelete && (
+        <button
+          onClick={onDelete}
+          aria-label={`Delete ${entry.title}`}
+          title="Remove from library"
+          className="rounded-full border border-border/60 p-1.5 text-muted-foreground transition-colors hover:border-red-500/50 hover:text-red-300"
+        >
+          <Trash2 className="h-3 w-3" />
+        </button>
+      )}
     </div>
   );
 }
