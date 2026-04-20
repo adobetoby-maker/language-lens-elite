@@ -1,11 +1,18 @@
 import { useMemo } from "react";
-import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles } from "lucide-react";
+import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles, Swords } from "lucide-react";
 import {
   ACHIEVEMENTS,
   nextTierProgress,
   useApp,
   type Language,
 } from "@/state/app-state";
+import {
+  POINTS_PER_TIER,
+  RANK_BADGE,
+  RANK_COLOR,
+  RANK_TITLE,
+  useMatch,
+} from "@/state/match-state";
 import { CountUp } from "@/components/CountUp";
 import { flagFor } from "@/state/library-state";
 
@@ -36,6 +43,7 @@ function formatDay(date: string) {
 
 export function Dashboard() {
   const { state } = useApp();
+  const m = useMatch();
   const progress = nextTierProgress(state.xp);
 
   const stats = [
@@ -115,7 +123,71 @@ export function Dashboard() {
         ))}
       </div>
 
-      {/* XP progress bar */}
+      {/* Language Match rank card */}
+      <section
+        className="relative overflow-hidden rounded-2xl border p-6"
+        style={{
+          borderColor: `${m.glowColor}66`,
+          background: `linear-gradient(135deg, ${m.glowColor}14, transparent 70%)`,
+          boxShadow: `0 0 40px -20px ${m.glowColor}80`,
+        }}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-2xl border"
+              style={{
+                borderColor: `${m.glowColor}80`,
+                background: `${m.glowColor}1a`,
+                fontSize: 32,
+                lineHeight: 1,
+              }}
+              aria-hidden
+            >
+              {RANK_BADGE[m.tier]}
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                <Swords className="mr-1 inline h-3 w-3" /> Language Match
+              </div>
+              <div
+                className="mt-1 font-display text-2xl italic"
+                style={{ color: m.glowColor }}
+              >
+                {m.tier}
+              </div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                {RANK_TITLE[m.tier]}
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Ranked Points
+            </div>
+            <div className="mt-1 font-display text-2xl text-foreground">
+              {m.points}
+              <span className="ml-1 text-xs text-muted-foreground">
+                / {POINTS_PER_TIER}
+              </span>
+            </div>
+            <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              {m.wins}W · {m.losses}L · {m.ties}T
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 h-2 overflow-hidden rounded-full bg-muted">
+          <div
+            className="h-full rounded-full transition-[width] duration-700"
+            style={{
+              width: `${(m.points / POINTS_PER_TIER) * 100}%`,
+              background: `linear-gradient(90deg, ${m.glowColor}aa, ${m.glowColor})`,
+              boxShadow: `0 0 12px ${m.glowColor}aa`,
+            }}
+          />
+        </div>
+      </section>
+
       <div className="rounded-2xl border border-border/60 bg-card/60 p-6">
         <div className="flex items-center justify-between">
           <div>

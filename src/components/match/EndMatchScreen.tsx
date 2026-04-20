@@ -30,6 +30,7 @@ export interface EndMatchProps {
   finalCorrectDefinition: string;
   onRematch: () => void;
   onReturn: () => void;
+  onReview?: () => void;
 }
 
 export function EndMatchScreen(props: EndMatchProps) {
@@ -49,6 +50,7 @@ function VictoryScreen({
   finalCorrectDefinition,
   onRematch,
   onReturn,
+  onReview,
 }: EndMatchProps) {
   const animated = useDeferredCount(pointsDelta);
   return (
@@ -84,7 +86,7 @@ function VictoryScreen({
 
         <LearningCard word={finalWord} definition={finalCorrectDefinition} note="Their stumble — your lesson." />
 
-        <ResultButtons onRematch={onRematch} onReturn={onReturn} />
+        <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} />
       </div>
     </div>
   );
@@ -100,6 +102,7 @@ function DefeatScreen({
   finalCorrectDefinition,
   onRematch,
   onReturn,
+  onReview,
 }: EndMatchProps) {
   const animated = useDeferredCount(Math.abs(pointsDelta));
   return (
@@ -133,7 +136,7 @@ function DefeatScreen({
           warm
         />
 
-        <ResultButtons onRematch={onRematch} onReturn={onReturn} rematchLabel="⚔️ Try Again" />
+        <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} rematchLabel="⚔️ Try Again" />
       </div>
     </div>
   );
@@ -149,6 +152,7 @@ function TieScreen({
   finalCorrectDefinition,
   onRematch,
   onReturn,
+  onReview,
 }: EndMatchProps) {
   return (
     <div className="absolute inset-0 z-40 overflow-hidden">
@@ -176,7 +180,7 @@ function TieScreen({
 
         <LearningCard word={finalWord} definition={finalCorrectDefinition} note="A word for both warriors to remember." />
 
-        <ResultButtons onRematch={onRematch} onReturn={onReturn} rematchLabel="⚔️ Play Again" />
+        <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} rematchLabel="⚔️ Play Again" />
       </div>
     </div>
   );
@@ -186,20 +190,30 @@ function TieScreen({
 function ResultButtons({
   onRematch,
   onReturn,
+  onReview,
   rematchLabel = "⚔️ Rematch",
 }: {
   onRematch: () => void;
   onReturn: () => void;
+  onReview?: () => void;
   rematchLabel?: string;
 }) {
   return (
-    <div className="mt-8 flex items-center gap-3">
+    <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
       <button
         onClick={onRematch}
         className="rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-7 py-3 font-display text-base italic text-[#1a1208] shadow-[0_0_30px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105"
       >
         {rematchLabel}
       </button>
+      {onReview && (
+        <button
+          onClick={onReview}
+          className="rounded-full border border-gold/50 bg-gold/10 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.25em] text-gold transition-colors hover:bg-gold/20"
+        >
+          📖 Review Battle
+        </button>
+      )}
       <button
         onClick={onReturn}
         className="rounded-full border border-white/30 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80 transition-colors hover:border-gold/60 hover:text-gold"
