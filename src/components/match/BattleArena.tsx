@@ -44,12 +44,23 @@ interface BattleArenaProps {
   onComplete: (result: BattleResult) => void;
 }
 
+export interface ReviewedWord {
+  word: string;
+  correctDefinition: string;
+  round: number;
+  cefr: string;
+  playerCorrect: boolean;
+  language: Language;
+}
+
 export interface BattleResult {
   outcome: "victory" | "defeat" | "tie";
   rounds: number;
   /** The word + correct definition from the round that ENDED the match. */
   finalWord: string;
   finalCorrectDefinition: string;
+  /** Every word seen across the match, oldest first. */
+  wordHistory: ReviewedWord[];
 }
 
 type Phase =
