@@ -124,7 +124,7 @@ export function MatchmakingOverlay({
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && phase !== "countdown") onClose();
+      if (e.key === "Escape" && phase !== "countdown" && phase !== "battling") onClose();
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -231,7 +231,7 @@ export function MatchmakingOverlay({
         </div>
 
         {/* Close button */}
-        {phase !== "countdown" && (
+        {phase !== "countdown" && phase !== "battling" && (
           <button
             onClick={onClose}
             aria-label="Close Language Match"
