@@ -48,6 +48,12 @@ export function Dashboard() {
     { icon: Star, label: "XP", value: state.xp, isXp: true },
     { icon: BookOpen, label: "Words Looked Up", value: state.wordsLookedUp },
     { icon: Award, label: "Level", value: state.tier },
+    {
+      icon: Trophy,
+      label: "Challenges Cleared",
+      value: state.challengesCleared,
+      hot: state.challengesCleared > 0,
+    },
   ];
 
   const maxSessionXp = useMemo(
