@@ -1,7 +1,19 @@
 import { useState } from "react";
-import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, X } from "lucide-react";
+import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
+import { useMatch, type SavedVocabWord } from "@/state/match-state";
+import type { Language } from "@/state/app-state";
 import { AddTextModal } from "./AddTextModal";
+
+const SPEECH_LOCALE: Record<Language, string> = {
+  Spanish: "es-ES",
+  French: "fr-FR",
+  German: "de-DE",
+  Italian: "it-IT",
+  Japanese: "ja-JP",
+  Korean: "ko-KR",
+  Portuguese: "pt-BR",
+};
 
 export function LibraryDrawer({
   open,
@@ -101,11 +113,87 @@ export function LibraryDrawer({
             currentId={state.selectedId}
             emptyHint="Paste any passage to begin."
           />
+          <BattleVocabularySection />
         </div>
       </aside>
 
       <AddTextModal open={addOpen} onOpenChange={setAddOpen} />
     </>
+  );
+}
+
+function BattleVocabularySection() {
+  const { savedVocab, removeVocabWord } = useMatch();
+  const speak = (word: SavedVocabWord) => {
+    try {
+      const u = new SpeechSynthesisUtterance(word.word);
+      u.lang = SPEECH_LOCALE[word.language];
+      u.rate = 0.9;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } catch {
+      /* ignore */
+    }
+  };
+  return (
+    <section className="mb-7">
+      <div className="mb-3 flex items-center gap-2 px-1 text-gold">
+        <Swords className="h-3.5 w-3.5" />
+        <h3 className="font-mono text-[10px] uppercase tracking-[0.28em]">Battle Vocabulary</h3>
+        <div className="ml-2 h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" />
+        {savedVocab.length > 0 && (
+          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+            {savedVocab.length}
+          </span>
+        )}
+      </div>
+      {savedVocab.length === 0 ? (
+        <p className="px-1 font-mono text-[11px] text-muted-foreground">
+          Save words from Language Match battles to collect them here.
+        </p>
+      ) : (
+        <div className="space-y-2">
+          {savedVocab.map((w) => (
+            <div
+              key={w.id}
+              className="rounded-xl border border-gold/30 bg-gold/[0.04] p-3"
+            >
+              <div className="flex items-start gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="truncate font-display text-base italic text-gold">
+                      {w.word}
+                    </span>
+                    <button
+                      onClick={() => speak(w)}
+                      aria-label={`Pronounce ${w.word}`}
+                      className="shrink-0 rounded-full border border-gold/40 bg-card/60 p-1 text-gold hover:bg-gold/15"
+                    >
+                      <Volume2 className="h-3 w-3" />
+                    </button>
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-foreground/80">
+                    {w.definition}
+                  </p>
+                  <div className="mt-1.5 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                    <span>{w.language}</span>
+                    <span>·</span>
+                    <span>{w.cefr}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => removeVocabWord(w.id)}
+                  aria-label={`Remove ${w.word}`}
+                  className="shrink-0 rounded-full border border-border/60 p-1.5 text-muted-foreground hover:border-red-500/50 hover:text-red-300"
+                >
+                  <Trash2 className="h-3 w-3" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 
