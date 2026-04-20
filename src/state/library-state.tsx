@@ -6,15 +6,25 @@ import {
   useReducer,
   type ReactNode,
 } from "react";
-import { LIBRARY as PRELOADED, type LibraryText } from "@/data/library";
+import { LIBRARY as PRELOADED, type LibraryText, type SentencePair } from "@/data/library";
 import type { Language } from "./app-state";
 
 export type LibrarySection = "classic" | "culture" | "custom";
+
+export interface BookChapter {
+  title: string;
+  sentences: SentencePair[];
+}
 
 export interface LibraryEntry extends LibraryText {
   section: LibrarySection;
   flag: string;
   available: boolean; // false = stub (not yet generated/translated)
+  // Multi-chapter books store their content here. When present, `sentences`
+  // mirrors chapters[0].sentences for back-compat with anything that still
+  // reads `entry.sentences` directly.
+  chapters?: BookChapter[];
+  createdAt?: number;
 }
 
 interface LibraryState {
@@ -27,7 +37,9 @@ type Action =
   | { type: "ADD_ENTRY"; payload: LibraryEntry }
   | { type: "SELECT"; payload: string }
   | { type: "SET_GENERATING"; payload: boolean }
-  | { type: "REPLACE_BY_ID"; payload: LibraryEntry };
+  | { type: "REPLACE_BY_ID"; payload: LibraryEntry }
+  | { type: "REMOVE_ENTRY"; payload: string }
+  | { type: "HYDRATE_CUSTOM"; payload: LibraryEntry[] };
 
 const FLAG_BY_LANGUAGE: Record<Language, string> = {
   Spanish: "🇪🇸",
