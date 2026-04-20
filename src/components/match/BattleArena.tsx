@@ -249,9 +249,11 @@ export function BattleArena({
       const outcome: BattleResult["outcome"] =
         kind === "victory" ? "victory" : kind === "defeat" ? "defeat" : "tie";
       if (outcome === "victory") celebrate();
+      const finalWord = data.word.word;
+      const finalCorrectDefinition = data.word.correctDefinition;
       const t = window.setTimeout(() => {
         setPhase("ended");
-        onComplete({ outcome, rounds: round });
+        onComplete({ outcome, rounds: round, finalWord, finalCorrectDefinition });
       }, 2200);
       timersRef.current.push(t);
     }
