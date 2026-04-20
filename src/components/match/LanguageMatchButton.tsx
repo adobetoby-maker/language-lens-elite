@@ -8,16 +8,11 @@ export function LanguageMatchButton({ onClick }: { onClick: () => void }) {
     <button
       onClick={onClick}
       aria-label="Open Language Match"
-      className="lm-btn group relative inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground transition-transform"
+      className="group relative inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground transition-colors hover:border-gold hover:text-gold"
     >
-      {/* Rotating gold shimmer border */}
-      <span aria-hidden className="lm-btn-border" />
-      {/* Inner surface */}
-      <span className="lm-btn-inner relative z-10 inline-flex items-center gap-2 rounded-full bg-card px-3.5 py-1.5">
-        <RankBadge tier={tier} badge={badge} size="sm" />
-        <span className="text-base leading-none">⚔️</span>
-        <span>Language Match</span>
-      </span>
+      <RankBadge tier={tier} badge={badge} size="sm" />
+      <span className="text-base leading-none">⚔️</span>
+      <span>Language Match</span>
     </button>
   );
 }
