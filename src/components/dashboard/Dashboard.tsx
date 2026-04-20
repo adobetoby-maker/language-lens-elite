@@ -1,11 +1,18 @@
 import { useMemo } from "react";
-import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles } from "lucide-react";
+import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles, Swords } from "lucide-react";
 import {
   ACHIEVEMENTS,
   nextTierProgress,
   useApp,
   type Language,
 } from "@/state/app-state";
+import {
+  POINTS_PER_TIER,
+  RANK_BADGE,
+  RANK_COLOR,
+  RANK_TITLE,
+  useMatch,
+} from "@/state/match-state";
 import { CountUp } from "@/components/CountUp";
 import { flagFor } from "@/state/library-state";
 
