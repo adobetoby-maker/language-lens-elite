@@ -254,48 +254,50 @@ export function MatchmakingOverlay({
         )}
 
         {/* Cards arena */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-          <div className="relative flex w-full max-w-5xl items-center justify-center gap-10">
-            {playerCard}
+        {phase !== "battling" && phase !== "result" && (
+          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
+            <div className="relative flex w-full max-w-5xl items-center justify-center gap-10">
+              {playerCard}
 
-            {/* VS Badge */}
-            {(phase === "found" || phase === "countdown") && (
-              <div
-                key="vs"
-                className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 vs-drop"
-              >
-                <div className="font-display text-7xl italic text-gold drop-shadow-[0_0_30px_rgba(201,168,76,0.7)]">
-                  VS
+              {/* VS Badge */}
+              {(phase === "found" || phase === "countdown") && (
+                <div
+                  key="vs"
+                  className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 vs-drop"
+                >
+                  <div className="font-display text-7xl italic text-gold drop-shadow-[0_0_30px_rgba(201,168,76,0.7)]">
+                    VS
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {opponentCard}
+              {opponentCard}
+            </div>
+
+            {/* Below-cards CTA / status */}
+            <div className="mt-12 flex min-h-[120px] flex-col items-center justify-center text-center">
+              {phase === "idle" && (
+                <button
+                  onClick={startSearch}
+                  className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
+                >
+                  <span>⚔️</span>
+                  <span>Find Match</span>
+                </button>
+              )}
+
+              {phase === "searching" && (
+                <SearchingState onCancel={cancelSearch} />
+              )}
+
+              {phase === "found" && (
+                <div className="font-mono text-xs uppercase tracking-[0.3em] text-gold/80">
+                  Opponent located · Preparing the arena
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Below-cards CTA / status */}
-          <div className="mt-12 flex min-h-[120px] flex-col items-center justify-center text-center">
-            {phase === "idle" && (
-              <button
-                onClick={startSearch}
-                className="find-match-btn inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#E5C158] via-gold to-[#E5C158] px-10 py-5 font-display text-2xl italic text-[#1a1208] shadow-[0_0_60px_-5px_rgba(201,168,76,0.6)] transition-transform hover:scale-105 active:scale-100"
-              >
-                <span>⚔️</span>
-                <span>Find Match</span>
-              </button>
-            )}
-
-            {phase === "searching" && (
-              <SearchingState onCancel={cancelSearch} />
-            )}
-
-            {phase === "found" && (
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-gold/80">
-                Opponent located · Preparing the arena
-              </div>
-            )}
-          </div>
-        </div>
+        )}
 
         {/* Countdown layer */}
         {phase === "countdown" && (
