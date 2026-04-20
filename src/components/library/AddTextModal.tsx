@@ -35,6 +35,8 @@ export function AddTextModal({
   const [chunks, setChunks] = useState<BookChunk[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  type ChapterStatus = "pending" | "translating" | "done" | "error";
+  const [chapterStatuses, setChapterStatuses] = useState<ChapterStatus[]>([]);
   const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
