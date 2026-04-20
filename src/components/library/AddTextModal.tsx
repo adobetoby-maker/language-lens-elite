@@ -73,6 +73,7 @@ export function AddTextModal({
           title: title.trim() || "Untitled",
           text: text.trim(),
           targetLanguage: state.selectedLanguage,
+          nativeLanguage: state.nativeLanguage,
         },
       });
       if (res.error || !res.data) {
