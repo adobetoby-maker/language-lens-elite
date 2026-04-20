@@ -88,6 +88,18 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "author", title: "Author ✍️", hint: "Add a custom text to your library" },
   { id: "polyglot", title: "Polyglot ⭐", hint: "Switch to 3 different languages" },
   { id: "week-streak", title: "Week Streak 🔥", hint: "Keep a 7-day streak" },
+  // ⚔️ Language Match achievements
+  { id: "first-blood", title: "First Blood ⚔️", hint: "Play your first Language Match" },
+  { id: "victorious", title: "Victorious 🏆", hint: "Win your first Language Match" },
+  { id: "on-a-roll", title: "On a Roll 🔥", hint: "Win 3 matches in a row" },
+  { id: "resilient", title: "Resilient 💪", hint: "Lose, then win the next match" },
+  { id: "long-game", title: "The Long Game 🕰️", hint: "Survive to Round 7+ in a single match" },
+  { id: "silver-tongue", title: "Silver Tongue 🥈", hint: "Reach Silver rank" },
+  { id: "golden-word", title: "Golden Word 🥇", hint: "Reach Gold rank" },
+  { id: "platinum-standard", title: "Platinum Standard 💎", hint: "Reach Platinum rank" },
+  { id: "beyond-diamond", title: "Beyond Diamond 💠", hint: "Reach Diamond rank" },
+  { id: "undisputed", title: "Undisputed 🏆", hint: "Reach Champion rank" },
+  { id: "unreal", title: "UNREAL 🌟", hint: "Reach Unreal rank" },
 ];
 
 export interface AppState {
