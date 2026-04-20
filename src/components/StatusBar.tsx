@@ -8,14 +8,14 @@ export function StatusBar() {
 
   return (
     <div className="border-b border-border/50 bg-card/40">
-      <div className="mx-auto flex max-w-7xl items-center justify-end gap-8 px-6 py-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-end gap-3 overflow-x-auto px-4 py-2.5 sm:gap-8 sm:px-6 sm:py-3 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* Streak */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           <Flame
             className={`h-3.5 w-3.5 ${fiery ? "text-gold" : "text-gold/80"}`}
             strokeWidth={1.8}
           />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:inline">
             Streak
           </span>
           <span
@@ -23,15 +23,15 @@ export function StatusBar() {
               fiery ? "font-bold text-gold" : "font-medium text-foreground"
             }`}
           >
-            {state.streak} day{state.streak === 1 ? "" : "s"}
+            {state.streak}d
           </span>
         </div>
-        <span className="h-3 w-px bg-border/70" />
+        <span className="h-3 w-px shrink-0 bg-border/70" />
 
         {/* XP */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           <Star className="h-3.5 w-3.5 text-gold/80" strokeWidth={1.8} />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:inline">
             XP
           </span>
           <CountUp
@@ -39,12 +39,12 @@ export function StatusBar() {
             className="font-mono text-xs font-medium text-foreground"
           />
         </div>
-        <span className="h-3 w-px bg-border/70" />
+        <span className="h-3 w-px shrink-0 bg-border/70" />
 
         {/* Level */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           <Medal className="h-3.5 w-3.5 text-gold/80" strokeWidth={1.8} />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:inline">
             Level
           </span>
           <span className="font-mono text-xs font-medium text-foreground">
@@ -52,6 +52,7 @@ export function StatusBar() {
           </span>
         </div>
       </div>
+    </div>
     </div>
   );
 }

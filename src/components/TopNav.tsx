@@ -33,16 +33,16 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl [padding-top:env(safe-area-inset-top)]">
+      <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:h-20 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0">
         {/* Logo */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <Sparkle
             className="h-5 w-5 text-gold"
             strokeWidth={1.5}
             fill="currentColor"
           />
-          <span className="font-display text-2xl font-semibold tracking-tight">
+          <span className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
             LinguaLens
           </span>
         </div>
@@ -50,7 +50,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
         {/* Language selector */}
         <DropdownMenu>
           <DropdownMenuTrigger
-            className="group inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-5 py-2 font-mono text-xs uppercase tracking-[0.18em] text-foreground/80 transition-all hover:border-gold/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="group order-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-all hover:border-gold/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-5 sm:text-xs"
           >
             <span className="text-gold">◈</span>
             <span>{state.selectedLanguage}</span>
@@ -79,12 +79,12 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Native language picker */}
           <DropdownMenu>
             <DropdownMenuTrigger
               title={`Native language: ${state.nativeLanguage}`}
-              className="group inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-gold/50 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group hidden items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-gold/50 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
             >
               <span className="opacity-60">native</span>
               <span className="text-foreground/90">{state.nativeLanguage}</span>
@@ -120,7 +120,9 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
           </DropdownMenu>
 
           {/* Voice picker */}
-          <VoicePicker />
+          <div className="hidden sm:block">
+            <VoicePicker />
+          </div>
 
           {/* Theme toggle */}
           <button
@@ -142,7 +144,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
 
       {/* Tabs */}
       <nav className="border-t border-border/40">
-        <div className="mx-auto flex max-w-7xl items-center gap-2 px-6">
+        <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-3 sm:gap-2 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {TABS.map((tab) => {
             const active = state.currentTab === tab.key;
             return (
@@ -150,14 +152,14 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
                 key={tab.key}
                 onClick={() => dispatch({ type: "SET_TAB", payload: tab.key })}
                 data-active={active}
-                className="gold-underline relative px-5 py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground"
+                className="gold-underline relative shrink-0 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground sm:px-5 sm:py-4 sm:text-[11px] sm:tracking-[0.22em]"
               >
                 {tab.label}
               </button>
             );
           })}
           {onOpenMatch && (
-            <div className="ml-2">
+            <div className="ml-1 shrink-0 sm:ml-2">
               <LanguageMatchButton onClick={onOpenMatch} />
             </div>
           )}
