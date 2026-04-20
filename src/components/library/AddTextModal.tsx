@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Loader2, Sparkle } from "lucide-react";
+import { BookUp, Loader2, Sparkle } from "lucide-react";
+import { extractFromFile } from "@/lib/extract-book";
 import {
   Dialog,
   DialogContent,
@@ -30,13 +31,37 @@ export function AddTextModal({
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const reset = () => {
     setTitle("");
     setText("");
     setError(null);
     setLoading(false);
+    setExtracting(false);
+  };
+
+  const onPickFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    e.target.value = "";
+    if (!f) return;
+    if (f.size > 25 * 1024 * 1024) {
+      setError("File too large (max 25 MB).");
+      return;
+    }
+    setError(null);
+    setExtracting(true);
+    try {
+      const book = await extractFromFile(f);
+      if (!title.trim()) setTitle(book.title);
+      setText(book.text);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Couldn't read that file.");
+    } finally {
+      setExtracting(false);
+    }
   };
 
   const submit = async () => {
@@ -95,9 +120,9 @@ export function AddTextModal({
     >
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">Add Your Own Text</DialogTitle>
+          <DialogTitle className="font-display text-2xl">Add Text or Book</DialogTitle>
           <DialogDescription className="font-mono text-[11px] uppercase tracking-[0.18em]">
-            We'll translate &amp; align it to {state.selectedLanguage}
+            Paste a passage or upload a PDF / EPUB / TXT — aligned to {state.selectedLanguage}
           </DialogDescription>
         </DialogHeader>
 
@@ -117,12 +142,43 @@ export function AddTextModal({
               onChange={(e) => setTitle(e.target.value)}
               className="font-display"
             />
+            <div className="flex items-center gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.epub,.txt,application/pdf,application/epub+zip,text/plain"
+                onChange={onPickFile}
+                className="hidden"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={extracting}
+                className="border-gold/40 text-gold hover:bg-gold/10"
+              >
+                {extracting ? (
+                  <Loader2 className="mr-1 h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <BookUp className="mr-1 h-3.5 w-3.5" />
+                )}
+                {extracting ? "Reading file…" : "Upload PDF / EPUB / TXT"}
+              </Button>
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                or paste below
+              </span>
+            </div>
             <Textarea
               placeholder="Paste any passage in English or your target language…"
               value={text}
               onChange={(e) => setText(e.target.value)}
               className="min-h-[200px] font-display text-base"
             />
+            {text.length > 0 && (
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                {text.length.toLocaleString()} characters ready
+              </p>
+            )}
             {error && (
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-destructive">
                 {error}
