@@ -69,7 +69,7 @@ function Index() {
                     <div className="min-h-screen bg-background text-foreground">
                       <TopNav onOpenMatch={() => setMatchOpen(true)} />
                       <StatusBar />
-                      <main className="mx-auto max-w-7xl px-6 py-12">
+                      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-12 [padding-bottom:max(1.5rem,env(safe-area-inset-bottom))]">
                         <TabShell />
                       </main>
                     </div>

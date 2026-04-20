@@ -28,7 +28,10 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "theme-color", content: "#0b0d12" },
       { title: "Lovable App" },
       { name: "description", content: "LinguaLens Elite offers a premium language learning experience with a sophisticated interface." },
       { name: "author", content: "Lovable" },
