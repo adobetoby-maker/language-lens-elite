@@ -47,6 +47,9 @@ interface BattleArenaProps {
 export interface BattleResult {
   outcome: "victory" | "defeat" | "tie";
   rounds: number;
+  /** The word + correct definition from the round that ENDED the match. */
+  finalWord: string;
+  finalCorrectDefinition: string;
 }
 
 type Phase =
