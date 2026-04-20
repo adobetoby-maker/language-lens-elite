@@ -293,6 +293,8 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "cefrLevelsCompleted",
   "speakSecondsByLang",
   "xpSessions",
+  "challengesCleared",
+  "recentChallenges",
 ];
 
 function todayKey() {
