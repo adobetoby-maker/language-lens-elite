@@ -5,24 +5,26 @@ const TranslateInput = z.object({
   text: z.string().min(10).max(8000),
   title: z.string().min(1).max(120),
   targetLanguage: z.string().min(1).max(40),
+  nativeLanguage: z.string().min(1).max(40).optional(),
 });
 
 export interface TranslatedText {
   detectedLanguage: string;
   title: string;
-  leftPaneText: string[]; // English
+  leftPaneText: string[]; // Native language
   rightPaneText: string[]; // Target language
 }
 
 const CultureInput = z.object({
   country: z.string().min(1).max(60),
   targetLanguage: z.string().min(1).max(40),
+  nativeLanguage: z.string().min(1).max(40).optional(),
 });
 
 export interface CultureEssay {
   countryName: string;
   targetLanguageText: string[];
-  englishText: string[];
+  englishText: string[]; // Native-language text (kept name for back-compat)
 }
 
 const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
@@ -85,9 +87,10 @@ const sentenceArraySchema = {
 export const translateCustomText = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => TranslateInput.parse(i))
   .handler(async ({ data }) => {
+    const native = data.nativeLanguage ?? "English";
     const system =
-      "You are a professional literary translator. Always respond by calling the provided tool. Split text into clean, aligned sentences so each English sentence pairs index-by-index with its translation.";
-    const user = `Here is a text titled "${data.title}":\n\n${data.text}\n\nDetect the source language. Produce an English version (leftPaneText) and a ${data.targetLanguage} version (rightPaneText). Both arrays must have the SAME length so each index pairs together. Keep sentences short and natural.`;
+      "You are a professional literary translator. Always respond by calling the provided tool. Split text into clean, aligned sentences so each native-language sentence pairs index-by-index with its translation.";
+    const user = `Here is a text titled "${data.title}":\n\n${data.text}\n\nDetect the source language. Produce a ${native} version (leftPaneText) and a ${data.targetLanguage} version (rightPaneText). Both arrays must have the SAME length so each index pairs together. Keep sentences short and natural.`;
     return callTool<TranslatedText>(system, user, "return_translation", {
       type: "object",
       properties: {
@@ -104,9 +107,10 @@ export const translateCustomText = createServerFn({ method: "POST" })
 export const generateCultureEssay = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => CultureInput.parse(i))
   .handler(async ({ data }) => {
+    const native = data.nativeLanguage ?? "English";
     const system =
-      "You are a warm, vivid cultural essayist and translator. Always respond by calling the provided tool. Sentences must align index-by-index between target language and English.";
-    const user = `Write a ~400-word essay IN ${data.targetLanguage} about ${data.country}, covering geography, culture, food, famous landmarks, and daily life. Make it warm, vivid, and educational. Then provide an English translation. Both arrays MUST have the same length so each index pairs together.`;
+      "You are a warm, vivid cultural essayist and translator. Always respond by calling the provided tool. Sentences must align index-by-index between the two languages.";
+    const user = `Write a ~400-word essay IN ${data.targetLanguage} about ${data.country}, covering geography, culture, food, famous landmarks, and daily life. Make it warm, vivid, and educational. Then provide a ${native} translation (use the field name "englishText" for the ${native} version). Both arrays MUST have the same length so each index pairs together.`;
     return callTool<CultureEssay>(system, user, "return_culture_essay", {
       type: "object",
       properties: {
