@@ -116,6 +116,7 @@ export function BattleArena({
   const [betweenLabel, setBetweenLabel] = useState<string | null>(null);
 
   const seenWordsRef = useRef<string[]>([]);
+  const wordHistoryRef = useRef<ReviewedWord[]>([]);
   const timersRef = useRef<number[]>([]);
   const remainingMsRef = useRef<number>(0);
   const tickRef = useRef<number | null>(null);
@@ -252,6 +253,16 @@ export function BattleArena({
     setResultLine(line);
     setResultKind(kind);
 
+    // Record this round's word in the review history
+    wordHistoryRef.current.push({
+      word: data.word.word,
+      correctDefinition: data.word.correctDefinition,
+      round,
+      cefr,
+      playerCorrect: playerRight,
+      language,
+    });
+
     if (kind === "both") {
       const t = window.setTimeout(() => advanceRound(), 1700);
       timersRef.current.push(t);
@@ -264,13 +275,19 @@ export function BattleArena({
       const finalCorrectDefinition = data.word.correctDefinition;
       const t = window.setTimeout(() => {
         setPhase("ended");
-        onComplete({ outcome, rounds: round, finalWord, finalCorrectDefinition });
+        onComplete({
+          outcome,
+          rounds: round,
+          finalWord,
+          finalCorrectDefinition,
+          wordHistory: [...wordHistoryRef.current],
+        });
       }, 2200);
       timersRef.current.push(t);
     }
 
-    // XP for any battle round played
-    dispatch({ type: "ADD_XP", payload: playerRight ? 8 : 2 });
+    // +3 XP per correct answer (per spec). Effort-only XP comes from match outcome in MatchmakingOverlay.
+    if (playerRight) dispatch({ type: "ADD_XP", payload: 3 });
   };
 
   const advanceRound = () => {
