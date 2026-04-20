@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { Toaster } from "sonner";
 import { AppProvider, useApp } from "@/state/app-state";
 import { LibraryProvider } from "@/state/library-state";
@@ -8,12 +8,14 @@ import { GrammarProvider } from "@/state/grammar-state";
 import { SpeechProvider } from "@/state/speech-state";
 import { SpeakProvider } from "@/state/speak-state";
 import { TutorProvider } from "@/state/tutor-state";
+import { MatchProvider } from "@/state/match-state";
 import { TopNav } from "@/components/TopNav";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
 import { CefrCompletionBridge } from "@/components/CefrCompletionBridge";
+import { MatchmakingOverlay } from "@/components/match/MatchmakingOverlay";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -49,41 +51,45 @@ function SpeakBridge({ children }: { children: ReactNode }) {
 }
 
 function Index() {
+  const [matchOpen, setMatchOpen] = useState(false);
   return (
     <AppProvider>
-      <LibraryProvider>
-        <NotesProvider>
-          <GrammarProvider>
-            <SpeechBridge>
-              <SpeakBridge>
-                <TutorProvider>
-                  <div className="min-h-screen bg-background text-foreground">
-                    <TopNav />
-                    <StatusBar />
-                    <main className="mx-auto max-w-7xl px-6 py-12">
-                      <TabShell />
-                    </main>
-                  </div>
-                  <TutorPanel />
-                  <LevelUpOverlay />
-                  <CefrCompletionBridge />
-                </TutorProvider>
-                <Toaster
-                  theme="dark"
-                  position="bottom-right"
-                  toastOptions={{
-                    style: {
-                      background: "var(--card)",
-                      color: "var(--foreground)",
-                      border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                    },
-                  }}
-                />
-              </SpeakBridge>
-            </SpeechBridge>
-          </GrammarProvider>
-        </NotesProvider>
-      </LibraryProvider>
+      <MatchProvider>
+        <LibraryProvider>
+          <NotesProvider>
+            <GrammarProvider>
+              <SpeechBridge>
+                <SpeakBridge>
+                  <TutorProvider>
+                    <div className="min-h-screen bg-background text-foreground">
+                      <TopNav onOpenMatch={() => setMatchOpen(true)} />
+                      <StatusBar />
+                      <main className="mx-auto max-w-7xl px-6 py-12">
+                        <TabShell />
+                      </main>
+                    </div>
+                    <TutorPanel />
+                    <LevelUpOverlay />
+                    <CefrCompletionBridge />
+                    <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
+                  </TutorProvider>
+                  <Toaster
+                    theme="dark"
+                    position="bottom-right"
+                    toastOptions={{
+                      style: {
+                        background: "var(--card)",
+                        color: "var(--foreground)",
+                        border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                      },
+                    }}
+                  />
+                </SpeakBridge>
+              </SpeechBridge>
+            </GrammarProvider>
+          </NotesProvider>
+        </LibraryProvider>
+      </MatchProvider>
     </AppProvider>
   );
 }
