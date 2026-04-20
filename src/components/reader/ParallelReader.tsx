@@ -608,7 +608,7 @@ export function ParallelReader() {
               </span>
               <span className="font-display text-xs italic text-muted-foreground">target</span>
             </div>
-            <div ref={rightRef} className="custom-scroll h-[62vh] overflow-y-auto px-7 py-8">
+            <div ref={rightRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
               <Pane
                 pane="right"
                 sentences={activeSentences.map((s) => s.target)}
