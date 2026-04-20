@@ -119,6 +119,8 @@ export function MatchmakingOverlay({
       setOpponent(null);
       setCountdown(3);
       setMatchResult(null);
+      setShowReview(false);
+      setShowLeaderboard(false);
     }
   }, [open]);
 
