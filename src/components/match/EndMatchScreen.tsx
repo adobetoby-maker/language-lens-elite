@@ -8,6 +8,15 @@ import {
 import { RankBadge } from "./RankBadge";
 import { CountUp } from "@/components/CountUp";
 
+function useDeferredCount(target: number, delay = 250) {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    const t = window.setTimeout(() => setV(target), delay);
+    return () => window.clearTimeout(t);
+  }, [target, delay]);
+  return v;
+}
+
 export type Outcome = "victory" | "defeat" | "tie";
 
 export interface EndMatchProps {
