@@ -22,7 +22,7 @@ export function LibraryDrawer({
   open: boolean;
   onClose: () => void;
 }) {
-  const { state, dispatch } = useLibrary();
+  const { state, dispatch, removeCustomEntry } = useLibrary();
   const [addOpen, setAddOpen] = useState(false);
 
   const grouped = {
@@ -114,7 +114,7 @@ export function LibraryDrawer({
             emptyHint="Paste any passage to begin."
             onDelete={(id) => {
               if (window.confirm("Remove this book from your library?")) {
-                dispatch({ type: "REMOVE_ENTRY", payload: id });
+                void removeCustomEntry(id);
               }
             }}
           />

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { VoicePicker } from "./VoicePicker";
 import { LanguageMatchButton } from "./match/LanguageMatchButton";
+import { AuthButton } from "./auth/AuthButton";
 
 const LANGUAGES: Language[] = [
   "Spanish",
@@ -133,6 +134,9 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
               <Moon className="h-4 w-4" strokeWidth={1.6} />
             )}
           </button>
+
+          {/* Auth button */}
+          <AuthButton />
         </div>
       </div>
 

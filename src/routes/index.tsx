@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { Toaster } from "sonner";
 import { AppProvider, useApp } from "@/state/app-state";
+import { AuthProvider } from "@/state/auth-state";
 import { LibraryProvider } from "@/state/library-state";
 import { NotesProvider } from "@/state/notes-state";
 import { GrammarProvider } from "@/state/grammar-state";
@@ -56,6 +57,7 @@ function Index() {
   const [matchOpen, setMatchOpen] = useState(false);
   return (
     <AppProvider>
+      <AuthProvider>
       <MatchProvider>
         <LeaderboardProvider>
         <LibraryProvider>
@@ -95,6 +97,7 @@ function Index() {
         </LibraryProvider>
         </LeaderboardProvider>
       </MatchProvider>
+      </AuthProvider>
     </AppProvider>
   );
 }

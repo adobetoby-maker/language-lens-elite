@@ -25,7 +25,7 @@ export function AddTextModal({
   onOpenChange: (v: boolean) => void;
 }) {
   const { state, dispatch } = useApp();
-  const { dispatch: libDispatch } = useLibrary();
+  const { addCustomEntry } = useLibrary();
   const translate = useServerFn(translateCustomText);
 
   const [title, setTitle] = useState("");
@@ -133,27 +133,21 @@ export function AddTextModal({
 
       const id = `custom-${Date.now()}`;
       const isMulti = chapters.length > 1;
-      libDispatch({
-        type: "ADD_ENTRY",
-        payload: {
-          id,
-          title: title.trim() || "Untitled",
-          subtitle: isMulti
-            ? `${chapters.length} chapters · ${detected || "detected"}`
-            : `Detected: ${detected || "—"}`,
-          language: state.selectedLanguage,
-          targetLabel: state.selectedLanguage,
-          // Mirror chapter 0 into `sentences` for back-compat with anything
-          // that reads it directly.
-          sentences: chapters[0].sentences,
-          chapters,
-          section: "custom",
-          flag: flagFor(state.selectedLanguage),
-          available: true,
-          createdAt: Date.now(),
-        },
+      await addCustomEntry({
+        id,
+        title: title.trim() || "Untitled",
+        subtitle: isMulti
+          ? `${chapters.length} chapters · ${detected || "detected"}`
+          : `Detected: ${detected || "—"}`,
+        language: state.selectedLanguage,
+        targetLabel: state.selectedLanguage,
+        sentences: chapters[0].sentences,
+        chapters,
+        section: "custom",
+        flag: flagFor(state.selectedLanguage),
+        available: true,
+        createdAt: Date.now(),
       });
-      libDispatch({ type: "SELECT", payload: id });
       dispatch({ type: "ADD_XP", payload: 15 });
       dispatch({ type: "INC_COUNTER", payload: "customTextsAdded" });
       onOpenChange(false);
