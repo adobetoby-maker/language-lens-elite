@@ -68,8 +68,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
+const fallbackAuth: AuthContextValue = {
+  user: null,
+  session: null,
+  loading: false,
+  signUp: async () => ({ error: "Auth not ready" }),
+  signIn: async () => ({ error: "Auth not ready" }),
+  signOut: async () => {},
+};
+
 export function useAuth() {
   const c = useContext(Ctx);
-  if (!c) throw new Error("useAuth must be used inside AuthProvider");
-  return c;
+  // During SSR or if used outside provider, return a safe fallback so that
+  // consumers (e.g. LibraryProvider) don't crash the render tree.
+  return c ?? fallbackAuth;
 }
