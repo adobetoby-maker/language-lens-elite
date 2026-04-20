@@ -94,8 +94,31 @@ export function MatchmakingOverlay({
       setPhase("idle");
       setOpponent(null);
       setCountdown(3);
+      setMatchResult(null);
     }
   }, [open]);
+
+  const handleBattleComplete = (result: BattleResult) => {
+    let delta = 0;
+    if (result.outcome === "victory") {
+      delta = 25;
+      addPoints(25);
+    } else if (result.outcome === "defeat") {
+      delta = -15;
+      removePoints(15);
+    } else {
+      delta = 5;
+      addPoints(5);
+    }
+    setMatchResult({ outcome: result.outcome, rounds: result.rounds, pointsDelta: delta });
+    setPhase("result" as MatchPhase);
+  };
+
+  const returnToMatchmaking = () => {
+    setMatchResult(null);
+    setOpponent(null);
+    setPhase("idle");
+  };
 
   // Esc to close (only when not mid-countdown so we don't strand the player)
   useEffect(() => {
