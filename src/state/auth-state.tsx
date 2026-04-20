@@ -31,10 +31,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(s);
     });
 
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        setSession(data.session);
+      })
+      .catch(async (err) => {
+        // Stale/invalid refresh token from a previous session — clear it silently.
+        if (err?.code === "refresh_token_not_found" || err?.status === 400) {
+          try {
+            await supabase.auth.signOut();
+          } catch {
+            /* noop */
+          }
+        }
+        setSession(null);
+      })
+      .finally(() => setLoading(false));
 
     return () => {
       sub.subscription.unsubscribe();
