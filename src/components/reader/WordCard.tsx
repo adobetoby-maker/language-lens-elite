@@ -95,6 +95,7 @@ export function WordCard({
         word: request.word,
         sentence: request.sentence,
         language: request.language,
+        nativeLanguage: state.nativeLanguage,
       },
     })
       .then((res) => {
@@ -107,7 +108,7 @@ export function WordCard({
     return () => {
       active = false;
     };
-  }, [request.word, request.sentence, request.language, lookup]);
+  }, [request.word, request.sentence, request.language, state.nativeLanguage, lookup]);
 
   const speak = () => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
