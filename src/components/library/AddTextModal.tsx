@@ -90,41 +90,86 @@ export function AddTextModal({
 
     setLoading(true);
     setProgress({ done: 0, total: sourceChunks.length });
+    setChapterStatuses(sourceChunks.map(() => "pending" as ChapterStatus));
 
     try {
-      const chapters: BookChapter[] = [];
+      const results: (BookChapter | null)[] = new Array(sourceChunks.length).fill(null);
       let detected = "";
-      for (let i = 0; i < sourceChunks.length; i++) {
-        const c = sourceChunks[i];
-        const res = await translate({
-          data: {
-            title: c.title,
-            text: c.text,
-            targetLanguage: state.selectedLanguage,
-            nativeLanguage: state.nativeLanguage,
-          },
-        });
-        if (res.error || !res.data) {
-          // If at least one chapter succeeded, keep what we have and warn.
-          if (chapters.length === 0) {
-            setError(res.error ?? "Failed to translate text.");
-            setLoading(false);
-            setProgress(null);
-            return;
+      let firstError: string | null = null;
+      let doneCount = 0;
+      const CONCURRENCY = 3;
+      let cursor = 0;
+
+      const worker = async () => {
+        while (true) {
+          const i = cursor++;
+          if (i >= sourceChunks.length) return;
+          const c = sourceChunks[i];
+          setChapterStatuses((prev) => {
+            const next = [...prev];
+            next[i] = "translating";
+            return next;
+          });
+          try {
+            const res = await translate({
+              data: {
+                title: c.title,
+                text: c.text,
+                targetLanguage: state.selectedLanguage,
+                nativeLanguage: state.nativeLanguage,
+              },
+            });
+            if (res.error || !res.data) {
+              if (!firstError) firstError = res.error ?? "translation failed";
+              setChapterStatuses((prev) => {
+                const next = [...prev];
+                next[i] = "error";
+                return next;
+              });
+            } else {
+              if (!detected) detected = res.data.detectedLanguage;
+              const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
+              results[i] = {
+                title: c.title,
+                sentences: Array.from({ length: len }, (_, j) => ({
+                  en: res.data!.leftPaneText[j],
+                  target: res.data!.rightPaneText[j],
+                })),
+              };
+              setChapterStatuses((prev) => {
+                const next = [...prev];
+                next[i] = "done";
+                return next;
+              });
+            }
+          } catch (e) {
+            if (!firstError) firstError = e instanceof Error ? e.message : "translation failed";
+            setChapterStatuses((prev) => {
+              const next = [...prev];
+              next[i] = "error";
+              return next;
+            });
+          } finally {
+            doneCount++;
+            setProgress({ done: doneCount, total: sourceChunks.length });
           }
-          setError(`Stopped at chapter ${i + 1}: ${res.error ?? "translation failed"}`);
-          break;
         }
-        if (!detected) detected = res.data.detectedLanguage;
-        const len = Math.min(res.data.leftPaneText.length, res.data.rightPaneText.length);
-        chapters.push({
-          title: c.title,
-          sentences: Array.from({ length: len }, (_, j) => ({
-            en: res.data!.leftPaneText[j],
-            target: res.data!.rightPaneText[j],
-          })),
-        });
-        setProgress({ done: i + 1, total: sourceChunks.length });
+      };
+
+      await Promise.all(
+        Array.from({ length: Math.min(CONCURRENCY, sourceChunks.length) }, () => worker()),
+      );
+
+      const chapters: BookChapter[] = results.filter((r): r is BookChapter => r !== null);
+
+      if (chapters.length === 0) {
+        setError(firstError ?? "Translation produced no chapters.");
+        setLoading(false);
+        setProgress(null);
+        return;
+      }
+      if (firstError && chapters.length < sourceChunks.length) {
+        setError(`${sourceChunks.length - chapters.length} chapter(s) failed: ${firstError}`);
       }
 
       if (chapters.length === 0) {
