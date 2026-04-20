@@ -285,6 +285,18 @@ export function SpeakLearn() {
         celebrate();
         const bonus = challenge.kind === "reach" ? 30 : 20;
         dispatch({ type: "ADD_XP", payload: bonus });
+        dispatch({
+          type: "RECORD_CHALLENGE",
+          payload: {
+            id: `ch-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            kind: challenge.kind,
+            hint: challenge.hint,
+            sentence: trimmed,
+            language,
+            xp: bonus,
+            clearedAt: Date.now(),
+          },
+        });
         toast(
           challenge.kind === "reach"
             ? "🎉 Reach word nailed!"
