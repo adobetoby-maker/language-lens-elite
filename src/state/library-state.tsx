@@ -314,7 +314,6 @@ function entryToInsert(entry: LibraryEntry, userId: string) {
       ? entry.chapters
       : [{ title: entry.title, sentences: entry.sentences }];
   return {
-    id: entry.id.startsWith("custom-") ? undefined : undefined, // let DB generate UUID
     user_id: userId,
     title: entry.title,
     subtitle: entry.subtitle ?? "",
@@ -323,7 +322,8 @@ function entryToInsert(entry: LibraryEntry, userId: string) {
     flag: entry.flag,
     section: entry.section,
     available: entry.available,
-    chapters,
+    // Supabase typegen treats jsonb as `Json`. Our shape is JSON-serializable.
+    chapters: chapters as unknown as never,
   };
 }
 
