@@ -242,14 +242,16 @@ export function MatchmakingOverlay({
         )}
 
         {/* Header */}
-        <div className="absolute inset-x-0 top-10 z-10 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
-            ⚔ Language Match ⚔
+        {phase !== "battling" && phase !== "result" && (
+          <div className="absolute inset-x-0 top-10 z-10 text-center">
+            <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
+              ⚔ Language Match ⚔
+            </div>
+            <h1 className="mt-2 font-display text-4xl italic text-white">
+              The Arena
+            </h1>
           </div>
-          <h1 className="mt-2 font-display text-4xl italic text-white">
-            The Arena
-          </h1>
-        </div>
+        )}
 
         {/* Cards arena */}
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
