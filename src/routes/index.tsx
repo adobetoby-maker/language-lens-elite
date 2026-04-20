@@ -16,6 +16,7 @@ import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
 import { CefrCompletionBridge } from "@/components/CefrCompletionBridge";
 import { MatchmakingOverlay } from "@/components/match/MatchmakingOverlay";
+import { MatchAchievementsBridge } from "@/components/match/MatchAchievementsBridge";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -72,6 +73,7 @@ function Index() {
                     <LevelUpOverlay />
                     <CefrCompletionBridge />
                     <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
+                    <MatchAchievementsBridge />
                   </TutorProvider>
                   <Toaster
                     theme="dark"
