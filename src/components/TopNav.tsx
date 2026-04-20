@@ -118,8 +118,6 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
           )}
         </div>
       </nav>
-        </div>
-      </nav>
     </header>
   );
 }
