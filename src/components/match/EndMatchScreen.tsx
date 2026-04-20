@@ -65,7 +65,7 @@ function VictoryScreen({
         </div>
 
         <div className="mt-6 font-display italic text-3xl text-emerald-300">
-          +<CountUp value={pointsDelta} duration={900} /> Ranked Points
+          +<CountUp value={animated} duration={900} /> Ranked Points
         </div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
           +25 LinguaLens XP
