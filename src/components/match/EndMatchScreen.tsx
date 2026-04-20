@@ -116,7 +116,7 @@ function DefeatScreen({
 
         <div className="mt-6 font-display italic text-3xl text-red-300">
           {pointsDelta < 0 ? "−" : ""}
-          <CountUp value={Math.abs(pointsDelta)} duration={800} /> Ranked Points
+          <CountUp value={animated} duration={800} /> Ranked Points
         </div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
           +10 LinguaLens XP — effort always counts
