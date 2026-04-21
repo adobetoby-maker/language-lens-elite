@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Library, Type, Languages } from "lucide-react";
+import { Library, Type, Languages, Maximize2, Minimize2 } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -48,6 +48,7 @@ export function ParallelReader() {
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [autoScroll, setAutoScroll] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
@@ -566,6 +567,15 @@ export function ParallelReader() {
               />
             </button>
           </label>
+          <button
+            type="button"
+            onClick={() => setFullscreen((v) => !v)}
+            title={fullscreen ? "Exit fullscreen reader" : "Fullscreen target language only"}
+            className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/15"
+          >
+            {fullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
+            {fullscreen ? "Exit" : "Focus"}
+          </button>
         </div>
       </div>
 
@@ -576,39 +586,62 @@ export function ParallelReader() {
       />
 
       {/* Reader */}
-      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative">
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
-              <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                {state.nativeLanguage}
-              </span>
-              <span className="font-display text-xs italic text-muted-foreground">native</span>
+      <div className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur ${fullscreen ? "fixed inset-2 z-40 md:inset-6" : ""}`}>
+        <div className={fullscreen ? "grid grid-cols-1" : "grid grid-cols-1 md:grid-cols-2"}>
+          {!fullscreen && (
+            <div className="relative">
+              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
+                <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                  {state.nativeLanguage}
+                </span>
+                <span className="font-display text-xs italic text-muted-foreground">native</span>
+              </div>
+              <div ref={leftRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
+                <Pane
+                  pane="left"
+                  sentences={activeSentences.map((s) => s.en)}
+                  size={size}
+                  annotations={annotations}
+                  activeSentenceIndex={activeSentenceIndex}
+                  onWordClick={handleWord}
+                />
+              </div>
             </div>
-            <div ref={leftRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
-              <Pane
-                pane="left"
-                sentences={activeSentences.map((s) => s.en)}
-                size={size}
-                annotations={annotations}
-                activeSentenceIndex={activeSentenceIndex}
-                onWordClick={handleWord}
-              />
+          )}
+
+          {!fullscreen && (
+            <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px md:block">
+              <div className="h-full w-full bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
             </div>
-          </div>
+          )}
 
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px md:block">
-            <div className="h-full w-full bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
-          </div>
-
-          <div className="relative border-t border-border/50 md:border-l-0 md:border-t-0">
+          <div className={`relative ${fullscreen ? "" : "border-t border-border/50 md:border-l-0 md:border-t-0"}`}>
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
                 {selected.targetLabel}
               </span>
-              <span className="font-display text-xs italic text-muted-foreground">target</span>
+              <div className="flex items-center gap-3">
+                <span className="font-display text-xs italic text-muted-foreground">target</span>
+                {fullscreen && (
+                  <button
+                    type="button"
+                    onClick={() => setFullscreen(false)}
+                    title="Exit fullscreen"
+                    className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold hover:bg-gold/15"
+                  >
+                    <Minimize2 className="h-3 w-3" /> Exit
+                  </button>
+                )}
+              </div>
             </div>
-            <div ref={rightRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
+            <div
+              ref={rightRef}
+              className={`custom-scroll overflow-y-auto px-5 py-6 md:px-7 md:py-8 ${
+                fullscreen
+                  ? "h-[calc(100dvh-100px)] md:h-[calc(100dvh-120px)]"
+                  : "h-[calc(100dvh-180px)] md:h-[62vh]"
+              }`}
+            >
               <Pane
                 pane="right"
                 sentences={activeSentences.map((s) => s.target)}
