@@ -12,6 +12,7 @@ import { TutorProvider } from "@/state/tutor-state";
 import { MatchProvider } from "@/state/match-state";
 import { LeaderboardProvider } from "@/state/leaderboard-state";
 import { TopNav } from "@/components/TopNav";
+import { FreePreviewBanner } from "@/components/FreePreviewBanner";
 import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
