@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X } from "lucide-react";
+import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X, BookOpen } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
 import { useMatch, type SavedVocabWord } from "@/state/match-state";
 import { useApp, type Language } from "@/state/app-state";
