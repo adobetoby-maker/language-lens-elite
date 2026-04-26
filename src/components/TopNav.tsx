@@ -255,7 +255,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
             return (
               <button
                 key={tab.key}
-                onClick={() => dispatch({ type: "SET_TAB", payload: tab.key })}
+                onClick={() => handleTabSwitch(tab.key)}
                 data-active={active}
                 className="gold-underline relative shrink-0 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground sm:px-5 sm:py-4 sm:text-[11px] sm:tracking-[0.22em]"
               >
