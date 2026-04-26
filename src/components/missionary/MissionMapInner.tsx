@@ -374,50 +374,92 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
               <div className="max-h-[70vh] space-y-4 overflow-y-auto p-5">
                 {/* Mission selector */}
                 <div>
-                  <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    <MapPin className="mr-1 inline h-3 w-3" /> Mission
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    <select
-                      value={areaFilter}
-                      onChange={(e) => setAreaFilter(e.target.value)}
-                      className="rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
+                  <div className="mb-1.5 flex items-center justify-between gap-2">
+                    <label className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                      <MapPin className="mr-1 inline h-3 w-3" /> Mission
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCustomMode((v) => !v);
+                        if (!customMode) setSelectedMissionId(null);
+                      }}
+                      className="font-mono text-[10px] uppercase tracking-[0.18em] text-gold/80 hover:text-gold"
                     >
-                      <option value="">All areas</option>
-                      {sortedAreas.map((a) => (
-                        <option key={a} value={a}>{a}</option>
-                      ))}
-                    </select>
-                    <input
-                      type="text"
-                      placeholder="Search mission or country…"
-                      value={missionSearch}
-                      onChange={(e) => setMissionSearch(e.target.value)}
-                      className="flex-1 rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
-                    />
+                      {customMode ? "← Use official list" : "Can't find it? Enter manually →"}
+                    </button>
                   </div>
-                  <div className="mt-2 max-h-48 overflow-y-auto rounded-md border border-border/40 bg-background/40">
-                    {filteredMissions.map((m: WorldwideMission) => {
-                      const active = m.id === selectedMissionId;
-                      return (
-                        <button
-                          key={m.id}
-                          onClick={() => setSelectedMissionId(m.id)}
-                          className={`flex w-full items-center justify-between px-3 py-1.5 text-left text-xs transition-colors ${
-                            active ? "bg-gold/15 text-gold" : "text-foreground/80 hover:bg-card/60"
-                          }`}
+
+                  {customMode ? (
+                    <div className="space-y-2 rounded-md border border-gold/30 bg-gold/5 p-3">
+                      <p className="text-[11px] text-muted-foreground">
+                        For historic or reorganized missions. We'll place the pin at the country's
+                        approximate center.
+                      </p>
+                      <input
+                        type="text"
+                        maxLength={100}
+                        value={customMissionName}
+                        onChange={(e) => setCustomMissionName(e.target.value)}
+                        placeholder="Mission name (e.g. Japan Tokyo North 1985)"
+                        className="w-full rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
+                      />
+                      <select
+                        value={customMissionCountry}
+                        onChange={(e) => setCustomMissionCountry(e.target.value)}
+                        className="w-full rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
+                      >
+                        <option value="">Mission country…</option>
+                        {COUNTRIES.map((c) => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex flex-wrap gap-2">
+                        <select
+                          value={areaFilter}
+                          onChange={(e) => setAreaFilter(e.target.value)}
+                          className="rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
                         >
-                          <span>{m.name}</span>
-                          <span className="opacity-60">{m.country}</span>
-                        </button>
-                      );
-                    })}
-                    {filteredMissions.length === 0 && (
-                      <div className="px-3 py-4 text-center text-xs text-muted-foreground">
-                        No missions match.
+                          <option value="">All areas</option>
+                          {sortedAreas.map((a) => (
+                            <option key={a} value={a}>{a}</option>
+                          ))}
+                        </select>
+                        <input
+                          type="text"
+                          placeholder="Search mission or country…"
+                          value={missionSearch}
+                          onChange={(e) => setMissionSearch(e.target.value)}
+                          className="flex-1 rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
+                        />
                       </div>
-                    )}
-                  </div>
+                      <div className="mt-2 max-h-48 overflow-y-auto rounded-md border border-border/40 bg-background/40">
+                        {filteredMissions.map((m: WorldwideMission) => {
+                          const active = m.id === selectedMissionId;
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => setSelectedMissionId(m.id)}
+                              className={`flex w-full items-center justify-between px-3 py-1.5 text-left text-xs transition-colors ${
+                                active ? "bg-gold/15 text-gold" : "text-foreground/80 hover:bg-card/60"
+                              }`}
+                            >
+                              <span>{m.name}</span>
+                              <span className="opacity-60">{m.country}</span>
+                            </button>
+                          );
+                        })}
+                        {filteredMissions.length === 0 && (
+                          <div className="px-3 py-4 text-center text-xs text-muted-foreground">
+                            No missions match.
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Hometown */}
