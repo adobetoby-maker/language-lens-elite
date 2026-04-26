@@ -59,6 +59,51 @@ export type Database = {
         }
         Relationships: []
       }
+      mission_pins: {
+        Row: {
+          created_at: string
+          hometown_city: string
+          hometown_country: string
+          hometown_lat: number | null
+          hometown_lng: number | null
+          id: string
+          mission_id: string
+          mission_lat: number
+          mission_lng: number
+          mission_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          hometown_city: string
+          hometown_country: string
+          hometown_lat?: number | null
+          hometown_lng?: number | null
+          id?: string
+          mission_id: string
+          mission_lat: number
+          mission_lng: number
+          mission_name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          hometown_city?: string
+          hometown_country?: string
+          hometown_lat?: number | null
+          hometown_lng?: number | null
+          id?: string
+          mission_id?: string
+          mission_lat?: number
+          mission_lng?: number
+          mission_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
