@@ -64,6 +64,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
   const { state: appState } = useApp();
   const { state: libState } = useLibrary();
   const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(true);
 
   const activeModule = getModule(appState.activeModuleId);
   const focus = activeModule?.vocabFocus ?? null;
