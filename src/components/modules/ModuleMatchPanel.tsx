@@ -3,7 +3,7 @@
 // the filter is working as expected.
 
 import { useMemo, useState } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Highlighter } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useLibrary, type LibraryEntry } from "@/state/library-state";
 import { getModule } from "@/data/modules";
@@ -29,6 +29,30 @@ function matchedKeywords(e: LibraryEntry, focus: string[]): string[] {
   });
 }
 
+/** Wrap matched keyword occurrences in a <mark>, case-insensitive. */
+function highlightKeywords(text: string, keywords: string[]) {
+  if (!keywords.length) return text;
+  const escaped = keywords
+    .map((k) => k.trim())
+    .filter(Boolean)
+    .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  if (!escaped.length) return text;
+  const re = new RegExp(`(${escaped.join("|")})`, "gi");
+  const parts = text.split(re);
+  return parts.map((p, i) =>
+    re.test(p) ? (
+      <mark
+        key={i}
+        className="rounded bg-gold/30 px-0.5 text-foreground"
+      >
+        {p}
+      </mark>
+    ) : (
+      <span key={i}>{p}</span>
+    ),
+  );
+}
+
 interface Props {
   /** Where this is rendered, for the heading label (e.g. "Reader"). */
   surface: string;
@@ -40,6 +64,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
   const { state: appState } = useApp();
   const { state: libState } = useLibrary();
   const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(true);
 
   const activeModule = getModule(appState.activeModuleId);
   const focus = activeModule?.vocabFocus ?? null;
@@ -93,7 +118,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
             </p>
           ) : (
             <>
-              <div className="mb-3 flex flex-wrap gap-1.5">
+              <div className="mb-3 flex flex-wrap items-center gap-1.5">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Focus keywords:
                 </span>
@@ -105,6 +130,21 @@ export function ModuleMatchPanel({ surface, className }: Props) {
                     {kw}
                   </span>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => setHighlight((v) => !v)}
+                  aria-pressed={highlight}
+                  className={
+                    "ml-auto inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors " +
+                    (highlight
+                      ? "border-gold/60 bg-gold/15 text-gold"
+                      : "border-border/60 bg-background/40 text-muted-foreground hover:text-foreground")
+                  }
+                  title="Toggle keyword highlights inside item titles"
+                >
+                  <Highlighter className="h-3 w-3" />
+                  {highlight ? "Highlights on" : "Highlights off"}
+                </button>
               </div>
 
               <div className="grid gap-3 md:grid-cols-2">
@@ -128,7 +168,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
                             <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
                             <div className="min-w-0 flex-1">
                               <div className="truncate text-xs font-medium text-foreground">
-                                {e.title}
+                                {highlight ? highlightKeywords(e.title, kws) : e.title}
                               </div>
                               {kws.length > 0 && (
                                 <div className="mt-0.5 flex flex-wrap gap-1">
@@ -167,7 +207,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
                         >
                           <Circle className="mt-0.5 h-3 w-3 shrink-0 text-muted-foreground" />
                           <span className="truncate text-xs text-foreground/80">
-                            {e.title}
+                            {highlight ? highlightKeywords(e.title, focus!) : e.title}
                           </span>
                         </li>
                       ))}
