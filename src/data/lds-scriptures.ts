@@ -508,6 +508,60 @@ export const NEW_TESTAMENT_KJV: ScriptureBook = {
         { en: "Behold, I make all things new.", target: "He aquí, yo hago nuevas todas las cosas." },
       ],
     },
+    {
+      title: "Luke 2 — The birth of Jesus",
+      sentences: [
+        { en: "And it came to pass in those days, that there went out a decree from Caesar Augustus, that all the world should be taxed.", target: "Aconteció en aquellos días, que se promulgó un edicto de parte de Augusto César, que todo el mundo fuese empadronado." },
+        { en: "And she brought forth her firstborn son, and wrapped him in swaddling clothes, and laid him in a manger; because there was no room for them in the inn.", target: "Y dio a luz a su hijo primogénito, y lo envolvió en pañales, y lo acostó en un pesebre, porque no había lugar para ellos en el mesón." },
+        { en: "And the angel said unto them, Fear not: for, behold, I bring you good tidings of great joy, which shall be to all people.", target: "Pero el ángel les dijo: No temáis; porque he aquí os doy nuevas de gran gozo, que será para todo el pueblo." },
+        { en: "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.", target: "Que os ha nacido hoy, en la ciudad de David, un Salvador, que es Cristo el Señor." },
+      ],
+    },
+    {
+      title: "Matthew 11:28-30 — Come unto me",
+      sentences: [
+        { en: "Come unto me, all ye that labour and are heavy laden, and I will give you rest.", target: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar." },
+        { en: "Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.", target: "Llevad mi yugo sobre vosotros, y aprended de mí, que soy manso y humilde de corazón; y hallaréis descanso para vuestras almas." },
+        { en: "For my yoke is easy, and my burden is light.", target: "Porque mi yugo es fácil, y ligera mi carga." },
+      ],
+    },
+    {
+      title: "Mark 12:30-31 — The two great commandments",
+      sentences: [
+        { en: "And thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind, and with all thy strength: this is the first commandment.", target: "Y amarás al Señor tu Dios con todo tu corazón, y con toda tu alma, y con toda tu mente y con todas tus fuerzas. Este es el principal mandamiento." },
+        { en: "And the second is like, namely this, Thou shalt love thy neighbour as thyself. There is none other commandment greater than these.", target: "Y el segundo es semejante: Amarás a tu prójimo como a ti mismo. No hay otro mandamiento mayor que estos." },
+      ],
+    },
+    {
+      title: "Luke 15 — The parable of the prodigal son",
+      sentences: [
+        { en: "And he arose, and came to his father. But when he was yet a great way off, his father saw him, and had compassion.", target: "Y levantándose, vino a su padre. Y cuando aún estaba lejos, lo vio su padre, y fue movido a misericordia." },
+        { en: "And ran, and fell on his neck, and kissed him.", target: "Y corrió, y se echó sobre su cuello, y le besó." },
+        { en: "For this my son was dead, and is alive again; he was lost, and is found.", target: "Porque este mi hijo muerto era, y ha revivido; se había perdido, y es hallado." },
+      ],
+    },
+    {
+      title: "Acts 2 — The day of Pentecost",
+      sentences: [
+        { en: "And when the day of Pentecost was fully come, they were all with one accord in one place.", target: "Cuando llegó el día de Pentecostés, estaban todos unánimes juntos." },
+        { en: "And there appeared unto them cloven tongues like as of fire, and it sat upon each of them.", target: "Y se les aparecieron lenguas repartidas, como de fuego, asentándose sobre cada uno de ellos." },
+        { en: "And they were all filled with the Holy Ghost, and began to speak with other tongues, as the Spirit gave them utterance.", target: "Y fueron todos llenos del Espíritu Santo, y comenzaron a hablar en otras lenguas, según el Espíritu les daba que hablasen." },
+      ],
+    },
+    {
+      title: "Romans 8 — Nothing shall separate us from the love of God",
+      sentences: [
+        { en: "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come.", target: "Por lo cual estoy seguro de que ni la muerte, ni la vida, ni ángeles, ni principados, ni potestades, ni lo presente, ni lo por venir." },
+        { en: "Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.", target: "Ni lo alto, ni lo profundo, ni ninguna otra cosa creada nos podrá separar del amor de Dios, que es en Cristo Jesús Señor nuestro." },
+      ],
+    },
+    {
+      title: "Hebrews 11 — Now faith is the substance of things hoped for",
+      sentences: [
+        { en: "Now faith is the substance of things hoped for, the evidence of things not seen.", target: "Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve." },
+        { en: "But without faith it is impossible to please him: for he that cometh to God must believe that he is, and that he is a rewarder of them that diligently seek him.", target: "Pero sin fe es imposible agradar a Dios; porque es necesario que el que se acerca a Dios crea que le hay, y que es galardonador de los que le buscan." },
+      ],
+    },
   ],
 };
 
