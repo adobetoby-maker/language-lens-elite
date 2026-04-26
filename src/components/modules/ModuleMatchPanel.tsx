@@ -118,7 +118,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
             </p>
           ) : (
             <>
-              <div className="mb-3 flex flex-wrap gap-1.5">
+              <div className="mb-3 flex flex-wrap items-center gap-1.5">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Focus keywords:
                 </span>
@@ -130,6 +130,21 @@ export function ModuleMatchPanel({ surface, className }: Props) {
                     {kw}
                   </span>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => setHighlight((v) => !v)}
+                  aria-pressed={highlight}
+                  className={
+                    "ml-auto inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors " +
+                    (highlight
+                      ? "border-gold/60 bg-gold/15 text-gold"
+                      : "border-border/60 bg-background/40 text-muted-foreground hover:text-foreground")
+                  }
+                  title="Toggle keyword highlights inside item titles"
+                >
+                  <Highlighter className="h-3 w-3" />
+                  {highlight ? "Highlights on" : "Highlights off"}
+                </button>
               </div>
 
               <div className="grid gap-3 md:grid-cols-2">
