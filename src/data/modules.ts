@@ -19,7 +19,7 @@ export const MODULES: AppModule[] = [
   {
     id: "lds-missionary",
     name: "LDS Missionary",
-    emoji: "✝️",
+    emoji: "🕊️",
     category: "Faith",
     blurb:
       "Practice teaching the Restoration, Plan of Salvation, and everyday companion conversations.",
