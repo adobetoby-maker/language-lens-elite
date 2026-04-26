@@ -54,7 +54,7 @@ export function MissionaryQuickStart() {
   }, []);
 
   const askTutor = (prompt: string) => {
-    tutor.setPrefill(prompt);
+    tutor.prefill(prompt);
     tutor.setOpen(true);
   };
 
