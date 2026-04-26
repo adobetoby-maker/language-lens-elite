@@ -63,6 +63,11 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
   const [areaFilter, setAreaFilter] = useState<string>("");
   const [missionSearch, setMissionSearch] = useState("");
 
+  // Custom (manual) mission entry — for historic / dissolved missions.
+  const [customMode, setCustomMode] = useState(false);
+  const [customMissionName, setCustomMissionName] = useState("");
+  const [customMissionCountry, setCustomMissionCountry] = useState("");
+
   const [askingToShare, setAskingToShare] = useState(false);
   const [saving, setSaving] = useState(false);
   const [pins, setPins] = useState<SharedPin[]>([]);
