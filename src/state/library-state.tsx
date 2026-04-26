@@ -10,6 +10,7 @@ import {
 } from "react";
 import { LIBRARY as PRELOADED, type LibraryText, type SentencePair } from "@/data/library";
 import { PREACH_MY_GOSPEL_CHAPTERS } from "@/data/preach-my-gospel";
+import { PREACH_MY_GOSPEL_I18N } from "@/data/preach-my-gospel-i18n";
 import { LDS_SCRIPTURES } from "@/data/lds-scriptures";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
