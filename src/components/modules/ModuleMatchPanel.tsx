@@ -3,7 +3,7 @@
 // the filter is working as expected.
 
 import { useMemo, useState } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Highlighter } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useLibrary, type LibraryEntry } from "@/state/library-state";
 import { getModule } from "@/data/modules";
