@@ -629,6 +629,51 @@ export const JESUS_THE_CHRIST: ScriptureBook = {
         { en: "He lives. Of this great truth the writer bears solemn witness.", target: "Él vive. De esta gran verdad el autor da solemne testimonio." },
       ],
     },
+    {
+      title: "Chapter 14 — Early incidents of His public ministry",
+      sentences: [
+        { en: "After His baptism, the Lord retired into the wilderness, there to commune with the Father and to prepare for His ministry.", target: "Después de Su bautismo, el Señor se retiró al desierto, para comulgar con el Padre y prepararse para Su ministerio." },
+        { en: "There He fasted forty days, and was tempted of the adversary, yet He overcame every trial.", target: "Allí ayunó cuarenta días, y fue tentado por el adversario; pero venció toda prueba." },
+        { en: "Returning in the power of the Spirit, He began to call disciples and to proclaim the kingdom of God.", target: "Volviendo en el poder del Espíritu, comenzó a llamar discípulos y a proclamar el reino de Dios." },
+      ],
+    },
+    {
+      title: "Chapter 17 — Lord of the Sabbath",
+      sentences: [
+        { en: "The Sabbath was made for man, and not man for the Sabbath; the Son of Man is Lord even of the Sabbath.", target: "El día de reposo fue hecho para el hombre, y no el hombre para el día de reposo; el Hijo del Hombre es Señor aun del día de reposo." },
+        { en: "He healed on that holy day, declaring that to do good is the truest observance of the Sabbath.", target: "Sanó en ese día santo, declarando que hacer el bien es la más verdadera observancia del día de reposo." },
+      ],
+    },
+    {
+      title: "Chapter 26 — Parables by the sea",
+      sentences: [
+        { en: "By parables the Master taught the multitude, that those whose hearts were prepared might understand.", target: "Por medio de parábolas el Maestro enseñó a la multitud, para que aquellos cuyos corazones estuvieran preparados pudieran comprender." },
+        { en: "The kingdom of heaven is like unto a treasure hid in a field; the which when a man hath found, he hideth, and for joy thereof goeth and selleth all that he hath, and buyeth that field.", target: "El reino de los cielos es semejante a un tesoro escondido en un campo, el cual un hombre halla, y lo esconde de nuevo; y gozoso por ello va y vende todo lo que tiene, y compra aquel campo." },
+        { en: "So is the kingdom of God to him who finds it: more precious than all earthly possessions.", target: "Así es el reino de Dios para quien lo encuentra: más precioso que todas las posesiones terrenales." },
+      ],
+    },
+    {
+      title: "Chapter 32 — The Last Supper",
+      sentences: [
+        { en: "On the night of His betrayal, the Lord ate the Passover with His apostles, and instituted the sacrament in remembrance of Him.", target: "En la noche de Su traición, el Señor comió la Pascua con Sus apóstoles, e instituyó la Santa Cena en memoria de Él." },
+        { en: "He took bread, and blessed it, and brake it, and gave to them, saying: Take, eat; this is my body.", target: "Tomó el pan, y lo bendijo, y lo partió, y les dio, diciendo: Tomad, comed; esto es mi cuerpo." },
+        { en: "And he took the cup, and gave thanks, and gave it to them, saying: This is my blood of the new testament, which is shed for many for the remission of sins.", target: "Y tomando la copa, dio gracias, y les dio, diciendo: Esto es mi sangre del nuevo pacto, que por muchos es derramada para remisión de los pecados." },
+      ],
+    },
+    {
+      title: "Chapter 35 — The trial and the cross",
+      sentences: [
+        { en: "He was led as a lamb to the slaughter, and as a sheep before her shearers is dumb, so He opened not His mouth.", target: "Como cordero fue llevado al matadero; y como oveja delante de sus trasquiladores enmudece, así no abrió Su boca." },
+        { en: "Upon the cross of Calvary He completed the great work of redemption, that all who believe might have eternal life.", target: "Sobre la cruz del Calvario completó la gran obra de la redención, para que todos los que creen tuvieran vida eterna." },
+      ],
+    },
+    {
+      title: "Chapter 41 — He shall come again",
+      sentences: [
+        { en: "As He ascended in glory, so shall He return in like manner, with power and great glory.", target: "Así como ascendió en gloria, así volverá de la misma manera, con poder y gran gloria." },
+        { en: "Every knee shall bow, and every tongue shall confess that Jesus is the Christ, the Son of the living God, the Redeemer and Lord of all.", target: "Toda rodilla se doblará, y toda lengua confesará que Jesús es el Cristo, el Hijo del Dios viviente, el Redentor y Señor de todos." },
+      ],
+    },
   ],
 };
 
