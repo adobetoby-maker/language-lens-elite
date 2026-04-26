@@ -6,6 +6,8 @@ import { useApp } from "@/state/app-state";
 import { useLibrary, flagFor } from "@/state/library-state";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor, type TutorMessage } from "@/state/tutor-state";
+import { getModule } from "@/data/modules";
+import { getMissionArea } from "@/data/missionary-content";
 
 
 const LEVEL_TO_CEFR: Record<string, string> = {
@@ -108,6 +110,27 @@ export function TutorPanel() {
             textTitle: selected.title,
             passage,
             lastWord: lastWord ?? undefined,
+            module: (() => {
+              const mod = getModule(appState.activeModuleId);
+              if (!mod) return undefined;
+              const area = getMissionArea(
+                appState.moduleAssignments[mod.id] ?? null,
+              );
+              return {
+                id: mod.id,
+                name: mod.name,
+                userRole: mod.userRole,
+                aiPersona: mod.aiPersona,
+                missionArea: area
+                  ? {
+                      name: area.name,
+                      region: area.region,
+                      languages: area.languages,
+                      cultureNote: area.cultureNote,
+                    }
+                  : undefined,
+              };
+            })(),
           },
         }),
       });

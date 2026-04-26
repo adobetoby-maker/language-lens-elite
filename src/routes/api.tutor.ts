@@ -6,6 +6,23 @@ const MessageSchema = z.object({
   content: z.string().min(1).max(8000),
 });
 
+const ModuleSchema = z
+  .object({
+    id: z.string().max(60),
+    name: z.string().max(120),
+    userRole: z.string().max(120).optional(),
+    aiPersona: z.string().max(800).optional(),
+    missionArea: z
+      .object({
+        name: z.string().max(120),
+        region: z.string().max(80).optional(),
+        languages: z.array(z.string().max(40)).max(12).optional(),
+        cultureNote: z.string().max(400).optional(),
+      })
+      .optional(),
+  })
+  .optional();
+
 const BodySchema = z.object({
   messages: z.array(MessageSchema).min(1).max(40),
   context: z.object({
@@ -14,11 +31,47 @@ const BodySchema = z.object({
     textTitle: z.string().max(200).optional(),
     passage: z.string().max(2000).optional(),
     lastWord: z.string().max(80).optional(),
+    module: ModuleSchema,
   }),
 });
 
+function buildModuleAddendum(mod: NonNullable<z.infer<typeof BodySchema>["context"]["module"]>) {
+  const lines: (string | null)[] = [
+    ``,
+    `ACTIVE MODULE: ${mod.name}`,
+    mod.userRole ? `- Learner role: ${mod.userRole}` : null,
+    mod.aiPersona ? `- Persona guidance: ${mod.aiPersona}` : null,
+  ];
+
+  if (mod.id === "lds-missionary") {
+    lines.push(
+      `- You are also a knowledgeable consultant on The Church of Jesus Christ of Latter-day Saints. Speak with respectful familiarity about Preach My Gospel (2023), the General Handbook, the Book of Mormon, the Doctrine and Covenants, the Pearl of Great Price, and General Conference talks — all freely available at churchofjesuschrist.org and in the Gospel Library app.`,
+      `- When teaching missionary phrases, prefer the wording a returned missionary would actually use in the field, including reverent terminology (e.g. "Heavenly Father", "Atonement", "the Restoration"). Always show the target-language translation first, then a short English gloss.`,
+      `- For commitment invitations ("Will you…?"), preserve the invitation grammar (modal + sincere tone) of the target language.`,
+      `- Never invent doctrine. If a question is unclear, point the learner to the relevant chapter of Preach My Gospel or the General Handbook.`,
+      `- Be respectful of investigators of every background; teach by the Spirit, with love.`,
+    );
+    if (mod.missionArea) {
+      lines.push(
+        `- Mission assignment: ${mod.missionArea.name}${
+          mod.missionArea.region ? ` (${mod.missionArea.region})` : ""
+        }.`,
+        mod.missionArea.languages?.length
+          ? `- Primary teaching languages in that area: ${mod.missionArea.languages.join(", ")}.`
+          : null,
+        mod.missionArea.cultureNote
+          ? `- Cultural note for this area: ${mod.missionArea.cultureNote}`
+          : null,
+        `- Tailor pronunciation, register, and example scenarios to this mission area.`,
+      );
+    }
+  }
+
+  return lines.filter(Boolean).join("\n");
+}
+
 function buildSystemPrompt(ctx: z.infer<typeof BodySchema>["context"]) {
-  return [
+  const base = [
     `You are a warm, expert linguist and cultural ambassador for ${ctx.language}.`,
     `You have deep knowledge of grammar, literature, and the cultures of countries where ${ctx.language} is spoken.`,
     `Answer questions clearly and encouragingly. When relevant, explain grammar in the context of the text the learner is reading.`,
@@ -35,6 +88,8 @@ function buildSystemPrompt(ctx: z.infer<typeof BodySchema>["context"]) {
   ]
     .filter(Boolean)
     .join("\n");
+
+  return ctx.module ? `${base}\n${buildModuleAddendum(ctx.module)}` : base;
 }
 
 export const Route = createFileRoute("/api/tutor")({
