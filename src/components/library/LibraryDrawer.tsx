@@ -38,6 +38,9 @@ export function LibraryDrawer({
   onClose: () => void;
 }) {
   const { state, dispatch, removeCustomEntry } = useLibrary();
+  const { state: appState } = useApp();
+  const activeModule = getModule(appState.activeModuleId);
+  const focus = activeModule?.vocabFocus ?? null;
   const [addOpen, setAddOpen] = useState(false);
 
   const grouped = {
@@ -105,12 +108,19 @@ export function LibraryDrawer({
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-5">
+          {activeModule && (
+            <div className="mb-4 rounded-lg border border-gold/30 bg-gold/[0.04] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
+              {activeModule.emoji} Filtering by {activeModule.name} · {focus?.length ?? 0} keywords
+            </div>
+          )}
           <Section
             icon={<BookMarked className="h-3.5 w-3.5" />}
             label="Classic Literature"
             entries={grouped.classic}
             onSelect={select}
             currentId={state.selectedId}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
           <Section
             icon={<Globe2 className="h-3.5 w-3.5" />}
@@ -119,6 +129,8 @@ export function LibraryDrawer({
             onSelect={select}
             currentId={state.selectedId}
             emptyHint={state.generating ? "Crafting essays in your language…" : "Pick a language to generate."}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
           <Section
             icon={<NotebookPen className="h-3.5 w-3.5" />}
@@ -132,8 +144,10 @@ export function LibraryDrawer({
                 void removeCustomEntry(id);
               }
             }}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
-          <BattleVocabularySection />
+          <BattleVocabularySection focus={focus} moduleName={activeModule?.name ?? null} />
         </div>
       </aside>
 
