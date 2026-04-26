@@ -10,6 +10,7 @@ import {
 } from "react";
 import { LIBRARY as PRELOADED, type LibraryText, type SentencePair } from "@/data/library";
 import { PREACH_MY_GOSPEL_CHAPTERS } from "@/data/preach-my-gospel";
+import { LDS_SCRIPTURES } from "@/data/lds-scriptures";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./auth-state";
@@ -240,7 +241,26 @@ const PREACH_MY_GOSPEL_SEED: LibraryEntry = {
   })),
 };
 
-const SEEDS: LibraryEntry[] = [PREACH_MY_GOSPEL_SEED, ...CLASSIC_STUBS, CULTURE_SEED, ...CULTURE_EXTRA];
+const LDS_SCRIPTURE_SEEDS: LibraryEntry[] = LDS_SCRIPTURES.map((book) => ({
+  id: book.id,
+  title: book.title,
+  subtitle: book.subtitle,
+  language: "Spanish",
+  targetLabel: "Español",
+  section: "missionary",
+  flag: book.flag,
+  available: true,
+  sentences: book.chapters[0].sentences,
+  chapters: book.chapters.map((c) => ({ title: c.title, sentences: c.sentences })),
+}));
+
+const SEEDS: LibraryEntry[] = [
+  PREACH_MY_GOSPEL_SEED,
+  ...LDS_SCRIPTURE_SEEDS,
+  ...CLASSIC_STUBS,
+  CULTURE_SEED,
+  ...CULTURE_EXTRA,
+];
 
 const initial: LibraryState = {
   entries: SEEDS,
