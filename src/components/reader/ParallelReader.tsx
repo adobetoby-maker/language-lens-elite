@@ -16,6 +16,7 @@ import { ReadAloudToolbar } from "./ReadAloudToolbar";
 import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
+import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
 
 type TextSize = "S" | "M" | "L";
 
