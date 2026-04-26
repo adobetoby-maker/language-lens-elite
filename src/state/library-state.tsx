@@ -225,15 +225,15 @@ const CULTURE_EXTRA: LibraryEntry[] = [
 ];
 
 // Preach My Gospel — surfaced when the LDS Missionary module is active.
-// Single library entry with multiple chapters drawn from PMG (2023).
+// Spanish original (PMG 2023) plus AI-translated variants for other languages.
 const PREACH_MY_GOSPEL_SEED: LibraryEntry = {
   id: "missionary-preach-my-gospel",
   title: "Preach My Gospel",
-  subtitle: "A Guide to Missionary Service · The Church of Jesus Christ of Latter-day Saints",
+  subtitle: "A Guide to Missionary Service · Spanish",
   language: "Spanish",
   targetLabel: "Español",
   section: "missionary",
-  flag: "✝️",
+  flag: "🇪🇸",
   available: true,
   sentences: PREACH_MY_GOSPEL_CHAPTERS[0].sentences,
   chapters: PREACH_MY_GOSPEL_CHAPTERS.map((c) => ({
@@ -241,6 +241,19 @@ const PREACH_MY_GOSPEL_SEED: LibraryEntry = {
     sentences: c.sentences,
   })),
 };
+
+const PREACH_MY_GOSPEL_I18N_SEEDS: LibraryEntry[] = PREACH_MY_GOSPEL_I18N.map((pmg) => ({
+  id: `missionary-preach-my-gospel-${pmg.language.toLowerCase()}`,
+  title: "Preach My Gospel",
+  subtitle: `A Guide to Missionary Service · ${pmg.targetLabel}`,
+  language: pmg.language,
+  targetLabel: pmg.targetLabel,
+  section: "missionary" as const,
+  flag: pmg.flag,
+  available: true,
+  sentences: pmg.chapters[0].sentences,
+  chapters: pmg.chapters.map((c) => ({ title: c.title, sentences: c.sentences })),
+}));
 
 const LDS_SCRIPTURE_SEEDS: LibraryEntry[] = LDS_SCRIPTURES.map((book) => ({
   id: book.id,
@@ -257,6 +270,7 @@ const LDS_SCRIPTURE_SEEDS: LibraryEntry[] = LDS_SCRIPTURES.map((book) => ({
 
 const SEEDS: LibraryEntry[] = [
   PREACH_MY_GOSPEL_SEED,
+  ...PREACH_MY_GOSPEL_I18N_SEEDS,
   ...LDS_SCRIPTURE_SEEDS,
   ...CLASSIC_STUBS,
   CULTURE_SEED,
