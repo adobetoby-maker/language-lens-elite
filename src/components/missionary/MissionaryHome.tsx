@@ -1,4 +1,4 @@
-import { MissionaryQuickStart } from "./grammar/MissionaryQuickStart";
+import { MissionaryQuickStart } from "@/components/grammar/MissionaryQuickStart";
 
 /**
  * Dedicated tab for the LDS Missionary module — surfaces the Quick Start,
