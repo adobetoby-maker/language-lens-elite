@@ -60,7 +60,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
   const [selectedMissionId, setSelectedMissionId] = useState<string | null>(null);
   const [hometownCity, setHometownCity] = useState("");
   const [hometownCountry, setHometownCountry] = useState("");
-  const [areaFilter, setAreaFilter] = useState<string>(sortedAreas[0] ?? "");
+  const [areaFilter, setAreaFilter] = useState<string>("");
   const [missionSearch, setMissionSearch] = useState("");
 
   const [askingToShare, setAskingToShare] = useState(false);
@@ -351,6 +351,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                       onChange={(e) => setAreaFilter(e.target.value)}
                       className="rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
                     >
+                      <option value="">All areas</option>
                       {sortedAreas.map((a) => (
                         <option key={a} value={a}>{a}</option>
                       ))}
