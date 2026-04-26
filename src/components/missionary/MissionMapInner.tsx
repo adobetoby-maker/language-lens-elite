@@ -330,7 +330,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
       {myPinId && (
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gold/15 px-5 py-3 text-xs">
           <div className="text-muted-foreground">
-            Your pin: <span className="text-foreground">{selectedMission?.name ?? "—"}</span>
+            Your pin: <span className="text-foreground">{pins.find((p) => p.id === myPinId)?.mission_name ?? selectedMission?.name ?? "—"}</span>
             {hometownCity && (
               <>
                 <span className="mx-1 opacity-50">←</span>
