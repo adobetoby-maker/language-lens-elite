@@ -150,6 +150,8 @@ export const BOOK_OF_MORMON: ScriptureBook = {
     },
   ],
 };
+
+export const DOCTRINE_AND_COVENANTS: ScriptureBook = {
   id: "missionary-doctrine-and-covenants",
   title: "Doctrine and Covenants",
   subtitle: "Revelations given to Joseph Smith and his successors",
