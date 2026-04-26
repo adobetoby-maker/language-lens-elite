@@ -6,6 +6,7 @@ import { getModule } from "@/data/modules";
 import type { LessonStub } from "@/server/grammar.functions";
 import { LevelSidebar } from "./LevelSidebar";
 import { LessonView } from "./LessonView";
+import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
 
 export function GrammarStudio() {
   const { state } = useApp();
