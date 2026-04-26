@@ -144,10 +144,13 @@ export function LevelSidebar({
                       </div>
                     )}
                     <ul className="space-y-0.5 py-1">
-                      {lessons.map((lesson, i) => {
+                      {sortedLessons.map((lesson, i) => {
                         const done = !!completed[lesson.id];
                         const active =
                           activeLevel === level && activeLessonId === lesson.id;
+                        const inMod =
+                          !!focus &&
+                          matchesFocus(`${lesson.title} ${lesson.concept ?? ""}`, focus);
                         return (
                           <li key={lesson.id}>
                             <button
@@ -162,9 +165,17 @@ export function LevelSidebar({
                                   i + 1
                                 )}
                               </span>
-                              <span className="font-display text-[13px] leading-snug text-foreground/90 group-data-[active=true]:text-foreground">
+                              <span className="flex-1 font-display text-[13px] leading-snug text-foreground/90 group-data-[active=true]:text-foreground">
                                 {lesson.title}
                               </span>
+                              {inMod && (
+                                <span
+                                  title="Matches active module"
+                                  className="mt-0.5 shrink-0 font-mono text-[10px] text-gold"
+                                >
+                                  ◈
+                                </span>
+                              )}
                             </button>
                           </li>
                         );
