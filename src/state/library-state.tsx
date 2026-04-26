@@ -222,7 +222,25 @@ const CULTURE_EXTRA: LibraryEntry[] = [
   },
 ];
 
-const SEEDS: LibraryEntry[] = [...CLASSIC_STUBS, CULTURE_SEED, ...CULTURE_EXTRA];
+// Preach My Gospel — surfaced when the LDS Missionary module is active.
+// Single library entry with multiple chapters drawn from PMG (2023).
+const PREACH_MY_GOSPEL_SEED: LibraryEntry = {
+  id: "missionary-preach-my-gospel",
+  title: "Preach My Gospel",
+  subtitle: "A Guide to Missionary Service · The Church of Jesus Christ of Latter-day Saints",
+  language: "Spanish",
+  targetLabel: "Español",
+  section: "missionary",
+  flag: "✝️",
+  available: true,
+  sentences: PREACH_MY_GOSPEL_CHAPTERS[0].sentences,
+  chapters: PREACH_MY_GOSPEL_CHAPTERS.map((c) => ({
+    title: c.title,
+    sentences: c.sentences,
+  })),
+};
+
+const SEEDS: LibraryEntry[] = [PREACH_MY_GOSPEL_SEED, ...CLASSIC_STUBS, CULTURE_SEED, ...CULTURE_EXTRA];
 
 const initial: LibraryState = {
   entries: SEEDS,
