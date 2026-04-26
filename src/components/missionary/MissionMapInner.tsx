@@ -502,7 +502,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                     Cancel
                   </button>
                   <button
-                    disabled={!selectedMissionId || !hometownCity.trim() || !hometownCountry}
+                    disabled={!canContinue}
                     onClick={() => setAskingToShare(true)}
                     className="rounded-full border border-gold/60 bg-gold/15 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/25 disabled:cursor-not-allowed disabled:opacity-40"
                   >
