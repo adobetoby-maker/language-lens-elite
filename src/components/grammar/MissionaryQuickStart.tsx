@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
+import { MissionMap } from "@/components/missionary/MissionMap";
 import {
   COMMITMENT_INVITATIONS,
   MISSIONARY_VOCAB,
