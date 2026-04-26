@@ -7,7 +7,7 @@ import type { LessonStub } from "@/server/grammar.functions";
 import { LevelSidebar } from "./LevelSidebar";
 import { LessonView } from "./LessonView";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
-import { MissionaryQuickStart } from "./MissionaryQuickStart";
+
 
 export function GrammarStudio() {
   const { state } = useApp();
@@ -67,7 +67,7 @@ export function GrammarStudio() {
 
       <ModuleMatchPanel surface="Grammar Studio" className="mb-4" />
 
-      {state.activeModuleId === "lds-missionary" && <MissionaryQuickStart />}
+      
 
       <div className="flex flex-col gap-5 md:flex-row">
         <LevelSidebar

@@ -56,7 +56,7 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "reader" | "grammar" | "speak" | "discussions" | "dashboard";
+export type TabKey = "missionary" | "reader" | "grammar" | "speak" | "discussions" | "dashboard";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";
@@ -331,7 +331,15 @@ function reducer(state: AppState, action: AppAction): AppState {
       if (action.payload && !state.purchasedModules.includes(action.payload)) {
         return state;
       }
-      return { ...state, activeModuleId: action.payload };
+      const next = { ...state, activeModuleId: action.payload };
+      // When activating the missionary module, jump to its dedicated tab.
+      if (action.payload === "lds-missionary") {
+        next.currentTab = "missionary";
+      } else if (state.currentTab === "missionary" || state.currentTab === "discussions") {
+        // Leaving the module — these tabs disappear, so fall back to Reader.
+        next.currentTab = "reader";
+      }
+      return next;
     }
     case "SET_MODULE_ASSIGNMENT": {
       const next = { ...state.moduleAssignments };
