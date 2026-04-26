@@ -32,8 +32,29 @@ const TABS: { key: TabKey; label: string; module?: string }[] = [
   { key: "dashboard", label: "Dashboard" },
 ];
 
+const TAB_VISIT_XP = 5;
+const VISITED_TABS_KEY = "lingualens.visitedTabs.session";
+
 export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
+
+  function handleTabSwitch(key: TabKey) {
+    if (key === state.currentTab) return;
+    dispatch({ type: "SET_TAB", payload: key });
+    // Award XP the first time each tab is visited per session so the
+    // StatusBar visibly increments without inflating XP on every click.
+    try {
+      const raw = sessionStorage.getItem(VISITED_TABS_KEY);
+      const visited: string[] = raw ? JSON.parse(raw) : [];
+      if (!visited.includes(key)) {
+        visited.push(key);
+        sessionStorage.setItem(VISITED_TABS_KEY, JSON.stringify(visited));
+        dispatch({ type: "ADD_XP", payload: TAB_VISIT_XP });
+      }
+    } catch {
+      dispatch({ type: "ADD_XP", payload: TAB_VISIT_XP });
+    }
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl [padding-top:env(safe-area-inset-top)]">
@@ -234,7 +255,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
             return (
               <button
                 key={tab.key}
-                onClick={() => dispatch({ type: "SET_TAB", payload: tab.key })}
+                onClick={() => handleTabSwitch(tab.key)}
                 data-active={active}
                 className="gold-underline relative shrink-0 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground sm:px-5 sm:py-4 sm:text-[11px] sm:tracking-[0.22em]"
               >
