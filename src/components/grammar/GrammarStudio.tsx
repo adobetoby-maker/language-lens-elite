@@ -7,7 +7,7 @@ import type { LessonStub } from "@/server/grammar.functions";
 import { LevelSidebar } from "./LevelSidebar";
 import { LessonView } from "./LessonView";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
-import { MissionaryQuickStart } from "./MissionaryQuickStart";
+
 
 export function GrammarStudio() {
   const { state } = useApp();
