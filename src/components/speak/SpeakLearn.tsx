@@ -466,6 +466,8 @@ export function SpeakLearn() {
         )}
       </header>
 
+      <ModuleMatchPanel surface="Speak & Learn" className="mb-4" />
+
       {transcript}
 
       <ChallengePanel
