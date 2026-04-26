@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GraduationCap } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
+import { getModule } from "@/data/modules";
 import type { LessonStub } from "@/server/grammar.functions";
 import { LevelSidebar } from "./LevelSidebar";
 import { LessonView } from "./LessonView";
