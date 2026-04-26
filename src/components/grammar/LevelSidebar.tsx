@@ -88,6 +88,15 @@ export function LevelSidebar({
             const isOpen = expanded === level;
             const isLoading = loadingLevel === level;
             const err = errorByLevel[level];
+            const activeMod = getModule(state.activeModuleId);
+            const focus = activeMod?.vocabFocus ?? null;
+            const sortedLessons = focus
+              ? [...lessons].sort((a, b) => {
+                  const am = matchesFocus(`${a.title} ${a.concept ?? ""}`, focus) ? 1 : 0;
+                  const bm = matchesFocus(`${b.title} ${b.concept ?? ""}`, focus) ? 1 : 0;
+                  return bm - am;
+                })
+              : lessons;
             return (
               <li key={level}>
                 <button
