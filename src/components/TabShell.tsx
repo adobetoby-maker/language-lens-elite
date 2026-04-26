@@ -5,6 +5,7 @@ import { ParallelReader } from "./reader/ParallelReader";
 import { GrammarStudio } from "./grammar/GrammarStudio";
 import { SpeakLearn } from "./speak/SpeakLearn";
 import { Dashboard } from "./dashboard/Dashboard";
+import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
 
 export function TabShell() {
   const { state } = useApp();
@@ -16,9 +17,10 @@ export function TabShell() {
       return <GrammarStudio />;
     case "speak":
       return <SpeakLearn />;
+    case "discussions":
+      return <MissionaryDiscussions />;
     case "dashboard":
       return <Dashboard />;
   }
-  // unreachable, keep tsc happy
   return <EmptyState icon={GraduationCap} title="" description="" />;
 }

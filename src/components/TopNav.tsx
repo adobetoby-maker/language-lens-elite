@@ -24,10 +24,11 @@ const LANGUAGES: Language[] = [
   "Portuguese",
 ];
 
-const TABS: { key: TabKey; label: string }[] = [
+const TABS: { key: TabKey; label: string; module?: string }[] = [
   { key: "reader", label: "Reader" },
   { key: "grammar", label: "Grammar Studio" },
   { key: "speak", label: "Speak & Learn" },
+  { key: "discussions", label: "Discussions", module: "lds-missionary" },
   { key: "dashboard", label: "Dashboard" },
 ];
 
@@ -228,7 +229,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
       {/* Tabs */}
       <nav className="border-t border-border/40">
         <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-3 sm:gap-2 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {TABS.map((tab) => {
+          {TABS.filter((t) => !t.module || state.activeModuleId === t.module).map((tab) => {
             const active = state.currentTab === tab.key;
             return (
               <button

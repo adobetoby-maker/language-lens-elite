@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
+import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,33 +29,42 @@ const ApiSpeakRoute = ApiSpeakRouteImport.update({
   path: '/api/speak',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDiscussionRoute = ApiDiscussionRouteImport.update({
+  id: '/api/discussion',
+  path: '/api/discussion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/speak' | '/api/tutor'
+  fullPaths: '/' | '/api/discussion' | '/api/speak' | '/api/tutor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/speak' | '/api/tutor'
-  id: '__root__' | '/' | '/api/speak' | '/api/tutor'
+  to: '/' | '/api/discussion' | '/api/speak' | '/api/tutor'
+  id: '__root__' | '/' | '/api/discussion' | '/api/speak' | '/api/tutor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiDiscussionRoute: typeof ApiDiscussionRoute
   ApiSpeakRoute: typeof ApiSpeakRoute
   ApiTutorRoute: typeof ApiTutorRoute
 }
@@ -82,11 +92,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSpeakRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/discussion': {
+      id: '/api/discussion'
+      path: '/api/discussion'
+      fullPath: '/api/discussion'
+      preLoaderRoute: typeof ApiDiscussionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiDiscussionRoute: ApiDiscussionRoute,
   ApiSpeakRoute: ApiSpeakRoute,
   ApiTutorRoute: ApiTutorRoute,
 }
