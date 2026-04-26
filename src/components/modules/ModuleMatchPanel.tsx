@@ -29,14 +29,6 @@ function matchedKeywords(e: LibraryEntry, focus: string[]): string[] {
   });
 }
 
-function matchedKeywords(e: LibraryEntry, focus: string[]): string[] {
-  const hay = entryHaystack(e).toLowerCase();
-  return focus.filter((kw) => {
-    const k = kw.trim().toLowerCase();
-    return !!k && hay.includes(k);
-  });
-}
-
 /** Wrap matched keyword occurrences in a <mark>, case-insensitive. */
 function highlightKeywords(text: string, keywords: string[]) {
   if (!keywords.length) return text;
