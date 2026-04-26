@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X } from "lucide-react";
+import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X, BookOpen } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
 import { useMatch, type SavedVocabWord } from "@/state/match-state";
 import { useApp, type Language } from "@/state/app-state";
@@ -44,10 +44,12 @@ export function LibraryDrawer({
   const [addOpen, setAddOpen] = useState(false);
 
   const grouped = {
+    missionary: state.entries.filter((e) => e.section === "missionary"),
     classic: state.entries.filter((e) => e.section === "classic"),
     culture: state.entries.filter((e) => e.section === "culture"),
     custom: state.entries.filter((e) => e.section === "custom"),
   };
+  const showMissionary = appState.activeModuleId === "lds-missionary";
 
   const select = (e: LibraryEntry) => {
     if (!e.available) return;
@@ -112,6 +114,17 @@ export function LibraryDrawer({
             <div className="mb-4 rounded-lg border border-gold/30 bg-gold/[0.04] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
               {activeModule.emoji} Filtering by {activeModule.name} · {focus?.length ?? 0} keywords
             </div>
+          )}
+          {showMissionary && (
+            <Section
+              icon={<BookOpen className="h-3.5 w-3.5" />}
+              label="Missionary Library"
+              entries={grouped.missionary}
+              onSelect={select}
+              currentId={state.selectedId}
+              focus={focus}
+              moduleName={activeModule?.name ?? null}
+            />
           )}
           <Section
             icon={<BookMarked className="h-3.5 w-3.5" />}
