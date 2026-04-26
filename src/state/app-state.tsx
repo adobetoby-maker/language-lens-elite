@@ -56,7 +56,7 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "reader" | "grammar" | "speak" | "discussions" | "dashboard";
+export type TabKey = "missionary" | "reader" | "grammar" | "speak" | "discussions" | "dashboard";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";

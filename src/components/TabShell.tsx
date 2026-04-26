@@ -6,11 +6,14 @@ import { GrammarStudio } from "./grammar/GrammarStudio";
 import { SpeakLearn } from "./speak/SpeakLearn";
 import { Dashboard } from "./dashboard/Dashboard";
 import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
+import { MissionaryHome } from "./missionary/MissionaryHome";
 
 export function TabShell() {
   const { state } = useApp();
 
   switch (state.currentTab) {
+    case "missionary":
+      return <MissionaryHome />;
     case "reader":
       return <ParallelReader />;
     case "grammar":
@@ -24,3 +27,4 @@ export function TabShell() {
   }
   return <EmptyState icon={GraduationCap} title="" description="" />;
 }
+
