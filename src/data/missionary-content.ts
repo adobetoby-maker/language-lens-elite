@@ -150,7 +150,7 @@ export const MISSIONARY_VOCAB: VocabSet[] = [
   },
   {
     category: "Gospel of Jesus Christ",
-    emoji: "✝️",
+    emoji: "🕊️",
     words: [
       "faith",
       "repentance",
