@@ -98,7 +98,7 @@ export function MissionaryQuickStart() {
             <MapPin className="mt-0.5 h-4 w-4 text-gold" strokeWidth={1.6} />
             <div>
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                Where do you serve / did you serve?
+                Where will you serve / did you serve?
               </div>
               <div className="mt-0.5 font-display text-base italic text-foreground">
                 {area ? area.name : "Choose your mission area"}
