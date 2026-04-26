@@ -206,6 +206,54 @@ export const DOCTRINE_AND_COVENANTS: ScriptureBook = {
         { en: "No power or influence can or ought to be maintained by virtue of the priesthood, only by persuasion, by long-suffering, by gentleness and meekness, and by love unfeigned.", target: "Ningún poder o influencia se puede ni se debe mantener en virtud del sacerdocio, sino por persuasión, por longanimidad, por benignidad y mansedumbre, y por amor sincero." },
       ],
     },
+    {
+      title: "D&C 18:10 — The worth of souls is great",
+      sentences: [
+        { en: "Remember the worth of souls is great in the sight of God.", target: "Recordad que el valor de las almas es grande a la vista de Dios." },
+        { en: "For, behold, the Lord your Redeemer suffered death in the flesh; wherefore he suffered the pain of all men.", target: "Porque, he aquí, el Señor vuestro Redentor padeció la muerte en la carne; por lo que sufrió el dolor de todos los hombres." },
+        { en: "And how great is his joy in the soul that repenteth!", target: "¡Y cuán grande es su gozo en el alma que se arrepiente!" },
+      ],
+    },
+    {
+      title: "D&C 19:16-19 — I, God, have suffered these things for all",
+      sentences: [
+        { en: "For behold, I, God, have suffered these things for all, that they might not suffer if they would repent.", target: "Porque he aquí, yo, Dios, he padecido estas cosas por todos, para que no padezcan, si se arrepienten." },
+        { en: "But if they would not repent they must suffer even as I.", target: "Pero si no se arrepienten, tendrán que padecer así como yo." },
+        { en: "Which suffering caused myself, even God, the greatest of all, to tremble because of pain, and to bleed at every pore.", target: "Padecimiento que hizo que yo mismo, Dios, el mayor de todos, temblara a causa del dolor y sangrara por cada poro." },
+      ],
+    },
+    {
+      title: "D&C 64:9-10 — I, the Lord, will forgive whom I will forgive",
+      sentences: [
+        { en: "Wherefore, I say unto you, that ye ought to forgive one another.", target: "Por lo que os digo que debéis perdonaros los unos a los otros." },
+        { en: "For he that forgiveth not his brother his trespasses standeth condemned before the Lord.", target: "Porque el que no perdona a su hermano sus ofensas, queda condenado ante el Señor." },
+        { en: "I, the Lord, will forgive whom I will forgive, but of you it is required to forgive all men.", target: "Yo, el Señor, perdonaré a quien quiera perdonar, mas de vosotros se requiere que perdonéis a todos los hombres." },
+      ],
+    },
+    {
+      title: "D&C 88 — The light of Christ",
+      sentences: [
+        { en: "He that ascended up on high, as also he descended below all things, in that he comprehended all things.", target: "Aquel que ascendió a lo alto, así como también descendió debajo de todo, por cuanto comprendió todas las cosas." },
+        { en: "Which light proceedeth forth from the presence of God to fill the immensity of space.", target: "Cuya luz procede de la presencia de Dios para llenar la inmensidad del espacio." },
+        { en: "The light which is in all things, which giveth life to all things, which is the law by which all things are governed.", target: "La luz que está en todas las cosas, que da vida a todas las cosas, que es la ley por la cual todas las cosas son gobernadas." },
+      ],
+    },
+    {
+      title: "D&C 130 — When we attain it in the resurrection",
+      sentences: [
+        { en: "There is no such thing as immaterial matter. All spirit is matter, but it is more fine or pure.", target: "No existe tal cosa como la materia inmaterial. Todo espíritu es materia, pero es más fino o puro." },
+        { en: "And whatever principle of intelligence we attain unto in this life, it will rise with us in the resurrection.", target: "Y cualquier principio de inteligencia que logremos en esta vida, se levantará con nosotros en la resurrección." },
+        { en: "If a person gains more knowledge and intelligence in this life through his diligence and obedience, he will have so much the advantage in the world to come.", target: "Si una persona en esta vida adquiere más conocimiento e inteligencia por su diligencia y obediencia, gozará de mayor ventaja en el mundo venidero." },
+      ],
+    },
+    {
+      title: "D&C 138 — The vision of the redemption of the dead",
+      sentences: [
+        { en: "I beheld that the faithful elders of this dispensation, when they depart from mortal life, continue their labors in the preaching of the gospel.", target: "Vi que los fieles élderes de esta dispensación, cuando parten de la vida mortal, continúan sus labores en la predicación del evangelio." },
+        { en: "Unto the spirits of those who have died without a knowledge of the truth, or in transgression, having rejected the prophets.", target: "A los espíritus de los que han muerto sin un conocimiento de la verdad, o en transgresión, habiendo rechazado a los profetas." },
+        { en: "The dead who repent will be redeemed, through obedience to the ordinances of the house of God.", target: "Los muertos que se arrepientan serán redimidos mediante la obediencia a las ordenanzas de la casa de Dios." },
+      ],
+    },
   ],
 };
 
