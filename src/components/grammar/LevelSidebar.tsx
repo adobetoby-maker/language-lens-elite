@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ChevronDown, Check, Sparkles, Loader2 } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
+import { getModule } from "@/data/modules";
+import { matchesFocus } from "@/lib/module-filter";
 import {
   CEFR_LEVELS,
   generateLessonTitles,
