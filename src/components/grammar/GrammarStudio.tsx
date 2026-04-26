@@ -64,6 +64,8 @@ export function GrammarStudio() {
         );
       })()}
 
+      <ModuleMatchPanel surface="Grammar Studio" className="mb-4" />
+
       <div className="flex flex-col gap-5 md:flex-row">
         <LevelSidebar
           activeLevel={activeLevel}
