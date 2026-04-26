@@ -177,6 +177,8 @@ export interface AppState {
   // Paid plug-in modules (frontend stub for now)
   purchasedModules: string[];
   activeModuleId: string | null;
+  // Optional per-module assignments (e.g. LDS missionary mission area id)
+  moduleAssignments: Record<string, string>;
 
   hydrated: boolean;
 }
@@ -211,6 +213,7 @@ export type AppAction =
   | { type: "DISMISS_LEVEL_UP" }
   | { type: "PURCHASE_MODULE"; payload: string }
   | { type: "SET_ACTIVE_MODULE"; payload: string | null }
+  | { type: "SET_MODULE_ASSIGNMENT"; payload: { moduleId: string; assignmentId: string | null } }
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
 const initialState: AppState = {
@@ -241,6 +244,7 @@ const initialState: AppState = {
   pendingLevelUp: null,
   purchasedModules: [],
   activeModuleId: null,
+  moduleAssignments: {},
   hydrated: false,
 };
 
@@ -329,6 +333,15 @@ function reducer(state: AppState, action: AppAction): AppState {
       }
       return { ...state, activeModuleId: action.payload };
     }
+    case "SET_MODULE_ASSIGNMENT": {
+      const next = { ...state.moduleAssignments };
+      if (action.payload.assignmentId == null) {
+        delete next[action.payload.moduleId];
+      } else {
+        next[action.payload.moduleId] = action.payload.assignmentId;
+      }
+      return { ...state, moduleAssignments: next };
+    }
     case "RECORD_CHALLENGE": {
       const recent = [action.payload, ...state.recentChallenges].slice(0, 5);
       return {
@@ -373,6 +386,7 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "recentChallenges",
   "purchasedModules",
   "activeModuleId",
+  "moduleAssignments",
 ];
 
 function todayKey() {
