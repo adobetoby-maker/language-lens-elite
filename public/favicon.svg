@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Original silhouette inspired by classical Christus statuary.
+  Robed standing figure with arms gently outstretched.
+  Drawn from scratch — no Church-owned imagery is used.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#0b0d12"/>
+  <g fill="#d4af37">
+    <!-- Head -->
+    <circle cx="32" cy="14" r="4.5"/>
+    <!-- Torso + robe (trapezoid that flares to the base) -->
+    <path d="M24 22
+             C 24 22, 22 30, 20 38
+             L 16 56
+             L 48 56
+             L 44 38
+             C 42 30, 40 22, 40 22
+             Z"/>
+    <!-- Right arm, gently raised and outstretched -->
+    <path d="M24 24
+             C 18 25, 12 27, 8 30
+             C 8 32, 9 33, 11 33
+             C 16 31, 21 30, 25 30
+             Z"/>
+    <!-- Left arm, mirrored -->
+    <path d="M40 24
+             C 46 25, 52 27, 56 30
+             C 56 32, 55 33, 53 33
+             C 48 31, 43 30, 39 30
+             Z"/>
+  </g>
+</svg>
