@@ -115,6 +115,17 @@ export function LibraryDrawer({
               {activeModule.emoji} Filtering by {activeModule.name} · {focus?.length ?? 0} keywords
             </div>
           )}
+          {showMissionary && (
+            <Section
+              icon={<BookOpen className="h-3.5 w-3.5" />}
+              label="Missionary Library"
+              entries={grouped.missionary}
+              onSelect={select}
+              currentId={state.selectedId}
+              focus={focus}
+              moduleName={activeModule?.name ?? null}
+            />
+          )}
           <Section
             icon={<BookMarked className="h-3.5 w-3.5" />}
             label="Classic Literature"
