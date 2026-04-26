@@ -15,6 +15,7 @@ import {
 } from "@/state/match-state";
 import { CountUp } from "@/components/CountUp";
 import { flagFor } from "@/state/library-state";
+import { ModuleBadgesPanel } from "@/components/dashboard/ModuleBadgesPanel";
 
 const LANG_FLAGS: Record<Language, string> = {
   Spanish: "🇪🇸",
@@ -187,6 +188,9 @@ export function Dashboard() {
           />
         </div>
       </section>
+
+      {/* Module badge ladder */}
+      <ModuleBadgesPanel />
 
       <div className="rounded-2xl border border-border/60 bg-card/60 p-6">
         <div className="flex items-center justify-between">
