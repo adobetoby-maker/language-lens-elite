@@ -111,10 +111,31 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
     };
   }, [user]);
 
-  function resolveHometownCoords(): { lat: number | null; lng: number | null } {
-    const c = COUNTRY_CENTROIDS[hometownCountry];
-    return c ? { lat: c.lat, lng: c.lng } : { lat: null, lng: null };
+  // Resolve the mission to use — either a selected official mission, or a custom
+  // user-entered one anchored to its country's centroid (for historic missions).
+  function resolveEffectiveMission(): { id: string; name: string; lat: number; lng: number } | null {
+    if (customMode) {
+      const name = customMissionName.trim();
+      const c = COUNTRY_CENTROIDS[customMissionCountry];
+      if (!name || !c) return null;
+      return {
+        id: `custom:${name.toLowerCase().replace(/\s+/g, "-")}`,
+        name: name.slice(0, 100),
+        lat: c.lat,
+        lng: c.lng,
+      };
+    }
+    if (!selectedMission) return null;
+    return {
+      id: selectedMission.id,
+      name: selectedMission.name,
+      lat: selectedMission.lat,
+      lng: selectedMission.lng,
+    };
   }
+
+  const effectiveMission = resolveEffectiveMission();
+  const canContinue = !!effectiveMission && !!hometownCity.trim() && !!hometownCountry;
 
   async function confirmShare(share: boolean) {
     setAskingToShare(false);
@@ -127,15 +148,16 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
       setFeedback("Sign in to share your mission on the community map.");
       return;
     }
-    if (!selectedMission || !hometownCity.trim() || !hometownCountry) return;
+    const mission = resolveEffectiveMission();
+    if (!mission || !hometownCity.trim() || !hometownCountry) return;
     setSaving(true);
     const coords = resolveHometownCoords();
     const payload = {
       user_id: user.id,
-      mission_id: selectedMission.id,
-      mission_name: selectedMission.name,
-      mission_lat: selectedMission.lat,
-      mission_lng: selectedMission.lng,
+      mission_id: mission.id,
+      mission_name: mission.name,
+      mission_lat: mission.lat,
+      mission_lng: mission.lng,
       hometown_city: hometownCity.trim().slice(0, 100),
       hometown_country: hometownCountry,
       hometown_lat: coords.lat,
