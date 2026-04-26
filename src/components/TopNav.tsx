@@ -20,7 +20,6 @@ const LANGUAGES: Language[] = [
   "German",
   "Italian",
   "Japanese",
-  "Korean",
   "Portuguese",
 ];
 
