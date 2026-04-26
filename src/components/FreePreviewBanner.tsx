@@ -8,7 +8,7 @@ import { Sparkles, X } from "lucide-react";
  * be enabled and any real gating should kick in. Dismissals are remembered
  * locally so testers don't see it on every refresh.
  */
-const FREE_PREVIEW_UNTIL = new Date("2026-05-17T23:59:59Z");
+const FREE_PREVIEW_UNTIL = new Date("2026-05-26T23:59:59Z");
 const STORAGE_KEY = "free-preview-banner-dismissed";
 
 function formatDate(d: Date) {
