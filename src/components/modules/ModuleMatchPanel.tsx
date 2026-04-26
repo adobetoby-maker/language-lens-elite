@@ -29,6 +29,38 @@ function matchedKeywords(e: LibraryEntry, focus: string[]): string[] {
   });
 }
 
+function matchedKeywords(e: LibraryEntry, focus: string[]): string[] {
+  const hay = entryHaystack(e).toLowerCase();
+  return focus.filter((kw) => {
+    const k = kw.trim().toLowerCase();
+    return !!k && hay.includes(k);
+  });
+}
+
+/** Wrap matched keyword occurrences in a <mark>, case-insensitive. */
+function highlightKeywords(text: string, keywords: string[]) {
+  if (!keywords.length) return text;
+  const escaped = keywords
+    .map((k) => k.trim())
+    .filter(Boolean)
+    .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  if (!escaped.length) return text;
+  const re = new RegExp(`(${escaped.join("|")})`, "gi");
+  const parts = text.split(re);
+  return parts.map((p, i) =>
+    re.test(p) ? (
+      <mark
+        key={i}
+        className="rounded bg-gold/30 px-0.5 text-foreground"
+      >
+        {p}
+      </mark>
+    ) : (
+      <span key={i}>{p}</span>
+    ),
+  );
+}
+
 interface Props {
   /** Where this is rendered, for the heading label (e.g. "Reader"). */
   surface: string;
