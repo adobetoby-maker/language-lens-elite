@@ -292,6 +292,6 @@ export function MissionaryQuickStart() {
         </div>
       </div>
     </section>
-    </>
+    </div>
   );
 }
