@@ -44,10 +44,12 @@ export function LibraryDrawer({
   const [addOpen, setAddOpen] = useState(false);
 
   const grouped = {
+    missionary: state.entries.filter((e) => e.section === "missionary"),
     classic: state.entries.filter((e) => e.section === "classic"),
     culture: state.entries.filter((e) => e.section === "culture"),
     custom: state.entries.filter((e) => e.section === "custom"),
   };
+  const showMissionary = appState.activeModuleId === "lds-missionary";
 
   const select = (e: LibraryEntry) => {
     if (!e.available) return;
