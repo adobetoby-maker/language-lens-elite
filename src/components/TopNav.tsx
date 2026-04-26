@@ -1,5 +1,6 @@
-import { Moon, Sun, Sparkle, ChevronDown } from "lucide-react";
+import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
 import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
+import { MODULES, getModule } from "@/data/modules";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +12,7 @@ import {
 import { VoicePicker } from "./VoicePicker";
 import { LanguageMatchButton } from "./match/LanguageMatchButton";
 import { AuthButton } from "./auth/AuthButton";
+import { toast } from "sonner";
 
 const LANGUAGES: Language[] = [
   "Spanish",
@@ -76,6 +78,88 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
                 {lang}
               </DropdownMenuItem>
             ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Module switcher */}
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            title="Active module"
+            className="group order-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-all hover:border-gold/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-4 sm:text-xs"
+          >
+            <Puzzle className="h-3.5 w-3.5 text-gold" strokeWidth={1.8} />
+            <span className="truncate max-w-[140px]">
+              {getModule(state.activeModuleId)
+                ? `${getModule(state.activeModuleId)!.emoji} ${getModule(state.activeModuleId)!.name}`
+                : "Core (Free)"}
+            </span>
+            <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="center"
+            className="min-w-[260px] border-border/70 bg-popover/95 backdrop-blur-xl"
+          >
+            <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              Active module (this session)
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onSelect={() => dispatch({ type: "SET_ACTIVE_MODULE", payload: null })}
+              className="font-mono text-xs uppercase tracking-[0.16em]"
+            >
+              <span className={state.activeModuleId === null ? "text-gold" : "opacity-60"}>◈</span>
+              Core (Free)
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              Modules
+            </DropdownMenuLabel>
+            {MODULES.map((m) => {
+              const owned = state.purchasedModules.includes(m.id);
+              const active = state.activeModuleId === m.id;
+              return (
+                <DropdownMenuItem
+                  key={m.id}
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    if (!owned) {
+                      // Stub purchase flow
+                      dispatch({ type: "PURCHASE_MODULE", payload: m.id });
+                      dispatch({ type: "SET_ACTIVE_MODULE", payload: m.id });
+                      toast(`${m.emoji} ${m.name} unlocked`, {
+                        description: "Stubbed — payments not wired yet.",
+                      });
+                    } else {
+                      dispatch({ type: "SET_ACTIVE_MODULE", payload: m.id });
+                      toast(`${m.emoji} ${m.name} active`);
+                    }
+                  }}
+                  className="flex items-start gap-2 py-2"
+                >
+                  <span className={active ? "text-gold mt-0.5" : "opacity-60 mt-0.5"}>◈</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs uppercase tracking-[0.16em]">
+                        {m.emoji} {m.name}
+                      </span>
+                      {!owned && (
+                        <span className="ml-auto rounded-full border border-gold/40 px-2 py-0.5 text-[9px] uppercase tracking-wider text-gold">
+                          ${(m.priceCents / 100).toFixed(2)}
+                        </span>
+                      )}
+                      {owned && active && (
+                        <span className="ml-auto text-[9px] uppercase tracking-wider text-gold">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-0.5 line-clamp-2 text-[10px] normal-case tracking-normal text-muted-foreground">
+                      {m.blurb}
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+              );
+            })}
           </DropdownMenuContent>
         </DropdownMenu>
 
