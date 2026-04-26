@@ -2,7 +2,9 @@ import { useState } from "react";
 import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
 import { useMatch, type SavedVocabWord } from "@/state/match-state";
-import type { Language } from "@/state/app-state";
+import { useApp, type Language } from "@/state/app-state";
+import { getModule } from "@/data/modules";
+import { partitionByFocus } from "@/lib/module-filter";
 import { AddTextModal } from "./AddTextModal";
 
 const SPEECH_LOCALE: Record<Language, string> = {
@@ -14,6 +16,19 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Korean: "ko-KR",
   Portuguese: "pt-BR",
 };
+
+function entryHaystack(e: LibraryEntry): string {
+  const titleBlob = `${e.title} ${e.subtitle ?? ""}`;
+  // Sample some sentence text so seeded content matches keywords too.
+  const sentenceBlob = (e.chapters
+    ? e.chapters.flatMap((c) => c.sentences)
+    : e.sentences
+  )
+    .slice(0, 6)
+    .map((s) => `${s.en} ${s.target}`)
+    .join(" ");
+  return `${titleBlob} ${sentenceBlob}`;
+}
 
 export function LibraryDrawer({
   open,
