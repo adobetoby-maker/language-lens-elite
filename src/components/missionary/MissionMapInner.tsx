@@ -111,6 +111,11 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
     };
   }, [user]);
 
+  function resolveHometownCoords(): { lat: number | null; lng: number | null } {
+    const c = COUNTRY_CENTROIDS[hometownCountry];
+    return c ? { lat: c.lat, lng: c.lng } : { lat: null, lng: null };
+  }
+
   // Resolve the mission to use — either a selected official mission, or a custom
   // user-entered one anchored to its country's centroid (for historic missions).
   function resolveEffectiveMission(): { id: string; name: string; lat: number; lng: number } | null {
