@@ -1,5 +1,6 @@
-import { Moon, Sun, Sparkle, ChevronDown } from "lucide-react";
+import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
 import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
+import { MODULES, getModule } from "@/data/modules";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +12,7 @@ import {
 import { VoicePicker } from "./VoicePicker";
 import { LanguageMatchButton } from "./match/LanguageMatchButton";
 import { AuthButton } from "./auth/AuthButton";
+import { toast } from "sonner";
 
 const LANGUAGES: Language[] = [
   "Spanish",
