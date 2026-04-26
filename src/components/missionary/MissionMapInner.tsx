@@ -44,7 +44,14 @@ interface SharedPin {
  * and optionally share that pairing anonymously with the community. The map
  * draws a connection line between hometown and mission for every shared pin.
  */
-export function MissionMapInner() {
+export interface MissionMapProps {
+  /** When set, dim every pin except this one (used by the Family view). */
+  filterPinId?: string | null;
+  /** Optional label appended to the legend, e.g. "Smith family". */
+  highlightLastName?: string | null;
+}
+
+export function MissionMapInner({ filterPinId = null, highlightLastName = null }: MissionMapProps = {}) {
   const { user } = useAuth();
   const groupedMissions = useMemo(() => getMissionsByArea(), []);
   const sortedAreas = useMemo(() => Object.keys(groupedMissions).sort(), [groupedMissions]);
