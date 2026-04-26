@@ -394,6 +394,50 @@ export const OLD_TESTAMENT_KJV: ScriptureBook = {
         { en: "And pour you out a blessing, that there shall not be room enough to receive it.", target: "Y derramaré sobre vosotros bendición hasta que sobreabunde." },
       ],
     },
+    {
+      title: "Genesis 12 — The call of Abram",
+      sentences: [
+        { en: "Now the Lord had said unto Abram, Get thee out of thy country, and from thy kindred, and from thy father's house, unto a land that I will shew thee.", target: "Pero Jehová había dicho a Abram: Vete de tu tierra y de tu parentela, y de la casa de tu padre, a la tierra que te mostraré." },
+        { en: "And I will make of thee a great nation, and I will bless thee, and make thy name great; and thou shalt be a blessing.", target: "Y haré de ti una nación grande, y te bendeciré, y engrandeceré tu nombre, y serás bendición." },
+        { en: "And in thee shall all families of the earth be blessed.", target: "Y serán benditas en ti todas las familias de la tierra." },
+      ],
+    },
+    {
+      title: "Joshua 24:15 — Choose you this day whom ye will serve",
+      sentences: [
+        { en: "And if it seem evil unto you to serve the Lord, choose you this day whom ye will serve.", target: "Y si mal os parece servir a Jehová, escogeos hoy a quién sirváis." },
+        { en: "But as for me and my house, we will serve the Lord.", target: "Pero yo y mi casa serviremos a Jehová." },
+      ],
+    },
+    {
+      title: "1 Samuel 16:7 — The Lord looketh on the heart",
+      sentences: [
+        { en: "But the Lord said unto Samuel, Look not on his countenance, or on the height of his stature; because I have refused him.", target: "Y Jehová respondió a Samuel: No mires a su parecer, ni a lo grande de su estatura, porque yo lo desecho." },
+        { en: "For the Lord seeth not as man seeth; for man looketh on the outward appearance, but the Lord looketh on the heart.", target: "Porque Jehová no mira lo que mira el hombre; pues el hombre mira lo que está delante de sus ojos, pero Jehová mira el corazón." },
+      ],
+    },
+    {
+      title: "Proverbs 3:5-6 — Trust in the Lord",
+      sentences: [
+        { en: "Trust in the Lord with all thine heart; and lean not unto thine own understanding.", target: "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia." },
+        { en: "In all thy ways acknowledge him, and he shall direct thy paths.", target: "Reconócelo en todos tus caminos, y él enderezará tus veredas." },
+      ],
+    },
+    {
+      title: "Ecclesiastes 3 — A time to every purpose",
+      sentences: [
+        { en: "To every thing there is a season, and a time to every purpose under the heaven.", target: "Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su hora." },
+        { en: "A time to be born, and a time to die; a time to plant, and a time to pluck up that which is planted.", target: "Tiempo de nacer, y tiempo de morir; tiempo de plantar, y tiempo de arrancar lo plantado." },
+        { en: "A time to weep, and a time to laugh; a time to mourn, and a time to dance.", target: "Tiempo de llorar, y tiempo de reír; tiempo de endechar, y tiempo de bailar." },
+      ],
+    },
+    {
+      title: "Jeremiah 1:5 — Before I formed thee in the belly I knew thee",
+      sentences: [
+        { en: "Before I formed thee in the belly I knew thee; and before thou camest forth out of the womb I sanctified thee.", target: "Antes que te formase en el vientre te conocí, y antes que nacieses te santifiqué." },
+        { en: "And I ordained thee a prophet unto the nations.", target: "Te di por profeta a las naciones." },
+      ],
+    },
   ],
 };
 
