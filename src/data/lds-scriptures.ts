@@ -88,10 +88,68 @@ export const BOOK_OF_MORMON: ScriptureBook = {
         { en: "And by the power of the Holy Ghost ye may know the truth of all things.", target: "Y por el poder del Espíritu Santo podréis conocer la verdad de todas las cosas." },
       ],
     },
+    {
+      title: "1 Nephi 8 — The vision of the tree of life",
+      sentences: [
+        { en: "I beheld a tree, whose fruit was desirable to make one happy.", target: "Vi un árbol cuyo fruto era deseable para hacer feliz a uno." },
+        { en: "And I went forth and partook of the fruit thereof; and it was most sweet, above all that I ever before tasted.", target: "Y fui y participé de su fruto, y era dulce, sobre todo lo que yo jamás había probado antes." },
+        { en: "And as I partook of the fruit thereof it filled my soul with exceedingly great joy.", target: "Y al participar de su fruto, llenó mi alma de un gozo sumamente grande." },
+        { en: "And I beheld a rod of iron, and it extended along the bank of the river, and led to the tree by which I stood.", target: "Y vi una barra de hierro que se extendía a lo largo de la ribera del río, y conducía hasta el árbol junto al cual me hallaba yo." },
+      ],
+    },
+    {
+      title: "2 Nephi 31 — The doctrine of Christ",
+      sentences: [
+        { en: "Wherefore, do the things which I have told you I have seen that your Lord and your Redeemer should do.", target: "Por tanto, haced las cosas que os he dicho he visto que vuestro Señor y vuestro Redentor harán." },
+        { en: "For, for this cause have they been shown unto me, that ye might know the gate by which ye should enter.", target: "Porque por esta razón me han sido mostradas, para que sepáis la puerta por la cual debéis entrar." },
+        { en: "For the gate by which ye should enter is repentance and baptism by water.", target: "Porque la puerta por la cual debéis entrar es el arrepentimiento y el bautismo en el agua." },
+        { en: "And then cometh a remission of your sins by fire and by the Holy Ghost.", target: "Y entonces viene la remisión de vuestros pecados por fuego y por el Espíritu Santo." },
+      ],
+    },
+    {
+      title: "Mosiah 2 — When ye are in the service of your fellow beings",
+      sentences: [
+        { en: "When ye are in the service of your fellow beings ye are only in the service of your God.", target: "Cuando os halláis al servicio de vuestros semejantes, no estáis sino al servicio de vuestro Dios." },
+        { en: "Ye should remember to retain the name written always in your hearts.", target: "Debéis acordaros de retener el nombre escrito siempre en vuestros corazones." },
+      ],
+    },
+    {
+      title: "Alma 7 — He shall go forth, suffering pains and afflictions",
+      sentences: [
+        { en: "And he shall go forth, suffering pains and afflictions and temptations of every kind.", target: "Y él saldrá, sufriendo dolores, aflicciones y tentaciones de todas clases." },
+        { en: "And this that the word might be fulfilled which saith he will take upon him the pains and the sicknesses of his people.", target: "Y esto para que se cumpla la palabra que dice que tomará sobre sí los dolores y las enfermedades de su pueblo." },
+        { en: "And he will take upon him death, that he may loose the bands of death which bind his people.", target: "Y tomará sobre sí la muerte, para soltar las ligaduras de la muerte que sujetan a su pueblo." },
+        { en: "And he will take upon him their infirmities, that his bowels may be filled with mercy, according to the flesh.", target: "Y tomará sobre sí sus enfermedades, para que sus entrañas sean llenas de misericordia, según la carne." },
+      ],
+    },
+    {
+      title: "Helaman 5:12 — The rock of our Redeemer",
+      sentences: [
+        { en: "Remember, remember that it is upon the rock of our Redeemer, who is Christ, the Son of God, that ye must build your foundation.", target: "Recordad, recordad que es sobre la roca de nuestro Redentor, el cual es Cristo, el Hijo de Dios, que debéis establecer vuestro fundamento." },
+        { en: "That when the devil shall send forth his mighty winds, yea, his shafts in the whirlwind, it shall have no power over you.", target: "Para que cuando el diablo lance sus impetuosos vientos, sí, sus dardos en el torbellino, no tenga poder alguno sobre vosotros." },
+        { en: "Because of the rock upon which ye are built, which is a sure foundation, a foundation whereon if men build they cannot fall.", target: "A causa de la roca sobre la cual estáis edificados, que es un fundamento seguro, un fundamento sobre el cual, si los hombres edifican, no pueden caer." },
+      ],
+    },
+    {
+      title: "3 Nephi 12 — The Sermon at the Temple (Beatitudes)",
+      sentences: [
+        { en: "Blessed are ye when men shall revile you and persecute you, and shall say all manner of evil against you falsely, for my sake.", target: "Bienaventurados sois cuando los hombres os vituperen y os persigan, y digan toda clase de mal contra vosotros, mintiendo, por mi causa." },
+        { en: "For ye shall have great joy and be exceedingly glad, for great shall be your reward in heaven.", target: "Porque tendréis gran gozo y os alegraréis sumamente, porque grande será vuestra recompensa en el cielo." },
+        { en: "Ye are the light of this people. A city that is set on a hill cannot be hid.", target: "Vosotros sois la luz de este pueblo. Una ciudad asentada sobre un monte no se puede esconder." },
+      ],
+    },
+    {
+      title: "Ether 12 — Faith, hope, and weak things made strong",
+      sentences: [
+        { en: "And now, I, Moroni, would speak somewhat concerning these things; I would show unto the world that faith is things which are hoped for and not seen.", target: "Y ahora, yo, Moroni, hablaré algo concerniente a estas cosas; quisiera mostrar al mundo que la fe es las cosas que se esperan y no se ven." },
+        { en: "Wherefore, dispute not because ye see not, for ye receive no witness until after the trial of your faith.", target: "Por tanto, no disputéis porque no veáis, pues no recibís ningún testimonio sino hasta después de la prueba de vuestra fe." },
+        { en: "And if men come unto me I will show unto them their weakness.", target: "Y si los hombres vienen a mí, les mostraré su debilidad." },
+        { en: "I give unto men weakness that they may be humble; and my grace is sufficient for all men that humble themselves before me.", target: "Doy a los hombres debilidad para que sean humildes; y mi gracia es suficiente para todos los hombres que se humillan delante de mí." },
+        { en: "For if they humble themselves before me, and have faith in me, then will I make weak things become strong unto them.", target: "Porque si se humillan ante mí, y tienen fe en mí, entonces haré que las cosas débiles sean fuertes para ellos." },
+      ],
+    },
   ],
 };
-
-export const DOCTRINE_AND_COVENANTS: ScriptureBook = {
   id: "missionary-doctrine-and-covenants",
   title: "Doctrine and Covenants",
   subtitle: "Revelations given to Joseph Smith and his successors",
