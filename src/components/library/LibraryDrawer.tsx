@@ -2,7 +2,9 @@ import { useState } from "react";
 import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
 import { useMatch, type SavedVocabWord } from "@/state/match-state";
-import type { Language } from "@/state/app-state";
+import { useApp, type Language } from "@/state/app-state";
+import { getModule } from "@/data/modules";
+import { partitionByFocus } from "@/lib/module-filter";
 import { AddTextModal } from "./AddTextModal";
 
 const SPEECH_LOCALE: Record<Language, string> = {
@@ -15,6 +17,19 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Portuguese: "pt-BR",
 };
 
+function entryHaystack(e: LibraryEntry): string {
+  const titleBlob = `${e.title} ${e.subtitle ?? ""}`;
+  // Sample some sentence text so seeded content matches keywords too.
+  const sentenceBlob = (e.chapters
+    ? e.chapters.flatMap((c) => c.sentences)
+    : e.sentences
+  )
+    .slice(0, 6)
+    .map((s) => `${s.en} ${s.target}`)
+    .join(" ");
+  return `${titleBlob} ${sentenceBlob}`;
+}
+
 export function LibraryDrawer({
   open,
   onClose,
@@ -23,6 +38,9 @@ export function LibraryDrawer({
   onClose: () => void;
 }) {
   const { state, dispatch, removeCustomEntry } = useLibrary();
+  const { state: appState } = useApp();
+  const activeModule = getModule(appState.activeModuleId);
+  const focus = activeModule?.vocabFocus ?? null;
   const [addOpen, setAddOpen] = useState(false);
 
   const grouped = {
@@ -90,12 +108,19 @@ export function LibraryDrawer({
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-5">
+          {activeModule && (
+            <div className="mb-4 rounded-lg border border-gold/30 bg-gold/[0.04] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
+              {activeModule.emoji} Filtering by {activeModule.name} · {focus?.length ?? 0} keywords
+            </div>
+          )}
           <Section
             icon={<BookMarked className="h-3.5 w-3.5" />}
             label="Classic Literature"
             entries={grouped.classic}
             onSelect={select}
             currentId={state.selectedId}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
           <Section
             icon={<Globe2 className="h-3.5 w-3.5" />}
@@ -104,6 +129,8 @@ export function LibraryDrawer({
             onSelect={select}
             currentId={state.selectedId}
             emptyHint={state.generating ? "Crafting essays in your language…" : "Pick a language to generate."}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
           <Section
             icon={<NotebookPen className="h-3.5 w-3.5" />}
@@ -117,8 +144,10 @@ export function LibraryDrawer({
                 void removeCustomEntry(id);
               }
             }}
+            focus={focus}
+            moduleName={activeModule?.name ?? null}
           />
-          <BattleVocabularySection />
+          <BattleVocabularySection focus={focus} moduleName={activeModule?.name ?? null} />
         </div>
       </aside>
 
@@ -127,7 +156,13 @@ export function LibraryDrawer({
   );
 }
 
-function BattleVocabularySection() {
+function BattleVocabularySection({
+  focus,
+  moduleName,
+}: {
+  focus: string[] | null;
+  moduleName: string | null;
+}) {
   const { savedVocab, removeVocabWord } = useMatch();
   const speak = (word: SavedVocabWord) => {
     try {
@@ -140,6 +175,47 @@ function BattleVocabularySection() {
       /* ignore */
     }
   };
+
+  const { inModule, core } = partitionByFocus(
+    savedVocab,
+    focus,
+    (w) => `${w.word} ${w.definition}`,
+  );
+
+  const renderCard = (w: SavedVocabWord) => (
+    <div key={w.id} className="rounded-xl border border-gold/30 bg-gold/[0.04] p-3">
+      <div className="flex items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <span className="truncate font-display text-base italic text-gold">{w.word}</span>
+            <button
+              onClick={() => speak(w)}
+              aria-label={`Pronounce ${w.word}`}
+              className="shrink-0 rounded-full border border-gold/40 bg-card/60 p-1 text-gold hover:bg-gold/15"
+            >
+              <Volume2 className="h-3 w-3" />
+            </button>
+          </div>
+          <p className="mt-1 line-clamp-2 text-xs leading-snug text-foreground/80">
+            {w.definition}
+          </p>
+          <div className="mt-1.5 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span>{w.language}</span>
+            <span>·</span>
+            <span>{w.cefr}</span>
+          </div>
+        </div>
+        <button
+          onClick={() => removeVocabWord(w.id)}
+          aria-label={`Remove ${w.word}`}
+          className="shrink-0 rounded-full border border-border/60 p-1.5 text-muted-foreground hover:border-red-500/50 hover:text-red-300"
+        >
+          <Trash2 className="h-3 w-3" />
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <section className="mb-7">
       <div className="mb-3 flex items-center gap-2 px-1 text-gold">
@@ -156,47 +232,31 @@ function BattleVocabularySection() {
         <p className="px-1 font-mono text-[11px] text-muted-foreground">
           Save words from Language Match battles to collect them here.
         </p>
-      ) : (
-        <div className="space-y-2">
-          {savedVocab.map((w) => (
-            <div
-              key={w.id}
-              className="rounded-xl border border-gold/30 bg-gold/[0.04] p-3"
-            >
-              <div className="flex items-start gap-3">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="truncate font-display text-base italic text-gold">
-                      {w.word}
-                    </span>
-                    <button
-                      onClick={() => speak(w)}
-                      aria-label={`Pronounce ${w.word}`}
-                      className="shrink-0 rounded-full border border-gold/40 bg-card/60 p-1 text-gold hover:bg-gold/15"
-                    >
-                      <Volume2 className="h-3 w-3" />
-                    </button>
-                  </div>
-                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-foreground/80">
-                    {w.definition}
-                  </p>
-                  <div className="mt-1.5 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
-                    <span>{w.language}</span>
-                    <span>·</span>
-                    <span>{w.cefr}</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => removeVocabWord(w.id)}
-                  aria-label={`Remove ${w.word}`}
-                  className="shrink-0 rounded-full border border-border/60 p-1.5 text-muted-foreground hover:border-red-500/50 hover:text-red-300"
-                >
-                  <Trash2 className="h-3 w-3" />
-                </button>
-              </div>
+      ) : focus && moduleName ? (
+        <div className="space-y-4">
+          <div>
+            <div className="mb-2 px-1 font-mono text-[9px] uppercase tracking-[0.22em] text-gold/80">
+              ◈ In {moduleName} ({inModule.length})
             </div>
-          ))}
+            {inModule.length === 0 ? (
+              <p className="px-1 font-mono text-[11px] text-muted-foreground">
+                No saved words match this module yet.
+              </p>
+            ) : (
+              <div className="space-y-2">{inModule.map(renderCard)}</div>
+            )}
+          </div>
+          {core.length > 0 && (
+            <div>
+              <div className="mb-2 px-1 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
+                Core ({core.length})
+              </div>
+              <div className="space-y-2">{core.map(renderCard)}</div>
+            </div>
+          )}
         </div>
+      ) : (
+        <div className="space-y-2">{savedVocab.map(renderCard)}</div>
       )}
     </section>
   );
@@ -210,6 +270,8 @@ function Section({
   currentId,
   emptyHint,
   onDelete,
+  focus,
+  moduleName,
 }: {
   icon: React.ReactNode;
   label: string;
@@ -218,7 +280,25 @@ function Section({
   currentId: string;
   emptyHint?: string;
   onDelete?: (id: string) => void;
+  focus: string[] | null;
+  moduleName: string | null;
 }) {
+  const { inModule, core } = partitionByFocus(entries, focus, entryHaystack);
+
+  const renderList = (list: LibraryEntry[]) => (
+    <div className="space-y-2">
+      {list.map((e) => (
+        <BookCard
+          key={e.id}
+          entry={e}
+          active={e.id === currentId}
+          onSelect={() => onSelect(e)}
+          onDelete={onDelete ? () => onDelete(e.id) : undefined}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <section className="mb-7">
       <div className="mb-3 flex items-center gap-2 px-1 text-gold">
@@ -230,18 +310,31 @@ function Section({
         <p className="px-1 font-mono text-[11px] text-muted-foreground">
           {emptyHint ?? "Nothing here yet."}
         </p>
-      ) : (
-        <div className="space-y-2">
-          {entries.map((e) => (
-            <BookCard
-              key={e.id}
-              entry={e}
-              active={e.id === currentId}
-              onSelect={() => onSelect(e)}
-              onDelete={onDelete ? () => onDelete(e.id) : undefined}
-            />
-          ))}
+      ) : focus && moduleName ? (
+        <div className="space-y-4">
+          <div>
+            <div className="mb-2 px-1 font-mono text-[9px] uppercase tracking-[0.22em] text-gold/80">
+              ◈ In {moduleName} ({inModule.length})
+            </div>
+            {inModule.length === 0 ? (
+              <p className="px-1 font-mono text-[11px] text-muted-foreground">
+                Nothing in this section matches the module yet.
+              </p>
+            ) : (
+              renderList(inModule)
+            )}
+          </div>
+          {core.length > 0 && (
+            <div>
+              <div className="mb-2 px-1 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
+                Core ({core.length})
+              </div>
+              {renderList(core)}
+            </div>
+          )}
         </div>
+      ) : (
+        renderList(entries)
       )}
     </section>
   );
