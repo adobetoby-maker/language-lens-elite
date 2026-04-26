@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GraduationCap } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
+import { getModule } from "@/data/modules";
 import type { LessonStub } from "@/server/grammar.functions";
 import { LevelSidebar } from "./LevelSidebar";
 import { LessonView } from "./LessonView";
@@ -45,6 +46,22 @@ export function GrammarStudio() {
           </div>
         )}
       </div>
+
+      {(() => {
+        const mod = getModule(state.activeModuleId);
+        if (!mod) return null;
+        return (
+          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-2xl border border-gold/40 bg-gold/10 px-4 py-2.5 text-xs">
+            <span className="text-base leading-none">{mod.emoji}</span>
+            <span className="font-mono uppercase tracking-[0.2em] text-gold">
+              ◈ Module focus
+            </span>
+            <span className="text-foreground/90">
+              {mod.name} — lessons mentioning {mod.vocabFocus.slice(0, 4).join(", ")} float to the top.
+            </span>
+          </div>
+        );
+      })()}
 
       <div className="flex flex-col gap-5 md:flex-row">
         <LevelSidebar

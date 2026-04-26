@@ -6,6 +6,8 @@ import { useSpeak } from "@/state/speak-state";
 import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
 import { celebrate, looseIncludes } from "@/lib/confetti";
+import { getModule } from "@/data/modules";
+import { matchesFocus } from "@/lib/module-filter";
 import {
   ChallengePanel,
   type SpeakChallenge,
@@ -475,21 +477,71 @@ export function SpeakLearn() {
       />
 
 
+      {(() => {
+        const mod = getModule(state.activeModuleId);
+        if (!mod) return null;
+        return (
+          <div className="mt-6 rounded-3xl border border-gold/40 bg-gold/10 p-4 backdrop-blur">
+            <div className="mb-2 flex items-center gap-2">
+              <span className="text-base leading-none">{mod.emoji}</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+                ◈ In {mod.name}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                · roleplay as {mod.userRole}
+              </span>
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
+              {mod.challengePrompts.map((p) => (
+                <button
+                  key={p}
+                  onClick={() => sendChip(p)}
+                  disabled={listening || thinking}
+                  className="shrink-0 rounded-full border border-gold/50 bg-background/70 px-4 py-1.5 text-sm text-foreground transition-all hover:border-gold hover:bg-gold/15 disabled:opacity-40"
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="mt-6">
         <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
           Topic starters
         </p>
         <div className="flex gap-2 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
-          {chips.map((chip) => (
-            <button
-              key={chip}
-              onClick={() => sendChip(chip)}
-              disabled={listening || thinking}
-              className="shrink-0 rounded-full border border-gold/30 bg-background/60 px-4 py-1.5 text-sm text-foreground transition-all hover:border-gold/60 hover:bg-gold/10 disabled:opacity-40"
-            >
-              {chip}
-            </button>
-          ))}
+          {(() => {
+            const mod = getModule(state.activeModuleId);
+            const focus = mod?.vocabFocus ?? null;
+            const ordered = focus
+              ? [...chips].sort((a, b) => {
+                  const am = matchesFocus(a, focus) ? 1 : 0;
+                  const bm = matchesFocus(b, focus) ? 1 : 0;
+                  return bm - am;
+                })
+              : chips;
+            return ordered.map((chip) => {
+              const inMod = !!focus && matchesFocus(chip, focus);
+              return (
+                <button
+                  key={chip}
+                  onClick={() => sendChip(chip)}
+                  disabled={listening || thinking}
+                  className={
+                    "shrink-0 rounded-full border bg-background/60 px-4 py-1.5 text-sm text-foreground transition-all hover:bg-gold/10 disabled:opacity-40 " +
+                    (inMod
+                      ? "border-gold/60 hover:border-gold"
+                      : "border-gold/30 hover:border-gold/60")
+                  }
+                >
+                  {inMod && <span className="mr-1 text-gold">◈</span>}
+                  {chip}
+                </button>
+              );
+            });
+          })()}
         </div>
       </div>
 

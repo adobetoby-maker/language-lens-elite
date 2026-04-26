@@ -3,6 +3,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { ChevronDown, Check, Sparkles, Loader2 } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
+import { getModule } from "@/data/modules";
+import { matchesFocus } from "@/lib/module-filter";
 import {
   CEFR_LEVELS,
   generateLessonTitles,
@@ -86,6 +88,15 @@ export function LevelSidebar({
             const isOpen = expanded === level;
             const isLoading = loadingLevel === level;
             const err = errorByLevel[level];
+            const activeMod = getModule(state.activeModuleId);
+            const focus = activeMod?.vocabFocus ?? null;
+            const sortedLessons = focus
+              ? [...lessons].sort((a, b) => {
+                  const am = matchesFocus(`${a.title} ${a.concept ?? ""}`, focus) ? 1 : 0;
+                  const bm = matchesFocus(`${b.title} ${b.concept ?? ""}`, focus) ? 1 : 0;
+                  return bm - am;
+                })
+              : lessons;
             return (
               <li key={level}>
                 <button
@@ -133,10 +144,13 @@ export function LevelSidebar({
                       </div>
                     )}
                     <ul className="space-y-0.5 py-1">
-                      {lessons.map((lesson, i) => {
+                      {sortedLessons.map((lesson, i) => {
                         const done = !!completed[lesson.id];
                         const active =
                           activeLevel === level && activeLessonId === lesson.id;
+                        const inMod =
+                          !!focus &&
+                          matchesFocus(`${lesson.title} ${lesson.concept ?? ""}`, focus);
                         return (
                           <li key={lesson.id}>
                             <button
@@ -151,9 +165,17 @@ export function LevelSidebar({
                                   i + 1
                                 )}
                               </span>
-                              <span className="font-display text-[13px] leading-snug text-foreground/90 group-data-[active=true]:text-foreground">
+                              <span className="flex-1 font-display text-[13px] leading-snug text-foreground/90 group-data-[active=true]:text-foreground">
                                 {lesson.title}
                               </span>
+                              {inMod && (
+                                <span
+                                  title="Matches active module"
+                                  className="mt-0.5 shrink-0 font-mono text-[10px] text-gold"
+                                >
+                                  ◈
+                                </span>
+                              )}
                             </button>
                           </li>
                         );
