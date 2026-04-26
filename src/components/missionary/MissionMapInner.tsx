@@ -44,7 +44,7 @@ interface SharedPin {
  * and optionally share that pairing anonymously with the community. The map
  * draws a connection line between hometown and mission for every shared pin.
  */
-export function MissionMap() {
+export function MissionMapInner() {
   const { user } = useAuth();
   const groupedMissions = useMemo(() => getMissionsByArea(), []);
   const sortedAreas = useMemo(() => Object.keys(groupedMissions).sort(), [groupedMissions]);
