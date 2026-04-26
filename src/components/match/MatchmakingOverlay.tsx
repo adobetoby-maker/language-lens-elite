@@ -241,7 +241,9 @@ export function MatchmakingOverlay({
     />
   );
 
-  const particles = useMemo(() => makeParticles(40), []);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const particles = useMemo(() => (mounted ? makeParticles(40) : []), [mounted]);
 
   return (
     <div
