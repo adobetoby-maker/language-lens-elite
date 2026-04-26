@@ -120,8 +120,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
               return (
                 <DropdownMenuItem
                   key={m.id}
-                  onSelect={(e) => {
-                    e.preventDefault();
+                  onSelect={() => {
                     if (!owned) {
                       // Stub purchase flow
                       dispatch({ type: "PURCHASE_MODULE", payload: m.id });
