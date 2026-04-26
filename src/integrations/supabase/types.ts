@@ -14,6 +14,91 @@ export type Database = {
   }
   public: {
     Tables: {
+      family_groups: {
+        Row: {
+          created_at: string
+          family_code: string
+          id: string
+          last_name: string
+          mission_pin_id: string | null
+          owner_user_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          family_code: string
+          id?: string
+          last_name: string
+          mission_pin_id?: string | null
+          owner_user_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          family_code?: string
+          id?: string
+          last_name?: string
+          mission_pin_id?: string | null
+          owner_user_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_groups_mission_pin_id_fkey"
+            columns: ["mission_pin_id"]
+            isOneToOne: false
+            referencedRelation: "mission_pins"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      family_members: {
+        Row: {
+          created_at: string
+          display_name: string
+          group_id: string
+          hometown_city: string | null
+          hometown_country: string | null
+          hometown_lat: number | null
+          hometown_lng: number | null
+          id: string
+          is_missionary: boolean
+          relationship: string
+        }
+        Insert: {
+          created_at?: string
+          display_name: string
+          group_id: string
+          hometown_city?: string | null
+          hometown_country?: string | null
+          hometown_lat?: number | null
+          hometown_lng?: number | null
+          id?: string
+          is_missionary?: boolean
+          relationship?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          group_id?: string
+          hometown_city?: string | null
+          hometown_country?: string | null
+          hometown_lat?: number | null
+          hometown_lng?: number | null
+          id?: string
+          is_missionary?: boolean
+          relationship?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "family_groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       library_books: {
         Row: {
           available: boolean

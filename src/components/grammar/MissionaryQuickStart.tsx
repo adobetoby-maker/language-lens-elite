@@ -3,6 +3,7 @@ import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown } from
 import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { MissionMap } from "@/components/missionary/MissionMap";
+import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
 import {
   COMMITMENT_INVITATIONS,
   MISSIONARY_VOCAB,
@@ -60,7 +61,8 @@ export function MissionaryQuickStart() {
   };
 
   return (
-    <>
+    <div>
+    <FamilyPackagePanel />
     <MissionMap />
     <section className="mb-6 overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/8 via-card/60 to-card/40">
       {/* Header */}
@@ -292,6 +294,6 @@ export function MissionaryQuickStart() {
         </div>
       </div>
     </section>
-    </>
+    </div>
   );
 }
