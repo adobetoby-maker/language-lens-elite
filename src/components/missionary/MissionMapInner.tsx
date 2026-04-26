@@ -351,6 +351,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                       onChange={(e) => setAreaFilter(e.target.value)}
                       className="rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-xs"
                     >
+                      <option value="">All areas</option>
                       {sortedAreas.map((a) => (
                         <option key={a} value={a}>{a}</option>
                       ))}
