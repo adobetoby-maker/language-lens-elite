@@ -116,15 +116,23 @@ export function LibraryDrawer({
             </div>
           )}
           {showMissionary && (
-            <Section
-              icon={<BookOpen className="h-3.5 w-3.5" />}
-              label="Missionary Library"
-              entries={grouped.missionary}
-              onSelect={select}
-              currentId={state.selectedId}
-              focus={focus}
-              moduleName={activeModule?.name ?? null}
-            />
+            <>
+              <Section
+                icon={<BookOpen className="h-3.5 w-3.5" />}
+                label="Missionary Library"
+                entries={grouped.missionary}
+                onSelect={select}
+                currentId={state.selectedId}
+                focus={focus}
+                moduleName={activeModule?.name ?? null}
+              />
+              <a
+                href="mailto:support@lovable.dev?subject=Missionary%20language%20request&body=Please%20add%20Preach%20My%20Gospel%20in%3A%20"
+                className="-mt-3 mb-4 ml-7 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground hover:underline"
+              >
+                Don&rsquo;t see your language? Request it &rarr;
+              </a>
+            </>
           )}
           <Section
             icon={<BookMarked className="h-3.5 w-3.5" />}
