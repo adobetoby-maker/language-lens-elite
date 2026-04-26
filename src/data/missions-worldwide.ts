@@ -399,6 +399,8 @@ export const WORLDWIDE_MISSIONS: WorldwideMission[] = [
   { id: "japan-fukuoka", name: "Japan Fukuoka", country: "Japan", area: "Asia North", lat: 33.5904, lng: 130.4017 },
   { id: "japan-sapporo", name: "Japan Sapporo", country: "Japan", area: "Asia North", lat: 43.0618, lng: 141.3545 },
   { id: "japan-sendai", name: "Japan Sendai", country: "Japan", area: "Asia North", lat: 38.2682, lng: 140.8694 },
+  { id: "japan-hiroshima", name: "Japan Hiroshima", country: "Japan", area: "Asia North", lat: 34.3853, lng: 132.4553 },
+  { id: "japan-okinawa", name: "Japan Okinawa", country: "Japan", area: "Asia North", lat: 26.2124, lng: 127.6809 },
   { id: "korea-seoul", name: "Korea Seoul", country: "South Korea", area: "Asia North", lat: 37.5665, lng: 126.9780 },
   { id: "korea-seoul-south", name: "Korea Seoul South", country: "South Korea", area: "Asia North", lat: 37.4500, lng: 127.0000 },
   { id: "korea-busan", name: "Korea Busan", country: "South Korea", area: "Asia North", lat: 35.1796, lng: 129.0756 },
