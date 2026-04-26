@@ -254,6 +254,40 @@ export const DOCTRINE_AND_COVENANTS: ScriptureBook = {
         { en: "The dead who repent will be redeemed, through obedience to the ordinances of the house of God.", target: "Los muertos que se arrepientan serán redimidos mediante la obediencia a las ordenanzas de la casa de Dios." },
       ],
     },
+    {
+      title: "Moses 1 — Behold, thou art my son",
+      sentences: [
+        { en: "Behold, thou art my son; wherefore look, and I will show thee the workmanship of mine hands.", target: "He aquí, tú eres mi hijo; mira, pues, y te mostraré la obra de mis manos." },
+        { en: "And I have a work for thee, Moses, my son.", target: "Y tengo una obra para ti, Moisés, hijo mío." },
+        { en: "And, behold, thou art my son; therefore look, and I will show thee.", target: "Y he aquí, tú eres mi hijo; por tanto, mira, y te mostraré." },
+      ],
+    },
+    {
+      title: "Abraham 3:22-23 — Thou wast chosen before thou wast born",
+      sentences: [
+        { en: "And God saw these souls that they were good, and he stood in the midst of them.", target: "Y Dios vio estas almas, que eran buenas, y estaba en medio de ellas." },
+        { en: "And he said: These I will make my rulers; for he stood among those that were spirits, and he saw that they were good.", target: "Y dijo: A estos haré mis gobernantes; porque estaba entre aquellos que eran espíritus, y vio que eran buenos." },
+        { en: "And he said unto me: Abraham, thou art one of them; thou wast chosen before thou wast born.", target: "Y me dijo: Abraham, tú eres uno de ellos; fuiste escogido antes de nacer." },
+      ],
+    },
+    {
+      title: "Joseph Smith — History 1:11-14 — If any of you lack wisdom",
+      sentences: [
+        { en: "I was one day reading the Epistle of James, first chapter and fifth verse.", target: "Un día estaba leyendo la Epístola de Santiago, capítulo primero, versículo quinto." },
+        { en: "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.", target: "Si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada." },
+        { en: "Never did any passage of scripture come with more power to the heart of man than this did at this time to mine.", target: "Jamás un pasaje de las Escrituras llegó con más poder al corazón del hombre que este al mío en aquella ocasión." },
+        { en: "I at length came to the conclusion that I must either remain in darkness and confusion, or else I must do as James directs.", target: "Por fin llegué a la conclusión de que debía permanecer en tinieblas y confusión, o bien hacer como Santiago indica." },
+      ],
+    },
+    {
+      title: "Articles of Faith — 5, 8, 9, 10",
+      sentences: [
+        { en: "We believe that a man must be called of God, by prophecy, and by the laying on of hands by those who are in authority.", target: "Creemos que el hombre debe ser llamado por Dios, por profecía y la imposición de manos, por aquellos que tienen la autoridad." },
+        { en: "We believe the Bible to be the word of God as far as it is translated correctly; we also believe the Book of Mormon to be the word of God.", target: "Creemos que la Biblia es la palabra de Dios hasta donde esté traducida correctamente; también creemos que el Libro de Mormón es la palabra de Dios." },
+        { en: "We believe all that God has revealed, all that He does now reveal, and we believe that He will yet reveal many great and important things.", target: "Creemos todo lo que Dios ha revelado, todo lo que ahora revela, y creemos que aún revelará muchos grandes e importantes asuntos." },
+        { en: "We believe in the literal gathering of Israel and in the restoration of the Ten Tribes.", target: "Creemos en la congregación literal de Israel y en la restauración de las Diez Tribus." },
+      ],
+    },
   ],
 };
 
