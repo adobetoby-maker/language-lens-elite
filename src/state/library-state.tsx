@@ -9,12 +9,13 @@ import {
   type ReactNode,
 } from "react";
 import { LIBRARY as PRELOADED, type LibraryText, type SentencePair } from "@/data/library";
+import { PREACH_MY_GOSPEL_CHAPTERS } from "@/data/preach-my-gospel";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./auth-state";
 import { toast } from "sonner";
 
-export type LibrarySection = "classic" | "culture" | "custom";
+export type LibrarySection = "missionary" | "classic" | "culture" | "custom";
 
 export interface BookChapter {
   title: string;
