@@ -97,4 +97,146 @@ export const LIBRARY: LibraryText[] = [
       },
     ],
   },
+
+  // ── Module sample: LDS Missionary ───────────────────────────────────────
+  {
+    id: "lds-restoration-short",
+    title: "The Restoration — Short Lesson",
+    subtitle: "LDS Missionary · teaching outline",
+    language: "Spanish",
+    targetLabel: "Español",
+    sentences: [
+      {
+        en: "We believe that God is our loving Heavenly Father and that He speaks to His children through prophets.",
+        target:
+          "Creemos que Dios es nuestro amoroso Padre Celestial y que Él habla a Sus hijos por medio de profetas.",
+      },
+      {
+        en: "Through sincere prayer and study of the scriptures, we can come to know the truth for ourselves.",
+        target:
+          "Mediante la oración sincera y el estudio de las Escrituras, podemos llegar a conocer la verdad por nosotros mismos.",
+      },
+      {
+        en: "Joseph Smith saw God the Father and Jesus Christ, and through him the gospel was restored to the earth.",
+        target:
+          "José Smith vio a Dios el Padre y a Jesucristo, y por medio de él el evangelio fue restaurado a la tierra.",
+      },
+      {
+        en: "The Book of Mormon is another testament of Jesus Christ and a witness of His divine mission.",
+        target:
+          "El Libro de Mormón es otro testamento de Jesucristo y un testigo de Su misión divina.",
+      },
+      {
+        en: "We invite you to read, ponder, and pray about these things, and to be baptized as Jesus was.",
+        target:
+          "Le invitamos a leer, meditar y orar sobre estas cosas, y a bautizarse como Jesús lo hizo.",
+      },
+      {
+        en: "I bear my testimony that the Spirit will confirm the truth of this message to your heart.",
+        target:
+          "Comparto mi testimonio de que el Espíritu confirmará la verdad de este mensaje en su corazón.",
+      },
+    ],
+  },
+  {
+    id: "lds-door-approach",
+    title: "At the Door — A Member Visit",
+    subtitle: "LDS Missionary · everyday companion conversation",
+    language: "Spanish",
+    targetLabel: "Español",
+    sentences: [
+      {
+        en: "Good evening, Sister López. We are the missionaries from your ward — do you have a moment?",
+        target:
+          "Buenas noches, hermana López. Somos los misioneros de su barrio. ¿Tiene un momento?",
+      },
+      {
+        en: "We just wanted to share a short scripture and offer a prayer with your family tonight.",
+        target:
+          "Solo queríamos compartir una breve escritura y ofrecer una oración con su familia esta noche.",
+      },
+      {
+        en: "Thank you for the dinner appointment last week — the spirit in your home was wonderful.",
+        target:
+          "Gracias por la cita para cenar de la semana pasada; el espíritu en su hogar fue maravilloso.",
+      },
+      {
+        en: "Is there anyone you know who might enjoy hearing more about the gospel of Jesus Christ?",
+        target:
+          "¿Conoce a alguien a quien le gustaría escuchar más sobre el evangelio de Jesucristo?",
+      },
+      {
+        en: "We will close with a prayer of gratitude for your faith and your example.",
+        target:
+          "Cerraremos con una oración de gratitud por su fe y su ejemplo.",
+      },
+    ],
+  },
+
+  // ── Module sample: Orthopedics ─────────────────────────────────────────
+  {
+    id: "ortho-xray-read",
+    title: "X-ray Read: Distal Radius Fracture",
+    subtitle: "Orthopedics · imaging dictation",
+    language: "Spanish",
+    targetLabel: "Español",
+    sentences: [
+      {
+        en: "PA and lateral views of the right wrist demonstrate a transverse fracture of the distal radius.",
+        target:
+          "Las proyecciones PA y lateral de la muñeca derecha muestran una fractura transversa del radio distal.",
+      },
+      {
+        en: "There is dorsal angulation of approximately twenty degrees with mild shortening.",
+        target:
+          "Hay angulación dorsal de aproximadamente veinte grados con acortamiento leve.",
+      },
+      {
+        en: "The ulnar styloid is intact and the distal radioulnar joint appears congruent.",
+        target:
+          "La apófisis estiloides cubital está intacta y la articulación radiocubital distal se ve congruente.",
+      },
+      {
+        en: "Recommend closed reduction with sugar-tong splint and orthopedic follow-up in one week.",
+        target:
+          "Se recomienda reducción cerrada con férula en pinza de azúcar y control ortopédico en una semana.",
+      },
+    ],
+  },
+
+  // ── Module sample: Framer ──────────────────────────────────────────────
+  {
+    id: "framer-jobsite",
+    title: "Jobsite Briefing — Wall Layout",
+    subtitle: "Framer · crew communication",
+    language: "Spanish",
+    targetLabel: "Español",
+    sentences: [
+      {
+        en: "Today we are framing the south wall — studs at sixteen on center, double top plate.",
+        target:
+          "Hoy estamos enmarcando la pared sur: montantes a dieciséis pulgadas al centro, placa superior doble.",
+      },
+      {
+        en: "The header over this window is a double two-by-ten with a half-inch plywood spacer.",
+        target:
+          "El cabezal sobre esta ventana es un doble dos por diez con un separador de contrachapado de media pulgada.",
+      },
+      {
+        en: "Check that the wall is plumb and level before you nail off the bottom plate.",
+        target:
+          "Verifica que la pared esté a plomo y nivelada antes de clavar la placa inferior.",
+      },
+      {
+        en: "We need thirty more studs and ten sheets of OSB delivered before lunch.",
+        target:
+          "Necesitamos treinta montantes más y diez hojas de OSB entregadas antes del almuerzo.",
+      },
+      {
+        en: "Read the blueprint carefully — the load-bearing wall shifts six inches on the second floor.",
+        target:
+          "Lee el plano con cuidado: la pared de carga se desplaza seis pulgadas en el segundo piso.",
+      },
+    ],
+  },
 ];
