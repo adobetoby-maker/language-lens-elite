@@ -519,7 +519,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                       Share your pin on the community map?
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      Other users will see <strong>{selectedMission?.name}</strong> connected to{" "}
+                      Other users will see <strong>{effectiveMission?.name}</strong> connected to{" "}
                       <strong>{hometownCity}, {hometownCountry}</strong>. Your name is never shown
                       — pins display anonymously as “a missionary.” You can remove your pin at any
                       time.
