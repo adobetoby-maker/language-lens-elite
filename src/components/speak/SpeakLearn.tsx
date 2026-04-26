@@ -6,6 +6,8 @@ import { useSpeak } from "@/state/speak-state";
 import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
 import { celebrate, looseIncludes } from "@/lib/confetti";
+import { getModule } from "@/data/modules";
+import { matchesFocus } from "@/lib/module-filter";
 import {
   ChallengePanel,
   type SpeakChallenge,
