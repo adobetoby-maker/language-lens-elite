@@ -207,7 +207,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
                         >
                           <Circle className="mt-0.5 h-3 w-3 shrink-0 text-muted-foreground" />
                           <span className="truncate text-xs text-foreground/80">
-                            {e.title}
+                            {highlight ? highlightKeywords(e.title, focus!) : e.title}
                           </span>
                         </li>
                       ))}
