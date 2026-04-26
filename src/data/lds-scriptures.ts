@@ -88,6 +88,66 @@ export const BOOK_OF_MORMON: ScriptureBook = {
         { en: "And by the power of the Holy Ghost ye may know the truth of all things.", target: "Y por el poder del Espíritu Santo podréis conocer la verdad de todas las cosas." },
       ],
     },
+    {
+      title: "1 Nephi 8 — The vision of the tree of life",
+      sentences: [
+        { en: "I beheld a tree, whose fruit was desirable to make one happy.", target: "Vi un árbol cuyo fruto era deseable para hacer feliz a uno." },
+        { en: "And I went forth and partook of the fruit thereof; and it was most sweet, above all that I ever before tasted.", target: "Y fui y participé de su fruto, y era dulce, sobre todo lo que yo jamás había probado antes." },
+        { en: "And as I partook of the fruit thereof it filled my soul with exceedingly great joy.", target: "Y al participar de su fruto, llenó mi alma de un gozo sumamente grande." },
+        { en: "And I beheld a rod of iron, and it extended along the bank of the river, and led to the tree by which I stood.", target: "Y vi una barra de hierro que se extendía a lo largo de la ribera del río, y conducía hasta el árbol junto al cual me hallaba yo." },
+      ],
+    },
+    {
+      title: "2 Nephi 31 — The doctrine of Christ",
+      sentences: [
+        { en: "Wherefore, do the things which I have told you I have seen that your Lord and your Redeemer should do.", target: "Por tanto, haced las cosas que os he dicho he visto que vuestro Señor y vuestro Redentor harán." },
+        { en: "For, for this cause have they been shown unto me, that ye might know the gate by which ye should enter.", target: "Porque por esta razón me han sido mostradas, para que sepáis la puerta por la cual debéis entrar." },
+        { en: "For the gate by which ye should enter is repentance and baptism by water.", target: "Porque la puerta por la cual debéis entrar es el arrepentimiento y el bautismo en el agua." },
+        { en: "And then cometh a remission of your sins by fire and by the Holy Ghost.", target: "Y entonces viene la remisión de vuestros pecados por fuego y por el Espíritu Santo." },
+      ],
+    },
+    {
+      title: "Mosiah 2 — When ye are in the service of your fellow beings",
+      sentences: [
+        { en: "When ye are in the service of your fellow beings ye are only in the service of your God.", target: "Cuando os halláis al servicio de vuestros semejantes, no estáis sino al servicio de vuestro Dios." },
+        { en: "Ye should remember to retain the name written always in your hearts.", target: "Debéis acordaros de retener el nombre escrito siempre en vuestros corazones." },
+      ],
+    },
+    {
+      title: "Alma 7 — He shall go forth, suffering pains and afflictions",
+      sentences: [
+        { en: "And he shall go forth, suffering pains and afflictions and temptations of every kind.", target: "Y él saldrá, sufriendo dolores, aflicciones y tentaciones de todas clases." },
+        { en: "And this that the word might be fulfilled which saith he will take upon him the pains and the sicknesses of his people.", target: "Y esto para que se cumpla la palabra que dice que tomará sobre sí los dolores y las enfermedades de su pueblo." },
+        { en: "And he will take upon him death, that he may loose the bands of death which bind his people.", target: "Y tomará sobre sí la muerte, para soltar las ligaduras de la muerte que sujetan a su pueblo." },
+        { en: "And he will take upon him their infirmities, that his bowels may be filled with mercy, according to the flesh.", target: "Y tomará sobre sí sus enfermedades, para que sus entrañas sean llenas de misericordia, según la carne." },
+      ],
+    },
+    {
+      title: "Helaman 5:12 — The rock of our Redeemer",
+      sentences: [
+        { en: "Remember, remember that it is upon the rock of our Redeemer, who is Christ, the Son of God, that ye must build your foundation.", target: "Recordad, recordad que es sobre la roca de nuestro Redentor, el cual es Cristo, el Hijo de Dios, que debéis establecer vuestro fundamento." },
+        { en: "That when the devil shall send forth his mighty winds, yea, his shafts in the whirlwind, it shall have no power over you.", target: "Para que cuando el diablo lance sus impetuosos vientos, sí, sus dardos en el torbellino, no tenga poder alguno sobre vosotros." },
+        { en: "Because of the rock upon which ye are built, which is a sure foundation, a foundation whereon if men build they cannot fall.", target: "A causa de la roca sobre la cual estáis edificados, que es un fundamento seguro, un fundamento sobre el cual, si los hombres edifican, no pueden caer." },
+      ],
+    },
+    {
+      title: "3 Nephi 12 — The Sermon at the Temple (Beatitudes)",
+      sentences: [
+        { en: "Blessed are ye when men shall revile you and persecute you, and shall say all manner of evil against you falsely, for my sake.", target: "Bienaventurados sois cuando los hombres os vituperen y os persigan, y digan toda clase de mal contra vosotros, mintiendo, por mi causa." },
+        { en: "For ye shall have great joy and be exceedingly glad, for great shall be your reward in heaven.", target: "Porque tendréis gran gozo y os alegraréis sumamente, porque grande será vuestra recompensa en el cielo." },
+        { en: "Ye are the light of this people. A city that is set on a hill cannot be hid.", target: "Vosotros sois la luz de este pueblo. Una ciudad asentada sobre un monte no se puede esconder." },
+      ],
+    },
+    {
+      title: "Ether 12 — Faith, hope, and weak things made strong",
+      sentences: [
+        { en: "And now, I, Moroni, would speak somewhat concerning these things; I would show unto the world that faith is things which are hoped for and not seen.", target: "Y ahora, yo, Moroni, hablaré algo concerniente a estas cosas; quisiera mostrar al mundo que la fe es las cosas que se esperan y no se ven." },
+        { en: "Wherefore, dispute not because ye see not, for ye receive no witness until after the trial of your faith.", target: "Por tanto, no disputéis porque no veáis, pues no recibís ningún testimonio sino hasta después de la prueba de vuestra fe." },
+        { en: "And if men come unto me I will show unto them their weakness.", target: "Y si los hombres vienen a mí, les mostraré su debilidad." },
+        { en: "I give unto men weakness that they may be humble; and my grace is sufficient for all men that humble themselves before me.", target: "Doy a los hombres debilidad para que sean humildes; y mi gracia es suficiente para todos los hombres que se humillan delante de mí." },
+        { en: "For if they humble themselves before me, and have faith in me, then will I make weak things become strong unto them.", target: "Porque si se humillan ante mí, y tienen fe en mí, entonces haré que las cosas débiles sean fuertes para ellos." },
+      ],
+    },
   ],
 };
 
@@ -144,6 +204,88 @@ export const DOCTRINE_AND_COVENANTS: ScriptureBook = {
         { en: "The rights of the priesthood are inseparably connected with the powers of heaven.", target: "Los derechos del sacerdocio están inseparablemente unidos a los poderes del cielo." },
         { en: "And the powers of heaven cannot be controlled nor handled only upon the principles of righteousness.", target: "Y los poderes del cielo no pueden ser gobernados ni manejados sino conforme a los principios de la rectitud." },
         { en: "No power or influence can or ought to be maintained by virtue of the priesthood, only by persuasion, by long-suffering, by gentleness and meekness, and by love unfeigned.", target: "Ningún poder o influencia se puede ni se debe mantener en virtud del sacerdocio, sino por persuasión, por longanimidad, por benignidad y mansedumbre, y por amor sincero." },
+      ],
+    },
+    {
+      title: "D&C 18:10 — The worth of souls is great",
+      sentences: [
+        { en: "Remember the worth of souls is great in the sight of God.", target: "Recordad que el valor de las almas es grande a la vista de Dios." },
+        { en: "For, behold, the Lord your Redeemer suffered death in the flesh; wherefore he suffered the pain of all men.", target: "Porque, he aquí, el Señor vuestro Redentor padeció la muerte en la carne; por lo que sufrió el dolor de todos los hombres." },
+        { en: "And how great is his joy in the soul that repenteth!", target: "¡Y cuán grande es su gozo en el alma que se arrepiente!" },
+      ],
+    },
+    {
+      title: "D&C 19:16-19 — I, God, have suffered these things for all",
+      sentences: [
+        { en: "For behold, I, God, have suffered these things for all, that they might not suffer if they would repent.", target: "Porque he aquí, yo, Dios, he padecido estas cosas por todos, para que no padezcan, si se arrepienten." },
+        { en: "But if they would not repent they must suffer even as I.", target: "Pero si no se arrepienten, tendrán que padecer así como yo." },
+        { en: "Which suffering caused myself, even God, the greatest of all, to tremble because of pain, and to bleed at every pore.", target: "Padecimiento que hizo que yo mismo, Dios, el mayor de todos, temblara a causa del dolor y sangrara por cada poro." },
+      ],
+    },
+    {
+      title: "D&C 64:9-10 — I, the Lord, will forgive whom I will forgive",
+      sentences: [
+        { en: "Wherefore, I say unto you, that ye ought to forgive one another.", target: "Por lo que os digo que debéis perdonaros los unos a los otros." },
+        { en: "For he that forgiveth not his brother his trespasses standeth condemned before the Lord.", target: "Porque el que no perdona a su hermano sus ofensas, queda condenado ante el Señor." },
+        { en: "I, the Lord, will forgive whom I will forgive, but of you it is required to forgive all men.", target: "Yo, el Señor, perdonaré a quien quiera perdonar, mas de vosotros se requiere que perdonéis a todos los hombres." },
+      ],
+    },
+    {
+      title: "D&C 88 — The light of Christ",
+      sentences: [
+        { en: "He that ascended up on high, as also he descended below all things, in that he comprehended all things.", target: "Aquel que ascendió a lo alto, así como también descendió debajo de todo, por cuanto comprendió todas las cosas." },
+        { en: "Which light proceedeth forth from the presence of God to fill the immensity of space.", target: "Cuya luz procede de la presencia de Dios para llenar la inmensidad del espacio." },
+        { en: "The light which is in all things, which giveth life to all things, which is the law by which all things are governed.", target: "La luz que está en todas las cosas, que da vida a todas las cosas, que es la ley por la cual todas las cosas son gobernadas." },
+      ],
+    },
+    {
+      title: "D&C 130 — When we attain it in the resurrection",
+      sentences: [
+        { en: "There is no such thing as immaterial matter. All spirit is matter, but it is more fine or pure.", target: "No existe tal cosa como la materia inmaterial. Todo espíritu es materia, pero es más fino o puro." },
+        { en: "And whatever principle of intelligence we attain unto in this life, it will rise with us in the resurrection.", target: "Y cualquier principio de inteligencia que logremos en esta vida, se levantará con nosotros en la resurrección." },
+        { en: "If a person gains more knowledge and intelligence in this life through his diligence and obedience, he will have so much the advantage in the world to come.", target: "Si una persona en esta vida adquiere más conocimiento e inteligencia por su diligencia y obediencia, gozará de mayor ventaja en el mundo venidero." },
+      ],
+    },
+    {
+      title: "D&C 138 — The vision of the redemption of the dead",
+      sentences: [
+        { en: "I beheld that the faithful elders of this dispensation, when they depart from mortal life, continue their labors in the preaching of the gospel.", target: "Vi que los fieles élderes de esta dispensación, cuando parten de la vida mortal, continúan sus labores en la predicación del evangelio." },
+        { en: "Unto the spirits of those who have died without a knowledge of the truth, or in transgression, having rejected the prophets.", target: "A los espíritus de los que han muerto sin un conocimiento de la verdad, o en transgresión, habiendo rechazado a los profetas." },
+        { en: "The dead who repent will be redeemed, through obedience to the ordinances of the house of God.", target: "Los muertos que se arrepientan serán redimidos mediante la obediencia a las ordenanzas de la casa de Dios." },
+      ],
+    },
+    {
+      title: "Moses 1 — Behold, thou art my son",
+      sentences: [
+        { en: "Behold, thou art my son; wherefore look, and I will show thee the workmanship of mine hands.", target: "He aquí, tú eres mi hijo; mira, pues, y te mostraré la obra de mis manos." },
+        { en: "And I have a work for thee, Moses, my son.", target: "Y tengo una obra para ti, Moisés, hijo mío." },
+        { en: "And, behold, thou art my son; therefore look, and I will show thee.", target: "Y he aquí, tú eres mi hijo; por tanto, mira, y te mostraré." },
+      ],
+    },
+    {
+      title: "Abraham 3:22-23 — Thou wast chosen before thou wast born",
+      sentences: [
+        { en: "And God saw these souls that they were good, and he stood in the midst of them.", target: "Y Dios vio estas almas, que eran buenas, y estaba en medio de ellas." },
+        { en: "And he said: These I will make my rulers; for he stood among those that were spirits, and he saw that they were good.", target: "Y dijo: A estos haré mis gobernantes; porque estaba entre aquellos que eran espíritus, y vio que eran buenos." },
+        { en: "And he said unto me: Abraham, thou art one of them; thou wast chosen before thou wast born.", target: "Y me dijo: Abraham, tú eres uno de ellos; fuiste escogido antes de nacer." },
+      ],
+    },
+    {
+      title: "Joseph Smith — History 1:11-14 — If any of you lack wisdom",
+      sentences: [
+        { en: "I was one day reading the Epistle of James, first chapter and fifth verse.", target: "Un día estaba leyendo la Epístola de Santiago, capítulo primero, versículo quinto." },
+        { en: "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.", target: "Si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada." },
+        { en: "Never did any passage of scripture come with more power to the heart of man than this did at this time to mine.", target: "Jamás un pasaje de las Escrituras llegó con más poder al corazón del hombre que este al mío en aquella ocasión." },
+        { en: "I at length came to the conclusion that I must either remain in darkness and confusion, or else I must do as James directs.", target: "Por fin llegué a la conclusión de que debía permanecer en tinieblas y confusión, o bien hacer como Santiago indica." },
+      ],
+    },
+    {
+      title: "Articles of Faith — 5, 8, 9, 10",
+      sentences: [
+        { en: "We believe that a man must be called of God, by prophecy, and by the laying on of hands by those who are in authority.", target: "Creemos que el hombre debe ser llamado por Dios, por profecía y la imposición de manos, por aquellos que tienen la autoridad." },
+        { en: "We believe the Bible to be the word of God as far as it is translated correctly; we also believe the Book of Mormon to be the word of God.", target: "Creemos que la Biblia es la palabra de Dios hasta donde esté traducida correctamente; también creemos que el Libro de Mormón es la palabra de Dios." },
+        { en: "We believe all that God has revealed, all that He does now reveal, and we believe that He will yet reveal many great and important things.", target: "Creemos todo lo que Dios ha revelado, todo lo que ahora revela, y creemos que aún revelará muchos grandes e importantes asuntos." },
+        { en: "We believe in the literal gathering of Israel and in the restoration of the Ten Tribes.", target: "Creemos en la congregación literal de Israel y en la restauración de las Diez Tribus." },
       ],
     },
   ],
@@ -252,6 +394,50 @@ export const OLD_TESTAMENT_KJV: ScriptureBook = {
         { en: "And pour you out a blessing, that there shall not be room enough to receive it.", target: "Y derramaré sobre vosotros bendición hasta que sobreabunde." },
       ],
     },
+    {
+      title: "Genesis 12 — The call of Abram",
+      sentences: [
+        { en: "Now the Lord had said unto Abram, Get thee out of thy country, and from thy kindred, and from thy father's house, unto a land that I will shew thee.", target: "Pero Jehová había dicho a Abram: Vete de tu tierra y de tu parentela, y de la casa de tu padre, a la tierra que te mostraré." },
+        { en: "And I will make of thee a great nation, and I will bless thee, and make thy name great; and thou shalt be a blessing.", target: "Y haré de ti una nación grande, y te bendeciré, y engrandeceré tu nombre, y serás bendición." },
+        { en: "And in thee shall all families of the earth be blessed.", target: "Y serán benditas en ti todas las familias de la tierra." },
+      ],
+    },
+    {
+      title: "Joshua 24:15 — Choose you this day whom ye will serve",
+      sentences: [
+        { en: "And if it seem evil unto you to serve the Lord, choose you this day whom ye will serve.", target: "Y si mal os parece servir a Jehová, escogeos hoy a quién sirváis." },
+        { en: "But as for me and my house, we will serve the Lord.", target: "Pero yo y mi casa serviremos a Jehová." },
+      ],
+    },
+    {
+      title: "1 Samuel 16:7 — The Lord looketh on the heart",
+      sentences: [
+        { en: "But the Lord said unto Samuel, Look not on his countenance, or on the height of his stature; because I have refused him.", target: "Y Jehová respondió a Samuel: No mires a su parecer, ni a lo grande de su estatura, porque yo lo desecho." },
+        { en: "For the Lord seeth not as man seeth; for man looketh on the outward appearance, but the Lord looketh on the heart.", target: "Porque Jehová no mira lo que mira el hombre; pues el hombre mira lo que está delante de sus ojos, pero Jehová mira el corazón." },
+      ],
+    },
+    {
+      title: "Proverbs 3:5-6 — Trust in the Lord",
+      sentences: [
+        { en: "Trust in the Lord with all thine heart; and lean not unto thine own understanding.", target: "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia." },
+        { en: "In all thy ways acknowledge him, and he shall direct thy paths.", target: "Reconócelo en todos tus caminos, y él enderezará tus veredas." },
+      ],
+    },
+    {
+      title: "Ecclesiastes 3 — A time to every purpose",
+      sentences: [
+        { en: "To every thing there is a season, and a time to every purpose under the heaven.", target: "Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su hora." },
+        { en: "A time to be born, and a time to die; a time to plant, and a time to pluck up that which is planted.", target: "Tiempo de nacer, y tiempo de morir; tiempo de plantar, y tiempo de arrancar lo plantado." },
+        { en: "A time to weep, and a time to laugh; a time to mourn, and a time to dance.", target: "Tiempo de llorar, y tiempo de reír; tiempo de endechar, y tiempo de bailar." },
+      ],
+    },
+    {
+      title: "Jeremiah 1:5 — Before I formed thee in the belly I knew thee",
+      sentences: [
+        { en: "Before I formed thee in the belly I knew thee; and before thou camest forth out of the womb I sanctified thee.", target: "Antes que te formase en el vientre te conocí, y antes que nacieses te santifiqué." },
+        { en: "And I ordained thee a prophet unto the nations.", target: "Te di por profeta a las naciones." },
+      ],
+    },
   ],
 };
 
@@ -322,6 +508,60 @@ export const NEW_TESTAMENT_KJV: ScriptureBook = {
         { en: "Behold, I make all things new.", target: "He aquí, yo hago nuevas todas las cosas." },
       ],
     },
+    {
+      title: "Luke 2 — The birth of Jesus",
+      sentences: [
+        { en: "And it came to pass in those days, that there went out a decree from Caesar Augustus, that all the world should be taxed.", target: "Aconteció en aquellos días, que se promulgó un edicto de parte de Augusto César, que todo el mundo fuese empadronado." },
+        { en: "And she brought forth her firstborn son, and wrapped him in swaddling clothes, and laid him in a manger; because there was no room for them in the inn.", target: "Y dio a luz a su hijo primogénito, y lo envolvió en pañales, y lo acostó en un pesebre, porque no había lugar para ellos en el mesón." },
+        { en: "And the angel said unto them, Fear not: for, behold, I bring you good tidings of great joy, which shall be to all people.", target: "Pero el ángel les dijo: No temáis; porque he aquí os doy nuevas de gran gozo, que será para todo el pueblo." },
+        { en: "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.", target: "Que os ha nacido hoy, en la ciudad de David, un Salvador, que es Cristo el Señor." },
+      ],
+    },
+    {
+      title: "Matthew 11:28-30 — Come unto me",
+      sentences: [
+        { en: "Come unto me, all ye that labour and are heavy laden, and I will give you rest.", target: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar." },
+        { en: "Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.", target: "Llevad mi yugo sobre vosotros, y aprended de mí, que soy manso y humilde de corazón; y hallaréis descanso para vuestras almas." },
+        { en: "For my yoke is easy, and my burden is light.", target: "Porque mi yugo es fácil, y ligera mi carga." },
+      ],
+    },
+    {
+      title: "Mark 12:30-31 — The two great commandments",
+      sentences: [
+        { en: "And thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind, and with all thy strength: this is the first commandment.", target: "Y amarás al Señor tu Dios con todo tu corazón, y con toda tu alma, y con toda tu mente y con todas tus fuerzas. Este es el principal mandamiento." },
+        { en: "And the second is like, namely this, Thou shalt love thy neighbour as thyself. There is none other commandment greater than these.", target: "Y el segundo es semejante: Amarás a tu prójimo como a ti mismo. No hay otro mandamiento mayor que estos." },
+      ],
+    },
+    {
+      title: "Luke 15 — The parable of the prodigal son",
+      sentences: [
+        { en: "And he arose, and came to his father. But when he was yet a great way off, his father saw him, and had compassion.", target: "Y levantándose, vino a su padre. Y cuando aún estaba lejos, lo vio su padre, y fue movido a misericordia." },
+        { en: "And ran, and fell on his neck, and kissed him.", target: "Y corrió, y se echó sobre su cuello, y le besó." },
+        { en: "For this my son was dead, and is alive again; he was lost, and is found.", target: "Porque este mi hijo muerto era, y ha revivido; se había perdido, y es hallado." },
+      ],
+    },
+    {
+      title: "Acts 2 — The day of Pentecost",
+      sentences: [
+        { en: "And when the day of Pentecost was fully come, they were all with one accord in one place.", target: "Cuando llegó el día de Pentecostés, estaban todos unánimes juntos." },
+        { en: "And there appeared unto them cloven tongues like as of fire, and it sat upon each of them.", target: "Y se les aparecieron lenguas repartidas, como de fuego, asentándose sobre cada uno de ellos." },
+        { en: "And they were all filled with the Holy Ghost, and began to speak with other tongues, as the Spirit gave them utterance.", target: "Y fueron todos llenos del Espíritu Santo, y comenzaron a hablar en otras lenguas, según el Espíritu les daba que hablasen." },
+      ],
+    },
+    {
+      title: "Romans 8 — Nothing shall separate us from the love of God",
+      sentences: [
+        { en: "For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come.", target: "Por lo cual estoy seguro de que ni la muerte, ni la vida, ni ángeles, ni principados, ni potestades, ni lo presente, ni lo por venir." },
+        { en: "Nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.", target: "Ni lo alto, ni lo profundo, ni ninguna otra cosa creada nos podrá separar del amor de Dios, que es en Cristo Jesús Señor nuestro." },
+      ],
+    },
+    {
+      title: "Hebrews 11 — Now faith is the substance of things hoped for",
+      sentences: [
+        { en: "Now faith is the substance of things hoped for, the evidence of things not seen.", target: "Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve." },
+        { en: "But without faith it is impossible to please him: for he that cometh to God must believe that he is, and that he is a rewarder of them that diligently seek him.", target: "Pero sin fe es imposible agradar a Dios; porque es necesario que el que se acerca a Dios crea que le hay, y que es galardonador de los que le buscan." },
+      ],
+    },
   ],
 };
 
@@ -387,6 +627,51 @@ export const JESUS_THE_CHRIST: ScriptureBook = {
         { en: "He appeared first to Mary Magdalene, then to the disciples, showing them His pierced hands and side.", target: "Apareció primero a María Magdalena, luego a los discípulos, mostrándoles Sus manos y costado traspasados." },
         { en: "Through His resurrection, every soul born into mortality is assured of resurrection from the dead.", target: "Por Su resurrección, toda alma nacida en la mortalidad tiene asegurada la resurrección de entre los muertos." },
         { en: "He lives. Of this great truth the writer bears solemn witness.", target: "Él vive. De esta gran verdad el autor da solemne testimonio." },
+      ],
+    },
+    {
+      title: "Chapter 14 — Early incidents of His public ministry",
+      sentences: [
+        { en: "After His baptism, the Lord retired into the wilderness, there to commune with the Father and to prepare for His ministry.", target: "Después de Su bautismo, el Señor se retiró al desierto, para comulgar con el Padre y prepararse para Su ministerio." },
+        { en: "There He fasted forty days, and was tempted of the adversary, yet He overcame every trial.", target: "Allí ayunó cuarenta días, y fue tentado por el adversario; pero venció toda prueba." },
+        { en: "Returning in the power of the Spirit, He began to call disciples and to proclaim the kingdom of God.", target: "Volviendo en el poder del Espíritu, comenzó a llamar discípulos y a proclamar el reino de Dios." },
+      ],
+    },
+    {
+      title: "Chapter 17 — Lord of the Sabbath",
+      sentences: [
+        { en: "The Sabbath was made for man, and not man for the Sabbath; the Son of Man is Lord even of the Sabbath.", target: "El día de reposo fue hecho para el hombre, y no el hombre para el día de reposo; el Hijo del Hombre es Señor aun del día de reposo." },
+        { en: "He healed on that holy day, declaring that to do good is the truest observance of the Sabbath.", target: "Sanó en ese día santo, declarando que hacer el bien es la más verdadera observancia del día de reposo." },
+      ],
+    },
+    {
+      title: "Chapter 26 — Parables by the sea",
+      sentences: [
+        { en: "By parables the Master taught the multitude, that those whose hearts were prepared might understand.", target: "Por medio de parábolas el Maestro enseñó a la multitud, para que aquellos cuyos corazones estuvieran preparados pudieran comprender." },
+        { en: "The kingdom of heaven is like unto a treasure hid in a field; the which when a man hath found, he hideth, and for joy thereof goeth and selleth all that he hath, and buyeth that field.", target: "El reino de los cielos es semejante a un tesoro escondido en un campo, el cual un hombre halla, y lo esconde de nuevo; y gozoso por ello va y vende todo lo que tiene, y compra aquel campo." },
+        { en: "So is the kingdom of God to him who finds it: more precious than all earthly possessions.", target: "Así es el reino de Dios para quien lo encuentra: más precioso que todas las posesiones terrenales." },
+      ],
+    },
+    {
+      title: "Chapter 32 — The Last Supper",
+      sentences: [
+        { en: "On the night of His betrayal, the Lord ate the Passover with His apostles, and instituted the sacrament in remembrance of Him.", target: "En la noche de Su traición, el Señor comió la Pascua con Sus apóstoles, e instituyó la Santa Cena en memoria de Él." },
+        { en: "He took bread, and blessed it, and brake it, and gave to them, saying: Take, eat; this is my body.", target: "Tomó el pan, y lo bendijo, y lo partió, y les dio, diciendo: Tomad, comed; esto es mi cuerpo." },
+        { en: "And he took the cup, and gave thanks, and gave it to them, saying: This is my blood of the new testament, which is shed for many for the remission of sins.", target: "Y tomando la copa, dio gracias, y les dio, diciendo: Esto es mi sangre del nuevo pacto, que por muchos es derramada para remisión de los pecados." },
+      ],
+    },
+    {
+      title: "Chapter 35 — The trial and the cross",
+      sentences: [
+        { en: "He was led as a lamb to the slaughter, and as a sheep before her shearers is dumb, so He opened not His mouth.", target: "Como cordero fue llevado al matadero; y como oveja delante de sus trasquiladores enmudece, así no abrió Su boca." },
+        { en: "Upon the cross of Calvary He completed the great work of redemption, that all who believe might have eternal life.", target: "Sobre la cruz del Calvario completó la gran obra de la redención, para que todos los que creen tuvieran vida eterna." },
+      ],
+    },
+    {
+      title: "Chapter 41 — He shall come again",
+      sentences: [
+        { en: "As He ascended in glory, so shall He return in like manner, with power and great glory.", target: "Así como ascendió en gloria, así volverá de la misma manera, con poder y gran gloria." },
+        { en: "Every knee shall bow, and every tongue shall confess that Jesus is the Christ, the Son of the living God, the Redeemer and Lord of all.", target: "Toda rodilla se doblará, y toda lengua confesará que Jesús es el Cristo, el Hijo del Dios viviente, el Redentor y Señor de todos." },
       ],
     },
   ],
