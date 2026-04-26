@@ -60,7 +60,7 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
   const [selectedMissionId, setSelectedMissionId] = useState<string | null>(null);
   const [hometownCity, setHometownCity] = useState("");
   const [hometownCountry, setHometownCountry] = useState("");
-  const [areaFilter, setAreaFilter] = useState<string>(sortedAreas[0] ?? "");
+  const [areaFilter, setAreaFilter] = useState<string>("");
   const [missionSearch, setMissionSearch] = useState("");
 
   const [askingToShare, setAskingToShare] = useState(false);
