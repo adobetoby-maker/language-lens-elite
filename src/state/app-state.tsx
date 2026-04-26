@@ -174,6 +174,10 @@ export interface AppState {
   // Celebration trigger
   pendingLevelUp: XpTier | null;
 
+  // Paid plug-in modules (frontend stub for now)
+  purchasedModules: string[];
+  activeModuleId: string | null;
+
   hydrated: boolean;
 }
 
@@ -205,6 +209,8 @@ export type AppAction =
   | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
   | { type: "RECORD_CHALLENGE"; payload: ClearedChallenge }
   | { type: "DISMISS_LEVEL_UP" }
+  | { type: "PURCHASE_MODULE"; payload: string }
+  | { type: "SET_ACTIVE_MODULE"; payload: string | null }
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
 const initialState: AppState = {
@@ -233,6 +239,8 @@ const initialState: AppState = {
   challengesCleared: 0,
   recentChallenges: [],
   pendingLevelUp: null,
+  purchasedModules: [],
+  activeModuleId: null,
   hydrated: false,
 };
 
@@ -308,6 +316,19 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "DISMISS_LEVEL_UP":
       return { ...state, pendingLevelUp: null };
+    case "PURCHASE_MODULE": {
+      if (state.purchasedModules.includes(action.payload)) return state;
+      return {
+        ...state,
+        purchasedModules: [...state.purchasedModules, action.payload],
+      };
+    }
+    case "SET_ACTIVE_MODULE": {
+      if (action.payload && !state.purchasedModules.includes(action.payload)) {
+        return state;
+      }
+      return { ...state, activeModuleId: action.payload };
+    }
     case "RECORD_CHALLENGE": {
       const recent = [action.payload, ...state.recentChallenges].slice(0, 5);
       return {
@@ -350,6 +371,8 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "xpSessions",
   "challengesCleared",
   "recentChallenges",
+  "purchasedModules",
+  "activeModuleId",
 ];
 
 function todayKey() {
