@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ChevronDown, Check, Sparkles, Loader2 } from "lucide-react";
 import { useApp } from "@/state/app-state";
