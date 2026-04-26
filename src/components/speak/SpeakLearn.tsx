@@ -12,6 +12,7 @@ import {
   ChallengePanel,
   type SpeakChallenge,
 } from "@/components/speak/ChallengePanel";
+import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
@@ -465,6 +466,8 @@ export function SpeakLearn() {
           </button>
         )}
       </header>
+
+      <ModuleMatchPanel surface="Speak & Learn" className="mb-4" />
 
       {transcript}
 
