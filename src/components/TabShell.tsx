@@ -7,7 +7,7 @@ import { SpeakLearn } from "./speak/SpeakLearn";
 import { Dashboard } from "./dashboard/Dashboard";
 import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
 import { MissionaryHome } from "./missionary/MissionaryHome";
-import { OrthopedicsHome } from "./orthopedics/OrthopedicsHome";
+import { OrthopedicsHome } from "@/components/orthopedics/OrthopedicsHome";
 
 export function TabShell() {
   const { state } = useApp();
