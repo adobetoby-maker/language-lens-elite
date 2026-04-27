@@ -4,6 +4,8 @@ import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
+import { ClickableText } from "@/components/reader/ClickableText";
+import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import {
   COMMITMENT_INVITATIONS,
   MISSIONARY_VOCAB,
