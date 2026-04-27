@@ -36,6 +36,25 @@ export function MissionaryQuickStart() {
   };
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
+  const { accent, voiceURI } = useSpeech();
+  const speakPhrase = (text: string, lang: Language) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const LOCALE: Record<Language, string> = {
+      Spanish: "es-ES",
+      French: "fr-FR",
+      German: "de-DE",
+      Italian: "it-IT",
+      Japanese: "ja-JP",
+      Korean: "ko-KR",
+      Portuguese: "pt-PT",
+    };
+    const utter = new SpeechSynthesisUtterance(text);
+    configureUtterance(utter, accent || LOCALE[lang], voiceURI);
+    utter.rate = 0.95;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+  };
+
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
   const area = getMissionArea(assignedAreaId);
 
