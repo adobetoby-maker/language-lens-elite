@@ -25,6 +25,7 @@ const LANGUAGES: Language[] = [
 
 const TABS: { key: TabKey; label: string; module?: string }[] = [
   { key: "missionary", label: "Missionary", module: "lds-missionary" },
+  { key: "orthopedics", label: "Orthopedics", module: "orthopedics" },
   { key: "reader", label: "Reader" },
   { key: "grammar", label: "Grammar Studio" },
   { key: "speak", label: "Speak & Learn" },
