@@ -94,16 +94,19 @@ export function MissionaryQuickStart() {
             available from The Church of Jesus Christ of Latter-day Saints.
           </p>
         </div>
-        <a
-          href="https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-2023"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/60 hover:text-foreground"
-        >
-          <BookOpen className="h-3 w-3" />
-          Preach My Gospel
-          <ExternalLink className="h-3 w-3 opacity-60" />
-        </a>
+        <div className="flex items-center gap-2">
+          <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
+          <a
+            href="https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-2023"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/60 hover:text-foreground"
+          >
+            <BookOpen className="h-3 w-3" />
+            Preach My Gospel
+            <ExternalLink className="h-3 w-3 opacity-60" />
+          </a>
+        </div>
       </header>
 
       {/* Mission picker */}
