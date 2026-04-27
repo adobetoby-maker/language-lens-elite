@@ -7,6 +7,7 @@ import { SpeakLearn } from "./speak/SpeakLearn";
 import { Dashboard } from "./dashboard/Dashboard";
 import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
 import { MissionaryHome } from "./missionary/MissionaryHome";
+import { OrthopedicsHome } from "./orthopedics/OrthopedicsHome";
 
 export function TabShell() {
   const { state } = useApp();
@@ -14,6 +15,8 @@ export function TabShell() {
   switch (state.currentTab) {
     case "missionary":
       return <MissionaryHome />;
+    case "orthopedics":
+      return <OrthopedicsHome />;
     case "reader":
       return <ParallelReader />;
     case "grammar":

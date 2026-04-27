@@ -8,6 +8,7 @@ import { useSpeech } from "@/state/speech-state";
 import { useTutor, type TutorMessage } from "@/state/tutor-state";
 import { getModule } from "@/data/modules";
 import { getMissionArea } from "@/data/missionary-content";
+import { getOrthoArea } from "@/data/orthopedics-content";
 
 
 const LEVEL_TO_CEFR: Record<string, string> = {
@@ -113,13 +114,13 @@ export function TutorPanel() {
             module: (() => {
               const mod = getModule(appState.activeModuleId);
               if (!mod) return undefined;
-              const area = getMissionArea(
-                appState.moduleAssignments[mod.id] ?? null,
-              );
+              const assignment = appState.moduleAssignments[mod.id] ?? null;
+              const area = getMissionArea(assignment);
+              const ortho = mod.id === "orthopedics" ? getOrthoArea(assignment) : null;
               return {
                 id: mod.id,
                 name: mod.name,
-                userRole: mod.userRole,
+                userRole: ortho?.learnerRole ?? mod.userRole,
                 aiPersona: mod.aiPersona,
                 missionArea: area
                   ? {
@@ -127,6 +128,15 @@ export function TutorPanel() {
                       region: area.region,
                       languages: area.languages,
                       cultureNote: area.cultureNote,
+                    }
+                  : undefined,
+                orthoArea: ortho
+                  ? {
+                      name: ortho.name,
+                      counterpart: ortho.counterpart,
+                      learnerRole: ortho.learnerRole,
+                      toneNote: ortho.toneNote,
+                      vocab: ortho.vocab.slice(0, 20),
                     }
                   : undefined,
               };

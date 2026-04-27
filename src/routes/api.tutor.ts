@@ -20,6 +20,15 @@ const ModuleSchema = z
         cultureNote: z.string().max(400).optional(),
       })
       .optional(),
+    orthoArea: z
+      .object({
+        name: z.string().max(120),
+        counterpart: z.string().max(200).optional(),
+        learnerRole: z.string().max(120).optional(),
+        toneNote: z.string().max(400).optional(),
+        vocab: z.array(z.string().max(60)).max(20).optional(),
+      })
+      .optional(),
   })
   .optional();
 
@@ -63,6 +72,27 @@ function buildModuleAddendum(mod: NonNullable<z.infer<typeof BodySchema>["contex
           ? `- Cultural note for this area: ${mod.missionArea.cultureNote}`
           : null,
         `- Tailor pronunciation, register, and example scenarios to this mission area.`,
+      );
+    }
+  }
+
+  if (mod.id === "orthopedics") {
+    lines.push(
+      `- You are an experienced clinical-language coach for orthopedic surgeons. Use accurate medical terminology in the target language and natural register for the setting.`,
+      `- Always show the target-language phrase first, then a short English gloss in parentheses.`,
+      `- When the learner asks to roleplay, stay in character as the counterpart described below until the learner ends the scene.`,
+      `- Keep ER/OR/Trauma exchanges short and clinical; keep clinic and oncology exchanges warmer and slower.`,
+      `- Never give real medical advice — this is language practice only.`,
+    );
+    if (mod.orthoArea) {
+      lines.push(
+        `- Current scenario area: ${mod.orthoArea.name}.`,
+        mod.orthoArea.learnerRole ? `- Learner is playing: ${mod.orthoArea.learnerRole}.` : null,
+        mod.orthoArea.counterpart ? `- You are playing: ${mod.orthoArea.counterpart}.` : null,
+        mod.orthoArea.toneNote ? `- Tone for this area: ${mod.orthoArea.toneNote}` : null,
+        mod.orthoArea.vocab?.length
+          ? `- Lean on this vocabulary when natural: ${mod.orthoArea.vocab.join(", ")}.`
+          : null,
       );
     }
   }
