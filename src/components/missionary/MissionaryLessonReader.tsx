@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
-import { BookOpen, CheckCircle2, Lightbulb, Sparkles, XCircle } from "lucide-react";
-import { useApp } from "@/state/app-state";
+import { useState } from "react";
+import { BookOpen, CheckCircle2, Lightbulb, Sparkles, Volume2, XCircle } from "lucide-react";
+import { useApp, type Language } from "@/state/app-state";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
+import { useMissionarySpeech } from "@/components/missionary/useMissionarySpeech";
+import { SpeedButton } from "@/components/missionary/SpeedButton";
 import {
   PMG_LESSONS,
   paragraphTarget,
@@ -10,6 +12,9 @@ import {
   type LessonSection,
   type QuizQuestion,
 } from "@/data/missionary-lessons";
+
+type SpeakFn = (id: string, text: string, lang: Language) => void;
+type Speaking = { id: string; index: number; fading: boolean } | null;
 
 /**
  * Deep, clickable lesson reader for the LDS Missionary tab. Mirrors the
@@ -24,6 +29,7 @@ export function MissionaryLessonReader() {
   const { state, dispatch } = useApp();
   const [activeLessonId, setActiveLessonId] = useState<string>(PMG_LESSONS[0].id);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+  const { rate, cycleRate, speak, speaking } = useMissionarySpeech();
 
   const lesson: PmgLesson =
     PMG_LESSONS.find((l) => l.id === activeLessonId) ?? PMG_LESSONS[0];
@@ -37,19 +43,22 @@ export function MissionaryLessonReader() {
   return (
     <section className="mb-8 overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-gold/8 via-card/60 to-card/40">
       {/* Header */}
-      <header className="border-b border-gold/20 px-5 py-4">
-        <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
-          <BookOpen className="h-3.5 w-3.5" />
-          Lesson Manual · Preach My Gospel
+      <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gold/20 px-5 py-4">
+        <div>
+          <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+            <BookOpen className="h-3.5 w-3.5" />
+            Lesson Manual · Preach My Gospel
+          </div>
+          <h2 className="mt-1 font-display text-2xl text-foreground">
+            The five missionary lessons — clickable in {state.selectedLanguage}
+          </h2>
+          <p className="mt-1 max-w-3xl text-xs text-muted-foreground">
+            Tap any word in either column to see its translation, part of speech,
+            and conjugation in context. Reflect on the inline prompts and finish
+            each section with a short comprehension check.
+          </p>
         </div>
-        <h2 className="mt-1 font-display text-2xl text-foreground">
-          The five missionary lessons — clickable in {state.selectedLanguage}
-        </h2>
-        <p className="mt-1 max-w-3xl text-xs text-muted-foreground">
-          Tap any word in either column to see its translation, part of speech,
-          and conjugation in context. Reflect on the inline prompts and finish
-          each section with a short comprehension check.
-        </p>
+        <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
       </header>
 
       {/* Lesson tab bar */}
@@ -88,6 +97,8 @@ export function MissionaryLessonReader() {
               key={section.id}
               section={section}
               onWord={handleWord}
+              speak={speak}
+              speaking={speaking}
             />
           ))}
         </div>
@@ -109,9 +120,13 @@ export function MissionaryLessonReader() {
 function SectionBlock({
   section,
   onWord,
+  speak,
+  speaking,
 }: {
   section: LessonSection;
   onWord: (word: string, sentence: string, x: number, y: number) => void;
+  speak: SpeakFn;
+  speaking: Speaking;
 }) {
   const { state } = useApp();
 
@@ -128,6 +143,8 @@ function SectionBlock({
       <div className="flex flex-col gap-4">
         {section.paragraphs.map((p) => {
           const target = paragraphTarget(p, state.selectedLanguage);
+          const speakId = `para-${p.id}`;
+          const isSpeaking = speaking?.id === speakId;
           return (
             <div
               key={p.id}
@@ -148,10 +165,29 @@ function SectionBlock({
                 data-sentence-index={0}
                 className="font-display text-[15px] italic leading-relaxed text-foreground"
               >
-                <ClickableText
-                  text={target}
-                  onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
-                />
+                {isSpeaking ? (
+                  <SpokenText
+                    text={target}
+                    activeIndex={speaking!.index}
+                    fading={speaking!.fading}
+                  />
+                ) : (
+                  <ClickableText
+                    text={target}
+                    onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
+                  />
+                )}
+                <button
+                  type="button"
+                  aria-label={`Read aloud in ${state.selectedLanguage}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    speak(speakId, target, state.selectedLanguage);
+                  }}
+                  className="ml-1.5 inline-flex h-6 w-6 -translate-y-0.5 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold align-middle transition-colors hover:bg-gold/20"
+                >
+                  <Volume2 className="h-3 w-3" />
+                </button>
               </p>
 
               {p.reflection && (
@@ -267,5 +303,54 @@ function QuizItem({ q }: { q: QuizQuestion }) {
         </p>
       )}
     </div>
+  );
+}
+
+/**
+ * Renders a phrase split into word tokens, highlighting the currently spoken
+ * word with a subtle gold underline. Fades out smoothly as speech ends.
+ */
+function SpokenText({
+  text,
+  activeIndex,
+  fading,
+}: {
+  text: string;
+  activeIndex: number;
+  fading: boolean;
+}) {
+  const tokens = text.split(/(\s+)/);
+  let wordIdx = -1;
+  return (
+    <span>
+      {tokens.map((tok, i) => {
+        if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
+        wordIdx += 1;
+        const isActive = wordIdx === activeIndex;
+        return (
+          <span
+            key={i}
+            className={`transition-all duration-300 ${
+              isActive && !fading
+                ? "text-gold [text-shadow:0_0_12px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                : ""
+            }`}
+            style={
+              isActive
+                ? {
+                    borderBottom:
+                      "1px solid color-mix(in oklab, var(--gold) 70%, transparent)",
+                    opacity: fading ? 0 : 1,
+                    transition:
+                      "opacity 400ms ease, border-color 400ms ease, text-shadow 400ms ease",
+                  }
+                : undefined
+            }
+          >
+            {tok}
+          </span>
+        );
+      })}
+    </span>
   );
 }

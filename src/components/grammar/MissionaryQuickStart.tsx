@@ -2,8 +2,8 @@ import { useMemo, useState } from "react";
 import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown, Volume2 } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
-import { useSpeech } from "@/state/speech-state";
-import { configureUtterance } from "@/lib/voices";
+import { useMissionarySpeech } from "@/components/missionary/useMissionarySpeech";
+import { SpeedButton } from "@/components/missionary/SpeedButton";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
 import { ClickableText } from "@/components/reader/ClickableText";
@@ -30,55 +30,13 @@ export function MissionaryQuickStart() {
   const [category, setCategory] = useState<CommitmentInvitation["category"] | "All">("All");
   const [showAreas, setShowAreas] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
-  const [speaking, setSpeaking] = useState<{ id: string; index: number; fading: boolean } | null>(null);
 
   const onWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
-  const { accent, voiceURI } = useSpeech();
-  const speakPhrase = (id: string, text: string, lang: Language) => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    const LOCALE: Record<Language, string> = {
-      Spanish: "es-ES",
-      French: "fr-FR",
-      German: "de-DE",
-      Italian: "it-IT",
-      Japanese: "ja-JP",
-      Korean: "ko-KR",
-      Portuguese: "pt-PT",
-    };
-    const localeCode = accent || LOCALE[lang];
-
-    // Tokenize into words (keep punctuation glued to the word).
-    const words = text.match(/\S+/g) ?? [];
-    if (words.length === 0) return;
-
-    window.speechSynthesis.cancel();
-    setSpeaking({ id, index: 0, fading: false });
-
-    let cancelled = false;
-    const speakAt = (i: number) => {
-      if (cancelled) return;
-      if (i >= words.length) {
-        setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
-        window.setTimeout(() => {
-          setSpeaking((s) => (s && s.id === id ? null : s));
-        }, 450);
-        return;
-      }
-      setSpeaking({ id, index: i, fading: false });
-      const u = new SpeechSynthesisUtterance(words[i]);
-      configureUtterance(u, localeCode, voiceURI);
-      u.rate = 0.95;
-      u.onend = () => speakAt(i + 1);
-      u.onerror = () => speakAt(i + 1);
-      window.speechSynthesis.speak(u);
-    };
-    // Tiny delay so cancel() flushes cleanly across browsers.
-    window.setTimeout(() => speakAt(0), 30);
-  };
+  const { rate, cycleRate, speak: speakPhrase, speaking } = useMissionarySpeech();
 
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
@@ -136,16 +94,19 @@ export function MissionaryQuickStart() {
             available from The Church of Jesus Christ of Latter-day Saints.
           </p>
         </div>
-        <a
-          href="https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-2023"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/60 hover:text-foreground"
-        >
-          <BookOpen className="h-3 w-3" />
-          Preach My Gospel
-          <ExternalLink className="h-3 w-3 opacity-60" />
-        </a>
+        <div className="flex items-center gap-2">
+          <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
+          <a
+            href="https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-2023"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/60 hover:text-foreground"
+          >
+            <BookOpen className="h-3 w-3" />
+            Preach My Gospel
+            <ExternalLink className="h-3 w-3 opacity-60" />
+          </a>
+        </div>
       </header>
 
       {/* Mission picker */}
