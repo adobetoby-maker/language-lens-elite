@@ -236,6 +236,17 @@ export function MissionaryQuickStart() {
               “
               <ClickableText text={inv.prompt} onWordClick={onWord} />
               ”
+              <button
+                type="button"
+                aria-label={`Read aloud in ${state.selectedLanguage}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  speakPhrase(inv.prompt, state.selectedLanguage);
+                }}
+                className="ml-1.5 inline-flex h-6 w-6 -translate-y-0.5 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold align-middle transition-colors hover:bg-gold/20"
+              >
+                <Volume2 className="h-3 w-3" />
+              </button>
             </p>
             <p className="mt-1 text-[11px] text-muted-foreground">
               <ClickableText text={inv.context} onWordClick={onWord} />
