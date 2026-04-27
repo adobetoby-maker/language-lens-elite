@@ -30,6 +30,7 @@ export function MissionaryQuickStart() {
   const [category, setCategory] = useState<CommitmentInvitation["category"] | "All">("All");
   const [showAreas, setShowAreas] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+  const [speaking, setSpeaking] = useState<{ id: string; index: number; fading: boolean } | null>(null);
 
   const onWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
@@ -37,7 +38,7 @@ export function MissionaryQuickStart() {
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
   const { accent, voiceURI } = useSpeech();
-  const speakPhrase = (text: string, lang: Language) => {
+  const speakPhrase = (id: string, text: string, lang: Language) => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     const LOCALE: Record<Language, string> = {
       Spanish: "es-ES",
@@ -51,9 +52,36 @@ export function MissionaryQuickStart() {
     const utter = new SpeechSynthesisUtterance(text);
     configureUtterance(utter, accent || LOCALE[lang], voiceURI);
     utter.rate = 0.95;
+
+    // Pre-compute token offsets so onboundary maps charIndex → word index.
+    const tokenStarts: number[] = [];
+    const re = /\S+/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) tokenStarts.push(m.index);
+
+    utter.onstart = () => setSpeaking({ id, index: 0, fading: false });
+    utter.onboundary = (ev: SpeechSynthesisEvent) => {
+      if (ev.name && ev.name !== "word") return;
+      let idx = 0;
+      for (let i = 0; i < tokenStarts.length; i++) {
+        if (tokenStarts[i] <= ev.charIndex) idx = i;
+        else break;
+      }
+      setSpeaking({ id, index: idx, fading: false });
+    };
+    const finish = () => {
+      setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
+      window.setTimeout(() => {
+        setSpeaking((s) => (s && s.id === id ? null : s));
+      }, 450);
+    };
+    utter.onend = finish;
+    utter.onerror = finish;
+
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
   };
+
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
   const area = getMissionArea(assignedAreaId);
@@ -234,14 +262,22 @@ export function MissionaryQuickStart() {
             </div>
             <p className="mt-2 font-display text-base italic leading-snug text-foreground">
               “
-              <ClickableText text={inv.prompt} onWordClick={onWord} />
+              {speaking && speaking.id === inv.id ? (
+                <SpokenText
+                  text={inv.prompt}
+                  activeIndex={speaking.index}
+                  fading={speaking.fading}
+                />
+              ) : (
+                <ClickableText text={inv.prompt} onWordClick={onWord} />
+              )}
               ”
               <button
                 type="button"
                 aria-label={`Read aloud in ${state.selectedLanguage}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  speakPhrase(inv.prompt, state.selectedLanguage);
+                  speakPhrase(inv.id, inv.prompt, state.selectedLanguage);
                 }}
                 className="ml-1.5 inline-flex h-6 w-6 -translate-y-0.5 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold align-middle transition-colors hover:bg-gold/20"
               >
@@ -345,5 +381,53 @@ export function MissionaryQuickStart() {
       />
     )}
     </div>
+  );
+}
+
+/**
+ * Renders a phrase split into word tokens, highlighting the currently spoken
+ * word with a subtle gold underline + glow. When `fading` is true, the entire
+ * highlight smoothly fades out as speech ends.
+ */
+function SpokenText({
+  text,
+  activeIndex,
+  fading,
+}: {
+  text: string;
+  activeIndex: number;
+  fading: boolean;
+}) {
+  const tokens = text.split(/(\s+)/);
+  let wordIdx = -1;
+  return (
+    <span>
+      {tokens.map((tok, i) => {
+        if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
+        wordIdx += 1;
+        const isActive = wordIdx === activeIndex;
+        return (
+          <span
+            key={i}
+            className={`transition-all duration-300 ${
+              isActive && !fading
+                ? "text-gold [text-shadow:0_0_12px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                : ""
+            } ${fading ? "opacity-90" : ""}`}
+            style={
+              isActive
+                ? {
+                    borderBottom: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)",
+                    opacity: fading ? 0 : 1,
+                    transition: "opacity 400ms ease, border-color 400ms ease, text-shadow 400ms ease",
+                  }
+                : undefined
+            }
+          >
+            {tok}
+          </span>
+        );
+      })}
+    </span>
   );
 }
