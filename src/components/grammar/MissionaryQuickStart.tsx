@@ -383,3 +383,51 @@ export function MissionaryQuickStart() {
     </div>
   );
 }
+
+/**
+ * Renders a phrase split into word tokens, highlighting the currently spoken
+ * word with a subtle gold underline + glow. When `fading` is true, the entire
+ * highlight smoothly fades out as speech ends.
+ */
+function SpokenText({
+  text,
+  activeIndex,
+  fading,
+}: {
+  text: string;
+  activeIndex: number;
+  fading: boolean;
+}) {
+  const tokens = text.split(/(\s+)/);
+  let wordIdx = -1;
+  return (
+    <span>
+      {tokens.map((tok, i) => {
+        if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
+        wordIdx += 1;
+        const isActive = wordIdx === activeIndex;
+        return (
+          <span
+            key={i}
+            className={`transition-all duration-300 ${
+              isActive && !fading
+                ? "text-gold [text-shadow:0_0_12px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                : ""
+            } ${fading ? "opacity-90" : ""}`}
+            style={
+              isActive
+                ? {
+                    borderBottom: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)",
+                    opacity: fading ? 0 : 1,
+                    transition: "opacity 400ms ease, border-color 400ms ease, text-shadow 400ms ease",
+                  }
+                : undefined
+            }
+          >
+            {tok}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
