@@ -49,37 +49,35 @@ export function MissionaryQuickStart() {
       Korean: "ko-KR",
       Portuguese: "pt-PT",
     };
-    const utter = new SpeechSynthesisUtterance(text);
-    configureUtterance(utter, accent || LOCALE[lang], voiceURI);
-    utter.rate = 0.95;
+    const localeCode = accent || LOCALE[lang];
 
-    // Pre-compute token offsets so onboundary maps charIndex → word index.
-    const tokenStarts: number[] = [];
-    const re = /\S+/g;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text)) !== null) tokenStarts.push(m.index);
-
-    utter.onstart = () => setSpeaking({ id, index: 0, fading: false });
-    utter.onboundary = (ev: SpeechSynthesisEvent) => {
-      if (ev.name && ev.name !== "word") return;
-      let idx = 0;
-      for (let i = 0; i < tokenStarts.length; i++) {
-        if (tokenStarts[i] <= ev.charIndex) idx = i;
-        else break;
-      }
-      setSpeaking({ id, index: idx, fading: false });
-    };
-    const finish = () => {
-      setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
-      window.setTimeout(() => {
-        setSpeaking((s) => (s && s.id === id ? null : s));
-      }, 450);
-    };
-    utter.onend = finish;
-    utter.onerror = finish;
+    // Tokenize into words (keep punctuation glued to the word).
+    const words = text.match(/\S+/g) ?? [];
+    if (words.length === 0) return;
 
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
+    setSpeaking({ id, index: 0, fading: false });
+
+    let cancelled = false;
+    const speakAt = (i: number) => {
+      if (cancelled) return;
+      if (i >= words.length) {
+        setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
+        window.setTimeout(() => {
+          setSpeaking((s) => (s && s.id === id ? null : s));
+        }, 450);
+        return;
+      }
+      setSpeaking({ id, index: i, fading: false });
+      const u = new SpeechSynthesisUtterance(words[i]);
+      configureUtterance(u, localeCode, voiceURI);
+      u.rate = 0.95;
+      u.onend = () => speakAt(i + 1);
+      u.onerror = () => speakAt(i + 1);
+      window.speechSynthesis.speak(u);
+    };
+    // Tiny delay so cancel() flushes cleanly across browsers.
+    window.setTimeout(() => speakAt(0), 30);
   };
 
 
