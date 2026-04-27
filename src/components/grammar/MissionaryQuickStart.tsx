@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
-import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown } from "lucide-react";
-import { useApp } from "@/state/app-state";
+import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown, Volume2 } from "lucide-react";
+import { useApp, type Language } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
+import { useSpeech } from "@/state/speech-state";
+import { configureUtterance } from "@/lib/voices";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
 import { ClickableText } from "@/components/reader/ClickableText";
