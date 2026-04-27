@@ -29,6 +29,7 @@ export function MissionaryLessonReader() {
   const { state, dispatch } = useApp();
   const [activeLessonId, setActiveLessonId] = useState<string>(PMG_LESSONS[0].id);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+  const { rate, cycleRate, speak, speaking } = useMissionarySpeech();
 
   const lesson: PmgLesson =
     PMG_LESSONS.find((l) => l.id === activeLessonId) ?? PMG_LESSONS[0];
@@ -42,19 +43,22 @@ export function MissionaryLessonReader() {
   return (
     <section className="mb-8 overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-gold/8 via-card/60 to-card/40">
       {/* Header */}
-      <header className="border-b border-gold/20 px-5 py-4">
-        <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
-          <BookOpen className="h-3.5 w-3.5" />
-          Lesson Manual · Preach My Gospel
+      <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gold/20 px-5 py-4">
+        <div>
+          <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+            <BookOpen className="h-3.5 w-3.5" />
+            Lesson Manual · Preach My Gospel
+          </div>
+          <h2 className="mt-1 font-display text-2xl text-foreground">
+            The five missionary lessons — clickable in {state.selectedLanguage}
+          </h2>
+          <p className="mt-1 max-w-3xl text-xs text-muted-foreground">
+            Tap any word in either column to see its translation, part of speech,
+            and conjugation in context. Reflect on the inline prompts and finish
+            each section with a short comprehension check.
+          </p>
         </div>
-        <h2 className="mt-1 font-display text-2xl text-foreground">
-          The five missionary lessons — clickable in {state.selectedLanguage}
-        </h2>
-        <p className="mt-1 max-w-3xl text-xs text-muted-foreground">
-          Tap any word in either column to see its translation, part of speech,
-          and conjugation in context. Reflect on the inline prompts and finish
-          each section with a short comprehension check.
-        </p>
+        <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
       </header>
 
       {/* Lesson tab bar */}
