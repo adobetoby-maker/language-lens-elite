@@ -27,6 +27,12 @@ export function MissionaryQuickStart() {
 
   const [category, setCategory] = useState<CommitmentInvitation["category"] | "All">("All");
   const [showAreas, setShowAreas] = useState(false);
+  const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+
+  const onWord = (word: string, sentence: string, x: number, y: number) => {
+    setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
+  };
+  const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
   const area = getMissionArea(assignedAreaId);
