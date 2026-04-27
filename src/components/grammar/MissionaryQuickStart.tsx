@@ -4,6 +4,8 @@ import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
+import { ClickableText } from "@/components/reader/ClickableText";
+import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import {
   COMMITMENT_INVITATIONS,
   MISSIONARY_VOCAB,
@@ -25,6 +27,12 @@ export function MissionaryQuickStart() {
 
   const [category, setCategory] = useState<CommitmentInvitation["category"] | "All">("All");
   const [showAreas, setShowAreas] = useState(false);
+  const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
+
+  const onWord = (word: string, sentence: string, x: number, y: number) => {
+    setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
+  };
+  const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
   const area = getMissionArea(assignedAreaId);
@@ -204,9 +212,13 @@ export function MissionaryQuickStart() {
               </span>
             </div>
             <p className="mt-2 font-display text-base italic leading-snug text-foreground">
-              “{inv.prompt}”
+              “
+              <ClickableText text={inv.prompt} onWordClick={onWord} />
+              ”
             </p>
-            <p className="mt-1 text-[11px] text-muted-foreground">{inv.context}</p>
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              <ClickableText text={inv.context} onWordClick={onWord} />
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               <button
                 onClick={() =>
@@ -256,11 +268,10 @@ export function MissionaryQuickStart() {
                 {v.words.map((w) => (
                   <button
                     key={w}
-                    onClick={() =>
-                      askTutor(
-                        `Teach me the word "${w}" in ${state.selectedLanguage} as a missionary would use it. Show: 1) the most common translation, 2) any reverent / scriptural alternative, 3) one example sentence from a teaching context, 4) gender / formality notes if relevant.`,
-                      )
-                    }
+                    onClick={(e) => {
+                      const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                      onWord(w, w, r.left + r.width / 2, r.bottom);
+                    }}
                     className="rounded-full border border-border/60 bg-background/60 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground transition-colors hover:border-gold/50 hover:bg-gold/10 hover:text-foreground"
                   >
                     {w}
@@ -294,6 +305,13 @@ export function MissionaryQuickStart() {
         </div>
       </div>
     </section>
+    {wordReq && (
+      <WordCard
+        request={wordReq}
+        onClose={() => setWordReq(null)}
+        onXp={onXp}
+      />
+    )}
     </div>
   );
 }
