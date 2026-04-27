@@ -335,7 +335,13 @@ function reducer(state: AppState, action: AppAction): AppState {
       // When activating the missionary module, jump to its dedicated tab.
       if (action.payload === "lds-missionary") {
         next.currentTab = "missionary";
-      } else if (state.currentTab === "missionary" || state.currentTab === "discussions") {
+      } else if (action.payload === "orthopedics") {
+        next.currentTab = "orthopedics";
+      } else if (
+        state.currentTab === "missionary" ||
+        state.currentTab === "discussions" ||
+        state.currentTab === "orthopedics"
+      ) {
         // Leaving the module — these tabs disappear, so fall back to Reader.
         next.currentTab = "reader";
       }
