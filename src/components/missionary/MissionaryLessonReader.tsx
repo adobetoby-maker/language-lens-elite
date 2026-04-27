@@ -97,6 +97,8 @@ export function MissionaryLessonReader() {
               key={section.id}
               section={section}
               onWord={handleWord}
+              speak={speak}
+              speaking={speaking}
             />
           ))}
         </div>
