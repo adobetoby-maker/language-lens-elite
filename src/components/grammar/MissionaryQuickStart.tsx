@@ -30,55 +30,13 @@ export function MissionaryQuickStart() {
   const [category, setCategory] = useState<CommitmentInvitation["category"] | "All">("All");
   const [showAreas, setShowAreas] = useState(false);
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
-  const [speaking, setSpeaking] = useState<{ id: string; index: number; fading: boolean } | null>(null);
 
   const onWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
-  const { accent, voiceURI } = useSpeech();
-  const speakPhrase = (id: string, text: string, lang: Language) => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    const LOCALE: Record<Language, string> = {
-      Spanish: "es-ES",
-      French: "fr-FR",
-      German: "de-DE",
-      Italian: "it-IT",
-      Japanese: "ja-JP",
-      Korean: "ko-KR",
-      Portuguese: "pt-PT",
-    };
-    const localeCode = accent || LOCALE[lang];
-
-    // Tokenize into words (keep punctuation glued to the word).
-    const words = text.match(/\S+/g) ?? [];
-    if (words.length === 0) return;
-
-    window.speechSynthesis.cancel();
-    setSpeaking({ id, index: 0, fading: false });
-
-    let cancelled = false;
-    const speakAt = (i: number) => {
-      if (cancelled) return;
-      if (i >= words.length) {
-        setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
-        window.setTimeout(() => {
-          setSpeaking((s) => (s && s.id === id ? null : s));
-        }, 450);
-        return;
-      }
-      setSpeaking({ id, index: i, fading: false });
-      const u = new SpeechSynthesisUtterance(words[i]);
-      configureUtterance(u, localeCode, voiceURI);
-      u.rate = 0.95;
-      u.onend = () => speakAt(i + 1);
-      u.onerror = () => speakAt(i + 1);
-      window.speechSynthesis.speak(u);
-    };
-    // Tiny delay so cancel() flushes cleanly across browsers.
-    window.setTimeout(() => speakAt(0), 30);
-  };
+  const { rate, cycleRate, speak: speakPhrase, speaking } = useMissionarySpeech();
 
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
