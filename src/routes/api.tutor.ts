@@ -20,6 +20,15 @@ const ModuleSchema = z
         cultureNote: z.string().max(400).optional(),
       })
       .optional(),
+    orthoArea: z
+      .object({
+        name: z.string().max(120),
+        counterpart: z.string().max(200).optional(),
+        learnerRole: z.string().max(120).optional(),
+        toneNote: z.string().max(400).optional(),
+        vocab: z.array(z.string().max(60)).max(20).optional(),
+      })
+      .optional(),
   })
   .optional();
 
