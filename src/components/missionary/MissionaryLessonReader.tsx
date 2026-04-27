@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
-import { BookOpen, CheckCircle2, Lightbulb, Sparkles, XCircle } from "lucide-react";
-import { useApp } from "@/state/app-state";
+import { useState } from "react";
+import { BookOpen, CheckCircle2, Lightbulb, Sparkles, Volume2, XCircle } from "lucide-react";
+import { useApp, type Language } from "@/state/app-state";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
+import { useMissionarySpeech } from "@/components/missionary/useMissionarySpeech";
+import { SpeedButton } from "@/components/missionary/SpeedButton";
 import {
   PMG_LESSONS,
   paragraphTarget,
@@ -10,6 +12,9 @@ import {
   type LessonSection,
   type QuizQuestion,
 } from "@/data/missionary-lessons";
+
+type SpeakFn = (id: string, text: string, lang: Language) => void;
+type Speaking = { id: string; index: number; fading: boolean } | null;
 
 /**
  * Deep, clickable lesson reader for the LDS Missionary tab. Mirrors the
