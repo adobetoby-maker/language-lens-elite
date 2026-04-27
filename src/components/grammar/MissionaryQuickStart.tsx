@@ -305,6 +305,13 @@ export function MissionaryQuickStart() {
         </div>
       </div>
     </section>
+    {wordReq && (
+      <WordCard
+        request={wordReq}
+        onClose={() => setWordReq(null)}
+        onXp={onXp}
+      />
+    )}
     </div>
   );
 }
