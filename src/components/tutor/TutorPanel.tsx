@@ -8,6 +8,7 @@ import { useSpeech } from "@/state/speech-state";
 import { useTutor, type TutorMessage } from "@/state/tutor-state";
 import { getModule } from "@/data/modules";
 import { getMissionArea } from "@/data/missionary-content";
+import { getOrthoArea } from "@/data/orthopedics-content";
 
 
 const LEVEL_TO_CEFR: Record<string, string> = {
