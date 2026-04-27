@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
-import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown } from "lucide-react";
-import { useApp } from "@/state/app-state";
+import { BookOpen, MapPin, Sparkles, ExternalLink, Languages, ChevronDown, Volume2 } from "lucide-react";
+import { useApp, type Language } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
+import { useSpeech } from "@/state/speech-state";
+import { configureUtterance } from "@/lib/voices";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
 import { ClickableText } from "@/components/reader/ClickableText";
@@ -33,6 +35,25 @@ export function MissionaryQuickStart() {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   };
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
+
+  const { accent, voiceURI } = useSpeech();
+  const speakPhrase = (text: string, lang: Language) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const LOCALE: Record<Language, string> = {
+      Spanish: "es-ES",
+      French: "fr-FR",
+      German: "de-DE",
+      Italian: "it-IT",
+      Japanese: "ja-JP",
+      Korean: "ko-KR",
+      Portuguese: "pt-PT",
+    };
+    const utter = new SpeechSynthesisUtterance(text);
+    configureUtterance(utter, accent || LOCALE[lang], voiceURI);
+    utter.rate = 0.95;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+  };
 
   const assignedAreaId = state.moduleAssignments["lds-missionary"] ?? null;
   const area = getMissionArea(assignedAreaId);
@@ -215,6 +236,17 @@ export function MissionaryQuickStart() {
               “
               <ClickableText text={inv.prompt} onWordClick={onWord} />
               ”
+              <button
+                type="button"
+                aria-label={`Read aloud in ${state.selectedLanguage}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  speakPhrase(inv.prompt, state.selectedLanguage);
+                }}
+                className="ml-1.5 inline-flex h-6 w-6 -translate-y-0.5 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold align-middle transition-colors hover:bg-gold/20"
+              >
+                <Volume2 className="h-3 w-3" />
+              </button>
             </p>
             <p className="mt-1 text-[11px] text-muted-foreground">
               <ClickableText text={inv.context} onWordClick={onWord} />
