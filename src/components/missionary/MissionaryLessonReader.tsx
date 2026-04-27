@@ -120,9 +120,13 @@ export function MissionaryLessonReader() {
 function SectionBlock({
   section,
   onWord,
+  speak,
+  speaking,
 }: {
   section: LessonSection;
   onWord: (word: string, sentence: string, x: number, y: number) => void;
+  speak: SpeakFn;
+  speaking: Speaking;
 }) {
   const { state } = useApp();
 
@@ -139,6 +143,8 @@ function SectionBlock({
       <div className="flex flex-col gap-4">
         {section.paragraphs.map((p) => {
           const target = paragraphTarget(p, state.selectedLanguage);
+          const speakId = `para-${p.id}`;
+          const isSpeaking = speaking?.id === speakId;
           return (
             <div
               key={p.id}
@@ -159,10 +165,29 @@ function SectionBlock({
                 data-sentence-index={0}
                 className="font-display text-[15px] italic leading-relaxed text-foreground"
               >
-                <ClickableText
-                  text={target}
-                  onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
-                />
+                {isSpeaking ? (
+                  <SpokenText
+                    text={target}
+                    activeIndex={speaking!.index}
+                    fading={speaking!.fading}
+                  />
+                ) : (
+                  <ClickableText
+                    text={target}
+                    onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
+                  />
+                )}
+                <button
+                  type="button"
+                  aria-label={`Read aloud in ${state.selectedLanguage}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    speak(speakId, target, state.selectedLanguage);
+                  }}
+                  className="ml-1.5 inline-flex h-6 w-6 -translate-y-0.5 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold align-middle transition-colors hover:bg-gold/20"
+                >
+                  <Volume2 className="h-3 w-3" />
+                </button>
               </p>
 
               {p.reflection && (
