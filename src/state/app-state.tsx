@@ -242,8 +242,8 @@ const initialState: AppState = {
   challengesCleared: 0,
   recentChallenges: [],
   pendingLevelUp: null,
-  purchasedModules: [],
-  activeModuleId: null,
+  purchasedModules: ["orthopedics", "lds-missionary", "framer"],
+  activeModuleId: "orthopedics",
   moduleAssignments: {},
   hydrated: false,
 };
