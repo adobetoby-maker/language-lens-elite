@@ -250,7 +250,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
 
       {/* Tabs */}
       <nav className="border-t border-border/40">
-        <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-3 sm:gap-2 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-x-auto px-3 sm:gap-4 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {TABS.filter((t) => !t.module || state.activeModuleId === t.module).map((tab) => {
             const active = state.currentTab === tab.key;
             return (
