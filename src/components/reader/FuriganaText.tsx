@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { addFurigana, type FuriganaSegment } from "@/server/furigana.functions";
+import { addFurigana, type FuriganaSegment } from "@/fns/furigana.functions";
 
 /**
  * Renders a Japanese sentence with furigana (small reading hints above kanji)

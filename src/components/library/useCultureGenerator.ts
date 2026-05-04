@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { generateCultureEssay } from "@/server/library.functions";
+import { generateCultureEssay } from "@/fns/library.functions";
 import { useLibrary, flagFor } from "@/state/library-state";
 import { useApp, type Language } from "@/state/app-state";
 

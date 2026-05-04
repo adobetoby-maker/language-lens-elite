@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { translateCustomText } from "@/server/library.functions";
+import { translateCustomText } from "@/fns/library.functions";
 import { useLibrary, flagFor, type BookChapter } from "@/state/library-state";
 import { useApp } from "@/state/app-state";
 

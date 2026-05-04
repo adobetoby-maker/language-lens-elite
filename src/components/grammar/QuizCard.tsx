@@ -9,7 +9,7 @@ import {
   generateLessonQuiz,
   type LessonStub,
   type QuizQuestion,
-} from "@/server/grammar.functions";
+} from "@/fns/grammar.functions";
 
 const BADGE_BY_LEVEL: Record<CefrLevel, string> = {
   A1: "A1 Graduate 🎓",

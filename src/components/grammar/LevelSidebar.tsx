@@ -9,7 +9,7 @@ import {
   CEFR_LEVELS,
   generateLessonTitles,
   type LessonStub,
-} from "@/server/grammar.functions";
+} from "@/fns/grammar.functions";
 
 const LEVEL_LABEL: Record<CefrLevel, string> = {
   A1: "Beginner",

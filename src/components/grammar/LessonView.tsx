@@ -7,7 +7,7 @@ import {
   generateLessonContent,
   type LessonStub,
   type LessonContent,
-} from "@/server/grammar.functions";
+} from "@/fns/grammar.functions";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { FuriganaText } from "@/components/reader/FuriganaText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";

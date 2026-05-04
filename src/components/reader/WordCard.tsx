@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { X, Volume2, MessageCircle, Sparkle } from "lucide-react";
-import { lookupWord, type WordCardData } from "@/server/word-lookup.functions";
+import { lookupWord, type WordCardData } from "@/fns/word-lookup.functions";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
 import { useApp, type Language } from "@/state/app-state";

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { addRomaja, type RomajaSegment } from "@/server/romaja.functions";
+import { addRomaja, type RomajaSegment } from "@/fns/romaja.functions";
 
 /**
  * Renders a Korean sentence with optional Revised Romanization (RR) above each

@@ -8,7 +8,7 @@ import {
   type RankTier,
 } from "@/state/match-state";
 import { celebrate } from "@/lib/confetti";
-import { generateBattleWord, type BattleWord } from "@/server/battle.functions";
+import { generateBattleWord, type BattleWord } from "@/fns/battle.functions";
 import { RankBadge } from "./RankBadge";
 
 const SPEECH_LOCALE: Record<Language, string> = {

@@ -7,10 +7,10 @@ import {
   useReducer,
   type ReactNode,
 } from "react";
-import type { CefrLevel, LessonContent, LessonStub } from "@/server/grammar.functions";
+import type { CefrLevel, LessonContent, LessonStub } from "@/fns/grammar.functions";
 import type { Language } from "./app-state";
 
-export type { CefrLevel } from "@/server/grammar.functions";
+export type { CefrLevel } from "@/fns/grammar.functions";
 
 interface LessonState {
   stub: LessonStub;

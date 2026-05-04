@@ -1,5 +1,5 @@
 import { Layers } from "lucide-react";
-import type { MorphologyBreakdown } from "@/server/grammar.functions";
+import type { MorphologyBreakdown } from "@/fns/grammar.functions";
 import { useApp } from "@/state/app-state";
 
 /**
