@@ -603,4 +603,837 @@ export const MEDICAL_SPECIALIST_CONTENT: MedicalModuleContent[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // PAIN MANAGEMENT
+  // ─────────────────────────────────────────────
+  {
+    moduleId: "pain-management",
+    areas: [
+      {
+        id: "new-patient-consult",
+        name: "New Patient Consult",
+        emoji: "📋",
+        blurb: "The initial pain management evaluation — comprehensive pain history, prior treatments, functional impact, and goal-setting.",
+        counterpart: "50-year-old patient referred for chronic low back pain with radiculopathy, failed PT and NSAIDs",
+        learnerRole: "Pain management physician or CRNA conducting the initial consult",
+        toneNote: "Thorough, empathetic, and non-judgmental about opioid history. Use a functional framing — not just pain scores but how pain affects daily life. Set realistic expectations from the start.",
+        phrases: [
+          { en: "Tell me about your pain in your own words — where it is, what it feels like, and how long it's been going on.", intent: "pain history" },
+          { en: "On a scale of zero to ten, what is your average pain level over the last week — not the worst day, but the average?", intent: "pain severity baseline" },
+          { en: "Walk me through what a typical day looks like — what can you do, what do you avoid because of the pain?", intent: "functional impact assessment" },
+          { en: "What have you already tried? I want to make sure we're not repeating things that didn't work and we're not missing something that might.", intent: "prior treatment history" },
+          { en: "Tell me about your sleep — pain and sleep are closely connected, and poor sleep can actually amplify pain perception.", intent: "sleep-pain connection" },
+          { en: "I want to be upfront with you — the goal of pain management isn't always to eliminate pain completely. Realistically, we're aiming for meaningful reduction and improved function.", intent: "realistic goal-setting" },
+          { en: "Do you have any history of substance use — alcohol, other medications, anything like that? I ask everyone, and it helps me choose the safest treatments.", intent: "substance use history" },
+          { en: "Based on your MRI and your exam, you have significant foraminal narrowing at L4-5 — I think you're a good candidate for a targeted epidural steroid injection.", intent: "treatment recommendation" },
+        ],
+        vocab: [
+          "radiculopathy", "neuropathic pain", "foraminal stenosis", "epidural steroid injection",
+          "NRS (numeric rating scale)", "functional limitation", "multimodal analgesia", "central sensitization",
+          "opioid risk stratification", "PDMP (prescription drug monitoring program)"
+        ],
+        challenges: [
+          "A new patient presents with fibromyalgia and requests opioids. Navigate this request using a multimodal, non-opioid framework.",
+          "A patient rates their pain a 10/10 at rest with a normal physical exam and unremarkable imaging. Explore this discordance respectfully.",
+          "Discuss the concept of central sensitization with a patient who is frustrated that their pain doesn't seem to match their MRI findings."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Before we look at any options, I really want to understand what your day looks like. What can you do without pain, and what have you had to give up?" },
+          { speaker: "ai", en: "I can't sit for more than twenty minutes. I had to stop coaching my son's soccer team. I can't drive long distances. It's basically taken over my life." },
+          { speaker: "learner", en: "That's a significant impact — and those are exactly the kinds of goals we should be working toward. Sitting through a meeting, coaching again, driving. That's more useful to me than a number on a pain scale." },
+          { speaker: "ai", en: "My last doctor just kept giving me more pills. I don't want that — I want to actually get better." },
+          { speaker: "learner", en: "I hear you, and I agree with that approach. Let's talk about what we have available — there are interventional options like targeted injections, there are physical medicine approaches, and we can discuss whether any medications might help as part of a bigger plan rather than a standalone solution." },
+          { speaker: "ai", en: "What's the injection thing? My neighbor had one and said it helped." },
+        ],
+      },
+      {
+        id: "procedure-prep",
+        name: "Procedure Prep (Epidural / Injection)",
+        emoji: "💉",
+        blurb: "Preparing a patient for a pain procedure — informed consent, positioning, explaining the steps, and managing procedure anxiety.",
+        counterpart: "Patient presenting for a lumbar epidural steroid injection, first time having the procedure",
+        learnerRole: "Pain management physician performing the procedure",
+        toneNote: "Calm and reassuring. Walk the patient through each step before it happens. Normalize anxiety. Be specific about sensations — 'you'll feel pressure, not sharp pain' is more helpful than 'it won't hurt.'",
+        phrases: [
+          { en: "Before we start, let me walk you through exactly what's going to happen so there are no surprises.", intent: "pre-procedure orientation" },
+          { en: "I'm going to use a little bit of numbing medicine first — you'll feel a stick and a burn for about five seconds, then it should just be pressure.", intent: "local anesthetic warning" },
+          { en: "If at any point you feel sharp shooting pain down your leg, tell me immediately — that's different from the pressure sensation I'm expecting, and I want to know.", intent: "procedural safety instruction" },
+          { en: "I'm going to use fluoroscopy — that's a live X-ray — to guide the needle to exactly the right spot.", intent: "fluoroscopy explanation" },
+          { en: "You might feel some pressure in your back and some fullness as I inject the medication — that's normal.", intent: "injection sensation preparation" },
+          { en: "After the procedure, you'll rest for about 15-20 minutes and we'll check your blood pressure and make sure your legs feel normal before you leave.", intent: "recovery instructions" },
+          { en: "Some people feel worse for a day or two before they improve — the steroid takes a few days to kick in, so don't judge it by how you feel tomorrow.", intent: "post-procedure expectations" },
+          { en: "Do you have a driver today? You shouldn't drive yourself home after sedation.", intent: "pre-procedure safety check" },
+        ],
+        vocab: [
+          "epidural space", "fluoroscopy", "contrast dye", "triamcinolone", "dexamethasone",
+          "conscious sedation", "informed consent", "facet joint", "medial branch block", "radiofrequency ablation"
+        ],
+        challenges: [
+          "A patient is extremely anxious about the needle and asks if they can be 'put completely out.' Explain the options for sedation and why light sedation is standard.",
+          "During a transforaminal ESI, the patient reports sharp shooting pain down the leg. Walk through your immediate response.",
+          "A patient with a contrast allergy presents for an injection requiring fluoroscopy. Discuss your pre-medication protocol and risk-benefit conversation."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Okay, you're positioned well. I'm going to start with the numbing medicine — you'll feel a little pinch and then a burn that lasts about five seconds. Ready?" },
+          { speaker: "ai", en: "Okay. I'm really nervous. How big is the needle?" },
+          { speaker: "learner", en: "The first needle is very small — like an IV needle. The main needle is larger, but by then the area will be numb. I'll tell you every step before I do it, and if anything feels wrong, you tell me." },
+          { speaker: "ai", en: "What does 'wrong' feel like? How will I know?" },
+          { speaker: "learner", en: "Good question. Pressure and fullness are normal — expected, even. If you get a sharp shooting pain down your leg, or any numbness in a new place, that's what I want to know about immediately. Aching in your back is fine." },
+          { speaker: "ai", en: "Okay, I can do this. Just keep talking to me." },
+        ],
+      },
+      {
+        id: "medication-management",
+        name: "Medication Management",
+        emoji: "💊",
+        blurb: "Reviewing and adjusting pain medications — discussing opioids, adjuvants, and non-opioid options in a chronic pain context.",
+        counterpart: "Established patient on chronic opioid therapy requesting a dose increase",
+        learnerRole: "Pain management physician conducting a medication review visit",
+        toneNote: "Firm but empathetic. Distinguish between tolerance, dependence, and addiction clearly if needed. Be transparent about your clinical reasoning. Never dismiss pain but maintain appropriate boundaries.",
+        phrases: [
+          { en: "Before we talk about the dose, let's look at how the current regimen is actually working — is your function better, worse, or the same since we started?", intent: "functional outcome assessment" },
+          { en: "I hear you that the pain is worse — can you help me understand if something has changed, like a new injury, increased activity, or more stress?", intent: "pain escalation exploration" },
+          { en: "I want to be honest with you — increasing the opioid dose isn't always the answer, and at some point the risks outweigh the benefits.", intent: "dose escalation transparency" },
+          { en: "Have you checked your PDMP recently? I need to do that for every controlled substance visit — it's a requirement for all my patients, not anything personal.", intent: "PDMP check normalization" },
+          { en: "Let's talk about adding a low-dose tricyclic or a membrane stabilizer like gabapentin — for neuropathic pain, those often work better than higher opioids.", intent: "adjuvant medication suggestion" },
+          { en: "I want to make sure we're giving you what you need to function, but I also want to make sure we're not causing harm in the process.", intent: "goals of care framing" },
+          { en: "Your urine drug screen came back this visit — everything looks as expected, which is reassuring.", intent: "UDS review" },
+        ],
+        vocab: [
+          "opioid tolerance", "opioid-induced hyperalgesia", "morphine milligram equivalents (MME)",
+          "gabapentin", "duloxetine", "tricyclic antidepressant", "PDMP", "urine drug screen",
+          "pill count", "medication agreement"
+        ],
+        challenges: [
+          "A patient on long-term opioids reports their prescription was stolen. Walk through your response and documentation.",
+          "A patient's MME is approaching 90 and their function hasn't improved. Discuss tapering and alternative strategies.",
+          "A urine drug screen comes back positive for benzodiazepines in a patient not prescribed them. Navigate this conversation."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "So you mentioned the pain is worse this month. Before we think about any changes, I want to understand the bigger picture. Are you doing more, less? Any changes in your life?" },
+          { speaker: "ai", en: "My mom passed away last month and I think the stress has made everything worse. I just need a little more to get through." },
+          { speaker: "learner", en: "I'm so sorry for your loss. Grief absolutely affects pain — it's a physical as much as an emotional stress. That context really matters." },
+          { speaker: "ai", en: "So can you adjust my dose?" },
+          { speaker: "learner", en: "Here's my concern — I don't want to respond to grief-related pain escalation with a higher opioid dose, because that doesn't actually treat what's going on. What I think would help more is adding something like duloxetine, which treats both pain and depression, and if you're open to it, talking to someone about the grief. Short-term dose increase doesn't address the root of what's happening." },
+          { speaker: "ai", en: "I wasn't expecting that answer, but I hear you. What's duloxetine?" },
+        ],
+      },
+      {
+        id: "controlled-substance-agreement",
+        name: "Controlled Substance Agreement",
+        emoji: "📝",
+        blurb: "Reviewing and establishing a controlled substance agreement — setting expectations, explaining monitoring, and handling patient questions.",
+        counterpart: "New patient being onboarded to long-term opioid therapy",
+        learnerRole: "Pain management physician or NP reviewing the controlled substance agreement",
+        toneNote: "Straightforward and respectful — not punitive. Frame the agreement as a tool that protects both the patient and the provider. Explain the reasoning behind each requirement.",
+        phrases: [
+          { en: "Before we can prescribe any controlled medications, I go through this agreement with every patient — it sets out what we expect from each other.", intent: "agreement introduction" },
+          { en: "We use one pharmacy, one prescriber — that's me — for all controlled substances. It's a safety measure, not a sign of distrust.", intent: "single pharmacy/prescriber rule" },
+          { en: "We do random urine drug screens — not every visit, but without notice. This protects you as much as it protects me.", intent: "UDS requirement explanation" },
+          { en: "We may ask you to bring your medications in for a pill count. Again, this is standard for all patients on this class of medication.", intent: "pill count policy" },
+          { en: "If a prescription is lost or stolen, we cannot replace it. I know that seems harsh, but it's a requirement we apply consistently.", intent: "lost prescription policy" },
+          { en: "Early refills are not something we can do — the pharmacy won't fill them, and it creates legal and regulatory issues for our practice.", intent: "early refill policy" },
+          { en: "Do you have any questions about anything in here before you sign? I want you to actually understand this, not just sign it.", intent: "informed signing" },
+        ],
+        vocab: [
+          "controlled substance agreement", "DEA schedule", "urine drug screen", "pill count",
+          "PDMP", "aberrant behavior", "opioid stewardship", "morphine milligram equivalents",
+          "diversion", "naloxone co-prescription"
+        ],
+        challenges: [
+          "A patient refuses to sign the controlled substance agreement. Walk through how you respond and what options remain.",
+          "A patient asks why they need to carry naloxone if they take their medications exactly as prescribed. Explain the rationale.",
+          "A patient on the agreement fails a pill count — they have 12 fewer pills than expected. Walk through your approach."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Let me go through this with you before you sign. The agreement has a few key points — one prescriber, one pharmacy, random drug screens, and no early refills. Any of that raise questions?" },
+          { speaker: "ai", en: "The random drug screen part makes me a little uncomfortable. Like I'm being treated like a criminal." },
+          { speaker: "learner", en: "That's a fair reaction, and I want to address it directly. The drug screen does two things: it shows that the medication is actually in your system — which protects you — and it makes sure nothing unexpected is there. I do this with every single patient on controlled medications, regardless of history." },
+          { speaker: "ai", en: "What happens if I fail?" },
+          { speaker: "learner", en: "It depends on what we find and what the context is. An unexpected substance leads to a conversation, not immediate dismissal. We look at the whole picture. What I can't ignore is a pattern of concerning behavior over time." },
+          { speaker: "ai", en: "Okay. And what about the naloxone? My wife asked about that." },
+        ],
+      },
+      {
+        id: "followup-visit",
+        name: "Follow-up Visit",
+        emoji: "🔄",
+        blurb: "The routine pain management follow-up — assessing treatment response, adjusting the plan, and maintaining the therapeutic relationship.",
+        counterpart: "Patient three months post-epidural, on gabapentin, reporting partial improvement",
+        learnerRole: "Pain management physician conducting a 3-month follow-up",
+        toneNote: "Efficient but attentive. Track trends, not just today's snapshot. Celebrate improvements in function, not just pain scores. Adjust the plan based on the patient's reported experience.",
+        phrases: [
+          { en: "Since your last visit, how has the pain been trending — better, worse, or about the same?", intent: "pain trend assessment" },
+          { en: "You said the injection helped about 40 percent for about six weeks. That's actually useful information — it tells us the target is right.", intent: "procedure response interpretation" },
+          { en: "How's the gabapentin — are you tolerating it okay, or noticing any side effects like drowsiness or word-finding problems?", intent: "medication side effect review" },
+          { en: "What are you able to do now that you weren't three months ago? Even small things count.", intent: "functional improvement inventory" },
+          { en: "I'd like to try a repeat injection given the good response to the first one. We typically allow eight to twelve weeks between procedures.", intent: "repeat procedure recommendation" },
+          { en: "Let's titrate the gabapentin up — we're probably not at the therapeutic dose yet, and there's more room to go.", intent: "medication titration" },
+          { en: "Where do you want to be in six months? Let's make sure we're working toward what actually matters to you.", intent: "goal reassessment" },
+        ],
+        vocab: [
+          "treatment response", "procedure interval", "dose titration", "side effect profile",
+          "functional restoration", "pain diary", "adjuvant analgesic", "therapeutic dose",
+          "repeat injection", "plateau effect"
+        ],
+        challenges: [
+          "A patient reports the ESI 'wore off completely' after three weeks. Discuss whether to repeat, modify, or escalate to a different procedure.",
+          "A patient on gabapentin reports significant drowsiness but good pain relief. Discuss dose timing modifications.",
+          "A patient reports no improvement after two injections and asks what else can be done. Walk through the next steps in the interventional ladder."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Three months out from the injection — tell me how you're doing. What's changed?" },
+          { speaker: "ai", en: "Honestly, it helped a lot for about six weeks and then started to creep back. But I was able to go back to work, which I haven't done in eight months." },
+          { speaker: "learner", en: "Going back to work after eight months off — that's a really meaningful outcome. The fact that it helped and then started to come back tells me the target was right, the effect just wasn't sustained. That actually tells me something useful." },
+          { speaker: "ai", en: "Does that mean I have to do the injection again?" },
+          { speaker: "learner", en: "It might mean we do a repeat injection, or it might mean we look at whether a slightly different approach — like a medial branch block — could give more lasting results. Let me also look at the gabapentin dose — we may not be at the optimal level yet." },
+          { speaker: "ai", en: "The gabapentin makes me a little foggy in the morning." },
+        ],
+      },
+      {
+        id: "multidisciplinary-planning",
+        name: "Multidisciplinary Pain Planning",
+        emoji: "🤝",
+        blurb: "Coordinating care with physical therapy, psychology, and other specialists — presenting a patient in a multidisciplinary pain conference.",
+        counterpart: "Colleague in a multidisciplinary pain team meeting (PT, psychologist, pharmacist)",
+        learnerRole: "Pain management physician presenting a complex patient at a team conference",
+        toneNote: "Collegial and collaborative. Structured presentation using clinical language. Be open to perspectives from other disciplines. Frame the patient's goals as the anchor for the discussion.",
+        phrases: [
+          { en: "I want to present a 47-year-old with chronic CLBP who has had a partial response to interventional therapy but significant psychosocial overlay.", intent: "patient case introduction" },
+          { en: "The patient's PHQ-9 is 16 and she's using catastrophizing language — I think there's a significant psychological component we haven't addressed.", intent: "psychology consultation flag" },
+          { en: "Physical therapy has plateaued her — she's compliant but not progressing. Can we think about whether an intensive outpatient pain rehab program makes sense?", intent: "PT referral discussion" },
+          { en: "From a pharmacist standpoint, I want to make sure there are no interactions I'm missing before I add duloxetine to her current regimen.", intent: "medication safety check" },
+          { en: "The goal we've identified with the patient is returning to part-time work — I want our plan to be oriented toward that functional goal.", intent: "goal-directed care" },
+          { en: "I don't think more procedures are the answer right now — I want to make sure we're not just chasing a pain number without addressing the whole person.", intent: "procedure moratorium rationale" },
+        ],
+        vocab: [
+          "chronic low back pain (CLBP)", "psychosocial overlay", "pain catastrophizing", "fear-avoidance model",
+          "interdisciplinary pain program", "functional restoration program", "acceptance and commitment therapy",
+          "biopsychosocial model", "opioid tapering", "chronic pain syndrome"
+        ],
+        challenges: [
+          "A patient in the pain program is refusing to engage with the psychologist. Discuss how you would address this as the team physician.",
+          "Present a patient for opioid tapering — frame it to the team as a positive therapeutic intervention, not a punishment.",
+          "A patient has been non-compliant with PT. Before discharging them from the practice, walk through what the team should consider."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "I want to bring Mrs. Hernandez to the team today. She's 47, chronic low back with radiculopathy, two ESIs with partial and diminishing response, on 45 MME of oxycodone. Functionally she's at about 40 percent of baseline. PHQ-9 is 16." },
+          { speaker: "ai", en: "Has she been seen in psych yet? A PHQ-9 of 16 with that much pain catastrophizing is a significant barrier to any physical rehabilitation." },
+          { speaker: "learner", en: "She hasn't — she's resistant to it. She frames her problem as purely physical and sees the psychology referral as implying the pain isn't real." },
+          { speaker: "ai", en: "That's really common. I'd suggest framing it as pain neuroscience education rather than 'psychology' — patients often respond much better when you position it as learning how the nervous system works rather than therapy." },
+          { speaker: "learner", en: "That's a good reframe. PT team — where are you with her?" },
+          { speaker: "ai", en: "She's compliant and doing the exercises, but she's plateaued. I think she's at the ceiling of what standard outpatient PT can do. The functional restoration program would be more appropriate at this point." },
+        ],
+      },
+    ],
+    vocabSets: [
+      {
+        category: "Pain Descriptors",
+        emoji: "📊",
+        words: ["nociceptive pain", "neuropathic pain", "somatic pain", "visceral pain", "allodynia", "hyperalgesia", "burning", "lancinating", "aching", "radicular"]
+      },
+      {
+        category: "Interventional Procedures",
+        emoji: "💉",
+        words: ["epidural steroid injection", "medial branch block", "radiofrequency ablation", "facet injection", "trigger point injection", "spinal cord stimulator", "intrathecal pump", "sympathetic block", "nerve root block", "prolotherapy"]
+      },
+      {
+        category: "Medications",
+        emoji: "💊",
+        words: ["gabapentin", "pregabalin", "duloxetine", "tricyclic antidepressant", "tramadol", "buprenorphine", "naloxone", "NSAIDs", "muscle relaxants", "topical lidocaine"]
+      },
+      {
+        category: "Assessment Tools",
+        emoji: "📋",
+        words: ["NRS (numeric rating scale)", "VAS (visual analog scale)", "FLACC scale", "Oswestry Disability Index", "PEG scale", "ORT (opioid risk tool)", "DIRE score", "CAGE-AID", "PHQ-9", "pain diary"]
+      },
+      {
+        category: "Anatomy & Imaging",
+        emoji: "🩻",
+        words: ["herniated nucleus pulposus", "foraminal stenosis", "facet arthropathy", "spondylolisthesis", "sacroiliac joint", "discogenic pain", "epidural space", "dorsal horn", "spinal cord", "nerve root"]
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // CARDIOLOGY
+  // ─────────────────────────────────────────────
+  {
+    moduleId: "cardiology",
+    areas: [
+      {
+        id: "new-patient-consult-cardiology",
+        name: "New Patient Consult",
+        emoji: "❤️",
+        blurb: "The initial cardiology evaluation — history of cardiac symptoms, risk factor review, family history, and exam findings.",
+        counterpart: "58-year-old male referred by PCP for exertional chest tightness and shortness of breath",
+        learnerRole: "Cardiologist conducting an initial outpatient consultation",
+        toneNote: "Thorough and systematic. Take the symptom history in detail — the pattern of angina matters. Be honest about risk without catastrophizing. Map out a clear diagnostic plan.",
+        phrases: [
+          { en: "Tell me about the chest tightness — where do you feel it, does it radiate anywhere, and what brings it on?", intent: "angina characterization" },
+          { en: "When you say it comes on with exertion — what level of exertion? Climbing stairs, walking flat, or more strenuous activity?", intent: "functional class assessment" },
+          { en: "Does it go away when you rest? And how long does it take to resolve?", intent: "rest relief pattern" },
+          { en: "Any history of MI, stents, bypass surgery, or heart failure in the past?", intent: "cardiac history" },
+          { en: "Let's go through your risk factors — do you have high blood pressure, diabetes, high cholesterol, do you smoke?", intent: "ASCVD risk factors" },
+          { en: "Any family history of heart attacks at a young age — under 55 in a father or brother, under 65 in a mother or sister?", intent: "premature CAD family history" },
+          { en: "I want to get a stress test — given your symptoms and your risk profile, I need to understand whether the heart is getting adequate blood flow with exercise.", intent: "stress test rationale" },
+          { en: "Your EKG shows some nonspecific ST changes — nothing alarming, but it supports getting more information.", intent: "EKG finding communication" },
+        ],
+        vocab: [
+          "stable angina", "unstable angina", "NSTEMI", "ACS (acute coronary syndrome)", "ASCVD risk",
+          "coronary artery disease", "functional capacity (METs)", "left ventricular ejection fraction",
+          "cardiac catheterization", "stress echocardiogram"
+        ],
+        challenges: [
+          "A patient describes classic angina but insists it's just acid reflux. Pursue the cardiac history while respecting their perspective.",
+          "Explain the difference between a treadmill EKG stress test, stress echo, and nuclear stress test and why you're recommending one over another.",
+          "A 62-year-old asymptomatic woman asks if she needs cardiac screening given her strong family history. Discuss risk assessment and testing."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Tell me more about this chest tightness. Is it more the center of the chest, the left side, and does it go anywhere — arm, jaw, shoulder?" },
+          { speaker: "ai", en: "It's right in the middle, kind of like a pressure. Sometimes it goes to my left arm. It started a few months ago when I was shoveling snow." },
+          { speaker: "learner", en: "Okay — shoveling snow is a high-intensity cold-weather activity, which is a classic trigger for angina. Does it happen with other exertion, like climbing a flight of stairs?" },
+          { speaker: "ai", en: "Yeah, actually. Going up to my second floor, if I go fast. It goes away when I sit down." },
+          { speaker: "learner", en: "That history is very typical of what we call stable angina — the heart asking for more blood flow than it's getting during exertion. The fact that it reliably goes away with rest is actually a somewhat reassuring pattern compared to pain at rest. But we need to understand the severity." },
+          { speaker: "ai", en: "Does that mean it's definitely a blockage?" },
+        ],
+      },
+      {
+        id: "ekg-review",
+        name: "EKG Review",
+        emoji: "📈",
+        blurb: "Interpreting and communicating EKG findings — from normal variants to emergent patterns, with colleagues and with patients.",
+        counterpart: "Senior cardiology fellow presenting an EKG to the attending for review",
+        learnerRole: "Attending cardiologist reviewing an EKG with a trainee",
+        toneNote: "Teaching-oriented but efficient. Walk through interpretation systematically. Connect findings to clinical context. Be clear about what is actionable versus what is informational.",
+        phrases: [
+          { en: "Walk me through it systematically — rate, rhythm, axis, intervals, then look at the morphology.", intent: "systematic EKG interpretation instruction" },
+          { en: "The rate is 94, regular, sinus rhythm. PR interval looks about 220 milliseconds — that's a first-degree AV block.", intent: "interval measurement finding" },
+          { en: "Look at V1 through V4 — do you see the ST elevation? That's a STEMI until proven otherwise, and we need to activate the cath lab now.", intent: "STEMI identification and activation" },
+          { en: "The T waves in the inferior leads are flat, maybe slightly inverted — in this clinical context I want a troponin.", intent: "subtle ischemic changes" },
+          { en: "This is a left bundle branch block — new or old? That's the key question. If it's new and the patient has chest pain, that's a STEMI equivalent.", intent: "LBBB significance" },
+          { en: "Classic WPW pattern here — delta waves and short PR. Have they ever been worked up for this?", intent: "pre-excitation pattern" },
+          { en: "The QTc is prolonged at 520 milliseconds — I want to look at their medication list before we do anything else.", intent: "QT prolongation workup" },
+        ],
+        vocab: [
+          "PR interval", "QRS complex", "QTc interval", "ST elevation", "T wave inversion",
+          "left bundle branch block", "Wolff-Parkinson-White", "sinus bradycardia", "first-degree AV block", "delta wave"
+        ],
+        challenges: [
+          "An EKG shows ST elevations in the inferior leads. Identify the affected artery, the high-yield reciprocal changes, and activate the cath lab.",
+          "Differentiate early repolarization from STEMI on an EKG strip described to you by a colleague over the phone.",
+          "An EKG shows a wide complex tachycardia at 160 bpm. Walk through your VT versus SVT with aberrancy differential."
+        ],
+        sampleConversation: [
+          { speaker: "ai", en: "I've got an EKG on a 67-year-old who came in with chest pain and diaphoresis. Rate's about 88, regular. But I'm not sure about V2 through V4." },
+          { speaker: "learner", en: "Show me. Okay — I see what you're concerned about. There's ST elevation in V2, V3, V4 — the morphology looks like a tombstone in V3. This is an anterior STEMI. Activate the cath lab now while we're talking." },
+          { speaker: "ai", en: "Should I get another set of leads first or get a repeat EKG?" },
+          { speaker: "learner", en: "Don't delay activation for a repeat EKG — if this is STEMI, every minute of delay is myocardium. Call it, get aspirin and heparin on board, and if the cath lab disputes the read when they see the patient, we can cancel. You can't uncath a dead patient." },
+          { speaker: "ai", en: "Understood. What do I tell the family?" },
+          { speaker: "learner", en: "Tell them there's a blockage in a major artery of the heart that we need to open as quickly as possible. He's going directly to the catheterization lab and the interventional cardiologist will speak with them there." },
+        ],
+      },
+      {
+        id: "cath-lab",
+        name: "Cath Lab",
+        emoji: "🏗️",
+        blurb: "The cardiac catheterization laboratory — communicating with the patient before the procedure, with the team during, and reviewing findings after.",
+        counterpart: "Patient on the table for a diagnostic coronary angiogram, awake and anxious",
+        learnerRole: "Interventional cardiologist performing a coronary angiogram",
+        toneNote: "Confident and measured. Keep the patient informed step by step. Use 'you'll feel' language — warm flush from contrast, pressure from the sheath. Communicate findings clearly post-procedure.",
+        phrases: [
+          { en: "You're going to feel a warm flush go through your body when I inject the dye — some people describe it as feeling like they wet themselves. That's completely normal.", intent: "contrast sensation preparation" },
+          { en: "I can see all three major arteries — I'm looking at them right now on the screen. Give me a moment.", intent: "procedural narration" },
+          { en: "There's a significant blockage in the LAD — about 85 percent. That's the one we call the widow-maker, and this is why you've been having symptoms.", intent: "finding communication to patient" },
+          { en: "I want to go ahead and put a stent in today while I'm here — it's the right thing to do and it avoids a second procedure.", intent: "ad hoc PCI recommendation" },
+          { en: "Hold completely still right now — I'm placing the wire across the lesion.", intent: "critical moment instruction" },
+          { en: "The stent is deployed and the artery is wide open — I can see good flow. That went exactly as planned.", intent: "procedure success communication" },
+          { en: "After the procedure, you'll need to be on two blood thinners for at least a year — stopping them early is the most dangerous thing you can do. I want to make sure you understand that.", intent: "dual antiplatelet therapy counseling" },
+        ],
+        vocab: [
+          "coronary angiogram", "left anterior descending (LAD)", "right coronary artery (RCA)", "circumflex",
+          "percent stenosis", "TIMI flow", "drug-eluting stent", "percutaneous coronary intervention (PCI)",
+          "dual antiplatelet therapy (DAPT)", "radial access"
+        ],
+        challenges: [
+          "You find three-vessel disease on an angiogram. Discuss your decision to refer for CABG rather than proceeding with stenting.",
+          "During a PCI, you get a no-reflow phenomenon after stent deployment. Describe your management to the cath lab team.",
+          "After an angiogram shows non-obstructive CAD, counsel the patient whose symptoms led everyone to expect a significant blockage."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Okay, we're all set. I want to warn you — when I inject the dye, you'll feel a warm flush through your whole body for about 15 seconds. Some people feel it in a slightly embarrassing way. It goes away fast. Ready?" },
+          { speaker: "ai", en: "Okay. I'm scared. Is it going to hurt?" },
+          { speaker: "learner", en: "The most you should feel is pressure at the wrist where the catheter goes in — the numbing medicine takes care of most of that. Inside the arteries, there are no pain receptors, so you shouldn't feel the catheter at all. Just let me know if anything changes." },
+          { speaker: "ai", en: "Okay, I trust you. Just tell me what you're seeing." },
+          { speaker: "learner", en: "I'm looking at your right coronary artery — that looks clean, good flow. Now I'm moving to the left side. I see the LAD… there is a significant narrowing here. I'm going to measure this carefully." },
+          { speaker: "ai", en: "Is that the problem? Is that what's been causing the chest pain?" },
+        ],
+      },
+      {
+        id: "chf-management",
+        name: "CHF Management",
+        emoji: "💧",
+        blurb: "Managing heart failure with reduced ejection fraction — titrating GDMT, monitoring for decompensation, and educating patients on fluid and weight management.",
+        counterpart: "Patient with HFrEF (EF 30%) presenting for a CHF clinic follow-up with a 4-pound weight gain",
+        learnerRole: "Cardiologist or advanced heart failure nurse practitioner in a dedicated CHF clinic",
+        toneNote: "Proactive and data-driven. Use daily weights as the primary monitoring tool. Don't wait for decompensation — act on early signals. Acknowledge the lifestyle burden of CHF management.",
+        phrases: [
+          { en: "You've gained four pounds since last week — that's almost certainly fluid. Are you more short of breath or swollen in the legs?", intent: "decompensation assessment" },
+          { en: "I want to bump your furosemide from 40 to 80 milligrams for the next three days and see if that brings the weight back down.", intent: "diuretic dose adjustment" },
+          { en: "Are you keeping track of your sodium? Two grams a day is the target — most canned soups alone can blow the whole day's budget.", intent: "sodium restriction counseling" },
+          { en: "Your BNP last visit was 840 — if we can get that under 500 consistently, it correlates with better outcomes.", intent: "BNP trend discussion" },
+          { en: "We're going to work on getting you to the target dose of carvedilol — we can't rush it, but being at goal dose reduces mortality by about 35 percent.", intent: "beta-blocker titration" },
+          { en: "Have you been using the scale every morning before breakfast? That's the single most important thing you can do to catch this before it becomes an ER visit.", intent: "daily weight monitoring" },
+          { en: "At your ejection fraction, you should be on an SGLT2 inhibitor — there's now strong data showing it reduces hospitalizations independent of diabetes.", intent: "SGLT2 inhibitor recommendation" },
+        ],
+        vocab: [
+          "HFrEF (heart failure with reduced EF)", "ejection fraction", "BNP / NT-proBNP", "furosemide",
+          "carvedilol", "sacubitril-valsartan (Entresto)", "SGLT2 inhibitor", "pulmonary edema",
+          "GDMT (guideline-directed medical therapy)", "cardiac resynchronization therapy"
+        ],
+        challenges: [
+          "A CHF patient presents 10 pounds over their dry weight with orthopnea. Decide whether to manage this in clinic or admit them.",
+          "A patient with HFrEF refuses to take their carvedilol because they read it causes fatigue. Address this concern while explaining the mortality benefit.",
+          "Explain why a patient with HFrEF should be on four medication classes simultaneously and why the doses matter."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Four pounds up since Thursday — that's significant. Tell me what's been different this week. Any extra salt, missed doses, or feeling more short of breath at night?" },
+          { speaker: "ai", en: "We went to a family barbecue and I didn't eat as carefully. And I've been needing an extra pillow to sleep." },
+          { speaker: "learner", en: "Needing to prop up more to breathe is an important symptom — that's called orthopnea and it tells me there's fluid backing up into your lungs. I don't want to ignore that." },
+          { speaker: "ai", en: "Do I need to go to the hospital?" },
+          { speaker: "learner", en: "I don't think so today — your oxygen saturation is 95 and you can speak in full sentences. I want to increase your water pill for the next three days and have you call me Friday with your weight. If you gain more, or your breathing gets worse at rest, you go straight to the ED." },
+          { speaker: "ai", en: "Okay. I hate the water pill — I'm in the bathroom all day." },
+        ],
+      },
+      {
+        id: "arrhythmia-clinic",
+        name: "Arrhythmia Clinic",
+        emoji: "⚡",
+        blurb: "Managing atrial fibrillation and other arrhythmias — stroke risk stratification, rate vs. rhythm control, and anticoagulation discussions.",
+        counterpart: "67-year-old patient with newly diagnosed atrial fibrillation, here for initial management",
+        learnerRole: "Cardiologist or electrophysiologist in an outpatient arrhythmia clinic",
+        toneNote: "Clear and educational — patients often don't understand what Afib is. Use the 'quivering versus pumping' description. Be direct about stroke risk and the importance of anticoagulation.",
+        phrases: [
+          { en: "Atrial fibrillation means the top chambers of your heart are quivering instead of squeezing — it leads to turbulent blood flow and increases your risk of stroke.", intent: "Afib patient education" },
+          { en: "Based on your risk factors, your CHA2DS2-VASc score is 4 — that's a high enough score that anticoagulation is strongly recommended.", intent: "stroke risk stratification" },
+          { en: "I want to discuss a blood thinner called apixaban — it's more convenient than warfarin and has a better safety profile.", intent: "DOAC recommendation" },
+          { en: "We need to decide whether to focus on controlling the heart rate, or whether to try to get you back into normal rhythm. Both are valid strategies.", intent: "rate vs. rhythm control discussion" },
+          { en: "A cardioversion is a synchronized electrical shock under sedation that can reset the heart rhythm — it's a procedure, not surgery.", intent: "cardioversion explanation" },
+          { en: "If you want a more permanent solution for rhythm control, there's a procedure called ablation — I'd refer you to our EP lab for that.", intent: "ablation referral" },
+          { en: "The most important thing right now is the blood thinner — we can figure out the rhythm strategy over the next few weeks, but we cannot delay anticoagulation.", intent: "anticoagulation urgency" },
+        ],
+        vocab: [
+          "atrial fibrillation", "CHA2DS2-VASc score", "HAS-BLED score", "DOAC (direct oral anticoagulant)",
+          "apixaban", "rivaroxaban", "cardioversion", "rate control", "rhythm control",
+          "pulmonary vein isolation (ablation)"
+        ],
+        challenges: [
+          "A patient with Afib and a CHA2DS2-VASc score of 5 refuses anticoagulation because of fear of bleeding. Navigate this decision.",
+          "Explain the difference between rate control and rhythm control strategies and why you might choose one over the other.",
+          "A patient on warfarin for Afib has an INR of 5.2 and reports easy bruising. Manage this appropriately."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "So let me explain what atrial fibrillation actually is, because most patients don't have a clear picture of it. The heart has four chambers. The bottom two do the pumping. The top two are supposed to squeeze to fill the bottom ones before they pump. In Afib, the top chambers quiver instead of squeezing in an organized way." },
+          { speaker: "ai", en: "So the heart's not pumping right?" },
+          { speaker: "learner", en: "The bottom chambers — the ones that actually pump blood out to the body — are still working. The issue is two things: one, the heart rate becomes irregular and sometimes fast, which can cause symptoms. Two, the quivering creates a spot in the heart where blood can pool and clot, and that clot can travel to the brain and cause a stroke." },
+          { speaker: "ai", en: "A stroke — just from an irregular heartbeat?" },
+          { speaker: "learner", en: "That's the part that surprises most people. Afib is responsible for about one in five strokes. That's why the blood thinner is so important — it prevents that clot from forming in the first place." },
+          { speaker: "ai", en: "Which blood thinner are you recommending? My neighbor takes something called warfarin and she has to get blood tests all the time." },
+        ],
+      },
+      {
+        id: "post-mi-rehab",
+        name: "Post-MI Follow-up & Cardiac Rehab",
+        emoji: "🏃",
+        blurb: "Follow-up after a myocardial infarction — reviewing the hospitalization, adjusting medications, and enrolling the patient in cardiac rehabilitation.",
+        counterpart: "Patient two weeks out from a STEMI with LAD stenting, first outpatient follow-up",
+        learnerRole: "Cardiologist conducting a post-MI outpatient follow-up",
+        toneNote: "Encouraging and thorough. Cover medications carefully — the DAPT conversation is critical. Reassure about normal recovery fears. Introduce cardiac rehab as essential, not optional.",
+        phrases: [
+          { en: "You've been through a major event — how are you feeling, both physically and emotionally?", intent: "holistic post-MI check-in" },
+          { en: "I want to go through your medications — the aspirin and ticagrelor are the two most important ones. Do not stop either of them without calling me first, even if someone tells you to stop for another procedure.", intent: "DAPT critical counseling" },
+          { en: "Your echo from the hospital showed your ejection fraction is 40 percent — it was likely lower right after the heart attack. I want to repeat it in three months.", intent: "EF follow-up plan" },
+          { en: "I'm enrolling you in cardiac rehab — it's a supervised exercise program shown to reduce your risk of another heart attack. It's not optional in my mind.", intent: "cardiac rehab enrollment" },
+          { en: "Some people feel depressed or anxious after a heart attack — it's very common, and it's important to tell me if you're experiencing that.", intent: "post-MI depression screening" },
+          { en: "You can return to light activity now, sexual activity in one to two weeks if you can climb two flights of stairs without symptoms.", intent: "activity return guidance" },
+          { en: "The stent is like a tiny scaffold holding that artery open. Your job is to take those blood thinners so it doesn't clot off.", intent: "stent patient education" },
+        ],
+        vocab: [
+          "myocardial infarction", "stent thrombosis", "dual antiplatelet therapy", "left ventricular ejection fraction",
+          "cardiac rehabilitation", "beta-blocker", "ACE inhibitor", "high-intensity statin", "post-MI depression", "remodeling"
+        ],
+        challenges: [
+          "A patient post-STEMI wants to stop aspirin because of a GI bleed history. Counsel him on managing both risks simultaneously.",
+          "Two weeks post-MI, a patient asks when they can return to work as a manual laborer. Discuss the considerations specific to physical work.",
+          "A patient is tearful and afraid to exercise, scared of triggering another heart attack. Address this fear using evidence-based reassurance."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Two weeks out — how have you been doing? Any chest pain, shortness of breath, palpitations?" },
+          { speaker: "ai", en: "No pain. But I'm terrified to do anything. I've been just sitting on the couch. Every time I feel my heart beat I panic." },
+          { speaker: "learner", en: "That's incredibly common after a heart attack. The anxiety can be as debilitating as the physical recovery. First thing I want to say — you had a blockage that we opened, and the artery is now wide open. The stent is holding it there. You are not sitting on a time bomb." },
+          { speaker: "ai", en: "But it happened once, it could happen again." },
+          { speaker: "learner", en: "That's true — and we're doing everything possible to prevent that. The medications you're on reduce your risk of another event significantly. And cardiac rehab — which I'm signing you up for today — is shown to reduce mortality after a heart attack by 20 to 25 percent." },
+          { speaker: "ai", en: "I thought exercise would be dangerous for me now." },
+        ],
+      },
+      {
+        id: "stress-test-results",
+        name: "Stress Test Results",
+        emoji: "🏋️",
+        blurb: "Reviewing and communicating stress test results — normal, indeterminate, and clearly abnormal findings and next steps.",
+        counterpart: "Patient returning to discuss the results of a nuclear stress test",
+        learnerRole: "Cardiologist reviewing stress test results in an outpatient setting",
+        toneNote: "Clear and structured. Don't bury the lead. If the test is reassuring, say so plainly. If it's abnormal, be direct about what it means and what comes next. Avoid false certainty about imaging limitations.",
+        phrases: [
+          { en: "Your stress test came back abnormal — I want to go over what that means and what I think we should do.", intent: "abnormal result opener" },
+          { en: "The nuclear images showed a reversible perfusion defect in the inferior wall — that means there's an area of the heart that's not getting enough blood flow under stress, but recovers at rest.", intent: "perfusion defect explanation" },
+          { en: "Based on this, I think the next step is a cardiac catheterization — a direct look at the coronary arteries.", intent: "cath recommendation" },
+          { en: "Your stress test is reassuring — you exercised to a good workload, no symptoms, and the images look normal. This is very good news.", intent: "normal result communication" },
+          { en: "The test is a bit indeterminate — the imaging quality wasn't perfect. I want to repeat it with a different modality or proceed to cath based on your risk factors.", intent: "indeterminate result management" },
+          { en: "An abnormal stress test doesn't mean you're about to have a heart attack — it means we found something to address before it becomes an emergency.", intent: "abnormal result reassurance" },
+          { en: "You achieved 9 METs on the treadmill, which is excellent functional capacity — that tells us a lot about your overall cardiac health.", intent: "functional capacity interpretation" },
+        ],
+        vocab: [
+          "nuclear stress test", "stress echocardiogram", "perfusion defect", "reversible ischemia",
+          "fixed defect", "METs (metabolic equivalents)", "Duke Treadmill Score", "SPECT imaging",
+          "ischemic threshold", "wall motion abnormality"
+        ],
+        challenges: [
+          "A patient with a large reversible perfusion defect and good functional capacity asks whether they really need a cath. Make your case.",
+          "A patient has a normal stress test but continues to have atypical chest pain. Discuss your next steps.",
+          "Explain why a negative stress test does not completely rule out coronary artery disease."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "I have your nuclear stress test results and I want to go through them with you. The bottom line is that the test showed an abnormality in one area of your heart." },
+          { speaker: "ai", en: "Abnormal — what does that mean exactly? Is it a heart attack?" },
+          { speaker: "learner", en: "No, it's not a heart attack. What the nuclear images show is that during peak stress, one area of the heart wall — the bottom part — isn't getting quite as much blood flow as the rest. When you're resting, it recovers. This is called reversible ischemia, and it's a signal that there may be a partial blockage in one of the arteries feeding that area." },
+          { speaker: "ai", en: "So I have a blockage?" },
+          { speaker: "learner", en: "The stress test suggests it's possible — but the only way to know for sure and to know how significant it is, is to do a cardiac catheterization. That's where we put a small camera inside the arteries and look directly. Based on this test, I think that's the right next step." },
+          { speaker: "ai", en: "Is the cath itself safe? I've heard it's a big procedure." },
+        ],
+      },
+    ],
+    vocabSets: [
+      {
+        category: "Coronary Artery Disease",
+        emoji: "🩸",
+        words: ["atherosclerosis", "plaque", "stenosis", "coronary artery bypass graft (CABG)", "percutaneous coronary intervention", "drug-eluting stent", "bare metal stent", "TIMI flow", "fractional flow reserve", "collateral circulation"]
+      },
+      {
+        category: "Heart Failure",
+        emoji: "💧",
+        words: ["systolic dysfunction", "diastolic dysfunction", "ejection fraction", "BNP", "preload", "afterload", "congestion", "decompensation", "cardiac output", "stroke volume"]
+      },
+      {
+        category: "Arrhythmias",
+        emoji: "⚡",
+        words: ["atrial fibrillation", "atrial flutter", "ventricular tachycardia", "ventricular fibrillation", "heart block", "sick sinus syndrome", "supraventricular tachycardia", "premature ventricular complexes", "long QT syndrome", "Wolff-Parkinson-White"]
+      },
+      {
+        category: "Medications",
+        emoji: "💊",
+        words: ["beta-blocker", "ACE inhibitor", "ARB", "sacubitril-valsartan", "aldosterone antagonist", "SGLT2 inhibitor", "statin", "anticoagulant", "antiplatelet", "antiarrhythmic"]
+      },
+      {
+        category: "Diagnostics & Procedures",
+        emoji: "🔬",
+        words: ["echocardiogram", "coronary angiogram", "cardiac catheterization", "electrophysiology study", "cardiac MRI", "Holter monitor", "event monitor", "cardioversion", "ablation", "ICD (implantable cardioverter-defibrillator)"]
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // GENERAL SURGERY
+  // ─────────────────────────────────────────────
+  {
+    moduleId: "general-surgery",
+    areas: [
+      {
+        id: "clinic-consult-surgery",
+        name: "Clinic Consult",
+        emoji: "🏥",
+        blurb: "The surgical outpatient consultation — evaluating a patient referred for a surgical problem and counseling on operative versus non-operative management.",
+        counterpart: "55-year-old patient referred by PCP for symptomatic cholelithiasis with two episodes of biliary colic",
+        learnerRole: "General surgeon conducting an outpatient consultation",
+        toneNote: "Authoritative but collaborative. Explain the surgical recommendation clearly and address fears about anesthesia, scars, and recovery. Be honest about risks without being dismissive of them.",
+        phrases: [
+          { en: "Tell me about these episodes — where was the pain, how long did it last, and was there any fever or jaundice?", intent: "biliary colic characterization" },
+          { en: "Your ultrasound shows several gallstones, the largest about 12 millimeters. Given your symptoms, I'd recommend taking the gallbladder out.", intent: "cholecystectomy recommendation" },
+          { en: "This is a laparoscopic procedure — four small incisions, each less than a centimeter. Most patients go home the same day.", intent: "laparoscopic cholecystectomy explanation" },
+          { en: "The main risks are bleeding, infection, and a rare but important one — injury to the bile duct. That's something we take very seriously and work hard to avoid.", intent: "surgical risk discussion" },
+          { en: "If we don't take it out and you have another episode, there's a risk it develops into something more serious, like gallstone pancreatitis or cholangitis.", intent: "natural history of untreated cholelithiasis" },
+          { en: "You can eat normally as soon as you feel like it after surgery — the idea that you have to change your diet permanently after a cholecystectomy is a myth for most people.", intent: "post-cholecystectomy diet myth-busting" },
+          { en: "Do you have any questions about the procedure, the anesthesia, or recovery before we schedule?", intent: "informed consent opening" },
+        ],
+        vocab: [
+          "cholelithiasis", "cholecystectomy", "laparoscopic surgery", "biliary colic", "cholangitis",
+          "choledocholithiasis", "ERCP", "bile duct injury", "port site", "trocar"
+        ],
+        challenges: [
+          "A patient with symptomatic gallstones is terrified of surgery and asks about lithotripsy or dissolving the stones with medication. Counsel them accurately.",
+          "During a cholecystectomy consent conversation, the patient asks specifically about the risk of bile duct injury. Explain this risk honestly.",
+          "A 72-year-old patient with multiple comorbidities has symptomatic cholelithiasis. Navigate the risk-benefit discussion about elective surgery versus watchful waiting."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Based on your symptoms and the ultrasound, I think the right recommendation is to take your gallbladder out. I want to go over what that involves and answer your questions." },
+          { speaker: "ai", en: "Is that surgery? I've never had surgery before. I'm scared about going under anesthesia." },
+          { speaker: "learner", en: "It's a very common and well-tolerated surgery. It's done laparoscopically — four small incisions, each about the size of your pinky fingernail. Most people go home the same day and are back to normal activity within a week." },
+          { speaker: "ai", en: "And the anesthesia — is that dangerous?" },
+          { speaker: "learner", en: "For someone your age and with your overall health, the anesthesia risk is very low. The anesthesiologist will go through your history thoroughly before the procedure. The risk of serious anesthetic complications in an elective case like this is less than one in ten thousand." },
+          { speaker: "ai", en: "What if I just don't do it? Can I just live with the gallstones?" },
+        ],
+      },
+      {
+        id: "preop-consent",
+        name: "Pre-op Consent",
+        emoji: "📝",
+        blurb: "Obtaining informed consent for a surgical procedure — explaining the operation, risks, benefits, and alternatives clearly and completely.",
+        counterpart: "Patient scheduled for an elective laparoscopic appendectomy for recurrent appendicitis",
+        learnerRole: "General surgeon or surgical resident obtaining informed consent",
+        toneNote: "Thorough but accessible. Informed consent is a conversation, not a form. Invite questions. Document that the patient understood and had their questions answered. Never rush this.",
+        phrases: [
+          { en: "I want to go through the consent form with you rather than just having you sign it — I want to make sure you actually understand what you're agreeing to.", intent: "informed consent framing" },
+          { en: "The procedure is a laparoscopic appendectomy — we remove the appendix through small incisions in the abdomen using a camera and instruments.", intent: "procedure description" },
+          { en: "The risks include bleeding, infection, injury to surrounding structures — bowel, ureter, blood vessels — and the risks related to general anesthesia.", intent: "surgical risk enumeration" },
+          { en: "There is a chance we need to convert to an open procedure if we encounter unexpected bleeding or anatomy we can't manage laparoscopically. That's not a complication — it's a decision to keep you safe.", intent: "conversion to open explanation" },
+          { en: "The alternative to surgery at this point, given your recurrent episodes, is continued observation — but the risk of perforation increases over time.", intent: "non-operative alternative discussion" },
+          { en: "Do you have any questions about anything I've said before you sign? Is there anything you want me to clarify or repeat?", intent: "consent confirmation" },
+          { en: "By signing this, you're indicating you've had the opportunity to ask questions and understand what we discussed — not that you can't ask more questions on the day of surgery.", intent: "ongoing consent clarification" },
+        ],
+        vocab: [
+          "informed consent", "laparoscopic appendectomy", "conversion to open", "general anesthesia",
+          "perioperative risk", "NPO (nothing by mouth)", "surgical site infection", "ileus",
+          "stump appendicitis", "mesoappendix"
+        ],
+        challenges: [
+          "A patient is signing consent but clearly doesn't understand the difference between laparoscopic and open surgery. Identify this and correct it before proceeding.",
+          "Obtain consent from an anxious patient who keeps asking 'what's the worst that can happen?' Walk through risks honestly without inducing paralytic fear.",
+          "A patient speaks limited English and their family member is offering to translate the consent. Discuss the appropriate way to handle language barriers in informed consent."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "So I'm here to go through the consent for your procedure tomorrow. Before you sign, I want to make sure you really understand what we're doing. Can you tell me in your own words what surgery you're having?" },
+          { speaker: "ai", en: "You're taking out my appendix, I think." },
+          { speaker: "learner", en: "Exactly right. And we're doing it laparoscopically — that means three small incisions, about a centimeter each, and we use a tiny camera and instruments. The whole thing takes about 45 minutes to an hour." },
+          { speaker: "ai", en: "What are the risks I should know about?" },
+          { speaker: "learner", en: "The main ones are bleeding, infection, and injury to nearby structures — there's bowel very close to the appendix. Those complications are uncommon but possible. There's also a small chance we can't finish it laparoscopically and need to make a larger incision — not because something went wrong, but because sometimes the anatomy or inflammation makes the smaller approach unsafe." },
+          { speaker: "ai", en: "If that happens, does that mean I'll be in the hospital longer?" },
+        ],
+      },
+      {
+        id: "operating-room",
+        name: "Operating Room (Time-out Through Close)",
+        emoji: "🔪",
+        blurb: "The surgical procedure itself — from the WHO surgical safety checklist time-out through the operative steps to wound closure.",
+        counterpart: "Scrub tech, circulator, and anesthesiologist in the OR for a laparoscopic cholecystectomy",
+        learnerRole: "General surgeon leading the operative team through the procedure",
+        toneNote: "Clear, efficient, and commanding when needed. Address the whole team. The time-out is not a formality. Communicate changes in the operative plan in real time.",
+        phrases: [
+          { en: "Let's do the time-out. Patient name and date of birth — can someone confirm from the wristband?", intent: "time-out initiation" },
+          { en: "We're doing a laparoscopic cholecystectomy. Antibiotics were given on time? Any allergies? Everyone in agreement?", intent: "time-out content" },
+          { en: "I'm in — peritoneum looks clean, no adhesions. I can see the gallbladder.", intent: "entry narration" },
+          { en: "I'm dissecting out the critical view of safety. I need to see both the cystic duct and cystic artery clearly before I clip anything.", intent: "critical view of safety" },
+          { en: "Can I get a cholangiogram? I want to look at the biliary anatomy before I divide.", intent: "intraoperative cholangiogram request" },
+          { en: "Clips are on the duct, clips are on the artery. I'm dividing — specimen is free.", intent: "operative milestone narration" },
+          { en: "Closing fascia on the umbilical port with 0-Vicryl. Then skin with 4-0 Monocryl subcuticular.", intent: "closure plan" },
+          { en: "Good work, everyone. Let's count before we close — instruments, sponges, sharps.", intent: "closing count" },
+        ],
+        vocab: [
+          "surgical time-out", "critical view of safety", "cholangiogram", "cystic duct", "cystic artery",
+          "trocar", "insufflation", "electrocautery", "laparoscope", "fascia closure"
+        ],
+        challenges: [
+          "During a laparoscopic cholecystectomy, the anatomy is unclear due to inflammation. Walk through your decision to call for an intraoperative cholangiogram or convert to open.",
+          "A scrub tech raises a concern during the time-out that the antibiotic was not given on time. How do you handle this as the surgeon?",
+          "You encounter unexpected bleeding from the cystic artery during a laparoscopic case. Walk through your initial response and communication to the team."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Let's pause for the time-out before we start. Circulator, can you confirm patient name and date of birth from the wristband?" },
+          { speaker: "ai", en: "Maria Gonzalez, date of birth March 12, 1969." },
+          { speaker: "learner", en: "Procedure is laparoscopic cholecystectomy, right side of the abdomen. Antibiotics — were they given?" },
+          { speaker: "ai", en: "Cefazolin 2 grams was given at 7:42, within the 60-minute window." },
+          { speaker: "learner", en: "Any allergies on the record? Any concerns from anyone before we start?" },
+          { speaker: "ai", en: "No allergies documented. Anesthesia is ready, no concerns." },
+        ],
+      },
+      {
+        id: "postop-rounds",
+        name: "Post-op Rounds",
+        emoji: "🌅",
+        blurb: "Morning rounds on surgical patients — assessing post-operative status, managing complications, and planning for discharge.",
+        counterpart: "Patient on post-op day one after a laparoscopic sigmoid colectomy",
+        learnerRole: "General surgery attending or resident conducting morning rounds",
+        toneNote: "Efficient and systematic. Address pain, GI function, mobility, and wound. Set daily goals. Communicate the discharge plan early so the patient and family can plan.",
+        phrases: [
+          { en: "Good morning — how did you sleep, and how's your pain this morning?", intent: "post-op morning check-in" },
+          { en: "Have you had any gas, any bowel sounds? I want to know when your GI tract wakes back up.", intent: "GI function assessment" },
+          { en: "I want you up and walking three times today — I know it hurts but getting moving is the best thing you can do for your recovery.", intent: "early ambulation instruction" },
+          { en: "The incisions look good, no redness or drainage. Exactly what I want to see on post-op day one.", intent: "wound assessment" },
+          { en: "We're going to advance your diet today — start with clear liquids and see how you tolerate it. If that goes well, regular food tomorrow.", intent: "diet advancement plan" },
+          { en: "I'm thinking discharge tomorrow if your pain is controlled on oral medications and you've had a bowel movement.", intent: "discharge criteria communication" },
+          { en: "I want your drain output from last night — anything more than 200 mL of non-bloody fluid I want to know about.", intent: "drain output review" },
+        ],
+        vocab: [
+          "post-operative day (POD)", "ileus", "early ambulation", "wound healing by primary intention",
+          "drain output", "Foley catheter", "ERAS protocol", "DVT prophylaxis", "oral intake tolerance", "discharge criteria"
+        ],
+        challenges: [
+          "A patient on POD 2 after a bowel resection has not passed gas and has a distended, tympanitic abdomen. Walk through your assessment of ileus versus obstruction.",
+          "A patient post-colectomy has a fever of 38.9°C on POD 3. Work through your systematic differential for post-op fever at this time point.",
+          "A post-op patient is requesting more IV pain medication and refusing to walk. Address this balance between comfort and recovery."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Good morning. Post-op day one — tell me how you're feeling. Pain on a scale of one to ten?" },
+          { speaker: "ai", en: "About a six. Worse when I move. I'm scared to try to get up." },
+          { speaker: "learner", en: "That's expected, and I know it sounds counterintuitive, but getting up and walking is actually what helps the pain get better faster. It gets the bowel moving, it prevents clots, and it helps clear your lungs after anesthesia. We have good pain medication for this." },
+          { speaker: "ai", en: "Has anything bad happened with the surgery? Like did everything go okay?" },
+          { speaker: "learner", en: "Everything went exactly as planned. The anastomosis looks good, I got good margins. Your vital signs are stable, your incision looks exactly right for day one. So far so good — we just need to wait for your bowel to wake up." },
+          { speaker: "ai", en: "When can I go home?" },
+        ],
+      },
+      {
+        id: "discharge-instructions",
+        name: "Discharge Instructions",
+        emoji: "🏠",
+        blurb: "Sending a surgical patient home — covering wound care, activity restrictions, diet, medications, and when to call or return.",
+        counterpart: "Patient being discharged home on POD 2 after a laparoscopic cholecystectomy",
+        learnerRole: "General surgeon or surgical PA providing discharge instructions",
+        toneNote: "Clear and simple. Write it down or use the printed sheet as an anchor. The discharge conversation is when patients are often least focused — cover the most critical safety net information last so it's memorable.",
+        phrases: [
+          { en: "I'm going to go through your discharge instructions — there's a printout too, but I want to make sure we talk through the important parts.", intent: "discharge instruction framing" },
+          { en: "Keep the incisions dry for the next 48 hours, then you can shower normally. No baths or swimming until they're fully healed.", intent: "wound care instructions" },
+          { en: "No lifting more than ten pounds for two weeks — that includes groceries, laundry, kids. Ten pounds is roughly a gallon of milk.", intent: "activity restriction" },
+          { en: "You can drive once you're off the narcotics and can slam on the brakes without hesitation. Usually about four or five days.", intent: "driving restriction" },
+          { en: "Take the ibuprofen and acetaminophen on a schedule first — only use the oxycodone if the other two aren't cutting it. You'll recover faster with less narcotic.", intent: "pain medication hierarchy" },
+          { en: "Call us or go to the ER if you have a fever over 101.5, increasing redness around any incision, or severe abdominal pain that's different from normal surgical soreness.", intent: "return precautions" },
+          { en: "Follow up with me in two weeks. The appointment is already booked and you should have a reminder.", intent: "follow-up plan" },
+        ],
+        vocab: [
+          "wound care", "activity restriction", "return precautions", "driving restriction",
+          "pain medication regimen", "narcotic stewardship", "drain care", "staple removal",
+          "wound dehiscence", "surgical follow-up"
+        ],
+        challenges: [
+          "A patient going home with a Jackson-Pratt drain is confused about how to empty and record it. Walk through drain care instructions.",
+          "A patient asks if they can take ibuprofen after being prescribed oxycodone. Explain the multimodal pain regimen.",
+          "A patient's daughter calls after discharge saying her father's incision looks 'different.' Walk through how you triage this call."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "You're ready to go home — great recovery. Let me go through the important things before you leave. First, pain: I want you taking the ibuprofen 600 milligrams every six hours with food and the acetaminophen every six hours in between. That leaves the oxycodone as a backup only." },
+          { speaker: "ai", en: "Do I need the oxycodone? Can I just not take it?" },
+          { speaker: "learner", en: "You can absolutely try without it — and if you can manage on the ibuprofen and Tylenol, that's better. The oxycodone is there if you're having breakthrough pain that the others aren't controlling. Take as little as you need." },
+          { speaker: "ai", en: "What about the wounds? They look a little bruised." },
+          { speaker: "learner", en: "Bruising around the port sites is completely normal — it's from the trocar going through the layers of the abdomen. It can look worse before it looks better and should resolve over a week or two. What I want you to watch for is increasing redness that spreads, warmth, or any pus. That's infection and you'd call us right away." },
+          { speaker: "ai", en: "And fever? At what point do I worry?" },
+        ],
+      },
+      {
+        id: "complication-discussion",
+        name: "Complication Discussion",
+        emoji: "⚠️",
+        blurb: "Disclosing a surgical complication — communicating with honesty and empathy while managing the patient's clinical and emotional response.",
+        counterpart: "Patient on POD 4 after a colectomy found to have an anastomotic leak on CT",
+        learnerRole: "General surgeon delivering news of a serious post-operative complication",
+        toneNote: "Direct and honest. Don't bury the diagnosis. Take ownership — use 'I' language. Explain what happens next clinically before the patient has to ask. Allow silence. Don't rush to defense.",
+        phrases: [
+          { en: "I need to talk to you about something important — the CT scan we did this morning showed a problem with the connection I made in your bowel.", intent: "complication disclosure opener" },
+          { en: "There's a leak at the anastomosis — the join I created between the two ends of bowel. Some intestinal fluid has gotten outside the bowel into your abdomen.", intent: "anastomotic leak explanation" },
+          { en: "I want to be honest with you — this is a known risk of this procedure. It doesn't mean anything was done incorrectly, but it is a complication and it needs to be addressed.", intent: "complication context" },
+          { en: "We're going to take you back to the operating room today to address this. I need to go in, wash out the abdomen, and we'll need to create a temporary ostomy.", intent: "re-operation plan" },
+          { en: "I know this is not what you were expecting and I'm sorry you're going through this. Do you want me to call a family member who can be with you?", intent: "emotional support" },
+          { en: "The goal right now is to get you safe. We can talk about the longer-term plan — including reversing the ostomy — once you've recovered from this acute issue.", intent: "phased goal-setting" },
+          { en: "I want to answer every question you have. What can I tell you right now?", intent: "open disclosure invitation" },
+        ],
+        vocab: [
+          "anastomotic leak", "re-operation", "diverting ostomy", "peritonitis", "sepsis",
+          "intra-abdominal abscess", "fistula", "bowel perforation", "damage control surgery", "ostomy reversal"
+        ],
+        challenges: [
+          "A patient's family is furious about a post-op complication and demands to know if you made a mistake. Navigate this with honesty and composure.",
+          "A patient goes into septic shock from an anastomotic leak. Walk through your communication with the ICU team and the family.",
+          "A patient is devastated about requiring a temporary ostomy. Address the psychological impact and explain the reversal timeline."
+        ],
+        sampleConversation: [
+          { speaker: "learner", en: "Mr. Tran, I need to sit down with you and tell you about what your CT scan showed this morning." },
+          { speaker: "ai", en: "I knew something was wrong. I've been feeling worse, not better." },
+          { speaker: "learner", en: "Your instinct was right, and I'm glad we scanned you. The CT shows a leak at the anastomosis — that's the connection I made between the two ends of your colon. Some bowel fluid has gotten into your abdomen." },
+          { speaker: "ai", en: "A leak — what does that mean? Is this serious?" },
+          { speaker: "learner", en: "It is serious, and I want to be completely honest with you. This is a known complication of this type of surgery — it happens in about two to five percent of cases, even when everything is done correctly. But it requires a return to the operating room. We need to go back in, clean out the abdomen, and we will need to create a temporary opening in your abdomen — called an ostomy — to let the connection heal." },
+          { speaker: "ai", en: "A bag? You're telling me I'm going to have a bag?" },
+        ],
+      },
+      {
+        id: "er-consult",
+        name: "ER Consult",
+        emoji: "🚑",
+        blurb: "The emergency general surgery consultation — rapid assessment, decision-making under pressure, and clear communication with the ER team.",
+        counterpart: "Emergency medicine physician calling about a 28-year-old with RLQ pain, rebound tenderness, and CT showing perforated appendix",
+        learnerRole: "General surgery resident taking an overnight ER consult call",
+        toneNote: "Efficient and decisive. Gather the key information quickly. Communicate your plan clearly. In the ED, time to OR matters. Don't over-examine at the expense of action.",
+        phrases: [
+          { en: "Give me the quick version — vitals, exam findings, and what the CT showed.", intent: "consult intake" },
+          { en: "Is she peritonitic on exam — voluntary or involuntary guarding, rebound tenderness?", intent: "peritonitis assessment" },
+          { en: "Free air on CT with a perforated appy — she needs the OR tonight. What are her vitals and is she hemodynamically stable?", intent: "operative urgency determination" },
+          { en: "Get a type and screen, start broad-spectrum antibiotics now — I'd use pip-tazo — and make her NPO. I'm on my way in.", intent: "pre-op orders over phone" },
+          { en: "Talk to the family and let them know surgery is planned tonight for a perforated appendix. I'll consent the patient when I arrive.", intent: "family communication delegation" },
+          { en: "How long ago did the symptoms start? If this has been going on for more than 48 hours I want to make sure we're not dealing with a contained perforation that we could manage non-operatively.", intent: "symptom duration assessment" },
+          { en: "I'm seeing her now — she has diffuse peritonitis, she's tachycardic, and she has rigidity. We're going to the OR.", intent: "bedside assessment and decision" },
+        ],
+        vocab: [
+          "perforated appendicitis", "peritonitis", "free air on CT", "broad-spectrum antibiotics",
+          "piperacillin-tazobactam", "exploratory laparotomy", "NPO status", "type and screen",
+          "operative urgency", "contained perforation"
+        ],
+        challenges: [
+          "You are called for a 72-year-old with a perforated sigmoid diverticulum and fecal peritonitis. Decide between a Hartmann procedure and primary anastomosis.",
+          "You arrive in the ER to find the patient in septic shock from a perforated bowel. Walk through your resuscitation before taking her to the OR.",
+          "An ER physician disagrees with your recommendation to manage a contained appendiceal perforation non-operatively. Articulate your rationale."
+        ],
+        sampleConversation: [
+          { speaker: "ai", en: "Hey, this is Dr. Park in the ED. I've got a 28-year-old female, 36 hours of RLQ pain, low-grade fever of 38.4, HR 104. CT shows perforated appendix with free air and some fluid in the pelvis." },
+          { speaker: "learner", en: "What's her exam like — guarding, rebound, is she peritonitic?" },
+          { speaker: "ai", en: "Definitely guarding in the RLQ, some voluntary guarding diffusely, rebound is present in the RLQ. She's uncomfortable." },
+          { speaker: "learner", en: "Okay. She needs the OR tonight. Get her on pip-tazo now, make her NPO, and get a type and screen if you haven't. I'm coming in. What's her pressure?" },
+          { speaker: "ai", en: "BP is 108/72, she's not hypotensive. Okay, I'll get those orders in. Her family is here — what should I tell them?" },
+          { speaker: "learner", en: "Tell them she has a perforated appendix and needs emergency surgery tonight. I'll be there in 20 minutes to speak with them and consent her. Start the antibiotics before I get there — don't wait for me." },
+        ],
+      },
+    ],
+    vocabSets: [
+      {
+        category: "Common Procedures",
+        emoji: "🔪",
+        words: ["laparoscopic cholecystectomy", "appendectomy", "colectomy", "hernia repair", "bowel resection", "Whipple procedure", "thyroidectomy", "Hartmann procedure", "exploratory laparotomy", "stoma creation"]
+      },
+      {
+        category: "Anatomy",
+        emoji: "🫀",
+        words: ["mesentery", "peritoneum", "retroperitoneum", "anastomosis", "cystic duct", "common bile duct", "sigmoid colon", "cecum", "ileum", "jejunum"]
+      },
+      {
+        category: "Post-operative Management",
+        emoji: "🌅",
+        words: ["ERAS protocol", "ileus", "anastomotic leak", "surgical site infection", "deep vein thrombosis", "pulmonary embolism", "wound dehiscence", "seroma", "hematoma", "Foley catheter removal"]
+      },
+      {
+        category: "OR Communication",
+        emoji: "🏗️",
+        words: ["time-out", "critical view of safety", "bovie (electrocautery)", "Yankauer suction", "retractor", "Vicryl suture", "stapler", "laparoscope", "port", "insufflation"]
+      },
+      {
+        category: "Emergency Surgery",
+        emoji: "🚨",
+        words: ["perforated viscus", "free air", "peritonitis", "fecal contamination", "hemodynamic instability", "damage control", "mesenteric ischemia", "bowel obstruction", "volvulus", "incarcerated hernia"]
+      },
+    ],
+  },
 ];
+
+export function getMedicalSpecialistContent(moduleId: string): MedicalModuleContent | null {
+  return MEDICAL_SPECIALIST_CONTENT.find(m => m.moduleId === moduleId) ?? null;
+}
+
+export function getMedicalSpecialistArea(moduleId: string, areaId: string): ModuleArea | null {
+  return getMedicalSpecialistContent(moduleId)?.areas.find(a => a.id === areaId) ?? null;
+}
+
