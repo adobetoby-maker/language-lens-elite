@@ -76,7 +76,9 @@ export function MissionaryQuickStart() {
   return (
     <div>
     <FamilyPackagePanel />
-    <MissionMap />
+    <div className="isolate">
+      <MissionMap />
+    </div>
     <section className="mb-6 overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/8 via-card/60 to-card/40">
       {/* Header */}
       <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gold/20 px-5 py-4">
