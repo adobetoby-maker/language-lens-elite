@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { BookMarked, Globe2, NotebookPen, Plus, Sparkle, Swords, Trash2, Volume2, X, BookOpen } from "lucide-react";
 import { useLibrary, wordCount, type LibraryEntry } from "@/state/library-state";
 import { useMatch, type SavedVocabWord } from "@/state/match-state";
@@ -50,6 +50,14 @@ export function LibraryDrawer({
     custom: state.entries.filter((e) => e.section === "custom"),
   };
   const showMissionary = appState.activeModuleId === "lds-missionary";
+
+  // Module-pinned texts: entries matching the active module's vocab focus
+  // AND in the currently selected target language.
+  const moduleTexts = useMemo(() => {
+    if (!activeModule || !focus) return [];
+    const { inModule } = partitionByFocus(state.entries, focus, entryHaystack);
+    return inModule.filter((e) => e.language === appState.selectedLanguage && e.available);
+  }, [activeModule, focus, state.entries, appState.selectedLanguage]);
 
   const select = (e: LibraryEntry) => {
     if (!e.available) return;
@@ -110,9 +118,33 @@ export function LibraryDrawer({
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-5">
-          {activeModule && (
-            <div className="mb-4 rounded-lg border border-gold/30 bg-gold/[0.04] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
-              {activeModule.emoji} Filtering by {activeModule.name} · {focus?.length ?? 0} keywords
+          {activeModule && moduleTexts.length > 0 && (
+            <section className="mb-7">
+              <div className="mb-3 flex items-center gap-2 px-1">
+                <Sparkle className="h-3.5 w-3.5 text-gold" fill="currentColor" />
+                <h3 className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
+                  {activeModule.emoji} {activeModule.name}
+                </h3>
+                <div className="ml-2 h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" />
+                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                  {appState.selectedLanguage}
+                </span>
+              </div>
+              <div className="space-y-2">
+                {moduleTexts.map((e) => (
+                  <BookCard
+                    key={e.id}
+                    entry={e}
+                    active={e.id === state.selectedId}
+                    onSelect={() => select(e)}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+          {activeModule && moduleTexts.length === 0 && focus && (
+            <div className="mb-4 rounded-lg border border-gold/20 bg-gold/[0.04] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold/70">
+              {activeModule.emoji} {activeModule.name} · no {appState.selectedLanguage} texts matched yet
             </div>
           )}
           {showMissionary && (
