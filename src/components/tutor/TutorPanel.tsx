@@ -9,6 +9,7 @@ import { useTutor, type TutorMessage } from "@/state/tutor-state";
 import { getModule } from "@/data/modules";
 import { getMissionArea } from "@/data/missionary-content";
 import { getOrthoArea } from "@/data/orthopedics-content";
+import { getModuleAreaContext } from "@/data/module-content-registry";
 
 
 const LEVEL_TO_CEFR: Record<string, string> = {
@@ -117,10 +118,14 @@ export function TutorPanel() {
               const assignment = appState.moduleAssignments[mod.id] ?? null;
               const area = getMissionArea(assignment);
               const ortho = mod.id === "orthopedics" ? getOrthoArea(assignment) : null;
+              const moduleArea =
+                mod.id !== "lds-missionary" && mod.id !== "orthopedics"
+                  ? getModuleAreaContext(mod.id, assignment)
+                  : null;
               return {
                 id: mod.id,
                 name: mod.name,
-                userRole: ortho?.learnerRole ?? mod.userRole,
+                userRole: ortho?.learnerRole ?? moduleArea?.learnerRole ?? mod.userRole,
                 aiPersona: mod.aiPersona,
                 missionArea: area
                   ? {
@@ -137,6 +142,17 @@ export function TutorPanel() {
                       learnerRole: ortho.learnerRole,
                       toneNote: ortho.toneNote,
                       vocab: ortho.vocab.slice(0, 20),
+                    }
+                  : undefined,
+                moduleArea: moduleArea
+                  ? {
+                      name: moduleArea.name,
+                      counterpart: moduleArea.counterpart,
+                      learnerRole: moduleArea.learnerRole,
+                      toneNote: moduleArea.toneNote,
+                      vocab: moduleArea.vocab,
+                      phrases: moduleArea.phrases,
+                      sampleExchange: moduleArea.sampleExchange,
                     }
                   : undefined,
               };

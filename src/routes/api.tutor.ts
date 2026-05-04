@@ -29,6 +29,17 @@ const ModuleSchema = z
         vocab: z.array(z.string().max(60)).max(20).optional(),
       })
       .optional(),
+    moduleArea: z
+      .object({
+        name: z.string().max(120),
+        counterpart: z.string().max(200).optional(),
+        learnerRole: z.string().max(120).optional(),
+        toneNote: z.string().max(400).optional(),
+        vocab: z.array(z.string().max(60)).max(20).optional(),
+        phrases: z.array(z.string().max(200)).max(10).optional(),
+        sampleExchange: z.string().max(1200).optional(),
+      })
+      .optional(),
   })
   .optional();
 
@@ -95,6 +106,25 @@ function buildModuleAddendum(mod: NonNullable<z.infer<typeof BodySchema>["contex
           : null,
       );
     }
+  }
+
+  if (mod.moduleArea) {
+    lines.push(
+      ``,
+      `SCENARIO AREA: ${mod.moduleArea.name}`,
+      mod.moduleArea.learnerRole ? `- Learner is playing: ${mod.moduleArea.learnerRole}.` : null,
+      mod.moduleArea.counterpart ? `- You are playing: ${mod.moduleArea.counterpart}.` : null,
+      mod.moduleArea.toneNote ? `- Register and tone: ${mod.moduleArea.toneNote}` : null,
+      mod.moduleArea.vocab?.length
+        ? `- Key vocabulary for this scenario (use naturally): ${mod.moduleArea.vocab.join(", ")}.`
+        : null,
+      mod.moduleArea.phrases?.length
+        ? `- Example phrases the learner wants to practice:\n  • ${mod.moduleArea.phrases.join("\n  • ")}`
+        : null,
+      mod.moduleArea.sampleExchange
+        ? `- Sample exchange in this scenario:\n${mod.moduleArea.sampleExchange}`
+        : null,
+    );
   }
 
   return lines.filter(Boolean).join("\n");
