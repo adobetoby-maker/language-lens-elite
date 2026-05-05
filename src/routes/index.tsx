@@ -12,8 +12,8 @@ import { TutorProvider } from "@/state/tutor-state";
 import { MatchProvider } from "@/state/match-state";
 import { LeaderboardProvider } from "@/state/leaderboard-state";
 import { TopNav } from "@/components/TopNav";
+import { AppSidebar } from "@/components/AppSidebar";
 import { FreePreviewBanner } from "@/components/FreePreviewBanner";
-import { StatusBar } from "@/components/StatusBar";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
@@ -26,11 +26,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "LinguaLens — A Premium Language Learning Experience" },
-      {
-        name: "description",
-        content:
-          "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese.",
-      },
+      { name: "description", content: "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese." },
     ],
   }),
 });
@@ -59,46 +55,54 @@ function Index() {
   return (
     <AppProvider>
       <AuthProvider>
-      <MatchProvider>
-        <LeaderboardProvider>
-        <LibraryProvider>
-          <NotesProvider>
-            <GrammarProvider>
-              <SpeechBridge>
-                <SpeakBridge>
-                  <TutorProvider>
-                    <div className="min-h-screen bg-background text-foreground">
-                      <FreePreviewBanner />
-                      <TopNav onOpenMatch={() => setMatchOpen(true)} />
-                      <StatusBar />
-                      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-12 [padding-bottom:max(1.5rem,env(safe-area-inset-bottom))]">
-                        <TabShell />
-                      </main>
-                    </div>
-                    <TutorPanel />
-                    <LevelUpOverlay />
-                    <CefrCompletionBridge />
-                    <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
-                    <MatchAchievementsBridge />
-                  </TutorProvider>
-                  <Toaster
-                    theme="dark"
-                    position="bottom-right"
-                    toastOptions={{
-                      style: {
-                        background: "var(--card)",
-                        color: "var(--foreground)",
-                        border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                      },
-                    }}
-                  />
-                </SpeakBridge>
-              </SpeechBridge>
-            </GrammarProvider>
-          </NotesProvider>
-        </LibraryProvider>
-        </LeaderboardProvider>
-      </MatchProvider>
+        <MatchProvider>
+          <LeaderboardProvider>
+            <LibraryProvider>
+              <NotesProvider>
+                <GrammarProvider>
+                  <SpeechBridge>
+                    <SpeakBridge>
+                      <TutorProvider>
+                        <div className="flex min-h-screen bg-background text-foreground">
+                          {/* Left sidebar (desktop) + bottom nav (mobile) */}
+                          <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
+
+                          {/* Main column */}
+                          <div className="flex min-w-0 flex-1 flex-col">
+                            <FreePreviewBanner />
+                            <TopNav />
+                            <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-10
+                              pb-[calc(4rem+env(safe-area-inset-bottom))]
+                              md:pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+                              <TabShell />
+                            </main>
+                          </div>
+                        </div>
+
+                        <TutorPanel />
+                        <LevelUpOverlay />
+                        <CefrCompletionBridge />
+                        <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
+                        <MatchAchievementsBridge />
+                      </TutorProvider>
+                      <Toaster
+                        theme="dark"
+                        position="bottom-right"
+                        toastOptions={{
+                          style: {
+                            background: "var(--card)",
+                            color: "var(--foreground)",
+                            border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                          },
+                        }}
+                      />
+                    </SpeakBridge>
+                  </SpeechBridge>
+                </GrammarProvider>
+              </NotesProvider>
+            </LibraryProvider>
+          </LeaderboardProvider>
+        </MatchProvider>
       </AuthProvider>
     </AppProvider>
   );
