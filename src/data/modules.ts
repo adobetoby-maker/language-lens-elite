@@ -1,6 +1,8 @@
 // Catalog of paid plug-in modules. Frontend-only stub for now —
 // no payments wired yet; purchased ids live in app-state (localStorage).
 
+import type { Language } from "@/state/app-state";
+
 export interface AppModule {
   id: string;
   name: string;
@@ -13,6 +15,16 @@ export interface AppModule {
   userRole: string; // what the learner is roleplaying as
   challengePrompts: string[];
   vocabFocus: string[];
+  /**
+   * Target languages this module is available in.
+   * Omit / undefined = available in every language.
+   */
+  languages?: Language[];
+}
+
+/** Returns true if `module` supports the given target `language`. */
+export function moduleSupportsLanguage(module: AppModule, language: Language): boolean {
+  return !module.languages || module.languages.includes(language);
 }
 
 export const MODULES: AppModule[] = [
