@@ -1,6 +1,7 @@
 import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
 import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
-import { MODULES, getModule, type AppModule } from "@/data/modules";
+import { MODULES, getModule, moduleSupportsLanguage, type AppModule } from "@/data/modules";
+import { useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,13 +55,28 @@ const CATEGORY_EMOJI: Record<AppModule["category"], string> = {
   Travel: "✈️",
 };
 
-const modulesByCategory: Record<string, AppModule[]> = {};
-for (const m of MODULES) {
-  (modulesByCategory[m.category] ||= []).push(m);
-}
-
 export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
+
+  // Filter modules to those supported in the currently selected target language.
+  const availableModules = MODULES.filter((m) =>
+    moduleSupportsLanguage(m, state.selectedLanguage),
+  );
+  const modulesByCategory: Record<string, AppModule[]> = {};
+  for (const m of availableModules) {
+    (modulesByCategory[m.category] ||= []).push(m);
+  }
+
+  // If the active module isn't supported in the new language, fall back to Core.
+  const activeModule = getModule(state.activeModuleId);
+  useEffect(() => {
+    if (activeModule && !moduleSupportsLanguage(activeModule, state.selectedLanguage)) {
+      dispatch({ type: "SET_ACTIVE_MODULE", payload: null });
+      toast(`${activeModule.name} isn't available in ${state.selectedLanguage} yet`, {
+        description: "Switched to Core.",
+      });
+    }
+  }, [state.selectedLanguage, activeModule, dispatch]);
 
   function handleTabSwitch(key: TabKey) {
     if (key === state.currentTab) return;
