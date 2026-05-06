@@ -33,15 +33,10 @@ export function ModulePickerDialog({ open, onClose }: Props) {
   for (const m of filtered) (byCategory[m.category] ??= []).push(m);
 
   function select(id: string | null) {
-    if (id === null) {
-      dispatch({ type: "SET_ACTIVE_MODULE", payload: null });
-    } else {
+    dispatch({ type: "SET_ACTIVE_MODULE", payload: id });
+    if (id) {
       const mod = getModule(id);
-      if (!mod) return;
-      if (!state.purchasedModules.includes(id))
-        dispatch({ type: "PURCHASE_MODULE", payload: id });
-      dispatch({ type: "SET_ACTIVE_MODULE", payload: id });
-      toast(`${mod.emoji} ${mod.name} active`);
+      if (mod) toast(`${mod.emoji} ${mod.name} active`);
     }
     onClose();
   }
