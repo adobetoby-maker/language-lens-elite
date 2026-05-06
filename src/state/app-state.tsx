@@ -492,20 +492,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Hydrate
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as Partial<AppState>;
-        // Re-derive tier from xp on load (do not auto-trigger overlay on first hydrate)
-        const xp = typeof parsed.xp === "number" ? parsed.xp : 0;
-        dispatch({
-          type: "HYDRATE",
-          payload: { ...parsed, tier: tierForXp(xp), pendingLevelUp: null },
-        });
-      } else {
-        dispatch({ type: "HYDRATE", payload: {} });
-      }
-    } catch {
+    const parsed = loadPersisted();
+    if (parsed) {
+      const xp = typeof parsed.xp === "number" ? parsed.xp : 0;
+      // Strip migration metadata before merging into state
+      const { __v: _v, ...rest } = parsed;
+      dispatch({
+        type: "HYDRATE",
+        payload: { ...rest, tier: tierForXp(xp), pendingLevelUp: null },
+      });
+    } else {
       dispatch({ type: "HYDRATE", payload: {} });
     }
   }, []);
