@@ -328,10 +328,12 @@ function reducer(state: AppState, action: AppAction): AppState {
       };
     }
     case "SET_ACTIVE_MODULE": {
-      if (action.payload && !state.purchasedModules.includes(action.payload)) {
-        return state;
-      }
-      const next = { ...state, activeModuleId: action.payload };
+      // Auto-purchase on activation — no double-dispatch needed
+      const purchasedModules =
+        action.payload && !state.purchasedModules.includes(action.payload)
+          ? [...state.purchasedModules, action.payload]
+          : state.purchasedModules;
+      const next = { ...state, activeModuleId: action.payload, purchasedModules };
       // When activating the missionary module, jump to its dedicated tab.
       if (action.payload === "lds-missionary") {
         next.currentTab = "missionary";
