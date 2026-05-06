@@ -529,7 +529,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!state.hydrated) return;
     try {
-      const toSave: Record<string, unknown> = {};
+      const toSave: Record<string, unknown> = { __v: SCHEMA_VERSION };
       for (const k of PERSIST_KEYS) toSave[k] = (state as any)[k];
       localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
     } catch {
