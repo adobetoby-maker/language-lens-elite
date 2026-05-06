@@ -374,6 +374,70 @@ function reducer(state: AppState, action: AppAction): AppState {
 }
 
 const STORAGE_KEY = "lingualens.app.v2";
+const LEGACY_STORAGE_KEYS = ["lingualens.app", "lingualens.app.v1"];
+const SCHEMA_VERSION = 2;
+
+type PersistedShape = Partial<AppState> & { __v?: number };
+
+/**
+ * Migrate a persisted blob from any older schema to the current SCHEMA_VERSION.
+ * Each step is additive and defensive: unknown/invalid fields are dropped rather
+ * than thrown so a stale localStorage never breaks app boot.
+ */
+function migrate(raw: unknown): PersistedShape {
+  if (!raw || typeof raw !== "object") return { __v: SCHEMA_VERSION };
+  let data = { ...(raw as Record<string, unknown>) } as PersistedShape;
+  let v = typeof data.__v === "number" ? data.__v : 1;
+
+  // v1 -> v2: introduce module fields + speakSecondsByLang + xpSessions defaults
+  if (v < 2) {
+    data.purchasedModules ??= [];
+    data.activeModuleId ??= null;
+    data.moduleAssignments ??= {};
+    data.speakSecondsByLang ??= {};
+    data.xpSessions ??= [];
+    data.recentChallenges ??= [];
+    data.cultureRead ??= [];
+    data.languagesUsed ??= [];
+    data.cefrLevelsCompleted ??= [];
+    v = 2;
+  }
+
+  // Drop keys not in PERSIST_KEYS (forward-compat / cleanup)
+  const allowed = new Set<string>([...(PERSIST_KEYS as string[]), "__v"]);
+  for (const k of Object.keys(data)) {
+    if (!allowed.has(k)) delete (data as Record<string, unknown>)[k];
+  }
+
+  // Validate selectedLanguage against current Language union
+  const validLangs: Language[] = [
+    "Spanish", "French", "German", "Italian", "Japanese", "Korean", "Portuguese",
+  ];
+  if (data.selectedLanguage && !validLangs.includes(data.selectedLanguage)) {
+    delete data.selectedLanguage;
+  }
+
+  data.__v = SCHEMA_VERSION;
+  return data;
+}
+
+function loadPersisted(): PersistedShape | null {
+  try {
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      for (const legacy of LEGACY_STORAGE_KEYS) {
+        const v = localStorage.getItem(legacy);
+        if (v) { raw = v; localStorage.removeItem(legacy); break; }
+      }
+    }
+    if (!raw) return null;
+    return migrate(JSON.parse(raw));
+  } catch {
+    // Corrupt JSON — clear so we don't loop on the same bad payload
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+    return null;
+  }
+}
 
 const PERSIST_KEYS: (keyof AppState)[] = [
   "selectedLanguage",
