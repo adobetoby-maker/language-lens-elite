@@ -1,0 +1,129 @@
+// Anatomy region definitions with multilingual labels.
+// Used by the AnatomyQuizPanel for all 4 diagram types.
+
+export type AnatomyCategory = "body" | "face" | "muscle" | "organ";
+
+export interface AnatomyRegion {
+  id: string;
+  en: string;
+  category: AnatomyCategory;
+  labels: Record<string, string>; // Language → native label
+}
+
+// ── Body Parts ──────────────────────────────────────────────────────────────
+
+export const BODY_REGIONS: AnatomyRegion[] = [
+  { id: "head",      en: "Head",      category: "body", labels: { Spanish: "Cabeza",      French: "Tête",           German: "Kopf",         Italian: "Testa",        Japanese: "頭",     Portuguese: "Cabeça"     } },
+  { id: "neck",      en: "Neck",      category: "body", labels: { Spanish: "Cuello",      French: "Cou",            German: "Hals",         Italian: "Collo",        Japanese: "首",     Portuguese: "Pescoço"    } },
+  { id: "l-shoulder",en: "Left Shoulder",  category: "body", labels: { Spanish: "Hombro izquierdo", French: "Épaule gauche", German: "Linke Schulter", Italian: "Spalla sinistra", Japanese: "左肩", Portuguese: "Ombro esquerdo" } },
+  { id: "r-shoulder",en: "Right Shoulder", category: "body", labels: { Spanish: "Hombro derecho",   French: "Épaule droite",  German: "Rechte Schulter", Italian: "Spalla destra",   Japanese: "右肩", Portuguese: "Ombro direito"  } },
+  { id: "chest",     en: "Chest",     category: "body", labels: { Spanish: "Pecho",       French: "Poitrine",       German: "Brust",        Italian: "Petto",        Japanese: "胸",     Portuguese: "Peito"      } },
+  { id: "abdomen",   en: "Abdomen",   category: "body", labels: { Spanish: "Abdomen",     French: "Abdomen",        German: "Bauch",        Italian: "Addome",       Japanese: "腹部",   Portuguese: "Abdômen"    } },
+  { id: "l-arm",     en: "Left Arm",  category: "body", labels: { Spanish: "Brazo izquierdo", French: "Bras gauche",  German: "Linker Arm",   Italian: "Braccio sinistro", Japanese: "左腕", Portuguese: "Braço esquerdo" } },
+  { id: "r-arm",     en: "Right Arm", category: "body", labels: { Spanish: "Brazo derecho",   French: "Bras droit",   German: "Rechter Arm",  Italian: "Braccio destro",   Japanese: "右腕", Portuguese: "Braço direito"  } },
+  { id: "l-forearm", en: "Left Forearm", category: "body", labels: { Spanish: "Antebrazo izquierdo", French: "Avant-bras gauche", German: "Linker Unterarm", Italian: "Avambraccio sinistro", Japanese: "左前腕", Portuguese: "Antebraço esquerdo" } },
+  { id: "r-forearm", en: "Right Forearm", category: "body", labels: { Spanish: "Antebrazo derecho", French: "Avant-bras droit", German: "Rechter Unterarm", Italian: "Avambraccio destro", Japanese: "右前腕", Portuguese: "Antebraço direito" } },
+  { id: "l-hand",    en: "Left Hand", category: "body", labels: { Spanish: "Mano izquierda", French: "Main gauche", German: "Linke Hand",  Italian: "Mano sinistra", Japanese: "左手", Portuguese: "Mão esquerda" } },
+  { id: "r-hand",    en: "Right Hand", category: "body", labels: { Spanish: "Mano derecha",  French: "Main droite", German: "Rechte Hand",  Italian: "Mano destra",   Japanese: "右手", Portuguese: "Mão direita"  } },
+  { id: "hips",      en: "Hips",      category: "body", labels: { Spanish: "Caderas",      French: "Hanches",        German: "Hüfte",        Italian: "Fianchi",      Japanese: "腰",     Portuguese: "Quadril"    } },
+  { id: "l-thigh",   en: "Left Thigh", category: "body", labels: { Spanish: "Muslo izquierdo", French: "Cuisse gauche", German: "Linker Oberschenkel", Italian: "Coscia sinistra", Japanese: "左太もも", Portuguese: "Coxa esquerda" } },
+  { id: "r-thigh",   en: "Right Thigh", category: "body", labels: { Spanish: "Muslo derecho",  French: "Cuisse droite",  German: "Rechter Oberschenkel", Italian: "Coscia destra",   Japanese: "右太もも", Portuguese: "Coxa direita"  } },
+  { id: "l-knee",    en: "Left Knee", category: "body", labels: { Spanish: "Rodilla izquierda", French: "Genou gauche", German: "Linkes Knie",  Italian: "Ginocchio sinistro", Japanese: "左膝", Portuguese: "Joelho esquerdo" } },
+  { id: "r-knee",    en: "Right Knee", category: "body", labels: { Spanish: "Rodilla derecha",  French: "Genou droit",  German: "Rechtes Knie", Italian: "Ginocchio destro",   Japanese: "右膝", Portuguese: "Joelho direito"  } },
+  { id: "l-calf",    en: "Left Calf", category: "body", labels: { Spanish: "Pantorrilla izquierda", French: "Mollet gauche", German: "Linke Wade", Italian: "Polpaccio sinistro", Japanese: "左ふくらはぎ", Portuguese: "Panturrilha esquerda" } },
+  { id: "r-calf",    en: "Right Calf", category: "body", labels: { Spanish: "Pantorrilla derecha",  French: "Mollet droit",  German: "Rechte Wade", Italian: "Polpaccio destro",   Japanese: "右ふくらはぎ", Portuguese: "Panturrilha direita"  } },
+  { id: "l-foot",    en: "Left Foot", category: "body", labels: { Spanish: "Pie izquierdo", French: "Pied gauche", German: "Linker Fuß",  Italian: "Piede sinistro", Japanese: "左足", Portuguese: "Pé esquerdo" } },
+  { id: "r-foot",    en: "Right Foot", category: "body", labels: { Spanish: "Pie derecho",  French: "Pied droit",  German: "Rechter Fuß", Italian: "Piede destro",   Japanese: "右足", Portuguese: "Pé direito"  } },
+  { id: "l-elbow",   en: "Elbow",     category: "body", labels: { Spanish: "Codo",         French: "Coude",          German: "Ellbogen",     Italian: "Gomito",       Japanese: "肘",     Portuguese: "Cotovelo"   } },
+  { id: "back",      en: "Back",      category: "body", labels: { Spanish: "Espalda",      French: "Dos",            German: "Rücken",       Italian: "Schiena",      Japanese: "背中",   Portuguese: "Costas"     } },
+];
+
+// ── Face ────────────────────────────────────────────────────────────────────
+
+export const FACE_REGIONS: AnatomyRegion[] = [
+  { id: "forehead",   en: "Forehead",   category: "face", labels: { Spanish: "Frente",     French: "Front",         German: "Stirn",         Italian: "Fronte",      Japanese: "おでこ",  Portuguese: "Testa"       } },
+  { id: "l-eye",      en: "Left Eye",   category: "face", labels: { Spanish: "Ojo izquierdo", French: "Œil gauche",  German: "Linkes Auge",   Italian: "Occhio sinistro", Japanese: "左目", Portuguese: "Olho esquerdo" } },
+  { id: "r-eye",      en: "Right Eye",  category: "face", labels: { Spanish: "Ojo derecho",   French: "Œil droit",   German: "Rechtes Auge",  Italian: "Occhio destro",   Japanese: "右目", Portuguese: "Olho direito"  } },
+  { id: "l-eyebrow",  en: "Left Eyebrow",  category: "face", labels: { Spanish: "Ceja izquierda", French: "Sourcil gauche", German: "Linke Augenbraue", Italian: "Sopracciglio sinistro", Japanese: "左眉", Portuguese: "Sobrancelha esquerda" } },
+  { id: "r-eyebrow",  en: "Right Eyebrow", category: "face", labels: { Spanish: "Ceja derecha",   French: "Sourcil droit",  German: "Rechte Augenbraue", Italian: "Sopracciglio destro",   Japanese: "右眉", Portuguese: "Sobrancelha direita"  } },
+  { id: "nose",       en: "Nose",       category: "face", labels: { Spanish: "Nariz",      French: "Nez",           German: "Nase",          Italian: "Naso",        Japanese: "鼻",      Portuguese: "Nariz"       } },
+  { id: "l-cheek",    en: "Left Cheek", category: "face", labels: { Spanish: "Mejilla izquierda", French: "Joue gauche", German: "Linke Wange", Italian: "Guancia sinistra", Japanese: "左頬", Portuguese: "Bochecha esquerda" } },
+  { id: "r-cheek",    en: "Right Cheek", category: "face", labels: { Spanish: "Mejilla derecha",   French: "Joue droite",  German: "Rechte Wange", Italian: "Guancia destra",   Japanese: "右頬", Portuguese: "Bochecha direita"  } },
+  { id: "mouth",      en: "Mouth",      category: "face", labels: { Spanish: "Boca",       French: "Bouche",        German: "Mund",          Italian: "Bocca",       Japanese: "口",      Portuguese: "Boca"        } },
+  { id: "lips",       en: "Lips",       category: "face", labels: { Spanish: "Labios",     French: "Lèvres",        German: "Lippen",        Italian: "Labbra",      Japanese: "唇",      Portuguese: "Lábios"      } },
+  { id: "chin",       en: "Chin",       category: "face", labels: { Spanish: "Barbilla",   French: "Menton",        German: "Kinn",          Italian: "Mento",       Japanese: "あご",    Portuguese: "Queixo"      } },
+  { id: "l-ear",      en: "Left Ear",   category: "face", labels: { Spanish: "Oreja izquierda", French: "Oreille gauche", German: "Linkes Ohr", Italian: "Orecchio sinistro", Japanese: "左耳", Portuguese: "Orelha esquerda" } },
+  { id: "r-ear",      en: "Right Ear",  category: "face", labels: { Spanish: "Oreja derecha",   French: "Oreille droite",  German: "Rechtes Ohr", Italian: "Orecchio destro",   Japanese: "右耳", Portuguese: "Orelha direita"  } },
+  { id: "jaw",        en: "Jaw",        category: "face", labels: { Spanish: "Mandíbula",   French: "Mâchoire",      German: "Kiefer",        Italian: "Mascella",    Japanese: "顎",      Portuguese: "Mandíbula"   } },
+  { id: "l-temple",   en: "Left Temple", category: "face", labels: { Spanish: "Sien izquierda", French: "Tempe gauche", German: "Linke Schläfe", Italian: "Tempia sinistra", Japanese: "左こめかみ", Portuguese: "Têmpora esquerda" } },
+  { id: "r-temple",   en: "Right Temple", category: "face", labels: { Spanish: "Sien derecha",   French: "Tempe droite",  German: "Rechte Schläfe", Italian: "Tempia destra",   Japanese: "右こめかみ", Portuguese: "Têmpora direita"  } },
+];
+
+// ── Muscles ─────────────────────────────────────────────────────────────────
+
+export const MUSCLE_REGIONS: AnatomyRegion[] = [
+  { id: "l-deltoid",   en: "Left Deltoid",   category: "muscle", labels: { Spanish: "Deltoides izquierdo", French: "Deltoïde gauche",  German: "Linker Deltamuskel", Italian: "Deltoide sinistro", Japanese: "左三角筋",     Portuguese: "Deltóide esquerdo"  } },
+  { id: "r-deltoid",   en: "Right Deltoid",  category: "muscle", labels: { Spanish: "Deltoides derecho",   French: "Deltoïde droit",   German: "Rechter Deltamuskel", Italian: "Deltoide destro",   Japanese: "右三角筋",     Portuguese: "Deltóide direito"   } },
+  { id: "l-bicep",     en: "Left Bicep",     category: "muscle", labels: { Spanish: "Bíceps izquierdo",    French: "Biceps gauche",    German: "Linker Bizeps",      Italian: "Bicipite sinistro", Japanese: "左上腕二頭筋", Portuguese: "Bíceps esquerdo"    } },
+  { id: "r-bicep",     en: "Right Bicep",    category: "muscle", labels: { Spanish: "Bíceps derecho",      French: "Biceps droit",     German: "Rechter Bizeps",     Italian: "Bicipite destro",   Japanese: "右上腕二頭筋", Portuguese: "Bíceps direito"     } },
+  { id: "l-tricep",    en: "Left Tricep",    category: "muscle", labels: { Spanish: "Tríceps izquierdo",   French: "Triceps gauche",   German: "Linker Trizeps",     Italian: "Tricipite sinistro", Japanese: "左上腕三頭筋", Portuguese: "Tríceps esquerdo"  } },
+  { id: "r-tricep",    en: "Right Tricep",   category: "muscle", labels: { Spanish: "Tríceps derecho",     French: "Triceps droit",    German: "Rechter Trizeps",    Italian: "Tricipite destro",   Japanese: "右上腕三頭筋", Portuguese: "Tríceps direito"   } },
+  { id: "pectorals",   en: "Pectorals",      category: "muscle", labels: { Spanish: "Pectorales",          French: "Pectoraux",        German: "Brustmuskeln",       Italian: "Pettorali",        Japanese: "大胸筋",       Portuguese: "Peitorais"          } },
+  { id: "abdominals",  en: "Abdominals",     category: "muscle", labels: { Spanish: "Abdominales",         French: "Abdominaux",       German: "Bauchmuskeln",       Italian: "Addominali",       Japanese: "腹筋",         Portuguese: "Abdominais"         } },
+  { id: "l-oblique",   en: "Left Oblique",   category: "muscle", labels: { Spanish: "Oblicuo izquierdo",   French: "Oblique gauche",   German: "Linker Obliquus",    Italian: "Obliquo sinistro", Japanese: "左腹斜筋",     Portuguese: "Oblíquo esquerdo"   } },
+  { id: "r-oblique",   en: "Right Oblique",  category: "muscle", labels: { Spanish: "Oblicuo derecho",     French: "Oblique droit",    German: "Rechter Obliquus",   Italian: "Obliquo destro",   Japanese: "右腹斜筋",     Portuguese: "Oblíquo direito"    } },
+  { id: "trapezius",   en: "Trapezius",      category: "muscle", labels: { Spanish: "Trapecio",            French: "Trapèze",          German: "Trapezmuskel",       Italian: "Trapezio",         Japanese: "僧帽筋",       Portuguese: "Trapézio"           } },
+  { id: "l-quad",      en: "Left Quadricep", category: "muscle", labels: { Spanish: "Cuádriceps izquierdo", French: "Quadriceps gauche", German: "Linker Quadrizeps", Italian: "Quadricipite sinistro", Japanese: "左大腿四頭筋", Portuguese: "Quadríceps esquerdo" } },
+  { id: "r-quad",      en: "Right Quadricep", category: "muscle", labels: { Spanish: "Cuádriceps derecho",  French: "Quadriceps droit",  German: "Rechter Quadrizeps", Italian: "Quadricipite destro",   Japanese: "右大腿四頭筋", Portuguese: "Quadríceps direito"  } },
+  { id: "l-hamstring", en: "Left Hamstring", category: "muscle", labels: { Spanish: "Isquiotibiales izquierdo", French: "Ischio-jambiers gauche", German: "Linker Bizeps femoris", Italian: "Ischio-crurale sinistro", Japanese: "左ハムストリング", Portuguese: "Isquiotibiais esquerdo" } },
+  { id: "r-hamstring", en: "Right Hamstring", category: "muscle", labels: { Spanish: "Isquiotibiales derecho",  French: "Ischio-jambiers droit",  German: "Rechter Bizeps femoris", Italian: "Ischio-crurale destro",   Japanese: "右ハムストリング", Portuguese: "Isquiotibiais direito"  } },
+  { id: "l-gastro",    en: "Left Calf",      category: "muscle", labels: { Spanish: "Gemelo izquierdo",    French: "Mollet gauche",    German: "Linker Wadenmuskel", Italian: "Gastrocnemio sinistro", Japanese: "左腓腹筋",   Portuguese: "Gastrocnêmio esquerdo" } },
+  { id: "r-gastro",    en: "Right Calf",     category: "muscle", labels: { Spanish: "Gemelo derecho",      French: "Mollet droit",     German: "Rechter Wadenmuskel", Italian: "Gastrocnemio destro",   Japanese: "右腓腹筋",   Portuguese: "Gastrocnêmio direito"  } },
+  { id: "l-glute",     en: "Left Glute",     category: "muscle", labels: { Spanish: "Glúteo izquierdo",    French: "Fessier gauche",   German: "Linker Gesäßmuskel", Italian: "Gluteo sinistro",  Japanese: "左臀筋",       Portuguese: "Glúteo esquerdo"    } },
+  { id: "r-glute",     en: "Right Glute",    category: "muscle", labels: { Spanish: "Glúteo derecho",      French: "Fessier droit",    German: "Rechter Gesäßmuskel", Italian: "Gluteo destro",    Japanese: "右臀筋",       Portuguese: "Glúteo direito"     } },
+  { id: "latissimus",  en: "Latissimus Dorsi", category: "muscle", labels: { Spanish: "Dorsal ancho",     French: "Grand dorsal",     German: "Latissimus dorsi",   Italian: "Latissimo del dorso", Japanese: "広背筋",    Portuguese: "Grande dorsal"      } },
+];
+
+// ── Internal Organs ─────────────────────────────────────────────────────────
+
+export const ORGAN_REGIONS: AnatomyRegion[] = [
+  { id: "brain",        en: "Brain",          category: "organ", labels: { Spanish: "Cerebro",         French: "Cerveau",        German: "Gehirn",              Italian: "Cervello",      Japanese: "脳",        Portuguese: "Cérebro"       } },
+  { id: "heart",        en: "Heart",          category: "organ", labels: { Spanish: "Corazón",         French: "Cœur",           German: "Herz",                Italian: "Cuore",         Japanese: "心臓",      Portuguese: "Coração"       } },
+  { id: "l-lung",       en: "Left Lung",      category: "organ", labels: { Spanish: "Pulmón izquierdo", French: "Poumon gauche",  German: "Linke Lunge",         Italian: "Polmone sinistro", Japanese: "左肺",   Portuguese: "Pulmão esquerdo" } },
+  { id: "r-lung",       en: "Right Lung",     category: "organ", labels: { Spanish: "Pulmón derecho",  French: "Poumon droit",   German: "Rechte Lunge",        Italian: "Polmone destro",   Japanese: "右肺",   Portuguese: "Pulmão direito" } },
+  { id: "liver",        en: "Liver",          category: "organ", labels: { Spanish: "Hígado",          French: "Foie",           German: "Leber",               Italian: "Fegato",        Japanese: "肝臓",      Portuguese: "Fígado"        } },
+  { id: "stomach",      en: "Stomach",        category: "organ", labels: { Spanish: "Estómago",        French: "Estomac",        German: "Magen",               Italian: "Stomaco",       Japanese: "胃",        Portuguese: "Estômago"      } },
+  { id: "gallbladder",  en: "Gallbladder",    category: "organ", labels: { Spanish: "Vesícula biliar",  French: "Vésicule biliaire", German: "Gallenblase",      Italian: "Cistifellea",   Japanese: "胆嚢",      Portuguese: "Vesícula biliar" } },
+  { id: "pancreas",     en: "Pancreas",       category: "organ", labels: { Spanish: "Páncreas",        French: "Pancréas",       German: "Bauchspeicheldrüse",  Italian: "Pancreas",      Japanese: "膵臓",      Portuguese: "Pâncreas"      } },
+  { id: "l-kidney",     en: "Left Kidney",    category: "organ", labels: { Spanish: "Riñón izquierdo",  French: "Rein gauche",    German: "Linke Niere",         Italian: "Rene sinistro", Japanese: "左腎臓",    Portuguese: "Rim esquerdo"  } },
+  { id: "r-kidney",     en: "Right Kidney",   category: "organ", labels: { Spanish: "Riñón derecho",   French: "Rein droit",     German: "Rechte Niere",        Italian: "Rene destro",   Japanese: "右腎臓",    Portuguese: "Rim direito"   } },
+  { id: "spleen",       en: "Spleen",         category: "organ", labels: { Spanish: "Bazo",            French: "Rate",           German: "Milz",                Italian: "Milza",         Japanese: "脾臓",      Portuguese: "Baço"          } },
+  { id: "sm-intestine", en: "Small Intestine", category: "organ", labels: { Spanish: "Intestino delgado", French: "Intestin grêle", German: "Dünndarm",          Italian: "Intestino tenue", Japanese: "小腸",   Portuguese: "Intestino delgado" } },
+  { id: "lg-intestine", en: "Large Intestine", category: "organ", labels: { Spanish: "Intestino grueso", French: "Gros intestin",  German: "Dickdarm",           Italian: "Intestino crasso", Japanese: "大腸",  Portuguese: "Intestino grosso"  } },
+  { id: "bladder",      en: "Bladder",        category: "organ", labels: { Spanish: "Vejiga",          French: "Vessie",         German: "Blase",               Italian: "Vescica",       Japanese: "膀胱",      Portuguese: "Bexiga"        } },
+  { id: "thyroid",      en: "Thyroid",        category: "organ", labels: { Spanish: "Tiroides",        French: "Thyroïde",       German: "Schilddrüse",         Italian: "Tiroide",       Japanese: "甲状腺",    Portuguese: "Tireoide"      } },
+];
+
+export const ALL_REGIONS: AnatomyRegion[] = [
+  ...BODY_REGIONS,
+  ...FACE_REGIONS,
+  ...MUSCLE_REGIONS,
+  ...ORGAN_REGIONS,
+];
+
+export function regionsByCategory(cat: AnatomyCategory): AnatomyRegion[] {
+  return ALL_REGIONS.filter((r) => r.category === cat);
+}
+
+// Sport → muscle group IDs most relevant to that sport (for sport-anatomy mode)
+export const SPORT_MUSCLE_FOCUS: Record<string, string[]> = {
+  soccer:           ["l-quad", "r-quad", "l-hamstring", "r-hamstring", "l-gastro", "r-gastro", "l-glute", "r-glute", "abdominals"],
+  hockey:           ["l-quad", "r-quad", "l-glute", "r-glute", "l-oblique", "r-oblique", "l-deltoid", "r-deltoid", "trapezius"],
+  baseball:         ["l-deltoid", "r-deltoid", "l-bicep", "r-bicep", "l-tricep", "r-tricep", "trapezius", "abdominals", "l-oblique"],
+  tennis:           ["l-deltoid", "r-deltoid", "l-bicep", "r-bicep", "trapezius", "abdominals", "l-quad", "r-quad"],
+  bowling:          ["l-deltoid", "r-deltoid", "l-bicep", "r-bicep", "l-oblique", "r-oblique", "abdominals"],
+  "american-football": ["pectorals", "l-deltoid", "r-deltoid", "l-quad", "r-quad", "l-hamstring", "r-hamstring", "trapezius"],
+  lacrosse:         ["l-deltoid", "r-deltoid", "abdominals", "l-oblique", "r-oblique", "l-quad", "r-quad", "l-gastro", "r-gastro"],
+  rugby:            ["pectorals", "trapezius", "l-quad", "r-quad", "l-hamstring", "r-hamstring", "l-glute", "r-glute", "l-deltoid"],
+  "sports-hobbies": ["abdominals", "l-quad", "r-quad", "l-deltoid", "r-deltoid", "l-bicep", "r-bicep", "l-gastro", "r-gastro"],
+};

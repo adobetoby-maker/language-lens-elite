@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -12,7 +13,6 @@ const BodySchema = z.object({
   level: z.string().min(1).max(40),
   messages: z.array(MessageSchema).min(1).max(40).optional(),
   userText: z.string().max(2000).optional(),
-  // Challenge inputs
   concepts: z.array(z.string().min(1).max(120)).max(20).optional(),
   kind: z.enum(["grammar", "reach"]).optional(),
 });
@@ -27,7 +27,32 @@ function chatSystemPrompt(language: string, level: string) {
   ].join(" ");
 }
 
-const KEY_ERROR = "AI is not configured";
+// Wraps an Anthropic stream in a ReadableStream emitting OpenAI-compatible SSE
+// so existing client parsers (choices[0].delta.content) work without changes.
+function anthropicStreamToSSE(
+  stream: AsyncIterable<Anthropic.MessageStreamEvent>,
+): ReadableStream<Uint8Array> {
+  const enc = new TextEncoder();
+  return new ReadableStream({
+    async start(controller) {
+      try {
+        for await (const event of stream) {
+          if (
+            event.type === "content_block_delta" &&
+            event.delta.type === "text_delta"
+          ) {
+            const chunk =
+              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+            controller.enqueue(enc.encode(chunk));
+          }
+        }
+        controller.enqueue(enc.encode("data: [DONE]\n\n"));
+      } finally {
+        controller.close();
+      }
+    },
+  });
+}
 
 export const Route = createFileRoute("/api/speak")({
   server: {
@@ -38,20 +63,20 @@ export const Route = createFileRoute("/api/speak")({
           payload = BodySchema.parse(await request.json());
         } catch (e) {
           return new Response(
-            JSON.stringify({
-              error: e instanceof Error ? e.message : "Invalid input",
-            }),
+            JSON.stringify({ error: e instanceof Error ? e.message : "Invalid input" }),
             { status: 400, headers: { "Content-Type": "application/json" } },
           );
         }
 
-        const KEY = process.env.LOVABLE_API_KEY;
+        const KEY = process.env.ANTHROPIC_API_KEY;
         if (!KEY) {
-          return new Response(JSON.stringify({ error: KEY_ERROR }), {
+          return new Response(JSON.stringify({ error: "AI is not configured" }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
           });
         }
+
+        const client = new Anthropic({ apiKey: KEY });
 
         // ----- TIP MODE: short JSON grammar tip -----
         if (payload.mode === "tip") {
@@ -61,77 +86,48 @@ export const Route = createFileRoute("/api/speak")({
               headers: { "Content-Type": "application/json" },
             });
           }
-          const upstream = await fetch(
-            "https://ai.gateway.lovable.dev/v1/chat/completions",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${KEY}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                model: "google/gemini-3-flash-preview",
-                messages: [
-                  {
-                    role: "system",
-                    content:
-                      "You are a gentle language coach. Reply via the grammar_tip tool only.",
-                  },
-                  {
-                    role: "user",
-                    content: `Did the user make any grammar errors in this ${payload.language} sentence: "${payload.userText}"? If yes, give one gentle tip in English under 20 words. If no errors, return null.`,
-                  },
-                ],
-                tools: [
-                  {
-                    type: "function",
-                    function: {
-                      name: "grammar_tip",
-                      description: "Return a single gentle grammar tip or null.",
-                      parameters: {
-                        type: "object",
-                        properties: {
-                          tip: {
-                            type: ["string", "null"],
-                            description:
-                              "Gentle correction under 20 words, or null if no errors.",
-                          },
-                        },
-                        required: ["tip"],
-                        additionalProperties: false,
+          try {
+            const response = await client.messages.create({
+              model: "claude-haiku-4-5",
+              max_tokens: 128,
+              system: "You are a gentle language coach. Reply via the grammar_tip tool only.",
+              messages: [
+                {
+                  role: "user",
+                  content: `Did the user make any grammar errors in this ${payload.language} sentence: "${payload.userText}"? If yes, give one gentle tip in English under 20 words. If no errors, return null for the tip field.`,
+                },
+              ],
+              tools: [
+                {
+                  name: "grammar_tip",
+                  description: "Return a single gentle grammar tip or null.",
+                  input_schema: {
+                    type: "object" as const,
+                    properties: {
+                      tip: {
+                        anyOf: [{ type: "string" }, { type: "null" }],
+                        description: "Gentle correction under 20 words, or null if no errors.",
                       },
                     },
+                    required: ["tip"],
+                    additionalProperties: false,
                   },
-                ],
-                tool_choice: {
-                  type: "function",
-                  function: { name: "grammar_tip" },
                 },
-              }),
-            },
-          );
-
-          if (!upstream.ok) {
-            // Soft-fail tips: don't break the conversation
-            return new Response(JSON.stringify({ tip: null }), {
-              status: 200,
-              headers: { "Content-Type": "application/json" },
+              ],
+              tool_choice: { type: "tool", name: "grammar_tip" },
             });
-          }
-          try {
-            const data = (await upstream.json()) as any;
-            const args =
-              data?.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
-            const parsed = args ? JSON.parse(args) : { tip: null };
+            const toolUse = response.content.find((c) => c.type === "tool_use");
+            const input = toolUse?.type === "tool_use"
+              ? (toolUse.input as { tip: string | null })
+              : { tip: null };
             const tip =
-              typeof parsed?.tip === "string" && parsed.tip.trim()
-                ? parsed.tip.trim()
-                : null;
+              typeof input.tip === "string" && input.tip.trim() ? input.tip.trim() : null;
             return new Response(JSON.stringify({ tip }), {
               status: 200,
               headers: { "Content-Type": "application/json" },
             });
           } catch {
+            // Soft-fail tips: don't break the conversation
             return new Response(JSON.stringify({ tip: null }), {
               status: 200,
               headers: { "Content-Type": "application/json" },
@@ -151,84 +147,50 @@ export const Route = createFileRoute("/api/speak")({
               ? `The learner has completed these ${payload.language} grammar lessons: ${concepts.join("; ")}. Create ONE short spoken challenge sentence (6-14 words) in ${payload.language} that naturally USES one of these grammar concepts. Then give the English translation and a one-line hint about which concept it practices.`
               : `Create ONE "reach" vocabulary challenge in ${payload.language} for a ${payload.level} learner: a short useful sentence (6-12 words) containing ONE slightly advanced word the learner probably doesn't know yet. Provide the English translation and a hint that highlights the stretch word with its meaning.`;
 
-          const upstream = await fetch(
-            "https://ai.gateway.lovable.dev/v1/chat/completions",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${KEY}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                model: "google/gemini-3-flash-preview",
-                messages: [
-                  {
-                    role: "system",
-                    content: `You design spoken language challenges. Always respond via the speak_challenge tool only.`,
-                  },
-                  { role: "user", content: userPrompt },
-                ],
-                tools: [
-                  {
-                    type: "function",
-                    function: {
-                      name: "speak_challenge",
-                      description: "A single spoken challenge for the learner.",
-                      parameters: {
-                        type: "object",
-                        properties: {
-                          target: {
-                            type: "string",
-                            description: `The sentence to say in ${payload.language}.`,
-                          },
-                          english: {
-                            type: "string",
-                            description: "Plain English translation.",
-                          },
-                          hint: {
-                            type: "string",
-                            description:
-                              "One-line coaching hint (concept name or stretch word + meaning).",
-                          },
-                          keyword: {
-                            type: "string",
-                            description:
-                              "The single most important word/phrase from `target` to listen for in the learner's speech.",
-                          },
-                        },
-                        required: ["target", "english", "hint", "keyword"],
-                        additionalProperties: false,
+          try {
+            const response = await client.messages.create({
+              model: "claude-haiku-4-5",
+              max_tokens: 256,
+              system: "You design spoken language challenges. Always respond via the speak_challenge tool only.",
+              messages: [{ role: "user", content: userPrompt }],
+              tools: [
+                {
+                  name: "speak_challenge",
+                  description: "A single spoken challenge for the learner.",
+                  input_schema: {
+                    type: "object" as const,
+                    properties: {
+                      target: {
+                        type: "string",
+                        description: `The sentence to say in ${payload.language}.`,
+                      },
+                      english: { type: "string", description: "Plain English translation." },
+                      hint: {
+                        type: "string",
+                        description: "One-line coaching hint (concept name or stretch word + meaning).",
+                      },
+                      keyword: {
+                        type: "string",
+                        description:
+                          "The single most important word/phrase from `target` to listen for in the learner's speech.",
                       },
                     },
+                    required: ["target", "english", "hint", "keyword"],
+                    additionalProperties: false,
                   },
-                ],
-                tool_choice: {
-                  type: "function",
-                  function: { name: "speak_challenge" },
                 },
-              }),
-            },
-          );
-
-          if (!upstream.ok) {
-            return new Response(
-              JSON.stringify({ error: "Could not generate a challenge." }),
-              { status: 500, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          try {
-            const data = (await upstream.json()) as any;
-            const args =
-              data?.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
-            const parsed = args ? JSON.parse(args) : null;
-            if (!parsed?.target) throw new Error("bad payload");
-            return new Response(JSON.stringify(parsed), {
+              ],
+              tool_choice: { type: "tool", name: "speak_challenge" },
+            });
+            const toolUse = response.content.find((c) => c.type === "tool_use");
+            if (!toolUse || toolUse.type !== "tool_use") throw new Error("bad payload");
+            return new Response(JSON.stringify(toolUse.input), {
               status: 200,
               headers: { "Content-Type": "application/json" },
             });
           } catch {
             return new Response(
-              JSON.stringify({ error: "Malformed challenge response." }),
+              JSON.stringify({ error: "Could not generate a challenge." }),
               { status: 500, headers: { "Content-Type": "application/json" } },
             );
           }
@@ -242,62 +204,30 @@ export const Route = createFileRoute("/api/speak")({
           );
         }
 
-        const upstream = await fetch(
-          "https://ai.gateway.lovable.dev/v1/chat/completions",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${KEY}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              model: "google/gemini-3-flash-preview",
-              stream: true,
-              messages: [
-                {
-                  role: "system",
-                  content: chatSystemPrompt(payload.language, payload.level),
-                },
-                ...payload.messages,
-              ],
-            }),
-          },
-        );
+        try {
+          const stream = await client.messages.create({
+            model: "claude-haiku-4-5",
+            max_tokens: 512,
+            system: chatSystemPrompt(payload.language, payload.level),
+            messages: payload.messages,
+            stream: true,
+          });
 
-        if (!upstream.ok) {
-          if (upstream.status === 429) {
-            return new Response(
-              JSON.stringify({
-                error: "Rate limit hit. Please try again shortly.",
-              }),
-              { status: 429, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          if (upstream.status === 402) {
-            return new Response(
-              JSON.stringify({
-                error:
-                  "AI credits exhausted. Add funds in Settings → Workspace → Usage.",
-              }),
-              { status: 402, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          const t = await upstream.text();
-          console.error("Speak upstream error:", upstream.status, t);
+          return new Response(anthropicStreamToSSE(stream), {
+            status: 200,
+            headers: {
+              "Content-Type": "text/event-stream",
+              "Cache-Control": "no-cache, no-transform",
+              Connection: "keep-alive",
+            },
+          });
+        } catch (e) {
+          console.error("Speak stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
           });
         }
-
-        return new Response(upstream.body, {
-          status: 200,
-          headers: {
-            "Content-Type": "text/event-stream",
-            "Cache-Control": "no-cache, no-transform",
-            Connection: "keep-alive",
-          },
-        });
       },
     },
   },

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Library, Type, Languages, Maximize2, Minimize2 } from "lucide-react";
+import { Library, Type, Languages, Maximize2, Minimize2, Search, X } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -50,6 +50,8 @@ export function ParallelReader() {
   const [syncScroll, setSyncScroll] = useState(true);
   const [autoScroll, setAutoScroll] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
@@ -266,8 +268,32 @@ export function ParallelReader() {
     el?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const handleWord = (word: string, sentence: string, x: number, y: number) => {
-    setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
+  const handleWord = (word: string, sentence: string, pane: "left" | "right", x: number, y: number) => {
+    if (pane === "right") {
+      setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
+    } else {
+      // Left (native) pane: provide the paired target sentence so the AI can
+      // identify the target-language equivalent of the clicked native word.
+      const pair = activeSentences.find((s) => s.en === sentence);
+      const context = pair
+        ? `[${state.nativeLanguage}] "${sentence}" | [${selected.targetLabel}] "${pair.target}"`
+        : sentence;
+      setWordReq({ word, sentence: context, language: state.selectedLanguage, x, y });
+    }
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery("");
+    setSearchOpen(false);
+    const vw = typeof window !== "undefined" ? window.innerWidth : 1024;
+    const vh = typeof window !== "undefined" ? window.innerHeight : 768;
+    setWordReq({
+      word: query,
+      sentence: query,
+      language: state.selectedLanguage,
+      x: vw / 2,
+      y: vh / 4,
+    });
   };
 
   // Find sentence index in the right pane closest to current scroll position
@@ -440,23 +466,56 @@ export function ParallelReader() {
 
       {/* Toolbar */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 px-1">
-        <div className="flex items-center gap-2">
-          <Type className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            Size
-          </span>
-          <div className="flex overflow-hidden rounded-full border border-border/70">
-            {(["S", "M", "L"] as TextSize[]).map((s) => (
-              <button
-                key={s}
-                onClick={() => setSize(s)}
-                data-active={size === s}
-                className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
-              >
-                {s}
-              </button>
-            ))}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <Type className="h-3.5 w-3.5 text-muted-foreground" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Size
+            </span>
+            <div className="flex overflow-hidden rounded-full border border-border/70">
+              {(["S", "M", "L"] as TextSize[]).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSize(s)}
+                  data-active={size === s}
+                  className="px-3 py-1 font-mono text-[11px] tracking-widest text-muted-foreground transition-colors data-[active=true]:bg-gold data-[active=true]:text-midnight"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* Floating word search */}
+          {searchOpen ? (
+            <div className="flex items-center gap-2">
+              <input
+                autoFocus
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchQuery.trim()) handleSearch(searchQuery.trim());
+                  if (e.key === "Escape") { setSearchOpen(false); setSearchQuery(""); }
+                }}
+                placeholder={`Look up in ${state.selectedLanguage}…`}
+                className="w-44 rounded-full border border-gold/40 bg-background/60 px-3 py-1 font-mono text-[11px] text-foreground/90 placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
+              />
+              <button
+                onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/60 bg-background/40 text-muted-foreground hover:border-gold/60 hover:text-gold"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/60 hover:text-gold"
+            >
+              <Search className="h-3 w-3" />
+              Search
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-4">
@@ -723,19 +782,21 @@ function Pane({
   size: TextSize;
   annotations: ReturnType<typeof useNotes>["annotations"];
   activeSentenceIndex: number;
-  onWordClick: (w: string, sentence: string, x: number, y: number) => void;
+  onWordClick: (w: string, sentence: string, pane: "left" | "right", x: number, y: number) => void;
   accent?: boolean;
-  /** Furigana display mode for Japanese target text. */
   furiganaMode?: FuriganaMode;
-  /** Which script to render in the ruby labels (Japanese). */
   furiganaScript?: FuriganaScript;
-  /** Romaja display mode for Korean target text. */
   romajaMode?: FuriganaMode;
 }) {
   const showFurigana = furiganaMode !== "off";
   const showRomaja = romajaMode !== "off";
   const lineNeedsExtraLeading =
     furiganaMode === "above" || romajaMode === "above";
+  // Inject pane identity into every word-click so the parent can route
+  // left-pane (native) and right-pane (target) lookups differently.
+  const wrappedWordClick = (w: string, s: string, x: number, y: number) => {
+    onWordClick(w, s, pane, x, y);
+  };
   return (
     <div
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
@@ -768,7 +829,7 @@ function Pane({
                 <FuriganaText
                   text={s}
                   fullSentence={s}
-                  onWordClick={onWordClick}
+                  onWordClick={wrappedWordClick}
                   mode={furiganaMode === "inline" ? "inline" : "above"}
                   script={furiganaScript}
                 />
@@ -776,7 +837,7 @@ function Pane({
                 <HangulText
                   text={s}
                   fullSentence={s}
-                  onWordClick={onWordClick}
+                  onWordClick={wrappedWordClick}
                   mode={romajaMode === "inline" ? "inline" : "above"}
                 />
               )
@@ -784,7 +845,7 @@ function Pane({
               <AnnotatedSentence
                 text={s}
                 annotations={sentenceAnns}
-                onWordClick={onWordClick}
+                onWordClick={wrappedWordClick}
               />
             )}
           </p>

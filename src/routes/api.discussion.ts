@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -32,26 +33,20 @@ const BodySchema = z.object({
       cultureNote: z.string().max(400).optional(),
     })
     .optional(),
-  // Last user (missionary) utterance — used by companion mode
   userText: z.string().max(2000).optional(),
   messages: z.array(MessageSchema).min(1).max(40),
 });
 
 function investigatorPrompt(p: z.infer<typeof BodySchema>) {
   const { investigator, lesson, language, missionArea } = p;
-  const remaining = Math.max(
-    0,
-    investigator.questionsPerTopic - lesson.questionsAskedOnTopic,
-  );
+  const remaining = Math.max(0, investigator.questionsPerTopic - lesson.questionsAskedOnTopic);
   const moveOn = remaining <= 0;
   return [
     `You are roleplaying as ${investigator.name}, a person taking the missionary discussions from The Church of Jesus Christ of Latter-day Saints.`,
     `Personality and tone: ${investigator.tone}`,
     `Always respond in ${language}. Use natural conversational ${language} — no markdown, no lists.`,
     `Stay strictly in character. Never break the fourth wall, never act like an AI, never give a "lesson" yourself — you are the investigator, not the teacher.`,
-    missionArea
-      ? `Cultural setting: ${missionArea.name}. ${missionArea.cultureNote ?? ""}`
-      : null,
+    missionArea ? `Cultural setting: ${missionArea.name}. ${missionArea.cultureNote ?? ""}` : null,
     ``,
     `CURRENT LESSON: Lesson ${lesson.lessonNumber} — ${lesson.lessonTitle}`,
     `CURRENT TOPIC: "${lesson.topicTitle}"`,
@@ -84,6 +79,33 @@ function companionPrompt(p: z.infer<typeof BodySchema>) {
   ].join("\n");
 }
 
+// Wraps an Anthropic stream in a ReadableStream emitting OpenAI-compatible SSE
+// so existing client parsers (choices[0].delta.content) work without changes.
+function anthropicStreamToSSE(
+  stream: AsyncIterable<Anthropic.MessageStreamEvent>,
+): ReadableStream<Uint8Array> {
+  const enc = new TextEncoder();
+  return new ReadableStream({
+    async start(controller) {
+      try {
+        for await (const event of stream) {
+          if (
+            event.type === "content_block_delta" &&
+            event.delta.type === "text_delta"
+          ) {
+            const chunk =
+              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+            controller.enqueue(enc.encode(chunk));
+          }
+        }
+        controller.enqueue(enc.encode("data: [DONE]\n\n"));
+      } finally {
+        controller.close();
+      }
+    },
+  });
+}
+
 export const Route = createFileRoute("/api/discussion")({
   server: {
     handlers: {
@@ -93,119 +115,80 @@ export const Route = createFileRoute("/api/discussion")({
           payload = BodySchema.parse(await request.json());
         } catch (e) {
           return new Response(
-            JSON.stringify({
-              error: e instanceof Error ? e.message : "Invalid input",
-            }),
+            JSON.stringify({ error: e instanceof Error ? e.message : "Invalid input" }),
             { status: 400, headers: { "Content-Type": "application/json" } },
           );
         }
 
-        const KEY = process.env.LOVABLE_API_KEY;
+        const KEY = process.env.ANTHROPIC_API_KEY;
         if (!KEY) {
-          return new Response(
-            JSON.stringify({ error: "AI is not configured" }),
-            {
-              status: 500,
-              headers: { "Content-Type": "application/json" },
-            },
-          );
-        }
-
-        const system =
-          payload.mode === "investigator"
-            ? investigatorPrompt(payload)
-            : companionPrompt(payload);
-
-        // Companion mode returns a single short tip (non-streaming JSON)
-        if (payload.mode === "companion") {
-          const upstream = await fetch(
-            "https://ai.gateway.lovable.dev/v1/chat/completions",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${KEY}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                model: "google/gemini-3-flash-preview",
-                messages: [
-                  { role: "system", content: system },
-                  {
-                    role: "user",
-                    content: `Missionary just said (in ${payload.language}): "${payload.userText ?? ""}"`,
-                  },
-                ],
-              }),
-            },
-          );
-          if (!upstream.ok) {
-            return new Response(JSON.stringify({ tip: null }), {
-              status: 200,
-              headers: { "Content-Type": "application/json" },
-            });
-          }
-          const data = (await upstream.json().catch(() => null)) as
-            | { choices?: { message?: { content?: string } }[] }
-            | null;
-          const tip = data?.choices?.[0]?.message?.content?.trim() ?? null;
-          return new Response(JSON.stringify({ tip }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-          });
-        }
-
-        // Investigator mode — streamed
-        const upstream = await fetch(
-          "https://ai.gateway.lovable.dev/v1/chat/completions",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${KEY}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              model: "google/gemini-3-flash-preview",
-              stream: true,
-              messages: [
-                { role: "system", content: system },
-                ...payload.messages,
-              ],
-            }),
-          },
-        );
-
-        if (!upstream.ok) {
-          if (upstream.status === 429) {
-            return new Response(
-              JSON.stringify({ error: "Rate limit hit. Please try again shortly." }),
-              { status: 429, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          if (upstream.status === 402) {
-            return new Response(
-              JSON.stringify({
-                error:
-                  "AI credits exhausted. Add funds in Settings → Workspace → Usage.",
-              }),
-              { status: 402, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          const text = await upstream.text();
-          console.error("Discussion upstream error:", upstream.status, text);
-          return new Response(JSON.stringify({ error: "AI request failed." }), {
+          return new Response(JSON.stringify({ error: "AI is not configured" }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
           });
         }
 
-        return new Response(upstream.body, {
-          status: 200,
-          headers: {
-            "Content-Type": "text/event-stream",
-            "Cache-Control": "no-cache, no-transform",
-            Connection: "keep-alive",
-          },
-        });
+        const client = new Anthropic({ apiKey: KEY });
+        const system =
+          payload.mode === "investigator"
+            ? investigatorPrompt(payload)
+            : companionPrompt(payload);
+
+        // Companion mode: single short tip (non-streaming)
+        if (payload.mode === "companion") {
+          try {
+            const response = await client.messages.create({
+              model: "claude-haiku-4-5",
+              max_tokens: 128,
+              system,
+              messages: [
+                {
+                  role: "user",
+                  content: `Missionary just said (in ${payload.language}): "${payload.userText ?? ""}"`,
+                },
+              ],
+            });
+            const tip =
+              response.content[0]?.type === "text"
+                ? response.content[0].text.trim()
+                : null;
+            return new Response(JSON.stringify({ tip }), {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            });
+          } catch {
+            return new Response(JSON.stringify({ tip: null }), {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            });
+          }
+        }
+
+        // Investigator mode: streaming
+        try {
+          const stream = await client.messages.create({
+            model: "claude-haiku-4-5",
+            max_tokens: 256,
+            system,
+            messages: payload.messages,
+            stream: true,
+          });
+
+          return new Response(anthropicStreamToSSE(stream), {
+            status: 200,
+            headers: {
+              "Content-Type": "text/event-stream",
+              "Cache-Control": "no-cache, no-transform",
+              Connection: "keep-alive",
+            },
+          });
+        } catch (e) {
+          console.error("Discussion stream error:", e);
+          return new Response(JSON.stringify({ error: "AI request failed." }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" },
+          });
+        }
       },
     },
   },

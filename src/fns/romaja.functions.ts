@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
@@ -21,7 +22,7 @@ export interface RomajaResult {
   segments: RomajaSegment[];
 }
 
-const HANGUL_SYL_RE = /[\uAC00-\uD7AF]/;
+const HANGUL_SYL_RE = /[가-힯]/;
 
 const SYSTEM = `You are a precise Korean reading-aid generator. You split a Korean sentence into segments and add Revised Romanization (RR) for EACH INDIVIDUAL Hangul syllable block.
 
@@ -42,7 +43,7 @@ Always respond by calling the provided tool.`;
 export const addRomaja = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => InputSchema.parse(i))
   .handler(async ({ data }): Promise<{ data: RomajaResult | null; error: string | null }> => {
-    const KEY = process.env.LOVABLE_API_KEY;
+    const KEY = process.env.ANTHROPIC_API_KEY;
     if (!KEY) return { data: null, error: "AI is not configured" };
 
     // Fast path: no Hangul → nothing to analyze. One plain segment.
@@ -51,61 +52,46 @@ export const addRomaja = createServerFn({ method: "POST" })
     }
 
     try {
-      const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: SYSTEM },
-            { role: "user", content: `Analyze this Korean sentence:\n\n${data.text}` },
-          ],
-          tools: [
-            {
-              type: "function",
-              function: {
-                name: "return_romaja",
-                description:
-                  "Return ordered segments of the sentence with Revised Romanization on each Hangul syllable.",
-                parameters: {
-                  type: "object",
-                  properties: {
-                    segments: {
-                      type: "array",
-                      items: {
-                        type: "object",
-                        properties: {
-                          base: { type: "string" },
-                          romaja: { type: "string" },
-                        },
-                        required: ["base"],
-                        additionalProperties: false,
-                      },
+      const client = new Anthropic({ apiKey: KEY });
+      const response = await client.messages.create({
+        model: "claude-haiku-4-5",
+        max_tokens: 1024,
+        system: SYSTEM,
+        messages: [{ role: "user", content: `Analyze this Korean sentence:\n\n${data.text}` }],
+        tools: [
+          {
+            name: "return_romaja",
+            description:
+              "Return ordered segments of the sentence with Revised Romanization on each Hangul syllable.",
+            input_schema: {
+              type: "object" as const,
+              properties: {
+                segments: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      base: { type: "string" },
+                      romaja: { type: "string" },
                     },
+                    required: ["base"],
+                    additionalProperties: false,
                   },
-                  required: ["segments"],
-                  additionalProperties: false,
                 },
               },
+              required: ["segments"],
+              additionalProperties: false,
             },
-          ],
-          tool_choice: { type: "function", function: { name: "return_romaja" } },
-        }),
+          },
+        ],
+        tool_choice: { type: "tool", name: "return_romaja" },
       });
 
-      if (!res.ok) {
-        if (res.status === 429) return { data: null, error: "Rate limit, please retry shortly." };
-        if (res.status === 402) return { data: null, error: "AI credits exhausted." };
-        return { data: null, error: "Romaja request failed." };
+      const toolUse = response.content.find((c) => c.type === "tool_use");
+      if (!toolUse || toolUse.type !== "tool_use") {
+        return { data: null, error: "No romaja returned." };
       }
-
-      const json = await res.json();
-      const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
-      if (!args) return { data: null, error: "No romaja returned." };
-      const parsed = JSON.parse(args) as RomajaResult;
+      const parsed = toolUse.input as RomajaResult;
       if (!Array.isArray(parsed.segments)) {
         return { data: null, error: "Invalid romaja response." };
       }

@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -152,6 +153,33 @@ function buildSystemPrompt(ctx: z.infer<typeof BodySchema>["context"]) {
   return ctx.module ? `${base}\n${buildModuleAddendum(ctx.module)}` : base;
 }
 
+// Wraps an Anthropic stream in a ReadableStream emitting OpenAI-compatible SSE
+// so existing client parsers (choices[0].delta.content) work without changes.
+function anthropicStreamToSSE(
+  stream: AsyncIterable<Anthropic.MessageStreamEvent>,
+): ReadableStream<Uint8Array> {
+  const enc = new TextEncoder();
+  return new ReadableStream({
+    async start(controller) {
+      try {
+        for await (const event of stream) {
+          if (
+            event.type === "content_block_delta" &&
+            event.delta.type === "text_delta"
+          ) {
+            const chunk =
+              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+            controller.enqueue(enc.encode(chunk));
+          }
+        }
+        controller.enqueue(enc.encode("data: [DONE]\n\n"));
+      } finally {
+        controller.close();
+      }
+    },
+  });
+}
+
 export const Route = createFileRoute("/api/tutor")({
   server: {
     handlers: {
@@ -166,7 +194,7 @@ export const Route = createFileRoute("/api/tutor")({
           );
         }
 
-        const KEY = process.env.LOVABLE_API_KEY;
+        const KEY = process.env.ANTHROPIC_API_KEY;
         if (!KEY) {
           return new Response(JSON.stringify({ error: "AI is not configured" }), {
             status: 500,
@@ -174,59 +202,33 @@ export const Route = createFileRoute("/api/tutor")({
           });
         }
 
+        const client = new Anthropic({ apiKey: KEY });
         const system = buildSystemPrompt(payload.context);
 
-        const upstream = await fetch(
-          "https://ai.gateway.lovable.dev/v1/chat/completions",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${KEY}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              model: "google/gemini-3-flash-preview",
-              stream: true,
-              messages: [
-                { role: "system", content: system },
-                ...payload.messages,
-              ],
-            }),
-          },
-        );
+        try {
+          const stream = await client.messages.create({
+            model: "claude-haiku-4-5",
+            max_tokens: 1024,
+            system,
+            messages: payload.messages,
+            stream: true,
+          });
 
-        if (!upstream.ok) {
-          if (upstream.status === 429) {
-            return new Response(
-              JSON.stringify({ error: "Rate limit hit. Please try again shortly." }),
-              { status: 429, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          if (upstream.status === 402) {
-            return new Response(
-              JSON.stringify({
-                error:
-                  "AI credits exhausted. Add funds in Settings → Workspace → Usage.",
-              }),
-              { status: 402, headers: { "Content-Type": "application/json" } },
-            );
-          }
-          const text = await upstream.text();
-          console.error("Tutor upstream error:", upstream.status, text);
+          return new Response(anthropicStreamToSSE(stream), {
+            status: 200,
+            headers: {
+              "Content-Type": "text/event-stream",
+              "Cache-Control": "no-cache, no-transform",
+              Connection: "keep-alive",
+            },
+          });
+        } catch (e) {
+          console.error("Tutor stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
           });
         }
-
-        return new Response(upstream.body, {
-          status: 200,
-          headers: {
-            "Content-Type": "text/event-stream",
-            "Cache-Control": "no-cache, no-transform",
-            Connection: "keep-alive",
-          },
-        });
       },
     },
   },

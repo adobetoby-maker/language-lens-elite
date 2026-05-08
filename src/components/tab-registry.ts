@@ -8,6 +8,8 @@ import { Dashboard } from "./dashboard/Dashboard";
 import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
 import { MissionaryHome } from "./missionary/MissionaryHome";
 import { OrthopedicsHome } from "./orthopedics/OrthopedicsHome";
+import { AnatomyQuizPanel } from "./anatomy/AnatomyQuizPanel";
+import { ModulesPage } from "./modules/ModulesPage";
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -25,6 +27,8 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   speak: SpeakLearn,
   discussions: MissionaryDiscussions,
   dashboard: Dashboard,
+  anatomy: AnatomyQuizPanel,
+  modules: ModulesPage,
 };
 
 if (import.meta.env.DEV) {

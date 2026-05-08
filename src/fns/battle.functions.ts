@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
@@ -16,12 +17,10 @@ export interface BattleWord {
   wrongDefinitions: string[]; // exactly 3
 }
 
-const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
-
 export const generateBattleWord = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => Input.parse(i))
   .handler(async ({ data }): Promise<{ data: BattleWord | null; error: string | null }> => {
-    const KEY = process.env.LOVABLE_API_KEY;
+    const KEY = process.env.ANTHROPIC_API_KEY;
     if (!KEY) return { data: null, error: "AI is not configured" };
 
     const avoidLine =
@@ -37,64 +36,41 @@ export const generateBattleWord = createServerFn({ method: "POST" })
     const user = `Generate ONE ${data.language} vocabulary battle word for round ${data.round} at CEFR level ${data.cefr}.${avoidLine} Return: the word in its native script (with diacritics), the correct English definition, and exactly 3 plausible-but-wrong English definitions.`;
 
     try {
-      const res = await fetch(GATEWAY, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: system },
-            { role: "user", content: user },
-          ],
-          tools: [
-            {
-              type: "function",
-              function: {
-                name: "return_battle_word",
-                description: "Return one vocabulary battle word.",
-                parameters: {
-                  type: "object",
-                  properties: {
-                    word: { type: "string", minLength: 1, maxLength: 60 },
-                    correctDefinition: { type: "string", minLength: 3, maxLength: 200 },
-                    wrongDefinitions: {
-                      type: "array",
-                      minItems: 3,
-                      maxItems: 3,
-                      items: { type: "string", minLength: 3, maxLength: 200 },
-                    },
-                  },
-                  required: ["word", "correctDefinition", "wrongDefinitions"],
-                  additionalProperties: false,
+      const client = new Anthropic({ apiKey: KEY });
+      const response = await client.messages.create({
+        model: "claude-haiku-4-5",
+        max_tokens: 256,
+        system,
+        messages: [{ role: "user", content: user }],
+        tools: [
+          {
+            name: "return_battle_word",
+            description: "Return one vocabulary battle word.",
+            input_schema: {
+              type: "object" as const,
+              properties: {
+                word: { type: "string" },
+                correctDefinition: { type: "string" },
+                wrongDefinitions: {
+                  type: "array",
+                  minItems: 3,
+                  maxItems: 3,
+                  items: { type: "string" },
                 },
               },
+              required: ["word", "correctDefinition", "wrongDefinitions"],
+              additionalProperties: false,
             },
-          ],
-          tool_choice: { type: "function", function: { name: "return_battle_word" } },
-        }),
+          },
+        ],
+        tool_choice: { type: "tool", name: "return_battle_word" },
       });
 
-      if (!res.ok) {
-        if (res.status === 429)
-          return { data: null, error: "Rate limit hit, please retry shortly." };
-        if (res.status === 402)
-          return {
-            data: null,
-            error: "AI credits exhausted. Add funds in Settings → Workspace → Usage.",
-          };
-        const t = await res.text();
-        console.error("battle word AI error", res.status, t);
-        return { data: null, error: "AI request failed." };
+      const toolUse = response.content.find((c) => c.type === "tool_use");
+      if (!toolUse || toolUse.type !== "tool_use") {
+        return { data: null, error: "No structured result returned." };
       }
-
-      const json = await res.json();
-      const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
-      if (!args) return { data: null, error: "No structured result returned." };
-      const parsed = JSON.parse(args) as BattleWord;
-      return { data: parsed, error: null };
+      return { data: toolUse.input as BattleWord, error: null };
     } catch (e) {
       console.error("generateBattleWord failed", e);
       return { data: null, error: "Request failed." };

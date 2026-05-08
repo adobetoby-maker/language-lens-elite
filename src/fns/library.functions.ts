@@ -1,3 +1,4 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
@@ -27,50 +28,40 @@ export interface CultureEssay {
   englishText: string[]; // Native-language text (kept name for back-compat)
 }
 
-const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
-
 async function callTool<T>(
   systemPrompt: string,
   userPrompt: string,
   toolName: string,
   parameters: Record<string, unknown>,
 ): Promise<{ data: T | null; error: string | null }> {
-  const KEY = process.env.LOVABLE_API_KEY;
+  const KEY = process.env.ANTHROPIC_API_KEY;
   if (!KEY) return { data: null, error: "AI is not configured" };
 
   try {
-    const res = await fetch(GATEWAY, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        tools: [
-          {
-            type: "function",
-            function: { name: toolName, description: "Return structured result.", parameters },
+    const client = new Anthropic({ apiKey: KEY });
+    const response = await client.messages.create({
+      model: "claude-haiku-4-5",
+      max_tokens: 4096,
+      system: systemPrompt,
+      messages: [{ role: "user", content: userPrompt }],
+      tools: [
+        {
+          name: toolName,
+          description: "Return structured result.",
+          input_schema: {
+            type: "object" as const,
+            ...(parameters as object),
           },
-        ],
-        tool_choice: { type: "function", function: { name: toolName } },
-      }),
+        },
+      ],
+      tool_choice: { type: "tool", name: toolName },
     });
 
-    if (!res.ok) {
-      if (res.status === 429) return { data: null, error: "Rate limit hit, please retry shortly." };
-      if (res.status === 402)
-        return { data: null, error: "AI credits exhausted. Add funds in Settings → Workspace → Usage." };
-      const t = await res.text();
-      console.error("AI gateway error", res.status, t);
-      return { data: null, error: "AI request failed." };
+    const toolUse = response.content.find((c) => c.type === "tool_use");
+    if (!toolUse || toolUse.type !== "tool_use") {
+      return { data: null, error: "No structured result returned." };
     }
-
-    const json = await res.json();
-    const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
-    if (!args) return { data: null, error: "No structured result returned." };
-    return { data: JSON.parse(args) as T, error: null };
+    return { data: toolUse.input as T, error: null };
   } catch (e) {
     console.error("callTool failed", e);
     return { data: null, error: "Request failed." };

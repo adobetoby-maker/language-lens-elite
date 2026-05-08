@@ -17,8 +17,13 @@ const LOCALE: Record<Language, string> = {
   Portuguese: "pt-PT",
 };
 
-const CARD_W = 360;
+const CARD_W_DEFAULT = 360;
+const CARD_W_CJK = 300;
 const CARD_H = 460;
+
+function cardWidth(language: Language): number {
+  return language === "Japanese" || language === "Korean" ? CARD_W_CJK : CARD_W_DEFAULT;
+}
 
 export interface WordCardRequest {
   word: string;
@@ -45,6 +50,8 @@ export function WordCard({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
+
+  const CARD_W = cardWidth(request.language);
 
   // Smart positioning so the card never overflows the viewport
   const pos = (() => {
