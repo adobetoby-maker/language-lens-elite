@@ -31,6 +31,7 @@ const TABS: { key: TabKey; label: string; module?: string }[] = [
   { key: "missionary", label: "Missionary", module: "lds-missionary" },
   { key: "orthopedics", label: "Orthopedics", module: "orthopedics" },
   { key: "reader", label: "Reader" },
+  { key: "kana", label: "Kana Pad" },
   { key: "grammar", label: "Grammar Studio" },
   { key: "speak", label: "Speak & Learn" },
   { key: "anatomy", label: "Anatomy" },

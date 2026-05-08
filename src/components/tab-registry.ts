@@ -10,6 +10,7 @@ import { MissionaryHome } from "./missionary/MissionaryHome";
 import { OrthopedicsHome } from "./orthopedics/OrthopedicsHome";
 import { AnatomyQuizPanel } from "./anatomy/AnatomyQuizPanel";
 import { ModulesPage } from "./modules/ModulesPage";
+import { KanaPad } from "./kana/KanaPad";
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -29,6 +30,7 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   dashboard: Dashboard,
   anatomy: AnatomyQuizPanel,
   modules: ModulesPage,
+  kana: KanaPad,
 };
 
 if (import.meta.env.DEV) {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Library, Type, Languages, Maximize2, Minimize2, Search, X } from "lucide-react";
+import { Library, Type, Languages, Maximize2, Minimize2, Search, X, Volume2, Square } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -12,7 +12,6 @@ import { WordCard, type WordCardRequest } from "./WordCard";
 import { SelectionMenu, type SelectionInfo } from "./SelectionMenu";
 import { NoteBubble } from "./NoteBubble";
 import { NotesPanel } from "./NotesPanel";
-import { ReadAloudToolbar } from "./ReadAloudToolbar";
 import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
@@ -45,7 +44,7 @@ export function ParallelReader() {
   const { state, dispatch } = useApp();
   const { selected, state: lib } = useLibrary();
   const { add: addAnnotation, forText } = useNotes();
-  const { activeSentenceIndex, speakSentence, speakSentences } = useSpeech();
+  const { activeSentenceIndex, speakSentence, speakSentences, stop, playing } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
   const [syncScroll, setSyncScroll] = useState(true);
   const [autoScroll, setAutoScroll] = useState(false);
@@ -640,12 +639,6 @@ export function ParallelReader() {
         </div>
       </div>
 
-      {/* Read Aloud toolbar — sits above the reader, biased to the target pane */}
-      <ReadAloudToolbar
-        onSpeakSentence={handleSpeakSentence}
-        onSpeakParagraph={handleSpeakParagraph}
-      />
-
       {/* Reader */}
       <div className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur ${fullscreen ? "fixed inset-2 z-40 md:inset-6" : ""}`}>
         <div className={fullscreen ? "grid grid-cols-1" : "grid grid-cols-1 md:grid-cols-2"}>
@@ -679,9 +672,28 @@ export function ParallelReader() {
           <div className={`relative ${fullscreen ? "" : "border-t border-border/50 md:border-l-0 md:border-t-0"}`}>
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
-                {selected.targetLabel}
+                {selected.language}
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                {playing ? (
+                  <button
+                    type="button"
+                    onClick={stop}
+                    title="Stop reading"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-destructive/50 bg-destructive/10 text-destructive hover:bg-destructive/20"
+                  >
+                    <Square className="h-3 w-3" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleSpeakSentence}
+                    title="Read current sentence aloud"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/50 bg-background/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
+                  >
+                    <Volume2 className="h-3 w-3" />
+                  </button>
+                )}
                 <span className="font-display text-xs italic text-muted-foreground">target</span>
                 {fullscreen && (
                   <button

@@ -255,9 +255,15 @@
    3. The reader paragraphs already use line-height ~1.85, which leaves
       plenty of room above each glyph for the rt without pushing lines apart.
 */
+/* Tailwind v4's reset can strip the UA-stylesheet display:ruby.
+   Force it back so <rt> always renders above, never inline. */
 ruby {
+  display: ruby !important;
   ruby-position: over;
   ruby-align: center;
+}
+rt {
+  display: ruby-text !important;
 }
 .furigana-rt {
   font-family: var(--font-mono);
