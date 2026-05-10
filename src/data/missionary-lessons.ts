@@ -519,6 +519,90 @@ export const PMG_LESSONS: PmgLesson[] = [
       },
     ],
   },
+
+  // ─────────────────────────── SACRAMENT PRAYERS ───────────────────────────
+  // Official ordinance prayers from D&C 20:77, 79 (also Moroni 4:3, 5:2).
+  // Wording in non-English languages is taken from the Church's published
+  // scriptures so missionaries can follow along word-for-word at the
+  // sacrament table on Sunday.
+  {
+    id: "sacrament-prayers",
+    number: 6,
+    title: "Sacrament Prayers (Sunday Services)",
+    subtitle: "The exact wording spoken by the priest each Sunday — D&C 20:77, 79.",
+    emoji: "🍞",
+    sections: [
+      {
+        id: "bread",
+        title: "Blessing on the Bread — D&C 20:77",
+        blurb: "The priest kneels and offers this prayer over the broken bread.",
+        paragraphs: [
+          {
+            id: "p1",
+            en: "O God, the Eternal Father, we ask thee in the name of thy Son, Jesus Christ, to bless and sanctify this bread to the souls of all those who partake of it, that they may eat in remembrance of the body of thy Son, and witness unto thee, O God, the Eternal Father, that they are willing to take upon them the name of thy Son, and always remember him and keep his commandments which he has given them; that they may always have his Spirit to be with them. Amen.",
+            i18n: {
+              Spanish: "Oh Dios, Padre Eterno, te pedimos en el nombre de tu Hijo Jesucristo que bendigas y santifiques este pan para las almas de todos los que participen de él; para que lo coman en memoria del cuerpo de tu Hijo, y testifiquen ante ti, oh Dios, Padre Eterno, que están dispuestos a tomar sobre sí el nombre de tu Hijo, y a recordarle siempre, y a guardar sus mandamientos que él les ha dado, para que siempre puedan tener su Espíritu consigo. Amén.",
+              Portuguese: "Ó Deus, Pai Eterno, nós te rogamos em nome de teu Filho, Jesus Cristo, que abençoes e santifiques este pão para as almas de todos os que partilharem dele, para que o comam em lembrança do corpo de teu Filho e testifiquem a ti, ó Deus, Pai Eterno, que estão dispostos a tomar sobre si o nome de teu Filho e recordá-lo sempre e guardar os mandamentos que ele lhes deu, para que possam ter sempre consigo o seu Espírito. Amém.",
+              French: "Ô Dieu, Père éternel, nous te demandons, au nom de ton Fils, Jésus-Christ, de bénir et de sanctifier ce pain pour les âmes de tous ceux qui en prendront, afin qu’ils en mangent en souvenir du corps de ton Fils et qu’ils te témoignent, ô Dieu, Père éternel, qu’ils sont disposés à prendre sur eux le nom de ton Fils, à se souvenir toujours de lui et à garder les commandements qu’il leur a donnés, afin qu’ils aient toujours son Esprit avec eux. Amen.",
+              German: "O Gott, du Ewiger Vater, wir bitten dich im Namen deines Sohnes Jesus Christus, dieses Brot zu segnen und zu heiligen für die Seelen all derer, die davon nehmen, damit sie es essen zum Gedächtnis des Leibes deines Sohnes und dir, o Gott, du Ewiger Vater, bezeugen, dass sie willens sind, den Namen deines Sohnes auf sich zu nehmen und immer an ihn zu denken und seine Gebote, die er ihnen gegeben hat, zu halten, damit sein Geist immer mit ihnen sei. Amen.",
+              Italian: "O Dio, Padre Eterno, ti chiediamo nel nome di tuo Figlio Gesù Cristo di benedire e santificare questo pane per le anime di tutti coloro che ne prenderanno, affinché ne mangino in ricordo del corpo di tuo Figlio, e ti attestino, o Dio, Padre Eterno, che sono disposti a prendere su di loro il nome di tuo Figlio, e a ricordarsi sempre di lui, e a obbedire ai suoi comandamenti che egli ha dato loro, affinché possano sempre avere con sé il suo Spirito. Amen.",
+              Japanese: "おお神よ、永遠の父よ、われらはあなたの御子イエス・キリストの御名により、このパンをこれにあずかるすべての人々の魂のために祝福し、聖めてくださるようお願いいたします。彼らがあなたの御子の体を覚えてこれを食し、おお神、永遠の父よ、彼らがあなたの御子の御名を受け、いつも御子を覚え、御子が彼らに授けられた戒めを守ろうとしていることをあなたに証しできますように。そして、彼らがいつも御子の御霊を伴うことができますように。アーメン。",
+              Korean: "오 하나님, 영원하신 아버지여, 우리가 아버지의 아들 예수 그리스도의 이름으로 비옵나니, 이 떡을 받는 모든 자의 영혼을 위하여 이를 축복하고 거룩하게 하시옵소서. 그리하여 그들로 하여금 아버지의 아들의 몸을 기억하여 이를 먹게 하시고, 또 오 하나님, 영원하신 아버지여, 그들이 아버지의 아들의 이름을 받들며 항상 그를 기억하고 그가 그들에게 주신 계명을 지키기 원함을 아버지께 증거하게 하시옵소서. 그리하여 그들로 하여금 항상 그의 영을 함께하게 하시옵소서. 아멘.",
+            },
+          },
+        ],
+        quiz: [
+          {
+            id: "q1",
+            q: "What does the bread represent in the sacrament prayer?",
+            choices: ["The blood of Christ", "The body of Christ", "The covenants of baptism"],
+            answerIndex: 1,
+            explanation: "The bread is blessed in remembrance of the body of God's Son.",
+          },
+          {
+            id: "q2",
+            q: "What three things do those who partake covenant to do?",
+            choices: [
+              "Pay tithing, attend church, serve a mission",
+              "Take upon them Christ's name, always remember Him, keep His commandments",
+              "Read scriptures, pray daily, love their neighbor",
+            ],
+            answerIndex: 1,
+            explanation: "The prayer names exactly these three covenants — and promises His Spirit in return.",
+          },
+        ],
+      },
+      {
+        id: "water",
+        title: "Blessing on the Water — D&C 20:79",
+        blurb: "After the bread, the priest offers this shorter prayer over the water.",
+        paragraphs: [
+          {
+            id: "p1",
+            en: "O God, the Eternal Father, we ask thee in the name of thy Son, Jesus Christ, to bless and sanctify this water to the souls of all those who drink of it, that they may do it in remembrance of the blood of thy Son, which was shed for them; that they may witness unto thee, O God, the Eternal Father, that they do always remember him, that they may have his Spirit to be with them. Amen.",
+            i18n: {
+              Spanish: "Oh Dios, Padre Eterno, te pedimos en el nombre de tu Hijo Jesucristo que bendigas y santifiques este agua para las almas de todos los que la beban, para que lo hagan en memoria de la sangre de tu Hijo, que por ellos fue derramada; para que testifiquen ante ti, oh Dios, Padre Eterno, que siempre se acuerdan de él, para que puedan tener su Espíritu consigo. Amén.",
+              Portuguese: "Ó Deus, Pai Eterno, nós te rogamos em nome de teu Filho, Jesus Cristo, que abençoes e santifiques esta água para as almas de todos os que dela beberem, para que o façam em lembrança do sangue de teu Filho, que por eles foi derramado, para que testifiquem a ti, ó Deus, Pai Eterno, que dele sempre se lembram, para que possam ter consigo o seu Espírito. Amém.",
+              French: "Ô Dieu, Père éternel, nous te demandons, au nom de ton Fils, Jésus-Christ, de bénir et de sanctifier cette eau pour les âmes de tous ceux qui en boiront, afin qu’ils le fassent en souvenir du sang de ton Fils, qui a été versé pour eux, afin qu’ils te témoignent, ô Dieu, Père éternel, qu’ils se souviennent toujours de lui, afin qu’ils aient son Esprit avec eux. Amen.",
+              German: "O Gott, du Ewiger Vater, wir bitten dich im Namen deines Sohnes Jesus Christus, dieses Wasser zu segnen und zu heiligen für die Seelen all derer, die davon trinken, damit sie es tun zum Gedächtnis des Blutes deines Sohnes, das für sie vergossen wurde, damit sie dir, o Gott, du Ewiger Vater, bezeugen, dass sie immer an ihn denken, damit sein Geist mit ihnen sei. Amen.",
+              Italian: "O Dio, Padre Eterno, ti chiediamo nel nome di tuo Figlio Gesù Cristo di benedire e santificare quest’acqua per le anime di tutti coloro che ne berranno, affinché lo facciano in ricordo del sangue di tuo Figlio, che è stato versato per loro; affinché ti attestino, o Dio, Padre Eterno, che si ricordano sempre di lui, affinché possano avere con sé il suo Spirito. Amen.",
+              Japanese: "おお神よ、永遠の父よ、われらはあなたの御子イエス・キリストの御名により、この水をこれを飲むすべての人々の魂のために祝福し、聖めてくださるようお願いいたします。彼らが、彼らのために流された御子の血を覚えてこれを行い、おお神、永遠の父よ、彼らがいつも御子を覚えていることをあなたに証しできますように。そして、彼らが御子の御霊を伴うことができますように。アーメン。",
+              Korean: "오 하나님, 영원하신 아버지여, 우리가 아버지의 아들 예수 그리스도의 이름으로 비옵나니, 이 물을 마시는 모든 자의 영혼을 위하여 이를 축복하고 거룩하게 하시옵소서. 그리하여 그들로 하여금 그들을 위하여 흘리신 아버지의 아들의 피를 기억하여 이를 행하게 하시고, 또 오 하나님, 영원하신 아버지여, 그들이 항상 그를 기억함을 아버지께 증거하게 하시옵소서. 그리하여 그들로 하여금 그의 영을 함께하게 하시옵소서. 아멘.",
+            },
+          },
+        ],
+        quiz: [
+          {
+            id: "q1",
+            q: "What does the water represent?",
+            choices: ["The body of Christ", "The blood of Christ shed for us", "Living water of revelation"],
+            answerIndex: 1,
+            explanation: "The water is taken in remembrance of the blood of God's Son, which was shed for us.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 /** Pick the best translation for a paragraph, falling back to English. */
