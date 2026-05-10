@@ -45,10 +45,12 @@ export function SacramentPrayersPanel() {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
   const onXp = (n: number) => dispatch({ type: "ADD_XP", payload: n });
 
-  const askTutor = (p: PrayerSpec) =>
+  const askTutor = (p: PrayerSpec) => {
     tutor.prefill(
       `Teach me the ${p.title.toLowerCase()} (${p.reference}) in ${state.selectedLanguage}. Give me: (1) the official wording used in LDS sacrament meetings in that language, (2) phonetic pronunciation tips for a missionary following along, (3) the key gospel terms (sanctify, witness, remember, Spirit) translated and briefly explained. Source text:\n\n"${p.text}"`,
-    ) || tutor.setOpen(true);
+    );
+    tutor.setOpen(true);
+  };
 
   return (
     <section className="mb-6 overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/8 via-card/60 to-card/40">
