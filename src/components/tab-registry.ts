@@ -51,6 +51,18 @@ const SentenceBuilder = lazy(() =>
 const GamesHub = lazy(() =>
   import("./games/GamesHub").then((m) => ({ default: m.GamesHub }))
 );
+const ListeningDrill = lazy(() =>
+  import("./listening-drill/ListeningDrill").then((m) => ({ default: m.ListeningDrill }))
+);
+const WordMatch = lazy(() =>
+  import("./word-match/WordMatch").then((m) => ({ default: m.WordMatch }))
+);
+const IdiomMaster = lazy(() =>
+  import("./idiom-master/IdiomMaster").then((m) => ({ default: m.IdiomMaster }))
+);
+const FalseFriends = lazy(() =>
+  import("./false-friends/FalseFriends").then((m) => ({ default: m.FalseFriends }))
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -74,6 +86,10 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   conjugation: ConjugationGame,
   sentenceBuild: SentenceBuilder,
   games: GamesHub,
+  listeningDrill: ListeningDrill,
+  wordMatch: WordMatch,
+  idiomMaster: IdiomMaster,
+  falseFriends: FalseFriends,
 };
 
 if (import.meta.env.DEV) {

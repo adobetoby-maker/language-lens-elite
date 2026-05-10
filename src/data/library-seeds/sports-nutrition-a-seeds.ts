@@ -941,7 +941,7 @@ export const SPORTS_NUTRITION_A_SEEDS: LibrarySeed[] = [
       {
         en: "Infielders and outfielders can focus on sustained energy with whole-grain toast and peanut butter two hours before the game.",
         target:
-          "Gli internauti e gli esterni possono puntare su un'energia sostenuta con pane tostato integrale e burro di arachidi due ore prima della partita.",
+          "Gli interni e gli esterni possono puntare su un'energia sostenuta con pane tostato integrale e burro di arachidi due ore prima della partita.",
       },
       {
         en: "Between innings in a long game, eat half a banana or a handful of pretzels to maintain blood sugar and concentration.",
@@ -951,7 +951,7 @@ export const SPORTS_NUTRITION_A_SEEDS: LibrarySeed[] = [
       {
         en: "After a start, pitchers need 30 grams of protein and 60 grams of carbohydrates within 45 minutes to begin shoulder and arm recovery.",
         target:
-          "Dopo aver lanciato, i pitcher hanno bisogno di 30 grammi di proteine e 60 grammi di carboidratori entro 45 minuti per avviare il recupero di spalla e braccio.",
+          "Dopo aver lanciato, i pitcher hanno bisogno di 30 grammi di proteine e 60 grammi di carboidrati entro 45 minuti per avviare il recupero di spalla e braccio.",
       },
     ],
   },

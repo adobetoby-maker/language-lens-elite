@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2 } from "lucide-react";
+import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2, Headphones, Grid3x3, Quote, AlertTriangle } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
@@ -11,6 +11,10 @@ const TAB_ITEMS: { key: TabKey; label: string; Icon: React.ElementType; moduleOn
   { key: "grammar",     label: "Grammar Studio",   Icon: GraduationCap                                },
   { key: "conjugation", label: "Conjugation",      Icon: Repeat2                                       },
   { key: "sentenceBuild", label: "Sentence Builder", Icon: AlignLeft                                  },
+  { key: "listeningDrill", label: "Listening Drill", Icon: Headphones                                 },
+  { key: "wordMatch",   label: "Word Match",       Icon: Grid3x3                                       },
+  { key: "idiomMaster", label: "Idiom Master",     Icon: Quote                                         },
+  { key: "falseFriends", label: "False Friends",   Icon: AlertTriangle                                 },
   { key: "games",       label: "Games Hub",        Icon: Gamepad2                                      },
   { key: "speak",       label: "Speak & Learn",    Icon: Mic2                                         },
   { key: "discussions", label: "Discussions",      Icon: MessageCircle,  moduleOnly: "lds-missionary" },

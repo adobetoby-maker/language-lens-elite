@@ -73,7 +73,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We'll start by replacing the coil pack and spark plug on that cylinder before going further.",
-        target: "On commencera par remplacer le bobine d'allumage et la bougie sur ce cylindre avant d'aller plus loin.",
+        target: "On commencera par remplacer la bobine d'allumage et la bougie sur ce cylindre avant d'aller plus loin.",
       },
       {
         en: "If the misfire comes back after that, we'll need to do a compression and leak-down test.",
@@ -815,7 +815,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We're working at heights today — everyone on the scaffold must be tied off at 100%.",
-        target: "Hoje trabalhamos em altura — todos na andaime precisam estar com 100% de ancoragem.",
+        target: "Hoje trabalhamos em altura — todos no andaime precisam estar com 100% de ancoragem.",
       },
       {
         en: "The subcontractor for plumbing roughed-in needs to coordinate with the framing crew on the second floor.",

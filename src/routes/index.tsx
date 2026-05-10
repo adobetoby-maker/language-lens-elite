@@ -13,6 +13,10 @@ import { MatchProvider } from "@/state/match-state";
 import { LeaderboardProvider } from "@/state/leaderboard-state";
 import { ConjugationProvider } from "@/state/conjugation-state";
 import { SentenceBuildProvider } from "@/state/sentence-build-state";
+import { ListeningDrillProvider } from "@/state/listening-drill-state";
+import { WordMatchProvider } from "@/state/word-match-state";
+import { IdiomMasterProvider } from "@/state/idiom-master-state";
+import { FalseFriendsProvider } from "@/state/false-friends-state";
 import { TopNav } from "@/components/TopNav";
 import { AppSidebar } from "@/components/AppSidebar";
 import { FreePreviewBanner } from "@/components/FreePreviewBanner";
@@ -73,6 +77,10 @@ function Index() {
                       <TutorProvider>
                        <ConjugationProvider>
                         <SentenceBuildProvider>
+                         <ListeningDrillProvider>
+                          <WordMatchProvider>
+                           <IdiomMasterProvider>
+                            <FalseFriendsProvider>
                         <div className="flex min-h-screen bg-background text-foreground">
                           {/* Left sidebar (desktop) + bottom nav (mobile) */}
                           <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
@@ -94,6 +102,10 @@ function Index() {
                         <CefrCompletionBridge />
                         <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
                         <MatchAchievementsBridge />
+                            </FalseFriendsProvider>
+                           </IdiomMasterProvider>
+                          </WordMatchProvider>
+                         </ListeningDrillProvider>
                         </SentenceBuildProvider>
                        </ConjugationProvider>
                       </TutorProvider>

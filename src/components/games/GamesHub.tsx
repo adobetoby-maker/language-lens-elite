@@ -1,7 +1,11 @@
-import { Trophy, Swords, Repeat2, AlignLeft, Flame, Award } from "lucide-react";
+import { Trophy, Swords, Repeat2, AlignLeft, Flame, Award, Headphones, Grid3x3, Quote, AlertTriangle } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { useConjugation, type LeaderboardKey as CKey } from "@/state/conjugation-state";
 import { useSentenceBuild, type SBLeaderboardKey } from "@/state/sentence-build-state";
+import { useListeningDrill } from "@/state/listening-drill-state";
+import { useWordMatch } from "@/state/word-match-state";
+import { useIdiomMaster } from "@/state/idiom-master-state";
+import { useFalseFriends } from "@/state/false-friends-state";
 import { useMatch } from "@/state/match-state";
 
 // Cross-component event the parent route listens for to open the Match
@@ -54,17 +58,65 @@ const GAMES: GameDescriptor[] = [
     Icon: AlignLeft,
     accent: "emerald",
   },
+  {
+    id: "listeningDrill",
+    tabKey: "listeningDrill",
+    title: "Listening Drill",
+    blurb: "Hear a phrase, pick the matching text. Trains your ear for sound differences.",
+    Icon: Headphones,
+    accent: "sky",
+  },
+  {
+    id: "wordMatch",
+    tabKey: "wordMatch",
+    title: "Word Match",
+    blurb: "Memory game — flip cards to pair target-language words with their English meanings.",
+    Icon: Grid3x3,
+    accent: "violet",
+  },
+  {
+    id: "idiomMaster",
+    tabKey: "idiomMaster",
+    title: "Idiom Master",
+    blurb: "Fill the missing word in real native idioms — and learn what they mean.",
+    Icon: Quote,
+    accent: "indigo",
+  },
+  {
+    id: "falseFriends",
+    tabKey: "falseFriends",
+    title: "False Friends",
+    blurb: "Spot the cognate trap. Decide if a familiar-looking word means what you think.",
+    Icon: AlertTriangle,
+    accent: "amber",
+  },
 ];
 
 export function GamesHub() {
   const { state, dispatch } = useApp();
   const conj = useConjugation();
   const sb = useSentenceBuild();
+  const listening = useListeningDrill();
+  const wordMatch = useWordMatch();
+  const idiom = useIdiomMaster();
+  const falseFriends = useFalseFriends();
   const match = useMatch();
 
-  // Aggregate per-game stats for the current target language.
+  // Aggregate per-game stats for the current target language. All five
+  // 5-question-run games share the same shape (`bestStreak`, `currentStreak`,
+  // `perfectRuns`, `totalCorrect`, `totalAttempts`) so aggStats works
+  // uniformly. Word Match has a different shape (best time / flips) and is
+  // projected separately.
   const conjStats = aggStats([1, 2, 3].map((l) => conj.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as CKey]));
   const sbStats = aggStats([1, 2, 3].map((l) => sb.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as SBLeaderboardKey]));
+  // Use defensive `unknown as ...` casts because each game's leaderboard key
+  // type is its own template literal — they're structurally compatible but
+  // not assignable across modules without an unsafe cast.
+  const listeningStats = aggStats([1, 2, 3].map((l) => (listening.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
+  const idiomStats = aggStats([1, 2, 3].map((l) => (idiom.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
+  const ffStats = aggStats([1, 2, 3].map((l) => (falseFriends.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
+  // Word Match: project bestFlips/bestTime into the unified shape.
+  const wmStats = projectWordMatch(wordMatch, state.selectedLanguage);
   // Match tracks at the MATCH level (not the question level), so we project
   // its career stats into the same shape the other games use:
   //   bestStreak → longestWinStreak (matches in a row won)
@@ -78,11 +130,12 @@ export function GamesHub() {
     totalAttempts: match.matchesPlayed ?? 0,
   };
 
+  const allRunGames = [conjStats, sbStats, listeningStats, idiomStats, ffStats, wmStats, matchStats];
   const grand = {
-    correct: conjStats.totalCorrect + sbStats.totalCorrect + matchStats.totalCorrect,
-    attempts: conjStats.totalAttempts + sbStats.totalAttempts + matchStats.totalAttempts,
-    perfect: conjStats.perfectRuns + sbStats.perfectRuns + matchStats.perfectRuns,
-    bestStreak: Math.max(conjStats.bestStreak, sbStats.bestStreak),
+    correct: allRunGames.reduce((s, g) => s + g.totalCorrect, 0),
+    attempts: allRunGames.reduce((s, g) => s + g.totalAttempts, 0),
+    perfect: allRunGames.reduce((s, g) => s + g.perfectRuns, 0),
+    bestStreak: Math.max(...allRunGames.map((g) => g.bestStreak)),
   };
   const grandAcc = grand.attempts === 0 ? 0 : Math.round((grand.correct / grand.attempts) * 100);
 
@@ -114,12 +167,16 @@ export function GamesHub() {
       </div>
 
       {/* Game cards */}
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {GAMES.map((g) => {
           const stats =
             g.id === "match" ? matchStats :
             g.id === "conjugation" ? conjStats :
-            sbStats;
+            g.id === "sentenceBuild" ? sbStats :
+            g.id === "listeningDrill" ? listeningStats :
+            g.id === "wordMatch" ? wmStats :
+            g.id === "idiomMaster" ? idiomStats :
+            ffStats;
           const acc = stats.totalAttempts === 0 ? 0 : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
           return (
             <button
@@ -164,6 +221,37 @@ export function GamesHub() {
       </div>
     </div>
   );
+}
+
+// Project Word Match's distinct shape (best time / flips / perfectGames /
+// totalGames) into the unified game-stats shape used everywhere else.
+// Mapping rationale:
+//   bestStreak → not tracked (use 0)
+//   perfectRuns → perfectGames (no-extra-flip games)
+//   totalCorrect → perfectGames + totalCompleted (count completed games as "correct")
+//   totalAttempts → totalGames (every started game counts)
+function projectWordMatch(
+  wm: ReturnType<typeof useWordMatch>,
+  language: string,
+): { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } {
+  let perfectRuns = 0;
+  let totalAttempts = 0;
+  let totalCompleted = 0;
+  for (const lvl of [1, 2, 3]) {
+    const k = `${language}-${lvl}`;
+    const s = (wm.state.leaderboard as Record<string, { bestTimeMs: number; bestFlips: number; perfectGames: number; totalGames: number; totalCompleted: number } | undefined>)[k];
+    if (!s) continue;
+    perfectRuns += s.perfectGames ?? 0;
+    totalAttempts += s.totalGames ?? 0;
+    totalCompleted += s.totalCompleted ?? 0;
+  }
+  return {
+    bestStreak: 0,
+    currentStreak: 0,
+    perfectRuns,
+    totalCorrect: totalCompleted,
+    totalAttempts,
+  };
 }
 
 function aggStats(buckets: (undefined | { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number })[]) {
