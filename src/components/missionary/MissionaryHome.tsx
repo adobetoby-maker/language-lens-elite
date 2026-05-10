@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BookOpen, Sparkles } from "lucide-react";
 import { MissionaryQuickStart } from "@/components/grammar/MissionaryQuickStart";
 import { MissionaryLessonReader } from "@/components/missionary/MissionaryLessonReader";
+import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
 
 type MissionaryView = "quickstart" | "lessons";
 
@@ -15,6 +16,7 @@ export function MissionaryHome() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+      <ModuleStudyGuide />
       <div
         role="tablist"
         aria-label="Missionary section"

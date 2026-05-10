@@ -16,6 +16,7 @@ import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
+import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
 
 type TextSize = "S" | "M" | "L";
 
@@ -390,6 +391,7 @@ export function ParallelReader() {
 
   return (
     <div className="fade-in mx-auto w-full max-w-6xl">
+      <ModuleStudyGuide />
       <ModuleMatchPanel surface="Reader" className="mb-4" />
       {/* Library bar */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/50 px-5 py-3 backdrop-blur">
