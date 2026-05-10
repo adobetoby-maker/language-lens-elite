@@ -45,6 +45,7 @@ export function OrthopedicsHome() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+      <ModuleStudyGuide />
       <header className="mb-6">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
           🦴 Orthopedics
