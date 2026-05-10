@@ -71,9 +71,9 @@ function Index() {
                           <div className="flex min-w-0 flex-1 flex-col">
                             <FreePreviewBanner />
                             <TopNav />
-                            <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-10
-                              pb-[calc(4rem+env(safe-area-inset-bottom))]
-                              md:pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+                            {/* Bottom padding always reserves room for the
+                                fixed bottom nav, on every viewport. */}
+                            <main className="flex-1 overflow-y-auto px-4 py-6 pb-[calc(4rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-10">
                               <TabShell />
                             </main>
                           </div>

@@ -108,8 +108,12 @@ export function AppSidebar({ onOpenMatch }: { onOpenMatch?: () => void }) {
         </div>
       </aside>
 
-      {/* ── Mobile bottom nav ───────────────────────────────── */}
-      <nav className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-around border-t border-border/50 bg-background/95 backdrop-blur-xl md:hidden [padding-bottom:env(safe-area-inset-bottom)]">
+      {/* ── Bottom nav ──────────────────────────────────────────
+         Shown on BOTH mobile and desktop per product request: phone
+         users get bottom-only navigation (no top header), desktop
+         users get the top nav PLUS this bottom nav for thumb-zone
+         tab switching even on a trackpad-driven layout. */}
+      <nav className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-around border-t border-border/50 bg-background/95 backdrop-blur-xl [padding-bottom:env(safe-area-inset-bottom)]">
         {([
           { key: "reader"    as TabKey, Icon: BookOpen      },
           { key: "grammar"   as TabKey, Icon: GraduationCap },
