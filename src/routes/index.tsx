@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Toaster } from "sonner";
 import { AppProvider, useApp } from "@/state/app-state";
 import { AuthProvider } from "@/state/auth-state";
@@ -12,6 +12,7 @@ import { TutorProvider } from "@/state/tutor-state";
 import { MatchProvider } from "@/state/match-state";
 import { LeaderboardProvider } from "@/state/leaderboard-state";
 import { ConjugationProvider } from "@/state/conjugation-state";
+import { SentenceBuildProvider } from "@/state/sentence-build-state";
 import { TopNav } from "@/components/TopNav";
 import { AppSidebar } from "@/components/AppSidebar";
 import { FreePreviewBanner } from "@/components/FreePreviewBanner";
@@ -53,6 +54,12 @@ function SpeakBridge({ children }: { children: ReactNode }) {
 
 function Index() {
   const [matchOpen, setMatchOpen] = useState(false);
+  // Lets non-prop-connected children (e.g. GamesHub tab) open the overlay.
+  useEffect(() => {
+    const handler = () => setMatchOpen(true);
+    window.addEventListener("lingualens:open-match", handler);
+    return () => window.removeEventListener("lingualens:open-match", handler);
+  }, []);
   return (
     <AppProvider>
       <AuthProvider>
@@ -65,6 +72,7 @@ function Index() {
                     <SpeakBridge>
                       <TutorProvider>
                        <ConjugationProvider>
+                        <SentenceBuildProvider>
                         <div className="flex min-h-screen bg-background text-foreground">
                           {/* Left sidebar (desktop) + bottom nav (mobile) */}
                           <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
@@ -86,6 +94,7 @@ function Index() {
                         <CefrCompletionBridge />
                         <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
                         <MatchAchievementsBridge />
+                        </SentenceBuildProvider>
                        </ConjugationProvider>
                       </TutorProvider>
                       <Toaster

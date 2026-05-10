@@ -45,6 +45,12 @@ const KanaPad = lazy(() =>
 const ConjugationGame = lazy(() =>
   import("./conjugation/ConjugationGame").then((m) => ({ default: m.ConjugationGame }))
 );
+const SentenceBuilder = lazy(() =>
+  import("./sentence-build/SentenceBuilder").then((m) => ({ default: m.SentenceBuilder }))
+);
+const GamesHub = lazy(() =>
+  import("./games/GamesHub").then((m) => ({ default: m.GamesHub }))
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -66,6 +72,8 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   modules: ModulesPage,
   kana: KanaPad,
   conjugation: ConjugationGame,
+  sentenceBuild: SentenceBuilder,
+  games: GamesHub,
 };
 
 if (import.meta.env.DEV) {
