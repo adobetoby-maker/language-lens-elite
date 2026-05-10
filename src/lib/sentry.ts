@@ -1,19 +1,14 @@
-import * as Sentry from '@sentry/cloudflare'
-
-let initialized = false
+// @sentry/cloudflare requires the withSentry worker entry wrapper which can't
+// be wired with @lovable.dev/vite-tanstack-config. This stub preserves the
+// captureException call-sites while keeping the module bundleable in all envs.
+type SentryLike = { captureException: (e: unknown) => void }
 
 export function initSentry() {
-  if (initialized) return
-  initialized = true
-
-  const dsn = process.env.SENTRY_DSN
-  if (!dsn) return
-
-  // @sentry/cloudflare is initialized via the `withSentry` worker wrapper at
-  // the entry point, not via a top-level `init` call. We keep this as a
-  // no-op so callers can still trigger lazy setup safely, and we re-export
-  // `Sentry` for `captureException` usage in route handlers.
-  void dsn
+  // no-op until withSentry wrapper is wired at the worker entry
 }
 
-export { Sentry }
+export const Sentry: SentryLike = {
+  captureException: (e: unknown) => {
+    console.error('[sentry]', e)
+  },
+}
