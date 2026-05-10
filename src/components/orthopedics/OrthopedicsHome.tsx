@@ -3,6 +3,7 @@ import { ArrowLeft, MessageSquare, Sparkles } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { ORTHO_AREAS, getOrthoArea, type OrthoArea } from "@/data/orthopedics-content";
+import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
 
 const MODULE_ID = "orthopedics";
 
