@@ -1,6 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
+import { initSentry, Sentry } from '../lib/sentry'
+initSentry()
 
 const MessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
@@ -222,6 +224,7 @@ export const Route = createFileRoute("/api/speak")({
             },
           });
         } catch (e) {
+          Sentry.captureException(e)
           console.error("Speak stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,
