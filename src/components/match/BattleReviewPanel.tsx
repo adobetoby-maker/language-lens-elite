@@ -13,6 +13,7 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Japanese: "ja-JP",
   Korean: "ko-KR",
   Portuguese: "pt-BR",
+  English: "en-US",
 };
 
 interface Props {
@@ -43,11 +44,10 @@ export function BattleReviewPanel({ words, onPlayAgain, onHome, onClose }: Props
         <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.3em] text-gold">
           📖 After-Battle Review
         </div>
-        <h2 className="font-display text-3xl italic text-white">
-          Words from This Battle
-        </h2>
+        <h2 className="font-display text-3xl italic text-white">Words from This Battle</h2>
         <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/55">
-          {words.length} word{words.length === 1 ? "" : "s"} encountered · save any to your vocabulary
+          {words.length} word{words.length === 1 ? "" : "s"} encountered · save any to your
+          vocabulary
         </p>
 
         <div className="mt-5 flex-1 space-y-3 overflow-y-auto pr-1">
@@ -84,18 +84,23 @@ function WordRow({ word }: { word: ReviewedWord }) {
   const { saveVocabWord, savedVocab } = useMatch();
   const { dispatch } = useApp();
   const alreadySaved = savedVocab.some(
-    (v) =>
-      v.word.toLowerCase() === word.word.toLowerCase() &&
-      v.language === word.language,
+    (v) => v.word.toLowerCase() === word.word.toLowerCase() && v.language === word.language,
   );
   const [saved, setSaved] = useState(alreadySaved);
 
   const speak = () => {
     try {
+      if (
+        typeof window === "undefined" ||
+        !window.speechSynthesis ||
+        typeof SpeechSynthesisUtterance === "undefined"
+      ) {
+        return;
+      }
+      window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(word.word);
       u.lang = SPEECH_LOCALE[word.language];
       u.rate = 0.9;
-      window.speechSynthesis.cancel();
       window.speechSynthesis.speak(u);
     } catch {
       /* ignore */
@@ -144,9 +149,7 @@ function WordRow({ word }: { word: ReviewedWord }) {
               <Volume2 className="h-3.5 w-3.5" />
             </button>
           </div>
-          <p className="mt-1.5 text-sm leading-snug text-white/85">
-            {word.correctDefinition}
-          </p>
+          <p className="mt-1.5 text-sm leading-snug text-white/85">{word.correctDefinition}</p>
           <div className="mt-2 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-white/50">
             <span>Round {word.round}</span>
             <span>·</span>

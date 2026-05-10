@@ -17,7 +17,8 @@ export type Language =
   | "Italian"
   | "Japanese"
   | "Korean"
-  | "Portuguese";
+  | "Portuguese"
+  | "English";
 
 // The learner's native ("translation") language — used for the left pane,
 // definitions, lesson explanations, etc. Default English; expandable.
@@ -56,7 +57,7 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana";
+export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";
@@ -411,7 +412,7 @@ function migrate(raw: unknown): PersistedShape {
 
   // Validate selectedLanguage against current Language union
   const validLangs: Language[] = [
-    "Spanish", "French", "German", "Italian", "Japanese", "Korean", "Portuguese",
+    "Spanish", "French", "German", "Italian", "Japanese", "Korean", "Portuguese", "English",
   ];
   if (data.selectedLanguage && !validLangs.includes(data.selectedLanguage)) {
     delete data.selectedLanguage;

@@ -1,16 +1,50 @@
-import type { ComponentType } from "react";
+import { lazy, type ComponentType } from "react";
 import type { TabKey } from "@/state/app-state";
 
-import { ParallelReader } from "./reader/ParallelReader";
-import { GrammarStudio } from "./grammar/GrammarStudio";
-import { SpeakLearn } from "./speak/SpeakLearn";
-import { Dashboard } from "./dashboard/Dashboard";
-import { MissionaryDiscussions } from "./missionary/MissionaryDiscussions";
-import { MissionaryHome } from "./missionary/MissionaryHome";
-import { OrthopedicsHome } from "./orthopedics/OrthopedicsHome";
-import { AnatomyQuizPanel } from "./anatomy/AnatomyQuizPanel";
-import { ModulesPage } from "./modules/ModulesPage";
-import { KanaPad } from "./kana/KanaPad";
+/**
+ * Each tab is rendered only when active, so we lazy-load every tab component
+ * via `React.lazy` + dynamic `import()`. This keeps the initial bundle small —
+ * Reader (epubjs), Missionary (leaflet), and the rest of the heavy tabs ship
+ * as separate chunks that load on first activation.
+ *
+ * Components are exported as named functions (not default), so each lazy
+ * loader maps the named export to the `{ default }` shape `lazy` expects.
+ */
+const ParallelReader = lazy(() =>
+  import("./reader/ParallelReader").then((m) => ({ default: m.ParallelReader }))
+);
+const GrammarStudio = lazy(() =>
+  import("./grammar/GrammarStudio").then((m) => ({ default: m.GrammarStudio }))
+);
+const SpeakLearn = lazy(() =>
+  import("./speak/SpeakLearn").then((m) => ({ default: m.SpeakLearn }))
+);
+const Dashboard = lazy(() =>
+  import("./dashboard/Dashboard").then((m) => ({ default: m.Dashboard }))
+);
+const MissionaryDiscussions = lazy(() =>
+  import("./missionary/MissionaryDiscussions").then((m) => ({
+    default: m.MissionaryDiscussions,
+  }))
+);
+const MissionaryHome = lazy(() =>
+  import("./missionary/MissionaryHome").then((m) => ({ default: m.MissionaryHome }))
+);
+const OrthopedicsHome = lazy(() =>
+  import("./orthopedics/OrthopedicsHome").then((m) => ({ default: m.OrthopedicsHome }))
+);
+const AnatomyQuizPanel = lazy(() =>
+  import("./anatomy/AnatomyQuizPanel").then((m) => ({ default: m.AnatomyQuizPanel }))
+);
+const ModulesPage = lazy(() =>
+  import("./modules/ModulesPage").then((m) => ({ default: m.ModulesPage }))
+);
+const KanaPad = lazy(() =>
+  import("./kana/KanaPad").then((m) => ({ default: m.KanaPad }))
+);
+const ConjugationGame = lazy(() =>
+  import("./conjugation/ConjugationGame").then((m) => ({ default: m.ConjugationGame }))
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -31,6 +65,7 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   anatomy: AnatomyQuizPanel,
   modules: ModulesPage,
   kana: KanaPad,
+  conjugation: ConjugationGame,
 };
 
 if (import.meta.env.DEV) {

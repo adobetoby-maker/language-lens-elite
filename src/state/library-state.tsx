@@ -23,6 +23,7 @@ import { SPORTS_B_TRAVEL_SEEDS } from "@/data/library-seeds/sports-b-travel-seed
 import { SPORTS_NUTRITION_A_SEEDS } from "@/data/library-seeds/sports-nutrition-a-seeds";
 import { SPORTS_NUTRITION_B_SEEDS } from "@/data/library-seeds/sports-nutrition-b-seeds";
 import { SPORTS_NUTRITION_C_SEEDS } from "@/data/library-seeds/sports-nutrition-c-seeds";
+import { ENGLISH_TARGET_SEEDS } from "@/data/library-seeds/english-target-seeds";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./auth-state";
@@ -65,6 +66,7 @@ const FLAG_BY_LANGUAGE: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  English: "🇬🇧",
 };
 
 const CLASSIC_STUBS: LibraryEntry[] = [
@@ -994,6 +996,7 @@ const SEEDS: LibraryEntry[] = [
   ...(SPORTS_NUTRITION_A_SEEDS as LibraryEntry[]),
   ...(SPORTS_NUTRITION_B_SEEDS as LibraryEntry[]),
   ...(SPORTS_NUTRITION_C_SEEDS as LibraryEntry[]),
+  ...(ENGLISH_TARGET_SEEDS as LibraryEntry[]),
 ];
 
 const initial: LibraryState = {

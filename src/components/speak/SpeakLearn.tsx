@@ -57,6 +57,12 @@ const TOPIC_CHIPS: Record<Language, string[]> = {
     "Qual é sua comida favorita? 🍽️",
     "Vamos falar sobre viagens ✈️",
   ],
+  English: [
+    "Tell me about your city 🏙️",
+    "Describe your morning ☀️",
+    "What's your favorite food? 🍽️",
+    "Let's talk about travel ✈️",
+  ],
 };
 
 type SpeechRecognitionLike = {

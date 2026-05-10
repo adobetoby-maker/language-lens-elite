@@ -15,6 +15,7 @@ const LOCALE: Record<Language, string> = {
   Japanese: "ja-JP",
   Korean: "ko-KR",
   Portuguese: "pt-PT",
+  English: "en-US",
 };
 
 /**

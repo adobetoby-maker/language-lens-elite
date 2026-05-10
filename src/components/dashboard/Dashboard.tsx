@@ -25,6 +25,7 @@ const LANG_FLAGS: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  English: "🇬🇧",
 };
 
 function formatMinutes(seconds: number): string {

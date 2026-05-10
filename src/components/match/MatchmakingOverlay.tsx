@@ -29,6 +29,7 @@ const LANG_FLAGS: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  English: "🇬🇧",
 };
 
 const OPPONENT_NAMES: Record<Language, string[]> = {
@@ -39,6 +40,7 @@ const OPPONENT_NAMES: Record<Language, string[]> = {
   Japanese: ["Haruki_JP", "YukiM_JP", "SoraT_JP", "AoiK_JP", "RenS_JP"],
   Korean: ["Jihoon_KR", "MinaP_KR", "Seojun_KR", "DaeunL_KR", "Hyejin_KR"],
   Portuguese: ["LucasS_BR", "AnaP_PT", "PedroR_BR", "BeaM_PT", "ThiagoF_BR"],
+  English: ["EmmaJ_US", "OliverT_GB", "NoahP_AU", "AvaW_CA", "LiamH_US"],
 };
 
 type MatchPhase = "idle" | "searching" | "found" | "countdown" | "battling" | "result";

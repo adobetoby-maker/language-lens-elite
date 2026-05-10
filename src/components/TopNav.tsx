@@ -24,6 +24,7 @@ const LANGUAGES: Language[] = [
   "Italian",
   "Japanese",
   "Portuguese",
+  "English",
 ];
 
 const TABS: { key: TabKey; label: string; module?: string }[] = [
@@ -33,6 +34,7 @@ const TABS: { key: TabKey; label: string; module?: string }[] = [
   { key: "reader", label: "Reader" },
   { key: "kana", label: "Kana Pad" },
   { key: "grammar", label: "Grammar Studio" },
+  { key: "conjugation", label: "Conjugation" },
   { key: "speak", label: "Speak & Learn" },
   { key: "anatomy", label: "Anatomy" },
   { key: "discussions", label: "Discussions", module: "lds-missionary" },

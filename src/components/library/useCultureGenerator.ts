@@ -12,6 +12,7 @@ const COUNTRIES_BY_LANGUAGE: Record<Language, string[]> = {
   Japanese: ["Japan"],
   Korean: ["South Korea"],
   Portuguese: ["Brazil", "Portugal"],
+  English: ["United Kingdom", "United States", "Australia"],
 };
 
 const FLAG_BY_COUNTRY: Record<string, string> = {
@@ -28,6 +29,9 @@ const FLAG_BY_COUNTRY: Record<string, string> = {
   Japan: "🇯🇵",
   Brazil: "🇧🇷",
   Portugal: "🇵🇹",
+  "United Kingdom": "🇬🇧",
+  "United States": "🇺🇸",
+  Australia: "🇦🇺",
 };
 
 const cultureId = (lang: Language, country: string) =>

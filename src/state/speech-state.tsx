@@ -41,6 +41,11 @@ export const ACCENTS_BY_LANGUAGE: Record<Language, AccentOption[]> = {
     { code: "pt-BR", label: "Brazil (pt-BR)" },
     { code: "pt-PT", label: "Portugal (pt-PT)" },
   ],
+  English: [
+    { code: "en-US", label: "United States (en-US)" },
+    { code: "en-GB", label: "United Kingdom (en-GB)" },
+    { code: "en-AU", label: "Australia (en-AU)" },
+  ],
 };
 
 interface PlaybackInfo {

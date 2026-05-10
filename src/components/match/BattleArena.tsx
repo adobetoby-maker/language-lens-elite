@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Volume2 } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
-import {
-  RANK_BADGE,
-  RANK_COLOR,
-  RANK_TITLE,
-  type RankTier,
-} from "@/state/match-state";
+import { RANK_BADGE, RANK_COLOR, RANK_TITLE, type RankTier } from "@/state/match-state";
 import { celebrate } from "@/lib/confetti";
 import { generateBattleWord, type BattleWord } from "@/fns/battle.functions";
 import { RankBadge } from "./RankBadge";
@@ -19,6 +14,7 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Japanese: "ja-JP",
   Korean: "ko-KR",
   Portuguese: "pt-BR",
+  English: "en-US",
 };
 
 function cefrForRound(round: number): "A1" | "A2" | "B1" | "B2" | "C1" | "C2" {
@@ -63,13 +59,7 @@ export interface BattleResult {
   wordHistory: ReviewedWord[];
 }
 
-type Phase =
-  | "loading"
-  | "playing"
-  | "waiting"
-  | "revealing"
-  | "between"
-  | "ended";
+type Phase = "loading" | "playing" | "waiting" | "revealing" | "between" | "ended";
 
 interface RoundData {
   word: BattleWord;
@@ -110,9 +100,7 @@ export function BattleArena({
   const [playerWins, setPlayerWins] = useState(0);
   const [opponentWins, setOpponentWins] = useState(0);
   const [resultLine, setResultLine] = useState<string | null>(null);
-  const [resultKind, setResultKind] = useState<
-    "both" | "victory" | "defeat" | "tie" | null
-  >(null);
+  const [resultKind, setResultKind] = useState<"both" | "victory" | "defeat" | "tie" | null>(null);
   const [betweenLabel, setBetweenLabel] = useState<string | null>(null);
 
   const seenWordsRef = useRef<string[]>([]);
@@ -124,6 +112,20 @@ export function BattleArena({
   const [timerPct, setTimerPct] = useState(100);
   const [secondsLeft, setSecondsLeft] = useState(15);
 
+  // Guards against race conditions:
+  //  - lockedRef: prevents handleLockIn from firing twice (double-click, or
+  //    near-simultaneous click + timer expiry).
+  //  - revealedRef: prevents revealRound running twice for the same round.
+  //  - completedRef: prevents onComplete being invoked more than once.
+  //  - loadGenRef: monotonic counter for in-flight fetches; stale results are
+  //    discarded (handles React StrictMode double-mount and overlapping fetches).
+  //  - mountedRef: false after unmount; suppresses post-unmount setStates.
+  const lockedRef = useRef(false);
+  const revealedRef = useRef(false);
+  const completedRef = useRef(false);
+  const loadGenRef = useRef(0);
+  const mountedRef = useRef(true);
+
   const clearTimers = useCallback(() => {
     timersRef.current.forEach((t) => window.clearTimeout(t));
     timersRef.current = [];
@@ -133,13 +135,32 @@ export function BattleArena({
     }
   }, []);
 
-  useEffect(() => () => clearTimers(), [clearTimers]);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      clearTimers();
+      // Cancel any pending speech we might have started.
+      try {
+        if (typeof window !== "undefined" && window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+        }
+      } catch {
+        /* ignore */
+      }
+    };
+  }, [clearTimers]);
 
   const cefr = cefrForRound(round);
   const totalMs = timerForRound(round) * 1000;
 
   /** Fetch the next word for the current round. */
   const loadRound = useCallback(async () => {
+    // Bump generation; any earlier in-flight call becomes stale and is ignored.
+    const myGen = ++loadGenRef.current;
+    // Reset per-round guards before fetching.
+    lockedRef.current = false;
+    revealedRef.current = false;
     setPhase("loading");
     setData(null);
     setError(null);
@@ -147,19 +168,31 @@ export function BattleArena({
     setOpponentPick(null);
     setResultLine(null);
     setResultKind(null);
-    const res = await generateBattleWord({
-      data: {
-        language,
-        round,
-        cefr,
-        avoid: seenWordsRef.current.slice(-10),
-      },
-    });
+    let res: Awaited<ReturnType<typeof generateBattleWord>>;
+    try {
+      res = await generateBattleWord({
+        data: {
+          language,
+          round,
+          cefr,
+          avoid: seenWordsRef.current.slice(-10),
+        },
+      });
+    } catch (e) {
+      if (myGen !== loadGenRef.current || !mountedRef.current) return;
+      setError(e instanceof Error ? e.message : "Could not load word.");
+      return;
+    }
+    // Discard stale or post-unmount results.
+    if (myGen !== loadGenRef.current || !mountedRef.current) return;
     if (!res.data) {
       setError(res.error ?? "Could not load word.");
       return;
     }
-    seenWordsRef.current.push(res.data.word);
+    // Avoid pushing duplicates to the seen list (defensive — if the model
+    // ignored `avoid`, at least we don't accumulate the same string forever).
+    const w = res.data.word;
+    if (!seenWordsRef.current.includes(w)) seenWordsRef.current.push(w);
     const rd = shuffleDefs(res.data);
     setData(rd);
     setPhase("playing");
@@ -168,6 +201,8 @@ export function BattleArena({
 
   useEffect(() => {
     void loadRound();
+    // loadRound is stable per-round (depends on round, cefr, totalMs which all
+    // derive from `round`). We intentionally only rerun when `round` changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
 
@@ -203,7 +238,19 @@ export function BattleArena({
 
   /** Call after player picks (or timer expires). */
   const handleLockIn = (idx: number | null, fromTimeout = false) => {
-    if (phase !== "playing") return;
+    // Ref guard handles three races the phase check alone misses:
+    //   1. double-click on the same answer card → two onClicks
+    //   2. user click + timer expiry firing in the same tick
+    //   3. setInterval body holds a stale `phase` closure (created when
+    //      startClock ran inside loadRound — phase was "loading" at that
+    //      render) so the phase check would wrongly reject the timeout call.
+    // The ref is reset to false at the start of each loadRound.
+    if (lockedRef.current) return;
+    // Only the timer is allowed to bypass the phase guard, since its closure
+    // can be stale. User clicks come from buttons that are `disabled` outside
+    // of "playing", so the phase check is safe for them.
+    if (!fromTimeout && phase !== "playing") return;
+    lockedRef.current = true;
     stopClock();
     setPlayerPick(idx);
     setPhase("waiting");
@@ -220,6 +267,8 @@ export function BattleArena({
 
   const revealRound = (pIdx: number | null) => {
     if (!data) return;
+    if (revealedRef.current) return;
+    revealedRef.current = true;
     const correct = data.correctIndex;
 
     // Opponent skill scales with their tier — but cap so it stays beatable.
@@ -274,6 +323,8 @@ export function BattleArena({
       const finalWord = data.word.word;
       const finalCorrectDefinition = data.word.correctDefinition;
       const t = window.setTimeout(() => {
+        if (completedRef.current || !mountedRef.current) return;
+        completedRef.current = true;
         setPhase("ended");
         onComplete({
           outcome,
@@ -303,10 +354,20 @@ export function BattleArena({
   const speak = () => {
     if (!data) return;
     try {
+      if (
+        typeof window === "undefined" ||
+        !window.speechSynthesis ||
+        typeof SpeechSynthesisUtterance === "undefined"
+      ) {
+        return;
+      }
+      // Cancel any in-flight utterance before starting a new one (Safari is
+      // particularly stateful here — back-to-back speak() calls can deadlock
+      // the queue without a cancel first).
+      window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(data.word.word);
       u.lang = SPEECH_LOCALE[language];
       u.rate = 0.9;
-      window.speechSynthesis.cancel();
       window.speechSynthesis.speak(u);
     } catch {
       /* ignore */
@@ -326,12 +387,7 @@ export function BattleArena({
       {/* Top bar */}
       <div className="relative px-6 pt-6">
         <div className="flex items-center justify-between gap-6">
-          <PlayerStrip
-            name={playerName}
-            tier={playerTier}
-            wins={playerWins}
-            side="left"
-          />
+          <PlayerStrip name={playerName} tier={playerTier} wins={playerWins} side="left" />
           <div className="text-center">
             <div
               className="font-display italic text-white drop-shadow-[0_0_18px_rgba(201,168,76,0.5)] transition-all"
@@ -343,12 +399,7 @@ export function BattleArena({
               CEFR {cefr} · {Math.ceil(totalMs / 1000)}s
             </div>
           </div>
-          <PlayerStrip
-            name={opponentName}
-            tier={opponentTier}
-            wins={opponentWins}
-            side="right"
-          />
+          <PlayerStrip name={opponentName} tier={opponentTier} wins={opponentWins} side="right" />
         </div>
 
         {/* Timer bar */}
@@ -381,10 +432,7 @@ export function BattleArena({
         {data && phase !== "loading" && (
           <>
             <div className="flex flex-col items-center text-center">
-              <div
-                key={`word-${round}`}
-                className="word-drop flex items-center gap-3"
-              >
+              <div key={`word-${round}`} className="word-drop flex items-center gap-3">
                 <h2
                   className="font-display italic text-gold drop-shadow-[0_0_24px_rgba(201,168,76,0.55)]"
                   style={{ fontSize: "clamp(2.4rem, 5.5vw, 4rem)" }}
@@ -414,7 +462,8 @@ export function BattleArena({
                 const isCorrect = data.correctIndex === i;
                 const revealing = phase === "revealing";
 
-                let stateClass = "border-white/15 bg-[#0e1726] hover:border-gold/60 hover:-translate-y-0.5";
+                let stateClass =
+                  "border-white/15 bg-[#0e1726] hover:border-gold/60 hover:-translate-y-0.5";
                 if (revealing && isCorrect) {
                   stateClass = "border-emerald-400 bg-emerald-500/15 card-correct-pulse";
                 } else if (revealing && !isCorrect && (isPlayerPick || isOppPick)) {
@@ -437,9 +486,7 @@ export function BattleArena({
                         {letter}
                       </span>
                       <div className="flex-1">
-                        <p className="text-sm leading-snug text-white/90">
-                          {text}
-                        </p>
+                        <p className="text-sm leading-snug text-white/90">{text}</p>
                         {locked && isPlayerPick && phase === "waiting" && (
                           <div className="mt-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
                             <span className="inline-block h-2 w-2 animate-spin rounded-full border border-gold border-t-transparent" />
@@ -537,8 +584,7 @@ function PlayerStrip({
 }
 
 function TimerBar({ pct, secondsLeft }: { pct: number; secondsLeft: number }) {
-  const color =
-    secondsLeft <= 3 ? "#ef4444" : secondsLeft <= 7 ? "#f97316" : "#c9a84c";
+  const color = secondsLeft <= 3 ? "#ef4444" : secondsLeft <= 7 ? "#f97316" : "#c9a84c";
   const urgent = secondsLeft <= 3;
   return (
     <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
@@ -584,5 +630,3 @@ function simulateOpponent(
   const wrong = [...Array(optionCount).keys()].filter((i) => i !== correctIdx);
   return wrong[Math.floor(Math.random() * wrong.length)];
 }
-
-

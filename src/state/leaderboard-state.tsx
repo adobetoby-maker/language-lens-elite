@@ -49,6 +49,7 @@ const FLAGS: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  English: "🇬🇧",
 };
 
 const LANGS: Language[] = [
@@ -59,6 +60,7 @@ const LANGS: Language[] = [
   "Japanese",
   "Korean",
   "Portuguese",
+  "English",
 ];
 
 function rand<T>(arr: T[]) {

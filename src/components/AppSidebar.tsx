@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy } from "lucide-react";
+import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2 } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
@@ -9,6 +9,7 @@ const TAB_ITEMS: { key: TabKey; label: string; Icon: React.ElementType; moduleOn
   { key: "orthopedics", label: "Orthopedics",     Icon: Activity,       moduleOnly: "orthopedics"    },
   { key: "reader",      label: "Reader",           Icon: BookOpen                                     },
   { key: "grammar",     label: "Grammar Studio",   Icon: GraduationCap                                },
+  { key: "conjugation", label: "Conjugation",      Icon: Repeat2                                       },
   { key: "speak",       label: "Speak & Learn",    Icon: Mic2                                         },
   { key: "discussions", label: "Discussions",      Icon: MessageCircle,  moduleOnly: "lds-missionary" },
   { key: "dashboard",   label: "Dashboard",        Icon: BarChart3                                    },

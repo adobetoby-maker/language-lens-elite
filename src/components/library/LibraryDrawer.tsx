@@ -37,6 +37,7 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Japanese: "ja-JP",
   Korean: "ko-KR",
   Portuguese: "pt-BR",
+  English: "en-US",
 };
 
 function entryHaystack(e: LibraryEntry): string {

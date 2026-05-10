@@ -11,6 +11,7 @@ import { SpeakProvider } from "@/state/speak-state";
 import { TutorProvider } from "@/state/tutor-state";
 import { MatchProvider } from "@/state/match-state";
 import { LeaderboardProvider } from "@/state/leaderboard-state";
+import { ConjugationProvider } from "@/state/conjugation-state";
 import { TopNav } from "@/components/TopNav";
 import { AppSidebar } from "@/components/AppSidebar";
 import { FreePreviewBanner } from "@/components/FreePreviewBanner";
@@ -63,6 +64,7 @@ function Index() {
                   <SpeechBridge>
                     <SpeakBridge>
                       <TutorProvider>
+                       <ConjugationProvider>
                         <div className="flex min-h-screen bg-background text-foreground">
                           {/* Left sidebar (desktop) + bottom nav (mobile) */}
                           <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
@@ -84,6 +86,7 @@ function Index() {
                         <CefrCompletionBridge />
                         <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
                         <MatchAchievementsBridge />
+                       </ConjugationProvider>
                       </TutorProvider>
                       <Toaster
                         theme="dark"
