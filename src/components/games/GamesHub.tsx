@@ -8,6 +8,7 @@ import { useIdiomMaster } from "@/state/idiom-master-state";
 import { useFalseFriends } from "@/state/false-friends-state";
 import { useMatch } from "@/state/match-state";
 import { useDailyChallenge, badgeLabel } from "@/state/daily-challenge-state";
+import { CrossGameAchievements } from "./CrossGameAchievements";
 
 // Cross-component event the parent route listens for to open the Match
 // overlay. Decouples this tab from the overlay-opener prop drilling.
@@ -249,6 +250,9 @@ export function GamesHub() {
           );
         })}
       </div>
+
+      {/* Cross-game achievements panel */}
+      <CrossGameAchievements />
 
       {/* Streak ladder legend — same thresholds across games */}
       <div className="rounded-2xl border border-border/40 bg-card/20 p-4">
