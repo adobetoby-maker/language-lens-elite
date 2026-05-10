@@ -2143,4 +2143,52 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
     ],
   },
+
+  // Korean — taekwondo dojang warm-up (A2/B1)
+  {
+    id: "seed-ko-sports-taekwondo-warmup",
+    title: "Taekwondo Class: Warm-up and Basics",
+    subtitle: "Beginner-class instruction at a Korean dojang",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Bow to the flag, then bow to the master, and line up by belt color.", target: "국기에 경례하고, 사범님께 경례한 후, 띠 색깔별로 줄을 서세요." },
+      { en: "Today we will start with a ten-minute warm-up before practicing kicks.", target: "오늘은 발차기 연습 전에 십 분 동안 준비 운동부터 시작하겠습니다." },
+      { en: "Run lightly around the mat for two minutes, then stretch your legs and shoulders.", target: "매트 주위를 가볍게 이 분 동안 뛴 다음, 다리와 어깨를 풀어 주세요." },
+      { en: "Remember to breathe out when you kick — never hold your breath during a technique.", target: "발차기를 할 때는 숨을 내쉬는 것을 잊지 마세요. 기술 중에 절대 숨을 멈추지 마세요." },
+      { en: "Today's main kick is the roundhouse kick. Pivot on your supporting foot and turn your hip.", target: "오늘 주된 발차기는 돌려차기입니다. 지지하는 발로 돌면서 골반을 회전시키세요." },
+      { en: "Your toes should be pointed and you must hit with the top of the foot, not the shin.", target: "발끝은 펴야 하고, 정강이가 아니라 발등으로 맞춰야 합니다." },
+      { en: "Find a partner of similar size and take turns holding the kicking pad.", target: "비슷한 체격의 짝을 찾아서 미트를 번갈아 잡아 주세요." },
+      { en: "Do twenty kicks on each leg, slowly at first to focus on form.", target: "각 다리로 스무 번씩 차되, 처음에는 자세에 집중하기 위해 천천히 하세요." },
+      { en: "If your knee or ankle hurts, please stop and tell me right away.", target: "무릎이나 발목이 아프면 즉시 멈추고 저에게 말씀해 주세요." },
+      { en: "After class, drink water, do a cool-down stretch, and bow before leaving the mat.", target: "수업 후에는 물을 마시고, 마무리 스트레칭을 한 다음, 매트를 나가기 전에 경례하세요." },
+    ],
+  },
+
+  // Korean — pro baseball post-game press conference (B2)
+  {
+    id: "seed-ko-sports-kbo-postgame",
+    title: "KBO Post-Game Press Conference",
+    subtitle: "Korean professional baseball manager addresses the media",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "First of all, I want to congratulate our pitching staff for holding the opposing lineup to two runs over nine innings.", target: "먼저, 9이닝 동안 상대 타선을 2점으로 막아 준 우리 투수진에게 축하의 말을 전하고 싶습니다." },
+      { en: "The starter showed great composure with runners on base, especially in the fifth and sixth innings.", target: "선발 투수는 특히 5회와 6회에 주자가 있는 상황에서 훌륭한 침착함을 보여 주었습니다." },
+      { en: "We knew their cleanup hitter was on a hot streak, so we attacked the bottom of the strike zone with breaking balls.", target: "상대 4번 타자가 좋은 흐름을 타고 있다는 것을 알고 있었기 때문에, 스트라이크 존 아래쪽으로 변화구를 공략했습니다." },
+      { en: "Offensively, we left too many runners in scoring position in the early innings, and that almost cost us the game.", target: "공격적으로는 초반에 득점권에 너무 많은 주자를 남겼고, 그 점이 경기를 거의 내줄 뻔하게 만들었습니다." },
+      { en: "I take responsibility for the bunt sign in the seventh — in hindsight, I should have let our number-three hitter swing away.", target: "7회의 번트 사인은 제 책임이며, 돌이켜 보면 3번 타자에게 마음껏 휘두르게 했어야 했습니다." },
+      { en: "Tomorrow's starting pitcher will be Jang, and we will use the bullpen aggressively if necessary.", target: "내일 선발 투수는 장 선수이며, 필요하다면 불펜을 적극적으로 활용하겠습니다." },
+      { en: "We are still three games behind first place, but if we win the series this weekend, the gap will narrow significantly.", target: "아직 1위와 3경기 차이지만, 이번 주말 시리즈를 잡는다면 격차는 상당히 좁혀질 것입니다." },
+      { en: "I want to thank the fans who came out in the rain tonight — your support clearly lifted our players in the late innings.", target: "오늘 밤 비를 맞으며 와 주신 팬 여러분께 감사드리며, 그 응원이 후반 이닝에서 선수들을 분명히 끌어올려 주었습니다." },
+    ],
+  },
 ];

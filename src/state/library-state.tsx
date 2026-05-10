@@ -24,6 +24,9 @@ import { SPORTS_NUTRITION_A_SEEDS } from "@/data/library-seeds/sports-nutrition-
 import { SPORTS_NUTRITION_B_SEEDS } from "@/data/library-seeds/sports-nutrition-b-seeds";
 import { SPORTS_NUTRITION_C_SEEDS } from "@/data/library-seeds/sports-nutrition-c-seeds";
 import { ENGLISH_TARGET_SEEDS } from "@/data/library-seeds/english-target-seeds";
+import { TECHNOLOGY_SEEDS } from "@/data/library-seeds/technology-seeds";
+import { COOKING_FOOD_SEEDS } from "@/data/library-seeds/cooking-food-seeds";
+import { FINANCE_BUSINESS_SEEDS } from "@/data/library-seeds/finance-business-seeds";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./auth-state";
@@ -997,6 +1000,9 @@ const SEEDS: LibraryEntry[] = [
   ...(SPORTS_NUTRITION_B_SEEDS as LibraryEntry[]),
   ...(SPORTS_NUTRITION_C_SEEDS as LibraryEntry[]),
   ...(ENGLISH_TARGET_SEEDS as LibraryEntry[]),
+  ...(TECHNOLOGY_SEEDS as LibraryEntry[]),
+  ...(COOKING_FOOD_SEEDS as LibraryEntry[]),
+  ...(FINANCE_BUSINESS_SEEDS as LibraryEntry[]),
 ];
 
 const initial: LibraryState = {

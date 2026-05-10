@@ -33,4 +33,5 @@ export const SEED_LANGUAGES: Record<string, { label: string; flag: string }> = {
   Japanese:   { label: "日本語",      flag: "🇯🇵" },
   Portuguese: { label: "Português",  flag: "🇧🇷" },
   English:    { label: "English",    flag: "🇬🇧" },
+  Korean:     { label: "한국어",      flag: "🇰🇷" },
 };

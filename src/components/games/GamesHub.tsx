@@ -1,4 +1,4 @@
-import { Trophy, Swords, Repeat2, AlignLeft, Flame, Award, Headphones, Grid3x3, Quote, AlertTriangle } from "lucide-react";
+import { Trophy, Swords, Repeat2, AlignLeft, Flame, Award, Headphones, Grid3x3, Quote, AlertTriangle, CalendarCheck, Sparkle } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { useConjugation, type LeaderboardKey as CKey } from "@/state/conjugation-state";
 import { useSentenceBuild, type SBLeaderboardKey } from "@/state/sentence-build-state";
@@ -7,6 +7,7 @@ import { useWordMatch } from "@/state/word-match-state";
 import { useIdiomMaster } from "@/state/idiom-master-state";
 import { useFalseFriends } from "@/state/false-friends-state";
 import { useMatch } from "@/state/match-state";
+import { useDailyChallenge, badgeLabel } from "@/state/daily-challenge-state";
 
 // Cross-component event the parent route listens for to open the Match
 // overlay. Decouples this tab from the overlay-opener prop drilling.
@@ -101,6 +102,7 @@ export function GamesHub() {
   const idiom = useIdiomMaster();
   const falseFriends = useFalseFriends();
   const match = useMatch();
+  const daily = useDailyChallenge();
 
   // Aggregate per-game stats for the current target language. All five
   // 5-question-run games share the same shape (`bestStreak`, `currentStreak`,
@@ -148,15 +150,56 @@ export function GamesHub() {
     dispatch({ type: "SET_TAB", payload: game.tabKey });
   }
 
+  // Today's Challenge — deterministic game pick + streak.
+  const todays = daily.todaysGame();
+  const completedToday = daily.isCompletedToday();
+  const dailyBadge = daily.badge();
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <div>
         <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">⌘ Games</div>
         <h2 className="mt-1 font-display text-3xl font-semibold">Practice that competes back</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Three games, one leaderboard story. Each game persists per-language stats.
+          Seven games, one leaderboard story. Each game persists per-language stats.
         </p>
       </div>
+
+      {/* ── Today's Challenge ─────────────────────────────────────────── */}
+      <button
+        onClick={() => {
+          if (todays.id === "match") {
+            window.dispatchEvent(new CustomEvent(OPEN_MATCH_EVENT));
+          } else {
+            dispatch({ type: "SET_TAB", payload: todays.tabKey });
+          }
+        }}
+        className="group flex w-full items-center gap-4 rounded-2xl border border-gold/50 bg-gradient-to-r from-gold/[0.12] via-gold/5 to-transparent px-5 py-4 text-left transition-all hover:border-gold/80 hover:from-gold/20"
+      >
+        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${completedToday ? "bg-emerald-500/20 text-emerald-300" : "bg-gold/15 text-gold"}`}>
+          {completedToday ? <CalendarCheck className="h-6 w-6" strokeWidth={1.6} /> : <Sparkle className="h-6 w-6" strokeWidth={1.6} fill="currentColor" />}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">Today&apos;s Challenge</span>
+            {dailyBadge && (
+              <span className="rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-gold">
+                <Flame className="mr-1 inline h-2.5 w-2.5" />
+                {badgeLabel(dailyBadge)}
+              </span>
+            )}
+          </div>
+          <div className="mt-0.5 font-display text-xl font-semibold text-foreground">{todays.title}</div>
+          <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            {completedToday ? "Done today" : "Tap to play"}
+            {" · "}Streak <span className="text-foreground">{daily.data.currentStreak}</span>
+            {" · "}Best <span className="text-foreground">{daily.data.longestStreak}</span>
+          </div>
+        </div>
+        <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-gold opacity-0 transition-opacity group-hover:opacity-100 sm:inline">
+          Play →
+        </span>
+      </button>
 
       {/* Grand totals strip */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

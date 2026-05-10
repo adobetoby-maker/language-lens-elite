@@ -1916,4 +1916,53 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
     ],
   },
+
+  // Korean — auto repair shop intake (B1)
+  {
+    id: "seed-ko-trades-auto-intake",
+    title: "Auto Shop: Customer Intake",
+    subtitle: "Korean mechanic taking down a customer's complaint",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Welcome. What seems to be the problem with your car today?", target: "어서 오세요. 오늘 차에 무슨 문제가 있으세요?" },
+      { en: "When I brake at high speed, the steering wheel shakes a lot.", target: "고속에서 브레이크를 밟으면 핸들이 많이 떨려요." },
+      { en: "How long has this been happening, and does it happen at low speeds too?", target: "그 증상이 시작된 지 얼마나 됐고, 저속에서도 그런가요?" },
+      { en: "About two weeks. At low speeds it is fine, but above eighty kilometers per hour it is bad.", target: "이 주 정도 됐어요. 저속에서는 괜찮은데 시속 팔십 킬로미터 이상이 되면 심해요." },
+      { en: "It sounds like a warped front brake disc — we will need to put it on the lift to confirm.", target: "앞 브레이크 디스크가 변형된 것 같습니다. 확실하게 보려면 리프트에 올려 봐야 해요." },
+      { en: "We will also check the brake pads and the wheel balance while it is up.", target: "올린 김에 브레이크 패드와 휠 밸런스도 함께 확인하겠습니다." },
+      { en: "The inspection takes about thirty minutes and there is no charge if you decide to do the repair here.", target: "점검은 삼십 분 정도 걸리며, 여기서 수리를 진행하시면 점검비는 따로 받지 않습니다." },
+      { en: "If both front discs need to be replaced, the parts and labor will be around three hundred fifty thousand won.", target: "앞 디스크 양쪽 다 교체해야 하면, 부품값과 공임을 합쳐서 약 삼십오만 원 정도입니다." },
+      { en: "I will call you with an estimate before we start any work, so please leave your phone number.", target: "작업을 시작하기 전에 견적 말씀드리려고 전화드릴 테니, 전화번호를 남겨 주세요." },
+      { en: "We can have the car ready by five o'clock today if you approve the repair before noon.", target: "정오 전에 수리 동의해 주시면 오늘 다섯 시까지 차를 준비해 드릴 수 있습니다." },
+    ],
+  },
+
+  // Korean — apartment electrical inspection (B2)
+  {
+    id: "seed-ko-trades-electrical-inspection",
+    title: "Electrical Inspection: New Apartment",
+    subtitle: "Licensed electrician walks a Korean homeowner through findings",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "I have finished the inspection of the entire unit, so let me walk you through what I found.", target: "세대 전체 점검을 마쳤으니, 발견한 사항들을 함께 살펴보도록 하겠습니다." },
+      { en: "Overall the wiring is in acceptable condition, but there are three issues that need attention.", target: "전반적으로 배선 상태는 양호한 편이지만, 손봐야 할 사항이 세 가지 있습니다." },
+      { en: "First, the kitchen outlets are not on a ground-fault circuit, which is required by current code.", target: "첫째, 주방 콘센트가 누전 차단 회로에 연결되어 있지 않은데, 이는 현행 규정상 의무 사항입니다." },
+      { en: "Second, the bathroom exhaust fan is wired to the lighting circuit, which causes the light to flicker.", target: "둘째, 욕실 환풍기가 조명 회로에 연결되어 있어서 불빛이 깜박거리는 원인이 되고 있습니다." },
+      { en: "Third, the panel inside the entryway closet has two breakers that show signs of overheating.", target: "셋째, 현관 수납장 안에 있는 분전반의 차단기 두 개에 과열 흔적이 보입니다." },
+      { en: "I recommend replacing those breakers immediately and adding a dedicated circuit for the air conditioner.", target: "해당 차단기는 즉시 교체하고, 에어컨 전용 회로를 추가하시는 것을 권해 드립니다." },
+      { en: "If you put off the breaker replacement, in the worst case it could cause a fire inside the wall.", target: "차단기 교체를 미루시면 최악의 경우 벽체 내부 화재로 이어질 수 있습니다." },
+      { en: "I have included photos and the relevant code references in the written report I will email you tonight.", target: "오늘 밤 이메일로 보내 드릴 보고서에 사진과 관련 규정 조항을 함께 첨부해 두었습니다." },
+      { en: "If you would like, I can send a quotation for all three repairs along with the report tomorrow morning.", target: "원하시면 세 가지 수리에 대한 견적서도 내일 오전에 보고서와 함께 보내 드릴 수 있습니다." },
+    ],
+  },
 ];

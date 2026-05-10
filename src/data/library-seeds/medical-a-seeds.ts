@@ -806,4 +806,53 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     ],
   },
 
+  // Korean — pharmacy counter consultation (A2)
+  {
+    id: "seed-ko-medical-pharmacy-cold",
+    title: "Pharmacy: Buying Cold Medicine",
+    subtitle: "Quick over-the-counter consultation in Korean",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Hello, I have a bad cold. Do you have something for it?", target: "안녕하세요, 감기가 심해요. 약 좀 있어요?" },
+      { en: "What are your symptoms? Cough, runny nose, or fever?", target: "증상이 어떻게 되세요? 기침, 콧물, 아니면 열이 있어요?" },
+      { en: "I have a cough and a sore throat. No fever yet.", target: "기침하고 목이 아파요. 아직 열은 없어요." },
+      { en: "How long have you had these symptoms?", target: "증상이 시작된 지 얼마나 됐어요?" },
+      { en: "About three days. The cough is getting worse at night.", target: "삼 일 정도 됐어요. 밤에 기침이 더 심해져요." },
+      { en: "I will give you a cough syrup and a throat lozenge. Take them after meals.", target: "기침 시럽하고 목 사탕을 드릴게요. 식사 후에 드세요." },
+      { en: "Take the syrup three times a day, ten milliliters each time.", target: "시럽은 하루에 세 번, 한 번에 십 밀리리터씩 드세요." },
+      { en: "Are there any side effects I should know about?", target: "혹시 알아야 할 부작용이 있어요?" },
+      { en: "It can make you sleepy, so do not drive after taking it.", target: "졸릴 수 있으니까 드시고 운전하지 마세요." },
+      { en: "If you do not feel better in three days, please see a doctor.", target: "삼 일 안에 나아지지 않으면 병원에 꼭 가 보세요." },
+    ],
+  },
+
+  // Korean — internal medicine follow-up for hypertension and diabetes (B2)
+  {
+    id: "seed-ko-medical-htn-dm-followup",
+    title: "Internal Medicine: Hypertension & Diabetes Follow-up",
+    subtitle: "Three-month follow-up visit in a Korean clinic",
+    language: "Korean",
+    targetLabel: "한국어",
+    flag: "🇰🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Mr. Lee, please come in and have a seat. Let's review your three-month results today.", target: "이 선생님, 들어오셔서 앉으세요. 오늘은 삼 개월 결과를 함께 검토해 봅시다." },
+      { en: "Your fasting blood glucose has come down from 168 to 132, which is encouraging progress.", target: "공복 혈당이 168에서 132로 내려갔는데, 이는 고무적인 변화입니다." },
+      { en: "However, your hemoglobin A1c is still 7.8 percent, so we have not yet reached the target of 7.0.", target: "다만 당화혈색소는 아직 7.8 퍼센트라서 목표인 7.0에는 도달하지 못했습니다." },
+      { en: "Your blood pressure today is 138 over 86, which is slightly above the goal for diabetic patients.", target: "오늘 혈압은 138에 86으로, 당뇨 환자의 목표치보다 약간 높습니다." },
+      { en: "Have you been able to walk for thirty minutes a day as we discussed last visit?", target: "지난 방문 때 말씀드린 대로 매일 삼십 분 걷기는 잘 실천하고 계신가요?" },
+      { en: "I will increase your metformin from 500 milligrams twice a day to 1,000 milligrams twice a day.", target: "메트포민을 하루 두 번 500밀리그램에서 하루 두 번 1,000밀리그램으로 증량하겠습니다." },
+      { en: "Please watch for stomach upset or diarrhea, especially during the first two weeks.", target: "특히 첫 이 주 동안은 속이 더부룩하거나 설사하는지 잘 살펴보세요." },
+      { en: "I would also like to add a low-dose ARB to better control your blood pressure and protect your kidneys.", target: "혈압을 더 잘 조절하고 신장을 보호하기 위해 저용량 안지오텐신 수용체 차단제를 추가하고 싶습니다." },
+      { en: "Please get a fasting blood test and a urine microalbumin check two weeks before our next visit.", target: "다음 진료 이 주 전에 공복 혈액 검사와 소변 미세알부민 검사를 받고 오세요." },
+      { en: "If you feel dizzy when standing up, please reduce the new medication and call the clinic right away.", target: "일어설 때 어지러움을 느끼시면 새 약을 줄이시고 즉시 진료실로 전화 주세요." },
+    ],
+  },
 ];
