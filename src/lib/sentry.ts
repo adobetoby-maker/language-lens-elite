@@ -9,12 +9,11 @@ export function initSentry() {
   const dsn = process.env.SENTRY_DSN
   if (!dsn) return
 
-  Sentry.init({
-    dsn,
-    environment: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    tracesSampleRate: 0.2,
-    sendDefaultPii: false,
-  })
+  // @sentry/cloudflare is initialized via the `withSentry` worker wrapper at
+  // the entry point, not via a top-level `init` call. We keep this as a
+  // no-op so callers can still trigger lazy setup safely, and we re-export
+  // `Sentry` for `captureException` usage in route handlers.
+  void dsn
 }
 
 export { Sentry }
