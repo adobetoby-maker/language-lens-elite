@@ -16,6 +16,7 @@ import { MiniPlayer } from "./MiniPlayer";
 import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
+import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
 
 type TextSize = "S" | "M" | "L";
 
