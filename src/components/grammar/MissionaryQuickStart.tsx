@@ -6,6 +6,7 @@ import { useMissionarySpeech } from "@/components/missionary/useMissionarySpeech
 import { SpeedButton } from "@/components/missionary/SpeedButton";
 import { MissionMap } from "@/components/missionary/MissionMap";
 import { FamilyPackagePanel } from "@/components/missionary/FamilyPackagePanel";
+import { SacramentPrayersPanel } from "@/components/missionary/SacramentPrayersPanel";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import {
@@ -76,6 +77,7 @@ export function MissionaryQuickStart() {
   return (
     <div>
     <FamilyPackagePanel />
+    <SacramentPrayersPanel />
     <div className="isolate">
       <MissionMap />
     </div>
