@@ -1,4 +1,5 @@
 import type { Language } from "@/state/app-state";
+import type { CefrLevel } from "@/fns/grammar.functions";
 
 export interface SentencePair {
   en: string;
@@ -11,6 +12,7 @@ export interface LibraryText {
   subtitle: string;
   language: Language;
   targetLabel: string; // e.g. "Español"
+  level?: CefrLevel;   // CEFR reading level (A1..C2). Optional during migration.
   sentences: SentencePair[];
 }
 
@@ -21,6 +23,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "Miguel de Cervantes",
     language: "Spanish",
     targetLabel: "Español",
+    level: "C2",
     sentences: [
       {
         en: "In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing.",
@@ -70,6 +73,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "A short cultural reading",
     language: "Spanish",
     targetLabel: "Español",
+    level: "B1",
     sentences: [
       {
         en: "Spain is a country of vivid contrasts, where ancient traditions live alongside modern art and design.",
@@ -105,6 +109,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "LDS Missionary · teaching outline",
     language: "Spanish",
     targetLabel: "Español",
+    level: "B1",
     sentences: [
       {
         en: "We believe that God is our loving Heavenly Father and that He speaks to His children through prophets.",
@@ -144,6 +149,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "LDS Missionary · everyday companion conversation",
     language: "Spanish",
     targetLabel: "Español",
+    level: "A2",
     sentences: [
       {
         en: "Good evening, Sister López. We are the missionaries from your ward — do you have a moment?",
@@ -180,6 +186,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "Orthopedics · imaging dictation",
     language: "Spanish",
     targetLabel: "Español",
+    level: "C1",
     sentences: [
       {
         en: "PA and lateral views of the right wrist demonstrate a transverse fracture of the distal radius.",
@@ -211,6 +218,7 @@ export const LIBRARY: LibraryText[] = [
     subtitle: "Framer · crew communication",
     language: "Spanish",
     targetLabel: "Español",
+    level: "B2",
     sentences: [
       {
         en: "Today we are framing the south wall — studs at sixteen on center, double top plate.",

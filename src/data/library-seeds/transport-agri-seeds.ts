@@ -12,6 +12,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The brake pads on the front axle are down to two millimeters — well below the safe limit.",
@@ -60,6 +61,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I plugged in the scan tool and pulled three fault codes — two are active, one is pending.",
@@ -104,6 +106,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The automatic transmission fluid is dark brown and smells burnt — it needs an immediate change.",
@@ -152,6 +155,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Your front tires are worn unevenly on the inside edge — that's a classic sign of negative camber.",
@@ -196,6 +200,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I'll connect the OBD-II scanner first to see what fault codes are stored in the ECU.",
@@ -240,6 +245,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The oil on the dipstick is black and gritty — you're about 2,000 kilometers overdue for a change.",
@@ -287,6 +293,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pull over to the scale — I need to verify your gross vehicle weight and axle weights.",
@@ -335,6 +342,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Dispatch, this is unit 47 — I'm loaded and leaving the yard, heading for the Lyon depot.",
@@ -379,6 +387,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Please have your CMR waybill, customs declaration, and driver's license ready.",
@@ -423,6 +432,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Back the truck up to dock number 4 — we'll start loading in about 20 minutes.",
@@ -467,6 +477,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Today's route has three stops — first delivery is in Osaka, then Kobe, then back to the depot.",
@@ -511,6 +522,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Hey driver, what's the road condition ahead on the BR-116 toward Curitiba?",
@@ -562,6 +574,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Gather around the blueprints — we need to go over the foundation layout before your crew starts.",
@@ -610,6 +623,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The building inspector arrives at 8:00 — I need all crews to have their areas clean and accessible.",
@@ -654,6 +668,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "We are currently three days behind schedule on the foundation work — we need to make that up.",
@@ -702,6 +717,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The building permit was just approved — we can start demolition on Monday morning.",
@@ -746,6 +762,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Listen up — we have a hard deadline of Friday for the concrete pour, so every crew member needs to be focused.",
@@ -790,6 +807,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Before we start, I need to run through the DDS — daily safety dialogue — for today's tasks.",
@@ -837,6 +855,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Before milking, do a fore-strip on each quarter and check for clots or discoloration.",
@@ -881,6 +900,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The nutritionist revised the total mixed ration — the new formula increases corn silage by 2 kilos per cow.",
@@ -925,6 +945,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "We have a cow down in pen 7 — she's been off feed since this morning and her temperature is 40.4°C.",
@@ -969,6 +990,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The milk hauler is coming at 5 AM — make sure the bulk tank is at 4 degrees Celsius.",
@@ -1013,6 +1035,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Morning milking starts at 4:30 AM — all parlor equipment must be rinsed and ready before then.",
@@ -1057,6 +1080,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The front pasture is overgrazed — we need to move the herd to the east paddock today.",
@@ -1104,6 +1128,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "We're gathering the south pasture today — I want everyone on horseback by sunup.",
@@ -1152,6 +1177,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The cattle got out on the north fence line last night — we need to find the break and fix it today.",
@@ -1196,6 +1222,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I've got 40 steers ready for market — they're averaging 580 kilos on the hoof.",
@@ -1240,6 +1267,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The north pasture grass is down to 5 centimeters — time to rotate the herd to the east field.",
@@ -1284,6 +1312,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Drive the herd into the main corral — we need to sort out the calves for weaning today.",
@@ -1328,6 +1357,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "We're moving the cattle to the back pasture today — saddle up and be ready to ride by 6 AM.",
@@ -1375,6 +1405,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Before the first carcass enters the floor, all surfaces must be sanitized and dry.",
@@ -1419,6 +1450,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The restaurant order calls for 40 kilos of faux-filet cut to 2.5 centimeters.",
@@ -1463,6 +1495,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "The federal inspector has placed a hold on the lot 7 product — do not ship until the hold is lifted.",
@@ -1507,6 +1540,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "We're starting with the hindquarters today — round, rump, and sirloin primal separation first.",
@@ -1551,6 +1585,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Knife safety is the number one priority — keep the blade away from your body at all times.",
@@ -1599,6 +1634,7 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Today's production order calls for 200 kilos of picanha and 150 kilos of fraldinha.",
@@ -1631,6 +1667,393 @@ export const TRANSPORT_AGRI_SEEDS: LibrarySeed[] = [
       {
         en: "Report any equipment malfunction immediately — a dull blade or a faulty vacuum sealer affects yield and safety.",
         target: "Relate qualquer mau funcionamento de equipamento imediatamente — uma lâmina cega ou seladora com defeito afeta o rendimento e a segurança.",
+      },
+    ],
+  },
+
+  // ── NEW ENTRIES — LEVEL GAP COVERAGE ──────────────────────────────────────
+
+  {
+    id: "seed-es-truck-pretrip",
+    title: "Inspección Pre-Viaje",
+    subtitle: "Pre-trip inspection — daily checklist",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "I check the tires every morning.",
+        target: "Reviso las llantas cada mañana.",
+      },
+      {
+        en: "The brakes work well today.",
+        target: "Los frenos funcionan bien hoy.",
+      },
+      {
+        en: "I look at the lights and the mirrors.",
+        target: "Reviso las luces y los espejos.",
+      },
+      {
+        en: "The oil level is good.",
+        target: "El nivel de aceite está bien.",
+      },
+      {
+        en: "I sign the inspection sheet.",
+        target: "Firmo la hoja de inspección.",
+      },
+      {
+        en: "The fifth wheel is clean and greased.",
+        target: "La quinta rueda está limpia y engrasada.",
+      },
+      {
+        en: "Everything looks safe — I am ready to roll.",
+        target: "Todo se ve seguro — estoy listo para salir.",
+      },
+      {
+        en: "I check the air pressure on the trailer.",
+        target: "Reviso la presión de aire del remolque.",
+      },
+      {
+        en: "The horn and the windshield wipers work.",
+        target: "El claxon y los limpiaparabrisas funcionan.",
+      },
+    ],
+  },
+  {
+    id: "seed-pt-truck-tarping",
+    title: "Lonando a Carga",
+    subtitle: "Load tarping — securing freight",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "We need to tarp the load before we leave.",
+        target: "Precisamos lonar a carga antes de sair.",
+      },
+      {
+        en: "Throw the tarp over the front of the load.",
+        target: "Jogue a lona sobre a frente da carga.",
+      },
+      {
+        en: "Pull the tarp tight on both sides.",
+        target: "Puxe a lona firme dos dois lados.",
+      },
+      {
+        en: "Use the rubber straps to hold it down.",
+        target: "Use as catracas de borracha para segurar.",
+      },
+      {
+        en: "Check that the corners are well covered.",
+        target: "Verifique se os cantos estão bem cobertos.",
+      },
+      {
+        en: "The wind is strong today — tie it well.",
+        target: "O vento está forte hoje — amarre bem.",
+      },
+      {
+        en: "Walk around the truck and check every strap.",
+        target: "Caminhe ao redor do caminhão e verifique cada cinta.",
+      },
+      {
+        en: "The load is ready — let's hit the road.",
+        target: "A carga está pronta — vamos pegar a estrada.",
+      },
+    ],
+  },
+  {
+    id: "seed-es-dispatch-route",
+    title: "Asignación de Ruta",
+    subtitle: "Dispatch — route assignment call",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Good morning, fletero — I have your route assignment for today.",
+        target: "Buenos días, fletero — tengo tu asignación de ruta para hoy.",
+      },
+      {
+        en: "You'll pick up at the Monterrey warehouse and deliver to three stops in Saltillo.",
+        target: "Vas a cargar en la bodega de Monterrey y entregar en tres paradas en Saltillo.",
+      },
+      {
+        en: "The first stop has a delivery window from 10 to 12.",
+        target: "La primera parada tiene una ventana de entrega de 10 a 12.",
+      },
+      {
+        en: "Make sure to call the customer 30 minutes before you arrive.",
+        target: "Asegúrate de llamar al cliente 30 minutos antes de llegar.",
+      },
+      {
+        en: "The bill of lading is in the cab — don't forget to get it signed.",
+        target: "La carta de porte está en la cabina — no olvides hacerla firmar.",
+      },
+      {
+        en: "If you have any problem on the road, call dispatch on the radio.",
+        target: "Si tienes algún problema en el camino, llama a despacho por el radio.",
+      },
+      {
+        en: "Fuel up before you leave the yard — there are no good stops on this route.",
+        target: "Carga combustible antes de salir del patio — no hay buenas paradas en esta ruta.",
+      },
+      {
+        en: "When you finish, send me the signed delivery receipts by photo.",
+        target: "Cuando termines, mándame los comprobantes firmados por foto.",
+      },
+      {
+        en: "Have a safe trip and watch out for the construction on the highway.",
+        target: "Buen viaje y cuidado con la obra en la carretera.",
+      },
+    ],
+  },
+  {
+    id: "seed-it-agri-irrigation",
+    title: "Programmazione dell'Irrigazione",
+    subtitle: "Irrigation schedule — drip system",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "We need to set up the drip irrigation in the tomato field this morning.",
+        target: "Dobbiamo predisporre l'irrigazione a goccia nel campo di pomodori stamattina.",
+      },
+      {
+        en: "Open the main valve and check that the pressure stays at 2 bar.",
+        target: "Apri la valvola principale e controlla che la pressione resti a 2 bar.",
+      },
+      {
+        en: "Each plant should receive about 4 liters of water per day.",
+        target: "Ogni pianta dovrebbe ricevere circa 4 litri d'acqua al giorno.",
+      },
+      {
+        en: "Walk the rows and look for clogged drippers — change them right away.",
+        target: "Cammina lungo i filari e cerca i gocciolatori intasati — cambiali subito.",
+      },
+      {
+        en: "The fertigation tank is ready — we add the liquid fertilizer here.",
+        target: "Il serbatoio di fertirrigazione è pronto — aggiungiamo il concime liquido qui.",
+      },
+      {
+        en: "Set the timer to start at 5 in the morning, before the heat.",
+        target: "Imposta il timer per partire alle 5 del mattino, prima del caldo.",
+      },
+      {
+        en: "If you see standing water, close the line — there's a leak somewhere.",
+        target: "Se vedi acqua ferma, chiudi la linea — c'è una perdita da qualche parte.",
+      },
+      {
+        en: "Keep the soil moisture meter readings in the field log every day.",
+        target: "Annota le letture del tensiometro nel registro di campo ogni giorno.",
+      },
+      {
+        en: "Tomorrow we move the lines to the pepper field for the next rotation.",
+        target: "Domani spostiamo le linee al campo di peperoni per la prossima rotazione.",
+      },
+    ],
+  },
+  {
+    id: "seed-ja-agri-grainelevator",
+    title: "穀物倉庫での会話",
+    subtitle: "Grain elevator — delivery dialog",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Good morning — I'm bringing in soybeans from the north field.",
+        target: "おはようございます。北の畑から大豆を持ってきました。",
+      },
+      {
+        en: "Pull onto the scale and we'll weigh the truck loaded.",
+        target: "計量台に乗ってください。積んだ状態でトラックを計量します。",
+      },
+      {
+        en: "We need a moisture sample before we can unload.",
+        target: "荷下ろしの前に水分サンプルが必要です。",
+      },
+      {
+        en: "The moisture is 14 percent — that's within our acceptance range.",
+        target: "水分は14パーセントです。受け入れ範囲内です。",
+      },
+      {
+        en: "Back the truck up to bin number three to dump.",
+        target: "3番ビンまでトラックをバックしてください。",
+      },
+      {
+        en: "Today's price is 580 yen per kilogram for grade one.",
+        target: "本日の価格は1等級でキロあたり580円です。",
+      },
+      {
+        en: "After unloading, we weigh the empty truck for the net weight.",
+        target: "荷下ろし後、正味重量のために空のトラックを計量します。",
+      },
+      {
+        en: "Here is your weight ticket — take it to the office for payment.",
+        target: "計量伝票です。お支払いのために事務所へお持ちください。",
+      },
+    ],
+  },
+  {
+    id: "seed-fr-dispatch-apology",
+    title: "Appel d'Excuses pour Retard de Livraison",
+    subtitle: "Late delivery apology — customer service call",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Hello, this is Marc from the dispatch office — I'm calling to apologize for today's delay.",
+        target: "Bonjour, c'est Marc du bureau de répartition — je vous appelle pour m'excuser du retard d'aujourd'hui.",
+      },
+      {
+        en: "Our driver was held up by a serious accident on the A6 motorway near Beaune.",
+        target: "Notre chauffeur a été retenu par un grave accident sur l'autoroute A6 près de Beaune.",
+      },
+      {
+        en: "The estimated time of arrival has slipped from 14h00 to approximately 17h30.",
+        target: "L'heure d'arrivée prévue est passée de 14h00 à environ 17h30.",
+      },
+      {
+        en: "I understand this affects your unloading crew and your downstream production schedule.",
+        target: "Je comprends que cela affecte votre équipe de déchargement et votre planning de production en aval.",
+      },
+      {
+        en: "We can offer a credit on the freight invoice to compensate for the inconvenience.",
+        target: "Nous pouvons vous accorder un avoir sur la facture de transport pour compenser le désagrément.",
+      },
+      {
+        en: "Going forward, we'll be rerouting all loads through the A39 to avoid that bottleneck.",
+        target: "À l'avenir, nous redirigerons toutes les expéditions par l'A39 pour éviter ce goulot d'étranglement.",
+      },
+      {
+        en: "I'll send you a detailed incident report and updated tracking link within the hour.",
+        target: "Je vous enverrai un rapport d'incident détaillé et un lien de suivi mis à jour dans l'heure.",
+      },
+      {
+        en: "Please confirm whether your dock will still be staffed when the driver arrives this evening.",
+        target: "Pourriez-vous confirmer si votre quai sera encore en service à l'arrivée du chauffeur ce soir ?",
+      },
+      {
+        en: "Once again, please accept our sincere apologies — we value your business and will do better.",
+        target: "Encore une fois, veuillez accepter nos sincères excuses — nous tenons à votre clientèle et nous ferons mieux.",
+      },
+    ],
+  },
+  {
+    id: "seed-de-agri-pesticide",
+    title: "Pflanzenschutzmittel-Anwendung",
+    subtitle: "Pesticide handling — application protocol",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Before mixing the spray, put on the full protective suit, nitrile gloves, and respirator mask.",
+        target: "Vor dem Anmischen der Spritzbrühe ziehen Sie den kompletten Schutzanzug, Nitrilhandschuhe und die Atemschutzmaske an.",
+      },
+      {
+        en: "Read the product label carefully — the dosage rate for this fungicide is 1.2 liters per hectare.",
+        target: "Lesen Sie das Produktetikett sorgfältig — die Aufwandmenge für dieses Fungizid beträgt 1,2 Liter pro Hektar.",
+      },
+      {
+        en: "Calibrate the sprayer before each application to ensure even coverage.",
+        target: "Kalibrieren Sie die Spritze vor jeder Anwendung, um eine gleichmäßige Ausbringung zu gewährleisten.",
+      },
+      {
+        en: "Do not spray when wind speeds exceed 5 meters per second — drift onto neighboring fields is a violation.",
+        target: "Nicht spritzen, wenn die Windgeschwindigkeit 5 Meter pro Sekunde übersteigt — Abdrift auf Nachbarflächen ist ein Verstoß.",
+      },
+      {
+        en: "Maintain the legally required buffer zone of 5 meters from any surface water.",
+        target: "Halten Sie den gesetzlich vorgeschriebenen Abstand von 5 Metern zu jedem Oberflächengewässer ein.",
+      },
+      {
+        en: "Record the application in the field passport: product, batch, dose, weather, and operator.",
+        target: "Tragen Sie die Anwendung in das Feldhandbuch ein: Produkt, Charge, Dosierung, Wetterlage und Anwender.",
+      },
+      {
+        en: "Observe the pre-harvest interval strictly — for this product it is 21 days.",
+        target: "Beachten Sie die Wartezeit bis zur Ernte strikt — für dieses Mittel beträgt sie 21 Tage.",
+      },
+      {
+        en: "Triple-rinse the empty container and return it to the authorized collection point.",
+        target: "Spülen Sie den leeren Kanister dreimal aus und bringen Sie ihn zur zugelassenen Sammelstelle.",
+      },
+      {
+        en: "After spraying, decontaminate yourself thoroughly before re-entering the farmhouse.",
+        target: "Nach dem Spritzen gründlich dekontaminieren, bevor Sie das Wohnhaus wieder betreten.",
+      },
+    ],
+  },
+  {
+    id: "seed-es-agri-extension",
+    title: "Conferencia de Extensión Agrícola",
+    subtitle: "Ag extension lecture — soil microbiology",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "The microbial communities in the rhizosphere mediate nutrient uptake far beyond what conventional fertilization models capture.",
+        target: "Las comunidades microbianas de la rizosfera median la absorción de nutrientes mucho más allá de lo que los modelos de fertilización convencionales contemplan.",
+      },
+      {
+        en: "Mycorrhizal fungi establish symbiotic relationships with the root system, dramatically extending the plant's effective surface area for water and phosphorus uptake.",
+        target: "Los hongos micorrízicos establecen relaciones simbióticas con el sistema radicular, ampliando notablemente la superficie efectiva de la planta para la absorción de agua y fósforo.",
+      },
+      {
+        en: "Excessive tillage disrupts hyphal networks and accelerates the mineralization of soil organic carbon, releasing it as atmospheric CO2.",
+        target: "La labranza excesiva interrumpe las redes hifales y acelera la mineralización del carbono orgánico del suelo, liberándolo como CO2 atmosférico.",
+      },
+      {
+        en: "Cover cropping with leguminous species fixes atmospheric nitrogen and provides a green-manure substrate that feeds the microbiome between commercial cycles.",
+        target: "La siembra de cultivos de cobertura con especies leguminosas fija nitrógeno atmosférico y aporta un sustrato de abono verde que alimenta el microbioma entre los ciclos comerciales.",
+      },
+      {
+        en: "Recent metagenomic studies suggest that bacterial diversity correlates more strongly with long-term yield stability than with peak productivity in any single season.",
+        target: "Estudios metagenómicos recientes sugieren que la diversidad bacteriana se correlaciona más fuertemente con la estabilidad del rendimiento a largo plazo que con la productividad máxima de una sola temporada.",
+      },
+      {
+        en: "Producers transitioning toward regenerative protocols typically observe a three- to five-year recovery period before microbial indicators reach baseline.",
+        target: "Los productores que transitan hacia protocolos regenerativos suelen observar un período de recuperación de tres a cinco años antes de que los indicadores microbianos alcancen su línea base.",
+      },
+      {
+        en: "Compost teas inoculated with locally adapted strains can accelerate this transition, but their efficacy depends on rigorous quality control during fermentation.",
+        target: "Los tés de compost inoculados con cepas adaptadas localmente pueden acelerar esta transición, pero su eficacia depende de un riguroso control de calidad durante la fermentación.",
+      },
+      {
+        en: "From an agronomic standpoint, soil should be managed as a living ecosystem rather than as an inert substrate to which inputs are simply applied.",
+        target: "Desde el punto de vista agronómico, el suelo debe gestionarse como un ecosistema vivo y no como un sustrato inerte al que simplemente se aplican insumos.",
+      },
+      {
+        en: "Extension agents must therefore translate these complex biological dynamics into management practices that producers can adopt within their economic constraints.",
+        target: "Los agentes de extensión deben, por tanto, traducir estas dinámicas biológicas complejas en prácticas de manejo que los productores puedan adoptar dentro de sus limitaciones económicas.",
       },
     ],
   },

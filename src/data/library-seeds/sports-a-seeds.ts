@@ -12,6 +12,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pass it to the left — I'm open in the penalty area!",
@@ -27,7 +28,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Watch for offside — their striker is always lurking near the line.",
-        target: "Cuídense del fuera de lugar — su delantero siempre está merodeando cerca de la línea.",
+        target:
+          "Cuídense del fuera de lugar — su delantero siempre está merodeando cerca de la línea.",
       },
       {
         en: "We earned a corner kick. Everybody push forward!",
@@ -65,6 +67,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Give me the ball — I'm free at the edge of the box!",
@@ -118,6 +121,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pass to me — I've got space on the left wing!",
@@ -125,7 +129,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Today's formation is a four-two-three-one. The double pivot holds.",
-        target: "Unsere Formation heute ist Vier-zwei-drei-eins. Das doppelte Mittelfeld hält die Position.",
+        target:
+          "Unsere Formation heute ist Vier-zwei-drei-eins. Das doppelte Mittelfeld hält die Position.",
       },
       {
         en: "That was a clear foul — where was the referee looking?",
@@ -171,6 +176,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pass it — I'm making a run behind the defense!",
@@ -178,7 +184,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We're using a three-five-two today. Wide midfielders track back.",
-        target: "Oggi giochiamo con il tre-cinque-due. I centrocampisti larghi rientrano in difesa.",
+        target:
+          "Oggi giochiamo con il tre-cinque-due. I centrocampisti larghi rientrano in difesa.",
       },
       {
         en: "That foul deserved a red card. He went in with two feet.",
@@ -210,7 +217,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "In the post-match press conference the coach praised the team's shape.",
-        target: "Nella conferenza stampa post-partita il mister ha elogiato il modulo della squadra.",
+        target:
+          "Nella conferenza stampa post-partita il mister ha elogiato il modulo della squadra.",
       },
     ],
   },
@@ -224,6 +232,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pass it to me — I'm open in the penalty area!",
@@ -231,7 +240,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Today's formation is four-three-three. Midfielders press high.",
-        target: "今日のフォーメーションは4-3-3です。ミッドフィルダーはハイプレスを維持してください。",
+        target:
+          "今日のフォーメーションは4-3-3です。ミッドフィルダーはハイプレスを維持してください。",
       },
       {
         en: "That was clearly a foul — the referee should have blown the whistle.",
@@ -277,6 +287,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Pass to me — I'm free inside the box!",
@@ -332,6 +343,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Keep the puck moving — we have a two-on-one rush!",
@@ -371,7 +383,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "In the locker room after the game, the coach praised the team's forecheck.",
-        target: "En el vestidor después del partido, el entrenador elogió la presión ofensiva del equipo.",
+        target:
+          "En el vestidor después del partido, el entrenador elogió la presión ofensiva del equipo.",
       },
     ],
   },
@@ -385,6 +398,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Move the puck to the slot — I'm open in front of the net!",
@@ -396,7 +410,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Power play — cycle the puck low and look for the one-timer.",
-        target: "Supériorité numérique — faites tourner le palet en bas et cherchez la reprise de volée.",
+        target:
+          "Supériorité numérique — faites tourner le palet en bas et cherchez la reprise de volée.",
       },
       {
         en: "Win the face-off and get it back to the point man.",
@@ -408,15 +423,18 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The defenseman jumped up in the play and took a slap shot from the blue line.",
-        target: "Le défenseur s'est projeté vers l'avant et a pris un lancer frappé depuis la ligne bleue.",
+        target:
+          "Le défenseur s'est projeté vers l'avant et a pris un lancer frappé depuis la ligne bleue.",
       },
       {
         en: "The goalie made a pad save and covered the puck for a whistle.",
-        target: "Le gardien a effectué un arrêt de la jambière et a couvert le palet pour siffler l'arrêt du jeu.",
+        target:
+          "Le gardien a effectué un arrêt de la jambière et a couvert le palet pour siffler l'arrêt du jeu.",
       },
       {
         en: "Icing! Line change — go, go, get fresh guys out there.",
-        target: "Dégagement interdit ! Changement de ligne — allez, allez, envoyez des joueurs frais.",
+        target:
+          "Dégagement interdit ! Changement de ligne — allez, allez, envoyez des joueurs frais.",
       },
       {
         en: "The winger was offside at the blue line — faceoff in the neutral zone.",
@@ -424,7 +442,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The coach called a timeout to draw up the power play formation.",
-        target: "L'entraîneur a demandé un temps mort pour dessiner la disposition en supériorité numérique.",
+        target:
+          "L'entraîneur a demandé un temps mort pour dessiner la disposition en supériorité numérique.",
       },
     ],
   },
@@ -438,6 +457,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Pass the puck to the slot — I've got a clear shot!",
@@ -465,7 +485,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The goalie made a glove save and the crowd went wild.",
-        target: "Der Torwart hat den Puck mit dem Fanghandschuh gehalten — das Publikum rastete aus.",
+        target:
+          "Der Torwart hat den Puck mit dem Fanghandschuh gehalten — das Publikum rastete aus.",
       },
       {
         en: "Icing called — everyone off for fresh legs on the defensive draw.",
@@ -491,6 +512,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Move the puck quickly — their penalty killer is out of position!",
@@ -544,6 +566,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Move the puck to the slot — I'm open in front!",
@@ -597,6 +620,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Move the puck — I'm breaking to the net on your left!",
@@ -652,10 +676,12 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "The pitcher's ERA this season is outstanding — under two-fifty.",
-        target: "La efectividad del lanzador esta temporada es sobresaliente — por debajo de dos cincuenta.",
+        target:
+          "La efectividad del lanzador esta temporada es sobresaliente — por debajo de dos cincuenta.",
       },
       {
         en: "The batter worked a full count before drawing a walk.",
@@ -663,7 +689,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Top of the inning — our pitcher needs to throw strikes early.",
-        target: "Al inicio del inning — nuestro lanzador necesita tirar strikes desde el principio.",
+        target:
+          "Al inicio del inning — nuestro lanzador necesita tirar strikes desde el principio.",
       },
       {
         en: "He struck out swinging on a curveball in the dirt.",
@@ -691,7 +718,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After the game the pitching coach reviewed the strikeout totals in the clubhouse.",
-        target: "Después del juego el coach de pitcheo revisó los totales de ponches en el clubhouse.",
+        target:
+          "Después del juego el coach de pitcheo revisó los totales de ponches en el clubhouse.",
       },
     ],
   },
@@ -705,6 +733,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "The pitcher has an ERA below three — he's been dominant all year.",
@@ -712,7 +741,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The batter fouled off three two-strike pitches before lining out.",
-        target: "Le frappeur a dévié trois lancers avec deux prises avant de frapper une flèche attrapée.",
+        target:
+          "Le frappeur a dévié trois lancers avec deux prises avant de frapper une flèche attrapée.",
       },
       {
         en: "Bottom of the seventh inning — bring the closer in from the bullpen.",
@@ -720,7 +750,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Struck out looking — he didn't even offer at that breaking ball.",
-        target: "Retraité sur des prises en regardant — il n'a même pas balancé sur cette balle cassante.",
+        target:
+          "Retraité sur des prises en regardant — il n'a même pas balancé sur cette balle cassante.",
       },
       {
         en: "Home run off the foul pole — it was fair by inches!",
@@ -732,7 +763,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The catcher set up outside and called for the slider away.",
-        target: "Le receveur s'est positionné à l'extérieur et a demandé le slider vers l'extérieur.",
+        target:
+          "Le receveur s'est positionné à l'extérieur et a demandé le slider vers l'extérieur.",
       },
       {
         en: "He stole third base on a delayed steal — the shortstop never covered.",
@@ -744,7 +776,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Post-game the analyst broke down the pitcher's strikeout rate by inning.",
-        target: "Après le match l'analyste a décortiqué le taux de retrait sur des prises du lanceur par manche.",
+        target:
+          "Après le match l'analyste a décortiqué le taux de retrait sur des prises du lanceur par manche.",
       },
     ],
   },
@@ -758,6 +791,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "The pitcher has recorded a two-eighty ERA through twelve starts.",
@@ -785,7 +819,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The catcher framed the pitch perfectly — the umpire called it a strike.",
-        target: "Der Catcher hat den Pitch perfekt gerahmt — der Schiedsrichter hat Strike gepfiffen.",
+        target:
+          "Der Catcher hat den Pitch perfekt gerahmt — der Schiedsrichter hat Strike gepfiffen.",
       },
       {
         en: "Stolen base! He got a great jump on the left-handed pitcher.",
@@ -797,7 +832,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After the win the dugout erupted and the players dumped the cooler on the manager.",
-        target: "Nach dem Sieg explodierte der Dugout und die Spieler schütteten den Kühler über dem Manager aus.",
+        target:
+          "Nach dem Sieg explodierte der Dugout und die Spieler schütteten den Kühler über dem Manager aus.",
       },
     ],
   },
@@ -811,6 +847,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "He's our ace starter — his ERA is the best in the league.",
@@ -822,7 +859,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Top of the inning — we need a quick one-two-three from our pitcher.",
-        target: "Inizio dell'inning — abbiamo bisogno di un veloce uno-due-tre dal nostro lanciatore.",
+        target:
+          "Inizio dell'inning — abbiamo bisogno di un veloce uno-due-tre dal nostro lanciatore.",
       },
       {
         en: "Struck out swinging — he missed that splitter by a foot.",
@@ -830,7 +868,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Home run over the left field wall — three-run shot to take the lead!",
-        target: "Home run oltre il muro del campo sinistro — tre punti in un colpo solo per passare in vantaggio!",
+        target:
+          "Home run oltre il muro del campo sinistro — tre punti in un colpo solo per passare in vantaggio!",
       },
       {
         en: "The center fielder tracked it down in the deepest part of the park.",
@@ -842,7 +881,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "He stole second on a 3-2 count — perfect timing with the pitch.",
-        target: "Ha rubato la seconda base su un conto tre-due — tempistica perfetta con il lancio.",
+        target:
+          "Ha rubato la seconda base su un conto tre-due — tempistica perfetta con il lancio.",
       },
       {
         en: "Pitching change — the closer is warming up in the bullpen.",
@@ -864,6 +904,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Our pitcher's ERA this season is under two-fifty — he's dominant.",
@@ -917,6 +958,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "That pitcher has been dealing all night — ERA under two-fifty.",
@@ -972,6 +1014,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great serve — wide to the deuce side, you pulled him off the court.",
@@ -1011,7 +1054,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After the match we had coffee at the club and talked about the rally statistics.",
-        target: "Después del partido tomamos café en el club y hablamos sobre las estadísticas del peloteo.",
+        target:
+          "Después del partido tomamos café en el club y hablamos sobre las estadísticas del peloteo.",
       },
     ],
   },
@@ -1025,6 +1069,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great first serve — that was a clean ace down the T.",
@@ -1032,7 +1077,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We're at deuce again — win the next two points to hold serve.",
-        target: "On est encore à égalité — gagne les deux prochains points pour conserver le service.",
+        target:
+          "On est encore à égalité — gagne les deux prochains points pour conserver le service.",
       },
       {
         en: "My advantage — take your time and construct the point.",
@@ -1078,6 +1124,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great serve — you hit the T and left him flat-footed.",
@@ -1085,7 +1132,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Einstand — we've been trading points for ten minutes. Stay focused.",
-        target: "Einstand — wir spielen schon seit zehn Minuten Punkt um Punkt. Konzentriert bleiben.",
+        target:
+          "Einstand — wir spielen schon seit zehn Minuten Punkt um Punkt. Konzentriert bleiben.",
       },
       {
         en: "My advantage — open up the court and put it away crosscourt.",
@@ -1117,7 +1165,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After the match the coach showed him the rally statistics from the tracking system.",
-        target: "Nach dem Spiel zeigte ihm der Trainer die Rally-Statistiken aus dem Tracking-System.",
+        target:
+          "Nach dem Spiel zeigte ihm der Trainer die Rally-Statistiken aus dem Tracking-System.",
       },
     ],
   },
@@ -1131,6 +1180,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great serve — a flat ace right down the center line.",
@@ -1184,6 +1234,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great serve — wide to the advantage side, he couldn't reach it.",
@@ -1237,6 +1288,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Great serve — ace out wide on the deuce side.",
@@ -1292,6 +1344,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "This lane has a lot of oil in the middle — play the edge.",
@@ -1319,7 +1372,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Your ball weight is too light for this oily condition. Try the sixteen.",
-        target: "El peso de tu bola es muy ligero para esta condición de aceite. Prueba la de dieciséis.",
+        target:
+          "El peso de tu bola es muy ligero para esta condición de aceite. Prueba la de dieciséis.",
       },
       {
         en: "Great spare leave — only the ten pin standing, nice clean shot.",
@@ -1331,7 +1385,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After league night we went over everyone's scores and handicap standings.",
-        target: "Después de la noche de liga repasamos las puntuaciones y la clasificación de hándicap de todos.",
+        target:
+          "Después de la noche de liga repasamos las puntuaciones y la clasificación de hándicap de todos.",
       },
     ],
   },
@@ -1345,6 +1400,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "This lane is hooking a lot — play more toward the outside boards.",
@@ -1360,7 +1416,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "You hooked past the pocket — move your feet two boards to the left.",
-        target: "Tu as trop croché et tu as dépassé la poche — déplace tes pieds de deux planches vers la gauche.",
+        target:
+          "Tu as trop croché et tu as dépassé la poche — déplace tes pieds de deux planches vers la gauche.",
       },
       {
         en: "The pin action was great — a perfect pocket hit.",
@@ -1384,7 +1441,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After the league match we checked the handicap standings posted on the board.",
-        target: "Après la rencontre de ligue, on a vérifié le classement par handicap affiché sur le tableau.",
+        target:
+          "Après la rencontre de ligue, on a vérifié le classement par handicap affiché sur le tableau.",
       },
     ],
   },
@@ -1398,6 +1456,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The oil pattern on lane twelve is heavy in the middle — move outside.",
@@ -1409,7 +1468,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Your approach was too fast — slow your steps and let the ball swing.",
-        target: "Dein Anlauf war zu schnell — verlangsame deine Schritte und lass die Kugel schwingen.",
+        target:
+          "Dein Anlauf war zu schnell — verlangsame deine Schritte und lass die Kugel schwingen.",
       },
       {
         en: "Your hook is firing too early — wait for the breakpoint past the arrows.",
@@ -1451,6 +1511,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The lane is really oily tonight — you'll need to move your target left.",
@@ -1504,6 +1565,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "This lane has a lot of oil — move your feet a few boards to the outside.",
@@ -1527,7 +1589,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Spare leave — the ten pin corner. Move your feet to the left and aim straight.",
-        target: "スペアが残りました。10番ピンコーナーです。フット位置を左にずらして真っ直ぐ狙ってください。",
+        target:
+          "スペアが残りました。10番ピンコーナーです。フット位置を左にずらして真っ直ぐ狙ってください。",
       },
       {
         en: "Your ball weight is a good match — the roll looks very smooth.",
@@ -1557,6 +1620,7 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "This lane is dry on the outside — play more toward the second arrow.",
@@ -1584,7 +1648,8 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The ball weight feels a little heavy — try the fourteen-pounder next frame.",
-        target: "O peso da bola parece um pouco pesado — tenta a de catorze quilos no próximo quadro.",
+        target:
+          "O peso da bola parece um pouco pesado — tenta a de catorze quilos no próximo quadro.",
       },
       {
         en: "Nice spare conversion — you picked up that split clean.",
@@ -1596,7 +1661,485 @@ export const SPORTS_A_SEEDS: LibrarySeed[] = [
       },
       {
         en: "After league night the team grabbed drinks and talked about the oil pattern change.",
-        target: "Depois da noite de liga o time foi tomar uma e conversou sobre a mudança no padrão de óleo.",
+        target:
+          "Depois da noite de liga o time foi tomar uma e conversou sobre a mudança no padrão de óleo.",
+      },
+    ],
+  },
+
+  // ── DRILL INSTRUCTIONS / YOUTH PRACTICE ──────────────────────────────────
+
+  {
+    id: "seed-es-basketball-drills",
+    title: "Ejercicios de Baloncesto",
+    subtitle: "Instrucciones simples en el entrenamiento",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "Form two lines at the free throw line.",
+        target: "Formen dos filas en la línea de tiros libres.",
+      },
+      {
+        en: "Dribble with your right hand to the cone.",
+        target: "Driblen con la mano derecha hasta el cono.",
+      },
+      {
+        en: "Now pass the ball to your partner.",
+        target: "Ahora pasen la pelota a su compañero.",
+      },
+      {
+        en: "Bend your knees before you shoot.",
+        target: "Doblen las rodillas antes de tirar.",
+      },
+      {
+        en: "Good shot! Try ten more from this spot.",
+        target: "¡Buen tiro! Intenten diez más desde este punto.",
+      },
+      {
+        en: "Run to the other side and play defense.",
+        target: "Corran al otro lado y jueguen a la defensa.",
+      },
+      {
+        en: "Keep your hands up and your feet moving.",
+        target: "Mantengan las manos arriba y los pies en movimiento.",
+      },
+      {
+        en: "Take a water break for two minutes.",
+        target: "Tomen un descanso de agua por dos minutos.",
+      },
+      {
+        en: "Listen to me — this drill is important.",
+        target: "Escúchenme — este ejercicio es importante.",
+      },
+      {
+        en: "Great practice today. See you tomorrow!",
+        target: "Buen entrenamiento hoy. ¡Nos vemos mañana!",
+      },
+    ],
+  },
+
+  // ── COACHING YOUTH TEAM ──────────────────────────────────────────────────
+
+  {
+    id: "seed-fr-soccer-youth-coaching",
+    title: "Entraînement des Jeunes",
+    subtitle: "Coach de football avec une équipe U-12",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Today we're going to work on passing and on movement without the ball.",
+        target: "Aujourd'hui on va travailler les passes et les déplacements sans ballon.",
+      },
+      {
+        en: "Remember, when you don't have the ball, you should always be looking for space.",
+        target:
+          "Rappelez-vous, quand vous n'avez pas le ballon, vous devez toujours chercher de l'espace.",
+      },
+      {
+        en: "Form pairs of two and practice short passes for five minutes.",
+        target: "Formez des binômes et travaillez les passes courtes pendant cinq minutes.",
+      },
+      {
+        en: "Lucas, you're not communicating enough with your teammates — call for the ball.",
+        target: "Lucas, tu ne communiques pas assez avec tes coéquipiers — réclame le ballon.",
+      },
+      {
+        en: "When the ball comes to you, the first touch decides everything.",
+        target: "Quand le ballon vient vers toi, le premier contrôle décide de tout.",
+      },
+      {
+        en: "I want to see more confidence when you go into a tackle.",
+        target: "Je veux voir plus d'assurance quand vous allez au tacle.",
+      },
+      {
+        en: "It's not just about scoring goals — defending well is just as important.",
+        target:
+          "Il ne s'agit pas que de marquer des buts — bien défendre est tout aussi important.",
+      },
+      {
+        en: "On Saturday's match, we're going to play with three at the back.",
+        target: "Pour le match de samedi, on va jouer à trois derrière.",
+      },
+      {
+        en: "Have fun out there — that's the most important thing at your age.",
+        target: "Amusez-vous bien sur le terrain — c'est ça le plus important à votre âge.",
+      },
+      {
+        en: "Good session today. Drink some water and rest your legs tonight.",
+        target: "Bonne séance aujourd'hui. Buvez de l'eau et reposez vos jambes ce soir.",
+      },
+    ],
+  },
+
+  // ── REFEREE / UMPIRE CALLS ───────────────────────────────────────────────
+
+  {
+    id: "seed-it-soccer-referee",
+    title: "Decisioni dell'Arbitro",
+    subtitle: "Comandi e dialogo arbitrale in partita",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Stop play! That was a foul outside the penalty area.",
+        target: "Fermo il gioco! È stato un fallo fuori dall'area di rigore.",
+      },
+      {
+        en: "Number ten, come here. That's a yellow card for unsporting behavior.",
+        target: "Numero dieci, vieni qui. È un cartellino giallo per comportamento antisportivo.",
+      },
+      {
+        en: "Free kick from this spot. Wall at nine meters and fifteen.",
+        target: "Calcio di punizione da qui. Barriera a nove metri e quindici.",
+      },
+      {
+        en: "Captain, please ask your players to calm down.",
+        target: "Capitano, ti prego di chiedere ai tuoi giocatori di calmarsi.",
+      },
+      {
+        en: "The linesman has signaled offside. The goal does not count.",
+        target: "Il guardalinee ha segnalato il fuorigioco. Il gol non vale.",
+      },
+      {
+        en: "I'm checking the play with VAR. Wait on the field, please.",
+        target: "Sto controllando l'azione con il VAR. Aspettate in campo, per favore.",
+      },
+      {
+        en: "After the review, I am awarding a penalty kick.",
+        target: "Dopo la revisione, assegno un calcio di rigore.",
+      },
+      {
+        en: "There are two minutes of injury time at the end of the half.",
+        target: "Ci sono due minuti di recupero alla fine del primo tempo.",
+      },
+      {
+        en: "That challenge is too dangerous. Direct red card, off the field.",
+        target: "Quel contrasto è troppo pericoloso. Cartellino rosso diretto, fuori dal campo.",
+      },
+      {
+        en: "End of the match. Shake hands with the opponents and respect the result.",
+        target: "Fine della partita. Stringete la mano agli avversari e rispettate il risultato.",
+      },
+    ],
+  },
+
+  // ── HALFTIME ADJUSTMENTS ─────────────────────────────────────────────────
+
+  {
+    id: "seed-de-basketball-halftime",
+    title: "Halbzeit-Ansprache",
+    subtitle: "Trainer-Anweisungen in der Pause",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "We're down by eight, but we have everything we need to come back in the second half.",
+        target:
+          "Wir liegen mit acht Punkten zurück, aber wir haben alles, was wir brauchen, um in der zweiten Halbzeit zurückzukommen.",
+      },
+      {
+        en: "Their pick-and-roll is killing us — we have to switch every screen at the top of the key.",
+        target:
+          "Ihr Pick-and-Roll macht uns fertig — wir müssen jeden Block am oberen Bogen tauschen.",
+      },
+      {
+        en: "Number eleven has fifteen points already — face-guard him whenever he crosses half-court.",
+        target:
+          "Die Nummer elf hat schon fünfzehn Punkte — bewacht ihn eng, sobald er die Mittellinie überquert.",
+      },
+      {
+        en: "We're forcing too many three-point shots. Drive into the paint and create contact.",
+        target: "Wir erzwingen zu viele Dreierwürfe. Geht in die Zone und sucht den Körperkontakt.",
+      },
+      {
+        en: "Defensive rebounds win this game — box out every single possession.",
+        target:
+          "Defensive Rebounds gewinnen dieses Spiel — blockt bei jedem Ballbesitz konsequent aus.",
+      },
+      {
+        en: "When they trap our point guard, the weak side has to cut to the basket immediately.",
+        target:
+          "Wenn sie unseren Spielmacher doppeln, muss die ballferne Seite sofort zum Korb schneiden.",
+      },
+      {
+        en: "I want full-court pressure for the first three minutes — make them work for every inbound.",
+        target:
+          "Ich will Ganzfeldpressing für die ersten drei Minuten — lasst sie für jeden Einwurf arbeiten.",
+      },
+      {
+        en: "We have four team fouls already — be smart on close-outs and don't reach in.",
+        target:
+          "Wir haben schon vier Mannschaftsfouls — seid clever beim Herausgehen und greift nicht hinein.",
+      },
+      {
+        en: "If we cut the lead under five within the first six minutes, this gym is going to explode.",
+        target:
+          "Wenn wir den Rückstand in den ersten sechs Minuten unter fünf Punkte bringen, explodiert diese Halle.",
+      },
+      {
+        en: "Trust each other, share the ball, and play with energy. Let's go!",
+        target: "Vertraut einander, teilt den Ball und spielt mit Energie. Auf geht's!",
+      },
+    ],
+  },
+
+  // ── INJURY TIMEOUT / TRAINER ─────────────────────────────────────────────
+
+  {
+    id: "seed-pt-soccer-trainer",
+    title: "Atendimento Médico",
+    subtitle: "Diálogo com o fisioterapeuta em campo",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Lie down and stay calm — I need to look at the knee before you try to move.",
+        target: "Deita aí e fica calmo — preciso olhar o joelho antes de você tentar se mexer.",
+      },
+      {
+        en: "Tell me exactly where the pain is and how it happened on the play.",
+        target: "Me conta exatamente onde está doendo e como aconteceu na jogada.",
+      },
+      {
+        en: "I'm going to test the lateral ligament — let me know when it hurts.",
+        target: "Vou testar o ligamento lateral — me avisa quando doer.",
+      },
+      {
+        en: "There's no apparent fracture, but the swelling is already starting.",
+        target: "Não há fratura aparente, mas o inchaço já está começando.",
+      },
+      {
+        en: "Can you put weight on the leg, even just a little?",
+        target: "Você consegue apoiar peso na perna, nem que seja só um pouco?",
+      },
+      {
+        en: "We're going to take you off on the stretcher — don't try to walk on your own.",
+        target: "A gente vai te tirar na maca — não tenta andar sozinho.",
+      },
+      {
+        en: "Coach, I recommend the substitution — he can't continue at one hundred percent.",
+        target: "Treinador, recomendo a substituição — ele não consegue continuar a cem por cento.",
+      },
+      {
+        en: "In the locker room we'll apply ice for twenty minutes and request an MRI.",
+        target: "No vestiário vamos aplicar gelo por vinte minutos e pedir uma ressonância.",
+      },
+      {
+        en: "If it's a grade-two sprain, the recovery is around three weeks.",
+        target: "Se for entorse de grau dois, a recuperação é de aproximadamente três semanas.",
+      },
+      {
+        en: "I'll talk to you in the dressing room about the rehab program for tomorrow.",
+        target: "Conversamos no vestiário sobre o programa de reabilitação para amanhã.",
+      },
+    ],
+  },
+
+  // ── PRESS CONFERENCE ─────────────────────────────────────────────────────
+
+  {
+    id: "seed-ja-baseball-press",
+    title: "試合後の記者会見",
+    subtitle: "監督と選手へのインタビュー",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "First of all, I'd like to thank the fans who came to support us today.",
+        target: "まず最初に、今日応援に来てくださったファンの皆様にお礼を申し上げたいです。",
+      },
+      {
+        en: "Today's win was the result of every player playing their role to the fullest.",
+        target: "今日の勝利は、選手一人ひとりが自分の役割を全うした結果です。",
+      },
+      {
+        en: "Our starting pitcher had outstanding control and kept the opposing batters off-balance.",
+        target: "先発投手は素晴らしい制球力で相手バッターのタイミングを崩していました。",
+      },
+      {
+        en: "The decision to bring in the closer in the eighth inning was based on his recent form.",
+        target: "8回にクローザーを投入した判断は、彼の最近の調子を踏まえたものです。",
+      },
+      {
+        en: "We made some defensive mistakes, and we'll review them in tomorrow's practice.",
+        target: "守備でいくつかミスがありましたので、明日の練習で振り返ります。",
+      },
+      {
+        en: "The home run in the seventh inning shifted the momentum of the entire game.",
+        target: "7回のホームランが試合全体の流れを変えました。",
+      },
+      {
+        en: "Regarding the injury, we'll have detailed test results tomorrow morning.",
+        target: "怪我については、詳しい検査結果が明日の朝に出る予定です。",
+      },
+      {
+        en: "We need to take this win and carry the same focus into tomorrow's game.",
+        target: "この勝利を糧にして、同じ集中力で明日の試合に臨む必要があります。",
+      },
+      {
+        en: "I have full confidence in our young players — they're learning and growing every day.",
+        target: "若手選手たちには全幅の信頼を置いています。彼らは日々学び、成長しています。",
+      },
+      {
+        en: "Thank you for the questions. Please continue to support the team.",
+        target: "ご質問ありがとうございました。引き続き、チームへのご声援をお願いします。",
+      },
+    ],
+  },
+
+  // ── BROADCAST PLAY-BY-PLAY ───────────────────────────────────────────────
+
+  {
+    id: "seed-es-soccer-broadcast",
+    title: "Transmisión en Vivo",
+    subtitle: "Narración y comentario deportivo en cabina",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "Recovery in midfield by Martínez, who immediately distributes to the right wing!",
+        target:
+          "¡Recuperación en el mediocampo de Martínez, que distribuye de inmediato hacia la banda derecha!",
+      },
+      {
+        en: "Pure orchestra-conductor's vision from the captain — that long ball cuts the entire defensive line.",
+        target:
+          "Visión de director de orquesta del capitán — ese balón largo parte por completo la línea defensiva.",
+      },
+      {
+        en: "He's running on the wing, dribbles past the defender, and crosses into the heart of the area!",
+        target: "Se va por la banda, encara al defensor, ¡y centra al corazón del área!",
+      },
+      {
+        en: "Header by the center forward — saved by the goalkeeper with a worldie of a stretch!",
+        target:
+          "¡Cabezazo del centro delantero — atajada del portero con una estirada de antología!",
+      },
+      {
+        en: "Corner kick on the right — short play prepared, watch for the second-ball runner from outside the box.",
+        target:
+          "Saque de esquina por derecha — jugada en corto preparada, atención al jugador llegando desde fuera del área.",
+      },
+      {
+        en: "What audacity, ladies and gentlemen — a Panenka-style penalty in front of forty thousand people!",
+        target:
+          "¡Qué atrevimiento, señoras y señores — un penalti a lo Panenka delante de cuarenta mil personas!",
+      },
+      {
+        en: "And the referee blows for the end of the half — a memorable forty-five minutes of football.",
+        target:
+          "Y el árbitro pita el final del primer tiempo — cuarenta y cinco minutos de fútbol memorables.",
+      },
+      {
+        en: "Tactical change at the break — the coach is bringing on a holding midfielder to control the tempo.",
+        target:
+          "Cambio táctico en el descanso — el entrenador está metiendo un mediocentro de contención para controlar el ritmo.",
+      },
+      {
+        en: "Counterattack at full speed — three against two, the move that can decide this final!",
+        target:
+          "¡Contraataque a toda velocidad — tres contra dos, la jugada que puede decidir esta final!",
+      },
+      {
+        en: "Goal in extra time, dear listeners! Pure madness in the stadium, an unforgettable night for the fans!",
+        target:
+          "¡Gol en el tiempo de descuento, queridos oyentes! Locura total en el estadio, una noche inolvidable para la afición.",
+      },
+    ],
+  },
+
+  // ── PRESS CONFERENCE TACTICAL ANALYSIS ───────────────────────────────────
+
+  {
+    id: "seed-fr-basketball-press",
+    title: "Conférence de Presse Tactique",
+    subtitle: "Analyse d'après-match d'un entraîneur",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "From the very first quarter, we identified that their zone defense was vulnerable on baseline penetrations.",
+        target:
+          "Dès le premier quart-temps, nous avons identifié que leur défense de zone était vulnérable sur les pénétrations en ligne de fond.",
+      },
+      {
+        en: "The strategic decision to switch to a small-ball lineup at the start of the third quarter clearly shifted the trajectory of the match.",
+        target:
+          "Le choix stratégique de passer à une rotation small-ball en début de troisième quart-temps a clairement modifié la trajectoire du match.",
+      },
+      {
+        en: "Our defensive efficiency in the half-court remains a structural weakness that we must address before the playoffs.",
+        target:
+          "Notre efficacité défensive sur jeu placé reste une faiblesse structurelle à laquelle nous devons remédier avant les playoffs.",
+      },
+      {
+        en: "Honestly, the offensive rebounds we conceded in the fourth quarter cost us several second-chance possessions that proved decisive.",
+        target:
+          "Honnêtement, les rebonds offensifs concédés en dernier quart-temps nous ont coûté plusieurs possessions de seconde chance qui se sont révélées décisives.",
+      },
+      {
+        en: "Our point guard's ability to read the opposing defense's switches was, in my view, the technical key to the second half.",
+        target:
+          "La capacité de notre meneur à lire les changements défensifs adverses a été, selon moi, la clé technique de la seconde mi-temps.",
+      },
+      {
+        en: "When you concede twenty-two points off turnovers, you can't reasonably expect to win against a team of this caliber.",
+        target:
+          "Quand on concède vingt-deux points sur balles perdues, on ne peut pas raisonnablement espérer gagner contre une équipe de ce calibre.",
+      },
+      {
+        en: "I take full responsibility for the late-game rotations — I should have left my starters in for the final possession.",
+        target:
+          "Je prends l'entière responsabilité des rotations en fin de match — j'aurais dû laisser mon cinq de départ pour la dernière possession.",
+      },
+      {
+        en: "The opposing coach completely surprised us with that defensive rotation in the last three minutes of the game.",
+        target:
+          "L'entraîneur adverse nous a totalement surpris avec ce dispositif défensif dans les trois dernières minutes de la rencontre.",
+      },
+      {
+        en: "We're going to thoroughly analyze the video tomorrow morning before drawing any definitive conclusions about the match.",
+        target:
+          "Nous allons analyser la vidéo de manière approfondie demain matin avant de tirer la moindre conclusion définitive sur cette rencontre.",
+      },
+      {
+        en: "It's a tough loss to swallow, but it gives us a clear roadmap for the work ahead before the next game.",
+        target:
+          "C'est une défaite difficile à digérer, mais elle nous offre une feuille de route claire pour le travail à fournir avant la prochaine échéance.",
       },
     ],
   },

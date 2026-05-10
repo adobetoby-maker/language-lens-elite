@@ -247,25 +247,33 @@
 }
 
 /* ---- Furigana (ruby) styling ---------------------------------------------
-   Goal: tiny hiragana readings above kanji that DO NOT change the line height
-   of the surrounding sentence. We rely on:
+   Goal: tiny hiragana readings above kanji (or romaji below in romaji mode)
+   that DO NOT change the line height of the surrounding sentence. We rely on:
    1. Native <ruby> with `ruby-position: over` (default in modern browsers).
    2. A very small <rt> font (0.5em) with line-height:1 so the reading fits
       inside the existing leading.
    3. The reader paragraphs already use line-height ~1.85, which leaves
       plenty of room above each glyph for the rt without pushing lines apart.
+
+   Browser fallbacks:
+   - Tailwind v4's preflight + some Webkit builds reset display:ruby. We force
+     `display: ruby` with !important plus `-webkit-ruby-position` for older Safari.
+   - Firefox honors `ruby-position: over` natively.
+   - Mobile Safari historically renders <rt> below by default; the explicit
+     `ruby-position: over` + `-webkit-ruby-position: before` together cover it.
 */
-/* Tailwind v4's reset can strip the UA-stylesheet display:ruby.
-   Force it back so <rt> always renders above, never inline. */
-ruby {
+ruby,
+.furigana-ruby {
   display: ruby !important;
   ruby-position: over;
+  -webkit-ruby-position: before; /* Older Safari/iOS */
   ruby-align: center;
+  /* Prevent ruby from being broken across lines mid-character. */
+  white-space: nowrap;
 }
-rt {
-  display: ruby-text !important;
-}
+rt,
 .furigana-rt {
+  display: ruby-text !important;
   font-family: var(--font-mono);
   font-size: 0.5em;
   font-weight: 400;
@@ -281,6 +289,25 @@ rt {
      do nothing, and taps near the edge of a kana run hit the neighboring
      <rt> instead of the kana, so words feel un-clickable. */
   pointer-events: none;
+}
+/* Fallback for engines that DON'T support `display: ruby`: render <rt> as a
+   small block that sits ABOVE its base via negative margin. This keeps the
+   sketch-style "small reading directly over the kanji" behavior even if the
+   browser falls all the way back to inline rendering. */
+@supports not (display: ruby) {
+  ruby,
+  .furigana-ruby {
+    display: inline-flex !important;
+    flex-direction: column-reverse;
+    align-items: center;
+    vertical-align: baseline;
+    line-height: 1;
+  }
+  rt,
+  .furigana-rt {
+    display: block !important;
+    margin-bottom: -0.15em;
+  }
 }
 /* When a sentence row contains ruby, keep the line box exactly as the parent
    line-height dictates — never let ruby grow it. */

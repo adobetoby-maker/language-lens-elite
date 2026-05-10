@@ -13,6 +13,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good afternoon, my name is Elder Martínez and this is my companion Elder Torres.",
@@ -67,6 +68,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good evening. We are missionaries from The Church of Jesus Christ of Latter-day Saints.",
@@ -121,6 +123,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good day. May we take a few minutes of your time to share a message about faith?",
@@ -175,6 +178,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Hello, we are missionaries from The Church of Jesus Christ of Latter-day Saints.",
@@ -229,6 +233,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Hello, we are missionaries from The Church of Jesus Christ of Latter-day Saints.",
@@ -283,6 +288,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good afternoon! We are missionaries from The Church of Jesus Christ of Latter-day Saints.",
@@ -339,6 +345,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to our parish. The Mass is the central act of worship in the Catholic faith.",
@@ -393,6 +400,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to our parish. I am happy to explain the structure of the Mass to you.",
@@ -447,6 +455,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to our parish. I would like to explain the structure of Holy Mass to you.",
@@ -501,6 +510,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to our parish. I am glad to explain the Holy Mass to you.",
@@ -555,6 +565,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to our parish. I would like to explain the structure of the Mass.",
@@ -609,6 +620,7 @@ export const FAITH_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Welcome to our parish! I am happy to explain how the Mass works.",
@@ -650,6 +662,287 @@ export const FAITH_SEEDS: LibrarySeed[] = [
         en: "We invite you to receive God's blessing and become part of our parish family.",
         target: "Convidamos você a receber a bênção de Deus e fazer parte de nossa família paroquial.",
       },
+    ],
+  },
+
+  // ── New LDS Missionary Scenarios — distributed across CEFR levels ──────
+
+  // A1 — Spanish: simple door greeting
+  {
+    id: "seed-es-faith-door-greeting",
+    title: "Hola, Soy Misionero",
+    subtitle: "A1 — saludos básicos en la puerta",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A1",
+    sentences: [
+      { en: "Hello! Good morning.", target: "¡Hola! Buenos días." },
+      { en: "My name is Elder Smith.", target: "Me llamo Élder Smith." },
+      { en: "This is my friend, Elder López.", target: "Este es mi amigo, Élder López." },
+      { en: "We are missionaries.", target: "Somos misioneros." },
+      { en: "We are from the United States.", target: "Somos de los Estados Unidos." },
+      { en: "We talk about Jesus Christ.", target: "Hablamos de Jesucristo." },
+      { en: "Do you have a few minutes?", target: "¿Tiene unos minutos?" },
+      { en: "We have a short message for you.", target: "Tenemos un mensaje corto para usted." },
+      { en: "Thank you very much.", target: "Muchas gracias." },
+      { en: "Have a good day!", target: "¡Que tenga un buen día!" },
+    ],
+  },
+
+  // A2 — Portuguese: companion conversation about daily plans
+  {
+    id: "seed-pt-faith-companion-planning",
+    title: "Planejando o Dia",
+    subtitle: "A2 — conversa entre companheiros pela manhã",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Good morning, companion. Did you sleep well?", target: "Bom dia, companheiro. Você dormiu bem?" },
+      { en: "Yes, thank you. What time is our first appointment?", target: "Sim, obrigado. A que horas é nosso primeiro compromisso?" },
+      { en: "We meet the Silva family at ten.", target: "Encontramos a família Silva às dez." },
+      { en: "Then we have lunch with Sister Costa.", target: "Depois almoçamos com a irmã Costa." },
+      { en: "After lunch, let's contact people in the park.", target: "Depois do almoço, vamos contatar pessoas no parque." },
+      { en: "We need to call João to confirm the lesson.", target: "Precisamos ligar para o João para confirmar a lição." },
+      { en: "I will pray and you study, okay?", target: "Eu vou orar e você estuda, está bem?" },
+      { en: "Don't forget to bring the Book of Mormon.", target: "Não esqueça de levar o Livro de Mórmon." },
+      { en: "It is going to rain today. Bring your umbrella.", target: "Vai chover hoje. Leve seu guarda-chuva." },
+      { en: "Let's go. We can't be late.", target: "Vamos. Não podemos nos atrasar." },
+    ],
+  },
+
+  // A2 — Italian: dinner with a member family
+  {
+    id: "seed-it-faith-member-dinner",
+    title: "Cena con una Famiglia del Rione",
+    subtitle: "A2 — appuntamento serale con membri",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Thank you for inviting us to dinner, Sister Bianchi.", target: "Grazie per averci invitati a cena, sorella Bianchi." },
+      { en: "You are very welcome! Please, come in.", target: "Prego, prego! Accomodatevi." },
+      { en: "Something smells delicious. What did you cook?", target: "Si sente un profumo buonissimo. Cosa ha cucinato?" },
+      { en: "I made lasagna and a green salad.", target: "Ho fatto le lasagne e un'insalata verde." },
+      { en: "Brother Bianchi, how was work today?", target: "Fratello Bianchi, com'è andato il lavoro oggi?" },
+      { en: "Long, but good. And how was your week?", target: "Lungo, ma buono. E voi, com'è andata la settimana?" },
+      { en: "We taught a wonderful family from Romania.", target: "Abbiamo insegnato a una famiglia meravigliosa della Romania." },
+      { en: "Could you visit them with us next Saturday?", target: "Potreste venire con noi a visitarli sabato prossimo?" },
+      { en: "Of course. We are always happy to help.", target: "Certo. Siamo sempre felici di aiutare." },
+      { en: "Before we eat, may we offer a prayer?", target: "Prima di mangiare, possiamo fare una preghiera?" },
+      { en: "Thank you so much for the dinner and your kindness.", target: "Grazie mille per la cena e la vostra gentilezza." },
+    ],
+  },
+
+  // A2 — German: street contacting
+  {
+    id: "seed-de-faith-street-contact",
+    title: "Kontakt auf der Straße",
+    subtitle: "A2 — Strassenkontakt mit Passanten",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Excuse me, do you have a moment?", target: "Entschuldigung, haben Sie einen Moment Zeit?" },
+      { en: "We are missionaries from a Christian church.", target: "Wir sind Missionare einer christlichen Kirche." },
+      { en: "Have you ever heard of the Book of Mormon?", target: "Haben Sie schon einmal vom Buch Mormon gehört?" },
+      { en: "Not really. What is it about?", target: "Nicht wirklich. Worum geht es?" },
+      { en: "It is a book that teaches about Jesus Christ.", target: "Es ist ein Buch, das von Jesus Christus lehrt." },
+      { en: "We can give you a free copy.", target: "Wir können Ihnen ein kostenloses Exemplar geben." },
+      { en: "Do you believe in God?", target: "Glauben Sie an Gott?" },
+      { en: "Yes, but I don't go to church often.", target: "Ja, aber ich gehe nicht oft in die Kirche." },
+      { en: "May we visit you and share a short message?", target: "Dürfen wir Sie besuchen und eine kurze Botschaft teilen?" },
+      { en: "Here is my number. Call me on the weekend.", target: "Hier ist meine Nummer. Rufen Sie mich am Wochenende an." },
+    ],
+  },
+
+  // B1 — Japanese: bearing testimony of the Plan of Salvation
+  {
+    id: "seed-ja-faith-plan-of-salvation",
+    title: "救いの計画について",
+    subtitle: "B1 — 神の計画を説明する",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Today we would like to share something called the Plan of Salvation.", target: "今日は「救いの計画」というものについてお話ししたいと思います。" },
+      { en: "Before we were born, we lived with our Heavenly Father as his spirit children.", target: "私たちは生まれる前、天の御父のもとで霊の子供として暮らしていました。" },
+      { en: "He sent us to earth so we could learn, grow, and gain a body.", target: "御父は私たちが学び、成長し、肉体を得られるように地上に送ってくださいました。" },
+      { en: "We all make mistakes, but Jesus Christ suffered for our sins.", target: "誰でも過ちを犯しますが、イエス・キリストが私たちの罪のために苦しんでくださいました。" },
+      { en: "Through repentance, we can be forgiven and return to live with God.", target: "悔い改めによって、私たちは赦され、再び神と共に住むことができます。" },
+      { en: "When we die, our spirit continues to live in the spirit world.", target: "死んだ後も、私たちの霊は霊界で生き続けます。" },
+      { en: "One day, every person will be resurrected and judged.", target: "いつの日か、すべての人が復活し、裁きを受けます。" },
+      { en: "Families can be together forever through sacred temple ordinances.", target: "神聖な神殿の儀式によって、家族は永遠に一緒にいることができます。" },
+      { en: "This knowledge has brought me deep peace, especially when I lost my grandfather.", target: "この知識は、特に祖父を亡くしたとき、私に深い平安をもたらしました。" },
+      { en: "Have you ever wondered what happens after we die?", target: "私たちが死んだ後どうなるか、考えたことはありますか。" },
+      { en: "I invite you to read this pamphlet and pray about its message.", target: "このパンフレットを読み、その内容について祈ってみることをお勧めします。" },
+    ],
+  },
+
+  // B1 — French: explaining a scripture
+  {
+    id: "seed-fr-faith-scripture-explanation",
+    title: "Expliquer une Écriture",
+    subtitle: "B1 — Moroni 10:3-5 et la prière",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "I would like to read you a passage that changed my life.", target: "J'aimerais vous lire un passage qui a changé ma vie." },
+      { en: "It's found at the end of the Book of Mormon, in Moroni chapter ten.", target: "Il se trouve à la fin du Livre de Mormon, au chapitre dix de Moroni." },
+      { en: "Moroni invites us to ponder God's mercy and then pray about what we have read.", target: "Moroni nous invite à méditer sur la miséricorde de Dieu, puis à prier au sujet de ce que nous avons lu." },
+      { en: "He promises that if we ask with a sincere heart, God will answer us.", target: "Il promet que si nous demandons avec un cœur sincère, Dieu nous répondra." },
+      { en: "The answer comes through the Holy Ghost — sometimes as a feeling of peace.", target: "La réponse vient par le Saint-Esprit — parfois comme un sentiment de paix." },
+      { en: "When I read this for the first time, I decided to test the promise.", target: "Quand j'ai lu cela pour la première fois, j'ai décidé de mettre la promesse à l'épreuve." },
+      { en: "I knelt down and asked God if the book was true.", target: "Je me suis agenouillé et j'ai demandé à Dieu si le livre était vrai." },
+      { en: "I felt a calm and clear assurance that I had never felt before.", target: "J'ai ressenti une assurance calme et claire que je n'avais jamais ressentie auparavant." },
+      { en: "That experience is the foundation of my testimony today.", target: "Cette expérience est le fondement de mon témoignage aujourd'hui." },
+      { en: "Would you be willing to try the same experiment this week?", target: "Seriez-vous prêt à faire la même expérience cette semaine ?" },
+    ],
+  },
+
+  // B1 — Spanish: teaching the Word of Wisdom
+  {
+    id: "seed-es-faith-word-of-wisdom",
+    title: "La Palabra de Sabiduría",
+    subtitle: "B1 — enseñar mandamientos de salud",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Today we want to share a commandment called the Word of Wisdom.", target: "Hoy queremos compartir un mandamiento llamado la Palabra de Sabiduría." },
+      { en: "It is a law of health that the Lord revealed to the prophet Joseph Smith in 1833.", target: "Es una ley de salud que el Señor reveló al profeta José Smith en 1833." },
+      { en: "It teaches us to take care of our body, which is a gift from God.", target: "Nos enseña a cuidar nuestro cuerpo, que es un regalo de Dios." },
+      { en: "We do not drink alcohol, coffee, or tea, and we do not use tobacco or harmful drugs.", target: "No tomamos alcohol, café ni té, y no usamos tabaco ni drogas nocivas." },
+      { en: "We try to eat healthy foods like fruits, vegetables, and whole grains.", target: "Tratamos de comer alimentos sanos como frutas, verduras y cereales integrales." },
+      { en: "Maybe this seems difficult, but God promises great blessings to those who obey.", target: "Tal vez esto parezca difícil, pero Dios promete grandes bendiciones a los que obedecen." },
+      { en: "He promises health, strength, and wisdom — even spiritual treasures of knowledge.", target: "Promete salud, fuerza y sabiduría — incluso tesoros espirituales de conocimiento." },
+      { en: "I have seen this promise fulfilled in my own family.", target: "He visto esta promesa cumplirse en mi propia familia." },
+      { en: "Do you think you could live this commandment with the Lord's help?", target: "¿Cree que podría vivir este mandamiento con la ayuda del Señor?" },
+      { en: "We will support you and pray for you as you make this change.", target: "Le apoyaremos y oraremos por usted mientras hace este cambio." },
+    ],
+  },
+
+  // B2 — German: addressing an investigator's concern
+  {
+    id: "seed-de-faith-investigator-concern",
+    title: "Zweifel eines Forschenden",
+    subtitle: "B2 — Antwort auf Bedenken zur Bibel",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "I appreciate you sharing your concern with us — it shows you take the gospel seriously.", target: "Ich danke Ihnen, dass Sie uns Ihre Bedenken mitteilen — das zeigt, dass Sie das Evangelium ernst nehmen." },
+      { en: "You asked whether the Book of Mormon contradicts the Bible, and that is a fair question.", target: "Sie fragten, ob das Buch Mormon der Bibel widerspricht, und das ist eine berechtigte Frage." },
+      { en: "We believe the Bible is the word of God, and we read it daily alongside the Book of Mormon.", target: "Wir glauben, dass die Bibel das Wort Gottes ist, und wir lesen sie täglich neben dem Buch Mormon." },
+      { en: "The two books complement each other — both testify that Jesus Christ is the Savior of the world.", target: "Die beiden Bücher ergänzen einander — beide bezeugen, dass Jesus Christus der Erlöser der Welt ist." },
+      { en: "The prophet Ezekiel even spoke of two records that would one day be joined together.", target: "Der Prophet Hesekiel sprach sogar von zwei Aufzeichnungen, die eines Tages vereint werden würden." },
+      { en: "Rather than weakening biblical teaching, the Book of Mormon strengthens and clarifies it.", target: "Anstatt die biblische Lehre zu schwächen, stärkt und klärt das Buch Mormon sie." },
+      { en: "Of course, you don't have to take our word for it — God himself can confirm the truth to you.", target: "Sie müssen sich natürlich nicht auf unser Wort verlassen — Gott selbst kann Ihnen die Wahrheit bestätigen." },
+      { en: "I would invite you to read both books prayerfully and ask the Lord to enlighten you.", target: "Ich möchte Sie einladen, beide Bücher mit einem Gebetsherzen zu lesen und den Herrn um Erleuchtung zu bitten." },
+      { en: "Honest doubts, when brought to God, often lead to the deepest spiritual experiences.", target: "Aufrichtige Zweifel führen, wenn man sie zu Gott bringt, oft zu den tiefsten geistigen Erlebnissen." },
+      { en: "Would you be willing to study and pray about it for a week before our next visit?", target: "Wären Sie bereit, eine Woche lang darüber zu studieren und zu beten, bevor wir uns wiedersehen?" },
+    ],
+  },
+
+  // B2 — Portuguese: baptismal interview
+  {
+    id: "seed-pt-faith-baptismal-interview",
+    title: "Entrevista Batismal",
+    subtitle: "B2 — entrevista oficial com o líder distrital",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Welcome, Maria. Thank you for being willing to have this interview today.", target: "Bem-vinda, Maria. Obrigado por estar disposta a fazer esta entrevista hoje." },
+      { en: "Before we begin, I'd like to offer a brief prayer to invite the Spirit.", target: "Antes de começarmos, gostaria de fazer uma breve oração para convidar o Espírito." },
+      { en: "Do you believe that God is our loving Heavenly Father?", target: "Você acredita que Deus é nosso Pai Celestial amoroso?" },
+      { en: "Do you believe that Jesus Christ is the Son of God and the Savior of the world?", target: "Você acredita que Jesus Cristo é o Filho de Deus e o Salvador do mundo?" },
+      { en: "Do you have a personal testimony that Joseph Smith was a true prophet?", target: "Você tem um testemunho pessoal de que Joseph Smith foi um verdadeiro profeta?" },
+      { en: "Have you repented of any serious sins, and are you willing to keep repenting?", target: "Você se arrependeu de quaisquer pecados graves e está disposta a continuar se arrependendo?" },
+      { en: "Are you willing to live the Word of Wisdom and the law of chastity?", target: "Você está disposta a viver a Palavra de Sabedoria e a lei da castidade?" },
+      { en: "Do you understand that baptism is a sacred covenant with God?", target: "Você entende que o batismo é um convênio sagrado com Deus?" },
+      { en: "Are you willing to attend church each Sunday and serve in the ward?", target: "Você está disposta a frequentar a igreja todo domingo e servir na ala?" },
+      { en: "Based on what we have discussed, I feel you are ready and worthy for baptism.", target: "Com base no que conversamos, sinto que você está pronta e digna para o batismo." },
+      { en: "May the Lord bless you as you take this important step in your life.", target: "Que o Senhor a abençoe ao dar este passo tão importante em sua vida." },
+    ],
+  },
+
+  // B2 — French: addressing the priesthood authority question
+  {
+    id: "seed-fr-faith-priesthood-authority",
+    title: "L'Autorité de la Prêtrise",
+    subtitle: "B2 — répondre à une question doctrinale",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Your question about priesthood authority is one of the most important you could ask.", target: "Votre question sur l'autorité de la prêtrise est l'une des plus importantes que vous puissiez poser." },
+      { en: "Throughout history, God has always called prophets and given them authority to act in his name.", target: "Tout au long de l'histoire, Dieu a toujours appelé des prophètes et leur a donné l'autorité d'agir en son nom." },
+      { en: "Jesus himself ordained his apostles and gave them the keys of the kingdom.", target: "Jésus lui-même ordonna ses apôtres et leur donna les clés du royaume." },
+      { en: "After their deaths, that authority was gradually lost from the earth — this is what we call the Apostasy.", target: "Après leur mort, cette autorité fut progressivement perdue sur la terre — c'est ce que nous appelons l'Apostasie." },
+      { en: "Without divine authority, no one can perform the saving ordinances of the gospel.", target: "Sans autorité divine, personne ne peut accomplir les ordonnances salvatrices de l'évangile." },
+      { en: "In 1829, John the Baptist appeared and restored the Aaronic Priesthood to Joseph Smith and Oliver Cowdery.", target: "En 1829, Jean-Baptiste apparut et rétablit la Prêtrise d'Aaron auprès de Joseph Smith et d'Oliver Cowdery." },
+      { en: "Shortly afterward, Peter, James, and John came as resurrected beings to restore the Melchizedek Priesthood.", target: "Peu après, Pierre, Jacques et Jean vinrent en tant qu'êtres ressuscités pour rétablir la Prêtrise de Melchisédek." },
+      { en: "This authority has been passed down in an unbroken line to the leaders of the Church today.", target: "Cette autorité a été transmise sans interruption jusqu'aux dirigeants de l'Église d'aujourd'hui." },
+      { en: "I bear witness that this priesthood is real — I have seen it heal the sick and bless families.", target: "Je témoigne que cette prêtrise est réelle — je l'ai vue guérir des malades et bénir des familles." },
+      { en: "I invite you to pray about whether the priesthood has truly been restored.", target: "Je vous invite à prier pour savoir si la prêtrise a vraiment été rétablie." },
+    ],
+  },
+
+  // C1 — Italian: doctrinal exegesis on the Atonement
+  {
+    id: "seed-it-faith-atonement-exegesis",
+    title: "L'Espiazione di Gesù Cristo",
+    subtitle: "C1 — esegesi dottrinale del sacrificio espiatorio",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      { en: "The atoning sacrifice of Jesus Christ is the central event of all human history and the foundation of all gospel doctrine.", target: "Il sacrificio espiatorio di Gesù Cristo è l'evento centrale di tutta la storia umana e il fondamento di ogni dottrina evangelica." },
+      { en: "Without this divine offering, no person, however righteous, could overcome the inevitable consequences of sin and death.", target: "Senza questa offerta divina, nessuno, per quanto giusto, potrebbe superare le inevitabili conseguenze del peccato e della morte." },
+      { en: "In the Garden of Gethsemane, the Savior took upon himself not only every sin ever committed, but also the sorrows, sicknesses, and afflictions of all mankind.", target: "Nel Giardino di Getsemani, il Salvatore prese su di sé non solo tutti i peccati mai commessi, ma anche i dolori, le infermità e le afflizioni di tutta l'umanità." },
+      { en: "His suffering was so intense that, as the prophet Luke records, he sweat blood from every pore.", target: "La sua sofferenza fu così intensa che, come riporta il profeta Luca, sudò sangue da ogni poro." },
+      { en: "On Calvary, having drunk the bitter cup his Father had given him, he willingly laid down his life on the cross.", target: "Sul Calvario, avendo bevuto l'amaro calice che il Padre gli aveva dato, depose volontariamente la vita sulla croce." },
+      { en: "Three days later, his triumphant resurrection broke the chains of physical death for every soul that has ever lived or will live.", target: "Tre giorni dopo, la sua trionfante risurrezione spezzò le catene della morte fisica per ogni anima che sia mai vissuta o vivrà." },
+      { en: "The Atonement is therefore both infinite in its scope and intimately personal in its application to each individual.", target: "L'Espiazione è dunque al tempo stesso infinita nella sua portata e intimamente personale nella sua applicazione a ciascun individuo." },
+      { en: "Through faith, repentance, and the ordinances of the gospel, the cleansing power of the Atonement becomes operative in our lives.", target: "Mediante la fede, il pentimento e le ordinanze del vangelo, il potere purificatore dell'Espiazione diventa operante nella nostra vita." },
+      { en: "Beyond forgiveness, the Atonement also enables us — gradually transforming our weaknesses into strengths through divine grace.", target: "Oltre al perdono, l'Espiazione ci rende anche capaci — trasformando gradualmente le nostre debolezze in punti di forza mediante la grazia divina." },
+      { en: "I bear solemn witness that the Savior's sacrifice is the most profound expression of love the universe has ever known.", target: "Rendo solenne testimonianza che il sacrificio del Salvatore è l'espressione d'amore più profonda che l'universo abbia mai conosciuto." },
+      { en: "May we never trivialize, but always seek to understand more deeply what he has done for each of us.", target: "Che non lo banalizziamo mai, ma cerchiamo sempre di comprendere più profondamente ciò che egli ha fatto per ciascuno di noi." },
     ],
   },
 ];

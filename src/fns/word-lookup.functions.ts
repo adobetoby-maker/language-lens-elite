@@ -9,27 +9,79 @@ const InputSchema = z.object({
   nativeLanguage: z.string().min(1).max(40).optional(),
 });
 
+export interface RelatedWord {
+  word: string;
+  reading?: string;       // hiragana for Japanese, hangul for Korean, transliteration otherwise
+  gloss: string;          // short meaning in learner's native language
+}
+
 export interface WordCardData {
   headword: string;
   partOfSpeech: string;
   phonetic: string;
   baseDefinition: string;
   conjugationNote: string;
+  contextNuance: string;          // why THIS word in THIS sentence — register, formality, connotation
   exampleSentence: string;
   exampleTranslation: string;
+  // Japanese-only fields (optional for other languages):
+  pitchAccent?: string;           // e.g. "Heiban (0)" or "Atamadaka (1)" with mora pattern
+  alternativeReadings?: string[]; // e.g. ["こ", "しょう"] for 小 — when same kanji takes other readings
+  // Universal expansion fields:
+  commonCollocations?: string[];  // 3–5 phrases this word frequently appears in
+  relatedWords?: RelatedWord[];   // 2–4 synonyms / antonyms / same-root terms
+  etymologyNote?: string;         // brief origin (e.g. kanji breakdown, Latin root)
+}
+
+// ── Server-side cache ──────────────────────────────────────────────────────
+// Per-instance LRU cache keyed by (language, word, sentence). Reduces Anthropic
+// costs on repeat clicks (very common in a reading app — users click the same
+// word multiple times to study it). Sentence is part of the key because the
+// `conjugationNote` and `contextNuance` are sentence-specific.
+//
+// On Cloudflare Workers / Fluid Compute, instances are reused across requests,
+// so this cache is genuinely warm. Eviction at MAX_ENTRIES keeps memory bounded.
+const MAX_CACHE_ENTRIES = 500;
+const cache = new Map<string, WordCardData>();
+
+function cacheKey(word: string, sentence: string, language: string, native: string): string {
+  // Cheap, stable key. Sentence is included verbatim because click context matters.
+  return `${language}|${native}|${word}|${sentence}`;
+}
+
+function cacheGet(key: string): WordCardData | undefined {
+  const v = cache.get(key);
+  if (v !== undefined) {
+    // LRU touch: re-insert to move to end
+    cache.delete(key);
+    cache.set(key, v);
+  }
+  return v;
+}
+
+function cacheSet(key: string, value: WordCardData) {
+  if (cache.size >= MAX_CACHE_ENTRIES) {
+    // Evict oldest (first inserted)
+    const first = cache.keys().next().value;
+    if (first !== undefined) cache.delete(first);
+  }
+  cache.set(key, value);
 }
 
 export const lookupWord = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => InputSchema.parse(input))
-  .handler(async ({ data }): Promise<{ card: WordCardData | null; error: string | null }> => {
+  .handler(async ({ data }): Promise<{ card: WordCardData | null; error: string | null; cached?: boolean }> => {
     const KEY = process.env.ANTHROPIC_API_KEY;
     if (!KEY) return { card: null, error: "AI is not configured" };
 
-    const systemPrompt =
-      "You are a precise multilingual dictionary and grammar tutor. Always respond by calling the provided tool with accurate linguistic data.";
+    const native = data.nativeLanguage ?? "English";
+    const key = cacheKey(data.word, data.sentence, data.language, native);
+    const hit = cacheGet(key);
+    if (hit) return { card: hit, error: null, cached: true };
 
     const isJapanese = /japanese|日本/i.test(data.language);
     const isKorean = /korean|한국/i.test(data.language);
+
     let phoneticInstruction = "For the phonetic field, use IPA notation.";
     if (isJapanese) {
       phoneticInstruction =
@@ -39,57 +91,147 @@ export const lookupWord = createServerFn({ method: "POST" })
         "For the phonetic field, ALWAYS use standard Revised Romanization (RR) of Korean (e.g. 'annyeonghaseyo', 'hangugeo', 'gamsahamnida'). NEVER use IPA symbols. Use only basic Latin letters a-z. Apply contextual pronunciation rules (linking, assimilation) as actually pronounced.";
     }
 
-    const native = data.nativeLanguage ?? "English";
-    const userPrompt = `The user clicked the word "${data.word}" in this sentence: "${data.sentence}". The target language is ${data.language}. The learner's native language is ${native}; write baseDefinition and exampleTranslation IN ${native}. Return the requested fields. ${phoneticInstruction} The conjugationNote must explain (in ${native}) exactly how this word is being used in THIS sentence (tense, person, number, mood if verb; case, gender, number if noun/adj). Keep all answers concise.`;
+    const japaneseSpecificInstruction = isJapanese
+      ? `JAPANESE-SPECIFIC REQUIREMENTS:
+- pitchAccent: REQUIRED. Provide the standard Tokyo-dialect pitch accent type AND mora number, e.g. "Heiban (0)", "Atamadaka (1)", "Nakadaka (2)", "Odaka (3)". If the headword is verbal/adjectival, use the dictionary form's pitch.
+- alternativeReadings: REQUIRED if the headword contains kanji. List the OTHER common on'yomi/kun'yomi readings of the kanji that the learner is likely to encounter, with a one-word context for each (e.g. ["しょう (in 大小, daishō)", "こ (in 小学校, shōgakkō)"]). If the headword is single-kanji, list 2–4. If multi-kanji, list 1 alternative reading per character.
+- etymologyNote: REQUIRED if the headword contains kanji. Brief breakdown of each kanji's component meaning + how the compound's literal meaning maps to its idiomatic meaning.
+- commonCollocations: REQUIRED. 3–5 high-frequency collocations in natural Japanese (with brief gloss in ${native}).
+- relatedWords: REQUIRED. 3 related lexical items — synonyms, antonyms, or same-root terms — each with reading (hiragana) and a short gloss in ${native}.`
+      : `CROSS-LANGUAGE EXPANSION:
+- commonCollocations: REQUIRED. 3–5 high-frequency phrases this word appears in.
+- relatedWords: REQUIRED. 2–4 related lexical items (synonyms, antonyms, derivations) with brief gloss in ${native}.
+- etymologyNote: OPTIONAL. Include a short etymology when it aids memory (e.g. Latin/Greek root for Romance/English, or noteworthy historical shift).
+- pitchAccent: OMIT (Japanese-only).
+- alternativeReadings: OMIT (Japanese-only).`;
+
+    const systemPrompt = `You are an expert multilingual dictionary, etymologist, and grammar tutor for adult learners. You produce dense, accurate, immediately-useful word cards. You ALWAYS respond by calling the provided tool. Every field must be linguistically precise — never approximate. When unsure, mark it explicitly rather than guessing.
+
+For each lookup you must provide BOTH the bare dictionary entry AND the contextual analysis (how this specific word is functioning in this specific sentence). Treat conjugationNote as sentence-specific; treat contextNuance as the register/formality/connotation read (why a writer/speaker would pick THIS word over a near-synonym).`;
+
+    const userPrompt = `The user clicked the word "${data.word}" in this sentence:
+
+"${data.sentence}"
+
+Target language: ${data.language}
+Learner's native language: ${native}
+
+Write baseDefinition, conjugationNote, contextNuance, exampleTranslation, and all gloss fields IN ${native}.
+
+${phoneticInstruction}
+
+The conjugationNote must explain exactly how this word is being used in THIS sentence (tense/person/number/mood for verbs; case/gender/number for nouns/adjectives; particle role for Japanese; honorific level for Korean/Japanese where relevant).
+
+The contextNuance field should explain why THIS word was chosen here vs. near-synonyms — register (formal/casual/literary), connotation, regional flavor, or stylistic effect. 1–2 sentences.
+
+${japaneseSpecificInstruction}
+
+Be thorough but every field stays focused. Aim for the depth of a good textbook entry, not a tweet.`;
+
+    const properties: Record<string, unknown> = {
+      headword: { type: "string", description: "Dictionary base form (lemma)" },
+      partOfSpeech: {
+        type: "string",
+        description: "noun, verb, adjective, adverb, pronoun, particle, etc.",
+      },
+      phonetic: {
+        type: "string",
+        description:
+          "Pronunciation. Japanese: Hepburn romaji (Latin letters only). Korean: Revised Romanization. Others: IPA.",
+      },
+      baseDefinition: {
+        type: "string",
+        description: "Core meaning in the learner's native language. 1 sentence.",
+      },
+      conjugationNote: {
+        type: "string",
+        description:
+          "How this word is being used in THIS sentence (grammar role, tense, particle function, etc.).",
+      },
+      contextNuance: {
+        type: "string",
+        description:
+          "Why this word was chosen here vs near-synonyms — register, connotation, stylistic effect. 1–2 sentences.",
+      },
+      exampleSentence: {
+        type: "string",
+        description: "One natural example sentence in the target language using this word.",
+      },
+      exampleTranslation: {
+        type: "string",
+        description: "Translation of the example sentence in the learner's native language.",
+      },
+      commonCollocations: {
+        type: "array",
+        items: { type: "string" },
+        description:
+          "3–5 high-frequency collocations / fixed phrases this word appears in, each with a brief gloss.",
+      },
+      relatedWords: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            word: { type: "string" },
+            reading: { type: "string" },
+            gloss: { type: "string" },
+          },
+          required: ["word", "gloss"],
+          additionalProperties: false,
+        },
+        description: "2–4 related items: synonyms, antonyms, or same-root terms.",
+      },
+      etymologyNote: {
+        type: "string",
+        description:
+          "Brief origin/breakdown that aids memory — kanji components for Japanese, Latin/Greek roots for Romance, etc.",
+      },
+    };
+
+    if (isJapanese) {
+      (properties as Record<string, unknown>).pitchAccent = {
+        type: "string",
+        description: "Tokyo-dialect pitch accent type + mora number, e.g. 'Heiban (0)', 'Atamadaka (1)'.",
+      };
+      (properties as Record<string, unknown>).alternativeReadings = {
+        type: "array",
+        items: { type: "string" },
+        description:
+          "Other common readings of the kanji(s) in the headword that the learner is likely to encounter.",
+      };
+    }
+
+    const required = isJapanese
+      ? [
+          "headword", "partOfSpeech", "phonetic", "baseDefinition",
+          "conjugationNote", "contextNuance", "exampleSentence", "exampleTranslation",
+          "pitchAccent", "alternativeReadings", "commonCollocations", "relatedWords", "etymologyNote",
+        ]
+      : [
+          "headword", "partOfSpeech", "phonetic", "baseDefinition",
+          "conjugationNote", "contextNuance", "exampleSentence", "exampleTranslation",
+          "commonCollocations", "relatedWords",
+        ];
 
     try {
       const client = new Anthropic({ apiKey: KEY });
       const response = await client.messages.create({
-        model: "claude-haiku-4-5",
-        max_tokens: 512,
+        // Sonnet 4.6 — chosen over Haiku because word-lookup quality is the
+        // central UX of the reading app. Latency cost is offset by the cache
+        // above (every repeat click is instant) and by the fact that this is
+        // a one-shot tool call with bounded output, not a long generation.
+        model: "claude-sonnet-4-6",
+        max_tokens: 1500,
         system: systemPrompt,
         messages: [{ role: "user", content: userPrompt }],
         tools: [
           {
             name: "return_word_card",
-            description: "Return structured dictionary + grammar info for the clicked word.",
+            description: "Return rich, structured dictionary + grammar + context info for the clicked word.",
             input_schema: {
               type: "object" as const,
-              properties: {
-                headword: { type: "string", description: "Dictionary base form" },
-                partOfSpeech: {
-                  type: "string",
-                  description: "noun, verb, adjective, adverb, pronoun, preposition, etc.",
-                },
-                phonetic: {
-                  type: "string",
-                  description:
-                    "Pronunciation. For Japanese: Hepburn romaji using only Latin letters (no IPA). For other languages: IPA.",
-                },
-                baseDefinition: { type: "string", description: "Simple meaning in the learner's native language" },
-                conjugationNote: {
-                  type: "string",
-                  description:
-                    "How this word is used in THIS sentence (tense/person/number/mood for verbs; case/gender/number for nouns/adj).",
-                },
-                exampleSentence: {
-                  type: "string",
-                  description: "One short example in the target language.",
-                },
-                exampleTranslation: {
-                  type: "string",
-                  description: "Translation of the example sentence in the learner's native language.",
-                },
-              },
-              required: [
-                "headword",
-                "partOfSpeech",
-                "phonetic",
-                "baseDefinition",
-                "conjugationNote",
-                "exampleSentence",
-                "exampleTranslation",
-              ],
+              properties: properties as never,
+              required,
               additionalProperties: false,
             },
           },
@@ -101,7 +243,9 @@ export const lookupWord = createServerFn({ method: "POST" })
       if (!toolUse || toolUse.type !== "tool_use") {
         return { card: null, error: "No card returned." };
       }
-      return { card: toolUse.input as WordCardData, error: null };
+      const card = toolUse.input as WordCardData;
+      cacheSet(key, card);
+      return { card, error: null, cached: false };
     } catch (e) {
       console.error("lookupWord failed", e);
       return { card: null, error: "Lookup failed." };

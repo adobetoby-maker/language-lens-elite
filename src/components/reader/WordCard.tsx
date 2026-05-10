@@ -17,9 +17,12 @@ const LOCALE: Record<Language, string> = {
   Portuguese: "pt-PT",
 };
 
-const CARD_W_DEFAULT = 360;
-const CARD_W_CJK = 300;
-const CARD_H = 460;
+const CARD_W_DEFAULT = 380;
+const CARD_W_CJK = 340;
+// Rich card with collocations / related words / etymology — render-time we cap
+// the visible height with overflow-y scroll so the card still fits a phone
+// viewport. Used only for the smart-positioning math, not as a hard limit.
+const CARD_H = 560;
 
 function cardWidth(language: Language): number {
   return language === "Japanese" || language === "Korean" ? CARD_W_CJK : CARD_W_DEFAULT;
@@ -156,7 +159,7 @@ export function WordCard({
         <X className="h-3 w-3" />
       </button>
 
-      <div className="px-5 pb-5 pt-12">
+      <div className="max-h-[80vh] overflow-y-auto px-5 pb-5 pt-12">
         {loading && <CardSkeleton />}
 
         {!loading && error && (
@@ -170,11 +173,19 @@ export function WordCard({
             <h3 className="font-display text-3xl font-bold leading-tight tracking-tight">
               {card.headword}
             </h3>
-            <div className="mt-1 flex items-center gap-2">
+            <div className="mt-1 flex flex-wrap items-center gap-2">
               <span className="font-mono text-xs text-gold">{card.phonetic}</span>
               <span className="inline-flex items-center rounded-full border border-border/70 bg-background/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                 {card.partOfSpeech}
               </span>
+              {card.pitchAccent && (
+                <span
+                  title="Tokyo-dialect pitch accent"
+                  className="inline-flex items-center rounded-full border border-sky-500/40 bg-sky-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-sky-300"
+                >
+                  ♪ {card.pitchAccent}
+                </span>
+              )}
             </div>
 
             <p className="mt-3 text-sm leading-relaxed text-foreground/90">
@@ -198,6 +209,17 @@ export function WordCard({
               </p>
             </div>
 
+            {card.contextNuance && (
+              <div className="mt-3 rounded-xl border border-violet-500/30 bg-violet-500/[0.07] p-3">
+                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-violet-300">
+                  ✎ Why this word
+                </div>
+                <p className="text-[13px] leading-relaxed text-foreground/90">
+                  {card.contextNuance}
+                </p>
+              </div>
+            )}
+
             <div className="mt-4">
               <p className="font-display text-base italic text-foreground">
                 "{card.exampleSentence}"
@@ -206,6 +228,71 @@ export function WordCard({
                 {card.exampleTranslation}
               </p>
             </div>
+
+            {card.commonCollocations && card.commonCollocations.length > 0 && (
+              <div className="mt-4">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  ⊕ Common phrases
+                </div>
+                <ul className="space-y-1 text-[12px] leading-snug text-foreground/85">
+                  {card.commonCollocations.map((c, i) => (
+                    <li key={i} className="border-l-2 border-gold/40 pl-2">{c}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {card.relatedWords && card.relatedWords.length > 0 && (
+              <div className="mt-4">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  ↔ Related words
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {card.relatedWords.map((rw, i) => (
+                    <span
+                      key={i}
+                      title={rw.gloss}
+                      className="inline-flex items-baseline gap-1 rounded-full border border-border/60 bg-background/40 px-2 py-0.5"
+                    >
+                      <span className="font-display text-[13px] text-foreground">{rw.word}</span>
+                      {rw.reading && (
+                        <span className="font-mono text-[9px] text-gold/80">{rw.reading}</span>
+                      )}
+                      <span className="font-mono text-[10px] text-muted-foreground">— {rw.gloss}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {card.alternativeReadings && card.alternativeReadings.length > 0 && (
+              <div className="mt-4">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  ⇄ Other kanji readings
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {card.alternativeReadings.map((r, i) => (
+                    <span
+                      key={i}
+                      className="rounded-md border border-sky-500/30 bg-sky-500/[0.07] px-1.5 py-0.5 font-mono text-[10px] text-sky-200"
+                    >
+                      {r}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {card.etymologyNote && (
+              <div className="mt-4 rounded-xl border border-border/60 bg-background/30 p-3">
+                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  ⌗ Origin
+                </div>
+                <p className="text-[12px] leading-relaxed text-foreground/80">
+                  {card.etymologyNote}
+                </p>
+              </div>
+            )}
 
             <div className="mt-5 flex items-center gap-2 border-t border-border/60 pt-4">
               <button

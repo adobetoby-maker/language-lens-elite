@@ -12,6 +12,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Snap a chalk line from the corner to the mark at sixteen feet.",
@@ -64,6 +65,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "We need sixty two-by-fours at eight feet and twenty sheets of OSB.",
@@ -112,6 +114,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Set the king stud first, then nail the trimmer studs on both sides of the opening.",
@@ -160,6 +163,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "This beam carries the floor load from the center of the house to the foundation wall.",
@@ -208,6 +212,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Use the level to check that the wall is perfectly plumb before nailing it off.",
@@ -256,6 +261,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Start the first sheet of sheathing at the bottom corner and keep it square to the layout.",
@@ -307,6 +313,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I need to shut off the main water supply before we can repair this leak.",
@@ -355,6 +362,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "We're running three-quarter-inch copper from the main to the water heater.",
@@ -403,6 +411,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "We have to shut the main valve before we can replace the pressure reducing valve.",
@@ -451,6 +460,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The main drain is backing up — I need to run the snake before we do anything else.",
@@ -499,6 +509,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "The water heater is twelve years old — it's time to replace it before it fails.",
@@ -547,6 +558,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The sewer lateral runs from the house to the street connection at a quarter-inch per foot slope.",
@@ -598,6 +610,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Mix the joint compound to a peanut butter consistency — not too thick, not too thin.",
@@ -646,6 +659,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Apply joint compound to the seam, then press the tape into it with the knife.",
@@ -694,6 +708,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "We're spraying an orange-peel texture — adjust the compressor to thirty PSI.",
@@ -742,6 +757,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Nail the corner bead every eight inches so it doesn't bow or shift.",
@@ -790,6 +806,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Sand the dried compound smooth, then wipe off all the dust with a damp cloth.",
@@ -838,6 +855,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Drive the screws until the head dimples the paper without breaking through it.",
@@ -889,6 +907,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Turn off the breaker and verify with a tester before you touch any wire.",
@@ -937,6 +956,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "This circuit is overloaded — move two of these outlets to a new twenty-amp circuit.",
@@ -985,6 +1005,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The main breaker is off — now verify at each circuit before you start working.",
@@ -1033,6 +1054,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "We're running EMT conduit along the ceiling in the commercial space — use one-inch for this run.",
@@ -1081,6 +1103,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Every metal electrical box must be bonded to the equipment grounding conductor.",
@@ -1129,6 +1152,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "All bathroom outlets must be GFCI — code requires it within six feet of water.",
@@ -1180,6 +1204,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The irrigation controller has eight zones — we'll program each one for the plant type.",
@@ -1228,6 +1253,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Dig the hole twice as wide as the root ball but no deeper than the root flare.",
@@ -1276,6 +1302,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "The grade needs to fall away from the foundation — minimum two percent slope.",
@@ -1324,6 +1351,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Spread the mulch three inches deep and keep it away from plant stems.",
@@ -1372,6 +1400,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Prune the dead wood first, then shape the canopy from the inside out.",
@@ -1420,6 +1449,7 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Mow at the highest setting during hot summer months — longer grass holds moisture better.",
@@ -1456,6 +1486,433 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       {
         en: "Water deeply once or twice a week rather than lightly every day — it builds deeper roots.",
         target: "Regue fundo uma ou duas vezes por semana em vez de levemente todos os dias — isso estimula raízes mais profundas.",
+      },
+    ],
+  },
+
+  // ── NEW: SCENARIOS ACROSS TRADES (level-balanced) ───────────────────────────
+
+  {
+    id: "seed-es-trades-supply-order",
+    title: "En la Maderería — Pedido de Materiales",
+    subtitle: "Pedido rápido en el mostrador",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "Good morning. I need ten sheets of drywall.",
+        target: "Buenos días. Necesito diez hojas de tabla roca.",
+      },
+      {
+        en: "Half-inch or five-eighths?",
+        target: "¿De media pulgada o de cinco octavos?",
+      },
+      {
+        en: "Half-inch, please. And one box of screws.",
+        target: "De media pulgada, por favor. Y una caja de tornillos.",
+      },
+      {
+        en: "Do you also need joint compound?",
+        target: "¿También necesita masilla?",
+      },
+      {
+        en: "Yes, two buckets. The light blue one.",
+        target: "Sí, dos cubetas. La azul claro.",
+      },
+      {
+        en: "Can you deliver to the job site today?",
+        target: "¿Pueden entregar a la obra hoy?",
+      },
+      {
+        en: "Yes, before three in the afternoon.",
+        target: "Sí, antes de las tres de la tarde.",
+      },
+      {
+        en: "Perfect. Put it on the company account.",
+        target: "Perfecto. Cárguelo a la cuenta de la empresa.",
+      },
+      {
+        en: "I will need a signature here.",
+        target: "Voy a necesitar una firma aquí.",
+      },
+      {
+        en: "Thank you. See you tomorrow.",
+        target: "Gracias. Hasta mañana.",
+      },
+    ],
+  },
+  {
+    id: "seed-fr-trades-end-of-day-handoff",
+    title: "Fin de Journée — Passation au Chef",
+    subtitle: "Compte rendu rapide en fin de journée",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "Boss, we are done for today.",
+        target: "Chef, on a fini pour aujourd'hui.",
+      },
+      {
+        en: "We finished the kitchen wall.",
+        target: "On a fini le mur de la cuisine.",
+      },
+      {
+        en: "The bathroom is almost ready.",
+        target: "La salle de bain est presque prête.",
+      },
+      {
+        en: "We need more screws tomorrow.",
+        target: "Il nous faut plus de vis demain.",
+      },
+      {
+        en: "The compressor is not working well.",
+        target: "Le compresseur ne marche pas bien.",
+      },
+      {
+        en: "I cleaned the tools and the truck.",
+        target: "J'ai nettoyé les outils et le camion.",
+      },
+      {
+        en: "What time do we start tomorrow?",
+        target: "On commence à quelle heure demain ?",
+      },
+      {
+        en: "At seven, like today.",
+        target: "À sept heures, comme aujourd'hui.",
+      },
+      {
+        en: "Good. See you tomorrow morning.",
+        target: "D'accord. À demain matin.",
+      },
+      {
+        en: "Have a good evening, boss.",
+        target: "Bonne soirée, chef.",
+      },
+    ],
+  },
+  {
+    id: "seed-pt-trades-safety-briefing",
+    title: "Diálogo de Segurança — Início do Turno",
+    subtitle: "Reunião de segurança matinal na obra",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Good morning, team. Quick safety talk before we start.",
+        target: "Bom dia, equipe. Rápida conversa de segurança antes de começar.",
+      },
+      {
+        en: "Today we are working at height, so everyone needs a harness.",
+        target: "Hoje vamos trabalhar em altura, então todos precisam de cinto de segurança.",
+      },
+      {
+        en: "Check your harness before you tie off to the anchor point.",
+        target: "Verifique seu cinto antes de prender no ponto de ancoragem.",
+      },
+      {
+        en: "Hard hats and safety glasses are required all day, no exceptions.",
+        target: "Capacete e óculos de proteção são obrigatórios o dia todo, sem exceção.",
+      },
+      {
+        en: "If you see something unsafe, stop the work and tell me right away.",
+        target: "Se você ver algo perigoso, pare o trabalho e me avise na hora.",
+      },
+      {
+        en: "The first aid kit is in the white truck by the gate.",
+        target: "O kit de primeiros socorros está na caminhonete branca perto do portão.",
+      },
+      {
+        en: "Drink water often — it is going to be hot today.",
+        target: "Beba água com frequência — vai fazer calor hoje.",
+      },
+      {
+        en: "Keep the walkways clear of cords and tools.",
+        target: "Mantenha as passagens livres de cabos e ferramentas.",
+      },
+      {
+        en: "Any questions before we get to work?",
+        target: "Alguma pergunta antes de começarmos o trabalho?",
+      },
+      {
+        en: "Okay, let's have a safe and productive day.",
+        target: "Beleza, vamos ter um dia seguro e produtivo.",
+      },
+    ],
+  },
+  {
+    id: "seed-it-trades-apprentice-instruction",
+    title: "Capomastro e Apprendista — Primo Giorno",
+    subtitle: "Istruzioni di base per il nuovo apprendista",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Welcome to the team. Today you watch and learn.",
+        target: "Benvenuto in squadra. Oggi guardi e impari.",
+      },
+      {
+        en: "Always wear your hard hat and gloves on the job site.",
+        target: "Indossa sempre il casco e i guanti in cantiere.",
+      },
+      {
+        en: "Never use a tool you do not know — ask first.",
+        target: "Non usare mai un attrezzo che non conosci — chiedi prima.",
+      },
+      {
+        en: "This is a tape measure. Read the marks carefully.",
+        target: "Questo è il flessometro. Leggi i segni con attenzione.",
+      },
+      {
+        en: "Measure twice and cut once — that is the rule.",
+        target: "Misura due volte e taglia una sola — questa è la regola.",
+      },
+      {
+        en: "Keep your work area clean so nobody trips.",
+        target: "Tieni pulita l'area di lavoro così nessuno inciampa.",
+      },
+      {
+        en: "If you do not understand, stop and ask me.",
+        target: "Se non capisci, fermati e chiedimi.",
+      },
+      {
+        en: "By next month, you will be using the saw alone.",
+        target: "Entro il mese prossimo, userai la sega da solo.",
+      },
+      {
+        en: "Take notes when I show you something new.",
+        target: "Prendi appunti quando ti mostro qualcosa di nuovo.",
+      },
+      {
+        en: "Good work today. Be here at seven tomorrow.",
+        target: "Buon lavoro oggi. Sii qui alle sette domani.",
+      },
+    ],
+  },
+  {
+    id: "seed-de-trades-customer-complaint",
+    title: "Kundenreklamation — Lösung vor Ort",
+    subtitle: "Beschwerde nach abgeschlossener Arbeit",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Good morning, Mrs. Becker. You called about a problem with the work?",
+        target: "Guten Morgen, Frau Becker. Sie haben wegen eines Problems mit der Arbeit angerufen?",
+      },
+      {
+        en: "Yes, the new faucet in the bathroom is dripping again.",
+        target: "Ja, der neue Wasserhahn im Bad tropft wieder.",
+      },
+      {
+        en: "I'm sorry to hear that. Let me take a look.",
+        target: "Das tut mir leid. Lassen Sie mich nachsehen.",
+      },
+      {
+        en: "I see — the seal was not seated properly.",
+        target: "Ich sehe es — die Dichtung saß nicht richtig.",
+      },
+      {
+        en: "I'll replace it now. It will take about twenty minutes.",
+        target: "Ich tausche sie jetzt aus. Es dauert ungefähr zwanzig Minuten.",
+      },
+      {
+        en: "There is no charge for this — it's covered under our warranty.",
+        target: "Dafür gibt es keine Kosten — das fällt unter unsere Garantie.",
+      },
+      {
+        en: "Thank you for being patient with us.",
+        target: "Danke, dass Sie geduldig mit uns sind.",
+      },
+      {
+        en: "Please test the faucet for a few days and call us if anything else comes up.",
+        target: "Bitte testen Sie den Hahn ein paar Tage und rufen Sie uns an, falls noch etwas auftritt.",
+      },
+      {
+        en: "I'll send a follow-up email to confirm everything is fixed.",
+        target: "Ich schicke Ihnen eine Nachricht, um zu bestätigen, dass alles in Ordnung ist.",
+      },
+      {
+        en: "Thank you for your trust in our company.",
+        target: "Danke für Ihr Vertrauen in unsere Firma.",
+      },
+    ],
+  },
+  {
+    id: "seed-es-trades-code-inspection",
+    title: "Inspección de Código — Conversación con el Inspector",
+    subtitle: "Visita oficial del inspector municipal",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Good morning, inspector. We're ready for the rough plumbing inspection.",
+        target: "Buenos días, inspector. Estamos listos para la inspección de plomería en bruto.",
+      },
+      {
+        en: "I need to see the pressure test holding at one hundred PSI for fifteen minutes.",
+        target: "Necesito ver la prueba de presión manteniéndose a cien PSI durante quince minutos.",
+      },
+      {
+        en: "The gauge has been steady since seven this morning — no drop at all.",
+        target: "El manómetro ha estado estable desde las siete de la mañana — sin ninguna caída.",
+      },
+      {
+        en: "Show me the venting on the second-floor bathroom group.",
+        target: "Muéstreme la ventilación del grupo de baños del segundo piso.",
+      },
+      {
+        en: "All vents tie into the main stack and exit through the roof above the snow line.",
+        target: "Todas las ventilaciones se conectan a la columna principal y salen por el techo sobre la línea de nieve.",
+      },
+      {
+        en: "I'm citing you on the cleanout access — it needs to be within five feet of the exterior wall.",
+        target: "Le voy a citar por el acceso al registro de limpieza — debe estar a menos de cinco pies del muro exterior.",
+      },
+      {
+        en: "We can relocate it today and call you back for a re-inspection tomorrow.",
+        target: "Podemos reubicarlo hoy y llamarle para una reinspección mañana.",
+      },
+      {
+        en: "Everything else looks compliant — good slope on the drains and proper hanger spacing.",
+        target: "Todo lo demás cumple con el código — buena pendiente en los drenajes y separación correcta de los soportes.",
+      },
+      {
+        en: "Once you fix the cleanout, you can sign off and move on to the cover inspection.",
+        target: "Una vez que arregle el registro, puede firmar el visto bueno y avanzar a la inspección de cierre.",
+      },
+      {
+        en: "Thank you, inspector. We appreciate the quick turnaround on the re-inspection.",
+        target: "Gracias, inspector. Apreciamos la rapidez para la reinspección.",
+      },
+    ],
+  },
+  {
+    id: "seed-fr-trades-subcontractor-coordination",
+    title: "Coordination des Sous-Traitants — Réunion Hebdomadaire",
+    subtitle: "Planning entre corps de métier",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "We need to lock down the schedule before the framing crew finishes the second floor.",
+        target: "Il faut verrouiller le planning avant que l'équipe de charpente termine le deuxième étage.",
+      },
+      {
+        en: "The electricians can rough in starting Wednesday if the inspector signs off on the framing.",
+        target: "Les électriciens peuvent commencer le passage des câbles mercredi si l'inspecteur valide la charpente.",
+      },
+      {
+        en: "Plumbers come in Thursday and Friday — they need access to the basement and the second-floor bathrooms.",
+        target: "Les plombiers viennent jeudi et vendredi — ils ont besoin d'accès au sous-sol et aux salles de bain de l'étage.",
+      },
+      {
+        en: "HVAC needs to coordinate with plumbing on the bulkhead in the kitchen ceiling.",
+        target: "La CVC doit se coordonner avec la plomberie sur le caisson au plafond de la cuisine.",
+      },
+      {
+        en: "The drywall crew can't start until all the rough inspections pass — that's our critical path.",
+        target: "L'équipe de plaques de plâtre ne peut pas commencer avant que toutes les inspections soient validées — c'est notre chemin critique.",
+      },
+      {
+        en: "I need everyone to clean up at the end of each day — the next trade can't work in a mess.",
+        target: "J'ai besoin que tout le monde nettoie à la fin de chaque journée — le prochain corps de métier ne peut pas travailler dans le désordre.",
+      },
+      {
+        en: "Material deliveries are staggered to avoid blocking the driveway for other crews.",
+        target: "Les livraisons de matériaux sont échelonnées pour éviter de bloquer l'allée aux autres équipes.",
+      },
+      {
+        en: "If anything slips, call me directly — don't tell another sub and create a chain reaction.",
+        target: "Si quelque chose dérape, appelez-moi directement — ne dites pas à un autre sous-traitant et créez une réaction en chaîne.",
+      },
+      {
+        en: "The owner is doing a walkthrough Friday afternoon — make sure your work is presentable.",
+        target: "Le propriétaire fait une visite vendredi après-midi — assurez-vous que votre travail soit présentable.",
+      },
+      {
+        en: "Same time next week to reset the plan for the finishes phase.",
+        target: "Même heure la semaine prochaine pour refaire le point sur la phase finitions.",
+      },
+    ],
+  },
+  {
+    id: "seed-ja-trades-blueprint-reading",
+    title: "図面の読み方 — 現場での打ち合わせ",
+    subtitle: "施工図の確認と寸法の打ち合わせ",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Look at the floor plan first to understand the overall layout of the rooms.",
+        target: "まず平面図を見て、部屋全体の配置を把握してください。",
+      },
+      {
+        en: "The dimensions on this elevation are in millimeters — double-check before cutting.",
+        target: "この立面図の寸法はミリメートル単位です — 切る前に必ず再確認してください。",
+      },
+      {
+        en: "The section view shows the wall thickness and the height of the window opening.",
+        target: "断面図には、壁の厚さと窓開口部の高さが示されています。",
+      },
+      {
+        en: "This symbol with the arrow indicates the direction of the floor joists.",
+        target: "矢印の付いたこの記号は、床の根太の方向を示しています。",
+      },
+      {
+        en: "The detail in the upper right corner shows how the corner is to be built.",
+        target: "右上の詳細図には、隅の納まり方が示されています。",
+      },
+      {
+        en: "If the plan and the field don't match, the plan governs — call the architect to confirm.",
+        target: "図面と現場が一致しない場合は、図面が優先します — 建築士に確認の電話をしてください。",
+      },
+      {
+        en: "The legend at the bottom of the sheet explains every symbol on the drawing.",
+        target: "図面下部の凡例で、図中のすべての記号が説明されています。",
+      },
+      {
+        en: "Pay attention to the revision date — we are working from the latest revision only.",
+        target: "改訂日に注意してください — 最新の改訂版だけを使って作業します。",
+      },
+      {
+        en: "The mechanical drawings are on a separate set — coordinate before you frame the soffit.",
+        target: "設備図面は別冊になっています — 下がり天井を組む前に必ず確認してください。",
+      },
+      {
+        en: "Mark anything unclear with a question and we will review it at the end of the day.",
+        target: "不明な箇所には印を付けておいてください — 一日の終わりに一緒に確認します。",
       },
     ],
   },

@@ -15,6 +15,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback calls the play in the huddle before the snap.", target: "El mariscal de campo llama la jugada en el huddle antes del snap." },
       { en: "The offense lines up and the center snaps the ball on the count of three.", target: "La ofensiva se alinea y el centro hace el snap al conteo de tres." },
@@ -38,6 +39,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback reads the defense and calls an audible at the line of scrimmage.", target: "Le quarterback lit la défense et appelle un audible à la ligne de mêlée." },
       { en: "The center snaps the ball, and the offense executes the play perfectly.", target: "Le centre snape le ballon et l'attaque exécute la pièce à la perfection." },
@@ -61,6 +63,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback takes the snap and drops back to pass.", target: "Der Quarterback nimmt den Snap entgegen und geht zurück, um zu werfen." },
       { en: "The defense is sending a blitz — the running back must pick up the free rusher.", target: "Die Defense schickt einen Blitz — der Running Back muss den freien Angreifer aufhalten." },
@@ -84,6 +87,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback calls the play in the huddle before everyone lines up.", target: "Il quarterback chiama la giocata nell'huddle prima che tutti si schierino." },
       { en: "The center snaps the ball and the quarterback fakes a handoff before passing.", target: "Il centro fa lo snap e il quarterback finta il passaggio al running back prima di lanciare." },
@@ -107,6 +111,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback calls the play in the huddle before the snap.", target: "クォーターバックはスナップの前にハドルでプレーを指示します。" },
       { en: "The center snaps the ball and the offense runs the play.", target: "センターがスナップし、オフェンスはプレーを実行します。" },
@@ -130,6 +135,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The quarterback calls the play in the huddle and everyone gets into position.", target: "O quarterback chama a jogada no huddle e todos assumem suas posições." },
       { en: "The center snaps the ball and the offensive line drives forward.", target: "O center faz o snap e a linha ofensiva avança com força." },
@@ -157,6 +163,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the pocket of the stick and sprinted to the crease.", target: "El atacante acarició el balón en la cabeza del stick y corrió hacia el área de portería." },
       { en: "The two players fought for the face-off at midfield.", target: "Los dos jugadores disputaron el face-off en el centro del campo." },
@@ -180,6 +187,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the pocket of the stick.", target: "L'attaquant a bercé le ballon dans le filet de sa crosse." },
       { en: "Both players hit the ground hard fighting for the face-off.", target: "Les deux joueurs se sont battus vigoureusement pour le face-off." },
@@ -203,6 +211,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the lacrosse stick and sprinted toward the crease.", target: "Der Angreifer wiegte den Ball im Lacrosse-Schläger und sprintete auf den Torraum zu." },
       { en: "The face-off at midfield determined which team started with possession.", target: "Das Face-off in der Mitte bestimmte, welches Team den Ballbesitz erhielt." },
@@ -226,6 +235,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the pocket and moved toward the crease.", target: "L'attaccante ha cullato la pallina nel cestino del bastone e si è avvicinato all'area di porta." },
       { en: "Both players fought hard for the face-off at the center of the field.", target: "Entrambi i giocatori si sono battuti duramente per il face-off al centro del campo." },
@@ -249,6 +259,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the stick's pocket and ran toward the crease.", target: "アタッカーはスティックのポケットでボールをあやし、クリースに向かって走りました。" },
       { en: "Both players battled for the face-off at the center circle.", target: "両選手はセンターサークルでフェイスオフを争いました。" },
@@ -272,6 +283,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The attacker cradled the ball in the stick and drove hard toward the crease.", target: "O atacante ninava a bola no bolso do taco e avançou forte em direção à área do goleiro." },
       { en: "Both players hit the turf fighting for the face-off at center field.", target: "Os dois jogadores caíram no chão disputando o face-off no meio do campo." },
@@ -299,6 +311,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the locks lift the jumper.", target: "El talonador lanza el balón al touche y los pilares elevan al saltador." },
       { en: "Both packs bound together and engaged for the scrum.", target: "Ambos packs se trabaron y se comprometieron en la melé." },
@@ -322,6 +335,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the jumper is lifted high.", target: "Le talonneur lance le ballon en touche et le sauteur est soulevé en hauteur." },
       { en: "Both packs crouched, bound, and set for the scrum on the five-metre line.", target: "Les deux packs se sont accroupis, liés et positionnés pour la mêlée sur la ligne des cinq mètres." },
@@ -345,6 +359,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the locks support the jumper.", target: "Der Hakler wirft den Ball ins Touche und die Schlossleute stützen den Springer." },
       { en: "Both packs engage for the scrum on the halfway line.", target: "Beide Mannschaftsblöcke gehen für das Gedränge auf der Mittellinie zusammen." },
@@ -368,6 +383,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the jumper is lifted.", target: "Il tallonatore lancia la palla nel touche e il saltatore viene sollevato." },
       { en: "Both packs set for the scrum and the referee called engage.", target: "I due pack si preparano per la mischia e l'arbitro chiama l'ingaggio." },
@@ -391,6 +407,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the jumper is lifted.", target: "フッカーがラインアウトにボールを投げ込み、ジャンパーが持ち上げられます。" },
       { en: "Both packs bind and set for the scrum.", target: "両チームのパックがバインドし、スクラムを組みます。" },
@@ -414,6 +431,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "The hooker throws the ball into the lineout and the jumper is lifted.", target: "O hooker joga a bola no lineout e o saltador é erguido." },
       { en: "Both packs bind and set for the scrum on the five-metre line.", target: "Os dois packs se unem e se posicionam para o scrum na linha de cinco metros." },
@@ -441,6 +459,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I try to go to the gym at least four times a week to stay fit.", target: "Intento ir al gimnasio al menos cuatro veces por semana para mantenerme en forma." },
       { en: "My workout today includes squats, bench press, and a thirty-minute jog on the treadmill.", target: "Mi entrenamiento de hoy incluye sentadillas, press de banca y una carrera de treinta minutos en la cinta." },
@@ -463,6 +482,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I try to go to the gym at least three times a week to stay in shape.", target: "J'essaie d'aller à la salle de sport au moins trois fois par semaine pour rester en forme." },
       { en: "My workout today includes weight training and a thirty-minute jog.", target: "Mon entraînement aujourd'hui comprend de la musculation et un jogging de trente minutes." },
@@ -485,6 +505,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I go to the gym four times a week to maintain my fitness level.", target: "Ich gehe viermal pro Woche ins Fitnessstudio, um mein Fitnessniveau zu halten." },
       { en: "My workout today consists of strength training and a half-hour jog.", target: "Mein heutiges Training besteht aus Krafttraining und einem halbstündigen Joggen." },
@@ -507,6 +528,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I try to go to the gym at least four times a week to stay fit.", target: "Cerco di andare in palestra almeno quattro volte alla settimana per mantenermi in forma." },
       { en: "My workout today includes weight training, core exercises, and a jog.", target: "Il mio allenamento oggi include pesi, esercizi per il core e una corsa." },
@@ -529,6 +551,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I try to go to the gym at least three times a week.", target: "週に少なくとも3回はジムに行くようにしています。" },
       { en: "My workout today includes weight training and a thirty-minute jog on the treadmill.", target: "今日のトレーニングはウエイトトレーニングとトレッドミルで30分のジョギングです。" },
@@ -551,6 +574,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "I try to go to the gym at least four times a week to keep fit.", target: "Tento ir à academia pelo menos quatro vezes por semana para me manter em forma." },
       { en: "My workout today includes weight training, abdominal exercises, and a jog.", target: "Meu treino hoje inclui musculação, abdominais e uma corrida leve." },
@@ -566,9 +590,6 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
 
   // ══════════════════════════════════════════════════════════════════════════
   // INTERNATIONAL TRAVEL — 6 languages
-  // NOTE: French entry covers a museum visit / cultural outing scenario
-  //       (airport already exists as culture-fr-travel-airport and
-  //        hotel as culture-fr-travel-hotel in library-state.tsx)
   // ══════════════════════════════════════════════════════════════════════════
 
   {
@@ -580,6 +601,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Good afternoon. I have a reservation under the name García for two nights.", target: "Buenas tardes. Tengo una reserva a nombre de García para dos noches." },
       { en: "Welcome. Could I see your passport and a credit card for the deposit, please?", target: "Bienvenido. ¿Podría ver su pasaporte y una tarjeta de crédito para el depósito, por favor?" },
@@ -603,6 +625,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Good morning. Two adult tickets please — do you offer any discounts for students?", target: "Bonjour. Deux billets adultes, s'il vous plaît — proposez-vous des réductions pour les étudiants ?" },
       { en: "The permanent collection is on the first and second floors; the temporary exhibition is on the third.", target: "La collection permanente se trouve aux premier et deuxième étages ; l'exposition temporaire est au troisième." },
@@ -626,6 +649,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Good morning. I would like to check in for my flight to Barcelona, please.", target: "Guten Morgen. Ich möchte bitte für meinen Flug nach Barcelona einchecken." },
       { en: "May I see your passport and boarding pass, please?", target: "Darf ich bitte Ihren Reisepass und Ihre Bordkarte sehen?" },
@@ -649,6 +673,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Excuse me, which platform does the train to Florence depart from?", target: "Scusi, da quale binario parte il treno per Firenze?" },
       { en: "Two tickets to Rome, second class please — do you have anything for the morning?", target: "Due biglietti per Roma, seconda classe per favore — avete qualcosa per la mattina?" },
@@ -672,6 +697,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Excuse me, where is the check-in counter for international flights?", target: "すみません、国際線のチェックインカウンターはどこですか？" },
       { en: "I have a reservation. My name is Smith — I booked a double room for three nights.", target: "予約があります。スミスと申します。ダブルルームを3泊予約しました。" },
@@ -695,6 +721,7 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       { en: "Good morning. I would like to check in for my flight to Lisbon, please.", target: "Bom dia. Gostaria de fazer o check-in para o meu voo para Lisboa, por favor." },
       { en: "May I see your passport and boarding pass?", target: "Posso ver seu passaporte e seu cartão de embarque?" },
@@ -706,6 +733,261 @@ export const SPORTS_B_TRAVEL_SEEDS: LibrarySeed[] = [
       { en: "I would like to book a tour to the waterfalls — do you have availability this week?", target: "Gostaria de reservar um passeio às cachoeiras — tem disponibilidade esta semana?" },
       { en: "My boarding pass is on my phone — is that accepted at the departure gate?", target: "Meu cartão de embarque está no celular — isso é aceito no portão de embarque?" },
       { en: "I left my travel documents in the hotel safe — I need to go back and get them.", target: "Deixei meus documentos de viagem no cofre do hotel — preciso voltar para buscá-los." },
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // NEW: TRAVEL & OUTDOOR SPORTS — 9 entries spread A1–B2
+  // Distribution: 2× A1, 3× A2, 3× B1, 2× B2 (one Japanese B2 gear talk)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // ── A1: Train ticket (Spanish) ─────────────────────────────────────────────
+  {
+    id: "seed-es-travel-train-ticket",
+    title: "Viajes: Comprar un Billete de Tren",
+    subtitle: "Frases simples para la taquilla — nivel principiante",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A1",
+    sentences: [
+      { en: "Hello. One ticket to Madrid, please.", target: "Hola. Un billete a Madrid, por favor." },
+      { en: "When is the next train?", target: "¿Cuándo es el próximo tren?" },
+      { en: "How much is it?", target: "¿Cuánto cuesta?" },
+      { en: "I want a window seat.", target: "Quiero un asiento de ventanilla." },
+      { en: "Which platform?", target: "¿Qué andén?" },
+      { en: "Is it a direct train?", target: "¿Es un tren directo?" },
+      { en: "Here is my card.", target: "Aquí tiene mi tarjeta." },
+      { en: "Thank you very much.", target: "Muchas gracias." },
+      { en: "Where is the platform?", target: "¿Dónde está el andén?" },
+      { en: "Have a good trip!", target: "¡Buen viaje!" },
+    ],
+  },
+
+  // ── A1: Bike rental (Italian) ──────────────────────────────────────────────
+  {
+    id: "seed-it-sports-bike-rental",
+    title: "Sport: Noleggio Bici",
+    subtitle: "Frasi semplici per noleggiare una bicicletta — principianti",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "A1",
+    sentences: [
+      { en: "Hello. I want to rent a bike.", target: "Ciao. Voglio noleggiare una bici." },
+      { en: "For one day, please.", target: "Per un giorno, per favore." },
+      { en: "How much does it cost?", target: "Quanto costa?" },
+      { en: "Do you have a helmet?", target: "Avete un casco?" },
+      { en: "The bike is too big.", target: "La bici è troppo grande." },
+      { en: "Do you have a smaller one?", target: "Ne avete una più piccola?" },
+      { en: "Where do I return it?", target: "Dove la riporto?" },
+      { en: "Here is my passport.", target: "Ecco il mio passaporto." },
+      { en: "Is there a map?", target: "C'è una mappa?" },
+      { en: "Thank you, see you later!", target: "Grazie, a dopo!" },
+    ],
+  },
+
+  // ── A2: Hostel check-in (German) ───────────────────────────────────────────
+  {
+    id: "seed-de-travel-hostel-checkin",
+    title: "Reisen: Check-in im Hostel",
+    subtitle: "Alltägliche Backpacker-Phrasen an der Rezeption",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Hi, I have a booking for two nights under Müller.", target: "Hallo, ich habe eine Buchung für zwei Nächte unter Müller." },
+      { en: "I booked a bed in the six-person dorm.", target: "Ich habe ein Bett im Sechserzimmer gebucht." },
+      { en: "Is breakfast included in the price?", target: "Ist das Frühstück im Preis inbegriffen?" },
+      { en: "What time is check-out tomorrow?", target: "Wann ist morgen der Check-out?" },
+      { en: "Where can I store my big backpack?", target: "Wo kann ich meinen großen Rucksack verstauen?" },
+      { en: "Is there a kitchen we can use?", target: "Gibt es eine Küche, die wir benutzen können?" },
+      { en: "What is the Wi-Fi password?", target: "Wie lautet das WLAN-Passwort?" },
+      { en: "Can you recommend a cheap place to eat nearby?", target: "Kannst du ein günstiges Restaurant in der Nähe empfehlen?" },
+      { en: "I need a towel — do you rent them?", target: "Ich brauche ein Handtuch — vermietet ihr welche?" },
+      { en: "Thanks, my bed is in room three, right?", target: "Danke, mein Bett ist in Zimmer drei, oder?" },
+    ],
+  },
+
+  // ── A2: Hiking trail directions (French) ───────────────────────────────────
+  {
+    id: "seed-fr-sports-hiking-trail",
+    title: "Sport : Sur le Sentier de Randonnée",
+    subtitle: "Demander son chemin et discuter du sentier en pleine nature",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Excuse me, is this the trail to the lake?", target: "Excusez-moi, c'est bien le sentier qui mène au lac ?" },
+      { en: "How long does it take to get there?", target: "Combien de temps faut-il pour y arriver ?" },
+      { en: "Follow the red markers on the trees.", target: "Suivez les marques rouges sur les arbres." },
+      { en: "Watch out — the trail is slippery after the rain.", target: "Attention, le sentier est glissant après la pluie." },
+      { en: "We have a map but no signal on our phones.", target: "Nous avons une carte mais aucun signal sur nos téléphones." },
+      { en: "I want to take a short break and drink some water.", target: "Je veux faire une petite pause et boire un peu d'eau." },
+      { en: "There is a beautiful view from the top of the hill.", target: "Il y a une belle vue depuis le sommet de la colline." },
+      { en: "We should turn back before it gets dark.", target: "On devrait faire demi-tour avant qu'il ne fasse nuit." },
+      { en: "Do you know if there is a refuge along the way?", target: "Savez-vous s'il y a un refuge en chemin ?" },
+      { en: "Thank you, have a good hike!", target: "Merci, bonne randonnée !" },
+    ],
+  },
+
+  // ── A2: Camping setup (Portuguese) ─────────────────────────────────────────
+  {
+    id: "seed-pt-sports-camping-setup",
+    title: "Esportes: Montando o Acampamento",
+    subtitle: "Conversas práticas ao chegar no camping",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "We are going to set up the tent over there, near the trees.", target: "Vamos montar a barraca ali, perto das árvores." },
+      { en: "Can you help me with the tent poles?", target: "Você pode me ajudar com as varetas da barraca?" },
+      { en: "Where can I get drinking water on the campsite?", target: "Onde consigo água potável no camping?" },
+      { en: "We need to make a fire before it gets dark.", target: "Precisamos acender uma fogueira antes de escurecer." },
+      { en: "Don't forget to keep food away from the tent.", target: "Não esqueça de manter a comida longe da barraca." },
+      { en: "The bathrooms are at the entrance, near the office.", target: "Os banheiros ficam na entrada, perto do escritório." },
+      { en: "It is going to be cold tonight — bring an extra blanket.", target: "Vai esfriar à noite — traga um cobertor a mais." },
+      { en: "Do you have a flashlight? I cannot find mine.", target: "Você tem uma lanterna? Não acho a minha." },
+      { en: "Tomorrow we will wake up early and hike to the waterfall.", target: "Amanhã vamos acordar cedo e caminhar até a cachoeira." },
+      { en: "This is much better than staying in a hotel.", target: "Isso é muito melhor do que ficar num hotel." },
+    ],
+  },
+
+  // ── B1: Lost luggage complaint (English→Spanish) ───────────────────────────
+  {
+    id: "seed-es-travel-lost-luggage",
+    title: "Viajes: Equipaje Perdido",
+    subtitle: "Reclamación en el mostrador de la aerolínea — escenario realista",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Hello, I just got off flight IB6275 from Madrid and my suitcase did not arrive.", target: "Hola, acabo de bajar del vuelo IB6275 desde Madrid y mi maleta no ha llegado." },
+      { en: "Here is my baggage claim ticket and my boarding pass.", target: "Aquí tiene mi resguardo de equipaje y mi tarjeta de embarque." },
+      { en: "It is a large black hard-shell suitcase with a red ribbon on the handle.", target: "Es una maleta rígida grande de color negro con una cinta roja en el asa." },
+      { en: "Could you check if it might still be on the carousel or in the back?", target: "¿Podría revisar si todavía podría estar en la cinta o en la parte de atrás?" },
+      { en: "I am staying at the Hotel Zócalo for the next four nights.", target: "Me alojo en el Hotel Zócalo durante las próximas cuatro noches." },
+      { en: "What happens if you cannot find it within twenty-four hours?", target: "¿Qué pasa si no la encuentran dentro de veinticuatro horas?" },
+      { en: "I need to buy some basic clothes and toiletries — does the airline cover that?", target: "Necesito comprar algo de ropa básica y artículos de aseo — ¿la aerolínea lo cubre?" },
+      { en: "Please send it to the hotel as soon as it arrives, day or night.", target: "Por favor envíenla al hotel en cuanto llegue, de día o de noche." },
+      { en: "Can you give me a reference number so I can track it online?", target: "¿Me puede dar un número de referencia para poder rastrearla por internet?" },
+      { en: "Thank you for your help — I really hope it shows up tomorrow.", target: "Gracias por su ayuda — espero de verdad que aparezca mañana." },
+    ],
+  },
+
+  // ── B1: Border crossing (German) ───────────────────────────────────────────
+  {
+    id: "seed-de-travel-border-crossing",
+    title: "Reisen: An der Grenze",
+    subtitle: "Gespräch mit dem Grenzbeamten bei der Einreise",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Good morning. Could you please show me your passport and your return ticket?", target: "Guten Morgen. Könnten Sie mir bitte Ihren Reisepass und Ihr Rückflugticket zeigen?" },
+      { en: "What is the purpose of your visit — business or tourism?", target: "Was ist der Zweck Ihres Aufenthalts — geschäftlich oder touristisch?" },
+      { en: "I am here on holiday for ten days to visit friends in Berlin.", target: "Ich bin für zehn Tage im Urlaub und besuche Freunde in Berlin." },
+      { en: "Where exactly will you be staying during your trip?", target: "Wo genau werden Sie während Ihres Aufenthalts wohnen?" },
+      { en: "I am staying at an apartment in Kreuzberg — here is the address.", target: "Ich wohne in einer Wohnung in Kreuzberg — hier ist die Adresse." },
+      { en: "Are you bringing any food, alcohol, or large amounts of cash with you?", target: "Führen Sie Lebensmittel, Alkohol oder größere Bargeldbeträge mit sich?" },
+      { en: "No, only my personal belongings and a couple of small gifts.", target: "Nein, nur meine persönlichen Sachen und ein paar kleine Geschenke." },
+      { en: "Have you visited any countries with a yellow fever risk recently?", target: "Waren Sie kürzlich in Ländern mit Gelbfieberrisiko?" },
+      { en: "Could you open this bag, please? It is a routine check.", target: "Könnten Sie bitte diese Tasche öffnen? Es ist eine Routinekontrolle." },
+      { en: "Thank you. Welcome to Germany — enjoy your stay.", target: "Vielen Dank. Willkommen in Deutschland — schönen Aufenthalt." },
+    ],
+  },
+
+  // ── B1: Surf break briefing (Portuguese) ───────────────────────────────────
+  {
+    id: "seed-pt-sports-surf-briefing",
+    title: "Esportes: Briefing de Surf",
+    subtitle: "Instrutor explica as condições do mar antes de entrar",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Bom dia, pessoal — let's go over the conditions before we paddle out today.", target: "Bom dia, pessoal — vamos repassar as condições antes de remarmos hoje." },
+      { en: "The swell is around one and a half meters, with a clean offshore wind.", target: "O swell está em torno de um metro e meio, com um vento offshore limpo." },
+      { en: "The waves are breaking left, so position yourself a bit to the right of the peak.", target: "As ondas estão quebrando para a esquerda, então posicionem-se um pouco à direita do pico." },
+      { en: "Watch out for the rip current near the rocks on the south side.", target: "Cuidado com a corrente de retorno perto das pedras do lado sul." },
+      { en: "If you get caught in the rip, stay calm and paddle parallel to the beach.", target: "Se forem pegos pela corrente, fiquem calmos e remem paralelo à praia." },
+      { en: "Always respect the surfer who is closest to the peak — that is their wave.", target: "Sempre respeitem o surfista mais próximo do pico — a onda é dele." },
+      { en: "Don't drop in on someone else's wave — it is dangerous and bad etiquette.", target: "Não dropem na onda dos outros — é perigoso e falta de respeito." },
+      { en: "We are going out for about an hour and a half before the tide changes.", target: "Vamos ficar na água cerca de uma hora e meia antes da maré mudar." },
+      { en: "If you need help, raise one arm in the air and I will paddle over.", target: "Se precisarem de ajuda, levantem um braço e eu remo até vocês." },
+      { en: "Have fun out there — and remember, the ocean always wins, so respect it.", target: "Divirtam-se lá fora — e lembrem-se, o mar sempre vence, então respeitem." },
+    ],
+  },
+
+  // ── B2: Tour guide narration (French) ──────────────────────────────────────
+  {
+    id: "seed-fr-travel-tour-guide",
+    title: "Voyage : Visite Guidée du Quartier Historique",
+    subtitle: "Récit d'une guide touristique professionnelle",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Welcome to the old town — over the next two hours we will walk through nearly a thousand years of history.", target: "Bienvenue dans la vieille ville — au cours des deux prochaines heures, nous traverserons près de mille ans d'histoire." },
+      { en: "On your left you can see the cathedral, whose construction began in 1163 and lasted almost two centuries.", target: "Sur votre gauche, vous apercevez la cathédrale, dont la construction a commencé en 1163 et a duré près de deux siècles." },
+      { en: "Notice the flying buttresses — without them, the upper walls and stained glass simply could not exist.", target: "Remarquez les arcs-boutants — sans eux, les murs supérieurs et les vitraux ne pourraient tout simplement pas exister." },
+      { en: "If you look carefully at the façade, you will see traces of the original polychrome paint that once covered the statues.", target: "Si vous observez attentivement la façade, vous verrez des traces de la polychromie d'origine qui recouvrait jadis les statues." },
+      { en: "We are now entering a small square that, in the Middle Ages, served as a marketplace and occasionally as an execution site.", target: "Nous entrons maintenant dans une petite place qui, au Moyen Âge, servait de marché et parfois de lieu d'exécution." },
+      { en: "The building on the corner used to belong to a wealthy merchant family who fled during the religious wars.", target: "Le bâtiment au coin appartenait autrefois à une riche famille de marchands qui a fui pendant les guerres de religion." },
+      { en: "Please feel free to take photos, but be mindful of the residents — people actually live in these buildings.", target: "N'hésitez pas à prendre des photos, mais soyez attentifs aux riverains — les gens vivent réellement dans ces immeubles." },
+      { en: "If anyone has a question about a particular detail, this is the perfect moment to ask before we move on.", target: "Si quelqu'un a une question sur un détail particulier, c'est le moment idéal pour la poser avant que nous continuions." },
+      { en: "In about ten minutes we will reach the river, where I will tell you about the floods of 1910 and how the city responded.", target: "Dans une dizaine de minutes, nous atteindrons le fleuve, où je vous parlerai des crues de 1910 et de la réaction de la ville." },
+      { en: "At the end of the tour I will recommend a few cafés and bistros where you can rest your feet and enjoy a proper meal.", target: "À la fin de la visite, je vous recommanderai quelques cafés et bistrots où vous pourrez vous reposer les pieds et savourer un vrai repas." },
+    ],
+  },
+
+  // ── B2: Cycling gear discussion (Japanese) ─────────────────────────────────
+  {
+    id: "seed-ja-sports-cycling-gear",
+    title: "スポーツ：ロードバイクの機材談義",
+    subtitle: "経験豊富なサイクリスト同士の専門的な会話",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "I finally upgraded to electronic shifting, and the precision on long climbs is genuinely a different experience.", target: "ついに電動変速にアップグレードしたんだけど、長い登りでの変速の精度は本当に別次元の体験だよ。" },
+      { en: "How are you finding the new disc brakes? I am still a bit hesitant to switch from rim brakes.", target: "新しいディスクブレーキの調子はどう？まだリムブレーキから変えるのは少しためらってるんだ。" },
+      { en: "In wet conditions the difference is enormous — the modulation and stopping power are simply on another level.", target: "雨天時の差は圧倒的で、コントロール性も制動力もまさに別次元だよ。" },
+      { en: "I am thinking about getting deeper carbon wheels, but I am worried about crosswinds on exposed climbs.", target: "もっとリムハイトの高いカーボンホイールを検討してるんだけど、風の強い登りでの横風が心配なんだ。" },
+      { en: "Forty-millimeter rims are a reasonable compromise — they give you aero benefits without becoming uncontrollable.", target: "リムハイト40ミリは妥当な妥協点だね。エアロ効果は得られつつ、操縦不能になることもないし。" },
+      { en: "What tire pressure are you running these days? I have dropped mine quite a bit since switching to tubeless.", target: "最近のタイヤ空気圧はどのくらい？チューブレスに変えてから僕はかなり下げたよ。" },
+      { en: "I run around five bar in front and five point three in the rear, depending on road surface and temperature.", target: "路面と気温によるけど、フロント約5バール、リア5.3バールで走ってるよ。" },
+      { en: "Have you considered going to a one-by drivetrain for hilly rides? The weight savings can really add up.", target: "ヒルライドでフロントシングル化を検討したことある？軽量化の効果は意外と大きいよ。" },
+      { en: "For the kind of mixed terrain I ride, I still prefer a compact two-by setup for the wider gear range.", target: "僕が走るような混合地形なら、ギア比の幅が広いコンパクトな2×構成のほうがやっぱり好きだな。" },
+      { en: "Honestly, the biggest performance gain in the last few years has been in tire technology — not frames or wheels.", target: "正直なところ、ここ数年で一番性能が上がったのはフレームやホイールじゃなくて、タイヤ技術なんだよね。" },
     ],
   },
 

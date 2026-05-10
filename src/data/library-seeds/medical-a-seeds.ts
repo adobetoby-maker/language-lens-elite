@@ -14,6 +14,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good afternoon, Mr. Ramírez. Let's review your hemoglobin A1C result from last week's blood draw.", target: "Buenas tardes, señor Ramírez. Revisemos el resultado de su hemoglobina A1C del análisis de sangre de la semana pasada." },
       { en: "Your A1C is 8.4 percent, which tells me your average blood sugar has been elevated over the past three months.", target: "Su A1C es del 8,4 por ciento, lo que indica que su glucosa promedio ha estado elevada durante los últimos tres meses." },
@@ -37,6 +38,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good morning, madame. This is your annual wellness visit, so we will go through your preventive screenings today.", target: "Bonjour, madame. C'est votre consultation annuelle de prévention, nous allons donc passer en revue vos dépistages aujourd'hui." },
       { en: "You are turning 50 this year, which means it is time to schedule your first colonoscopy.", target: "Vous avez 50 ans cette année, ce qui signifie qu'il est temps de programmer votre première coloscopie." },
@@ -61,6 +63,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Good morning, Mr. Weber. Welcome to our practice. I am Dr. Schneider, your new primary care physician.", target: "Guten Morgen, Herr Weber. Herzlich willkommen in unserer Praxis. Ich bin Dr. Schneider, Ihr neuer Hausarzt." },
       { en: "To get started, I would like to take a thorough medical history — please tell me about any chronic illnesses you have.", target: "Zunächst möchte ich eine ausführliche Anamnese erheben — bitte berichten Sie mir von chronischen Erkrankungen, die Sie haben." },
@@ -84,6 +87,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Ferretti, I have measured your blood pressure three times today and it is consistently above 150 over 95.", target: "Signor Ferretti, ho misurato la pressione tre volte oggi e risulta costantemente superiore a 150 su 95." },
       { en: "This falls into the category of stage-two hypertension, and I want to discuss a management plan with you.", target: "Questo rientra nella categoria dell'ipertensione di secondo stadio e vorrei discutere con lei un piano terapeutico." },
@@ -107,6 +111,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Yamamoto, your recent lab results show elevated liver enzymes that require further evaluation.", target: "山本さん、最近の血液検査で肝酵素の上昇が認められ、さらなる精査が必要です。" },
       { en: "I am referring you to a gastroenterologist who specializes in liver diseases.", target: "肝疾患を専門とする消化器内科医にご紹介いたします。" },
@@ -130,6 +135,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mrs. Oliveira, I am going to prescribe a new medication for your thyroid called levothyroxine.", target: "Senhora Oliveira, vou prescrever um novo medicamento para a sua tireoide chamado levotiroxina." },
       { en: "You should take this tablet every morning on an empty stomach, at least 30 minutes before breakfast.", target: "Você deve tomar este comprimido todas as manhãs em jejum, pelo menos 30 minutos antes do café da manhã." },
@@ -155,6 +161,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Good morning, señor López. I have your nuclear stress test results here and I want to walk you through them.", target: "Buenos días, señor López. Tengo aquí los resultados de su prueba de estrés nuclear y quiero explicárselos." },
       { en: "The test showed a region of reduced blood flow to the lower wall of your heart during exercise.", target: "La prueba mostró una zona de flujo sanguíneo reducido en la pared inferior de su corazón durante el ejercicio." },
@@ -178,6 +185,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Mr. Dubois, your echocardiogram confirms a reduced ejection fraction of 35 percent — this is what we call heart failure with reduced ejection fraction.", target: "Monsieur Dubois, votre échocardiogramme confirme une fraction d'éjection abaissée à 35 % — c'est ce que l'on appelle une insuffisance cardiaque à fraction d'éjection réduite." },
       { en: "We are going to start you on four guideline-directed medications: an ACE inhibitor, a beta-blocker, a mineralocorticoid antagonist, and a diuretic.", target: "Nous allons vous prescrire quatre médicaments conformes aux recommandations : un inhibiteur de l'enzyme de conversion, un bêtabloquant, un antagoniste des minéralocorticoïdes et un diurétique." },
@@ -201,6 +209,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Mr. Hoffmann, your 12-lead ECG shows a complete atrioventricular block, which means the electrical signal from the upper to the lower chambers is interrupted.", target: "Herr Hoffmann, Ihr 12-Kanal-EKG zeigt einen totalen atrioventrikulären Block, was bedeutet, dass das elektrische Signal von den Vorhöfen zu den Kammern unterbrochen ist." },
       { en: "This finding explains the episodes of dizziness and near-fainting you reported over the past month.", target: "Dieser Befund erklärt die Schwindelattacken und Beinahohnmachten, die Sie im vergangenen Monat berichtet haben." },
@@ -224,6 +233,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Mrs. Conti, your lipid panel shows a total cholesterol of 268 and an LDL of 182 milligrams per deciliter.", target: "Signora Conti, il suo profilo lipidico mostra un colesterolo totale di 268 e un LDL di 182 milligrammi per decilitro." },
       { en: "Given your age, your family history of premature heart disease, and your borderline blood pressure, your 10-year cardiovascular risk is approximately 18 percent.", target: "Dato il suo età, la storia familiare di cardiopatia precoce e la sua pressione borderline, il rischio cardiovascolare a 10 anni è di circa il 18 percento." },
@@ -247,6 +257,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Tanaka, you mentioned that you experience chest tightness when climbing stairs or walking fast — let me ask you more about that.", target: "田中さん、階段を上ったり早歩きをすると胸が締め付けられると話されましたね。もう少し詳しく聞かせてください。" },
       { en: "This type of chest pain that occurs with exertion and is relieved by rest is called stable angina.", target: "労作時に起こり、安静にすると和らぐこのタイプの胸痛は安定狭心症と呼ばれます。" },
@@ -270,6 +281,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Santos, your blood pressure reading is 198 over 115. This requires immediate attention.", target: "Senhor Santos, sua pressão arterial está em 198 por 115. Isso requer atenção imediata." },
       { en: "This is called hypertensive urgency — blood pressure this high puts you at risk for stroke and heart attack.", target: "Isso se chama urgência hipertensiva — uma pressão tão alta coloca você em risco de derrame e infarto." },
@@ -295,6 +307,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good morning, señora Herrera. Today we are doing your 20-week anatomy ultrasound — this is one of the most important scans of your pregnancy.", target: "Buenos días, señora Herrera. Hoy hacemos su ultrasonido anatómico de las 20 semanas — este es uno de los estudios más importantes del embarazo." },
       { en: "We will evaluate the baby's brain, heart, spine, kidneys, and limbs in detail.", target: "Evaluaremos en detalle el cerebro, corazón, columna vertebral, riñones y extremidades del bebé." },
@@ -318,6 +331,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Welcome back, madame Moreau. It has been six weeks since your delivery — how are you feeling overall?", target: "Bienvenue, madame Moreau. Cela fait six semaines depuis votre accouchement — comment vous sentez-vous en général ?" },
       { en: "I would like to do a pelvic examination today to check on your episiotomy scar and confirm that the uterus has returned to its normal size.", target: "Je souhaite effectuer un examen pelvien aujourd'hui pour vérifier votre cicatrice d'épisiotomie et confirmer que l'utérus a retrouvé sa taille normale." },
@@ -341,6 +355,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Mrs. Bauer, your glucose tolerance test results have come back and unfortunately show gestational diabetes.", target: "Frau Bauer, Ihre Ergebnisse des Glukosetoleranztest sind zurückgekommen und zeigen leider einen Schwangerschaftsdiabetes." },
       { en: "This condition affects approximately 5 to 8 percent of pregnancies and is manageable with the right approach.", target: "Dieser Zustand betrifft etwa 5 bis 8 Prozent der Schwangerschaften und ist mit der richtigen Vorgehensweise gut beherrschbar." },
@@ -364,6 +379,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good afternoon, signora Rossi. You mentioned at your last visit that you would like to discuss long-term contraception options.", target: "Buon pomeriggio, signora Rossi. Ha menzionato alla sua ultima visita che vorrebbe discutere le opzioni contraccettive a lungo termine." },
       { en: "There are several highly effective methods available: the intrauterine device, the subdermal implant, and the combined oral contraceptive pill.", target: "Esistono diversi metodi altamente efficaci: il dispositivo intrauterino, l'impianto sottocutaneo e la pillola contraccettiva combinata." },
@@ -387,6 +403,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mrs. Nakamura, you are now in active labor. Your contractions are coming every three minutes and lasting 60 seconds.", target: "中村さん、今は活動期分娩中です。陣痛は3分おきに来ており、60秒続いています。" },
       { en: "Your cervix is currently dilated to 7 centimeters — you are making excellent progress.", target: "子宮口は現在7センチ開いています。とても順調に進んでいます。" },
@@ -410,6 +427,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Mrs. Alves, since you are 38 years old, I want to talk with you about prenatal genetic testing options.", target: "Senhora Alves, como tem 38 anos, gostaria de conversar sobre as opções de exames genéticos pré-natais." },
       { en: "Cell-free fetal DNA testing, also called cfDNA or NIPT, is a non-invasive blood test that screens for Down syndrome and other chromosomal conditions.", target: "O teste de DNA fetal livre de células, também chamado de cfDNA ou NIPT, é um exame de sangue não invasivo que rastreia a síndrome de Down e outras condições cromossômicas." },
@@ -435,6 +453,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good afternoon, señora Torres. I am Dr. Mendoza and I will be your surgeon for the cholecystectomy tomorrow.", target: "Buenas tardes, señora Torres. Soy el Dr. Mendoza y seré su cirujano para la colecistectomía de mañana." },
       { en: "We will remove your gallbladder laparoscopically — that means through three small incisions using a camera and specialized instruments.", target: "Extirparemos su vesícula biliar por laparoscopía — eso significa a través de tres pequeñas incisiones utilizando una cámara e instrumentos especializados." },
@@ -458,6 +477,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Girard, your procedure went very well and you are ready to be discharged home today.", target: "Monsieur Girard, votre intervention s'est très bien passée et vous êtes prêt à rentrer chez vous aujourd'hui." },
       { en: "You have three small laparoscopic incisions covered with adhesive strips — do not remove them for at least five days.", target: "Vous avez trois petites incisions laparoscopiques recouvertes de bandelettes adhésives — ne les retirez pas avant au moins cinq jours." },
@@ -481,6 +501,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       { en: "Before we begin, let's conduct the mandatory surgical time-out to verify the correct patient, procedure, and site.", target: "Bevor wir beginnen, führen wir die obligatorische chirurgische Auszeit durch, um Patient, Eingriff und Operationsgebiet zu bestätigen." },
       { en: "The patient is Mr. Fischer, date of birth March 12th 1972 — has everyone confirmed the patient's identity?", target: "Der Patient ist Herr Fischer, geboren am 12. März 1972 — hat jeder die Patientenidentität bestätigt?" },
@@ -504,6 +525,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Marino, your CT scan confirms acute appendicitis. We need to operate tonight.", target: "Signor Marino, la sua TC conferma un'appendicite acuta. Dobbiamo operare stanotte." },
       { en: "We will perform a laparoscopic appendectomy — three small incisions, camera-guided, under general anesthesia.", target: "Eseguiremo un'appendicectomia laparoscopica — tre piccole incisioni, guidate da telecamera, in anestesia generale." },
@@ -527,6 +549,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Good evening, Mr. Suzuki. I am the anesthesiologist who will be with you in the operating room tomorrow.", target: "こんばんは、鈴木さん。明日、手術室でご担当する麻酔科医です。" },
       { en: "I need to ask you a few questions and examine you briefly to plan the safest anesthetic approach for your surgery.", target: "手術に向けて最も安全な麻酔方法を計画するために、いくつかご質問し、簡単に診察させていただく必要があります。" },
@@ -550,6 +573,7 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       { en: "Mr. Costa, the imaging confirms a right inguinal hernia. Let me explain what that means and how we can fix it.", target: "Senhor Costa, o exame confirma uma hérnia inguinal direita. Deixe-me explicar o que isso significa e como podemos corrigir." },
       { en: "A hernia occurs when part of the intestine or fatty tissue pushes through a weak spot in the abdominal wall.", target: "Uma hérnia ocorre quando parte do intestino ou tecido adiposo passa por um ponto fraco da parede abdominal." },
@@ -560,6 +584,225 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
       { en: "You should avoid strenuous physical exertion and heavy lifting for four weeks after the operation.", target: "Você deve evitar esforço físico intenso e levantamento de peso por quatro semanas após a operação." },
       { en: "Scrotal swelling and bruising after inguinal hernia repair are common and resolve on their own within two weeks.", target: "Inchaço escrotal e hematomas após o reparo de hérnia inguinal são comuns e se resolvem sozinhos em duas semanas." },
       { en: "If you develop fever, increasing pain at the incision, or difficulty urinating, contact us right away.", target: "Se você desenvolver febre, dor crescente na incisão ou dificuldade para urinar, entre em contato conosco imediatamente." },
+    ],
+  },
+
+  // ── PATIENT INTAKE / TRIAGE / EXPANSION ───────────────────────────────────
+
+  // Spanish — basic patient intake (A2): simple questions at the front desk
+  {
+    id: "seed-es-medical-intake-basic",
+    title: "Clinic: Basic Patient Intake",
+    subtitle: "Simple front-desk questions in Spanish",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Good morning. What is your name, please?", target: "Buenos días. ¿Cómo se llama, por favor?" },
+      { en: "Do you have an appointment today?", target: "¿Tiene una cita hoy?" },
+      { en: "How old are you?", target: "¿Cuántos años tiene?" },
+      { en: "What is the reason for your visit?", target: "¿Cuál es el motivo de su consulta?" },
+      { en: "Where does it hurt?", target: "¿Dónde le duele?" },
+      { en: "When did the pain start?", target: "¿Cuándo empezó el dolor?" },
+      { en: "Do you take any medications?", target: "¿Toma algún medicamento?" },
+      { en: "Are you allergic to any medicine?", target: "¿Es alérgico a algún medicamento?" },
+      { en: "Please sit down. The doctor will see you soon.", target: "Por favor, siéntese. El doctor lo atenderá pronto." },
+    ],
+  },
+
+  // French — pediatric explanation of asthma to a family (B1)
+  {
+    id: "seed-fr-medical-asthma-family",
+    title: "Pediatrics: Explaining Asthma to a Family",
+    subtitle: "Family-friendly explanation of childhood asthma in French",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Your son has asthma, but don't worry — it's a condition we can manage very well.", target: "Votre fils a de l'asthme, mais ne vous inquiétez pas — c'est une maladie que nous pouvons très bien contrôler." },
+      { en: "Asthma means that the small tubes in his lungs sometimes get tight and inflamed.", target: "L'asthme signifie que les petites bronches dans ses poumons se resserrent et s'enflamment parfois." },
+      { en: "When that happens, he has trouble breathing, coughs a lot, or makes a whistling sound.", target: "Quand cela arrive, il a du mal à respirer, tousse beaucoup ou fait un sifflement." },
+      { en: "We'll give him two inhalers: a blue one for crises and a brown one to take every day.", target: "Nous allons lui donner deux inhalateurs : un bleu pour les crises et un marron à prendre tous les jours." },
+      { en: "The brown inhaler prevents attacks, even when he feels fine.", target: "L'inhalateur marron prévient les crises, même quand il se sent bien." },
+      { en: "It is very important to use it every morning and every evening, without skipping.", target: "Il est très important de l'utiliser chaque matin et chaque soir, sans sauter de prises." },
+      { en: "Common triggers are dust, pet hair, cigarette smoke, and cold air.", target: "Les déclencheurs courants sont la poussière, les poils d'animaux, la fumée de cigarette et l'air froid." },
+      { en: "If he uses the blue inhaler more than twice a week, please call us.", target: "S'il utilise l'inhalateur bleu plus de deux fois par semaine, appelez-nous." },
+      { en: "He can play sports normally, but he should always carry the blue inhaler with him.", target: "Il peut faire du sport normalement, mais il doit toujours avoir l'inhalateur bleu sur lui." },
+      { en: "Do you have any questions before you leave today?", target: "Avez-vous des questions avant de partir aujourd'hui ?" },
+    ],
+  },
+
+  // Italian — discharge instructions after a viral illness (B1)
+  {
+    id: "seed-it-medical-discharge-viral",
+    title: "Urgent Care: Discharge After a Viral Illness",
+    subtitle: "Home care instructions for a common viral infection in Italian",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Good news — your tests show that you have a viral infection, not a bacterial one.", target: "Buone notizie — gli esami mostrano che ha un'infezione virale, non batterica." },
+      { en: "This means antibiotics will not help, and they could even cause side effects.", target: "Questo significa che gli antibiotici non serviranno e potrebbero anche causare effetti collaterali." },
+      { en: "You should rest at home for at least three or four days.", target: "Deve riposare a casa per almeno tre o quattro giorni." },
+      { en: "Drink plenty of water, hot tea, or broth — fluids help your body heal.", target: "Beva molta acqua, tè caldo o brodo — i liquidi aiutano il corpo a guarire." },
+      { en: "You can take paracetamol every six hours if you have a fever or aches.", target: "Può prendere il paracetamolo ogni sei ore se ha febbre o dolori." },
+      { en: "Do not go to work or school until you have been free of fever for 24 hours.", target: "Non vada al lavoro o a scuola finché non è senza febbre da 24 ore." },
+      { en: "Wash your hands often and try to cover your mouth when you cough.", target: "Si lavi spesso le mani e cerchi di coprirsi la bocca quando tossisce." },
+      { en: "Come back if your fever lasts more than five days or if you have trouble breathing.", target: "Torni se la febbre dura più di cinque giorni o se ha difficoltà a respirare." },
+      { en: "If you feel much worse instead of better, do not wait — go to the emergency room.", target: "Se si sente molto peggio invece che meglio, non aspetti — vada al pronto soccorso." },
+    ],
+  },
+
+  // German — informed consent dialogue (B2)
+  {
+    id: "seed-de-medical-informed-consent",
+    title: "Informed Consent Dialogue",
+    subtitle: "Discussing risks, benefits, and alternatives in German",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Before we proceed, I want to make sure you understand the procedure and have time for questions.", target: "Bevor wir fortfahren, möchte ich sicherstellen, dass Sie den Eingriff verstehen und Zeit für Fragen haben." },
+      { en: "The benefits of this operation include relief from your chronic pain and improved mobility.", target: "Zu den Vorteilen dieser Operation gehören die Linderung Ihrer chronischen Schmerzen und eine verbesserte Beweglichkeit." },
+      { en: "The most common risks are bleeding, infection, and a reaction to the anesthesia.", target: "Die häufigsten Risiken sind Blutungen, Infektionen und eine Reaktion auf die Narkose." },
+      { en: "There are also rare but serious risks, such as nerve injury or blood clots.", target: "Es gibt auch seltene, aber schwerwiegende Risiken wie Nervenverletzungen oder Blutgerinnsel." },
+      { en: "We have considered alternatives: physical therapy, injections, or simply continuing observation.", target: "Wir haben Alternativen in Betracht gezogen: Physiotherapie, Injektionen oder einfach weitere Beobachtung." },
+      { en: "If you decide not to have the operation, your symptoms will most likely worsen over time.", target: "Wenn Sie sich gegen die Operation entscheiden, werden Ihre Beschwerden mit hoher Wahrscheinlichkeit mit der Zeit schlimmer." },
+      { en: "You have the right to withdraw your consent at any moment, even after signing this form.", target: "Sie haben das Recht, Ihre Einwilligung jederzeit zu widerrufen, auch nach Unterzeichnung dieses Formulars." },
+      { en: "Please take your time and ask me anything you would like to clarify.", target: "Lassen Sie sich Zeit und fragen Sie mich alles, was Sie klären möchten." },
+      { en: "Would you like to discuss this with a family member before signing?", target: "Möchten Sie das mit einem Familienangehörigen besprechen, bevor Sie unterschreiben?" },
+    ],
+  },
+
+  // Portuguese — emergency department triage (B2)
+  {
+    id: "seed-pt-medical-er-triage",
+    title: "Emergency Department: Triage Assessment",
+    subtitle: "Initial ED triage and acuity sorting in Portuguese",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Good evening, I am the triage nurse — please tell me what brought you to the emergency room today.", target: "Boa noite, sou a enfermeira da triagem — por favor, conte-me o que o trouxe ao pronto-socorro hoje." },
+      { en: "On a scale from zero to ten, where ten is the worst pain imaginable, how would you rate your pain?", target: "Em uma escala de zero a dez, em que dez é a pior dor imaginável, como classificaria sua dor?" },
+      { en: "I am going to take your vital signs: blood pressure, heart rate, temperature, and oxygen saturation.", target: "Vou aferir seus sinais vitais: pressão arterial, frequência cardíaca, temperatura e saturação de oxigênio." },
+      { en: "Your blood pressure is 90 over 60 and your heart rate is 118 — these readings are concerning.", target: "Sua pressão está em 90 por 60 e sua frequência cardíaca em 118 — esses valores são preocupantes." },
+      { en: "Based on the Manchester protocol, I am classifying you as red, which means immediate attention.", target: "Com base no protocolo de Manchester, vou classificá-lo como vermelho, o que significa atendimento imediato." },
+      { en: "I am going to take you straight to the resuscitation room — the doctor will see you right away.", target: "Vou levá-lo diretamente para a sala de reanimação — o médico vai atendê-lo agora mesmo." },
+      { en: "Have you taken any medication or used any substances in the last 24 hours?", target: "Tomou algum medicamento ou usou alguma substância nas últimas 24 horas?" },
+      { en: "Is there a family member or someone we can contact for you while we begin treatment?", target: "Há algum familiar ou alguém que possamos contatar enquanto iniciamos o tratamento?" },
+      { en: "Try to stay calm and breathe slowly — we are going to take very good care of you.", target: "Tente manter a calma e respire devagar — vamos cuidar muito bem do senhor." },
+    ],
+  },
+
+  // Japanese — pre-op patient questions for the surgeon (B2)
+  {
+    id: "seed-ja-medical-preop-questions",
+    title: "Pre-Op Visit: Patient Questions for the Surgeon",
+    subtitle: "Patient-led questions before scheduled surgery in Japanese",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Doctor, before tomorrow's surgery, I have a few questions I'd like to ask.", target: "先生、明日の手術の前に、いくつかお聞きしたいことがあります。" },
+      { en: "Could you please explain again exactly what you will be doing during the operation?", target: "手術中に具体的に何をされるのか、もう一度ご説明いただけますか。" },
+      { en: "How long will the procedure take, and how long will I be in the recovery room?", target: "手術にはどのくらいの時間がかかり、回復室にはどのくらいいることになりますか。" },
+      { en: "What kind of pain should I expect afterwards, and how will it be controlled?", target: "術後はどのような痛みが予想され、どのように管理されますか。" },
+      { en: "When will I be able to eat normally and walk on my own?", target: "通常の食事や自分で歩けるようになるのはいつ頃でしょうか。" },
+      { en: "Are there any signs of complications I should watch for after I go home?", target: "退院後に注意すべき合併症の兆候はありますか。" },
+      { en: "How long will it take to fully recover and return to my normal activities at work?", target: "完全に回復し、仕事の通常業務に戻れるまでどのくらいかかりますか。" },
+      { en: "Will I need physical therapy or follow-up imaging studies after surgery?", target: "手術後にリハビリや追加の画像検査は必要になりますか。" },
+      { en: "If something goes wrong at home in the middle of the night, who should I call?", target: "夜中に自宅で何か問題が起きた場合、どなたに連絡すればよいですか。" },
+    ],
+  },
+
+  // Spanish — emergency / code blue (B2)
+  {
+    id: "seed-es-medical-code-blue",
+    title: "Emergency: Code Blue Resuscitation",
+    subtitle: "In-hospital cardiac arrest team communication in Spanish",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Code blue, room 412 — I need the crash cart and the resuscitation team immediately.", target: "Código azul, habitación 412 — necesito el carro de paros y el equipo de reanimación de inmediato." },
+      { en: "The patient has no pulse and is not breathing. Begin chest compressions now.", target: "El paciente no tiene pulso y no respira. Inicien compresiones torácicas ahora." },
+      { en: "Compressions at a rate of 100 to 120 per minute, two inches deep — let the chest fully recoil.", target: "Compresiones a un ritmo de 100 a 120 por minuto, cinco centímetros de profundidad — permitan la reexpansión completa del tórax." },
+      { en: "Place the defibrillator pads. Charge to 200 joules and prepare to shock.", target: "Coloquen los parches del desfibrilador. Carguen a 200 julios y prepárense para descargar." },
+      { en: "Everyone clear — shock delivered. Resume compressions immediately.", target: "Todos despejados — descarga aplicada. Reanuden las compresiones inmediatamente." },
+      { en: "Give one milligram of epinephrine intravenously every three to five minutes.", target: "Administren un miligramo de epinefrina por vía intravenosa cada tres a cinco minutos." },
+      { en: "Anesthesia, please secure the airway with an endotracheal tube as soon as possible.", target: "Anestesia, por favor asegure la vía aérea con un tubo endotraqueal lo antes posible." },
+      { en: "We have return of spontaneous circulation — pulse is palpable in the carotid.", target: "Tenemos retorno de la circulación espontánea — se palpa pulso en la carótida." },
+      { en: "Transfer the patient to the intensive care unit and notify the family right away.", target: "Trasladen al paciente a la unidad de cuidados intensivos y notifiquen a la familia de inmediato." },
+    ],
+  },
+
+  // French — specialist-to-specialist cardiology consult (C1)
+  {
+    id: "seed-fr-medical-specialist-consult",
+    title: "Specialist Consult: Cardiology to Nephrology",
+    subtitle: "Inter-specialist case discussion in French",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      { en: "Thank you for taking my call — I'm phoning about a 68-year-old patient with cardiorenal syndrome that's becoming difficult to manage medically.", target: "Merci d'avoir pris mon appel — je vous contacte au sujet d'un patient de 68 ans présentant un syndrome cardiorénal de plus en plus difficile à équilibrer sur le plan médical." },
+      { en: "He has heart failure with reduced ejection fraction at 25 percent and a creatinine that has climbed from 1.4 to 2.6 in three weeks.", target: "Il présente une insuffisance cardiaque à fraction d'éjection réduite à 25 %, et une créatinine qui est passée de 14 à 26 milligrammes par litre en trois semaines." },
+      { en: "Despite escalating his loop diuretic and adding metolazone, his volume status remains markedly overloaded.", target: "Malgré une majoration du diurétique de l'anse et l'ajout de métolazone, sa volémie reste nettement excédentaire." },
+      { en: "I'm reluctant to push the diuresis further without your input, given the worsening renal function.", target: "Je suis réticent à pousser davantage la diurèse sans votre avis, étant donné la dégradation de la fonction rénale." },
+      { en: "His potassium is at the upper limit at 5.3, which restricts my options for adding a mineralocorticoid antagonist.", target: "Sa kaliémie est à la limite supérieure à 5,3 mmol/L, ce qui limite mes options pour l'ajout d'un antagoniste des minéralocorticoïdes." },
+      { en: "I'd like your thoughts on whether we should consider ultrafiltration or initiate renal replacement therapy.", target: "J'aimerais avoir votre avis sur l'opportunité d'envisager une ultrafiltration ou d'initier une épuration extrarénale." },
+      { en: "The renal ultrasound shows no obstruction, and the urinary sodium suggests a pre-renal component superimposed on chronic disease.", target: "L'échographie rénale ne montre pas d'obstruction, et le sodium urinaire évoque une composante pré-rénale surajoutée à une maladie chronique." },
+      { en: "If you could see him in consultation today, I'd be very grateful — his trajectory worries me.", target: "Si vous pouviez le voir en consultation aujourd'hui, je vous en serais très reconnaissant — sa trajectoire m'inquiète." },
+      { en: "I'll send you his complete file and the latest imaging through the secure messaging system.", target: "Je vous envoie son dossier complet et les derniers examens d'imagerie via la messagerie sécurisée." },
+    ],
+  },
+
+  // German — surgical M&M case discussion (C1)
+  {
+    id: "seed-de-medical-mm-conference",
+    title: "Morbidity and Mortality Conference",
+    subtitle: "Surgical M&M case review in German",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      { en: "I'd like to present the case of a 72-year-old patient who developed an anastomotic leak on postoperative day five after a low anterior resection.", target: "Ich möchte den Fall einer 72-jährigen Patientin vorstellen, die am fünften postoperativen Tag nach tiefer anteriorer Resektion eine Anastomoseninsuffizienz entwickelt hat." },
+      { en: "Her preoperative risk factors included a BMI of 32, type-2 diabetes, and a history of pelvic radiation eight years ago.", target: "Zu ihren präoperativen Risikofaktoren zählten ein BMI von 32, ein Typ-2-Diabetes und eine Beckenbestrahlung in der Vorgeschichte vor acht Jahren." },
+      { en: "Intraoperatively, the anastomosis was tested with an air leak test, which was negative at the time of construction.", target: "Intraoperativ wurde die Anastomose mittels Luftdichtigkeitsprüfung getestet, die zum Zeitpunkt der Anlage negativ war." },
+      { en: "On postoperative day three she developed tachycardia and a low-grade fever, which were initially attributed to atelectasis.", target: "Am dritten postoperativen Tag entwickelte sie eine Tachykardie und subfebrile Temperaturen, die zunächst auf eine Atelektase zurückgeführt wurden." },
+      { en: "The CT scan on day five revealed extraluminal contrast extravasation and a presacral abscess.", target: "Die CT-Untersuchung am fünften Tag zeigte eine extraluminale Kontrastmittelextravasation und einen präsakralen Abszess." },
+      { en: "In retrospect, the early signs of sepsis should have prompted earlier imaging — that's the key learning point.", target: "Rückblickend hätten die frühen Zeichen einer Sepsis eine frühere Bildgebung veranlassen müssen — das ist der zentrale Lernpunkt." },
+      { en: "The patient was returned to the operating room for a diverting loop ileostomy and washout, and recovered without further events.", target: "Die Patientin wurde zur Anlage eines protektiven Ileostomas und Spülung in den Operationssaal zurückgebracht und erholte sich ohne weitere Ereignisse." },
+      { en: "For future cases, I propose lowering our threshold for cross-sectional imaging in any post-anastomosis patient with unexplained tachycardia.", target: "Für zukünftige Fälle schlage ich vor, die Schwelle für eine Schnittbildgebung bei jedem postoperativen Patienten mit unklarer Tachykardie nach Anastomose zu senken." },
+      { en: "I would also like to discuss whether selective use of a defunctioning stoma is warranted in patients with a history of pelvic radiation.", target: "Ich möchte außerdem zur Diskussion stellen, ob bei Patienten mit Beckenbestrahlung in der Vorgeschichte ein selektiver Einsatz eines protektiven Stomas gerechtfertigt ist." },
     ],
   },
 

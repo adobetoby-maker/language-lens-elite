@@ -6,6 +6,28 @@ import { useApp, type Language } from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import { partitionByFocus } from "@/lib/module-filter";
 import { AddTextModal } from "./AddTextModal";
+import type { CefrLevel } from "@/fns/grammar.functions";
+
+// Color-coded CEFR badge: A = approachable (emerald), B = stretching (amber), C = advanced (rose).
+const LEVEL_TONE: Record<CefrLevel, string> = {
+  A1: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
+  A2: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
+  B1: "border-amber-500/40 bg-amber-500/10 text-amber-300",
+  B2: "border-amber-500/40 bg-amber-500/10 text-amber-300",
+  C1: "border-rose-500/40 bg-rose-500/10 text-rose-300",
+  C2: "border-rose-500/40 bg-rose-500/10 text-rose-300",
+};
+
+function LevelBadge({ level }: { level: CefrLevel }) {
+  return (
+    <span
+      title={`CEFR ${level} reading level`}
+      className={`shrink-0 rounded-full border px-1.5 py-px font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${LEVEL_TONE[level]}`}
+    >
+      {level}
+    </span>
+  );
+}
 
 const SPEECH_LOCALE: Record<Language, string> = {
   Spanish: "es-ES",
@@ -420,8 +442,11 @@ function BookCard({
         {entry.flag}
       </div>
       <div className="min-w-0 flex-1">
-        <div className="truncate font-display text-base font-semibold">
-          {entry.title}
+        <div className="flex items-center gap-2">
+          <div className="truncate font-display text-base font-semibold">
+            {entry.title}
+          </div>
+          {entry.level && <LevelBadge level={entry.level} />}
         </div>
         <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <span>{entry.language}</span>

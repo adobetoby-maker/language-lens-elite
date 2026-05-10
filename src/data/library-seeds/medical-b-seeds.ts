@@ -13,6 +13,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "I need you to assess this patient immediately — he arrived by ambulance with a penetrating chest wound.",
@@ -67,6 +68,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "We have a cardiac arrest — begin CPR immediately and call a code.",
@@ -121,6 +123,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "This patient's airway is at risk — I need suction, a laryngoscope, and an ETT size 7.5, please.",
@@ -175,6 +178,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "This patient is critically ill — I need everyone focused and quiet.",
@@ -225,6 +229,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "This patient came in by ambulance with a chief complaint of chest pain and difficulty breathing.",
@@ -279,6 +284,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "This patient is hypotensive and tachycardic — suspect septic shock. Start the sepsis bundle.",
@@ -335,6 +341,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I'm giving you a SBAR report on Mr. Ramírez in room 412 before I sign off.",
@@ -389,6 +396,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good morning. I'm your nurse for today. Before I give you this medication, I need to verify your name and date of birth.",
@@ -443,6 +451,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good morning. I need to place an IV line. May I look at your veins on both arms?",
@@ -493,6 +502,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good evening. I'm the night nurse. I'd like to take your vital signs now.",
@@ -547,6 +557,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I am handing off care for the patient in room 305. Let me give you the SBAR report.",
@@ -597,6 +608,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good morning. I'm here to do your morning assessment. How are you feeling today?",
@@ -653,6 +665,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I've reviewed your X-rays and you have a displaced fracture of the distal radius — what most people call a broken wrist.",
@@ -703,6 +716,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Your X-rays show severe osteoarthritis of the knee — bone-on-bone contact in the medial compartment.",
@@ -757,6 +771,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good morning. How are you feeling after your hip replacement surgery?",
@@ -811,6 +826,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I have reviewed your MRI. You have a complete tear of the anterior cruciate ligament.",
@@ -861,6 +877,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Your X-ray shows a fracture of the fifth metatarsal — this is a common bone in the foot.",
@@ -911,6 +928,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Your imaging shows severe arthritis in the shoulder joint. I'd like to discuss your surgical options.",
@@ -953,7 +971,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
 
   // ── PAIN MANAGEMENT ──────────────────────────────────────────────────────
 
-  // Spanish — nerve block procedure (different from opioid consent already in content)
+  // Spanish — nerve block procedure
   {
     id: "seed-es-pain-nerveblock",
     title: "Manejo del Dolor",
@@ -963,6 +981,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Based on your history and imaging, I believe you are a good candidate for a lumbar nerve root block.",
@@ -1013,6 +1032,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "You have been dealing with chronic low back pain for over two years. I'd like to review your treatment plan.",
@@ -1063,6 +1083,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "I have reviewed your treatment record and I'd like to have an honest conversation about your opioid therapy.",
@@ -1117,6 +1138,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "I'd like to do a comprehensive pain assessment before we discuss any changes to your treatment.",
@@ -1167,6 +1189,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "You have had chronic leg pain for three years despite multiple injections and physical therapy.",
@@ -1217,6 +1240,7 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome to the pain clinic. I'd like to start by understanding your pain history in detail.",
@@ -1257,6 +1281,385 @@ export const MEDICAL_B_SEEDS: LibrarySeed[] = [
       {
         en: "If the pain is not adequately controlled with these measures, interventional options like a nerve block may be appropriate.",
         target: "Se a dor não for controlada adequadamente com essas medidas, opções intervencionistas como um bloqueio nervoso podem ser indicadas.",
+      },
+    ],
+  },
+
+  // ── PHARMACY COUNSELING (NEW — A2/B1) ────────────────────────────────────
+
+  // Spanish — pharmacy counseling for new prescription (A2)
+  {
+    id: "seed-es-medical-pharmacy-counsel",
+    title: "Farmacia",
+    subtitle: "Consejo sobre un nuevo medicamento",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "Hello. I have your prescription ready.",
+        target: "Hola. Tengo su receta lista.",
+      },
+      {
+        en: "Is this your first time taking this medicine?",
+        target: "¿Es la primera vez que toma este medicamento?",
+      },
+      {
+        en: "Take one pill every morning with food.",
+        target: "Tome una pastilla cada mañana con comida.",
+      },
+      {
+        en: "Do not take it on an empty stomach.",
+        target: "No la tome con el estómago vacío.",
+      },
+      {
+        en: "Drink a full glass of water with each dose.",
+        target: "Tome un vaso lleno de agua con cada dosis.",
+      },
+      {
+        en: "Some people feel sleepy or dizzy at first.",
+        target: "Algunas personas se sienten somnolientas o mareadas al principio.",
+      },
+      {
+        en: "Do not drive if you feel sleepy.",
+        target: "No maneje si se siente somnoliento.",
+      },
+      {
+        en: "Call your doctor if you have a rash or trouble breathing.",
+        target: "Llame a su médico si tiene erupción o dificultad para respirar.",
+      },
+      {
+        en: "Do you have any questions about your medicine?",
+        target: "¿Tiene alguna pregunta sobre su medicamento?",
+      },
+    ],
+  },
+
+  // Portuguese — hospital admission workflow (B1)
+  {
+    id: "seed-pt-medical-admission",
+    title: "Internação Hospitalar",
+    subtitle: "Processo de admissão",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Welcome to the hospital. I'm going to help with your admission today.",
+        target: "Bem-vindo ao hospital. Vou ajudar com sua admissão hoje.",
+      },
+      {
+        en: "Please show me your ID and your insurance card.",
+        target: "Por favor, mostre-me seu documento de identidade e seu cartão do convênio.",
+      },
+      {
+        en: "I need to ask some questions about your medical history.",
+        target: "Preciso fazer algumas perguntas sobre seu histórico médico.",
+      },
+      {
+        en: "Do you take any medications regularly? Please list them all.",
+        target: "Você toma algum medicamento regularmente? Por favor, liste todos.",
+      },
+      {
+        en: "Are you allergic to any medications, foods, or latex?",
+        target: "Você é alérgico a algum medicamento, alimento ou látex?",
+      },
+      {
+        en: "Have you had any surgeries before? When was the last one?",
+        target: "Você já fez alguma cirurgia antes? Quando foi a última?",
+      },
+      {
+        en: "Your room is on the fourth floor, bed number two by the window.",
+        target: "Seu quarto fica no quarto andar, leito número dois ao lado da janela.",
+      },
+      {
+        en: "Please change into the gown and put your belongings in the locker.",
+        target: "Por favor, troque para o avental e coloque seus pertences no armário.",
+      },
+      {
+        en: "The nurse will be with you in a few minutes to check your vital signs.",
+        target: "A enfermeira virá em alguns minutos para verificar seus sinais vitais.",
+      },
+      {
+        en: "If you need anything, press the call button next to your bed.",
+        target: "Se precisar de algo, aperte o botão de chamada ao lado da sua cama.",
+      },
+    ],
+  },
+
+  // French — pediatric encounter with parent (B1)
+  {
+    id: "seed-fr-medical-pediatric",
+    title: "Pédiatrie",
+    subtitle: "Consultation avec un parent",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Hello. What is your child's name and how old is she?",
+        target: "Bonjour. Comment s'appelle votre enfant et quel âge a-t-elle ?",
+      },
+      {
+        en: "What brings you in today? When did the symptoms start?",
+        target: "Qu'est-ce qui vous amène aujourd'hui ? Quand les symptômes ont-ils commencé ?",
+      },
+      {
+        en: "Has she had a fever? Did you measure her temperature at home?",
+        target: "A-t-elle eu de la fièvre ? Avez-vous pris sa température à la maison ?",
+      },
+      {
+        en: "Is she eating and drinking normally? Any vomiting or diarrhea?",
+        target: "Mange-t-elle et boit-elle normalement ? Des vomissements ou de la diarrhée ?",
+      },
+      {
+        en: "Are her vaccinations up to date? Do you have her health record?",
+        target: "Ses vaccins sont-ils à jour ? Avez-vous son carnet de santé ?",
+      },
+      {
+        en: "I'm going to listen to her chest and look in her ears and throat.",
+        target: "Je vais écouter sa poitrine et regarder ses oreilles et sa gorge.",
+      },
+      {
+        en: "She has a viral ear infection. It should get better in a few days.",
+        target: "Elle a une otite virale. Cela devrait s'améliorer dans quelques jours.",
+      },
+      {
+        en: "Give her children's paracetamol every six hours if she has pain or fever.",
+        target: "Donnez-lui du paracétamol pédiatrique toutes les six heures si elle a mal ou de la fièvre.",
+      },
+      {
+        en: "Make sure she drinks plenty of fluids and rests at home.",
+        target: "Assurez-vous qu'elle boive beaucoup et qu'elle se repose à la maison.",
+      },
+      {
+        en: "If the fever lasts more than three days or she becomes very tired, please come back.",
+        target: "Si la fièvre dure plus de trois jours ou si elle devient très fatiguée, revenez nous voir.",
+      },
+    ],
+  },
+
+  // German — telehealth visit / chronic disease follow-up (B2)
+  {
+    id: "seed-de-medical-telehealth",
+    title: "Telemedizin",
+    subtitle: "Videosprechstunde bei chronischer Erkrankung",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Good morning. Can you see and hear me clearly through the video?",
+        target: "Guten Morgen. Können Sie mich über das Video gut sehen und hören?",
+      },
+      {
+        en: "Today we are following up on your diabetes and your blood pressure.",
+        target: "Heute besprechen wir die Verlaufskontrolle Ihres Diabetes und Ihres Blutdrucks.",
+      },
+      {
+        en: "Please share the blood sugar readings you have measured at home this week.",
+        target: "Bitte teilen Sie mir die Blutzuckerwerte mit, die Sie diese Woche zu Hause gemessen haben.",
+      },
+      {
+        en: "Your morning fasting values are still slightly above the target range.",
+        target: "Ihre Nüchternwerte am Morgen liegen weiterhin leicht über dem Zielbereich.",
+      },
+      {
+        en: "I would like to increase your metformin dose to one thousand milligrams twice a day.",
+        target: "Ich möchte Ihre Metformindosis auf zweimal täglich tausend Milligramm erhöhen.",
+      },
+      {
+        en: "Have you noticed any side effects, such as nausea or stomach discomfort?",
+        target: "Haben Sie Nebenwirkungen wie Übelkeit oder Magenbeschwerden bemerkt?",
+      },
+      {
+        en: "Please continue to take your blood pressure twice a day and keep a written record.",
+        target: "Bitte messen Sie weiterhin zweimal täglich Ihren Blutdruck und führen Sie ein schriftliches Protokoll.",
+      },
+      {
+        en: "I will send the new prescription electronically to your usual pharmacy this afternoon.",
+        target: "Ich sende das neue Rezept heute Nachmittag elektronisch an Ihre Stammapotheke.",
+      },
+      {
+        en: "We should repeat your HbA1c and kidney function tests in three months.",
+        target: "Wir sollten in drei Monaten Ihren HbA1c-Wert und die Nierenfunktion erneut kontrollieren.",
+      },
+      {
+        en: "If your blood sugar drops below 70, eat something sweet immediately and call us.",
+        target: "Wenn Ihr Blutzucker unter 70 fällt, essen Sie sofort etwas Süßes und rufen Sie uns an.",
+      },
+    ],
+  },
+
+  // Italian — mental health intake (B2)
+  {
+    id: "seed-it-medical-mentalhealth",
+    title: "Salute Mentale",
+    subtitle: "Prima visita psichiatrica",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Thank you for coming in today. Everything we discuss here is confidential.",
+        target: "Grazie di essere venuto oggi. Tutto ciò di cui parliamo qui è riservato.",
+      },
+      {
+        en: "Can you tell me, in your own words, what brought you to the clinic?",
+        target: "Può raccontarmi, con parole sue, cosa l'ha portata in clinica?",
+      },
+      {
+        en: "How long have you been feeling this way? Has it gotten worse recently?",
+        target: "Da quanto tempo si sente così? È peggiorato di recente?",
+      },
+      {
+        en: "How is your sleep — are you having trouble falling asleep or waking up early?",
+        target: "Come dorme — ha difficoltà ad addormentarsi o si sveglia presto?",
+      },
+      {
+        en: "How is your appetite, and have you noticed changes in your weight?",
+        target: "Come va l'appetito e ha notato cambiamenti nel peso?",
+      },
+      {
+        en: "Do you ever have thoughts of hurting yourself or of not wanting to be alive?",
+        target: "Le capita mai di pensare di farsi del male o di non voler più vivere?",
+      },
+      {
+        en: "Are you using alcohol, cannabis, or other substances to cope with these feelings?",
+        target: "Sta usando alcol, cannabis o altre sostanze per gestire queste sensazioni?",
+      },
+      {
+        en: "I would like to suggest a combined approach: medication and talk therapy.",
+        target: "Vorrei proporle un approccio combinato: farmaci e psicoterapia.",
+      },
+      {
+        en: "I am going to prescribe a low dose of an antidepressant to start, with weekly follow-up.",
+        target: "Le prescriverò una bassa dose di antidepressivo per iniziare, con un controllo settimanale.",
+      },
+      {
+        en: "If you have an emergency or feel unsafe, please call this 24-hour crisis line.",
+        target: "In caso di emergenza o se non si sente al sicuro, chiami questo numero verde attivo 24 ore.",
+      },
+    ],
+  },
+
+  // Japanese — patient education for chronic disease (B1)
+  {
+    id: "seed-ja-medical-chronic-edu",
+    title: "慢性疾患の患者教育",
+    subtitle: "高血圧の生活指導",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Today I would like to talk with you about how to manage your high blood pressure at home.",
+        target: "今日は、ご自宅での高血圧の管理方法についてお話ししたいと思います。",
+      },
+      {
+        en: "Please measure your blood pressure twice a day, in the morning and at night.",
+        target: "血圧は1日2回、朝と夜に測ってください。",
+      },
+      {
+        en: "Sit quietly for five minutes before measuring, and write down the numbers.",
+        target: "測定の前に5分間静かに座ってから測り、数値を記録してください。",
+      },
+      {
+        en: "Try to reduce salt in your meals — less than six grams per day is the goal.",
+        target: "食事の塩分を減らすようにしてください。1日6グラム未満が目標です。",
+      },
+      {
+        en: "Walking 30 minutes a day, five days a week, is very helpful.",
+        target: "週5日、1日30分のウォーキングがとても役立ちます。",
+      },
+      {
+        en: "Please take your medicine at the same time every day, even if you feel well.",
+        target: "体調が良くても、毎日同じ時間に薬を飲んでください。",
+      },
+      {
+        en: "Do not stop the medicine on your own without talking to your doctor.",
+        target: "医師に相談せずに、自分の判断で薬をやめないでください。",
+      },
+      {
+        en: "If you have a headache, dizziness, or chest pain, please contact us right away.",
+        target: "頭痛、めまい、胸の痛みがあれば、すぐにご連絡ください。",
+      },
+      {
+        en: "Bring your blood pressure record to your next appointment in one month.",
+        target: "1か月後の次回の診察に、血圧の記録をお持ちください。",
+      },
+    ],
+  },
+
+  // French — specialist case presentation (C1)
+  {
+    id: "seed-fr-medical-case-presentation",
+    title: "Présentation de Cas Clinique",
+    subtitle: "Consultation pluridisciplinaire en oncologie",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "I am presenting Madame Laurent, a 58-year-old woman, for a multidisciplinary tumor board discussion.",
+        target: "Je présente Madame Laurent, une femme de 58 ans, pour une discussion en réunion de concertation pluridisciplinaire.",
+      },
+      {
+        en: "Her past medical history is significant for stage one breast cancer treated with lumpectomy and radiation in 2019.",
+        target: "Ses antécédents notables comprennent un cancer du sein de stade I traité par tumorectomie et radiothérapie en 2019.",
+      },
+      {
+        en: "She presented with progressive abdominal pain and a 12-kilogram weight loss over the past three months.",
+        target: "Elle s'est présentée avec une douleur abdominale progressive et une perte de poids de 12 kilos sur les trois derniers mois.",
+      },
+      {
+        en: "Imaging revealed a 4-centimeter pancreatic head mass with multiple hepatic metastases.",
+        target: "L'imagerie a révélé une masse de 4 centimètres au niveau de la tête du pancréas avec de multiples métastases hépatiques.",
+      },
+      {
+        en: "Endoscopic ultrasound-guided fine needle aspiration confirmed a moderately differentiated adenocarcinoma.",
+        target: "La cytoponction guidée par échoendoscopie a confirmé un adénocarcinome modérément différencié.",
+      },
+      {
+        en: "Molecular profiling is pending, but we have already requested testing for BRCA mutations and microsatellite instability.",
+        target: "Le profilage moléculaire est en attente, mais nous avons déjà demandé une recherche de mutations BRCA et d'instabilité microsatellitaire.",
+      },
+      {
+        en: "Given the metastatic disease, surgical resection is not currently indicated.",
+        target: "Compte tenu de la maladie métastatique, la résection chirurgicale n'est pas actuellement indiquée.",
+      },
+      {
+        en: "I propose initiating first-line FOLFIRINOX, with a reassessment after four cycles.",
+        target: "Je propose d'initier un FOLFIRINOX en première ligne, avec une réévaluation après quatre cycles.",
+      },
+      {
+        en: "We should also coordinate with palliative care early to address symptom management and goals of care.",
+        target: "Nous devrions également coordonner précocement avec les soins palliatifs pour aborder la gestion symptomatique et les objectifs thérapeutiques.",
+      },
+      {
+        en: "I welcome the team's input on the proposed regimen and on the timing of biliary drainage if needed.",
+        target: "J'attends les commentaires de l'équipe sur le protocole proposé et sur le moment opportun pour un drainage biliaire si nécessaire.",
       },
     ],
   },

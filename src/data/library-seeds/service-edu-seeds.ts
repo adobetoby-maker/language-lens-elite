@@ -12,6 +12,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Before service starts, every station must be fully stocked and clean — no exceptions.",
@@ -62,6 +63,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good evening and welcome. Do you have a reservation, or would you like to be seated in the open area?",
@@ -112,6 +114,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good evening. Welcome to our restaurant. Do you have a reservation, or are you dining as a walk-in tonight?",
@@ -162,6 +165,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good evening and welcome! Do you have a reservation, or shall I find you a table?",
@@ -205,13 +209,14 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
   // Japanese — restaurant
   {
     id: "seed-ja-restaurant-izakaya",
-    title: "居酒屋：接客と注文対応",
+    title: "居酒屋:接客と注文対応",
     subtitle: "Restaurant & Hospitality · izakaya service and ordering",
     language: "Japanese",
     targetLabel: "日本語",
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Welcome! How many guests are in your party tonight?",
@@ -262,6 +267,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Good evening! Welcome. Do you have a reservation or are you dining in as a walk-in?",
@@ -313,6 +319,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Thank you for coming in today. Everything you share with me is confidential and protected by attorney-client privilege.",
@@ -363,6 +370,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Thank you for coming in. I understand you are seeking advice about your immigration status in the United States.",
@@ -413,6 +421,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Good morning. Please have a seat. Everything discussed today is covered by attorney-client privilege.",
@@ -463,6 +472,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Welcome. Please sit down. Before we begin, I want to explain that our conversation is completely confidential.",
@@ -506,13 +516,14 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
   // Japanese — legal immigration
   {
     id: "seed-ja-legal-deportation",
-    title: "移民法：在留資格と強制送還の相談",
+    title: "移民法:在留資格と強制送還の相談",
     subtitle: "Legal & Immigration · immigration status and removal defense in Japanese",
     language: "Japanese",
     targetLabel: "日本語",
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Thank you for coming in today. Please take a seat. Everything you share here is protected by attorney-client privilege.",
@@ -563,6 +574,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "C1",
     sentences: [
       {
         en: "Good morning. Please come in and have a seat. I am glad you made it in today.",
@@ -614,6 +626,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Thank you for coming today, Mrs. Ramirez. We appreciate you taking time to be here for Miguel's IEP meeting.",
@@ -664,6 +677,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Class, I have exciting news — next month we are going on a field trip to the natural history museum.",
@@ -714,6 +728,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good morning, class. Please take your seats and take out your exercise books.",
@@ -764,6 +779,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good morning, class. Please settle down and take out your notebooks — we are starting right away.",
@@ -807,13 +823,14 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
   // Japanese — k12
   {
     id: "seed-ja-k12-assignment",
-    title: "K-12：授業管理と課題説明",
+    title: "K-12:授業管理と課題説明",
     subtitle: "K–12 Classroom · lesson management and assignment guidance in Japanese",
     language: "Japanese",
     targetLabel: "日本語",
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good morning, everyone. Please take your seats and open your textbooks to page fifty-three.",
@@ -864,6 +881,7 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B1",
     sentences: [
       {
         en: "Good afternoon, class. Please settle down and put your phones away before we begin.",
@@ -901,6 +919,258 @@ export const SERVICE_EDU_SEEDS: LibrarySeed[] = [
         en: "If you are going through something difficult at home, please know that the school counselor is available and everything is kept confidential.",
         target: "Se você está passando por um momento difícil em casa, saiba que o orientador escolar está disponível e tudo é mantido em sigilo.",
       },
+    ],
+  },
+
+  // ── New entries: easier scenarios (A1–B2) ────────────────────────────────
+
+  // A1 — Spanish — store directions (retail)
+  {
+    id: "seed-es-retail-directions",
+    title: "Tienda: ¿Dónde Está?",
+    subtitle: "Retail · simple store directions and product locations",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A1",
+    sentences: [
+      { en: "Hello! Can I help you?", target: "¡Hola! ¿Puedo ayudarle?" },
+      { en: "Where is the milk?", target: "¿Dónde está la leche?" },
+      { en: "It is in the back of the store.", target: "Está al fondo de la tienda." },
+      { en: "Where is the bread?", target: "¿Dónde está el pan?" },
+      { en: "The bread is on aisle three.", target: "El pan está en el pasillo tres." },
+      { en: "Do you have apples?", target: "¿Tiene manzanas?" },
+      { en: "Yes, the fruit is over there.", target: "Sí, la fruta está allí." },
+      { en: "Where is the bathroom?", target: "¿Dónde está el baño?" },
+      { en: "It is next to the entrance.", target: "Está al lado de la entrada." },
+      { en: "Thank you very much!", target: "¡Muchas gracias!" },
+    ],
+  },
+
+  // A1 — Japanese — classroom commands (K-12)
+  {
+    id: "seed-ja-k12-commands",
+    title: "教室の指示:基本のフレーズ",
+    subtitle: "K–12 Classroom · simple classroom commands for young learners",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "A1",
+    sentences: [
+      { en: "Good morning, everyone.", target: "おはようございます、みなさん。" },
+      { en: "Please sit down.", target: "座ってください。" },
+      { en: "Open your book.", target: "本を開いてください。" },
+      { en: "Look at the board.", target: "黒板を見てください。" },
+      { en: "Listen carefully.", target: "よく聞いてください。" },
+      { en: "Repeat after me.", target: "私の後について言ってください。" },
+      { en: "Raise your hand, please.", target: "手を挙げてください。" },
+      { en: "Be quiet, please.", target: "静かにしてください。" },
+      { en: "Very good!", target: "とても上手ですね！" },
+      { en: "See you tomorrow.", target: "また明日。" },
+    ],
+  },
+
+  // A2 — French — hotel check-in
+  {
+    id: "seed-fr-hotel-checkin",
+    title: "Hôtel : Arrivée et Enregistrement",
+    subtitle: "Hotel · simple check-in conversation in French",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Good evening. I have a reservation.", target: "Bonsoir. J'ai une réservation." },
+      { en: "What is your last name, please?", target: "Quel est votre nom de famille, s'il vous plaît ?" },
+      { en: "My name is Martin. M-A-R-T-I-N.", target: "Je m'appelle Martin. M-A-R-T-I-N." },
+      { en: "I see your reservation. Two nights, one room.", target: "Je vois votre réservation. Deux nuits, une chambre." },
+      { en: "May I see your passport, please?", target: "Puis-je voir votre passeport, s'il vous plaît ?" },
+      { en: "Here it is.", target: "Le voici." },
+      { en: "Your room is on the third floor, number 312.", target: "Votre chambre est au troisième étage, numéro 312." },
+      { en: "Breakfast is served from seven to ten.", target: "Le petit-déjeuner est servi de sept heures à dix heures." },
+      { en: "What time do I need to check out?", target: "À quelle heure dois-je libérer la chambre ?" },
+      { en: "Before eleven o'clock, please. Have a nice stay!", target: "Avant onze heures, s'il vous plaît. Bon séjour !" },
+    ],
+  },
+
+  // A2 — Italian — taking a restaurant order
+  {
+    id: "seed-it-restaurant-order",
+    title: "Ristorante: Prendere l'Ordine",
+    subtitle: "Restaurant · simple ordering conversation in Italian",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Good evening! Are you ready to order?", target: "Buona sera! Siete pronti per ordinare?" },
+      { en: "Yes, I would like the pizza margherita.", target: "Sì, vorrei la pizza margherita." },
+      { en: "And for you, sir?", target: "E per lei, signore?" },
+      { en: "I will have the spaghetti carbonara, please.", target: "Prendo gli spaghetti alla carbonara, per favore." },
+      { en: "Anything to drink?", target: "Qualcosa da bere?" },
+      { en: "A bottle of water and one glass of red wine.", target: "Una bottiglia d'acqua e un bicchiere di vino rosso." },
+      { en: "Sparkling or still water?", target: "Acqua frizzante o naturale?" },
+      { en: "Still, please.", target: "Naturale, per favore." },
+      { en: "Would you like bread?", target: "Volete del pane?" },
+      { en: "Yes, thank you. That is everything for now.", target: "Sì, grazie. Per ora è tutto." },
+    ],
+  },
+
+  // A2 — Portuguese — retail returns
+  {
+    id: "seed-pt-retail-return",
+    title: "Loja: Trocas e Devoluções",
+    subtitle: "Retail · returning a product at a store in Portuguese",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      { en: "Hello, I would like to return this shirt.", target: "Olá, eu gostaria de devolver esta camisa." },
+      { en: "Of course. Do you have the receipt?", target: "Claro. Você tem o recibo?" },
+      { en: "Yes, here it is.", target: "Sim, aqui está." },
+      { en: "What is the problem with the shirt?", target: "Qual é o problema com a camisa?" },
+      { en: "It is too small for me.", target: "Está pequena demais para mim." },
+      { en: "Would you like a different size or your money back?", target: "Você quer um tamanho diferente ou o dinheiro de volta?" },
+      { en: "I would like a larger size, please.", target: "Eu quero um tamanho maior, por favor." },
+      { en: "We have a medium and a large in stock.", target: "Temos médio e grande em estoque." },
+      { en: "I will take the large one.", target: "Vou levar o grande." },
+      { en: "Perfect. Have a nice day!", target: "Perfeito. Tenha um bom dia!" },
+    ],
+  },
+
+  // B1 — German — wine pairing recommendation (restaurant)
+  {
+    id: "seed-de-restaurant-wine",
+    title: "Restaurant: Weinempfehlung",
+    subtitle: "Restaurant · sommelier recommends wine pairings in German",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Have you decided on your meal yet?", target: "Haben Sie sich schon für ein Gericht entschieden?" },
+      { en: "Yes, I will have the steak and my wife the salmon.", target: "Ja, ich nehme das Steak und meine Frau den Lachs." },
+      { en: "May I suggest a wine to go with your meal?", target: "Darf ich einen Wein zu Ihrem Essen empfehlen?" },
+      { en: "That would be very helpful, thank you.", target: "Das wäre sehr hilfreich, danke." },
+      { en: "For the steak, a full-bodied red wine works very well.", target: "Zum Steak passt ein kräftiger Rotwein sehr gut." },
+      { en: "We have a nice Spätburgunder from the Pfalz region.", target: "Wir haben einen schönen Spätburgunder aus der Pfalz." },
+      { en: "And for the salmon, I recommend a dry white wine.", target: "Und zum Lachs empfehle ich einen trockenen Weißwein." },
+      { en: "Our Riesling from the Mosel is a popular choice.", target: "Unser Riesling von der Mosel ist eine beliebte Wahl." },
+      { en: "Could we order both wines by the glass?", target: "Könnten wir beide Weine glasweise bestellen?" },
+      { en: "Of course. I will bring them right away.", target: "Selbstverständlich. Ich bringe sie sofort." },
+    ],
+  },
+
+  // B1 — Spanish — ESL grammar explanation
+  {
+    id: "seed-es-edu-grammar",
+    title: "Clase de Español: Explicación de Gramática",
+    subtitle: "ESL/Adult Education · teacher explains grammar to students in Spanish",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Today we are going to study the difference between 'ser' and 'estar'.", target: "Hoy vamos a estudiar la diferencia entre 'ser' y 'estar'." },
+      { en: "Both verbs translate to 'to be' in English, but they are used differently.", target: "Ambos verbos se traducen como 'to be' en inglés, pero se usan de forma diferente." },
+      { en: "We use 'ser' for permanent qualities, like nationality or profession.", target: "Usamos 'ser' para cualidades permanentes, como la nacionalidad o la profesión." },
+      { en: "For example: 'She is a doctor' — 'Ella es médica'.", target: "Por ejemplo: 'She is a doctor' — 'Ella es médica'." },
+      { en: "We use 'estar' for temporary states or locations.", target: "Usamos 'estar' para estados temporales o ubicaciones." },
+      { en: "For example: 'I am tired today' — 'Estoy cansado hoy'.", target: "Por ejemplo: 'I am tired today' — 'Estoy cansado hoy'." },
+      { en: "Does anyone have a question so far?", target: "¿Alguien tiene una pregunta hasta aquí?" },
+      { en: "Yes — what about feelings? Are they 'ser' or 'estar'?", target: "Sí — ¿qué pasa con los sentimientos? ¿Se usa 'ser' o 'estar'?" },
+      { en: "Excellent question. Feelings are usually temporary, so we use 'estar'.", target: "Excelente pregunta. Los sentimientos suelen ser temporales, así que usamos 'estar'." },
+      { en: "Now please open your books and try the exercises on page twenty.", target: "Ahora, por favor, abran sus libros e intenten los ejercicios de la página veinte." },
+    ],
+  },
+
+  // B1 — French — university office hours
+  {
+    id: "seed-fr-edu-office-hours",
+    title: "Université : Heures de Permanence",
+    subtitle: "University · student visiting professor's office hours in French",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      { en: "Hello professor, do you have a moment to talk?", target: "Bonjour madame, avez-vous un moment pour discuter ?" },
+      { en: "Of course, please come in and sit down.", target: "Bien sûr, entrez et asseyez-vous, s'il vous plaît." },
+      { en: "I am having difficulty with the last essay topic.", target: "J'ai des difficultés avec le sujet de la dernière dissertation." },
+      { en: "Can you tell me what part is unclear?", target: "Pouvez-vous me dire quelle partie n'est pas claire ?" },
+      { en: "I do not understand what 'critical analysis' means in this context.", target: "Je ne comprends pas ce que 'analyse critique' signifie dans ce contexte." },
+      { en: "It means you must evaluate the arguments, not just summarize them.", target: "Cela veut dire que vous devez évaluer les arguments, pas seulement les résumer." },
+      { en: "Should I give my own opinion in the essay?", target: "Dois-je donner mon propre avis dans la dissertation ?" },
+      { en: "Yes, but you must support your opinion with evidence from the texts.", target: "Oui, mais vous devez appuyer votre opinion avec des preuves tirées des textes." },
+      { en: "When is the deadline exactly?", target: "Quand est la date limite exactement ?" },
+      { en: "Friday at midnight. Send me a draft if you want feedback before then.", target: "Vendredi à minuit. Envoyez-moi un brouillon si vous voulez des commentaires avant." },
+    ],
+  },
+
+  // B2 — German — upset hotel guest
+  {
+    id: "seed-de-hotel-complaint",
+    title: "Hotel: Beschwerde eines Gastes",
+    subtitle: "Hotel · handling a guest complaint about the room in German",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Good evening, I am very disappointed with the room you gave us.", target: "Guten Abend, ich bin sehr enttäuscht über das Zimmer, das Sie uns gegeben haben." },
+      { en: "I am so sorry to hear that. Could you tell me exactly what the problem is?", target: "Es tut mir sehr leid, das zu hören. Könnten Sie mir genau sagen, was das Problem ist?" },
+      { en: "The air conditioning does not work and there is noise from the street all night.", target: "Die Klimaanlage funktioniert nicht, und es ist die ganze Nacht Lärm von der Straße zu hören." },
+      { en: "I completely understand your frustration — that is not the experience we want for our guests.", target: "Ich verstehe Ihren Ärger vollkommen — das ist nicht die Erfahrung, die wir unseren Gästen bieten möchten." },
+      { en: "We booked this hotel because the website promised a quiet, comfortable stay.", target: "Wir haben dieses Hotel gebucht, weil die Website einen ruhigen und komfortablen Aufenthalt versprochen hat." },
+      { en: "Let me see what other rooms are available right now and I will move you immediately.", target: "Lassen Sie mich nachsehen, welche anderen Zimmer gerade verfügbar sind, und ich verlege Sie sofort." },
+      { en: "I would also like to offer you a complimentary breakfast and a discount on your stay.", target: "Ich möchte Ihnen außerdem ein kostenloses Frühstück und einen Rabatt auf Ihren Aufenthalt anbieten." },
+      { en: "We have a quieter suite available on the top floor that I think you will prefer.", target: "Wir haben eine ruhigere Suite im obersten Stockwerk frei, die Ihnen meiner Meinung nach besser gefallen wird." },
+      { en: "Thank you — that would be much better. We appreciate you taking this seriously.", target: "Danke — das wäre viel besser. Wir schätzen es, dass Sie das ernst nehmen." },
+      { en: "Again, I sincerely apologize. Please let me know if there is anything else I can do.", target: "Nochmals, ich entschuldige mich aufrichtig. Bitte sagen Sie mir Bescheid, falls ich noch etwas tun kann." },
+    ],
+  },
+
+  // B2 — Italian — parent-teacher meeting
+  {
+    id: "seed-it-edu-parent-teacher",
+    title: "Scuola: Colloquio Genitori-Insegnanti",
+    subtitle: "K–12 Classroom · parent-teacher conference about a student's progress in Italian",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      { en: "Thank you for coming in today. I wanted to talk about Giulia's progress this term.", target: "Grazie per essere venuti oggi. Volevo parlare dei progressi di Giulia in questo trimestre." },
+      { en: "We are happy to be here. How is she doing in class?", target: "Siamo contenti di essere qui. Come sta andando in classe?" },
+      { en: "Academically she is doing very well, especially in mathematics and science.", target: "Dal punto di vista accademico sta andando molto bene, soprattutto in matematica e scienze." },
+      { en: "However, I have noticed she is quite shy and rarely participates in discussions.", target: "Tuttavia, ho notato che è piuttosto timida e raramente partecipa alle discussioni." },
+      { en: "We have noticed the same thing at home — she is afraid of saying the wrong answer.", target: "Abbiamo notato la stessa cosa anche a casa — ha paura di dare la risposta sbagliata." },
+      { en: "I would like to suggest a few small group activities to help build her confidence.", target: "Vorrei proporre alcune attività in piccoli gruppi per aiutarla a costruire la sua fiducia." },
+      { en: "That sounds like a good idea. Is there anything we can do at home to support her?", target: "Mi sembra una buona idea. C'è qualcosa che possiamo fare a casa per sostenerla?" },
+      { en: "Encourage her to share her opinions during dinner and praise her effort, not just the result.", target: "Incoraggiatela a condividere le sue opinioni durante la cena e lodate il suo impegno, non solo il risultato." },
+      { en: "We will start doing that. Should we schedule another meeting later in the year?", target: "Inizieremo a farlo. Dovremmo fissare un altro incontro più avanti nell'anno?" },
+      { en: "Yes, let us meet again in three months to see how she is progressing.", target: "Sì, rivediamoci tra tre mesi per vedere come sta progredendo." },
     ],
   },
 ];

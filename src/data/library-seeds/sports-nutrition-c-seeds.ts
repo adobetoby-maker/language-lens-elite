@@ -12,6 +12,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Lacrosse players burn between 3,000 and 4,500 calories on heavy training days.",
@@ -65,6 +66,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "A lacrosse player can need up to 4,500 calories on tournament days due to continuous running and explosive sprints.",
@@ -118,6 +120,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Lacrosse combines continuous running with explosive bursts, requiring 3,000 to 4,500 calories on training days.",
@@ -171,6 +174,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Lacrosse demands between 3,000 and 4,500 calories per day because it mixes constant running with explosive acceleration.",
@@ -224,6 +228,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Lacrosse mixes continuous running with explosive sprints, so players need 3,000 to 4,500 calories on heavy training days.",
@@ -277,6 +282,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Lacrosse players need between 3,000 and 4,500 calories per day because the sport demands both endurance and explosive speed.",
@@ -332,6 +338,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need 3,500 to 5,000 calories per day, with props and locks requiring the higher end to maintain mass.",
@@ -385,6 +392,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need 3,500 to 5,000 calories per day; forwards need the most to support their larger body mass.",
@@ -438,6 +446,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need between 3,500 and 5,000 calories per day, with tight forwards requiring more than backs.",
@@ -491,6 +500,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need 3,500 to 5,000 calories per day; pillar forwards need the most to maintain their body mass.",
@@ -544,6 +554,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need 3,500 to 5,000 calories per day, with front-row forwards requiring the upper end to maintain their mass.",
@@ -597,6 +608,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Rugby players need 3,500 to 5,000 calories per day; forwards — especially props and locks — need the higher end.",
@@ -652,6 +664,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇲🇽",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational gym-goers typically need 2,000 to 2,800 calories per day, depending on activity level and body size.",
@@ -705,6 +718,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇫🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational fitness enthusiasts generally need between 2,000 and 2,800 calories per day based on their activity level.",
@@ -758,6 +772,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇩🇪",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational gym-goers need roughly 2,000 to 2,800 calories per day, depending on workout frequency and body size.",
@@ -811,6 +826,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇮🇹",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational gym-goers typically need 2,000 to 2,800 calories per day based on how often and how intensely they train.",
@@ -864,6 +880,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇯🇵",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational gym-goers typically need 2,000 to 2,800 calories per day, depending on workout frequency and intensity.",
@@ -917,6 +934,7 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
     flag: "🇧🇷",
     section: "culture",
     available: true,
+    level: "B2",
     sentences: [
       {
         en: "Recreational gym-goers generally need between 2,000 and 2,800 calories per day based on how often they train.",
@@ -957,6 +975,390 @@ export const SPORTS_NUTRITION_C_SEEDS: LibrarySeed[] = [
       {
         en: "Register your meals for two weeks to spot nutritional gaps; then build two or three simple habits you can stick to for life.",
         target: "Anote suas refeições por duas semanas para identificar falhas nutricionais; depois crie dois ou três hábitos simples que você consiga manter para sempre.",
+      },
+    ],
+  },
+
+  // ── CAFFEINE BASICS (A2) ─────────────────────────────────────────────────
+
+  {
+    id: "seed-es-nutrition-cafe-basico",
+    title: "El Café Antes del Gimnasio",
+    subtitle: "Una taza de café para entrenar mejor",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "A2",
+    sentences: [
+      {
+        en: "Many people drink a coffee before going to the gym.",
+        target: "Mucha gente toma un café antes de ir al gimnasio.",
+      },
+      {
+        en: "Coffee gives you energy for about three or four hours.",
+        target: "El café te da energía durante unas tres o cuatro horas.",
+      },
+      {
+        en: "Drink your coffee 45 minutes before training.",
+        target: "Toma tu café 45 minutos antes de entrenar.",
+      },
+      {
+        en: "A small cup is enough; you don't need much.",
+        target: "Una taza pequeña es suficiente; no necesitas mucho.",
+      },
+      {
+        en: "Don't drink coffee after six in the evening.",
+        target: "No tomes café después de las seis de la tarde.",
+      },
+      {
+        en: "Caffeine can make it hard to sleep at night.",
+        target: "La cafeína puede dificultar el sueño por la noche.",
+      },
+      {
+        en: "Always drink water with your coffee, please.",
+        target: "Siempre bebe agua con tu café, por favor.",
+      },
+      {
+        en: "Try a coffee before your next workout and see how you feel.",
+        target: "Prueba un café antes de tu próximo entrenamiento y mira cómo te sientes.",
+      },
+    ],
+  },
+
+  // ── CAFFEINE TIMING (B1) ─────────────────────────────────────────────────
+
+  {
+    id: "seed-fr-nutrition-cafeine-timing",
+    title: "Caféine: Quand et Combien en Prendre",
+    subtitle: "Le bon moment pour booster ta séance",
+    language: "French",
+    targetLabel: "Français",
+    flag: "🇫🇷",
+    section: "culture",
+    available: true,
+    level: "B1",
+    sentences: [
+      {
+        en: "Caffeine is the most studied legal stimulant in the world of sport.",
+        target: "La caféine est le stimulant légal le plus étudié dans le monde du sport.",
+      },
+      {
+        en: "Take 3 to 6 milligrams of caffeine per kilogram of body weight before training.",
+        target: "Prends 3 à 6 milligrammes de caféine par kilogramme de poids corporel avant l'entraînement.",
+      },
+      {
+        en: "For a person of 70 kilos, that means about 200 to 400 milligrams.",
+        target: "Pour une personne de 70 kilos, cela représente environ 200 à 400 milligrammes.",
+      },
+      {
+        en: "A standard espresso contains around 80 milligrams of caffeine.",
+        target: "Un espresso standard contient environ 80 milligrammes de caféine.",
+      },
+      {
+        en: "The effect peaks 45 to 60 minutes after you drink it.",
+        target: "L'effet est maximal 45 à 60 minutes après l'avoir bu.",
+      },
+      {
+        en: "Avoid caffeine in the six hours before bedtime to protect your sleep.",
+        target: "Évite la caféine dans les six heures précédant le coucher pour protéger ton sommeil.",
+      },
+      {
+        en: "Caffeine improves endurance, reaction time, and perceived effort during training.",
+        target: "La caféine améliore l'endurance, le temps de réaction et l'effort perçu pendant l'entraînement.",
+      },
+      {
+        en: "Test your dose during training, never for the first time on competition day.",
+        target: "Teste ta dose à l'entraînement, jamais pour la première fois le jour de la compétition.",
+      },
+      {
+        en: "If you usually drink coffee every day, the effect may be smaller.",
+        target: "Si tu bois habituellement du café tous les jours, l'effet peut être plus faible.",
+      },
+      {
+        en: "Some athletes stop coffee for a week before a big event to reset their tolerance.",
+        target: "Certains athlètes arrêtent le café une semaine avant une grande compétition pour réinitialiser leur tolérance.",
+      },
+    ],
+  },
+
+  // ── RECOVERY WINDOW DEBATE (B2) ──────────────────────────────────────────
+
+  {
+    id: "seed-de-nutrition-recovery-window",
+    title: "Das Anabole Fenster: Mythos oder Wahrheit?",
+    subtitle: "Wie wichtig ist die Mahlzeit nach dem Training wirklich?",
+    language: "German",
+    targetLabel: "Deutsch",
+    flag: "🇩🇪",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "For decades, athletes were told to eat protein within 30 minutes of finishing training.",
+        target: "Jahrzehntelang wurde Sportlern geraten, innerhalb von 30 Minuten nach dem Training Protein zu sich zu nehmen.",
+      },
+      {
+        en: "This 30-minute window was called the anabolic window or recovery window.",
+        target: "Dieses 30-Minuten-Fenster wurde anaboles Fenster oder Regenerationsfenster genannt.",
+      },
+      {
+        en: "Newer research shows that the window is much wider than we previously believed.",
+        target: "Neuere Studien zeigen, dass dieses Fenster deutlich breiter ist als bisher angenommen.",
+      },
+      {
+        en: "Muscle protein synthesis remains elevated for at least 24 hours after a hard training session.",
+        target: "Die Muskelproteinsynthese bleibt nach einer harten Trainingseinheit mindestens 24 Stunden lang erhöht.",
+      },
+      {
+        en: "If you ate a balanced meal three hours before training, immediate post-workout protein is less critical.",
+        target: "Wenn du drei Stunden vor dem Training eine ausgewogene Mahlzeit gegessen hast, ist Protein direkt nach dem Workout weniger entscheidend.",
+      },
+      {
+        en: "However, if you train fasted in the morning, eating soon after exercise becomes more important.",
+        target: "Trainierst du jedoch nüchtern am Morgen, wird das Essen kurz nach dem Sport wichtiger.",
+      },
+      {
+        en: "What matters most is total daily protein intake, distributed across four to six meals.",
+        target: "Am wichtigsten ist die tägliche Gesamtproteinzufuhr, verteilt auf vier bis sechs Mahlzeiten.",
+      },
+      {
+        en: "Aim for 0.4 grams of protein per kilogram at each meal to maximize muscle protein synthesis.",
+        target: "Strebe pro Mahlzeit 0,4 Gramm Protein pro Kilogramm Körpergewicht an, um die Muskelproteinsynthese zu maximieren.",
+      },
+      {
+        en: "For convenience, a post-workout shake is still a practical and proven recovery strategy.",
+        target: "Aus praktischen Gründen bleibt ein Post-Workout-Shake eine bewährte und sinnvolle Regenerationsstrategie.",
+      },
+      {
+        en: "The biggest mistake is obsessing over the window while ignoring overall daily nutrition.",
+        target: "Der größte Fehler ist, sich auf das Zeitfenster zu fixieren und dabei die gesamte Tagesernährung zu vernachlässigen.",
+      },
+    ],
+  },
+
+  // ── BODY COMPOSITION ASSESSMENT (B2) ─────────────────────────────────────
+
+  {
+    id: "seed-it-nutrition-composizione-corporea",
+    title: "Composizione Corporea: Oltre la Bilancia",
+    subtitle: "Misurare massa magra, grasso e idratazione",
+    language: "Italian",
+    targetLabel: "Italiano",
+    flag: "🇮🇹",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Body weight alone tells you very little about an athlete's actual physical condition.",
+        target: "Il peso corporeo da solo dice molto poco sulla reale condizione fisica di un atleta.",
+      },
+      {
+        en: "Body composition analysis distinguishes between fat mass, lean mass, and total body water.",
+        target: "L'analisi della composizione corporea distingue tra massa grassa, massa magra e acqua corporea totale.",
+      },
+      {
+        en: "DEXA scans are the gold standard but they are expensive and not always accessible.",
+        target: "La densitometria DEXA è il gold standard, ma è costosa e non sempre accessibile.",
+      },
+      {
+        en: "Bioimpedance scales offer a practical alternative for tracking changes over time.",
+        target: "Le bilance ad impedenza bioelettrica offrono un'alternativa pratica per monitorare i cambiamenti nel tempo.",
+      },
+      {
+        en: "Always measure under the same conditions: morning, fasted, after going to the bathroom.",
+        target: "Misura sempre nelle stesse condizioni: al mattino, a digiuno, dopo essere andato in bagno.",
+      },
+      {
+        en: "Men typically aim for 10 to 15 percent body fat; women for 18 to 25 percent.",
+        target: "Gli uomini in genere puntano al 10–15 percento di massa grassa; le donne al 18–25 percento.",
+      },
+      {
+        en: "Below those ranges, hormonal function and immune defenses can be compromised.",
+        target: "Al di sotto di questi valori, la funzione ormonale e le difese immunitarie possono essere compromesse.",
+      },
+      {
+        en: "Skinfold caliper measurements, taken by an experienced operator, remain a reliable field method.",
+        target: "Le misurazioni con plicometro, eseguite da un operatore esperto, restano un metodo da campo affidabile.",
+      },
+      {
+        en: "Track measurements every four to six weeks rather than obsessing over daily fluctuations.",
+        target: "Monitora le misurazioni ogni quattro-sei settimane invece di ossessionarti con le oscillazioni giornaliere.",
+      },
+      {
+        en: "Combine objective data with how clothes fit and how you feel during training.",
+        target: "Combina i dati oggettivi con come ti calzano i vestiti e come ti senti durante l'allenamento.",
+      },
+    ],
+  },
+
+  // ── HEAT ACCLIMATION HYDRATION (B2) ──────────────────────────────────────
+
+  {
+    id: "seed-pt-nutrition-hidratacao-calor",
+    title: "Hidratação e Aclimatação ao Calor",
+    subtitle: "Treinar e competir em temperaturas elevadas",
+    language: "Portuguese",
+    targetLabel: "Português",
+    flag: "🇧🇷",
+    section: "culture",
+    available: true,
+    level: "B2",
+    sentences: [
+      {
+        en: "Acclimating to heat takes between 10 and 14 days of progressive exposure.",
+        target: "Aclimatar-se ao calor leva entre 10 e 14 dias de exposição progressiva.",
+      },
+      {
+        en: "During this period, plasma volume increases and the body begins to sweat sooner.",
+        target: "Durante este período, o volume plasmático aumenta e o corpo começa a suar mais cedo.",
+      },
+      {
+        en: "Sweat also becomes more diluted, conserving electrolytes during long efforts.",
+        target: "O suor também fica mais diluído, conservando os eletrólitos durante esforços prolongados.",
+      },
+      {
+        en: "Weigh yourself before and after training to estimate how much fluid you lost.",
+        target: "Pese-se antes e depois do treino para estimar quanto líquido você perdeu.",
+      },
+      {
+        en: "Each kilogram lost represents about one liter of sweat that needs to be replaced.",
+        target: "Cada quilograma perdido representa cerca de um litro de suor que precisa ser reposto.",
+      },
+      {
+        en: "Drink 1.25 to 1.5 liters of fluid for every kilogram lost in the hours after training.",
+        target: "Beba 1,25 a 1,5 litro de líquido para cada quilo perdido nas horas seguintes ao treino.",
+      },
+      {
+        en: "In hot conditions, add 500 to 700 milligrams of sodium per liter of water consumed.",
+        target: "Em condições de calor, acrescente 500 a 700 miligramas de sódio por litro de água consumido.",
+      },
+      {
+        en: "Pre-cooling strategies, such as ice slushies before exercise, lower core temperature and improve performance.",
+        target: "Estratégias de pré-resfriamento, como bebidas geladas antes do exercício, baixam a temperatura central e melhoram o desempenho.",
+      },
+      {
+        en: "Monitor urine color daily: pale yellow indicates good hydration, dark yellow signals dehydration.",
+        target: "Monitore a cor da urina diariamente: amarelo-claro indica boa hidratação, amarelo-escuro sinaliza desidratação.",
+      },
+      {
+        en: "Athletes who skip heat acclimation risk heatstroke, which can be fatal in extreme cases.",
+        target: "Atletas que pulam a aclimatação ao calor correm risco de insolação, que pode ser fatal em casos extremos.",
+      },
+    ],
+  },
+
+  // ── LAB WORK INTERPRETATION (C1) ─────────────────────────────────────────
+
+  {
+    id: "seed-ja-nutrition-blood-panel",
+    title: "アスリートの血液検査：数値の読み解き方",
+    subtitle: "栄養状態とパフォーマンスを示す指標",
+    language: "Japanese",
+    targetLabel: "日本語",
+    flag: "🇯🇵",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "Comprehensive blood panels for athletes should be repeated at least twice per training year, ideally at base and peak phases.",
+        target: "競技者向けの包括的な血液検査は、理想的にはベース期とピーク期を含め、年間少なくとも2回は実施すべきです。",
+      },
+      {
+        en: "Ferritin, the storage form of iron, is more sensitive to depletion than serum iron and should fall above 30 ng/mL for endurance athletes.",
+        target: "鉄の貯蔵タンパク質であるフェリチンは、血清鉄よりも枯渇に敏感で、持久系競技者では30 ng/mL以上が望まれます。",
+      },
+      {
+        en: "Vitamin D levels below 30 ng/mL impair calcium absorption, immune function, and skeletal muscle performance.",
+        target: "ビタミンDの値が30 ng/mLを下回ると、カルシウム吸収・免疫機能・骨格筋のパフォーマンスが損なわれます。",
+      },
+      {
+        en: "Elevated creatine kinase indicates recent muscle damage, but values must be interpreted in the context of training load.",
+        target: "クレアチンキナーゼの上昇は近時の筋損傷を示しますが、トレーニング負荷の文脈で解釈する必要があります。",
+      },
+      {
+        en: "A persistently low free testosterone-to-cortisol ratio is a classic marker of overtraining syndrome.",
+        target: "遊離テストステロン対コルチゾール比の慢性的な低下は、オーバートレーニング症候群の典型的なマーカーです。",
+      },
+      {
+        en: "Hemoglobin and hematocrit reveal whether oxygen-carrying capacity has been compromised by iron loss or hemodilution.",
+        target: "ヘモグロビンとヘマトクリットの値は、鉄欠乏や血液希釈によって酸素運搬能が損なわれているかを示します。",
+      },
+      {
+        en: "TSH, free T3, and free T4 should be checked when unexplained fatigue, weight changes, or cold intolerance appear.",
+        target: "原因不明の倦怠感、体重変化、寒さへの過敏が現れた場合、TSH・遊離T3・遊離T4を測定すべきです。",
+      },
+      {
+        en: "An HbA1c result above the optimal range can hint at chronically high carbohydrate intake despite a lean physique.",
+        target: "HbA1cが至適範囲を超えていれば、痩せた体型であっても炭水化物の慢性的な過剰摂取を示唆する可能性があります。",
+      },
+      {
+        en: "Magnesium and zinc deficiencies often present as cramps, poor sleep, or sluggish recovery between sessions.",
+        target: "マグネシウムや亜鉛の欠乏は、けいれん、睡眠の質の低下、セッション間の回復遅延として現れることが多いです。",
+      },
+      {
+        en: "Always interpret laboratory results alongside dietary records, training logs, and subjective wellness scores rather than in isolation.",
+        target: "検査結果は単独で評価せず、必ず食事記録・トレーニング日誌・主観的コンディションスコアと併せて解釈しましょう。",
+      },
+    ],
+  },
+
+  // ── IRON-DEFICIENCY ANEMIA IN ENDURANCE (C1) ─────────────────────────────
+
+  {
+    id: "seed-es-nutrition-anemia-ferropenica",
+    title: "Anemia Ferropénica en Deportes de Resistencia",
+    subtitle: "Diagnóstico, prevención y tratamiento clínico",
+    language: "Spanish",
+    targetLabel: "Español",
+    flag: "🇲🇽",
+    section: "culture",
+    available: true,
+    level: "C1",
+    sentences: [
+      {
+        en: "Iron-deficiency anemia is one of the most common nutritional deficiencies among endurance athletes, particularly women of reproductive age.",
+        target: "La anemia ferropénica es una de las deficiencias nutricionales más frecuentes entre los atletas de resistencia, sobre todo en mujeres en edad reproductiva.",
+      },
+      {
+        en: "Foot-strike hemolysis, gastrointestinal microbleeds, and elevated hepcidin levels combine to deplete iron stores during heavy training blocks.",
+        target: "La hemólisis por impacto, los microsangrados gastrointestinales y la hepcidina elevada se combinan para agotar las reservas de hierro durante los bloques de entrenamiento intenso.",
+      },
+      {
+        en: "Performance can decline well before clinical anemia appears, in a subclinical state known as non-anemic iron deficiency.",
+        target: "El rendimiento puede caer mucho antes de que aparezca anemia clínica, en un estado subclínico conocido como deficiencia de hierro no anémica.",
+      },
+      {
+        en: "Diagnosis requires not only hemoglobin but also ferritin, transferrin saturation, and soluble transferrin receptor measurements.",
+        target: "El diagnóstico requiere no solo hemoglobina sino también ferritina, saturación de transferrina y receptor soluble de transferrina.",
+      },
+      {
+        en: "Hepcidin peaks three to six hours after exercise, which means iron supplements should be taken in the morning or on rest days for maximum absorption.",
+        target: "La hepcidina alcanza su pico entre tres y seis horas después del ejercicio, por lo que los suplementos de hierro deben tomarse por la mañana o en días de descanso para maximizar su absorción.",
+      },
+      {
+        en: "Co-administering vitamin C enhances non-heme iron absorption, while calcium, coffee, and tea inhibit it significantly.",
+        target: "Administrar vitamina C junto al hierro mejora la absorción del hierro no hemo, mientras que el calcio, el café y el té la inhiben de forma significativa.",
+      },
+      {
+        en: "Alternate-day dosing has been shown to produce better cumulative absorption than daily supplementation in many recent trials.",
+        target: "Numerosos ensayos recientes han demostrado que la dosificación en días alternos produce una mejor absorción acumulada que la suplementación diaria.",
+      },
+      {
+        en: "Intravenous iron is reserved for athletes who cannot tolerate oral preparations or whose competition calendar leaves no room for slow repletion.",
+        target: "El hierro intravenoso se reserva para atletas que no toleran las presentaciones orales o cuyo calendario competitivo no permite una reposición lenta.",
+      },
+      {
+        en: "Restoration of ferritin to optimal ranges typically takes between three and six months, even with appropriate intervention.",
+        target: "Restablecer la ferritina hasta rangos óptimos suele tardar entre tres y seis meses, incluso con una intervención adecuada.",
+      },
+      {
+        en: "Female endurance athletes should screen ferritin every six months, and any value below 30 ng/mL warrants clinical review.",
+        target: "Las atletas de resistencia deberían medir su ferritina cada seis meses, y cualquier valor por debajo de 30 ng/mL exige revisión clínica.",
       },
     ],
   },

@@ -2,6 +2,10 @@
 // Mirrors LibraryEntry / SentencePair from library-state.tsx — do not import from there
 // (would create a circular dep via state layer). These types are intentionally lightweight.
 
+import type { CefrLevel } from "@/fns/grammar.functions";
+
+export type { CefrLevel } from "@/fns/grammar.functions";
+
 export interface SeedSentence {
   en: string;   // English version of the sentence
   target: string; // Target-language translation
@@ -16,6 +20,7 @@ export interface LibrarySeed {
   flag: string;               // emoji flag, e.g. "🇲🇽"
   section: "culture";         // all seeds go into the culture section
   available: true;            // always true for pre-built content
+  level?: CefrLevel;          // CEFR reading level (A1..C2). Optional during back-label migration.
   sentences: SeedSentence[];  // 8–12 sentence pairs
 }
 
