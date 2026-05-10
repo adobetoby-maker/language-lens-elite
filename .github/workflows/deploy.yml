@@ -22,13 +22,18 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
           VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID }}
 
+      - name: Patch wrangler config
+        run: |
+          node -e "
+            const fs = require('fs');
+            const cfg = JSON.parse(fs.readFileSync('dist/client/wrangler.json','utf8'));
+            cfg.name = 'language-lens-elite';
+            cfg.routes = [{ pattern: 'language-lens-elite.worker-bee.app/*', zone_id: '72470c7d604a63c4322e4ed317db2d84' }];
+            fs.writeFileSync('dist/client/wrangler.json', JSON.stringify(cfg));
+          "
+
       - name: Deploy
         run: npx wrangler deploy --config dist/client/wrangler.json
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          # Setting CLOUDFLARE_ACCOUNT_ID lets wrangler skip the /memberships
-          # and /accounts discovery calls (which fail if the token lacks
-          # User-Read). Add this as a GitHub Actions secret with your
-          # Cloudflare account ID (find it on the Workers & Pages overview
-          # page in the Cloudflare dashboard).
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
