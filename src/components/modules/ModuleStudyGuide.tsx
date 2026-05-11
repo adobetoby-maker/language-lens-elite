@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
+import { useMemo, useState } from "react";
 import {
   Sparkles,
   BookOpen,
@@ -10,13 +9,12 @@ import {
   ChevronUp,
   X,
   Play,
-  Loader2,
 } from "lucide-react";
 import { useApp, type Language, type TabKey } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { useLibrary } from "@/state/library-state";
 import { MODULES, type AppModule, moduleSupportsLanguage } from "@/data/modules";
-import { translatePhrases, type TranslatedPhrase } from "@/fns/phrase-translate.functions";
+import { getStarterSeedId } from "@/data/module-starters";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 
@@ -42,7 +40,6 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
   const tutor = useTutor();
   const library = useLibrary();
 
-  const translate = useServerFn(translatePhrases);
   const moduleId = state.activeModuleId;
   const language = state.selectedLanguage;
   const module = useMemo(
@@ -53,66 +50,34 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
   const dismissKey = moduleId
     ? `lingualens.studyguide.dismissed.${moduleId}.${language}`
     : null;
-  const [open, setOpen] = useState(true);
-  const [translatedPhrases, setTranslatedPhrases] = useState<TranslatedPhrase[] | null>(null);
-  const [translating, setTranslating] = useState(false);
+  const [open, setOpen] = useState(() => {
+    if (!moduleId) return true;
+    try {
+      return localStorage.getItem(`lingualens.studyguide.dismissed.${moduleId}.${language}`) !== "1";
+    } catch {
+      return true;
+    }
+  });
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
 
-  useEffect(() => {
-    if (!dismissKey) return;
-    try {
-      setOpen(localStorage.getItem(dismissKey) !== "1");
-    } catch {
-      setOpen(true);
-    }
-  }, [dismissKey]);
-
-  useEffect(() => {
-    if (!module || language === "English") return;
-    const phrases = module.challengePrompts.length
-      ? module.challengePrompts.slice(0, 4)
-      : [
-          `Introduce yourself as a ${module.userRole.toLowerCase()}.`,
-          `Describe your typical workday.`,
-          `Ask three follow-up questions to keep a conversation going.`,
-        ];
-
-    setTranslatedPhrases(null);
-    setTranslating(true);
-    let active = true;
-    translate({
-      data: { phrases, targetLanguage: language, context: module.name },
-    })
-      .then((res) => {
-        if (!active) return;
-        if (res.phrases) setTranslatedPhrases(res.phrases);
-      })
-      .catch(() => { /* silent — fallback to English-only */ })
-      .finally(() => { if (active) setTranslating(false); });
-    return () => { active = false; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [module?.id, language]);
+  // Pull the first 4 sentence pairs from the pre-built starter seed — no API call.
+  const starterPairs = useMemo(() => {
+    if (!moduleId || language === "English") return null;
+    const seedId = getStarterSeedId(moduleId, language);
+    if (!seedId) return null;
+    const entry = library.state.entries.find((e) => e.id === seedId);
+    if (!entry) return null;
+    return entry.sentences.slice(0, 4);
+  }, [moduleId, language, library.state.entries]);
 
   function dismiss() {
     setOpen(false);
-    if (dismissKey) {
-      try {
-        localStorage.setItem(dismissKey, "1");
-      } catch {
-        /* ignore */
-      }
-    }
+    try { if (dismissKey) localStorage.setItem(dismissKey, "1"); } catch { /* ignore */ }
   }
 
   function reopen() {
     setOpen(true);
-    if (dismissKey) {
-      try {
-        localStorage.removeItem(dismissKey);
-      } catch {
-        /* ignore */
-      }
-    }
+    try { if (dismissKey) localStorage.removeItem(dismissKey); } catch { /* ignore */ }
   }
 
   if (!module) return null;
@@ -123,10 +88,10 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
   function go(tab: TabKey) {
     dispatch({ type: "SET_TAB", payload: tab });
     if (tab === "reader") {
-      // Find the first library entry for the current language and auto-select it
-      const match = library.state.entries.find(
-        (e) => e.language === language && !e.id.startsWith("custom-")
-      );
+      const seedId = moduleId ? getStarterSeedId(moduleId, language) : null;
+      const match =
+        (seedId && library.state.entries.find((e) => e.id === seedId)) ??
+        library.state.entries.find((e) => e.language === language && !e.id.startsWith("custom-"));
       if (match) library.dispatch({ type: "SELECT", payload: match.id });
     }
   }
@@ -249,35 +214,45 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
         {/* Stories / interactions */}
         <Card icon={<MessageCircle className="h-3.5 w-3.5" />} title="Short stories & interactions">
-          {translating && (
-            <div className="mb-2 flex items-center gap-1.5 text-[10px] text-muted-foreground">
-              <Loader2 className="h-3 w-3 animate-spin" />
-              Translating to {language}…
-            </div>
-          )}
-          <ul className="space-y-2">
-            {guide.interactions.map((p, i) => {
-              const tl = translatedPhrases?.[i];
-              return (
+          {starterPairs ? (
+            <ul className="space-y-2">
+              {starterPairs.map((pair, i) => (
                 <li
                   key={i}
                   className="rounded-lg border border-border/40 bg-background/30 px-2.5 py-2"
                 >
-                  {tl ? (
-                    <div className="mb-1.5 rounded-md border border-gold/20 bg-gold/5 px-2 py-1">
-                      <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold/70">
-                        {language}
-                      </p>
-                      <p className="text-[13px] leading-relaxed text-foreground cursor-text">
-                        <ClickableText
-                          text={tl.targetLang}
-                          onWordClick={(word, sentence, x, y) =>
-                            setWordReq({ word, sentence, language, x, y })
-                          }
-                        />
-                      </p>
-                    </div>
-                  ) : null}
+                  <div className="mb-1.5 rounded-md border border-gold/20 bg-gold/5 px-2 py-1">
+                    <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold/70">
+                      {language}
+                    </p>
+                    <p className="text-[13px] leading-relaxed text-foreground cursor-text">
+                      <ClickableText
+                        text={pair.target}
+                        onWordClick={(word, sentence, x, y) =>
+                          setWordReq({ word, sentence, language, x, y })
+                        }
+                      />
+                    </p>
+                  </div>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-[11px] leading-relaxed text-muted-foreground">{pair.en}</span>
+                    <button
+                      onClick={() => startRoleplay(pair.en)}
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold transition-colors hover:bg-gold/25"
+                    >
+                      <Play className="h-2.5 w-2.5" /> Start
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="space-y-2">
+              {guide.interactions.map((p, i) => (
+                <li
+                  key={i}
+                  className="rounded-lg border border-border/40 bg-background/30 px-2.5 py-2"
+                >
                   <div className="flex items-start justify-between gap-2">
                     <span className="text-[11px] leading-relaxed text-muted-foreground">{p}</span>
                     <button
@@ -288,9 +263,9 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
                     </button>
                   </div>
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+          )}
         </Card>
       </div>
 
@@ -300,10 +275,10 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
           Begin lesson 1 →
         </p>
         <div className="flex flex-wrap gap-1.5">
-          <Pill onClick={() => go(guide.firstLessonTab as TabKey)} primary>
+          <Pill onClick={() => go("reader")} primary>
             Start first lesson
           </Pill>
-          <Pill onClick={() => startRoleplay(guide.interactions[0])}>
+          <Pill onClick={() => startRoleplay(starterPairs?.[0]?.en ?? guide.interactions[0])}>
             Talk with the AI tutor
           </Pill>
         </div>

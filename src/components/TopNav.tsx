@@ -25,12 +25,12 @@ const LANGUAGES: Language[] = [
   "English",
 ];
 
-const TABS: { key: TabKey; label: string; module?: string }[] = [
+const TABS: { key: TabKey; label: string; module?: string; language?: Language }[] = [
   { key: "modules", label: "Modules" },
   { key: "missionary", label: "Missionary", module: "lds-missionary" },
   { key: "orthopedics", label: "Orthopedics", module: "orthopedics" },
   { key: "reader", label: "Reader" },
-  { key: "kana", label: "Kana Pad" },
+  { key: "kana", label: "Kana Pad", language: "Japanese" },
   { key: "grammar", label: "Grammar Studio" },
   { key: "conjugation", label: "Conjugation" },
   { key: "sentenceBuild", label: "Sentence Builder" },
@@ -204,7 +204,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
       {/* Tabs */}
       <nav className="border-t border-border/40">
         <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-x-auto px-3 sm:gap-4 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {TABS.filter((t) => !t.module || state.activeModuleId === t.module).map((tab) => {
+          {TABS.filter((t) => (!t.module || state.activeModuleId === t.module) && (!t.language || state.selectedLanguage === t.language)).map((tab) => {
             const active = state.currentTab === tab.key;
             return (
               <button

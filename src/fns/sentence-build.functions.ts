@@ -94,7 +94,7 @@ export const generateSentenceBuilder = createServerFn({ method: "POST" })
         // Sonnet 4.6 — same reasoning as conjugation. Bad token splits or
         // a "scrambled" array that doesn't permute "tokens" silently breaks
         // the game. Sonnet is reliable here.
-        model: "claude-sonnet-4-6",
+        model: "claude-haiku-4-5",
         max_tokens: 600,
         system: SYSTEM,
         messages: [{ role: "user", content: userMsg }],

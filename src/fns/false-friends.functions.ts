@@ -116,7 +116,7 @@ export const generateFalseFriend = createServerFn({ method: "POST" })
     try {
       const client = new Anthropic({ apiKey: KEY });
       const response = await client.messages.create({
-        model: "claude-sonnet-4-6",
+        model: "claude-haiku-4-5",
         max_tokens: 500,
         system: SYSTEM,
         messages: [{ role: "user", content: userMsg }],

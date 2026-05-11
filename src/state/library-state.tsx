@@ -27,6 +27,7 @@ import { ENGLISH_TARGET_SEEDS } from "@/data/library-seeds/english-target-seeds"
 import { TECHNOLOGY_SEEDS } from "@/data/library-seeds/technology-seeds";
 import { COOKING_FOOD_SEEDS } from "@/data/library-seeds/cooking-food-seeds";
 import { FINANCE_BUSINESS_SEEDS } from "@/data/library-seeds/finance-business-seeds";
+import { KOREAN_MODULE_SEEDS } from "@/data/library-seeds/korean-module-seeds";
 import type { Language } from "./app-state";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./auth-state";
@@ -1003,6 +1004,7 @@ const SEEDS: LibraryEntry[] = [
   ...(TECHNOLOGY_SEEDS as LibraryEntry[]),
   ...(COOKING_FOOD_SEEDS as LibraryEntry[]),
   ...(FINANCE_BUSINESS_SEEDS as LibraryEntry[]),
+  ...(KOREAN_MODULE_SEEDS as LibraryEntry[]),
 ];
 
 const initial: LibraryState = {

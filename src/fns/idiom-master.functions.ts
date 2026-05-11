@@ -118,7 +118,7 @@ export const generateIdiomQuestion = createServerFn({ method: "POST" })
         // English-translated phrase silently destroys cultural credibility,
         // which is exactly what learners come here for. Sonnet's much more
         // reliable than Haiku on idiom recall + cultural notes.
-        model: "claude-sonnet-4-6",
+        model: "claude-haiku-4-5",
         max_tokens: 700,
         system: SYSTEM,
         messages: [{ role: "user", content: userMsg }],

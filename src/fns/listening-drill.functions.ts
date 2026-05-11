@@ -100,7 +100,7 @@ export const generateListeningDrill = createServerFn({ method: "POST" })
         // game. A distractor that doesn't share sound profile with the phrase
         // makes the answer obvious from text alone, defeating the listening
         // drill entirely.
-        model: "claude-sonnet-4-6",
+        model: "claude-haiku-4-5",
         max_tokens: 700,
         system: SYSTEM,
         messages: [{ role: "user", content: userMsg }],
