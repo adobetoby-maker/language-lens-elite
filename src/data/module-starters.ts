@@ -377,6 +377,46 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-hobbies-gym", "seed-pt-sports-surf-briefing", "seed-pt-sports-camping-setup", "seed-pt-sports-hobbies-nutrition"],
   },
 
+  "physical-therapy": {
+    Spanish: ["seed-es-physical-therapy-exercises"],
+    French: ["seed-fr-physical-therapy-rehab"],
+    German: ["seed-de-physical-therapy-strength"],
+    Italian: ["seed-it-physical-therapy-mobility"],
+    Japanese: ["seed-ja-physical-therapy-homeprogram"],
+    Korean: ["seed-ko-physical-therapy-postop"],
+    Portuguese: ["seed-pt-physical-therapy-balance"],
+  },
+
+  "medical-receptionist": {
+    Spanish: ["seed-es-medical-receptionist-scheduling"],
+    French: ["seed-fr-medical-receptionist-intake"],
+    German: ["seed-de-medical-receptionist-insurance"],
+    Italian: ["seed-it-medical-receptionist-checkin"],
+    Japanese: ["seed-ja-medical-receptionist-registration"],
+    Korean: ["seed-ko-medical-receptionist-desk"],
+    Portuguese: ["seed-pt-medical-receptionist-clinic"],
+  },
+
+  "social-work": {
+    Spanish: ["seed-es-social-work-discharge"],
+    French: ["seed-fr-social-work-benefits"],
+    German: ["seed-de-social-work-housing"],
+    Italian: ["seed-it-social-work-mentalhealth"],
+    Japanese: ["seed-ja-social-work-elderly"],
+    Korean: ["seed-ko-social-work-discharge"],
+    Portuguese: ["seed-pt-social-work-community"],
+  },
+
+  "construction-safety": {
+    Spanish: ["seed-es-construction-safety-ppe"],
+    French: ["seed-fr-construction-safety-fallprotection"],
+    German: ["seed-de-construction-safety-lockout"],
+    Italian: ["seed-it-construction-safety-toolbox"],
+    Japanese: ["seed-ja-construction-safety-site"],
+    Korean: ["seed-ko-construction-safety-site"],
+    Portuguese: ["seed-pt-construction-safety-osha"],
+  },
+
   "catholic-ministry": {
     Spanish: ["seed-es-catholic-mass"],
     French: ["seed-fr-catholic-mass"],
