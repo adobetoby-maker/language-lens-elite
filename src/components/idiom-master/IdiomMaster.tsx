@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, XCircle, Sparkle, Flame, Trophy, RotateCcw, ChevronRight, Quote } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useIdiomMaster, type IMLeaderboardKey } from "@/state/idiom-master-state";
 import { generateIdiomQuestion, type IdiomMasterLevel, type IdiomQuestion } from "@/fns/idiom-master.functions";
+import { MODULES } from "@/data/modules";
 
 const LEVEL_LABELS: Record<IdiomMasterLevel, { name: string; sub: string }> = {
   1: { name: "Level 1", sub: "Common idioms — A2-B1, weekly-use" },
@@ -16,16 +17,20 @@ export function IdiomMaster() {
   const im = useIdiomMaster();
   const fetchQuestion = useServerFn(generateIdiomQuestion);
 
-  // Wire the server-fn into the provider so the reducer can pull questions
-  // without owning a React hook itself.
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     im.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQuestion({ data: { language, level, avoid } });
+      const res = await fetchQuestion({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => im.setFetcher(null);
-  }, [im, fetchQuestion]);
+  }, [im, fetchQuestion, topic]);
 
   const [selectedLevel, setSelectedLevel] = useState<IdiomMasterLevel>(1);
   const [shuffled, setShuffled] = useState<string[]>([]);

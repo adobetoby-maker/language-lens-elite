@@ -20,6 +20,7 @@ const Input = z.object({
   axis: z.enum(["tense", "person", "number", "mood", "mixed"]).optional(),
   cefr: z.enum(["A1", "A2", "B1", "B2", "C1", "C2"]).optional(),
   avoid: z.array(z.string().min(1).max(120)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface ConjugationQuestion {
@@ -104,7 +105,11 @@ export const generateConjugationQuestion = createServerFn({ method: "POST" })
         ? `Level 2: test the ${axis} axis primarily, but you may include one secondary variation across options.`
         : `Level 3: combine 2+ axes ("${axis}"). Wrong options should each get a different transformation wrong.`;
 
-    const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
+    const topicLine = data.topic
+      ? `\nContext: the phrase MUST come from a "${data.topic}" scenario — use verbs a ${data.topic} practitioner would actually say.`
+      : "";
+
+    const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${topicLine}${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

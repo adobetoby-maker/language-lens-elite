@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, XCircle, Sparkle, RotateCcw, Trophy, Flame, ChevronRight, AlertTriangle, Handshake } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useFalseFriends, type FFLeaderboardKey } from "@/state/false-friends-state";
 import { generateFalseFriend, type FalseFriendsLevel } from "@/fns/false-friends.functions";
+import { MODULES } from "@/data/modules";
 
 const LEVEL_LABELS: Record<FalseFriendsLevel, { name: string; sub: string }> = {
   1: { name: "Level 1", sub: "Common cognates — A2" },
@@ -16,14 +17,20 @@ export function FalseFriends() {
   const ff = useFalseFriends();
   const fetchQ = useServerFn(generateFalseFriend);
 
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     ff.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQ({ data: { language, level, avoid } });
+      const res = await fetchQ({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => ff.setFetcher(null);
-  }, [ff, fetchQ]);
+  }, [ff, fetchQ, topic]);
 
   const [selectedLevel, setSelectedLevel] = useState<FalseFriendsLevel>(1);
   const run = ff.state.run;

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   CheckCircle2,
@@ -12,6 +12,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
+import { MODULES } from "@/data/modules";
 import {
   useListeningDrill,
   type LDLeaderboardKey,
@@ -65,15 +66,20 @@ export function ListeningDrill() {
   const ld = useListeningDrill();
   const fetchQuestion = useServerFn(generateListeningDrill);
 
-  // Wire fetcher into provider once.
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     ld.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQuestion({ data: { language, level, avoid } });
+      const res = await fetchQuestion({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => ld.setFetcher(null);
-  }, [ld, fetchQuestion]);
+  }, [ld, fetchQuestion, topic]);
 
   // Always cancel any in-flight TTS when this view unmounts.
   useEffect(() => () => cancelSpeak(), []);

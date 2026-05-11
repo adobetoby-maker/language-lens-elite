@@ -21,6 +21,7 @@ const Input = z.object({
   language: z.string().min(1).max(40),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(120)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface FalseFriendQuestion {
@@ -111,7 +112,11 @@ export const generateFalseFriend = createServerFn({ method: "POST" })
       ? `\nAvoid these recent words: ${data.avoid.join(", ")}.`
       : "";
 
-    const userMsg = `Generate ONE ${data.language} false-friends question at CEFR ${cefr}.\n${levelNotes}${avoidLine}\n\nReturn the structured question via the tool.`;
+    const topicLine = data.topic
+      ? `\nPrefer a false friend that a "${data.topic}" learner would plausibly encounter — vocabulary from that professional domain.`
+      : "";
+
+    const userMsg = `Generate ONE ${data.language} false-friends question at CEFR ${cefr}.\n${levelNotes}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

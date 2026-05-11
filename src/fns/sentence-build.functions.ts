@@ -13,6 +13,7 @@ const Input = z.object({
   language: z.string().min(1).max(40),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(200)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface SentenceBuildQuestion {
@@ -86,7 +87,11 @@ export const generateSentenceBuilder = createServerFn({ method: "POST" })
       ? `\nAvoid these recent topics or sentence opens: ${data.avoid.join(", ")}.`
       : "";
 
-    const userMsg = `Generate ONE ${data.language} sentence-builder question at CEFR ${cefr}.\n${lengthGuidance}${avoidLine}\n\nReturn the structured question via the tool.`;
+    const topicLine = data.topic
+      ? `\nDomain: the sentence MUST be one a "${data.topic}" practitioner would actually say — use domain-specific vocabulary.`
+      : "";
+
+    const userMsg = `Generate ONE ${data.language} sentence-builder question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

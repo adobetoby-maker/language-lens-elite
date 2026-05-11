@@ -13,6 +13,7 @@ const Input = z.object({
   language: z.string().min(1).max(40),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(200)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface ListeningDrillQuestion {
@@ -91,7 +92,11 @@ export const generateListeningDrill = createServerFn({ method: "POST" })
       ? `\nAvoid these recent phrases or topics: ${data.avoid.join(", ")}.`
       : "";
 
-    const userMsg = `Generate ONE ${data.language} listening-drill question at CEFR ${cefr}.\n${lengthGuidance}${avoidLine}\n\nReturn the structured question via the tool.`;
+    const topicLine = data.topic
+      ? `\nDomain: the phrase MUST be something heard in a "${data.topic}" context — use vocabulary a ${data.topic} practitioner would actually say.`
+      : "";
+
+    const userMsg = `Generate ONE ${data.language} listening-drill question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

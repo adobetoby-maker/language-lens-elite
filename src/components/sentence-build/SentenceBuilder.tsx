@@ -4,6 +4,7 @@ import { CheckCircle2, XCircle, Sparkle, Shuffle, RotateCcw, Trophy, Flame, Chev
 import { useApp } from "@/state/app-state";
 import { useSentenceBuild, type SBLeaderboardKey } from "@/state/sentence-build-state";
 import { generateSentenceBuilder, type SentenceBuildLevel } from "@/fns/sentence-build.functions";
+import { MODULES } from "@/data/modules";
 
 const LEVEL_LABELS: Record<SentenceBuildLevel, { name: string; sub: string }> = {
   1: { name: "Level 1", sub: "Short — 4–6 tokens, A2" },
@@ -16,15 +17,20 @@ export function SentenceBuilder() {
   const sb = useSentenceBuild();
   const fetchQuestion = useServerFn(generateSentenceBuilder);
 
-  // Wire fetcher into provider once.
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     sb.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQuestion({ data: { language, level, avoid } });
+      const res = await fetchQuestion({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => sb.setFetcher(null);
-  }, [sb, fetchQuestion]);
+  }, [sb, fetchQuestion, topic]);
 
   const [selectedLevel, setSelectedLevel] = useState<SentenceBuildLevel>(1);
   const run = sb.state.run;

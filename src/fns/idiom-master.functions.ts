@@ -13,6 +13,7 @@ const Input = z.object({
   language: z.string().min(1).max(40),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(200)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface IdiomQuestion {
@@ -109,7 +110,11 @@ export const generateIdiomQuestion = createServerFn({ method: "POST" })
         ? `\nDo NOT reuse any of these idioms (already used this run): ${data.avoid.join(", ")}.`
         : "";
 
-    const userMsg = `Generate ONE ${data.language} idiom-master question.\n${levelGuidance}${avoidLine}\n\nReturn the structured question via the tool.`;
+    const topicLine = data.topic
+      ? `\nPrefer idioms that could naturally appear in a "${data.topic}" conversation — idioms a ${data.topic} professional or student would encounter or use.`
+      : "";
+
+    const userMsg = `Generate ONE ${data.language} idiom-master question.\n${levelGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

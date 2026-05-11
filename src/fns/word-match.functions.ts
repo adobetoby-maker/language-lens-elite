@@ -13,6 +13,7 @@ const Input = z.object({
   language: z.string().min(1).max(40),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(80)).max(20).optional(),
+  topic: z.string().min(1).max(200).optional(),
 });
 
 export interface WordMatchPair {
@@ -78,15 +79,18 @@ export const generateWordMatchBoard = createServerFn({ method: "POST" })
     const expectedCount = data.level === 1 ? 6 : data.level === 2 ? 8 : 10;
 
     const avoidHash = (data.avoid ?? []).slice().sort().join(",");
-    const key = cacheKey(data.language, data.level, avoidHash);
+    const key = cacheKey(data.language, data.level, avoidHash + (data.topic ?? ""));
     const hit = cacheGet(key);
     if (hit) return { data: hit, error: null, cached: true };
 
     const avoidLine = data.avoid && data.avoid.length
       ? `\nAvoid these recently used topics: ${data.avoid.join(", ")}.`
       : "";
+    const topicLine = data.topic
+      ? `\nDomain: ALL pairs MUST be vocabulary from the "${data.topic}" field — the kind of words a ${data.topic} practitioner uses daily.`
+      : "";
 
-    const userMsg = `Generate ONE Word Match board for ${data.language} learners at CEFR ${cefr}.\nProduce EXACTLY ${expectedCount} pairs, all from a single coherent topic.${avoidLine}\n\nReturn the board via the tool.`;
+    const userMsg = `Generate ONE Word Match board for ${data.language} learners at CEFR ${cefr}.\nProduce EXACTLY ${expectedCount} pairs, all from a single coherent topic.${topicLine}${avoidLine}\n\nReturn the board via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

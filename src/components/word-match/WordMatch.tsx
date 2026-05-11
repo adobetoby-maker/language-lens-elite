@@ -4,6 +4,7 @@ import { Trophy, RotateCcw, Sparkle, Timer, Layers, Target, ChevronLeft } from "
 import { useApp } from "@/state/app-state";
 import { useWordMatch, type WMLeaderboardKey } from "@/state/word-match-state";
 import { generateWordMatchBoard, type WordMatchLevel } from "@/fns/word-match.functions";
+import { MODULES } from "@/data/modules";
 
 const LEVEL_LABELS: Record<WordMatchLevel, { name: string; sub: string; pairs: number }> = {
   1: { name: "Level 1", sub: "6 pairs · A1–A2 vocab", pairs: 6 },
@@ -26,15 +27,20 @@ export function WordMatch() {
   const wm = useWordMatch();
   const fetchBoard = useServerFn(generateWordMatchBoard);
 
-  // Wire fetcher into provider once.
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     wm.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchBoard({ data: { language, level, avoid } });
+      const res = await fetchBoard({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No board.");
       return res.data;
     });
     return () => wm.setFetcher(null);
-  }, [wm, fetchBoard]);
+  }, [wm, fetchBoard, topic]);
 
   const [selectedLevel, setSelectedLevel] = useState<WordMatchLevel>(1);
 

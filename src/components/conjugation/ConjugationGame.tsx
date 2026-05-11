@@ -10,6 +10,7 @@ import {
 } from "@/state/conjugation-state";
 import { generateConjugationQuestion, type ConjugationLevel, type ConjugationQuestion } from "@/fns/conjugation.functions";
 import { ConjugationLeaderboard } from "./ConjugationLeaderboard";
+import { MODULES } from "@/data/modules";
 
 const LEVEL_LABELS: Record<ConjugationLevel, { name: string; sub: string }> = {
   1: { name: "Level 1", sub: "Single change — tense, person, or number" },
@@ -22,15 +23,20 @@ export function ConjugationGame() {
   const conj = useConjugation();
   const fetchQuestion = useServerFn(generateConjugationQuestion);
 
-  // Wire the server-fn into the provider so it can call from outside the tree.
+  const topic = useMemo(() => {
+    const mod = MODULES.find((m) => m.id === app.activeModuleId);
+    if (!mod) return undefined;
+    return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
+  }, [app.activeModuleId]);
+
   useEffect(() => {
     conj.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQuestion({ data: { language, level, avoid } });
+      const res = await fetchQuestion({ data: { language, level, avoid, topic } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => conj.setFetcher(null);
-  }, [conj, fetchQuestion]);
+  }, [conj, fetchQuestion, topic]);
 
   const [selectedLevel, setSelectedLevel] = useState<ConjugationLevel>(1);
   const [shuffled, setShuffled] = useState<string[]>([]);
