@@ -112,9 +112,13 @@ export function WordCard({
       .then((res) => {
         if (!active) return;
         if (res.error) setError(res.error);
-        else setCard(res.card);
+        else if (res.card) setCard(res.card);
+        else setError("No data returned — tap to retry");
       })
-      .catch((e) => active && setError(e?.message ?? "Lookup failed"))
+      .catch((e) => {
+        if (!active) return;
+        setError(e?.message || "Lookup failed — tap to retry");
+      })
       .finally(() => active && setLoading(false));
     return () => {
       active = false;

@@ -1,21 +1,19 @@
+import { useState } from "react";
 import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
 import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
-import { MODULES, getModule, type AppModule } from "@/data/modules";
+import { getModule } from "@/data/modules";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ModulePickerDialog } from "./ModulePickerDialog";
 import { VoicePicker } from "./VoicePicker";
 import { LanguageMatchButton } from "./match/LanguageMatchButton";
 import { AuthButton } from "./auth/AuthButton";
-import { toast } from "sonner";
 
 const LANGUAGES: Language[] = [
   "Spanish",
@@ -50,28 +48,10 @@ const TABS: { key: TabKey; label: string; module?: string }[] = [
 const TAB_VISIT_XP = 5;
 const VISITED_TABS_KEY = "lingualens.visitedTabs.session";
 
-const CATEGORY_ORDER: AppModule["category"][] = [
-  "Faith", "Medical", "Trades", "Service", "Education", "Agriculture", "Sports", "Travel",
-];
-
-const CATEGORY_EMOJI: Record<AppModule["category"], string> = {
-  Faith: "🙏",
-  Medical: "🏥",
-  Trades: "🔧",
-  Service: "🍽️",
-  Education: "📚",
-  Agriculture: "🌾",
-  Sports: "⚽",
-  Travel: "✈️",
-};
-
-const modulesByCategory: Record<string, AppModule[]> = {};
-for (const m of MODULES) {
-  (modulesByCategory[m.category] ||= []).push(m);
-}
 
 export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
+  const [moduleDialogOpen, setModuleDialogOpen] = useState(false);
 
   function handleTabSwitch(key: TabKey) {
     if (key === state.currentTab) return;
@@ -139,95 +119,24 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
         </DropdownMenu>
 
         {/* Module switcher */}
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            title="Active module"
-            className="group order-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 transition-all hover:border-gold/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-4"
-          >
-            <Puzzle className="h-3.5 w-3.5 shrink-0 text-gold" strokeWidth={1.8} />
-            {getModule(state.activeModuleId) ? (
-              <span className="truncate max-w-[160px] font-mono text-sm font-bold uppercase tracking-[0.18em] text-gold">
-                {getModule(state.activeModuleId)!.emoji} {getModule(state.activeModuleId)!.name}
-              </span>
-            ) : (
-              <span className="truncate max-w-[140px] font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 sm:text-xs">
-                Core (Free)
-              </span>
-            )}
-            <ChevronDown className="h-3.5 w-3.5 shrink-0 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="center"
-            className="min-w-[240px] border-border/70 bg-popover/95 backdrop-blur-xl"
-          >
-            <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Active module
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onSelect={() => dispatch({ type: "SET_ACTIVE_MODULE", payload: null })}
-              className="font-mono text-xs uppercase tracking-[0.16em]"
-            >
-              <span className={state.activeModuleId === null ? "text-gold" : "opacity-60"}>◈</span>
+        <button
+          onClick={() => setModuleDialogOpen(true)}
+          title="Change module"
+          className="group order-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 transition-all hover:border-gold/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-4"
+        >
+          <Puzzle className="h-3.5 w-3.5 shrink-0 text-gold" strokeWidth={1.8} />
+          {getModule(state.activeModuleId) ? (
+            <span className="truncate max-w-[160px] font-mono text-sm font-bold uppercase tracking-[0.18em] text-gold">
+              {getModule(state.activeModuleId)!.emoji} {getModule(state.activeModuleId)!.name}
+            </span>
+          ) : (
+            <span className="truncate max-w-[140px] font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 sm:text-xs">
               Core (Free)
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            {CATEGORY_ORDER.filter((cat) => modulesByCategory[cat]?.length).map((cat) => (
-              <DropdownMenuSub key={cat}>
-                <DropdownMenuSubTrigger className="font-mono text-[11px] uppercase tracking-[0.18em]">
-                  <span className="mr-1.5">{CATEGORY_EMOJI[cat]}</span>
-                  {cat}
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="min-w-[240px] border-border/70 bg-popover/95 backdrop-blur-xl">
-                  {(modulesByCategory[cat] ?? []).map((m) => {
-                    const owned = state.purchasedModules.includes(m.id);
-                    const active = state.activeModuleId === m.id;
-                    return (
-                      <DropdownMenuItem
-                        key={m.id}
-                        onSelect={() => {
-                          if (!owned) {
-                            dispatch({ type: "PURCHASE_MODULE", payload: m.id });
-                            dispatch({ type: "SET_ACTIVE_MODULE", payload: m.id });
-                            toast(`${m.emoji} ${m.name} unlocked`, {
-                              description: "Stubbed — payments not wired yet.",
-                            });
-                          } else {
-                            dispatch({ type: "SET_ACTIVE_MODULE", payload: m.id });
-                            toast(`${m.emoji} ${m.name} active`);
-                          }
-                        }}
-                        className="flex items-start gap-2 py-2"
-                      >
-                        <span className={active ? "text-gold mt-0.5" : "opacity-40 mt-0.5"}>◈</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className={`font-mono text-xs uppercase tracking-[0.16em] ${active ? "text-gold font-semibold" : ""}`}>
-                              {m.emoji} {m.name}
-                            </span>
-                            {!owned && (
-                              <span className="ml-auto rounded-full border border-gold/40 px-2 py-0.5 text-[9px] uppercase tracking-wider text-gold">
-                                ${(m.priceCents / 100).toFixed(2)}
-                              </span>
-                            )}
-                            {owned && active && (
-                              <span className="ml-auto text-[9px] uppercase tracking-wider text-gold">
-                                Active
-                              </span>
-                            )}
-                          </div>
-                          <div className="mt-0.5 line-clamp-2 text-[10px] normal-case tracking-normal text-muted-foreground">
-                            {m.blurb}
-                          </div>
-                        </div>
-                      </DropdownMenuItem>
-                    );
-                  })}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </span>
+          )}
+          <ChevronDown className="h-3.5 w-3.5 shrink-0 opacity-60" />
+        </button>
+        <ModulePickerDialog open={moduleDialogOpen} onClose={() => setModuleDialogOpen(false)} />
 
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Native language picker */}

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   Sparkles,
   BookOpen,
@@ -9,10 +10,15 @@ import {
   ChevronUp,
   X,
   Play,
+  Loader2,
 } from "lucide-react";
 import { useApp, type Language, type TabKey } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
+import { useLibrary } from "@/state/library-state";
 import { MODULES, type AppModule, moduleSupportsLanguage } from "@/data/modules";
+import { translatePhrases, type TranslatedPhrase } from "@/fns/phrase-translate.functions";
+import { ClickableText } from "@/components/reader/ClickableText";
+import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 
 /**
  * ModuleStudyGuide
@@ -34,7 +40,9 @@ import { MODULES, type AppModule, moduleSupportsLanguage } from "@/data/modules"
 export function ModuleStudyGuide({ className = "" }: { className?: string }) {
   const { state, dispatch } = useApp();
   const tutor = useTutor();
+  const library = useLibrary();
 
+  const translate = useServerFn(translatePhrases);
   const moduleId = state.activeModuleId;
   const language = state.selectedLanguage;
   const module = useMemo(
@@ -46,6 +54,9 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
     ? `lingualens.studyguide.dismissed.${moduleId}.${language}`
     : null;
   const [open, setOpen] = useState(true);
+  const [translatedPhrases, setTranslatedPhrases] = useState<TranslatedPhrase[] | null>(null);
+  const [translating, setTranslating] = useState(false);
+  const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
 
   useEffect(() => {
     if (!dismissKey) return;
@@ -55,6 +66,32 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
       setOpen(true);
     }
   }, [dismissKey]);
+
+  useEffect(() => {
+    if (!module || language === "English") return;
+    const phrases = module.challengePrompts.length
+      ? module.challengePrompts.slice(0, 4)
+      : [
+          `Introduce yourself as a ${module.userRole.toLowerCase()}.`,
+          `Describe your typical workday.`,
+          `Ask three follow-up questions to keep a conversation going.`,
+        ];
+
+    setTranslatedPhrases(null);
+    setTranslating(true);
+    let active = true;
+    translate({
+      data: { phrases, targetLanguage: language, context: module.name },
+    })
+      .then((res) => {
+        if (!active) return;
+        if (res.phrases) setTranslatedPhrases(res.phrases);
+      })
+      .catch(() => { /* silent — fallback to English-only */ })
+      .finally(() => { if (active) setTranslating(false); });
+    return () => { active = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [module?.id, language]);
 
   function dismiss() {
     setOpen(false);
@@ -85,6 +122,13 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
   function go(tab: TabKey) {
     dispatch({ type: "SET_TAB", payload: tab });
+    if (tab === "reader") {
+      // Find the first library entry for the current language and auto-select it
+      const match = library.state.entries.find(
+        (e) => e.language === language && !e.id.startsWith("custom-")
+      );
+      if (match) library.dispatch({ type: "SELECT", payload: match.id });
+    }
   }
 
   function startRoleplay(prompt: string) {
@@ -205,21 +249,47 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
         {/* Stories / interactions */}
         <Card icon={<MessageCircle className="h-3.5 w-3.5" />} title="Short stories & interactions">
-          <ul className="space-y-1.5">
-            {guide.interactions.map((p, i) => (
-              <li
-                key={i}
-                className="flex items-start justify-between gap-2 rounded-lg border border-border/40 bg-background/30 px-2.5 py-1.5"
-              >
-                <span className="text-xs leading-relaxed text-foreground/85">{p}</span>
-                <button
-                  onClick={() => startRoleplay(p)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold transition-colors hover:bg-gold/25"
+          {translating && (
+            <div className="mb-2 flex items-center gap-1.5 text-[10px] text-muted-foreground">
+              <Loader2 className="h-3 w-3 animate-spin" />
+              Translating to {language}…
+            </div>
+          )}
+          <ul className="space-y-2">
+            {guide.interactions.map((p, i) => {
+              const tl = translatedPhrases?.[i];
+              return (
+                <li
+                  key={i}
+                  className="rounded-lg border border-border/40 bg-background/30 px-2.5 py-2"
                 >
-                  <Play className="h-2.5 w-2.5" /> Start
-                </button>
-              </li>
-            ))}
+                  {tl ? (
+                    <div className="mb-1.5 rounded-md border border-gold/20 bg-gold/5 px-2 py-1">
+                      <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold/70">
+                        {language}
+                      </p>
+                      <p className="text-[13px] leading-relaxed text-foreground cursor-text">
+                        <ClickableText
+                          text={tl.targetLang}
+                          onWordClick={(word, sentence, x, y) =>
+                            setWordReq({ word, sentence, language, x, y })
+                          }
+                        />
+                      </p>
+                    </div>
+                  ) : null}
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-[11px] leading-relaxed text-muted-foreground">{p}</span>
+                    <button
+                      onClick={() => startRoleplay(p)}
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold transition-colors hover:bg-gold/25"
+                    >
+                      <Play className="h-2.5 w-2.5" /> Start
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </Card>
       </div>
@@ -238,6 +308,14 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
           </Pill>
         </div>
       </div>
+
+      {wordReq && (
+        <WordCard
+          request={wordReq}
+          onClose={() => setWordReq(null)}
+          onXp={(n) => dispatch({ type: "ADD_XP", payload: n })}
+        />
+      )}
     </section>
   );
 }

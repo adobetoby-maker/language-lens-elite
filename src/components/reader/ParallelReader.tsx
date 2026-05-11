@@ -643,7 +643,7 @@ export function ParallelReader() {
 
       {/* Reader */}
       <div className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur ${fullscreen ? "fixed inset-2 z-40 md:inset-6" : ""}`}>
-        <div className={fullscreen ? "grid grid-cols-1" : "grid grid-cols-1 md:grid-cols-2"}>
+        <div className={fullscreen ? "grid grid-cols-1" : "grid grid-cols-2"}>
           {!fullscreen && (
             <div className="relative">
               <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
@@ -666,12 +666,12 @@ export function ParallelReader() {
           )}
 
           {!fullscreen && (
-            <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px md:block">
+            <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px">
               <div className="h-full w-full bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
             </div>
           )}
 
-          <div className={`relative ${fullscreen ? "" : "border-t border-border/50 md:border-l-0 md:border-t-0"}`}>
+          <div className={`relative ${fullscreen ? "" : "border-l border-border/50"}`}>
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/50 bg-card/80 px-6 py-3 backdrop-blur">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
                 {selected.language}
