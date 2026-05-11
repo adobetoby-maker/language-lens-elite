@@ -14,7 +14,7 @@ import { useApp, type Language, type TabKey } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
 import { useLibrary } from "@/state/library-state";
 import { MODULES, type AppModule, moduleSupportsLanguage } from "@/data/modules";
-import { getStarterSeedId } from "@/data/module-starters";
+import { getLessons, getStarterSeedId } from "@/data/module-starters";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 
@@ -70,6 +70,16 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
     return entry.sentences.slice(0, 4);
   }, [moduleId, language, library.state.entries]);
 
+  // All ordered lessons for this module × language.
+  const lessons = useMemo(() => {
+    if (!moduleId) return [];
+    const ids = getLessons(moduleId, language);
+    return ids.map((id, idx) => {
+      const entry = library.state.entries.find((e) => e.id === id);
+      return { id, idx, title: entry?.title ?? `Lesson ${idx + 1}`, subtitle: entry?.subtitle };
+    });
+  }, [moduleId, language, library.state.entries]);
+
   function dismiss() {
     setOpen(false);
     try { if (dismissKey) localStorage.setItem(dismissKey, "1"); } catch { /* ignore */ }
@@ -85,12 +95,12 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
   const guide = buildGuide(module, language);
 
-  function go(tab: TabKey) {
+  function go(tab: TabKey, seedId?: string) {
     dispatch({ type: "SET_TAB", payload: tab });
     if (tab === "reader") {
-      const seedId = moduleId ? getStarterSeedId(moduleId, language) : null;
+      const targetId = seedId ?? (moduleId ? getStarterSeedId(moduleId, language) : null);
       const match =
-        (seedId && library.state.entries.find((e) => e.id === seedId)) ??
+        (targetId && library.state.entries.find((e) => e.id === targetId)) ??
         library.state.entries.find((e) => e.language === language && !e.id.startsWith("custom-"));
       if (match) library.dispatch({ type: "SELECT", payload: match.id });
     }
@@ -269,15 +279,40 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
         </Card>
       </div>
 
-      {/* Footer CTA: jump straight into the first lesson */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border/40 pt-3">
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          Begin lesson 1 →
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          <Pill onClick={() => go("reader")} primary>
-            Start first lesson
-          </Pill>
+      {/* Lesson progression */}
+      <div className="mt-4 border-t border-border/40 pt-3">
+        {lessons.length > 0 ? (
+          <>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              Lessons — tap any to open in Reader
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {lessons.map((lesson) => (
+                <button
+                  key={lesson.id}
+                  onClick={() => go("reader", lesson.id)}
+                  title={lesson.subtitle}
+                  className={
+                    "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors " +
+                    (lesson.idx === 0
+                      ? "border border-gold/60 bg-gold/25 text-gold hover:bg-gold/35"
+                      : "border border-border/60 bg-background/40 text-foreground/75 hover:border-gold/50 hover:bg-gold/10 hover:text-gold")
+                  }
+                >
+                  <span className="text-[9px] opacity-70">{lesson.idx + 1}</span>
+                  <span className="max-w-[120px] truncate">{lesson.title}</span>
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-wrap gap-1.5">
+            <Pill onClick={() => go("reader")} primary>
+              Start first lesson
+            </Pill>
+          </div>
+        )}
+        <div className="mt-2 flex flex-wrap gap-1.5">
           <Pill onClick={() => startRoleplay(starterPairs?.[0]?.en ?? guide.interactions[0])}>
             Talk with the AI tutor
           </Pill>
