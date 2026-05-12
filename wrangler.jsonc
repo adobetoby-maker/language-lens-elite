@@ -1,28 +1,14 @@
 {
-  // This file extends the auto-generated dist/client/wrangler.json that the
-  // @cloudflare/vite-plugin emits during `npm run build`. The plugin merges
-  // user-provided wrangler config with its generated values; we use this to
-  // enable Node.js compat (so `process.env.X` works in the deployed Worker)
-  // without forking the plugin's defaults.
   "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
   "name": "tanstack-start-ts",
   "compatibility_date": "2026-05-10",
-  // ── REQUIRED for `process.env.ANTHROPIC_API_KEY` to work in the Worker.
-  // Without this flag the Cloudflare runtime has no Node.js shims, so
-  // `process.env` is undefined and every server function returns
-  // "AI is not configured" on the deployed site.
   "compatibility_flags": ["nodejs_compat"],
-  // Secrets (ANTHROPIC_API_KEY, etc.) are NOT set here — they live in the
-  // Worker's secret store. Set them with:
-  //   wrangler secret put ANTHROPIC_API_KEY
-  //   wrangler secret put VITE_SUPABASE_URL
-  //   wrangler secret put VITE_SUPABASE_PUBLISHABLE_KEY
-  // Or in the Cloudflare dashboard:
-  //   Workers & Pages → tanstack-start-ts → Settings → Variables and Secrets
   "observability": {
     "enabled": true
   },
-  // Custom domain — languagethreshold.com is on Cloudflare DNS so Workers
-  // custom_domains handles the CNAME + SSL automatically on deploy.
-  "custom_domains": ["app.languagethreshold.com"]
+  // languagethreshold.com is on Cloudflare DNS — route both root and www through this Worker.
+  "routes": [
+    { "pattern": "languagethreshold.com/*", "zone_name": "languagethreshold.com" },
+    { "pattern": "www.languagethreshold.com/*", "zone_name": "languagethreshold.com" }
+  ]
 }
