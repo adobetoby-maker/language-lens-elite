@@ -33,8 +33,8 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "LinguaLens — A Premium Language Learning Experience" },
-      { name: "description", content: "LinguaLens is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese." },
+      { title: "Language Threshold — A Premium Language Learning Experience" },
+      { name: "description", content: "Language Threshold is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese." },
     ],
   }),
 });

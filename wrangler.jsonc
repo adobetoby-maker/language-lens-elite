@@ -6,9 +6,8 @@
   "observability": {
     "enabled": true
   },
-  // languagethreshold.com is on Cloudflare DNS — route both root and www through this Worker.
+  // The app lives at app.languagethreshold.com — root and www redirect via the redirect worker.
   "routes": [
-    { "pattern": "languagethreshold.com/*", "zone_name": "languagethreshold.com" },
-    { "pattern": "www.languagethreshold.com/*", "zone_name": "languagethreshold.com" }
+    { "pattern": "app.languagethreshold.com/*", "zone_name": "languagethreshold.com" }
   ]
 }

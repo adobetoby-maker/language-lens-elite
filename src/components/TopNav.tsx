@@ -82,7 +82,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
             fill="currentColor"
           />
           <span className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
-            LinguaLens
+            Language Threshold
           </span>
         </div>
 
@@ -201,9 +201,9 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* Tabs — wraps to two rows so all items are always visible */}
       <nav className="border-t border-border/40">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-x-auto px-3 sm:gap-4 sm:px-6 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-1 gap-y-0 px-3 sm:gap-x-2 sm:px-6">
           {TABS.filter((t) => (!t.module || state.activeModuleId === t.module) && (!t.language || state.selectedLanguage === t.language)).map((tab) => {
             const active = state.currentTab === tab.key;
             return (
@@ -211,14 +211,14 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
                 key={tab.key}
                 onClick={() => handleTabSwitch(tab.key)}
                 data-active={active}
-                className="gold-underline relative shrink-0 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground sm:px-5 sm:py-4 sm:text-[11px] sm:tracking-[0.22em]"
+                className="gold-underline relative px-2.5 py-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors data-[active=true]:text-foreground hover:text-foreground sm:px-3.5 sm:py-3 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {tab.label}
               </button>
             );
           })}
           {onOpenMatch && (
-            <div className="ml-1 shrink-0 sm:ml-2">
+            <div className="ml-1 py-1.5">
               <LanguageMatchButton onClick={onOpenMatch} />
             </div>
           )}

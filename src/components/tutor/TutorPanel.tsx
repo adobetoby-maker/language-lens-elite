@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import { Sparkles, Send, Minus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
@@ -253,7 +254,7 @@ export function TutorPanel() {
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-gold" />
           <span className="font-display text-sm italic">
-            <span className="text-gold">✦</span> LinguaLens Tutor
+            <span className="text-gold">✦</span> Language Threshold Tutor
           </span>
           <span className="text-base">{flagFor(appState.selectedLanguage)}</span>
         </div>
@@ -391,7 +392,7 @@ function MessageBubble({ message }: { message: TutorMessage }) {
       </div>
       <div className="max-w-[85%] rounded-2xl rounded-bl-sm border border-gold/30 bg-gold/[0.06] px-3.5 py-2 text-sm text-foreground/95">
         <div className="prose prose-sm prose-invert max-w-none [&_code]:font-mono [&_p]:m-0 [&_p+p]:mt-2 [&_strong]:text-gold">
-          <ReactMarkdown>{message.content || " "}</ReactMarkdown>
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{message.content || " "}</ReactMarkdown>
         </div>
       </div>
     </div>

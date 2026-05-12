@@ -160,6 +160,9 @@ function buildSystemPrompt(ctx: z.infer<typeof BodySchema>["context"]) {
         `You have deep knowledge of grammar, literature, and the cultures of countries where ${ctx.language} is spoken.`,
         `Answer questions clearly and encouragingly. When relevant, explain grammar in the context of the text the learner is reading.`,
         `Use Markdown for emphasis. Keep responses focused — usually 2–4 short paragraphs.`,
+        ctx.language === "Japanese"
+          ? `CRITICAL: When writing ANY Japanese text, wrap every kanji (and kanji compounds) in HTML ruby tags so the learner can read it. Format: <ruby>食べる<rt>たべる</rt></ruby>. Apply this to EVERY kanji-containing word in your response without exception. Pure kana words do not need ruby tags.`
+          : null,
         ``,
         `LEARNER CONTEXT:`,
         `- Target language: ${ctx.language}`,
@@ -235,8 +238,8 @@ export const Route = createFileRoute("/api/tutor")({
 
         try {
           const stream = await client.messages.create({
-            model: "claude-haiku-4-5",
-            max_tokens: 1024,
+            model: "claude-sonnet-4-6",
+            max_tokens: 1500,
             system,
             messages: payload.messages,
             stream: true,

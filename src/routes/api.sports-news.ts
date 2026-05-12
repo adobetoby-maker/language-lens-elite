@@ -182,7 +182,7 @@ async function fetchFeed(
   sport: "soccer" | "baseball" | "general",
 ): Promise<NewsArticle[]> {
   const res = await fetch(url, {
-    headers: { "User-Agent": "LinguaLens/1.0 (+https://language-lens-elite.worker-bee.app)" },
+    headers: { "User-Agent": "LanguageThreshold/1.0 (+https://app.languagethreshold.com)" },
     signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);

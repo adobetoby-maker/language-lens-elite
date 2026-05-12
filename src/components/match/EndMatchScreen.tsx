@@ -70,7 +70,7 @@ function VictoryScreen({
           +<CountUp value={animated} duration={900} /> Ranked Points
         </div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
-          +25 LinguaLens XP
+          +25 XP
         </div>
         <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] text-white/70">
           Survived {rounds} rounds
@@ -122,7 +122,7 @@ function DefeatScreen({
           <CountUp value={animated} duration={800} /> Ranked Points
         </div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
-          +10 LinguaLens XP — effort always counts
+          +10 XP — effort always counts
         </div>
         <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] text-white/70">
           Survived {rounds} rounds against{" "}
@@ -166,7 +166,7 @@ function TieScreen({
           No points exchanged — a true standoff ⚔️
         </div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
-          +5 LinguaLens XP
+          +5 XP
         </div>
 
         <div className="mt-6 flex items-center gap-6">
@@ -218,7 +218,7 @@ function ResultButtons({
         onClick={onReturn}
         className="rounded-full border border-white/30 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80 transition-colors hover:border-gold/60 hover:text-gold"
       >
-        🏠 Return to LinguaLens
+        🏠 Return Home
       </button>
     </div>
   );

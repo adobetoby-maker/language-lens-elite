@@ -216,11 +216,7 @@ Be thorough but every field stays focused. Aim for the depth of a good textbook 
     try {
       const client = new Anthropic({ apiKey: KEY });
       const response = await client.messages.create({
-        // Sonnet 4.6 — chosen over Haiku because word-lookup quality is the
-        // central UX of the reading app. Latency cost is offset by the cache
-        // above (every repeat click is instant) and by the fact that this is
-        // a one-shot tool call with bounded output, not a long generation.
-        model: "claude-sonnet-4-6",
+        model: "claude-haiku-4-5",
         max_tokens: 1500,
         system: systemPrompt,
         messages: [{ role: "user", content: userPrompt }],

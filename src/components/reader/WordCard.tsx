@@ -6,6 +6,7 @@ import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
 import { useApp, type Language } from "@/state/app-state";
 import { configureUtterance } from "@/lib/voices";
+import { FuriganaText } from "./FuriganaText";
 
 const LOCALE: Record<Language, string> = {
   Spanish: "es-ES",
@@ -177,7 +178,11 @@ export function WordCard({
         {!loading && card && (
           <>
             <h3 className="font-display text-3xl font-bold leading-tight tracking-tight">
-              {card.headword}
+              {request.language === "Japanese" ? (
+                <FuriganaText text={card.headword} mode="above" script="hiragana" />
+              ) : (
+                card.headword
+              )}
             </h3>
             <div className="mt-1 flex flex-wrap items-center gap-2">
               <span className="font-mono text-xs text-gold">{card.phonetic}</span>
@@ -228,7 +233,11 @@ export function WordCard({
 
             <div className="mt-4">
               <p className="font-display text-base italic text-foreground">
-                "{card.exampleSentence}"
+                {request.language === "Japanese" ? (
+                  <FuriganaText text={card.exampleSentence} mode="above" script="hiragana" />
+                ) : (
+                  `"${card.exampleSentence}"`
+                )}
               </p>
               <p className="mt-1 font-mono text-[11px] text-muted-foreground">
                 {card.exampleTranslation}
@@ -242,7 +251,11 @@ export function WordCard({
                 </div>
                 <ul className="space-y-1 text-[12px] leading-snug text-foreground/85">
                   {card.commonCollocations.map((c, i) => (
-                    <li key={i} className="border-l-2 border-gold/40 pl-2">{c}</li>
+                    <li key={i} className="border-l-2 border-gold/40 pl-2">
+                      {request.language === "Japanese" ? (
+                        <FuriganaText text={c} mode="above" script="hiragana" />
+                      ) : c}
+                    </li>
                   ))}
                 </ul>
               </div>

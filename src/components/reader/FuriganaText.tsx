@@ -100,6 +100,7 @@ export function FuriganaText({
 
     return () => {
       cancelled = true;
+      inFlight.current = false;
     };
   }, [text, fetchFurigana]);
 
