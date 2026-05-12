@@ -10,6 +10,8 @@
 // The LDS Missionary and Orthopedics modules continue to use their own
 // dedicated paths in api.tutor.ts for backwards compatibility.
 
+import { getOrEvsArea } from "./or-evs-content";
+import { getFmgArea } from "./fmg-content";
 import { getTradesArea } from "./trades-content";
 import { getTransportTradesArea } from "./transport-trades-content";
 import { getAgriTravelFaithArea } from "./agri-travel-faith-content";
@@ -85,6 +87,8 @@ const MODULE_TO_AREA_MODULES = new Set([
   "restaurant-hospitality", "legal-immigration", "k12-teacher",
   "soccer", "hockey", "baseball", "tennis", "bowling",
   "american-football", "lacrosse", "rugby", "sports-hobbies",
+  "or-evs",
+  "fmg",
 ]);
 
 export function getModuleAreaContext(
@@ -165,6 +169,18 @@ export function getModuleAreaContext(
   if (moduleId === "general-surgery") {
     const ctx = getSurgeryContext(areaId);
     return ctx ? fromClinicalContext(ctx as ClinicalContextLike) : null;
+  }
+
+  // ── OR Environmental Services ─────────────────────────────────────────────
+  if (moduleId === "or-evs") {
+    const area = getOrEvsArea(areaId);
+    return area ? fromModuleArea(area as ModuleAreaLike) : null;
+  }
+
+  // ── Foreign Medical Graduates ─────────────────────────────────────────────
+  if (moduleId === "fmg") {
+    const area = getFmgArea(areaId);
+    return area ? fromModuleArea(area as ModuleAreaLike) : null;
   }
 
   // lds-missionary and orthopedics are handled directly in api.tutor.ts

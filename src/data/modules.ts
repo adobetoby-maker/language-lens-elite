@@ -1,13 +1,13 @@
 // Catalog of paid plug-in modules. Frontend-only stub for now —
 // no payments wired yet; purchased ids live in app-state (localStorage).
 
-import type { Language } from "@/state/app-state";
+import type { Language, NativeLanguage } from "@/state/app-state";
 
 export interface AppModule {
   id: string;
   name: string;
   emoji: string;
-  category: "Faith" | "Medical" | "Trades" | "Service" | "Education" | "Agriculture" | "Sports" | "Travel";
+  category: "Faith" | "Medical" | "Trades" | "Service" | "Education" | "Agriculture" | "Sports" | "Travel" | "English for Work";
   blurb: string;
   priceCents: number;
   // Plugin behavior hooks (consumed elsewhere as the system grows)
@@ -18,8 +18,20 @@ export interface AppModule {
   /**
    * Target languages this module is available in.
    * Omit / undefined = available in every language.
+   * Only used when learnDirection is undefined (default: learner is studying a foreign language).
    */
   languages?: Language[];
+  /**
+   * Native languages supported by this module (en-target modules only).
+   * Indicates which native-language scaffolds/glosses are available.
+   */
+  nativeLanguages?: NativeLanguage[];
+  /**
+   * "en-target" — the learner's native language is non-English; they are
+   * learning English for a professional context (OR EVS, FMG, etc.).
+   * Omit for the default direction: English speaker learning a foreign language.
+   */
+  learnDirection?: "en-target";
 }
 
 /** Returns true if `module` supports the given target `language`. */
@@ -927,6 +939,59 @@ export const MODULES: AppModule[] = [
       "RCIA",
       "blessing",
     ],
+  },
+  // ── OR Environmental Services ────────────────────────────────────────────
+  {
+    id: "or-evs",
+    name: "OR Environmental Services",
+    emoji: "🫧",
+    category: "English for Work",
+    learnDirection: "en-target",
+    blurb:
+      "English vocabulary for OR housekeeping and EVS staff — room turnover, equipment names, safety protocols, and communicating with surgical teams.",
+    priceCents: 999,
+    aiPersona:
+      "You are an OR circulating nurse, charge nurse, or surgeon interacting with EVS staff. Use direct, time-pressured OR communication — short sentences, clear expectations, real operating room culture.",
+    userRole: "OR environmental services / housekeeping staff",
+    challengePrompts: [
+      "The circulating nurse says 'We need to flip this room in 20 minutes.' What do you say and do?",
+      "You see blood on the floor near the OR table. Tell the nurse what you found and what you are going to do.",
+      "You need to enter the OR but aren't sure if the case is done. How do you ask permission?",
+      "The charge nurse asks if the room is ready. Tell her yes and describe what you cleaned.",
+      "You find a needle on the floor. What do you say to the staff?",
+    ],
+    vocabFocus: [
+      "turnover", "terminal clean", "biohazard", "sharps container", "sterile field",
+      "bovie", "mayo stand", "suction", "OR table", "PPE", "dwell time", "room ready",
+    ],
+    nativeLanguages: ["Spanish"],
+  },
+  // ── Foreign Medical Graduate (FMG) ────────────────────────────────────────
+  {
+    id: "fmg",
+    name: "Medical English for FMGs",
+    emoji: "🩺",
+    category: "English for Work",
+    learnDirection: "en-target",
+    blurb:
+      "Clinical English for foreign medical graduates — rounds presentations, patient communication, SOAP documentation, team handoffs, and emergency language for US hospital practice.",
+    priceCents: 1499,
+    aiPersona:
+      "You are an experienced US attending physician or residency program director coaching a foreign medical graduate. Use real clinical American English — the register used on rounds, in notes, and with patients. Correct phrasing directly and warmly; model the exact sentence the learner should produce.",
+    userRole: "Foreign medical graduate (IMG) building clinical English proficiency",
+    challengePrompts: [
+      "Present a 68-year-old male admitted for chest pain. Walk through your SOAP presentation as if you are on morning rounds.",
+      "Your patient is confused about their discharge instructions. Explain in plain English why they need to take metformin and what to watch for.",
+      "The charge nurse calls you about a patient with a dropping blood pressure. Use SBAR to communicate the situation.",
+      "Write a one-paragraph progress note for a patient recovering from pneumonia on day 3.",
+      "An attending asks 'What is your differential for this patient?' Respond with three possibilities and your reasoning.",
+    ],
+    vocabFocus: [
+      "SOAP note", "differential diagnosis", "chief complaint", "history of present illness",
+      "assessment and plan", "disposition", "attending", "resident", "intern", "consult",
+      "SBAR", "handoff", "rapid response", "code blue", "informed consent",
+    ],
+    nativeLanguages: ["Spanish", "Arabic", "Hindi", "Chinese (Simplified)", "Portuguese"],
   },
 ];
 

@@ -33,14 +33,18 @@ export function WordMatch() {
     return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
   }, [app.activeModuleId]);
 
+  const userWords = app.userVocab.length > 0 && app.vocabLang === app.selectedLanguage
+    ? app.userVocab.map((v) => v.word).slice(0, 20)
+    : undefined;
+
   useEffect(() => {
     wm.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchBoard({ data: { language, level, avoid, topic } });
+      const res = await fetchBoard({ data: { language, level, avoid, topic, userWords } });
       if (res.error || !res.data) throw new Error(res.error ?? "No board.");
       return res.data;
     });
     return () => wm.setFetcher(null);
-  }, [wm, fetchBoard, topic]);
+  }, [wm, fetchBoard, topic, userWords]);
 
   const [selectedLevel, setSelectedLevel] = useState<WordMatchLevel>(1);
 
@@ -73,7 +77,7 @@ export function WordMatch() {
     };
   }, [game, wm]);
 
-  // ── Detect completion → END_GAME → award XP.
+  // ── Detect completion → award XP + mark matched user vocab words ────────
   const finalizedRef = useRef(false);
   useEffect(() => {
     if (!game || !game.board) {
@@ -84,13 +88,22 @@ export function WordMatch() {
       finalizedRef.current = true;
       const flips = game.flipCount;
       const perfect = flips === game.board.pairs.length * 2;
-      // 8 XP base, +5 bonus on perfect run.
       appDispatch({ type: "ADD_XP", payload: perfect ? 13 : 8 });
-      // Tiny delay so the user sees the final pair flip before the modal.
+
+      // Credit any user-vocab words that appeared on this board.
+      if (userWords && userWords.length > 0) {
+        const boardWords = new Set(game.board.pairs.map((p) => p.target));
+        for (const w of userWords) {
+          if (boardWords.has(w)) {
+            appDispatch({ type: "MASTER_VOCAB_WORD", payload: w });
+          }
+        }
+      }
+
       const t = setTimeout(() => wm.endGame(), 350);
       return () => clearTimeout(t);
     }
-  }, [game, isComplete, wm, appDispatch]);
+  }, [game, isComplete, wm, appDispatch, userWords]);
 
   // ── Live timer tick. We re-render once per second so the displayed
   //    timer updates; the actual elapsed value is computed from

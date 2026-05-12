@@ -5,23 +5,28 @@ import { MODULES, type AppModule } from "@/data/modules";
 import type { TabKey } from "@/state/app-state";
 
 const CATEGORY_ORDER: AppModule["category"][] = [
-  "Faith", "Medical", "Trades", "Service", "Education", "Agriculture", "Sports", "Travel",
+  "English for Work", "Faith", "Medical", "Trades", "Service", "Education", "Agriculture", "Sports", "Travel",
 ];
 
 const CATEGORY_META: Record<AppModule["category"], { emoji: string; color: string }> = {
-  Faith:       { emoji: "🙏", color: "text-violet-400 border-violet-400/40 bg-violet-400/10" },
-  Medical:     { emoji: "🏥", color: "text-sky-400 border-sky-400/40 bg-sky-400/10" },
-  Trades:      { emoji: "🔧", color: "text-amber-400 border-amber-400/40 bg-amber-400/10" },
-  Service:     { emoji: "🍽️", color: "text-rose-400 border-rose-400/40 bg-rose-400/10" },
-  Education:   { emoji: "📚", color: "text-emerald-400 border-emerald-400/40 bg-emerald-400/10" },
-  Agriculture: { emoji: "🌾", color: "text-lime-400 border-lime-400/40 bg-lime-400/10" },
-  Sports:      { emoji: "⚽", color: "text-orange-400 border-orange-400/40 bg-orange-400/10" },
-  Travel:      { emoji: "✈️", color: "text-cyan-400 border-cyan-400/40 bg-cyan-400/10" },
+  "English for Work": { emoji: "🗣️", color: "text-indigo-400 border-indigo-400/40 bg-indigo-400/10" },
+  Faith:              { emoji: "🙏", color: "text-violet-400 border-violet-400/40 bg-violet-400/10" },
+  Medical:            { emoji: "🏥", color: "text-sky-400 border-sky-400/40 bg-sky-400/10" },
+  Trades:             { emoji: "🔧", color: "text-amber-400 border-amber-400/40 bg-amber-400/10" },
+  Service:            { emoji: "🍽️", color: "text-rose-400 border-rose-400/40 bg-rose-400/10" },
+  Education:          { emoji: "📚", color: "text-emerald-400 border-emerald-400/40 bg-emerald-400/10" },
+  Agriculture:        { emoji: "🌾", color: "text-lime-400 border-lime-400/40 bg-lime-400/10" },
+  Sports:             { emoji: "⚽", color: "text-orange-400 border-orange-400/40 bg-orange-400/10" },
+  Travel:             { emoji: "✈️", color: "text-cyan-400 border-cyan-400/40 bg-cyan-400/10" },
 };
 
 function moduleDestinationTab(moduleId: string): TabKey {
   if (moduleId === "lds-missionary") return "missionary";
   if (moduleId === "orthopedics") return "orthopedics";
+  if (moduleId === "soccer") return "soccer";
+  if (moduleId === "baseball") return "baseball";
+  if (moduleId === "or-evs") return "orEvs";
+  if (moduleId === "fmg") return "fmg";
   return "reader";
 }
 
@@ -258,19 +263,39 @@ export function ModulesPage() {
           ) : (
             groups.map(({ category, modules }) => {
               const meta = CATEGORY_META[category];
+              const isEnglishForWork = category === "English for Work";
               return (
                 <section key={category}>
                   {/* Category heading */}
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="text-2xl">{meta.emoji}</span>
-                    <h2 className="font-display text-lg italic text-foreground">
-                      {category}
-                    </h2>
-                    <div className="flex-1 border-t border-border/40" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      {modules.length} module{modules.length !== 1 ? "s" : ""}
-                    </span>
-                  </div>
+                  {isEnglishForWork ? (
+                    <div className="mb-4 rounded-2xl border border-indigo-400/30 bg-indigo-400/5 px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{meta.emoji}</span>
+                        <div className="flex-1">
+                          <h2 className="font-display text-lg font-semibold text-indigo-300">
+                            English for Work
+                          </h2>
+                          <p className="text-xs text-indigo-300/70">
+                            For professionals learning English on the job — native language as your foundation.
+                          </p>
+                        </div>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-indigo-400/60">
+                          {modules.length} module{modules.length !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mb-4 flex items-center gap-3">
+                      <span className="text-2xl">{meta.emoji}</span>
+                      <h2 className="font-display text-lg italic text-foreground">
+                        {category}
+                      </h2>
+                      <div className="flex-1 border-t border-border/40" />
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                        {modules.length} module{modules.length !== 1 ? "s" : ""}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Cards */}
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

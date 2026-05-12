@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char91indexChar93RouteImport } from './routes/[index]'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
+import { Route as ApiSportsNewsRouteImport } from './routes/api.sports-news'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
 import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
 
@@ -30,6 +31,11 @@ const ApiTutorRoute = ApiTutorRouteImport.update({
   path: '/api/tutor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSportsNewsRoute = ApiSportsNewsRouteImport.update({
+  id: '/api/sports-news',
+  path: '/api/sports-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSpeakRoute = ApiSpeakRouteImport.update({
   id: '/api/speak',
   path: '/api/speak',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
+  '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
+  '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRoutesById {
@@ -61,19 +69,33 @@ export interface FileRoutesById {
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/speak': typeof ApiSpeakRoute
+  '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/index' | '/api/discussion' | '/api/speak' | '/api/tutor'
+  fullPaths:
+    | '/'
+    | '/index'
+    | '/api/discussion'
+    | '/api/speak'
+    | '/api/sports-news'
+    | '/api/tutor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/index' | '/api/discussion' | '/api/speak' | '/api/tutor'
+  to:
+    | '/'
+    | '/index'
+    | '/api/discussion'
+    | '/api/speak'
+    | '/api/sports-news'
+    | '/api/tutor'
   id:
     | '__root__'
     | '/'
     | '/index'
     | '/api/discussion'
     | '/api/speak'
+    | '/api/sports-news'
     | '/api/tutor'
   fileRoutesById: FileRoutesById
 }
@@ -82,6 +104,7 @@ export interface RootRouteChildren {
   Char91indexChar93Route: typeof Char91indexChar93Route
   ApiDiscussionRoute: typeof ApiDiscussionRoute
   ApiSpeakRoute: typeof ApiSpeakRoute
+  ApiSportsNewsRoute: typeof ApiSportsNewsRoute
   ApiTutorRoute: typeof ApiTutorRoute
 }
 
@@ -108,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTutorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/sports-news': {
+      id: '/api/sports-news'
+      path: '/api/sports-news'
+      fullPath: '/api/sports-news'
+      preLoaderRoute: typeof ApiSportsNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/speak': {
       id: '/api/speak'
       path: '/api/speak'
@@ -130,8 +160,18 @@ const rootRouteChildren: RootRouteChildren = {
   Char91indexChar93Route: Char91indexChar93Route,
   ApiDiscussionRoute: ApiDiscussionRoute,
   ApiSpeakRoute: ApiSpeakRoute,
+  ApiSportsNewsRoute: ApiSportsNewsRoute,
   ApiTutorRoute: ApiTutorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

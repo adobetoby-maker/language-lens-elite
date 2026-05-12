@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#0b0d12"/>
+  <path d="M106 448V256C106 161.745 174.936 85 256 85C337.064 85 406 161.745 406 256V448"
+        stroke="#C9A84C" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <line x1="106" y1="448" x2="406" y2="448"
+        stroke="#C9A84C" stroke-width="14" stroke-linecap="round"/>
+  <line x1="256" y1="256" x2="256" y2="448"
+        stroke="#C9A84C" stroke-width="10" stroke-dasharray="20 26" stroke-linecap="round"/>
+  <text x="256" y="390" font-family="serif" font-size="60" fill="#C9A84C" text-anchor="middle" opacity="0.7">あ ア</text>
+</svg>

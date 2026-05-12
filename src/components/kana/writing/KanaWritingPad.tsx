@@ -29,7 +29,7 @@ const MODES: { id: Mode; label: string; icon: React.ReactNode; desc: string }[] 
   },
 ];
 
-export function KanaWritingPad() {
+export function KanaWritingPad({ fullScreen = false }: { fullScreen?: boolean }) {
   const [mode, setMode] = useState<Mode>("trace");
   const [script, setScript] = useState<Script>("hiragana");
   const [groupIndex, setGroupIndex] = useState(0);
@@ -110,8 +110,8 @@ export function KanaWritingPad() {
       )}
 
       {/* Mode content */}
-      <div className="rounded-2xl border border-border/40 bg-card/40 p-5">
-        {mode === "trace" && <TraceMode group={group} words={words} sentence={sentence} />}
+      <div className={fullScreen ? "flex-1 rounded-2xl border border-border/40 bg-card/40 p-4" : "rounded-2xl border border-border/40 bg-card/40 p-5"}>
+        {mode === "trace" && <TraceMode group={group} words={words} sentence={sentence} fullScreen={fullScreen} />}
         {mode === "complete" && <MissingHalfMode group={group} />}
         {mode === "penpal" && <PenPalMode />}
       </div>

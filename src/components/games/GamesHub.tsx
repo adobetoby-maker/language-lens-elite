@@ -9,6 +9,8 @@ import { useFalseFriends } from "@/state/false-friends-state";
 import { useMatch } from "@/state/match-state";
 import { useDailyChallenge, badgeLabel } from "@/state/daily-challenge-state";
 import { CrossGameAchievements } from "./CrossGameAchievements";
+import { SoccerPositionsGame } from "./SoccerPositionsGame";
+import { BaseballPositionsGame } from "./BaseballPositionsGame";
 
 // Cross-component event the parent route listens for to open the Match
 // overlay. Decouples this tab from the overlay-opener prop drilling.
@@ -251,6 +253,9 @@ export function GamesHub() {
         })}
       </div>
 
+      {/* ── Module-specific games ──────────────────────────────────────── */}
+      <ModuleGamesSection language={state.selectedLanguage ?? "Spanish"} activeModule={state.activeModuleId ?? null} />
+
       {/* Cross-game achievements panel */}
       <CrossGameAchievements />
 
@@ -343,6 +348,77 @@ function Pill({ label, threshold }: { label: string; threshold: number }) {
       <Flame className="h-3 w-3 text-gold" />
       <span className="text-foreground/80">{label}</span>
       <span className="ml-auto font-mono text-[9px] text-muted-foreground">{threshold}+</span>
+    </div>
+  );
+}
+
+// ── Module-specific interactive games ─────────────────────────────────────────
+
+const MODULE_GAMES: Record<string, { emoji: string; title: string; blurb: string }> = {
+  soccer: {
+    emoji: "⚽",
+    title: "Soccer Positions",
+    blurb: "Tap positions on the field, name them in your target language, or find them by name. Switch formations.",
+  },
+  baseball: {
+    emoji: "⚾",
+    title: "Baseball Diamond",
+    blurb: "Identify all 9 defensive positions on the diamond, then drill dugout vocabulary — pitch types, calls, and plays.",
+  },
+};
+
+function ModuleGamesSection({ language, activeModule }: { language: string; activeModule: string | null }) {
+  const { dispatch } = useApp();
+  const available = Object.keys(MODULE_GAMES).filter((id) => {
+    // Always show; highlight the active module.
+    return true;
+  });
+
+  if (available.length === 0) return null;
+
+  return (
+    <div className="space-y-3">
+      <div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">⌘ Module Games</div>
+        <p className="mt-0.5 text-sm text-muted-foreground">
+          Interactive field and diamond games tied to specific sport modules.
+        </p>
+      </div>
+
+      {available.map((moduleId) => {
+        const meta = MODULE_GAMES[moduleId]!;
+        const isActive = activeModule === moduleId;
+        return (
+          <div
+            key={moduleId}
+            className={`rounded-2xl border ${isActive ? "border-gold/50 bg-card/60" : "border-border/60 bg-card/30"} overflow-hidden`}
+          >
+            <div className="flex items-center justify-between px-5 py-3">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{meta.emoji}</span>
+                <div>
+                  <h3 className="font-display text-base font-semibold">{meta.title}</h3>
+                  <p className="text-xs text-muted-foreground">{meta.blurb}</p>
+                </div>
+              </div>
+              {!isActive && (
+                <button
+                  onClick={() => dispatch({ type: "SET_ACTIVE_MODULE", payload: moduleId })}
+                  className="ml-4 shrink-0 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold transition-all hover:bg-gold/20"
+                >
+                  Open module
+                </button>
+              )}
+            </div>
+            {isActive && (
+              <div className="border-t border-border/40 px-4 pb-4 pt-3">
+                {moduleId === "soccer" && <SoccerPositionsGame language={language} />}
+                {moduleId === "baseball" && <BaseballPositionsGame language={language} />}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

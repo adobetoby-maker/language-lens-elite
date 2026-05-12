@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="40" fill="#0b0d12"/>
+  <!-- Arch / doorway mark -->
+  <path d="M40 168V96C40 60.654 65.601 32 96 32C126.399 32 152 60.654 152 96V168"
+        stroke="#C9A84C" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <line x1="40" y1="168" x2="152" y2="168"
+        stroke="#C9A84C" stroke-width="6" stroke-linecap="round"/>
+  <line x1="96" y1="96" x2="96" y2="168"
+        stroke="#C9A84C" stroke-width="4" stroke-dasharray="8 10" stroke-linecap="round"/>
+  <!-- Kana characters: あ ア 漢 -->
+  <text x="96" y="142" font-family="serif" font-size="22" fill="#C9A84C" text-anchor="middle" opacity="0.7">あ ア</text>
+</svg>

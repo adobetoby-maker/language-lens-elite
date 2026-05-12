@@ -14,6 +14,7 @@ const Input = z.object({
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   avoid: z.array(z.string().min(1).max(80)).max(20).optional(),
   topic: z.string().min(1).max(200).optional(),
+  userWords: z.array(z.string().min(1).max(80)).max(25).optional(),
 });
 
 export interface WordMatchPair {
@@ -89,8 +90,11 @@ export const generateWordMatchBoard = createServerFn({ method: "POST" })
     const topicLine = data.topic
       ? `\nDomain: ALL pairs MUST be vocabulary from the "${data.topic}" field — the kind of words a ${data.topic} practitioner uses daily.`
       : "";
+    const userWordsLine = data.userWords && data.userWords.length
+      ? `\nPersonal vocab: The learner has these words they need to practice: ${data.userWords.join(", ")}. Include as many as possible (at least ${Math.min(data.userWords.length, expectedCount - 2)}) and build the board topic around them.`
+      : "";
 
-    const userMsg = `Generate ONE Word Match board for ${data.language} learners at CEFR ${cefr}.\nProduce EXACTLY ${expectedCount} pairs, all from a single coherent topic.${topicLine}${avoidLine}\n\nReturn the board via the tool.`;
+    const userMsg = `Generate ONE Word Match board for ${data.language} learners at CEFR ${cefr}.\nProduce EXACTLY ${expectedCount} pairs, all from a single coherent topic.${topicLine}${userWordsLine}${avoidLine}\n\nReturn the board via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

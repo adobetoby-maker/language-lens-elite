@@ -29,14 +29,18 @@ export function ConjugationGame() {
     return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
   }, [app.activeModuleId]);
 
+  const userWords = app.userVocab.length > 0 && app.vocabLang === app.selectedLanguage
+    ? app.userVocab.map((v) => v.word).slice(0, 20)
+    : undefined;
+
   useEffect(() => {
     conj.setFetcher(async ({ language, level, avoid }) => {
-      const res = await fetchQuestion({ data: { language, level, avoid, topic } });
+      const res = await fetchQuestion({ data: { language, level, avoid, topic, userWords } });
       if (res.error || !res.data) throw new Error(res.error ?? "No question.");
       return res.data;
     });
     return () => conj.setFetcher(null);
-  }, [conj, fetchQuestion, topic]);
+  }, [conj, fetchQuestion, topic, userWords]);
 
   const [selectedLevel, setSelectedLevel] = useState<ConjugationLevel>(1);
   const [shuffled, setShuffled] = useState<string[]>([]);

@@ -21,6 +21,7 @@ const Input = z.object({
   cefr: z.enum(["A1", "A2", "B1", "B2", "C1", "C2"]).optional(),
   avoid: z.array(z.string().min(1).max(120)).max(20).optional(),
   topic: z.string().min(1).max(200).optional(),
+  userWords: z.array(z.string().min(1).max(80)).max(25).optional(),
 });
 
 export interface ConjugationQuestion {
@@ -108,8 +109,11 @@ export const generateConjugationQuestion = createServerFn({ method: "POST" })
     const topicLine = data.topic
       ? `\nContext: the phrase MUST come from a "${data.topic}" scenario — use verbs a ${data.topic} practitioner would actually say.`
       : "";
+    const userWordsLine = data.userWords && data.userWords.length
+      ? `\nPersonal vocab: try to use one of these learner-specific words as the verb or in the sentence context: ${data.userWords.join(", ")}.`
+      : "";
 
-    const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${topicLine}${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
+    const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${topicLine}${userWordsLine}${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
 
     try {
       const client = new Anthropic({ apiKey: KEY });

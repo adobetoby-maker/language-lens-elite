@@ -10,6 +10,7 @@ interface Props {
   group: CharGroup;
   words: PracticeWord[];
   sentence?: { kana: string; meaning: string };
+  fullScreen?: boolean;
 }
 
 function StarRow({ stars }: { stars: 0 | 1 | 2 | 3 }) {
@@ -40,7 +41,7 @@ function ScoreOverlay({ result, onNext }: { result: ScoreResult; onNext: () => v
   );
 }
 
-export function TraceMode({ group, words, sentence }: Props) {
+export function TraceMode({ group, words, sentence, fullScreen = false }: Props) {
   const canvasRef = useRef<CharacterCanvasRef>(null);
   const [stage, setStage] = useState<Stage>("chars");
   const [index, setIndex] = useState(0);
@@ -194,6 +195,7 @@ export function TraceMode({ group, words, sentence }: Props) {
           guideChar={currentChar}
           guideAlpha={stage === "chars" ? 0.18 : 0.08}
           onStrokeEnd={handleStrokeEnd}
+          maxSize={fullScreen ? 560 : 360}
         />
         {result && <ScoreOverlay result={result} onNext={handleNext} />}
       </div>

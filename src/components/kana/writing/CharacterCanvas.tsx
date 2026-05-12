@@ -20,6 +20,7 @@ interface Props {
   brushSize?: number;
   disabled?: boolean;
   onStrokeEnd?: () => void;
+  maxSize?: number;
 }
 
 export const CharacterCanvas = forwardRef<CharacterCanvasRef, Props>(
@@ -32,6 +33,7 @@ export const CharacterCanvas = forwardRef<CharacterCanvasRef, Props>(
       brushSize = 4,
       disabled = false,
       onStrokeEnd,
+      maxSize = 360,
     },
     ref,
   ) => {
@@ -173,7 +175,7 @@ export const CharacterCanvas = forwardRef<CharacterCanvasRef, Props>(
       <div className="flex flex-col items-center gap-3">
         <div
           className="relative w-full rounded-2xl overflow-hidden border border-blue-200/40 shadow-sm"
-          style={{ maxWidth: 360, aspectRatio: "1" }}
+          style={{ maxWidth: maxSize, aspectRatio: "1" }}
         >
           {/* Guide layer */}
           <canvas
