@@ -21,5 +21,8 @@
   //   Workers & Pages → tanstack-start-ts → Settings → Variables and Secrets
   "observability": {
     "enabled": true
-  }
+  },
+  // Custom domain — languagethreshold.com is on Cloudflare DNS so Workers
+  // custom_domains handles the CNAME + SSL automatically on deploy.
+  "custom_domains": ["app.languagethreshold.com"]
 }
