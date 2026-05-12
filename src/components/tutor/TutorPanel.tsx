@@ -10,6 +10,8 @@ import { getModule } from "@/data/modules";
 import { getMissionArea } from "@/data/missionary-content";
 import { getOrthoArea } from "@/data/orthopedics-content";
 import { getModuleAreaContext } from "@/data/module-content-registry";
+import { getPatternsForLanguage } from "@/data/grammar-patterns";
+import { VOCAB_MASTERY_THRESHOLD } from "@/state/app-state";
 
 
 const LEVEL_TO_CEFR: Record<string, string> = {
@@ -109,6 +111,7 @@ export function TutorPanel() {
           context: {
             language: appState.selectedLanguage,
             level: cefr,
+            nativeLanguage: appState.nativeLanguage,
             textTitle: selected.title,
             passage,
             lastWord: lastWord ?? undefined,
@@ -125,6 +128,7 @@ export function TutorPanel() {
               return {
                 id: mod.id,
                 name: mod.name,
+                learnDirection: mod.learnDirection,
                 userRole: ortho?.learnerRole ?? moduleArea?.learnerRole ?? mod.userRole,
                 aiPersona: mod.aiPersona,
                 missionArea: area
@@ -156,6 +160,17 @@ export function TutorPanel() {
                     }
                   : undefined,
               };
+            })(),
+            userVocabWords:
+              appState.vocabLang === appState.selectedLanguage && appState.userVocab.length
+                ? appState.userVocab.slice(0, 15).map((v) => v.word)
+                : undefined,
+            activePatterns: (() => {
+              const patterns = getPatternsForLanguage(appState.selectedLanguage);
+              return patterns
+                .filter((p) => (appState.patternProgress[p.id] ?? 0) < VOCAB_MASTERY_THRESHOLD)
+                .slice(0, 8)
+                .map((p) => ({ name: p.name, pattern: p.pattern }));
             })(),
           },
         }),

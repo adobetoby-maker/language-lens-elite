@@ -15,6 +15,7 @@ const ModuleSchema = z
     name: z.string().max(120),
     userRole: z.string().max(120).optional(),
     aiPersona: z.string().max(800).optional(),
+    learnDirection: z.enum(["en-target"]).optional(),
     missionArea: z
       .object({
         name: z.string().max(120),
@@ -51,10 +52,13 @@ const BodySchema = z.object({
   context: z.object({
     language: z.string().min(1).max(40),
     level: z.string().min(1).max(40),
+    nativeLanguage: z.string().max(40).optional(),
     textTitle: z.string().max(200).optional(),
     passage: z.string().max(2000).optional(),
     lastWord: z.string().max(80).optional(),
     module: ModuleSchema,
+    userVocabWords: z.array(z.string().max(80)).max(15).optional(),
+    activePatterns: z.array(z.object({ name: z.string().max(80), pattern: z.string().max(200) })).max(8).optional(),
   }),
 });
 
@@ -134,25 +138,47 @@ function buildModuleAddendum(mod: NonNullable<z.infer<typeof BodySchema>["contex
 }
 
 function buildSystemPrompt(ctx: z.infer<typeof BodySchema>["context"]) {
-  const base = [
-    `You are a warm, expert linguist and cultural ambassador for ${ctx.language}.`,
-    `You have deep knowledge of grammar, literature, and the cultures of countries where ${ctx.language} is spoken.`,
-    `Answer questions clearly and encouragingly. When relevant, explain grammar in the context of the text the learner is reading.`,
-    `Use Markdown for emphasis. Keep responses focused — usually 2–4 short paragraphs.`,
-    ``,
-    `LEARNER CONTEXT:`,
-    `- Target language: ${ctx.language}`,
-    `- CEFR level: ${ctx.level}`,
-    ctx.textTitle ? `- Currently reading: "${ctx.textTitle}"` : null,
-    ctx.lastWord ? `- Last word the learner looked up: "${ctx.lastWord}"` : null,
-    ctx.passage
-      ? `- Snippet of current passage:\n"""\n${ctx.passage.slice(0, 1200)}\n"""`
-      : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const isEnTarget = ctx.module?.learnDirection === "en-target";
+  const native = ctx.nativeLanguage ?? "Spanish";
 
-  return ctx.module ? `${base}\n${buildModuleAddendum(ctx.module)}` : base;
+  const base = isEnTarget
+    ? [
+        `You are a warm, patient English-language coach helping a ${native}-speaking professional succeed in a US workplace.`,
+        `Your learner's native language is ${native}. English is the language they are working to master for their job.`,
+        `Your role: help them produce clear, professional American English for their specific work context.`,
+        `When correcting errors, be specific and encouraging — show the correct English form, then briefly explain why it sounds more natural.`,
+        `You may use ${native} briefly when a concept is genuinely hard to explain in English alone, but default to English for all coaching.`,
+        `Use Markdown for emphasis. Keep responses focused — usually 2–4 short paragraphs.`,
+        ``,
+        `LEARNER CONTEXT:`,
+        `- Native language: ${native}`,
+        `- Target language: English`,
+        `- Proficiency level: ${ctx.level}`,
+      ]
+    : [
+        `You are a warm, expert linguist and cultural ambassador for ${ctx.language}.`,
+        `You have deep knowledge of grammar, literature, and the cultures of countries where ${ctx.language} is spoken.`,
+        `Answer questions clearly and encouragingly. When relevant, explain grammar in the context of the text the learner is reading.`,
+        `Use Markdown for emphasis. Keep responses focused — usually 2–4 short paragraphs.`,
+        ``,
+        `LEARNER CONTEXT:`,
+        `- Target language: ${ctx.language}`,
+        `- CEFR level: ${ctx.level}`,
+        ctx.textTitle ? `- Currently reading: "${ctx.textTitle}"` : null,
+        ctx.lastWord ? `- Last word the learner looked up: "${ctx.lastWord}"` : null,
+        ctx.passage
+          ? `- Snippet of current passage:\n"""\n${ctx.passage.slice(0, 1200)}\n"""`
+          : null,
+        ctx.userVocabWords?.length
+          ? `- Learner's personal vocabulary (weave these naturally into examples when relevant): ${ctx.userVocabWords.join(", ")}`
+          : null,
+        ctx.activePatterns?.length
+          ? `- Grammar patterns they're actively drilling — reinforce these:\n${ctx.activePatterns.map((p) => `  • ${p.name}: ${p.pattern}`).join("\n")}`
+          : null,
+      ];
+
+  const baseStr = base.filter(Boolean).join("\n");
+  return ctx.module ? `${baseStr}\n${buildModuleAddendum(ctx.module)}` : baseStr;
 }
 
 // Wraps an Anthropic stream in a ReadableStream emitting OpenAI-compatible SSE

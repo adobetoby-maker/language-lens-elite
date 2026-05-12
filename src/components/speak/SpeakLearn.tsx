@@ -205,6 +205,10 @@ export function SpeakLearn() {
           language,
           level: state.level,
           messages: history,
+          userVocabWords:
+            state.vocabLang === language && state.userVocab.length
+              ? state.userVocab.slice(0, 15).map((v) => v.word)
+              : undefined,
         }),
         signal: ctrl.signal,
       });

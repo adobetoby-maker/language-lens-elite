@@ -57,7 +57,7 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation" | "sentenceBuild" | "games" | "listeningDrill" | "wordMatch" | "idiomMaster" | "falseFriends";
+export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation" | "sentenceBuild" | "games" | "listeningDrill" | "wordMatch" | "idiomMaster" | "falseFriends" | "soccer" | "baseball" | "orEvs" | "fmg" | "penpal" | "patterns" | "story";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";
@@ -138,7 +138,17 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "beyond-diamond", title: "Beyond Diamond 💠", hint: "Reach Diamond rank" },
   { id: "undisputed", title: "Undisputed 🏆", hint: "Reach Champion rank" },
   { id: "unreal", title: "UNREAL 🌟", hint: "Reach Unreal rank" },
+  { id: "first-sentence", title: "First Real Sentence! 🗣️✨", hint: "Use your own vocab word with a grammar pattern in Pen Pal" },
 ];
+
+export const VOCAB_MASTERY_THRESHOLD = 5; // correct matches before a word is mastered
+
+export interface UserVocabItem {
+  word: string;
+  translation: string;
+  category: string; // "job" | "hobby" | "family" | "place" | "topic"
+  correctCount: number; // 0-(threshold-1) = active; threshold+ = mastered
+}
 
 export interface AppState {
   selectedLanguage: Language;
@@ -153,6 +163,14 @@ export interface AppState {
   achievements: string[]; // achievement ids
   userNotes: Note[];
 
+  // Personal vocab — built from user's guided Q&A, used to seed games
+  vocabAnswers: string[];     // 5 free-text answers (language-agnostic)
+  userVocab: UserVocabItem[]; // generated words for vocabLang
+  vocabLang: Language | null; // which language userVocab was built for
+
+  // Grammar pattern SRS — parallel to vocab SRS, keyed by patternId
+  patternProgress: Record<string, number>; // patternId → correctCount (5+ = mastered)
+
   // Counters (persisted) for achievement conditions
   wordsLookedUp: number;
   notesSaved: number;
@@ -160,6 +178,7 @@ export interface AppState {
   conversationExchanges: number;
   lessonsCompleted: number;
   customTextsAdded: number;
+  lettersWritten: number;
   cultureRead: string[]; // culture entry ids the learner opened
   languagesUsed: Language[]; // distinct order of selection
   cefrLevelsCompleted: string[]; // e.g. ["A1","A2"]
@@ -180,6 +199,9 @@ export interface AppState {
   activeModuleId: string | null;
   // Optional per-module assignments (e.g. LDS missionary mission area id)
   moduleAssignments: Record<string, string>;
+
+  // Sports news preference — favorite team name for RSS filtering
+  favoriteTeam: string | null;
 
   hydrated: boolean;
 }
@@ -206,7 +228,7 @@ export type AppAction =
   | { type: "SET_LEVEL"; payload: Level }
   | { type: "ADD_ACHIEVEMENT"; payload: string }
   | { type: "ADD_NOTE"; payload: Note }
-  | { type: "INC_COUNTER"; payload: keyof Pick<AppState, "wordsLookedUp" | "notesSaved" | "tutorMessages" | "conversationExchanges" | "lessonsCompleted" | "customTextsAdded"> }
+  | { type: "INC_COUNTER"; payload: keyof Pick<AppState, "wordsLookedUp" | "notesSaved" | "tutorMessages" | "conversationExchanges" | "lessonsCompleted" | "customTextsAdded" | "lettersWritten"> }
   | { type: "MARK_CULTURE_READ"; payload: string }
   | { type: "MARK_CEFR_COMPLETE"; payload: string }
   | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
@@ -215,6 +237,14 @@ export type AppAction =
   | { type: "PURCHASE_MODULE"; payload: string }
   | { type: "SET_ACTIVE_MODULE"; payload: string | null }
   | { type: "SET_MODULE_ASSIGNMENT"; payload: { moduleId: string; assignmentId: string | null } }
+  | { type: "SET_FAVORITE_TEAM"; payload: string | null }
+  | { type: "SET_USER_VOCAB"; payload: { answers: string[]; vocab: UserVocabItem[]; lang: Language } }
+  | { type: "MASTER_VOCAB_WORD"; payload: string } // word string — increments correctCount
+  | { type: "ADD_VOCAB_ITEMS"; payload: UserVocabItem[] } // append replacement words
+  | { type: "START_REGRESSION_CHECK" } // reset mastered words to count=3 for re-drill
+  | { type: "SCORE_PATTERN"; payload: string }        // patternId — increments correctCount
+  | { type: "PATTERN_REGRESSION_CHECK" }              // reset mastered patterns to threshold-2
+  | { type: "FIRST_SENTENCE_MOMENT" }                 // fires achievement + XP
   | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
 
 const initialState: AppState = {
@@ -235,6 +265,7 @@ const initialState: AppState = {
   conversationExchanges: 0,
   lessonsCompleted: 0,
   customTextsAdded: 0,
+  lettersWritten: 0,
   cultureRead: [],
   languagesUsed: ["Spanish"],
   cefrLevelsCompleted: [],
@@ -243,9 +274,14 @@ const initialState: AppState = {
   challengesCleared: 0,
   recentChallenges: [],
   pendingLevelUp: null,
-  purchasedModules: ["orthopedics", "lds-missionary", "framer"],
+  purchasedModules: ["orthopedics", "lds-missionary", "framer", "soccer", "baseball", "or-evs"],
   activeModuleId: "orthopedics",
   moduleAssignments: {},
+  favoriteTeam: null,
+  vocabAnswers: [],
+  userVocab: [],
+  vocabLang: null,
+  patternProgress: {},
   hydrated: false,
 };
 
@@ -335,21 +371,94 @@ function reducer(state: AppState, action: AppAction): AppState {
           ? [...state.purchasedModules, action.payload]
           : state.purchasedModules;
       const next = { ...state, activeModuleId: action.payload, purchasedModules };
-      // When activating the missionary module, jump to its dedicated tab.
+      // When activating a module with a dedicated tab, jump to it.
       if (action.payload === "lds-missionary") {
         next.currentTab = "missionary";
       } else if (action.payload === "orthopedics") {
         next.currentTab = "orthopedics";
+      } else if (action.payload === "soccer") {
+        next.currentTab = "soccer";
+      } else if (action.payload === "baseball") {
+        next.currentTab = "baseball";
+      } else if (action.payload === "or-evs") {
+        next.currentTab = "orEvs";
+      } else if (action.payload === "fmg") {
+        next.currentTab = "fmg";
       } else if (
         state.currentTab === "missionary" ||
         state.currentTab === "discussions" ||
-        state.currentTab === "orthopedics"
+        state.currentTab === "orthopedics" ||
+        state.currentTab === "soccer" ||
+        state.currentTab === "baseball" ||
+        state.currentTab === "orEvs" ||
+        state.currentTab === "fmg"
       ) {
-        // Leaving the module — these tabs disappear, so fall back to Reader.
+        // Leaving a module-specific tab — fall back to Reader.
         next.currentTab = "reader";
       }
       return next;
     }
+    case "SET_FAVORITE_TEAM":
+      return { ...state, favoriteTeam: action.payload };
+    case "SET_USER_VOCAB":
+      return {
+        ...state,
+        vocabAnswers: action.payload.answers,
+        userVocab: action.payload.vocab.map((v) => ({ ...v, correctCount: v.correctCount ?? 0 })),
+        vocabLang: action.payload.lang,
+      };
+    case "MASTER_VOCAB_WORD":
+      return {
+        ...state,
+        userVocab: state.userVocab.map((v) =>
+          v.word === action.payload
+            ? { ...v, correctCount: (v.correctCount ?? 0) + 1 }
+            : v
+        ),
+      };
+    case "ADD_VOCAB_ITEMS":
+      return {
+        ...state,
+        userVocab: [
+          ...state.userVocab,
+          ...action.payload.filter(
+            (item) => !state.userVocab.some((existing) => existing.word === item.word)
+          ).map((v) => ({ ...v, correctCount: 0 })),
+        ],
+      };
+    case "START_REGRESSION_CHECK":
+      return {
+        ...state,
+        userVocab: state.userVocab.map((v) =>
+          (v.correctCount ?? 0) >= VOCAB_MASTERY_THRESHOLD
+            ? { ...v, correctCount: VOCAB_MASTERY_THRESHOLD - 2 }
+            : v
+        ),
+      };
+    case "SCORE_PATTERN":
+      return {
+        ...state,
+        patternProgress: {
+          ...state.patternProgress,
+          [action.payload]: (state.patternProgress[action.payload] ?? 0) + 1,
+        },
+      };
+    case "PATTERN_REGRESSION_CHECK": {
+      const updated = { ...state.patternProgress };
+      for (const id of Object.keys(updated)) {
+        if ((updated[id] ?? 0) >= VOCAB_MASTERY_THRESHOLD) {
+          updated[id] = VOCAB_MASTERY_THRESHOLD - 2;
+        }
+      }
+      return { ...state, patternProgress: updated };
+    }
+    case "FIRST_SENTENCE_MOMENT":
+      return {
+        ...state,
+        achievements: state.achievements.includes("First Real Sentence! 🗣️✨")
+          ? state.achievements
+          : [...state.achievements, "First Real Sentence! 🗣️✨"],
+      };
     case "SET_MODULE_ASSIGNMENT": {
       const next = { ...state.moduleAssignments };
       if (action.payload.assignmentId == null) {
@@ -458,6 +567,7 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "conversationExchanges",
   "lessonsCompleted",
   "customTextsAdded",
+  "lettersWritten",
   "cultureRead",
   "languagesUsed",
   "cefrLevelsCompleted",
@@ -468,6 +578,10 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "purchasedModules",
   "activeModuleId",
   "moduleAssignments",
+  "vocabAnswers",
+  "userVocab",
+  "vocabLang",
+  "patternProgress",
 ];
 
 function todayKey() {

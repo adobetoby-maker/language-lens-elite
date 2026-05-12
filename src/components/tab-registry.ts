@@ -63,6 +63,27 @@ const IdiomMaster = lazy(() =>
 const FalseFriends = lazy(() =>
   import("./false-friends/FalseFriends").then((m) => ({ default: m.FalseFriends }))
 );
+const SoccerHome = lazy(() =>
+  import("./soccer/SoccerHome").then((m) => ({ default: m.SoccerHome }))
+);
+const BaseballHome = lazy(() =>
+  import("./baseball/BaseballHome").then((m) => ({ default: m.BaseballHome }))
+);
+const OrEvsHome = lazy(() =>
+  import("./or-evs/OrEvsHome").then((m) => ({ default: m.OrEvsHome }))
+);
+const FmgHome = lazy(() =>
+  import("./fmg/FmgHome").then((m) => ({ default: m.FmgHome }))
+);
+const PenPalPad = lazy(() =>
+  import("./penpal/PenPalPad").then((m) => ({ default: m.PenPalPad }))
+);
+const PatternLab = lazy(() =>
+  import("./patterns/PatternLab").then((m) => ({ default: m.PatternLab }))
+);
+const DailyStory = lazy(() =>
+  import("./story/DailyStory").then((m) => ({ default: m.DailyStory }))
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -90,6 +111,13 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   wordMatch: WordMatch,
   idiomMaster: IdiomMaster,
   falseFriends: FalseFriends,
+  soccer: SoccerHome,
+  baseball: BaseballHome,
+  orEvs: OrEvsHome,
+  fmg: FmgHome,
+  penpal: PenPalPad,
+  patterns: PatternLab,
+  story: DailyStory,
 };
 
 if (import.meta.env.DEV) {

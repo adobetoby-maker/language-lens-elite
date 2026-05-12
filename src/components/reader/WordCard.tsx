@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { X, Volume2, MessageCircle, Sparkle } from "lucide-react";
+import { X, Volume2, MessageCircle, Sparkle, BookmarkPlus, BookmarkCheck } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/fns/word-lookup.functions";
 import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
@@ -53,6 +53,7 @@ export function WordCard({
   const [card, setCard] = useState<WordCardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [vocabAdded, setVocabAdded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const CARD_W = cardWidth(request.language);
@@ -316,6 +317,31 @@ export function WordCard({
                 className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/90 transition-colors hover:border-gold/60 hover:text-gold"
               >
                 <MessageCircle className="h-3 w-3" /> Ask Tutor
+              </button>
+              <button
+                onClick={() => {
+                  if (vocabAdded) return;
+                  const alreadyIn = state.userVocab.some((v) => v.word === card.headword);
+                  if (!alreadyIn) {
+                    dispatch({
+                      type: "ADD_VOCAB_ITEMS",
+                      payload: [{ word: card.headword, translation: card.baseDefinition, category: "topic", correctCount: 0 }],
+                    });
+                  }
+                  setVocabAdded(true);
+                  onXp(5);
+                }}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                  vocabAdded
+                    ? "border-emerald-500/60 bg-emerald-500/10 text-emerald-400"
+                    : "border-border/70 bg-background/40 text-foreground/90 hover:border-gold/60 hover:text-gold"
+                }`}
+              >
+                {vocabAdded ? (
+                  <><BookmarkCheck className="h-3 w-3" /> Added</>
+                ) : (
+                  <><BookmarkPlus className="h-3 w-3" /> My Vocab</>
+                )}
               </button>
             </div>
           </>

@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2, Headphones, Grid3x3, Quote, AlertTriangle } from "lucide-react";
+import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2, Headphones, Grid3x3, Quote, AlertTriangle, PenLine, Mail, Layers, Sparkle } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
@@ -16,6 +16,9 @@ const TAB_ITEMS: { key: TabKey; label: string; Icon: React.ElementType; moduleOn
   { key: "idiomMaster", label: "Idiom Master",     Icon: Quote                                         },
   { key: "falseFriends", label: "False Friends",   Icon: AlertTriangle                                 },
   { key: "games",       label: "Games Hub",        Icon: Gamepad2                                      },
+  { key: "penpal",      label: "Pen Pal Practice", Icon: Mail                                         },
+  { key: "patterns",   label: "Grammar Patterns", Icon: Layers                                       },
+  { key: "story",      label: "Daily Story",       Icon: Sparkle                                      },
   { key: "speak",       label: "Speak & Learn",    Icon: Mic2                                         },
   { key: "discussions", label: "Discussions",      Icon: MessageCircle,  moduleOnly: "lds-missionary" },
   { key: "dashboard",   label: "Dashboard",        Icon: BarChart3                                    },
@@ -122,22 +125,24 @@ export function AppSidebar({ onOpenMatch }: { onOpenMatch?: () => void }) {
          tab switching even on a trackpad-driven layout. */}
       <nav className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-around border-t border-border/50 bg-background/95 backdrop-blur-xl [padding-bottom:env(safe-area-inset-bottom)]">
         {([
-          { key: "reader"    as TabKey, Icon: BookOpen      },
-          { key: "grammar"   as TabKey, Icon: GraduationCap },
-          { key: "speak"     as TabKey, Icon: Mic2          },
-          { key: "dashboard" as TabKey, Icon: BarChart3      },
-        ] as const).map(({ key, Icon }) => {
+          { key: "reader"    as TabKey, Icon: BookOpen,      label: "Reader"   },
+          { key: "grammar"   as TabKey, Icon: GraduationCap, label: "Grammar"  },
+          { key: "penpal"    as TabKey, Icon: Mail,          label: "Pen Pal"  },
+          { key: "speak"     as TabKey, Icon: Mic2,          label: "Speak"    },
+          { key: "dashboard" as TabKey, Icon: BarChart3,     label: "Dashboard"},
+        ] as const).map(({ key, Icon, label }) => {
           const active = state.currentTab === key;
           return (
             <button
               key={key}
               onClick={() => switchTab(key)}
               className={cn(
-                "flex flex-1 items-center justify-center py-3.5 transition-colors",
+                "flex flex-1 flex-col items-center justify-center gap-0.5 py-2.5 transition-colors",
                 active ? "text-gold" : "text-muted-foreground"
               )}
             >
               <Icon className="h-5 w-5" strokeWidth={1.6} />
+              <span className="text-[9px] font-medium tracking-wide">{label}</span>
             </button>
           );
         })}

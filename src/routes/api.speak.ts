@@ -17,16 +17,21 @@ const BodySchema = z.object({
   userText: z.string().max(2000).optional(),
   concepts: z.array(z.string().min(1).max(120)).max(20).optional(),
   kind: z.enum(["grammar", "reach"]).optional(),
+  userVocabWords: z.array(z.string().max(80)).max(15).optional(),
 });
 
-function chatSystemPrompt(language: string, level: string) {
-  return [
+function chatSystemPrompt(language: string, level: string, userVocabWords?: string[]) {
+  const base = [
     `You are a warm, fluent ${language} conversation partner.`,
     `The learner is at ${level} level. Speak naturally but clearly.`,
     `Keep responses to 2-3 sentences unless asked for more.`,
     `You love talking about food, travel, daily life, culture, and the places where ${language} is spoken.`,
     `Always respond in ${language}. Be encouraging and patient. Avoid markdown — write plain conversational text.`,
   ].join(" ");
+  if (userVocabWords?.length) {
+    return `${base}\n\nThe learner has these personal vocabulary words — when natural, use them in conversation so they hear them in context: ${userVocabWords.join(", ")}.`;
+  }
+  return base;
 }
 
 // Wraps an Anthropic stream in a ReadableStream emitting OpenAI-compatible SSE
@@ -210,7 +215,7 @@ export const Route = createFileRoute("/api/speak")({
           const stream = await client.messages.create({
             model: "claude-haiku-4-5",
             max_tokens: 512,
-            system: chatSystemPrompt(payload.language, payload.level),
+            system: chatSystemPrompt(payload.language, payload.level, payload.userVocabWords),
             messages: payload.messages,
             stream: true,
           });
