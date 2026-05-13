@@ -12,6 +12,9 @@ cpSync('dist/client', `${out}/static`, { recursive: true })
 // Server chunks → bundled into the serverless function
 cpSync('dist/server', `${out}/functions/index.func`, { recursive: true })
 
+// Required so Node.js treats server.js (and all .js chunks) as ESM
+writeFileSync(`${out}/functions/index.func/package.json`, JSON.stringify({ type: 'module' }))
+
 // Thin entry point: adapts Node.js IncomingMessage/ServerResponse to Web Fetch API
 // and delegates to the TanStack Start fetch handler.
 writeFileSync(`${out}/functions/index.func/entry.mjs`, `
