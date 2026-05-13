@@ -15,12 +15,22 @@ cpSync('dist/server', `${out}/functions/index.func`, { recursive: true })
 // Required so Node.js treats server.js (and all .js chunks) as ESM
 writeFileSync(`${out}/functions/index.func/package.json`, JSON.stringify({ type: 'module' }))
 
-// Thin entry point: adapts Node.js IncomingMessage/ServerResponse to Web Fetch API
-// and delegates to the TanStack Start fetch handler.
-writeFileSync(`${out}/functions/index.func/entry.mjs`, `
-import server from './server.js'
+// CJS wrapper: Vercel's Nodejs launcher loads this as CJS, which then
+// dynamically imports the ESM server.js (requires package.json type:module).
+// Caches the server module across warm invocations.
+writeFileSync(`${out}/functions/index.func/entry.cjs`, `
+let _server = null
+async function getServer() {
+  if (!_server) {
+    const m = await import('./server.js')
+    _server = m.default
+  }
+  return _server
+}
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
+  const server = await getServer()
+
   const proto = req.headers['x-forwarded-proto'] || 'https'
   const host = req.headers['x-forwarded-host'] || req.headers['host'] || 'localhost'
   const url = proto + '://' + host + req.url
@@ -57,7 +67,7 @@ export default async function handler(req, res) {
 // .vc-config.json: tells Vercel runtime how to invoke the function
 writeFileSync(`${out}/functions/index.func/.vc-config.json`, JSON.stringify({
   runtime: 'nodejs22.x',
-  handler: 'entry.mjs',
+  handler: 'entry.cjs',
   launcherType: 'Nodejs',
   shouldAddHelpers: true,
 }))
