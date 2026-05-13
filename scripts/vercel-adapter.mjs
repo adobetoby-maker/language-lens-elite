@@ -1,7 +1,7 @@
 // Post-build script: produces a Vercel Build Output API v3 artifact.
 // Vercel detects .vercel/output/ and deploys it directly — no framework detection needed.
-import { mkdirSync, writeFileSync, cpSync, renameSync, readdirSync, readFileSync } from 'fs'
-import { join } from 'path'
+import { mkdirSync, writeFileSync, cpSync } from 'fs'
+import { execFileSync } from 'child_process'
 
 const out = '.vercel/output'
 mkdirSync(`${out}/static`, { recursive: true })
@@ -10,42 +10,26 @@ mkdirSync(`${out}/functions/index.func`, { recursive: true })
 // Static client assets → served from Vercel's CDN
 cpSync('dist/client', `${out}/static`, { recursive: true })
 
-// Server chunks → bundled into the serverless function
-cpSync('dist/server', `${out}/functions/index.func`, { recursive: true })
+// Bundle server.js + all npm dependencies (h3-v2, @tanstack/*, seroval, etc.)
+// into a single CJS file. Vercel function has no node_modules at runtime so
+// everything must be self-contained. Dynamic route imports are inlined.
+console.log('Bundling server with esbuild...')
+execFileSync('npx', [
+  'esbuild', 'dist/server/server.js',
+  '--bundle',
+  '--platform=node',
+  '--format=cjs',
+  `--outfile=${out}/functions/index.func/server.cjs`,
+  '--external:node:*',
+  '--log-level=warning',
+], { stdio: 'inherit' })
 
-// Vercel's custom module loader ignores package.json type:module.
-// Rename all .js → .mjs so Node.js recognises them as ESM by extension.
-const funcDir = `${out}/functions/index.func`
-const assetsDir = `${funcDir}/assets`
-
-// Rename assets/*.js → assets/*.mjs and collect the mapping
-const assetRenames = {}
-for (const f of readdirSync(assetsDir)) {
-  if (f.endsWith('.js')) {
-    const newName = f.replace(/\.js$/, '.mjs')
-    renameSync(join(assetsDir, f), join(assetsDir, newName))
-    assetRenames[`./assets/${f}`] = `./assets/${newName}`
-  }
-}
-
-// Patch server.js: replace all asset import paths, then rename to server.mjs
-let serverSrc = readFileSync(`${funcDir}/server.js`, 'utf8')
-for (const [from, to] of Object.entries(assetRenames)) {
-  serverSrc = serverSrc.replaceAll(JSON.stringify(from), JSON.stringify(to))
-}
-writeFileSync(`${funcDir}/server.mjs`, serverSrc)
-renameSync(`${funcDir}/server.js`, `${funcDir}/server.js.bak`)
-
-// CJS wrapper: Vercel's Nodejs launcher loads this as CJS, which then
-// dynamically imports the ESM server.mjs (explicit .mjs forces ESM regardless of loader).
-// Caches the server module across warm invocations.
+// CJS entry: loaded by Vercel's Nodejs launcher, dynamically imports the
+// bundled server and adapts Node.js req/res → Web Fetch API.
 writeFileSync(`${out}/functions/index.func/entry.cjs`, `
 let _server = null
 async function getServer() {
-  if (!_server) {
-    const m = await import('./server.mjs')
-    _server = m.default
-  }
+  if (!_server) _server = require('./server.cjs').default
   return _server
 }
 
@@ -97,19 +81,16 @@ writeFileSync(`${out}/functions/index.func/.vc-config.json`, JSON.stringify({
 writeFileSync(`${out}/config.json`, JSON.stringify({
   version: 3,
   routes: [
-    // Immutable hashed assets
     {
       src: '/assets/(.+)',
       headers: { 'cache-control': 'public, max-age=31536000, immutable' },
       dest: '/assets/$1',
     },
-    // Other known static files
-    { src: '/favicon\\.svg',            dest: '/favicon.svg' },
-    { src: '/manifest\\.webmanifest',   dest: '/manifest.webmanifest' },
-    { src: '/sw\\.js',                  dest: '/sw.js' },
-    { src: '/icons/(.*)',               dest: '/icons/$1' },
-    // Everything else → SSR function
-    { src: '/(.*)', dest: '/' },
+    { src: '/favicon\\.svg',          dest: '/favicon.svg' },
+    { src: '/manifest\\.webmanifest', dest: '/manifest.webmanifest' },
+    { src: '/sw\\.js',                dest: '/sw.js' },
+    { src: '/icons/(.*)',             dest: '/icons/$1' },
+    { src: '/(.*)',                   dest: '/' },
   ],
 }))
 
