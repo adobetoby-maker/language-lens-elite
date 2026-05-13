@@ -1,6 +1,7 @@
 // Post-build script: produces a Vercel Build Output API v3 artifact.
 // Vercel detects .vercel/output/ and deploys it directly — no framework detection needed.
-import { mkdirSync, writeFileSync, cpSync } from 'fs'
+import { mkdirSync, writeFileSync, cpSync, renameSync, readdirSync, readFileSync } from 'fs'
+import { join } from 'path'
 
 const out = '.vercel/output'
 mkdirSync(`${out}/static`, { recursive: true })
@@ -12,17 +13,37 @@ cpSync('dist/client', `${out}/static`, { recursive: true })
 // Server chunks → bundled into the serverless function
 cpSync('dist/server', `${out}/functions/index.func`, { recursive: true })
 
-// Required so Node.js treats server.js (and all .js chunks) as ESM
-writeFileSync(`${out}/functions/index.func/package.json`, JSON.stringify({ type: 'module' }))
+// Vercel's custom module loader ignores package.json type:module.
+// Rename all .js → .mjs so Node.js recognises them as ESM by extension.
+const funcDir = `${out}/functions/index.func`
+const assetsDir = `${funcDir}/assets`
+
+// Rename assets/*.js → assets/*.mjs and collect the mapping
+const assetRenames = {}
+for (const f of readdirSync(assetsDir)) {
+  if (f.endsWith('.js')) {
+    const newName = f.replace(/\.js$/, '.mjs')
+    renameSync(join(assetsDir, f), join(assetsDir, newName))
+    assetRenames[`./assets/${f}`] = `./assets/${newName}`
+  }
+}
+
+// Patch server.js: replace all asset import paths, then rename to server.mjs
+let serverSrc = readFileSync(`${funcDir}/server.js`, 'utf8')
+for (const [from, to] of Object.entries(assetRenames)) {
+  serverSrc = serverSrc.replaceAll(JSON.stringify(from), JSON.stringify(to))
+}
+writeFileSync(`${funcDir}/server.mjs`, serverSrc)
+renameSync(`${funcDir}/server.js`, `${funcDir}/server.js.bak`)
 
 // CJS wrapper: Vercel's Nodejs launcher loads this as CJS, which then
-// dynamically imports the ESM server.js (requires package.json type:module).
+// dynamically imports the ESM server.mjs (explicit .mjs forces ESM regardless of loader).
 // Caches the server module across warm invocations.
 writeFileSync(`${out}/functions/index.func/entry.cjs`, `
 let _server = null
 async function getServer() {
   if (!_server) {
-    const m = await import('./server.js')
+    const m = await import('./server.mjs')
     _server = m.default
   }
   return _server
