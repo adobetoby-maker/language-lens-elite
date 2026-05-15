@@ -1,4 +1,4 @@
-const CACHE = 'lingualens-v1';
+const CACHE = 'lt-v3';
 
 // Cache the app shell on install
 self.addEventListener('install', (event) => {

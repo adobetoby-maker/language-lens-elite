@@ -37,7 +37,7 @@ type Action =
     }
   | { type: "CLEAR_THREAD"; payload: string };
 
-const STORAGE_KEY = "lingualens.tutor.v1";
+const STORAGE_KEY = "lt.tutor.v1";
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {

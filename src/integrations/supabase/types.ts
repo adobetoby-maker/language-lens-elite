@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          id: string
+          data: Record<string, unknown>
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          data?: Record<string, unknown>
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          data?: Record<string, unknown>
+          updated_at?: string
+        }
+        Relationships: []
+      }
       family_groups: {
         Row: {
           created_at: string

@@ -1048,7 +1048,7 @@ function reducer(state: LibraryState, action: Action): LibraryState {
   }
 }
 
-const STORAGE_KEY = "lingualens.library.custom.v1";
+const STORAGE_KEY = "lt.library.custom.v1";
 
 interface LibraryContextValue {
   state: LibraryState;

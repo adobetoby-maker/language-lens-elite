@@ -6,9 +6,11 @@ import {
   useMemo,
   useReducer,
   useRef,
+  useState,
   type ReactNode,
 } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export type Language =
   | "Spanish"
@@ -57,7 +59,7 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation" | "sentenceBuild" | "games" | "listeningDrill" | "wordMatch" | "idiomMaster" | "falseFriends" | "soccer" | "baseball" | "orEvs" | "fmg" | "penpal" | "patterns" | "story";
+export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation" | "sentenceBuild" | "games" | "listeningDrill" | "wordMatch" | "idiomMaster" | "falseFriends" | "soccer" | "baseball" | "orEvs" | "fmg" | "penpal" | "patterns" | "story" | "guide" | "climbing";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";
@@ -203,6 +205,9 @@ export interface AppState {
   // Sports news preference — favorite team name for RSS filtering
   favoriteTeam: string | null;
 
+  onboardingComplete: boolean;
+  lessonProgress: Record<string, number>; // moduleId → completed lesson count
+
   hydrated: boolean;
 }
 
@@ -238,6 +243,7 @@ export type AppAction =
   | { type: "SET_ACTIVE_MODULE"; payload: string | null }
   | { type: "SET_MODULE_ASSIGNMENT"; payload: { moduleId: string; assignmentId: string | null } }
   | { type: "SET_FAVORITE_TEAM"; payload: string | null }
+  | { type: "COMPLETE_ONBOARDING" }
   | { type: "SET_USER_VOCAB"; payload: { answers: string[]; vocab: UserVocabItem[]; lang: Language } }
   | { type: "MASTER_VOCAB_WORD"; payload: string } // word string — increments correctCount
   | { type: "ADD_VOCAB_ITEMS"; payload: UserVocabItem[] } // append replacement words
@@ -245,7 +251,9 @@ export type AppAction =
   | { type: "SCORE_PATTERN"; payload: string }        // patternId — increments correctCount
   | { type: "PATTERN_REGRESSION_CHECK" }              // reset mastered patterns to threshold-2
   | { type: "FIRST_SENTENCE_MOMENT" }                 // fires achievement + XP
-  | { type: "_DERIVE" }; // internal: re-derive tier + pendingLevelUp
+  | { type: "_DERIVE" } // internal: re-derive tier + pendingLevelUp
+  | { type: "COMPLETE_LESSON"; payload: string } // moduleId
+  | { type: "MERGE_REMOTE"; payload: PersistedShape }; // merge remote profile, taking best values
 
 const initialState: AppState = {
   selectedLanguage: "Spanish",
@@ -278,6 +286,8 @@ const initialState: AppState = {
   activeModuleId: "orthopedics",
   moduleAssignments: {},
   favoriteTeam: null,
+  onboardingComplete: false,
+  lessonProgress: {},
   vocabAnswers: [],
   userVocab: [],
   vocabLang: null,
@@ -400,6 +410,17 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "SET_FAVORITE_TEAM":
       return { ...state, favoriteTeam: action.payload };
+    case "COMPLETE_ONBOARDING":
+      return { ...state, onboardingComplete: true };
+    case "COMPLETE_LESSON": {
+      const moduleId = action.payload;
+      const current = state.lessonProgress[moduleId] ?? 0;
+      return {
+        ...state,
+        lessonProgress: { ...state.lessonProgress, [moduleId]: current + 1 },
+        lessonsCompleted: state.lessonsCompleted + 1,
+      };
+    }
     case "SET_USER_VOCAB":
       return {
         ...state,
@@ -476,6 +497,56 @@ function reducer(state: AppState, action: AppAction): AppState {
         recentChallenges: recent,
       };
     }
+    case "MERGE_REMOTE": {
+      // Merge remote profile with current state: take the "best" of each value.
+      // Numeric progress (XP, streaks, counters) → max(local, remote).
+      // Collections (achievements, notes, vocab) → union.
+      // Preferences (language, theme, tab) → remote wins (set on other devices).
+      const { __v: _v, ...remote } = action.payload;
+      const localXp = state.xp;
+      const remoteXp = typeof remote.xp === "number" ? remote.xp : 0;
+      const xp = Math.max(localXp, remoteXp);
+      const achievements = Array.from(new Set([...state.achievements, ...(remote.achievements ?? [])]));
+      const userNotes = (() => {
+        const seen = new Set(state.userNotes.map((n) => n.id));
+        const merged = [...state.userNotes];
+        for (const n of (remote.userNotes ?? [])) {
+          if (!seen.has(n.id)) { merged.push(n); seen.add(n.id); }
+        }
+        return merged.sort((a, b) => b.createdAt - a.createdAt);
+      })();
+      const cultureRead = Array.from(new Set([...state.cultureRead, ...(remote.cultureRead ?? [])]));
+      const languagesUsed = Array.from(new Set([...state.languagesUsed, ...(remote.languagesUsed ?? [])])) as Language[];
+      const cefrLevelsCompleted = Array.from(new Set([...state.cefrLevelsCompleted, ...(remote.cefrLevelsCompleted ?? [])]));
+      return {
+        ...state,
+        ...(remote as Partial<AppState>),
+        xp,
+        tier: tierForXp(xp),
+        achievements,
+        userNotes,
+        cultureRead,
+        languagesUsed,
+        cefrLevelsCompleted,
+        streak: Math.max(state.streak, remote.streak ?? 0),
+        wordsLookedUp: Math.max(state.wordsLookedUp, remote.wordsLookedUp ?? 0),
+        notesSaved: Math.max(state.notesSaved, remote.notesSaved ?? 0),
+        tutorMessages: Math.max(state.tutorMessages, remote.tutorMessages ?? 0),
+        conversationExchanges: Math.max(state.conversationExchanges, remote.conversationExchanges ?? 0),
+        lessonsCompleted: Math.max(state.lessonsCompleted, remote.lessonsCompleted ?? 0),
+        challengesCleared: Math.max(state.challengesCleared, remote.challengesCleared ?? 0),
+        lessonProgress: (() => {
+          const local = state.lessonProgress ?? {};
+          const rem = (remote.lessonProgress ?? {}) as Record<string, number>;
+          const merged: Record<string, number> = { ...local };
+          for (const [k, v] of Object.entries(rem)) {
+            merged[k] = Math.max(local[k] ?? 0, v);
+          }
+          return merged;
+        })(),
+        pendingLevelUp: null,
+      };
+    }
     case "_DERIVE":
       return state;
     default:
@@ -483,8 +554,8 @@ function reducer(state: AppState, action: AppAction): AppState {
   }
 }
 
-const STORAGE_KEY = "lingualens.app.v2";
-const LEGACY_STORAGE_KEYS = ["lingualens.app", "lingualens.app.v1"];
+const STORAGE_KEY = "lt.app.v2";
+const LEGACY_STORAGE_KEYS = ["lt.app", "lt.app.v1"];
 const SCHEMA_VERSION = 2;
 
 type PersistedShape = Partial<AppState> & { __v?: number };
@@ -582,6 +653,8 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "userVocab",
   "vocabLang",
   "patternProgress",
+  "onboardingComplete",
+  "lessonProgress",
 ];
 
 function todayKey() {
@@ -700,6 +773,46 @@ export function AppProvider({ children }: { children: ReactNode }) {
     state.streak,
     state.achievements,
   ]);
+
+  // ── Supabase cloud sync ──────────────────────────────────────────────────
+  // Track the current user id; set by the auth subscription below.
+  const [userId, setUserId] = useState<string | null>(null);
+  const syncTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      const uid = session?.user?.id ?? null;
+      setUserId(uid);
+
+      if (uid) {
+        // Fetch remote profile and merge into current (already localStorage-hydrated) state.
+        const { data } = await supabase
+          .from("profiles")
+          .select("data")
+          .eq("id", uid)
+          .maybeSingle();
+
+        if (data?.data) {
+          const remote = migrate(data.data as unknown);
+          dispatch({ type: "MERGE_REMOTE", payload: remote });
+        }
+      }
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  // Debounced upsert — fires 2 s after the last state change while logged in.
+  useEffect(() => {
+    if (!state.hydrated || !userId) return;
+    if (syncTimer.current) clearTimeout(syncTimer.current);
+    syncTimer.current = setTimeout(async () => {
+      const toSave: Record<string, unknown> = { __v: SCHEMA_VERSION };
+      for (const k of PERSIST_KEYS) toSave[k] = (state as unknown as Record<string, unknown>)[k];
+      await supabase.from("profiles").upsert({ id: userId, data: toSave });
+    }, 2000);
+    return () => { if (syncTimer.current) clearTimeout(syncTimer.current); };
+  }, [state, userId]);
+  // ────────────────────────────────────────────────────────────────────────
 
   // pingActivity — call on any meaningful action; refreshes lastActiveDate (but doesn't double-count streak)
   const pingActivity = useCallback(() => {

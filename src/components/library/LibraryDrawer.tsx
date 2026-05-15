@@ -30,7 +30,7 @@ function LevelBadge({ level }: { level: CefrLevel }) {
 }
 
 const SPEECH_LOCALE: Record<Language, string> = {
-  Spanish: "es-ES",
+  Spanish: "es-CR",
   French: "fr-FR",
   German: "de-DE",
   Italian: "it-IT",

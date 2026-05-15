@@ -54,7 +54,7 @@ type Action =
   | { type: "ADVANCE" }
   | { type: "END_RUN" };
 
-const STORAGE_KEY = "lingualens.falseFriends.leaderboard.v1";
+const STORAGE_KEY = "lt.falseFriends.leaderboard.v1";
 const RUN_LENGTH = 5;
 
 function loadLB(): Record<FFLeaderboardKey, FalseFriendsStats> {

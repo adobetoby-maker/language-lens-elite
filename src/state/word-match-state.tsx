@@ -70,7 +70,7 @@ type Action =
   | { type: "END_GAME" }
   | { type: "DISMISS_RESULT" };
 
-const STORAGE_KEY = "lingualens.wordMatch.leaderboard.v1";
+const STORAGE_KEY = "lt.wordMatch.leaderboard.v1";
 const MAX_FLIPPED = 2;
 
 function pairsForLevel(level: WordMatchLevel): number {

@@ -3,12 +3,12 @@ import { configureUtterance } from "@/lib/voices";
 import { useSpeech } from "@/state/speech-state";
 import type { Language } from "@/state/app-state";
 
-const RATE_KEY = "lingualens.missionary.rate.v1";
+const RATE_KEY = "lt.missionary.rate.v1";
 export const MISSIONARY_RATES = [0.5, 0.75, 1] as const;
 export type MissionaryRate = (typeof MISSIONARY_RATES)[number];
 
 const LOCALE: Record<Language, string> = {
-  Spanish: "es-ES",
+  Spanish: "es-CR",
   French: "fr-FR",
   German: "de-DE",
   Italian: "it-IT",

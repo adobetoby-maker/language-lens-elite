@@ -54,7 +54,7 @@ type Action =
     }
   | { type: "ADD_BADGE"; payload: string };
 
-const STORAGE_KEY = "lingualens.grammar.v1";
+const STORAGE_KEY = "lt.grammar.v1";
 
 function emptyLevel(): LevelState {
   return { lessons: [], contents: {}, completed: {} };

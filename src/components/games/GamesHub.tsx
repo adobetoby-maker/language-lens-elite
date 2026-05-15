@@ -14,7 +14,7 @@ import { BaseballPositionsGame } from "./BaseballPositionsGame";
 
 // Cross-component event the parent route listens for to open the Match
 // overlay. Decouples this tab from the overlay-opener prop drilling.
-export const OPEN_MATCH_EVENT = "lingualens:open-match";
+export const OPEN_MATCH_EVENT = "lt:open-match";
 
 /**
  * GamesHub: a single landing tab that surfaces every mini-game in the app

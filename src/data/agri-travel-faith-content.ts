@@ -1,4 +1,4 @@
-// Agri-Travel-Faith domain content for Language Lens Elite.
+// Agri-Travel-Faith domain content for Language Threshold.
 // Covers five vocational/situational modules:
 //   dairy-farmer, ranch-cowboy, meatpacking-butcher, international-travel, catholic-ministry
 //

@@ -52,7 +52,7 @@ type Action =
   | { type: "RECORD_COMPLETION" }
   | { type: "RESET" };
 
-const STORAGE_KEY = "lingualens.dailyChallenge.v1";
+const STORAGE_KEY = "lt.dailyChallenge.v1";
 
 const EMPTY: DailyChallengeData = {
   lastCompletedDay: null,

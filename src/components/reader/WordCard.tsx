@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { X, Volume2, MessageCircle, Sparkle, BookmarkPlus, BookmarkCheck } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/fns/word-lookup.functions";
@@ -9,7 +9,7 @@ import { configureUtterance } from "@/lib/voices";
 import { FuriganaText } from "./FuriganaText";
 
 const LOCALE: Record<Language, string> = {
-  Spanish: "es-ES",
+  Spanish: "es-CR",
   French: "fr-FR",
   German: "de-DE",
   Italian: "it-IT",
@@ -55,6 +55,8 @@ export function WordCard({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [vocabAdded, setVocabAdded] = useState(false);
+  const [showEtymology, setShowEtymology] = useState(false);
+  const toggleEtymology = useCallback(() => setShowEtymology(v => !v), []);
   const ref = useRef<HTMLDivElement>(null);
 
   const CARD_W = cardWidth(request.language);
@@ -217,19 +219,9 @@ export function WordCard({
               </div>
               <p className="text-[13px] leading-relaxed text-foreground/90">
                 {card.conjugationNote}
+                {card.contextNuance ? ` ${card.contextNuance}` : ""}
               </p>
             </div>
-
-            {card.contextNuance && (
-              <div className="mt-3 rounded-xl border border-violet-500/30 bg-violet-500/[0.07] p-3">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-violet-300">
-                  ✎ Why this word
-                </div>
-                <p className="text-[13px] leading-relaxed text-foreground/90">
-                  {card.contextNuance}
-                </p>
-              </div>
-            )}
 
             <div className="mt-4">
               <p className="font-display text-base italic text-foreground">
@@ -303,13 +295,18 @@ export function WordCard({
             )}
 
             {card.etymologyNote && (
-              <div className="mt-4 rounded-xl border border-border/60 bg-background/30 p-3">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                  ⌗ Origin
-                </div>
-                <p className="text-[12px] leading-relaxed text-foreground/80">
-                  {card.etymologyNote}
-                </p>
+              <div className="mt-4">
+                <button
+                  onClick={toggleEtymology}
+                  className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground hover:text-foreground/70 transition-colors"
+                >
+                  ⌗ Origin {showEtymology ? "↑" : "↓"}
+                </button>
+                {showEtymology && (
+                  <p className="mt-2 rounded-xl border border-border/60 bg-background/30 p-3 text-[12px] leading-relaxed text-foreground/80">
+                    {card.etymologyNote}
+                  </p>
+                )}
               </div>
             )}
 

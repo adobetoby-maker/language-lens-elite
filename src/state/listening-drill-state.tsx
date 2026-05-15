@@ -69,7 +69,7 @@ type Action =
   | { type: "ADVANCE" }
   | { type: "END_RUN" };
 
-const STORAGE_KEY = "lingualens.listeningDrill.leaderboard.v1";
+const STORAGE_KEY = "lt.listeningDrill.leaderboard.v1";
 const RUN_LENGTH = 5;
 
 function loadLeaderboard(): Record<LDLeaderboardKey, ListeningDrillStats> {

@@ -28,6 +28,7 @@ import { LevelUpOverlay } from "@/components/LevelUpOverlay";
 import { CefrCompletionBridge } from "@/components/CefrCompletionBridge";
 import { MatchmakingOverlay } from "@/components/match/MatchmakingOverlay";
 import { MatchAchievementsBridge } from "@/components/match/MatchAchievementsBridge";
+import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -38,6 +39,14 @@ export const Route = createFileRoute("/")({
     ],
   }),
 });
+
+function WizardGate() {
+  const { state } = useApp();
+  // Wait for localStorage to hydrate so we don't flash the wizard for returning users.
+  if (!state.hydrated) return null;
+  if (state.onboardingComplete) return null;
+  return <OnboardingWizard />;
+}
 
 function SpeechBridge({ children }: { children: ReactNode }) {
   const { state, dispatch } = useApp();
@@ -63,8 +72,8 @@ function Index() {
   // Lets non-prop-connected children (e.g. GamesHub tab) open the overlay.
   useEffect(() => {
     const handler = () => setMatchOpen(true);
-    window.addEventListener("lingualens:open-match", handler);
-    return () => window.removeEventListener("lingualens:open-match", handler);
+    window.addEventListener("lt:open-match", handler);
+    return () => window.removeEventListener("lt:open-match", handler);
   }, []);
   return (
     <AppProvider>
@@ -100,6 +109,7 @@ function Index() {
                           </div>
                         </div>
 
+                        <WizardGate />
                         <TutorPanel />
                         <LevelUpOverlay />
                         <CefrCompletionBridge />

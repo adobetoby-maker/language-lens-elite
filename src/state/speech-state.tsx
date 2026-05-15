@@ -21,8 +21,10 @@ export interface AccentOption {
 
 export const ACCENTS_BY_LANGUAGE: Record<Language, AccentOption[]> = {
   Spanish: [
-    { code: "es-ES", label: "Spain (es-ES)" },
+    { code: "es-CR", label: "Costa Rica (es-CR)" },
     { code: "es-MX", label: "México (es-MX)" },
+    { code: "es-US", label: "US Spanish (es-US)" },
+    { code: "es-ES", label: "Spain (es-ES)" },
     { code: "es-AR", label: "Argentina (es-AR)" },
   ],
   French: [
@@ -88,7 +90,7 @@ interface SpeechCtx {
 const Ctx = createContext<SpeechCtx | null>(null);
 
 const ACHIEVEMENT_LISTENER = "Good Listener 👂";
-const STORAGE_KEY = "lingualens.speech.v1";
+const STORAGE_KEY = "lt.speech.v1";
 
 export function SpeechProvider({
   children,

@@ -389,7 +389,11 @@ export function PenPalPad() {
       {/* ── Step: Copy Word ── */}
       {step === "copyWord" && (
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">Write this word or phrase in the space below.</p>
+          <div className="rounded-xl border border-gold/20 bg-gold/[0.03] px-4 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-1">Copy this word or phrase</p>
+            <p className="text-2xl font-display font-semibold">{topic.copyWord}</p>
+          </div>
+          <p className="text-sm text-muted-foreground">Write it out below.</p>
           {checking ? (
             <div className="flex items-center gap-2 text-sm text-muted-foreground py-4">
               <RefreshCw className="h-4 w-4 animate-spin" /> Checking your writing…
@@ -409,7 +413,12 @@ export function PenPalPad() {
       {/* ── Step: Copy Sentence ── */}
       {step === "copySentence" && (
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">Copy this full sentence. Take your time — handwriting cements memory.</p>
+          {/* Show the sentence prominently so it's obvious what to copy */}
+          <div className="rounded-xl border border-gold/20 bg-gold/[0.03] px-4 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-1">Copy this sentence</p>
+            <p className="text-base font-semibold">{topic.copySentence}</p>
+          </div>
+          <p className="text-sm text-muted-foreground">Write it out below. Handwriting cements memory.</p>
           {checking ? (
             <div className="flex items-center gap-2 text-sm text-muted-foreground py-4">
               <RefreshCw className="h-4 w-4 animate-spin" /> Checking your writing…
@@ -451,7 +460,8 @@ export function PenPalPad() {
         <div className="space-y-4">
           <div className="rounded-xl border border-gold/20 bg-gold/[0.03] px-4 py-3">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-1">Write your answer</p>
-            <p className="text-base font-semibold">{topic.question}</p>
+            <p className="text-base font-semibold">{topic.writePrompt}</p>
+            <p className="text-xs text-muted-foreground mt-1">{topic.questionEnglish}</p>
             <p className="text-xs text-muted-foreground mt-1">Hint: <em>{topic.exampleAnswer}</em></p>
           </div>
           {(() => {

@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2, Headphones, Grid3x3, Quote, AlertTriangle, PenLine, Mail, Layers, Sparkle } from "lucide-react";
+import { BookOpen, GraduationCap, Mic2, MessageCircle, BarChart3, Church, Activity, Flame, Star, Trophy, Repeat2, AlignLeft, Gamepad2, Headphones, Grid3x3, Quote, AlertTriangle, PenLine, Mail, Layers, Sparkle, Compass } from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
@@ -19,12 +19,13 @@ const TAB_ITEMS: { key: TabKey; label: string; Icon: React.ElementType; moduleOn
   { key: "penpal",      label: "Pen Pal Practice", Icon: Mail                                         },
   { key: "patterns",   label: "Grammar Patterns", Icon: Layers                                       },
   { key: "story",      label: "Daily Story",       Icon: Sparkle                                      },
+  { key: "guide",      label: "App Guide",         Icon: Compass                                      },
   { key: "speak",       label: "Speak & Learn",    Icon: Mic2                                         },
   { key: "discussions", label: "Discussions",      Icon: MessageCircle,  moduleOnly: "lds-missionary" },
   { key: "dashboard",   label: "Dashboard",        Icon: BarChart3                                    },
 ];
 
-const VISITED_KEY = "lingualens.visitedTabs.session";
+const VISITED_KEY = "lt.visitedTabs.session";
 const TAB_XP = 5;
 
 export function AppSidebar({ onOpenMatch }: { onOpenMatch?: () => void }) {

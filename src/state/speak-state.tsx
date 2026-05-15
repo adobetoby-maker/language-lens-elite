@@ -32,7 +32,7 @@ interface SpeakCtx {
 }
 
 const Ctx = createContext<SpeakCtx | null>(null);
-const STORAGE_KEY = "lingualens.speak.v1";
+const STORAGE_KEY = "lt.speak.v1";
 
 interface LangStore {
   turns: SpeakTurn[];

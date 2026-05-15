@@ -24,7 +24,7 @@ export interface LeaderboardPlayer {
   losses: number;
 }
 
-const STORAGE_KEY = "lingualens.leaderboard.v1";
+const STORAGE_KEY = "lt.leaderboard.v1";
 
 const NAMES = [
   "AminaK",

@@ -993,6 +993,32 @@ export const MODULES: AppModule[] = [
     ],
     nativeLanguages: ["Spanish", "Arabic", "Hindi", "Chinese (Simplified)", "Portuguese"],
   },
+  {
+    id: "rock-climbing",
+    name: "Rock Climbing",
+    emoji: "🧗",
+    category: "Sports",
+    blurb:
+      "Gear names, partner commands, knot instructions, movement coaching, medical phrases, and travel language for climbing destinations worldwide.",
+    priceCents: 999,
+    aiPersona:
+      "You are a climbing partner, local guide, or outdoor instructor depending on the scenario. Use authentic climbing vocabulary in the target language — call out commands, coach movement, give route beta, and respond to emergencies naturally.",
+    userRole: "Rock climber communicating with local partners and guides",
+    challengePrompts: [
+      "Run through the full partner-check sequence with your belayer.",
+      "Give route beta to a climber who can't figure out the crux sequence.",
+      "Teach a beginner to tie a figure-eight follow-through — step by step.",
+      "Respond to a fall and assess whether the climber is injured.",
+      "Negotiate a guided day with a local Portuguese-speaking guide.",
+      "Describe the pain in your finger tendon to a local sports medicine clinic.",
+      "Coach a Spanish-speaking climber's footwork on a friction slab.",
+    ],
+    vocabFocus: [
+      "harness", "carabiner", "rope", "belay", "quickdraw", "anchor",
+      "figure-eight", "partner check", "slack", "take", "falling", "on belay",
+      "crux", "beta", "friction", "heel hook", "approach", "rappel",
+    ],
+  },
 ];
 
 export function getModule(id: string | null | undefined): AppModule | null {

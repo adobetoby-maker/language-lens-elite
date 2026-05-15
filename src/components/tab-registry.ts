@@ -84,6 +84,12 @@ const PatternLab = lazy(() =>
 const DailyStory = lazy(() =>
   import("./story/DailyStory").then((m) => ({ default: m.DailyStory }))
 );
+const AppGuide = lazy(() =>
+  import("./guide/AppGuide").then((m) => ({ default: m.AppGuide }))
+);
+const ClimbingHome = lazy(() =>
+  import("./climbing/ClimbingHome").then((m) => ({ default: m.ClimbingHome }))
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -118,6 +124,8 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   penpal: PenPalPad,
   patterns: PatternLab,
   story: DailyStory,
+  guide: AppGuide,
+  climbing: ClimbingHome,
 };
 
 if (import.meta.env.DEV) {

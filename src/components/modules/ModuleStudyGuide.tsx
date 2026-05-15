@@ -48,12 +48,12 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
   );
 
   const dismissKey = moduleId
-    ? `lingualens.studyguide.dismissed.${moduleId}.${language}`
+    ? `lt.studyguide.dismissed.${moduleId}.${language}`
     : null;
   const [open, setOpen] = useState(() => {
     if (!moduleId) return true;
     try {
-      return localStorage.getItem(`lingualens.studyguide.dismissed.${moduleId}.${language}`) !== "1";
+      return localStorage.getItem(`lt.studyguide.dismissed.${moduleId}.${language}`) !== "1";
     } catch {
       return true;
     }

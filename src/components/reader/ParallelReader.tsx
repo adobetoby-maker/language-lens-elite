@@ -3,6 +3,7 @@ import { Library, Type, Languages, Maximize2, Minimize2, Search, X, Volume2, Squ
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
+import { getModuleReadingId } from "@/data/curriculum";
 import { useNotes } from "@/state/notes-state";
 import { useSpeech } from "@/state/speech-state";
 import { AnnotatedSentence } from "./AnnotatedSentence";
@@ -29,9 +30,9 @@ type TextSize = "S" | "M" | "L";
  */
 type FuriganaMode = "off" | "above" | "inline";
 
-const FURIGANA_KEY = "lingualens.reader.furigana.v1";
-const FURIGANA_SCRIPT_KEY = "lingualens.reader.furigana.script.v1";
-const ROMAJA_KEY = "lingualens.reader.romaja.v1";
+const FURIGANA_KEY = "lt.reader.furigana.v1";
+const FURIGANA_SCRIPT_KEY = "lt.reader.furigana.script.v1";
+const ROMAJA_KEY = "lt.reader.romaja.v1";
 
 const SIZE_CLASS: Record<TextSize, string> = {
   S: "text-[15px] leading-[1.85]",
@@ -43,7 +44,7 @@ const SIZE_CLASS: Record<TextSize, string> = {
 
 export function ParallelReader() {
   const { state, dispatch } = useApp();
-  const { selected, state: lib } = useLibrary();
+  const { selected, state: lib, dispatch: libDispatch } = useLibrary();
   const { add: addAnnotation, forText } = useNotes();
   const { activeSentenceIndex, speakSentence, speakSentences, stop, playing } = useSpeech();
   const [size, setSize] = useState<TextSize>("M");
@@ -55,6 +56,19 @@ export function ParallelReader() {
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
+
+  // Auto-load module-relevant reading when active module changes
+  const lastAutoModule = useRef<string | null>(null);
+  useEffect(() => {
+    const moduleId = state.activeModuleId;
+    if (!moduleId) return;
+    if (lastAutoModule.current === moduleId) return;
+    lastAutoModule.current = moduleId;
+    const readingId = getModuleReadingId(moduleId, state.selectedLanguage, lib.entries);
+    if (readingId && readingId !== lib.selectedId) {
+      libDispatch({ type: "SELECT", payload: readingId });
+    }
+  }, [state.activeModuleId, state.selectedLanguage, lib.entries, lib.selectedId, libDispatch]);
 
   // Hydrate + persist furigana / romaja preferences
   useEffect(() => {

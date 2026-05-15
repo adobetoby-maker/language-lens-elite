@@ -105,9 +105,7 @@ export const lookupWord = createServerFn({ method: "POST" })
 - pitchAccent: OMIT (Japanese-only).
 - alternativeReadings: OMIT (Japanese-only).`;
 
-    const systemPrompt = `You are an expert multilingual dictionary, etymologist, and grammar tutor for adult learners. You produce dense, accurate, immediately-useful word cards. You ALWAYS respond by calling the provided tool. Every field must be linguistically precise — never approximate. When unsure, mark it explicitly rather than guessing.
-
-For each lookup you must provide BOTH the bare dictionary entry AND the contextual analysis (how this specific word is functioning in this specific sentence). Treat conjugationNote as sentence-specific; treat contextNuance as the register/formality/connotation read (why a writer/speaker would pick THIS word over a near-synonym).`;
+    const systemPrompt = `You are a precise multilingual dictionary for adult learners. You ALWAYS respond by calling the provided tool. Be accurate and concise — every field is one sentence or a short list. Never over-explain.`;
 
     const userPrompt = `The user clicked the word "${data.word}" in this sentence:
 
@@ -116,17 +114,15 @@ For each lookup you must provide BOTH the bare dictionary entry AND the contextu
 Target language: ${data.language}
 Learner's native language: ${native}
 
-Write baseDefinition, conjugationNote, contextNuance, exampleTranslation, and all gloss fields IN ${native}.
+Write baseDefinition, conjugationNote, exampleTranslation, and all gloss fields IN ${native}.
 
 ${phoneticInstruction}
 
-The conjugationNote must explain exactly how this word is being used in THIS sentence (tense/person/number/mood for verbs; case/gender/number for nouns/adjectives; particle role for Japanese; honorific level for Korean/Japanese where relevant).
+conjugationNote: ONE sentence max. State the grammar role in this sentence only — tense/mood/person for verbs, case/gender for nouns, particle function for Japanese.
 
-The contextNuance field should explain why THIS word was chosen here vs. near-synonyms — register (formal/casual/literary), connotation, regional flavor, or stylistic effect. 1–2 sentences.
+contextNuance: ONE sentence max. Only include if there is a meaningful register or synonym distinction worth noting. If the word is the only natural choice, write an empty string.
 
-${japaneseSpecificInstruction}
-
-Be thorough but every field stays focused. Aim for the depth of a good textbook entry, not a tweet.`;
+${japaneseSpecificInstruction}`;
 
     const properties: Record<string, unknown> = {
       headword: { type: "string", description: "Dictionary base form (lemma)" },

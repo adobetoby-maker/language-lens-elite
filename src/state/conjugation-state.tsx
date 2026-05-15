@@ -60,7 +60,7 @@ type Action =
   | { type: "END_RUN" }
   | { type: "RESET_LEADERBOARD"; payload: LeaderboardKey | "all" };
 
-const STORAGE_KEY = "lingualens.conjugation.leaderboard.v1";
+const STORAGE_KEY = "lt.conjugation.leaderboard.v1";
 const RUN_LENGTH = 5;
 
 function loadLeaderboard(): Record<LeaderboardKey, ConjugationStats> {

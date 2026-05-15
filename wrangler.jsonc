@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
-  "name": "tanstack-start-ts",
+  "name": "language-threshold-app",
   "compatibility_date": "2026-05-10",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {

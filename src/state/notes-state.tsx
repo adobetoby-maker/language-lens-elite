@@ -31,7 +31,7 @@ type Action =
   | { type: "UPDATE"; payload: { id: string; noteText: string } }
   | { type: "REMOVE"; payload: string };
 
-const STORAGE_KEY = "lingualens.annotations.v1";
+const STORAGE_KEY = "lt.annotations.v1";
 
 function reducer(state: NotesState, action: Action): NotesState {
   switch (action.type) {

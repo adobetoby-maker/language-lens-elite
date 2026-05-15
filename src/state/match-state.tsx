@@ -145,7 +145,7 @@ interface MatchCtx extends MatchStateData {
 }
 
 const Ctx = createContext<MatchCtx | null>(null);
-const STORAGE_KEY = "lingualens.match.v2";
+const STORAGE_KEY = "lt.match.v2";
 
 const initialState: MatchStateData = {
   tier: "Bronze",

@@ -425,6 +425,67 @@ export const MODULE_LESSONS: LessonMap = {
     Japanese: ["seed-ja-catholic-mass"],
     Portuguese: ["seed-pt-catholic-mass"],
   },
+
+  "rock-climbing": {
+    Spanish: [
+      "seed-es-climbing-gear",
+      "seed-es-climbing-commands",
+      "seed-es-climbing-knots",
+      "seed-es-climbing-movement",
+      "seed-es-climbing-safety",
+      "seed-es-climbing-medical",
+      "seed-es-climbing-travel",
+    ],
+    Portuguese: [
+      "seed-pt-climbing-gear",
+      "seed-pt-climbing-commands",
+      "seed-pt-climbing-knots",
+      "seed-pt-climbing-movement",
+      "seed-pt-climbing-safety",
+      "seed-pt-climbing-medical",
+      "seed-pt-climbing-travel",
+    ],
+    French: [
+      "seed-fr-climbing-gear",
+      "seed-fr-climbing-commands",
+      "seed-fr-climbing-knots",
+      "seed-fr-climbing-movement",
+      "seed-fr-climbing-safety",
+      "seed-fr-climbing-medical",
+      "seed-fr-climbing-travel",
+    ],
+    German: [
+      "seed-de-climbing-gear",
+      "seed-de-climbing-commands",
+      "seed-de-climbing-knots",
+      "seed-de-climbing-movement",
+      "seed-de-climbing-safety",
+      "seed-de-climbing-medical",
+      "seed-de-climbing-travel",
+    ],
+    Italian: [
+      "seed-it-climbing-gear",
+      "seed-it-climbing-commands",
+      "seed-it-climbing-knots",
+      "seed-it-climbing-movement",
+      "seed-it-climbing-safety",
+      "seed-it-climbing-medical",
+      "seed-it-climbing-travel",
+    ],
+    Japanese: [
+      "seed-ja-climbing-gear",
+      "seed-ja-climbing-commands",
+      "seed-ja-climbing-movement",
+      "seed-ja-climbing-safety",
+      "seed-ja-climbing-medical",
+    ],
+    Korean: [
+      "seed-ko-climbing-gear",
+      "seed-ko-climbing-commands",
+      "seed-ko-climbing-movement",
+      "seed-ko-climbing-safety",
+    ],
+  },
 };
 
 export function getLessons(moduleId: string, language: Language): string[] {

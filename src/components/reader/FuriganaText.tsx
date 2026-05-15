@@ -15,7 +15,7 @@ import { addFurigana, type FuriganaSegment } from "@/fns/furigana.functions";
 
 // v3 cache: prompt now emits one segment per kanji (so the reading sits
 // directly above each character). Bump key to invalidate v2 compound entries.
-const CACHE_KEY = "lingualens.furigana.v3";
+const CACHE_KEY = "lt.furigana.v3";
 type Cache = Record<string, FuriganaSegment[]>;
 
 let memCache: Cache | null = null;

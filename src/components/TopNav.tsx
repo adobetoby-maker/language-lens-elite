@@ -43,10 +43,11 @@ const TABS: { key: TabKey; label: string; module?: string; language?: Language }
   { key: "anatomy", label: "Anatomy" },
   { key: "discussions", label: "Discussions", module: "lds-missionary" },
   { key: "dashboard", label: "Dashboard" },
+  { key: "guide", label: "App Guide" },
 ];
 
 const TAB_VISIT_XP = 5;
-const VISITED_TABS_KEY = "lingualens.visitedTabs.session";
+const VISITED_TABS_KEY = "lt.visitedTabs.session";
 
 
 export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {

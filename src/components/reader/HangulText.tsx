@@ -14,7 +14,7 @@ import { addRomaja, type RomajaSegment } from "@/fns/romaja.functions";
  * lookups continue to work in every mode.
  */
 
-const CACHE_KEY = "lingualens.romaja.v1";
+const CACHE_KEY = "lt.romaja.v1";
 type Cache = Record<string, RomajaSegment[]>;
 
 let memCache: Cache | null = null;
