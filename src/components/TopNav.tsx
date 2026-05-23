@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
-import { toast } from "sonner";
 import {
   useApp,
   NATIVE_LANGUAGES,
@@ -33,16 +32,6 @@ const LANGUAGES: Language[] = [
   "English",
 ];
 
-// Languages that show in the switcher but have no content yet.
-// Clicking them shows a toast rather than switching.
-const COMING_SOON_LANGUAGES = new Set<Language>([
-  "French",
-  "German",
-  "Italian",
-  "Japanese",
-  "Korean",
-  "Portuguese",
-]);
 
 const TABS: { key: TabKey; label: string; module?: string; language?: Language }[] = [
   { key: "modules", label: "Modules" },
@@ -112,32 +101,18 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
             align="center"
             className="min-w-[200px] border-border/70 bg-popover/95 backdrop-blur-xl"
           >
-            {LANGUAGES.map((lang) => {
-              const soon = COMING_SOON_LANGUAGES.has(lang);
-              return (
-                <DropdownMenuItem
-                  key={lang}
-                  onSelect={() => {
-                    if (soon) {
-                      toast(`${lang} is coming soon — Spanish is live now.`);
-                      return;
-                    }
-                    dispatch({ type: "SET_LANGUAGE", payload: lang });
-                  }}
-                  className="font-mono text-xs uppercase tracking-[0.16em]"
-                >
-                  <span className={state.selectedLanguage === lang ? "text-gold" : "opacity-60"}>
-                    ◈
-                  </span>
-                  <span className={soon ? "opacity-40" : ""}>{lang}</span>
-                  {soon && (
-                    <span className="ml-auto text-[9px] font-normal normal-case tracking-wide text-muted-foreground/60">
-                      soon
-                    </span>
-                  )}
-                </DropdownMenuItem>
-              );
-            })}
+            {LANGUAGES.map((lang) => (
+              <DropdownMenuItem
+                key={lang}
+                onSelect={() => dispatch({ type: "SET_LANGUAGE", payload: lang })}
+                className="font-mono text-xs uppercase tracking-[0.16em]"
+              >
+                <span className={state.selectedLanguage === lang ? "text-gold" : "opacity-60"}>
+                  ◈
+                </span>
+                {lang}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
 
