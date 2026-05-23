@@ -41,9 +41,10 @@ export const buildPersonalVocab = createServerFn({ method: "POST" })
     const questionLines = QUESTIONS.slice(0, data.answers.length)
       .map((q, i) => `${i + 1}. ${q}\n   Answer: ${data.answers[i]}`)
       .join("\n");
-    const avoidLine = data.avoid && data.avoid.length
-      ? `\nDo NOT include any of these already-known words: ${data.avoid.join(", ")}.`
-      : "";
+    const avoidLine =
+      data.avoid && data.avoid.length
+        ? `\nDo NOT include any of these already-known words: ${data.avoid.join(", ")}.`
+        : "";
 
     const userMsg = `Generate a personal vocabulary list in ${data.language} for this learner:\n\n${questionLines}${avoidLine}\n\nReturn exactly ${count} items via the tool.`;
 
@@ -70,7 +71,10 @@ export const buildPersonalVocab = createServerFn({ method: "POST" })
                     properties: {
                       word: { type: "string" },
                       translation: { type: "string" },
-                      category: { type: "string", enum: ["job", "hobby", "family", "place", "topic"] },
+                      category: {
+                        type: "string",
+                        enum: ["job", "hobby", "family", "place", "topic"],
+                      },
                     },
                     required: ["word", "translation", "category"],
                     additionalProperties: false,

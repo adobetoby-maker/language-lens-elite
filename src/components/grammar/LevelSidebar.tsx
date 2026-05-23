@@ -5,11 +5,7 @@ import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
 import { getModule } from "@/data/modules";
 import { matchesFocus } from "@/lib/module-filter";
-import {
-  CEFR_LEVELS,
-  generateLessonTitles,
-  type LessonStub,
-} from "@/fns/grammar.functions";
+import { CEFR_LEVELS, generateLessonTitles, type LessonStub } from "@/fns/grammar.functions";
 
 const LEVEL_LABEL: Record<CefrLevel, string> = {
   A1: "Beginner",
@@ -105,9 +101,7 @@ export function LevelSidebar({
                   data-active={isOpen}
                 >
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="font-display text-base font-semibold text-gold">
-                      {level}
-                    </span>
+                    <span className="font-display text-base font-semibold text-gold">{level}</span>
                     <span className="truncate font-mono text-[11px] uppercase tracking-wider text-foreground/80">
                       {LEVEL_LABEL[level]}
                     </span>
@@ -146,11 +140,9 @@ export function LevelSidebar({
                     <ul className="space-y-0.5 py-1">
                       {sortedLessons.map((lesson, i) => {
                         const done = !!completed[lesson.id];
-                        const active =
-                          activeLevel === level && activeLessonId === lesson.id;
+                        const active = activeLevel === level && activeLessonId === lesson.id;
                         const inMod =
-                          !!focus &&
-                          matchesFocus(`${lesson.title} ${lesson.concept ?? ""}`, focus);
+                          !!focus && matchesFocus(`${lesson.title} ${lesson.concept ?? ""}`, focus);
                         return (
                           <li key={lesson.id}>
                             <button
@@ -159,11 +151,7 @@ export function LevelSidebar({
                               className="group flex w-full items-start gap-2 rounded-lg px-2 py-2 text-left transition-colors hover:bg-gold/10 data-[active=true]:bg-gold/15"
                             >
                               <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border/60 font-mono text-[9px] text-muted-foreground group-data-[active=true]:border-gold group-data-[active=true]:text-gold">
-                                {done ? (
-                                  <Check className="h-3 w-3 text-gold" />
-                                ) : (
-                                  i + 1
-                                )}
+                                {done ? <Check className="h-3 w-3 text-gold" /> : i + 1}
                               </span>
                               <span className="flex-1 font-display text-[13px] leading-snug text-foreground/90 group-data-[active=true]:text-foreground">
                                 {lesson.title}

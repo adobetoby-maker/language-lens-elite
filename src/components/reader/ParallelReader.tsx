@@ -1,5 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { Library, Type, Languages, Maximize2, Minimize2, Search, X, Volume2, Square } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  Library,
+  Type,
+  Languages,
+  Maximize2,
+  Minimize2,
+  Search,
+  X,
+  Volume2,
+  Square,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useLibrary } from "@/state/library-state";
@@ -18,6 +30,7 @@ import { LibraryDrawer } from "@/components/library/LibraryDrawer";
 import { useCultureGenerator } from "@/components/library/useCultureGenerator";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
 import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
+import { getLessons } from "@/data/module-starters";
 
 type TextSize = "S" | "M" | "L";
 
@@ -40,8 +53,6 @@ const SIZE_CLASS: Record<TextSize, string> = {
   L: "text-[20px] leading-[1.9]",
 };
 
-
-
 export function ParallelReader() {
   const { state, dispatch } = useApp();
   const { selected, state: lib, dispatch: libDispatch } = useLibrary();
@@ -56,6 +67,22 @@ export function ParallelReader() {
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>("above");
   const [furiganaScript, setFuriganaScript] = useState<FuriganaScript>("hiragana");
   const [romajaMode, setRomajaMode] = useState<FuriganaMode>("above");
+
+  // Lesson navigation for the active module
+  const lessonIds = useMemo(
+    () => (state.activeModuleId ? getLessons(state.activeModuleId, state.selectedLanguage) : []),
+    [state.activeModuleId, state.selectedLanguage],
+  );
+  const currentLessonIndex = useMemo(
+    () => (lessonIds.length > 0 ? lessonIds.indexOf(lib.selectedId) : -1),
+    [lessonIds, lib.selectedId],
+  );
+
+  function goToLesson(idx: number) {
+    const id = lessonIds[idx];
+    if (!id) return;
+    libDispatch({ type: "SELECT", payload: id });
+  }
 
   // Auto-load module-relevant reading when active module changes
   const lastAutoModule = useRef<string | null>(null);
@@ -282,7 +309,13 @@ export function ParallelReader() {
     el?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const handleWord = (word: string, sentence: string, pane: "left" | "right", x: number, y: number) => {
+  const handleWord = (
+    word: string,
+    sentence: string,
+    pane: "left" | "right",
+    x: number,
+    y: number,
+  ) => {
     if (pane === "right") {
       setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
     } else {
@@ -354,13 +387,9 @@ export function ParallelReader() {
   // Resolve which sentences are currently visible based on chapter (if multi-chapter)
   const chapters = selected.chapters;
   const safeChapterIndex =
-    chapters && chapters.length > 0
-      ? Math.min(chapterIndex, chapters.length - 1)
-      : 0;
+    chapters && chapters.length > 0 ? Math.min(chapterIndex, chapters.length - 1) : 0;
   const activeSentences =
-    chapters && chapters.length > 0
-      ? chapters[safeChapterIndex].sentences
-      : selected.sentences;
+    chapters && chapters.length > 0 ? chapters[safeChapterIndex].sentences : selected.sentences;
 
   // Reset chapter to 0 whenever the user opens a different book
   useEffect(() => {
@@ -407,6 +436,55 @@ export function ParallelReader() {
     <div className="fade-in mx-auto w-full max-w-6xl">
       <ModuleStudyGuide />
       <ModuleMatchPanel surface="Reader" className="mb-4" />
+
+      {/* Lesson navigation — shown when the active module has multiple lessons */}
+      {lessonIds.length > 1 && (
+        <div className="mb-4 flex items-center gap-2 rounded-xl border border-border/50 bg-card/40 px-4 py-2.5">
+          <button
+            onClick={() => goToLesson(currentLessonIndex - 1)}
+            disabled={currentLessonIndex <= 0}
+            aria-label="Previous lesson"
+            className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold disabled:pointer-events-none disabled:opacity-30"
+          >
+            <ChevronLeft className="h-3 w-3" /> Prev
+          </button>
+
+          <div className="flex flex-1 items-center justify-center gap-1.5">
+            {lessonIds.map((id, idx) => (
+              <button
+                key={id}
+                onClick={() => goToLesson(idx)}
+                title={`Lesson ${idx + 1}`}
+                aria-label={`Go to lesson ${idx + 1}`}
+                className={
+                  "h-1.5 rounded-full transition-all " +
+                  (idx === currentLessonIndex
+                    ? "w-6 bg-gold"
+                    : idx < currentLessonIndex
+                      ? "w-1.5 bg-gold/40"
+                      : "w-1.5 bg-border/60 hover:bg-gold/40")
+                }
+              />
+            ))}
+          </div>
+
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            {currentLessonIndex >= 0
+              ? `${currentLessonIndex + 1} / ${lessonIds.length}`
+              : `${lessonIds.length} lessons`}
+          </span>
+
+          <button
+            onClick={() => goToLesson(currentLessonIndex < 0 ? 0 : currentLessonIndex + 1)}
+            disabled={currentLessonIndex >= lessonIds.length - 1}
+            aria-label="Next lesson"
+            className="inline-flex items-center gap-1 rounded-full border border-gold/50 bg-gold/15 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-gold transition-colors hover:bg-gold/25 disabled:pointer-events-none disabled:opacity-30"
+          >
+            {currentLessonIndex < 0 ? "Start" : "Next"} <ChevronRight className="h-3 w-3" />
+          </button>
+        </div>
+      )}
+
       {/* Library bar */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/50 px-5 py-3 backdrop-blur">
         <button
@@ -464,9 +542,7 @@ export function ParallelReader() {
             </select>
             <button
               type="button"
-              onClick={() =>
-                setChapterIndex((i) => Math.min(chapters.length - 1, i + 1))
-              }
+              onClick={() => setChapterIndex((i) => Math.min(chapters.length - 1, i + 1))}
               disabled={safeChapterIndex === chapters.length - 1}
               className="rounded-full border border-border/70 bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-gold/60 disabled:cursor-not-allowed disabled:opacity-40"
             >
@@ -510,13 +586,19 @@ export function ParallelReader() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && searchQuery.trim()) handleSearch(searchQuery.trim());
-                  if (e.key === "Escape") { setSearchOpen(false); setSearchQuery(""); }
+                  if (e.key === "Escape") {
+                    setSearchOpen(false);
+                    setSearchQuery("");
+                  }
                 }}
                 placeholder={`Look up in ${state.selectedLanguage}…`}
                 className="w-44 rounded-full border border-gold/40 bg-background/60 px-3 py-1 font-mono text-[11px] text-foreground/90 placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
               />
               <button
-                onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                onClick={() => {
+                  setSearchOpen(false);
+                  setSearchQuery("");
+                }}
                 className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/60 bg-background/40 text-muted-foreground hover:border-gold/60 hover:text-gold"
               >
                 <X className="h-3 w-3" />
@@ -656,7 +738,9 @@ export function ParallelReader() {
       </div>
 
       {/* Reader */}
-      <div className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur ${fullscreen ? "fixed inset-2 z-40 md:inset-6" : ""}`}>
+      <div
+        className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 shadow-luxe backdrop-blur ${fullscreen ? "fixed inset-2 z-40 md:inset-6" : ""}`}
+      >
         <div className={fullscreen ? "grid grid-cols-1" : "grid grid-cols-2"}>
           {!fullscreen && (
             <div className="relative">
@@ -666,7 +750,10 @@ export function ParallelReader() {
                 </span>
                 <span className="font-display text-xs italic text-muted-foreground">native</span>
               </div>
-              <div ref={leftRef} className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8">
+              <div
+                ref={leftRef}
+                className="custom-scroll h-[calc(100dvh-180px)] overflow-y-auto px-5 py-6 md:h-[62vh] md:px-7 md:py-8"
+              >
                 <Pane
                   pane="left"
                   sentences={activeSentences.map((s) => s.en)}
@@ -739,13 +826,9 @@ export function ParallelReader() {
                 activeSentenceIndex={activeSentenceIndex}
                 onWordClick={handleWord}
                 accent
-                furiganaMode={
-                  selected.language === "Japanese" ? furiganaMode : "off"
-                }
+                furiganaMode={selected.language === "Japanese" ? furiganaMode : "off"}
                 furiganaScript={furiganaScript}
-                romajaMode={
-                  selected.language === "Korean" ? romajaMode : "off"
-                }
+                romajaMode={selected.language === "Korean" ? romajaMode : "off"}
               />
             </div>
           </div>
@@ -818,8 +901,7 @@ function Pane({
 }) {
   const showFurigana = furiganaMode !== "off";
   const showRomaja = romajaMode !== "off";
-  const lineNeedsExtraLeading =
-    furiganaMode === "above" || romajaMode === "above";
+  const lineNeedsExtraLeading = furiganaMode === "above" || romajaMode === "above";
   // Inject pane identity into every word-click so the parent can route
   // left-pane (native) and right-pane (target) lookups differently.
   const wrappedWordClick = (w: string, s: string, x: number, y: number) => {
@@ -830,12 +912,9 @@ function Pane({
       className={`font-display ${SIZE_CLASS[size]} ${accent ? "text-foreground" : "text-foreground/90"}`}
     >
       {sentences.map((s, i) => {
-        const sentenceAnns = annotations.filter(
-          (a) => a.pane === pane && a.sentenceIndex === i,
-        );
+        const sentenceAnns = annotations.filter((a) => a.pane === pane && a.sentenceIndex === i);
         const isActive = activeSentenceIndex === i;
-        const useRubyRenderer =
-          (showFurigana || showRomaja) && sentenceAnns.length === 0;
+        const useRubyRenderer = (showFurigana || showRomaja) && sentenceAnns.length === 0;
         return (
           <p
             key={i}
@@ -843,9 +922,7 @@ function Pane({
             data-pane={pane}
             data-speaking={isActive || undefined}
             className={`mb-6 -mx-2 rounded-md border-l-2 px-2 transition-colors ${
-              isActive
-                ? "border-gold bg-gold/15"
-                : "border-transparent hover:border-gold/40"
+              isActive ? "border-gold bg-gold/15" : "border-transparent hover:border-gold/40"
             } ${lineNeedsExtraLeading ? "furigana-line" : ""}`}
           >
             {useRubyRenderer ? (

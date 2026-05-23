@@ -1,14 +1,23 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  type ReactNode,
+} from "react";
 import type { Language } from "./app-state";
 import type { WordMatchBoard, WordMatchLevel, WordMatchPair } from "@/fns/word-match.functions";
 
 // Per-(language,level) leaderboard record. Stored in localStorage.
 export interface WordMatchStats {
-  bestTimeMs: number;       // 0 = not yet completed
-  bestFlips: number;        // 0 = not yet, otherwise lowest count
-  perfectGames: number;     // games completed with no extra flips (flips === pairs * 2)
-  totalGames: number;       // games started
-  totalCompleted: number;   // games finished
+  bestTimeMs: number; // 0 = not yet completed
+  bestFlips: number; // 0 = not yet, otherwise lowest count
+  perfectGames: number; // games completed with no extra flips (flips === pairs * 2)
+  totalGames: number; // games started
+  totalCompleted: number; // games finished
 }
 
 const EMPTY_STATS: WordMatchStats = {
@@ -23,21 +32,21 @@ export type WMLeaderboardKey = `${Language}-${WordMatchLevel}`;
 
 // One face of one card on the board.
 export interface WMCard {
-  id: number;            // unique card index in the current board (0..2N-1)
+  id: number; // unique card index in the current board (0..2N-1)
   pair: WordMatchPair;
   side: "target" | "english";
-  flipped: boolean;      // currently face-up?
-  matched: boolean;      // matched and locked face-up?
+  flipped: boolean; // currently face-up?
+  matched: boolean; // matched and locked face-up?
 }
 
 export interface WMGame {
   language: Language;
   level: WordMatchLevel;
   board: WordMatchBoard | null; // null until BOARD_LOADED arrives
-  cards: WMCard[];              // empty until BOARD_LOADED arrives
-  flippedIndices: number[];     // indices of currently face-up unmatched cards (max 2)
+  cards: WMCard[]; // empty until BOARD_LOADED arrives
+  flippedIndices: number[]; // indices of currently face-up unmatched cards (max 2)
   flipCount: number;
-  startedAt: number;            // set at BOARD_LOADED so timer starts when cards appear
+  startedAt: number; // set at BOARD_LOADED so timer starts when cards appear
   completedAt: number | null;
 }
 
@@ -91,10 +100,17 @@ function loadLeaderboard(): Record<WMLeaderboardKey, WordMatchStats> {
 
 function saveLeaderboard(lb: Record<WMLeaderboardKey, WordMatchStats>) {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(lb)); } catch { /* quota */ }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(lb));
+  } catch {
+    /* quota */
+  }
 }
 
-function statsFor(lb: Record<WMLeaderboardKey, WordMatchStats>, key: WMLeaderboardKey): WordMatchStats {
+function statsFor(
+  lb: Record<WMLeaderboardKey, WordMatchStats>,
+  key: WMLeaderboardKey,
+): WordMatchStats {
   return lb[key] ?? { ...EMPTY_STATS };
 }
 
@@ -125,10 +141,14 @@ function reducer(state: State, action: Action): State {
 
     case "START_GAME": {
       // Increment totalGames, set up empty game shell. Board comes via CARD_LOADED.
-      const key: WMLeaderboardKey = `${action.payload.language}-${action.payload.level}` as WMLeaderboardKey;
+      const key: WMLeaderboardKey =
+        `${action.payload.language}-${action.payload.level}` as WMLeaderboardKey;
       const prev = statsFor(state.leaderboard, key);
       const newStats: WordMatchStats = { ...prev, totalGames: prev.totalGames + 1 };
-      const newLb: Record<WMLeaderboardKey, WordMatchStats> = { ...state.leaderboard, [key]: newStats };
+      const newLb: Record<WMLeaderboardKey, WordMatchStats> = {
+        ...state.leaderboard,
+        [key]: newStats,
+      };
       saveLeaderboard(newLb);
       return {
         ...state,
@@ -265,7 +285,10 @@ function reducer(state: State, action: Action): State {
         totalGames: prev.totalGames, // already counted at START_GAME
         totalCompleted: prev.totalCompleted + 1,
       };
-      const newLb: Record<WMLeaderboardKey, WordMatchStats> = { ...state.leaderboard, [key]: newStats };
+      const newLb: Record<WMLeaderboardKey, WordMatchStats> = {
+        ...state.leaderboard,
+        [key]: newStats,
+      };
       saveLeaderboard(newLb);
 
       const result: WMResult = {
@@ -304,7 +327,15 @@ interface WordMatchContextValue {
   isComplete: () => boolean;
   pairsFound: () => number;
   pairsTotal: () => number;
-  setFetcher: (fn: ((args: { language: Language; level: WordMatchLevel; avoid?: string[] }) => Promise<WordMatchBoard>) | null) => void;
+  setFetcher: (
+    fn:
+      | ((args: {
+          language: Language;
+          level: WordMatchLevel;
+          avoid?: string[];
+        }) => Promise<WordMatchBoard>)
+      | null,
+  ) => void;
 }
 
 const Ctx = createContext<WordMatchContextValue | null>(null);
@@ -323,11 +354,20 @@ export function WordMatchProvider({ children }: { children: ReactNode }) {
     if (Object.keys(lb).length) dispatch({ type: "HYDRATE", payload: lb });
   }, []);
 
-  const fetcherRef = useRef<((args: { language: Language; level: WordMatchLevel; avoid?: string[] }) => Promise<WordMatchBoard>) | null>(null);
+  const fetcherRef = useRef<
+    | ((args: {
+        language: Language;
+        level: WordMatchLevel;
+        avoid?: string[];
+      }) => Promise<WordMatchBoard>)
+    | null
+  >(null);
   // Track recent topics so the AI varies them across runs.
   const recentTopicsRef = useRef<string[]>([]);
 
-  const setFetcher = useCallback((fn: typeof fetcherRef.current) => { fetcherRef.current = fn; }, []);
+  const setFetcher = useCallback((fn: typeof fetcherRef.current) => {
+    fetcherRef.current = fn;
+  }, []);
 
   const startGame = useCallback(async (language: Language, level: WordMatchLevel) => {
     if (!fetcherRef.current) {
@@ -342,7 +382,10 @@ export function WordMatchProvider({ children }: { children: ReactNode }) {
       recentTopicsRef.current = [...recentTopicsRef.current, board.topic].slice(-12);
       dispatch({ type: "CARD_LOADED", payload: board });
     } catch (e) {
-      dispatch({ type: "BOARD_FAILED", payload: e instanceof Error ? e.message : "Failed to load board." });
+      dispatch({
+        type: "BOARD_FAILED",
+        payload: e instanceof Error ? e.message : "Failed to load board.",
+      });
     }
   }, []);
 
@@ -372,18 +415,32 @@ export function WordMatchProvider({ children }: { children: ReactNode }) {
     return state.game.board.pairs.length;
   }, [state.game]);
 
-  const value = useMemo<WordMatchContextValue>(() => ({
-    state,
-    startGame,
-    flip,
-    resolveMatch,
-    endGame,
-    dismissResult,
-    isComplete,
-    pairsFound,
-    pairsTotal,
-    setFetcher,
-  }), [state, startGame, flip, resolveMatch, endGame, dismissResult, isComplete, pairsFound, pairsTotal, setFetcher]);
+  const value = useMemo<WordMatchContextValue>(
+    () => ({
+      state,
+      startGame,
+      flip,
+      resolveMatch,
+      endGame,
+      dismissResult,
+      isComplete,
+      pairsFound,
+      pairsTotal,
+      setFetcher,
+    }),
+    [
+      state,
+      startGame,
+      flip,
+      resolveMatch,
+      endGame,
+      dismissResult,
+      isComplete,
+      pairsFound,
+      pairsTotal,
+      setFetcher,
+    ],
+  );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -17,13 +17,13 @@ const Input = z.object({
 });
 
 export interface SentenceBuildQuestion {
-  targetSentence: string;     // canonical target-language sentence
+  targetSentence: string; // canonical target-language sentence
   englishTranslation: string; // English translation
-  tokens: string[];           // sentence split into ordered tokens (the "correct" order)
-  scrambled: string[];        // same tokens shuffled (what the user starts with)
-  topic: string;              // short topic label (e.g. "café", "weather", "directions")
+  tokens: string[]; // sentence split into ordered tokens (the "correct" order)
+  scrambled: string[]; // same tokens shuffled (what the user starts with)
+  topic: string; // short topic label (e.g. "café", "weather", "directions")
   cefr: CefrLevel;
-  explanation: string;        // 1 sentence on why this order is right (focus on the tricky part)
+  explanation: string; // 1 sentence on why this order is right (focus on the tricky part)
 }
 
 const MAX_CACHE = 200;
@@ -66,108 +66,131 @@ Rules — non-negotiable:
 
 export const generateSentenceBuilder = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => Input.parse(i))
-  .handler(async ({ data }): Promise<{ data: SentenceBuildQuestion | null; error: string | null; cached?: boolean }> => {
-    const KEY = process.env.ANTHROPIC_API_KEY;
-    if (!KEY) return { data: null, error: "AI is not configured" };
+  .handler(
+    async ({
+      data,
+    }): Promise<{ data: SentenceBuildQuestion | null; error: string | null; cached?: boolean }> => {
+      const KEY = process.env.ANTHROPIC_API_KEY;
+      if (!KEY) return { data: null, error: "AI is not configured" };
 
-    const cefr: CefrLevel =
-      data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
+      const cefr: CefrLevel = data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
 
-    const avoidHash = (data.avoid ?? []).slice().sort().join(",");
-    const key = cacheKey(data.language, data.level, avoidHash);
-    const hit = cacheGet(key);
-    if (hit) return { data: hit, error: null, cached: true };
+      const avoidHash = (data.avoid ?? []).slice().sort().join(",");
+      const key = cacheKey(data.language, data.level, avoidHash);
+      const hit = cacheGet(key);
+      if (hit) return { data: hit, error: null, cached: true };
 
-    const lengthGuidance =
-      data.level === 1 ? "4–6 tokens, simple subject-verb-object."
-      : data.level === 2 ? "6–9 tokens, may include prepositional phrases or adjective agreement."
-      : "9–13 tokens, may include subordinate clauses, time/place phrases, or subjunctive mood.";
+      const lengthGuidance =
+        data.level === 1
+          ? "4–6 tokens, simple subject-verb-object."
+          : data.level === 2
+            ? "6–9 tokens, may include prepositional phrases or adjective agreement."
+            : "9–13 tokens, may include subordinate clauses, time/place phrases, or subjunctive mood.";
 
-    const avoidLine = data.avoid && data.avoid.length
-      ? `\nAvoid these recent topics or sentence opens: ${data.avoid.join(", ")}.`
-      : "";
+      const avoidLine =
+        data.avoid && data.avoid.length
+          ? `\nAvoid these recent topics or sentence opens: ${data.avoid.join(", ")}.`
+          : "";
 
-    const topicLine = data.topic
-      ? `\nDomain: the sentence MUST be one a "${data.topic}" practitioner would actually say — use domain-specific vocabulary.`
-      : "";
+      const topicLine = data.topic
+        ? `\nDomain: the sentence MUST be one a "${data.topic}" practitioner would actually say — use domain-specific vocabulary.`
+        : "";
 
-    const userMsg = `Generate ONE ${data.language} sentence-builder question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
+      const userMsg = `Generate ONE ${data.language} sentence-builder question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
-    try {
-      const client = new Anthropic({ apiKey: KEY });
-      const response = await client.messages.create({
-        // Sonnet 4.6 — same reasoning as conjugation. Bad token splits or
-        // a "scrambled" array that doesn't permute "tokens" silently breaks
-        // the game. Sonnet is reliable here.
-        model: "claude-haiku-4-5",
-        max_tokens: 600,
-        system: SYSTEM,
-        messages: [{ role: "user", content: userMsg }],
-        tools: [
-          {
-            name: "return_sentence_question",
-            description: "Return one sentence-builder question.",
-            input_schema: {
-              type: "object" as const,
-              properties: {
-                targetSentence: { type: "string", description: "Canonical target-language sentence." },
-                englishTranslation: { type: "string", description: "English translation." },
-                tokens: {
-                  type: "array",
-                  items: { type: "string" },
-                  minItems: 4,
-                  maxItems: 16,
-                  description: "Sentence split into ordered tokens.",
+      try {
+        const client = new Anthropic({ apiKey: KEY });
+        const response = await client.messages.create({
+          // Sonnet 4.6 — same reasoning as conjugation. Bad token splits or
+          // a "scrambled" array that doesn't permute "tokens" silently breaks
+          // the game. Sonnet is reliable here.
+          model: "claude-haiku-4-5",
+          max_tokens: 600,
+          system: SYSTEM,
+          messages: [{ role: "user", content: userMsg }],
+          tools: [
+            {
+              name: "return_sentence_question",
+              description: "Return one sentence-builder question.",
+              input_schema: {
+                type: "object" as const,
+                properties: {
+                  targetSentence: {
+                    type: "string",
+                    description: "Canonical target-language sentence.",
+                  },
+                  englishTranslation: { type: "string", description: "English translation." },
+                  tokens: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 4,
+                    maxItems: 16,
+                    description: "Sentence split into ordered tokens.",
+                  },
+                  scrambled: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 4,
+                    maxItems: 16,
+                    description: "Same tokens, shuffled.",
+                  },
+                  topic: { type: "string" },
+                  cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+                  explanation: {
+                    type: "string",
+                    description: "One-sentence English explanation of the tricky bit.",
+                  },
                 },
-                scrambled: {
-                  type: "array",
-                  items: { type: "string" },
-                  minItems: 4,
-                  maxItems: 16,
-                  description: "Same tokens, shuffled.",
-                },
-                topic: { type: "string" },
-                cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
-                explanation: { type: "string", description: "One-sentence English explanation of the tricky bit." },
+                required: [
+                  "targetSentence",
+                  "englishTranslation",
+                  "tokens",
+                  "scrambled",
+                  "topic",
+                  "cefr",
+                  "explanation",
+                ],
+                additionalProperties: false,
               },
-              required: ["targetSentence", "englishTranslation", "tokens", "scrambled", "topic", "cefr", "explanation"],
-              additionalProperties: false,
             },
-          },
-        ],
-        tool_choice: { type: "tool", name: "return_sentence_question" },
-      });
+          ],
+          tool_choice: { type: "tool", name: "return_sentence_question" },
+        });
 
-      const toolUse = response.content.find((c) => c.type === "tool_use");
-      if (!toolUse || toolUse.type !== "tool_use") {
-        return { data: null, error: "No question returned." };
-      }
-      const q = toolUse.input as SentenceBuildQuestion;
+        const toolUse = response.content.find((c) => c.type === "tool_use");
+        if (!toolUse || toolUse.type !== "tool_use") {
+          return { data: null, error: "No question returned." };
+        }
+        const q = toolUse.input as SentenceBuildQuestion;
 
-      // Defensive: ensure scrambled is a permutation of tokens. Re-shuffle
-      // ourselves if the model returned the same order or a non-permutation.
-      if (!Array.isArray(q.tokens) || !Array.isArray(q.scrambled) ||
-          q.tokens.length !== q.scrambled.length) {
-        return { data: null, error: "Token/scrambled mismatch." };
-      }
-      const sortedT = [...q.tokens].sort().join("|");
-      const sortedS = [...q.scrambled].sort().join("|");
-      if (sortedT !== sortedS) {
-        return { data: null, error: "Scrambled is not a permutation of tokens." };
-      }
-      // If the model returned scrambled identical to tokens, shuffle defensively.
-      if (q.scrambled.join("|") === q.tokens.join("|")) {
-        q.scrambled = shuffle([...q.tokens]);
-        // If still identical (length 1 or all-same items — unlikely), accept.
-      }
+        // Defensive: ensure scrambled is a permutation of tokens. Re-shuffle
+        // ourselves if the model returned the same order or a non-permutation.
+        if (
+          !Array.isArray(q.tokens) ||
+          !Array.isArray(q.scrambled) ||
+          q.tokens.length !== q.scrambled.length
+        ) {
+          return { data: null, error: "Token/scrambled mismatch." };
+        }
+        const sortedT = [...q.tokens].sort().join("|");
+        const sortedS = [...q.scrambled].sort().join("|");
+        if (sortedT !== sortedS) {
+          return { data: null, error: "Scrambled is not a permutation of tokens." };
+        }
+        // If the model returned scrambled identical to tokens, shuffle defensively.
+        if (q.scrambled.join("|") === q.tokens.join("|")) {
+          q.scrambled = shuffle([...q.tokens]);
+          // If still identical (length 1 or all-same items — unlikely), accept.
+        }
 
-      cacheSet(key, q);
-      return { data: q, error: null, cached: false };
-    } catch (e) {
-      console.error("generateSentenceBuilder failed", e);
-      return { data: null, error: "Generation failed." };
-    }
-  });
+        cacheSet(key, q);
+        return { data: q, error: null, cached: false };
+      } catch (e) {
+        console.error("generateSentenceBuilder failed", e);
+        return { data: null, error: "Generation failed." };
+      }
+    },
+  );
 
 function shuffle<T>(arr: T[]): T[] {
   for (let i = arr.length - 1; i > 0; i--) {

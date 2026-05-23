@@ -8,11 +8,22 @@
 
 const LISTENERS = new Set<() => void>();
 let cached: SpeechSynthesisVoice[] = [];
+let refreshing = false;
 
 function refresh() {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
-  cached = window.speechSynthesis.getVoices();
-  LISTENERS.forEach((cb) => cb());
+  if (refreshing) return;
+  refreshing = true;
+  const next = window.speechSynthesis.getVoices();
+  const changed = next.length !== cached.length;
+  cached = next;
+  if (changed) {
+    // Notify listeners asynchronously to avoid calling setState during render.
+    Promise.resolve().then(() => {
+      LISTENERS.forEach((cb) => cb());
+    });
+  }
+  refreshing = false;
 }
 
 if (typeof window !== "undefined" && window.speechSynthesis) {

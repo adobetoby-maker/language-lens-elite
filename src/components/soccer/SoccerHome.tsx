@@ -1,15 +1,13 @@
 import { useState } from "react";
-import {
-  MessageSquare,
-  Sparkles,
-  ChevronDown,
-  ChevronUp,
-  ArrowLeft,
-} from "lucide-react";
+import { MessageSquare, Sparkles, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react";
 import { SportsNewsPanel } from "./SportsNewsPanel";
 import { useApp } from "@/state/app-state";
 import { useTutor } from "@/state/tutor-state";
-import { getBallSportsContent, type ModuleArea, type ModuleVocabSet } from "@/data/ball-sports-content";
+import {
+  getBallSportsContent,
+  type ModuleArea,
+  type ModuleVocabSet,
+} from "@/data/ball-sports-content";
 import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
 import { SoccerPositionsGame } from "@/components/games/SoccerPositionsGame";
 
@@ -77,8 +75,8 @@ export function SoccerHome() {
           </div>
         </div>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          On-pitch commands, dressing room talk, tactical analysis, transfer
-          gossip. Speak football like a pro.
+          On-pitch commands, dressing room talk, tactical analysis, transfer gossip. Speak football
+          like a pro.
         </p>
       </header>
 
@@ -138,8 +136,8 @@ function PitchSection({
       {!openArea ? (
         <>
           <p className="mb-4 text-sm text-muted-foreground">
-            Choose a situation to drill. Each area gives you authentic
-            phrases, vocab, and AI roleplay challenges for that context.
+            Choose a situation to drill. Each area gives you authentic phrases, vocab, and AI
+            roleplay challenges for that context.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {SOCCER.areas.map((area) => (
@@ -204,10 +202,7 @@ function AreaDetail({
   }
   function prevCard() {
     setFlipped(false);
-    setTimeout(
-      () => setFlashIdx((i) => (i - 1 + totalCards) % totalCards),
-      80,
-    );
+    setTimeout(() => setFlashIdx((i) => (i - 1 + totalCards) % totalCards), 80);
   }
 
   return (
@@ -261,8 +256,8 @@ function AreaDetail({
                     {language} context
                   </p>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    "{currentVocab}" — used in {area.name.toLowerCase()} situations.
-                    Drill it in a roleplay below.
+                    "{currentVocab}" — used in {area.name.toLowerCase()} situations. Drill it in a
+                    roleplay below.
                   </p>
                 </>
               )}
@@ -294,10 +289,7 @@ function AreaDetail({
           </h3>
           <ul className="space-y-2">
             {area.phrases.slice(0, 4).map((p, i) => (
-              <li
-                key={i}
-                className="rounded-lg border border-border/40 bg-background/40 p-3"
-              >
+              <li key={i} className="rounded-lg border border-border/40 bg-background/40 p-3">
                 <p className="text-sm text-foreground">{p.en}</p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                   {p.intent}
@@ -314,8 +306,8 @@ function AreaDetail({
           </h3>
           <p className="mb-3 text-xs text-muted-foreground">
             Start an AI roleplay in {language}. The AI plays{" "}
-            <span className="text-foreground">{area.counterpart}</span>; you
-            play <span className="text-foreground">{area.learnerRole}</span>.
+            <span className="text-foreground">{area.counterpart}</span>; you play{" "}
+            <span className="text-foreground">{area.learnerRole}</span>.
           </p>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {area.challenges.map((c) => (
@@ -359,12 +351,10 @@ function PositionsSection() {
         <div className="flex items-start gap-3">
           <span className="text-2xl">🗺️</span>
           <div>
-            <h2 className="font-display text-lg font-semibold">
-              Positions Game
-            </h2>
+            <h2 className="font-display text-lg font-semibold">Positions Game</h2>
             <p className="mt-0.5 text-sm text-muted-foreground">
-              Tap the correct position on the field. Switch formations to drill
-              different tactical setups. Earn XP for streaks.
+              Tap the correct position on the field. Switch formations to drill different tactical
+              setups. Earn XP for streaks.
             </p>
           </div>
         </div>
@@ -385,9 +375,7 @@ function NewsSection() {
         sport="soccer"
         favoriteTeam={state.favoriteTeam}
         language={state.selectedLanguage}
-        onSetFavoriteTeam={(team) =>
-          dispatch({ type: "SET_FAVORITE_TEAM", payload: team })
-        }
+        onSetFavoriteTeam={(team) => dispatch({ type: "SET_FAVORITE_TEAM", payload: team })}
       />
     </div>
   );
@@ -399,8 +387,7 @@ function VocabSection({ sets }: { sets: ModuleVocabSet[] }) {
   return (
     <div>
       <p className="mb-5 text-sm text-muted-foreground">
-        Vocabulary sets from the soccer module. Click any card to expand and
-        see the full word list.
+        Vocabulary sets from the soccer module. Click any card to expand and see the full word list.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         {sets.map((set) => (
@@ -425,19 +412,11 @@ function VocabCard({ set }: { set: ModuleVocabSet }) {
       >
         <span className="text-2xl">{set.emoji}</span>
         <div className="flex-1 min-w-0">
-          <h3 className="font-display text-base font-semibold text-foreground">
-            {set.category}
-          </h3>
-          <p className="font-mono text-[10px] text-muted-foreground">
-            {set.words.length} terms
-          </p>
+          <h3 className="font-display text-base font-semibold text-foreground">{set.category}</h3>
+          <p className="font-mono text-[10px] text-muted-foreground">{set.words.length} terms</p>
         </div>
         <span className="text-muted-foreground">
-          {expanded ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </span>
       </button>
 

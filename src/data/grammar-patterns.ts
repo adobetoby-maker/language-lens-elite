@@ -3,21 +3,21 @@ import type { Language } from "@/state/app-state";
 export type PatternFrequency = "ultra" | "high" | "medium";
 export type PatternPhase = 1 | 2;
 export type PatternCategory =
-  | "identity"      // I am / I have — describing yourself
-  | "obligation"    // have to / must
-  | "intention"     // want to / going to
-  | "ability"       // can / be able to
-  | "action"        // progressive — currently doing
-  | "cause"         // because / so
-  | "sequence"      // first, then, finally
-  | "opinion"       // I think / it seems
-  | "preference"    // I like / I love
-  | "description";  // adjective / state patterns
+  | "identity" // I am / I have — describing yourself
+  | "obligation" // have to / must
+  | "intention" // want to / going to
+  | "ability" // can / be able to
+  | "action" // progressive — currently doing
+  | "cause" // because / so
+  | "sequence" // first, then, finally
+  | "opinion" // I think / it seems
+  | "preference" // I like / I love
+  | "description"; // adjective / state patterns
 
 export interface PatternExample {
-  target: string;       // full sentence in target language
-  english: string;      // English translation
-  breakdown?: string;   // "tener [que] + [aprender] — verb is infinitive"
+  target: string; // full sentence in target language
+  english: string; // English translation
+  breakdown?: string; // "tener [que] + [aprender] — verb is infinitive"
 }
 
 export interface GrammarPattern {
@@ -26,16 +26,19 @@ export interface GrammarPattern {
   phase: PatternPhase;
   frequency: PatternFrequency;
   category: PatternCategory;
-  pattern: string;          // formula: "tener que + [verb]"
-  name: string;             // short label: "Obligation"
-  meaning: string;          // English equivalent: "have to / must"
-  hook: string;             // 1-sentence "why this unlocks everything"
+  pattern: string; // formula: "tener que + [verb]"
+  name: string; // short label: "Obligation"
+  meaning: string; // English equivalent: "have to / must"
+  hook: string; // 1-sentence "why this unlocks everything"
   examples: PatternExample[];
 }
 
 // ─── FREQUENCY BADGE METADATA ─────────────────────────────────────────────
 
-export const FREQUENCY_META: Record<PatternFrequency, { label: string; color: string; bg: string; desc: string }> = {
+export const FREQUENCY_META: Record<
+  PatternFrequency,
+  { label: string; color: string; bg: string; desc: string }
+> = {
   ultra: {
     label: "ULTRA",
     color: "text-gold",
@@ -71,7 +74,11 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I am [profession / nationality / trait]",
     hook: "One word opens every self-introduction in Spanish.",
     examples: [
-      { target: "Soy médico.", english: "I am a doctor.", breakdown: "Soy = ser (to be), 1st person singular" },
+      {
+        target: "Soy médico.",
+        english: "I am a doctor.",
+        breakdown: "Soy = ser (to be), 1st person singular",
+      },
       { target: "Soy de Idaho, Estados Unidos.", english: "I am from Idaho, USA." },
       { target: "Soy estudiante de idiomas.", english: "I am a language student." },
     ],
@@ -87,7 +94,11 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I have / I am [age] years old",
     hook: "Tener expresses possession AND age — two essentials in one verb.",
     examples: [
-      { target: "Tengo cuarenta años.", english: "I am forty years old.", breakdown: "Tengo años = I have [X] years" },
+      {
+        target: "Tengo cuarenta años.",
+        english: "I am forty years old.",
+        breakdown: "Tengo años = I have [X] years",
+      },
       { target: "Tengo dos hijos.", english: "I have two children." },
       { target: "Tengo un consultorio en Twin Falls.", english: "I have an office in Twin Falls." },
     ],
@@ -103,8 +114,16 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I like [thing] / I like to [do something]",
     hook: "Gustar works backwards — the thing 'pleases you.' Learn it once, describe everything you enjoy.",
     examples: [
-      { target: "Me gusta jugar al golf.", english: "I like to play golf.", breakdown: "Me gusta + infinitive = I like to..." },
-      { target: "Me encanta aprender idiomas.", english: "I love learning languages.", breakdown: "Me encanta = stronger version of me gusta" },
+      {
+        target: "Me gusta jugar al golf.",
+        english: "I like to play golf.",
+        breakdown: "Me gusta + infinitive = I like to...",
+      },
+      {
+        target: "Me encanta aprender idiomas.",
+        english: "I love learning languages.",
+        breakdown: "Me encanta = stronger version of me gusta",
+      },
       { target: "Me gusta leer por las noches.", english: "I like to read at night." },
     ],
   },
@@ -119,7 +138,10 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do something]",
     hook: "Quiero + any verb = any desire. The most natural way to express what you want.",
     examples: [
-      { target: "Quiero hablar español con fluidez.", english: "I want to speak Spanish fluently." },
+      {
+        target: "Quiero hablar español con fluidez.",
+        english: "I want to speak Spanish fluently.",
+      },
       { target: "Quiero ayudar a mis pacientes.", english: "I want to help my patients." },
       { target: "Quiero aprender más vocabulario.", english: "I want to learn more vocabulary." },
     ],
@@ -136,7 +158,11 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I have to / I must [do something]",
     hook: "This single pattern turns every verb you know into an obligation sentence. The most productive pattern in Spanish.",
     examples: [
-      { target: "Tengo que operar a las siete.", english: "I have to perform surgery at seven.", breakdown: "Tengo que + [operar] — any infinitive works" },
+      {
+        target: "Tengo que operar a las siete.",
+        english: "I have to perform surgery at seven.",
+        breakdown: "Tengo que + [operar] — any infinitive works",
+      },
       { target: "Tienes que descansar.", english: "You have to rest." },
       { target: "Tenemos que hablar.", english: "We have to talk." },
     ],
@@ -152,7 +178,10 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "I'm going to [do something]",
     hook: "The near-future tense — simpler than the future conjugation and used far more in everyday speech.",
     examples: [
-      { target: "Voy a explicar el procedimiento.", english: "I'm going to explain the procedure." },
+      {
+        target: "Voy a explicar el procedimiento.",
+        english: "I'm going to explain the procedure.",
+      },
       { target: "Vamos a llegar a las tres.", english: "We're going to arrive at three." },
       { target: "¿Qué vas a hacer después?", english: "What are you going to do after?" },
     ],
@@ -184,9 +213,18 @@ const SPANISH_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason]",
     hook: "Porque connects any two ideas with cause and effect. Master this and you can explain anything.",
     examples: [
-      { target: "Estudio español porque quiero comunicarme con mis pacientes.", english: "I study Spanish because I want to communicate with my patients." },
-      { target: "No puedo ir porque tengo que trabajar.", english: "I can't go because I have to work." },
-      { target: "Llegué tarde porque había mucho tráfico.", english: "I arrived late because there was a lot of traffic." },
+      {
+        target: "Estudio español porque quiero comunicarme con mis pacientes.",
+        english: "I study Spanish because I want to communicate with my patients.",
+      },
+      {
+        target: "No puedo ir porque tengo que trabajar.",
+        english: "I can't go because I have to work.",
+      },
+      {
+        target: "Llegué tarde porque había mucho tráfico.",
+        english: "I arrived late because there was a lot of traffic.",
+      },
     ],
   },
 ];
@@ -221,7 +259,11 @@ const FRENCH_PATTERNS: GrammarPattern[] = [
     meaning: "I like / love [thing or activity]",
     hook: "Aimer is the simplest, most expressive word in French — it means both 'like' and 'love.'",
     examples: [
-      { target: "J'aime jouer au golf.", english: "I like to play golf.", breakdown: "J'aime + infinitive = I like to..." },
+      {
+        target: "J'aime jouer au golf.",
+        english: "I like to play golf.",
+        breakdown: "J'aime + infinitive = I like to...",
+      },
       { target: "J'adore apprendre les langues.", english: "I love learning languages." },
       { target: "J'aime lire le soir.", english: "I like to read in the evenings." },
     ],
@@ -237,9 +279,16 @@ const FRENCH_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do something]",
     hook: "Vouloir unlocks every desire — from ordering coffee to describing life goals.",
     examples: [
-      { target: "Je veux parler français couramment.", english: "I want to speak French fluently." },
+      {
+        target: "Je veux parler français couramment.",
+        english: "I want to speak French fluently.",
+      },
       { target: "Je veux aider mes patients.", english: "I want to help my patients." },
-      { target: "Je voudrais un café, s'il vous plaît.", english: "I would like a coffee, please.", breakdown: "Voudrais = polite 'would like'" },
+      {
+        target: "Je voudrais un café, s'il vous plaît.",
+        english: "I would like a coffee, please.",
+        breakdown: "Voudrais = polite 'would like'",
+      },
     ],
   },
   {
@@ -253,9 +302,16 @@ const FRENCH_PATTERNS: GrammarPattern[] = [
     meaning: "I have / I am [age] years old",
     hook: "In French, you 'have' years — the same verb handles age, possession, and experience.",
     examples: [
-      { target: "J'ai quarante ans.", english: "I am forty years old.", breakdown: "J'ai [X] ans = I have [X] years" },
+      {
+        target: "J'ai quarante ans.",
+        english: "I am forty years old.",
+        breakdown: "J'ai [X] ans = I have [X] years",
+      },
       { target: "J'ai deux enfants.", english: "I have two children." },
-      { target: "J'ai de l'expérience en chirurgie orthopédique.", english: "I have experience in orthopedic surgery." },
+      {
+        target: "J'ai de l'expérience en chirurgie orthopédique.",
+        english: "I have experience in orthopedic surgery.",
+      },
     ],
   },
   // Phase 2
@@ -318,9 +374,18 @@ const FRENCH_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason]",
     hook: "Parce que connects cause to effect — every explanation in French runs through this pattern.",
     examples: [
-      { target: "J'étudie le français parce que je veux communiquer avec mes patients.", english: "I study French because I want to communicate with my patients." },
-      { target: "Je ne peux pas venir parce que je dois travailler.", english: "I can't come because I have to work." },
-      { target: "Je suis en retard parce qu'il y avait du trafic.", english: "I am late because there was traffic." },
+      {
+        target: "J'étudie le français parce que je veux communiquer avec mes patients.",
+        english: "I study French because I want to communicate with my patients.",
+      },
+      {
+        target: "Je ne peux pas venir parce que je dois travailler.",
+        english: "I can't come because I have to work.",
+      },
+      {
+        target: "Je suis en retard parce qu'il y avait du trafic.",
+        english: "I am late because there was traffic.",
+      },
     ],
   },
 ];
@@ -339,7 +404,11 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "[Subject] is [noun/adjective] (polite)",
     hook: "The fundamental sentence structure of Japanese — subject + topic marker + predicate.",
     examples: [
-      { target: "わたしはいしゃです。", english: "I am a doctor.", breakdown: "わたしは [subject] + いしゃ [noun] + です [polite copula]" },
+      {
+        target: "わたしはいしゃです。",
+        english: "I am a doctor.",
+        breakdown: "わたしは [subject] + いしゃ [noun] + です [polite copula]",
+      },
       { target: "わたしはアメリカじんです。", english: "I am American." },
       { target: "これはにほんごのほんです。", english: "This is a Japanese language book." },
     ],
@@ -355,9 +424,17 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I like [noun/activity]",
     hook: "すき (suki) — the first step to describing your personality in Japanese.",
     examples: [
-      { target: "ゴルフが すきです。", english: "I like golf.", breakdown: "[thing] + が すきです" },
+      {
+        target: "ゴルフが すきです。",
+        english: "I like golf.",
+        breakdown: "[thing] + が すきです",
+      },
       { target: "にほんごを まなぶことが すきです。", english: "I like learning Japanese." },
-      { target: "よむことが だいすきです。", english: "I love reading.", breakdown: "だいすき = love (stronger)" },
+      {
+        target: "よむことが だいすきです。",
+        english: "I love reading.",
+        breakdown: "だいすき = love (stronger)",
+      },
     ],
   },
   {
@@ -371,7 +448,11 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do verb]",
     hook: "Attach たい to any verb stem and express desire. One suffix, every wish.",
     examples: [
-      { target: "にほんごを はなしたいです。", english: "I want to speak Japanese.", breakdown: "はなす → はなしたい" },
+      {
+        target: "にほんごを はなしたいです。",
+        english: "I want to speak Japanese.",
+        breakdown: "はなす → はなしたい",
+      },
       { target: "にほんに いきたいです。", english: "I want to go to Japan." },
       { target: "もっと べんきょうしたいです。", english: "I want to study more." },
     ],
@@ -387,8 +468,16 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I have [thing] / There is [thing or person]",
     hook: "あります (objects) vs います (living things) — one key distinction covers all possession and existence.",
     examples: [
-      { target: "こどもが ふたりいます。", english: "I have two children.", breakdown: "います = for people/animals" },
-      { target: "じかんが あります。", english: "I have time.", breakdown: "あります = for objects/abstract things" },
+      {
+        target: "こどもが ふたりいます。",
+        english: "I have two children.",
+        breakdown: "います = for people/animals",
+      },
+      {
+        target: "じかんが あります。",
+        english: "I have time.",
+        breakdown: "あります = for objects/abstract things",
+      },
       { target: "しごとが あります。", english: "I have work." },
     ],
   },
@@ -404,7 +493,11 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I must / have to [do verb]",
     hook: "The gold-standard obligation pattern — long but unmistakable. You will hear this in every professional setting.",
     examples: [
-      { target: "まいにち べんきょうしなければなりません。", english: "I must study every day.", breakdown: "べんきょうする → べんきょうしなければなりません" },
+      {
+        target: "まいにち べんきょうしなければなりません。",
+        english: "I must study every day.",
+        breakdown: "べんきょうする → べんきょうしなければなりません",
+      },
       { target: "てを あらわなければなりません。", english: "I must wash my hands." },
       { target: "もう いかなければなりません。", english: "I must go now." },
     ],
@@ -420,7 +513,11 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I can / am able to [do verb]",
     hook: "Combine this with any verb dictionary form to express ability at any level.",
     examples: [
-      { target: "にほんごを はなすことが できます。", english: "I can speak Japanese.", breakdown: "はなす [dict form] + ことができます" },
+      {
+        target: "にほんごを はなすことが できます。",
+        english: "I can speak Japanese.",
+        breakdown: "はなす [dict form] + ことができます",
+      },
       { target: "くるまを うんてんすることが できます。", english: "I can drive a car." },
       { target: "てつだうことが できます。", english: "I can help." },
     ],
@@ -436,7 +533,11 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "I am [doing verb] / I am in a state of [verb]",
     hook: "〜ています works like English '-ing' but also expresses ongoing states — essential for describing your situation.",
     examples: [
-      { target: "びょういんで はたらいています。", english: "I am working at a hospital.", breakdown: "はたらく → はたらいている + ます" },
+      {
+        target: "びょういんで はたらいています。",
+        english: "I am working at a hospital.",
+        breakdown: "はたらく → はたらいている + ます",
+      },
       { target: "にほんごを べんきょうしています。", english: "I am studying Japanese." },
       { target: "アイダホに すんでいます。", english: "I am living in Idaho." },
     ],
@@ -452,9 +553,15 @@ const JAPANESE_PATTERNS: GrammarPattern[] = [
     meaning: "Because [reason], [result]",
     hook: "〜から connects cause to effect — use it to explain decisions, situations, and actions.",
     examples: [
-      { target: "にほんにいったから、にほんごを べんきょうしています。", english: "Because I went to Japan, I am studying Japanese." },
+      {
+        target: "にほんにいったから、にほんごを べんきょうしています。",
+        english: "Because I went to Japan, I am studying Japanese.",
+      },
       { target: "いそがしいから、いけません。", english: "Because I'm busy, I can't go." },
-      { target: "おもしろいから、まいにち れんしゅうしています。", english: "Because it's interesting, I practice every day." },
+      {
+        target: "おもしろいから、まいにち れんしゅうしています。",
+        english: "Because it's interesting, I practice every day.",
+      },
     ],
   },
 ];
@@ -473,8 +580,16 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "I am [noun] (formal / informal polite)",
     hook: "The opening line of every Korean introduction — formal 입니다 or casual 이에요/예요.",
     examples: [
-      { target: "저는 의사입니다.", english: "I am a doctor.", breakdown: "저는 = I (formal) + 의사 + 입니다" },
-      { target: "저는 미국 사람이에요.", english: "I am American.", breakdown: "이에요 after consonant" },
+      {
+        target: "저는 의사입니다.",
+        english: "I am a doctor.",
+        breakdown: "저는 = I (formal) + 의사 + 입니다",
+      },
+      {
+        target: "저는 미국 사람이에요.",
+        english: "I am American.",
+        breakdown: "이에요 after consonant",
+      },
       { target: "저는 정형외과 의사예요.", english: "I am an orthopedic surgeon." },
     ],
   },
@@ -505,7 +620,11 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do verb]",
     hook: "Add 고 싶어요 to any verb stem and express any desire. Universal and natural.",
     examples: [
-      { target: "한국어를 말하고 싶어요.", english: "I want to speak Korean.", breakdown: "말하다 → 말하 + 고 싶어요" },
+      {
+        target: "한국어를 말하고 싶어요.",
+        english: "I want to speak Korean.",
+        breakdown: "말하다 → 말하 + 고 싶어요",
+      },
       { target: "한국에 가고 싶어요.", english: "I want to go to Korea." },
       { target: "더 공부하고 싶어요.", english: "I want to study more." },
     ],
@@ -538,7 +657,11 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "I have to / must [do verb]",
     hook: "The everyday obligation marker — you'll hear this dozens of times a day in Korean.",
     examples: [
-      { target: "매일 공부해야 해요.", english: "I have to study every day.", breakdown: "공부하다 → 공부해야 해요" },
+      {
+        target: "매일 공부해야 해요.",
+        english: "I have to study every day.",
+        breakdown: "공부하다 → 공부해야 해요",
+      },
       { target: "손을 씻어야 해요.", english: "I have to wash my hands." },
       { target: "지금 가야 해요.", english: "I have to go now." },
     ],
@@ -554,7 +677,11 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "I can / am able to [do verb]",
     hook: "Ability marker that attaches to any verb — expressing what you can and can't do.",
     examples: [
-      { target: "한국어를 말할 수 있어요.", english: "I can speak Korean.", breakdown: "말하다 → 말할 수 있어요" },
+      {
+        target: "한국어를 말할 수 있어요.",
+        english: "I can speak Korean.",
+        breakdown: "말하다 → 말할 수 있어요",
+      },
       { target: "도와드릴 수 있어요.", english: "I can help you." },
       { target: "운전할 수 없어요.", english: "I can't drive." },
     ],
@@ -570,7 +697,11 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "I am [doing verb] right now",
     hook: "The Korean progressive — attach to any verb stem to describe what's happening right now.",
     examples: [
-      { target: "병원에서 일하고 있어요.", english: "I am working at the hospital.", breakdown: "일하다 → 일하고 있어요" },
+      {
+        target: "병원에서 일하고 있어요.",
+        english: "I am working at the hospital.",
+        breakdown: "일하다 → 일하고 있어요",
+      },
       { target: "한국어를 공부하고 있어요.", english: "I am studying Korean." },
       { target: "지금 뭐 하고 있어요?", english: "What are you doing right now?" },
     ],
@@ -586,8 +717,15 @@ const KOREAN_PATTERNS: GrammarPattern[] = [
     meaning: "Because [reason], [result]",
     hook: "Two forms — 니까 for spoken conversation, 기 때문에 for formal contexts. Both essential.",
     examples: [
-      { target: "바쁘니까 못 가요.", english: "I can't go because I'm busy.", breakdown: "바쁘다 → 바쁘니까" },
-      { target: "시간이 없기 때문에 빨리 가야 해요.", english: "I have to go quickly because I don't have time." },
+      {
+        target: "바쁘니까 못 가요.",
+        english: "I can't go because I'm busy.",
+        breakdown: "바쁘다 → 바쁘니까",
+      },
+      {
+        target: "시간이 없기 때문에 빨리 가야 해요.",
+        english: "I have to go quickly because I don't have time.",
+      },
       { target: "피곤하니까 자고 싶어요.", english: "Because I'm tired, I want to sleep." },
     ],
   },
@@ -607,7 +745,11 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     meaning: "I am [profession / nationality / trait]",
     hook: "Sein is the foundation — the first verb you learn, the one you use forever.",
     examples: [
-      { target: "Ich bin Arzt.", english: "I am a doctor.", breakdown: "Ich bin + job title (no article for professions)" },
+      {
+        target: "Ich bin Arzt.",
+        english: "I am a doctor.",
+        breakdown: "Ich bin + job title (no article for professions)",
+      },
       { target: "Ich bin aus Idaho, USA.", english: "I am from Idaho, USA." },
       { target: "Ich bin Linguist und Orthopäde.", english: "I am a linguist and orthopedist." },
     ],
@@ -639,9 +781,20 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     meaning: "I would like to / I want to [do something]",
     hook: "Möchte is polite desire, wollen is direct — both attach to any infinitive and describe any intention.",
     examples: [
-      { target: "Ich möchte Deutsch fließend sprechen.", english: "I would like to speak German fluently.", breakdown: "möchte = polite want" },
-      { target: "Ich will meinen Patienten helfen.", english: "I want to help my patients.", breakdown: "will = direct want" },
-      { target: "Ich möchte mehr Vokabeln lernen.", english: "I would like to learn more vocabulary." },
+      {
+        target: "Ich möchte Deutsch fließend sprechen.",
+        english: "I would like to speak German fluently.",
+        breakdown: "möchte = polite want",
+      },
+      {
+        target: "Ich will meinen Patienten helfen.",
+        english: "I want to help my patients.",
+        breakdown: "will = direct want",
+      },
+      {
+        target: "Ich möchte mehr Vokabeln lernen.",
+        english: "I would like to learn more vocabulary.",
+      },
     ],
   },
   {
@@ -655,9 +808,16 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     meaning: "I have [thing/person]",
     hook: "Haben handles possession, age, and experience — one verb, three uses.",
     examples: [
-      { target: "Ich bin vierzig Jahre alt.", english: "I am forty years old.", breakdown: "German uses sein (be) for age, not haben" },
+      {
+        target: "Ich bin vierzig Jahre alt.",
+        english: "I am forty years old.",
+        breakdown: "German uses sein (be) for age, not haben",
+      },
       { target: "Ich habe zwei Kinder.", english: "I have two children." },
-      { target: "Ich habe Erfahrung in der Orthopädie.", english: "I have experience in orthopedics." },
+      {
+        target: "Ich habe Erfahrung in der Orthopädie.",
+        english: "I have experience in orthopedics.",
+      },
     ],
   },
   // Phase 2
@@ -672,7 +832,11 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     meaning: "I must / have to [do something]",
     hook: "Müssen is German's obligation motor — the verb goes to the END, which is the key German sentence pattern.",
     examples: [
-      { target: "Ich muss jeden Tag Deutsch üben.", english: "I have to practice German every day.", breakdown: "muss [modal] + ... + üben [infinitive at end]" },
+      {
+        target: "Ich muss jeden Tag Deutsch üben.",
+        english: "I have to practice German every day.",
+        breakdown: "muss [modal] + ... + üben [infinitive at end]",
+      },
       { target: "Du musst dich ausruhen.", english: "You must rest." },
       { target: "Wir müssen reden.", english: "We have to talk." },
     ],
@@ -705,7 +869,10 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     hook: "Können + infinitive to the end = ability in any context. The German modal pattern.",
     examples: [
       { target: "Ich kann Ihnen damit helfen.", english: "I can help you with that." },
-      { target: "Können Sie das langsamer wiederholen?", english: "Can you repeat that more slowly?" },
+      {
+        target: "Können Sie das langsamer wiederholen?",
+        english: "Can you repeat that more slowly?",
+      },
       { target: "Ich kann morgen nicht kommen.", english: "I can't come tomorrow." },
     ],
   },
@@ -720,9 +887,19 @@ const GERMAN_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason — verb goes to END]",
     hook: "Weil sends the verb to the end of the clause — this single word reveals the most important German grammar rule.",
     examples: [
-      { target: "Ich lerne Deutsch, weil ich Patienten helfen will.", english: "I'm learning German because I want to help patients.", breakdown: "weil... will [at end]" },
-      { target: "Ich kann nicht kommen, weil ich arbeiten muss.", english: "I can't come because I have to work." },
-      { target: "Er ist müde, weil er lange gearbeitet hat.", english: "He is tired because he worked a long time." },
+      {
+        target: "Ich lerne Deutsch, weil ich Patienten helfen will.",
+        english: "I'm learning German because I want to help patients.",
+        breakdown: "weil... will [at end]",
+      },
+      {
+        target: "Ich kann nicht kommen, weil ich arbeiten muss.",
+        english: "I can't come because I have to work.",
+      },
+      {
+        target: "Er ist müde, weil er lange gearbeitet hat.",
+        english: "He is tired because he worked a long time.",
+      },
     ],
   },
 ];
@@ -742,7 +919,10 @@ const PORTUGUESE_PATTERNS: GrammarPattern[] = [
     hook: "Ser is the identity verb — the cornerstone of every introduction in Portuguese.",
     examples: [
       { target: "Sou médico.", english: "I am a doctor." },
-      { target: "Sou dos Estados Unidos, do Idaho.", english: "I am from the United States, from Idaho." },
+      {
+        target: "Sou dos Estados Unidos, do Idaho.",
+        english: "I am from the United States, from Idaho.",
+      },
       { target: "Sou cirurgião ortopédico.", english: "I am an orthopedic surgeon." },
     ],
   },
@@ -757,8 +937,16 @@ const PORTUGUESE_PATTERNS: GrammarPattern[] = [
     meaning: "I like [thing or activity]",
     hook: "Gostar de is the preference verb — the 'de' is mandatory and changes with what follows.",
     examples: [
-      { target: "Gosto de jogar golfe.", english: "I like to play golf.", breakdown: "gostar de + infinitive" },
-      { target: "Adoro aprender idiomas.", english: "I love learning languages.", breakdown: "adorar = stronger" },
+      {
+        target: "Gosto de jogar golfe.",
+        english: "I like to play golf.",
+        breakdown: "gostar de + infinitive",
+      },
+      {
+        target: "Adoro aprender idiomas.",
+        english: "I love learning languages.",
+        breakdown: "adorar = stronger",
+      },
       { target: "Gosto de ler à noite.", english: "I like to read at night." },
     ],
   },
@@ -773,7 +961,10 @@ const PORTUGUESE_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do something]",
     hook: "Querer + any infinitive = any desire. Identical structure to Spanish — easy transfer.",
     examples: [
-      { target: "Quero falar português fluentemente.", english: "I want to speak Portuguese fluently." },
+      {
+        target: "Quero falar português fluentemente.",
+        english: "I want to speak Portuguese fluently.",
+      },
       { target: "Quero ajudar meus pacientes.", english: "I want to help my patients." },
       { target: "Quero aprender mais vocabulário.", english: "I want to learn more vocabulary." },
     ],
@@ -808,7 +999,11 @@ const PORTUGUESE_PATTERNS: GrammarPattern[] = [
     examples: [
       { target: "Tenho que operar às sete horas.", english: "I have to perform surgery at seven." },
       { target: "Você tem que descansar.", english: "You have to rest." },
-      { target: "Precisamos conversar.", english: "We need to talk.", breakdown: "precisar de = need to (synonym)" },
+      {
+        target: "Precisamos conversar.",
+        english: "We need to talk.",
+        breakdown: "precisar de = need to (synonym)",
+      },
     ],
   },
   {
@@ -854,9 +1049,18 @@ const PORTUGUESE_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason]",
     hook: "Porque (one word) connects any cause to any effect. Every explanation runs through this.",
     examples: [
-      { target: "Estudo português porque quero me comunicar com meus pacientes.", english: "I study Portuguese because I want to communicate with my patients." },
-      { target: "Não posso ir porque tenho que trabalhar.", english: "I can't go because I have to work." },
-      { target: "Cheguei atrasado porque havia muito trânsito.", english: "I arrived late because there was a lot of traffic." },
+      {
+        target: "Estudo português porque quero me comunicar com meus pacientes.",
+        english: "I study Portuguese because I want to communicate with my patients.",
+      },
+      {
+        target: "Não posso ir porque tenho que trabalhar.",
+        english: "I can't go because I have to work.",
+      },
+      {
+        target: "Cheguei atrasado porque havia muito trânsito.",
+        english: "I arrived late because there was a lot of traffic.",
+      },
     ],
   },
 ];
@@ -891,8 +1095,16 @@ const ITALIAN_PATTERNS: GrammarPattern[] = [
     meaning: "I like [thing or activity]",
     hook: "Piacere works like Spanish gustar — the thing 'pleases you.' Learn the inversion once, apply it forever.",
     examples: [
-      { target: "Mi piace giocare a golf.", english: "I like to play golf.", breakdown: "Mi piace + infinitive = I like to..." },
-      { target: "Mi piace moltissimo imparare le lingue.", english: "I love learning languages.", breakdown: "moltissimo = very much" },
+      {
+        target: "Mi piace giocare a golf.",
+        english: "I like to play golf.",
+        breakdown: "Mi piace + infinitive = I like to...",
+      },
+      {
+        target: "Mi piace moltissimo imparare le lingue.",
+        english: "I love learning languages.",
+        breakdown: "moltissimo = very much",
+      },
       { target: "Mi piace leggere la sera.", english: "I like to read in the evening." },
     ],
   },
@@ -907,7 +1119,10 @@ const ITALIAN_PATTERNS: GrammarPattern[] = [
     meaning: "I want to [do something]",
     hook: "Volere + infinitive = any desire. Direct and natural in Italian everyday speech.",
     examples: [
-      { target: "Voglio parlare italiano fluentemente.", english: "I want to speak Italian fluently." },
+      {
+        target: "Voglio parlare italiano fluentemente.",
+        english: "I want to speak Italian fluently.",
+      },
       { target: "Voglio aiutare i miei pazienti.", english: "I want to help my patients." },
       { target: "Voglio imparare più vocabulario.", english: "I want to learn more vocabulary." },
     ],
@@ -923,9 +1138,16 @@ const ITALIAN_PATTERNS: GrammarPattern[] = [
     meaning: "I have / I am [age] years old",
     hook: "Avere handles age and possession — 'ho quarant'anni' (I have 40 years) is how Italians express age.",
     examples: [
-      { target: "Ho quarant'anni.", english: "I am forty years old.", breakdown: "Ho [anni] = I have [years]" },
+      {
+        target: "Ho quarant'anni.",
+        english: "I am forty years old.",
+        breakdown: "Ho [anni] = I have [years]",
+      },
       { target: "Ho due figli.", english: "I have two children." },
-      { target: "Ho esperienza in chirurgia ortopedica.", english: "I have experience in orthopedic surgery." },
+      {
+        target: "Ho esperienza in chirurgia ortopedica.",
+        english: "I have experience in orthopedic surgery.",
+      },
     ],
   },
   // Phase 2
@@ -988,9 +1210,18 @@ const ITALIAN_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason]",
     hook: "Perché connects cause and effect — the same word also means 'why,' which helps you ask AND answer.",
     examples: [
-      { target: "Studio italiano perché voglio parlare con i miei pazienti.", english: "I study Italian because I want to talk with my patients." },
-      { target: "Non posso venire perché devo lavorare.", english: "I can't come because I have to work." },
-      { target: "Sono arrivato tardi perché c'era molto traffico.", english: "I arrived late because there was a lot of traffic." },
+      {
+        target: "Studio italiano perché voglio parlare con i miei pazienti.",
+        english: "I study Italian because I want to talk with my patients.",
+      },
+      {
+        target: "Non posso venire perché devo lavorare.",
+        english: "I can't come because I have to work.",
+      },
+      {
+        target: "Sono arrivato tardi perché c'era molto traffico.",
+        english: "I arrived late because there was a lot of traffic.",
+      },
     ],
   },
 ];
@@ -1011,7 +1242,10 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     examples: [
       { target: "I am a doctor.", english: "I am a doctor." },
       { target: "I am from the United States.", english: "I am from the United States." },
-      { target: "I am an orthopedic surgeon in Idaho.", english: "I am an orthopedic surgeon in Idaho." },
+      {
+        target: "I am an orthopedic surgeon in Idaho.",
+        english: "I am an orthopedic surgeon in Idaho.",
+      },
     ],
   },
   {
@@ -1025,9 +1259,16 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     meaning: "I like / love [thing or activity]",
     hook: "Like and love describe your whole personality — attach them to any noun or verb+ing.",
     examples: [
-      { target: "I like playing golf.", english: "I like playing golf.", breakdown: "like + verb-ing (gerund)" },
+      {
+        target: "I like playing golf.",
+        english: "I like playing golf.",
+        breakdown: "like + verb-ing (gerund)",
+      },
       { target: "I love learning languages.", english: "I love learning languages." },
-      { target: "I really enjoy reading in the evenings.", english: "I really enjoy reading in the evenings." },
+      {
+        target: "I really enjoy reading in the evenings.",
+        english: "I really enjoy reading in the evenings.",
+      },
     ],
   },
   {
@@ -1043,7 +1284,11 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     examples: [
       { target: "I want to speak English fluently.", english: "I want to speak English fluently." },
       { target: "I want to help my patients.", english: "I want to help my patients." },
-      { target: "I'd like to learn more vocabulary.", english: "I'd like to learn more vocabulary.", breakdown: "I'd like to = polite version" },
+      {
+        target: "I'd like to learn more vocabulary.",
+        english: "I'd like to learn more vocabulary.",
+        breakdown: "I'd like to = polite version",
+      },
     ],
   },
   {
@@ -1058,8 +1303,14 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     hook: "Have for possession, experience, and relationships — the most versatile verb in English.",
     examples: [
       { target: "I have two children.", english: "I have two children." },
-      { target: "I have fifteen years of experience in orthopedics.", english: "I have fifteen years of experience in orthopedics." },
-      { target: "I have a clinic in Twin Falls, Idaho.", english: "I have a clinic in Twin Falls, Idaho." },
+      {
+        target: "I have fifteen years of experience in orthopedics.",
+        english: "I have fifteen years of experience in orthopedics.",
+      },
+      {
+        target: "I have a clinic in Twin Falls, Idaho.",
+        english: "I have a clinic in Twin Falls, Idaho.",
+      },
     ],
   },
   // Phase 2
@@ -1074,9 +1325,20 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     meaning: "I have to / must [do something]",
     hook: "Have to (casual) and must (formal) — both turn any verb into an obligation sentence.",
     examples: [
-      { target: "I have to perform surgery at seven.", english: "I have to perform surgery at seven." },
-      { target: "You must rest for two weeks.", english: "You must rest for two weeks.", breakdown: "must = formal/strong obligation" },
-      { target: "We need to talk about your recovery.", english: "We need to talk about your recovery.", breakdown: "need to = softer obligation" },
+      {
+        target: "I have to perform surgery at seven.",
+        english: "I have to perform surgery at seven.",
+      },
+      {
+        target: "You must rest for two weeks.",
+        english: "You must rest for two weeks.",
+        breakdown: "must = formal/strong obligation",
+      },
+      {
+        target: "We need to talk about your recovery.",
+        english: "We need to talk about your recovery.",
+        breakdown: "need to = softer obligation",
+      },
     ],
   },
   {
@@ -1090,9 +1352,18 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     meaning: "I'm going to [do something]",
     hook: "Going to = planned future. More natural than 'will' in most everyday conversations.",
     examples: [
-      { target: "I'm going to explain the procedure.", english: "I'm going to explain the procedure." },
-      { target: "We're going to arrive at three o'clock.", english: "We're going to arrive at three o'clock." },
-      { target: "What are you going to do after the appointment?", english: "What are you going to do after the appointment?" },
+      {
+        target: "I'm going to explain the procedure.",
+        english: "I'm going to explain the procedure.",
+      },
+      {
+        target: "We're going to arrive at three o'clock.",
+        english: "We're going to arrive at three o'clock.",
+      },
+      {
+        target: "What are you going to do after the appointment?",
+        english: "What are you going to do after the appointment?",
+      },
     ],
   },
   {
@@ -1107,8 +1378,14 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     hook: "Can + base verb (no 'to'!) = ability, permission, or offer. The most natural English modal.",
     examples: [
       { target: "I can help you with that.", english: "I can help you with that." },
-      { target: "Can you repeat that more slowly, please?", english: "Can you repeat that more slowly, please?" },
-      { target: "I can't come tomorrow — I'm in surgery.", english: "I can't come tomorrow — I'm in surgery." },
+      {
+        target: "Can you repeat that more slowly, please?",
+        english: "Can you repeat that more slowly, please?",
+      },
+      {
+        target: "I can't come tomorrow — I'm in surgery.",
+        english: "I can't come tomorrow — I'm in surgery.",
+      },
     ],
   },
   {
@@ -1122,9 +1399,18 @@ const ENGLISH_PATTERNS: GrammarPattern[] = [
     meaning: "... because [reason]",
     hook: "Because connects any two ideas with cause and effect — the foundation of explanation in English.",
     examples: [
-      { target: "I study languages because I want to connect with my patients.", english: "I study languages because I want to connect with my patients." },
-      { target: "I can't come because I have to operate.", english: "I can't come because I have to operate." },
-      { target: "I was late because there was a lot of traffic.", english: "I was late because there was a lot of traffic." },
+      {
+        target: "I study languages because I want to connect with my patients.",
+        english: "I study languages because I want to connect with my patients.",
+      },
+      {
+        target: "I can't come because I have to operate.",
+        english: "I can't come because I have to operate.",
+      },
+      {
+        target: "I was late because there was a lot of traffic.",
+        english: "I was late because there was a lot of traffic.",
+      },
     ],
   },
 ];

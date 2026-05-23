@@ -45,7 +45,9 @@ export function DailyChallengeBridge() {
     sumLB(listening.state.leaderboard as Record<string, { totalAttempts?: number } | undefined>);
     sumLB(idiom.state.leaderboard as Record<string, { totalAttempts?: number } | undefined>);
     sumLB(ff.state.leaderboard as Record<string, { totalAttempts?: number } | undefined>);
-    for (const v of Object.values(wm.state.leaderboard as Record<string, { totalGames?: number } | undefined>)) {
+    for (const v of Object.values(
+      wm.state.leaderboard as Record<string, { totalGames?: number } | undefined>,
+    )) {
       if (v?.totalGames) s += v.totalGames;
     }
     s += match.matchesPlayed ?? 0;

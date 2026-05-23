@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { initSentry, Sentry } from '../lib/sentry'
-initSentry()
+import { initSentry, Sentry } from "../lib/sentry";
+initSentry();
 
 const MessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
@@ -44,12 +44,8 @@ function anthropicStreamToSSE(
     async start(controller) {
       try {
         for await (const event of stream) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            const chunk =
-              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+            const chunk = `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
             controller.enqueue(enc.encode(chunk));
           }
         }
@@ -124,11 +120,11 @@ export const Route = createFileRoute("/api/speak")({
               tool_choice: { type: "tool", name: "grammar_tip" },
             });
             const toolUse = response.content.find((c) => c.type === "tool_use");
-            const input = toolUse?.type === "tool_use"
-              ? (toolUse.input as { tip: string | null })
-              : { tip: null };
-            const tip =
-              typeof input.tip === "string" && input.tip.trim() ? input.tip.trim() : null;
+            const input =
+              toolUse?.type === "tool_use"
+                ? (toolUse.input as { tip: string | null })
+                : { tip: null };
+            const tip = typeof input.tip === "string" && input.tip.trim() ? input.tip.trim() : null;
             return new Response(JSON.stringify({ tip }), {
               status: 200,
               headers: { "Content-Type": "application/json" },
@@ -158,7 +154,8 @@ export const Route = createFileRoute("/api/speak")({
             const response = await client.messages.create({
               model: "claude-haiku-4-5",
               max_tokens: 256,
-              system: "You design spoken language challenges. Always respond via the speak_challenge tool only.",
+              system:
+                "You design spoken language challenges. Always respond via the speak_challenge tool only.",
               messages: [{ role: "user", content: userPrompt }],
               tools: [
                 {
@@ -174,7 +171,8 @@ export const Route = createFileRoute("/api/speak")({
                       english: { type: "string", description: "Plain English translation." },
                       hint: {
                         type: "string",
-                        description: "One-line coaching hint (concept name or stretch word + meaning).",
+                        description:
+                          "One-line coaching hint (concept name or stretch word + meaning).",
                       },
                       keyword: {
                         type: "string",
@@ -196,19 +194,19 @@ export const Route = createFileRoute("/api/speak")({
               headers: { "Content-Type": "application/json" },
             });
           } catch {
-            return new Response(
-              JSON.stringify({ error: "Could not generate a challenge." }),
-              { status: 500, headers: { "Content-Type": "application/json" } },
-            );
+            return new Response(JSON.stringify({ error: "Could not generate a challenge." }), {
+              status: 500,
+              headers: { "Content-Type": "application/json" },
+            });
           }
         }
 
         // ----- CHAT MODE: streaming conversation -----
         if (!payload.messages || payload.messages.length === 0) {
-          return new Response(
-            JSON.stringify({ error: "messages required for chat mode" }),
-            { status: 400, headers: { "Content-Type": "application/json" } },
-          );
+          return new Response(JSON.stringify({ error: "messages required for chat mode" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+          });
         }
 
         try {
@@ -229,7 +227,7 @@ export const Route = createFileRoute("/api/speak")({
             },
           });
         } catch (e) {
-          Sentry.captureException(e)
+          Sentry.captureException(e);
           console.error("Speak stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,

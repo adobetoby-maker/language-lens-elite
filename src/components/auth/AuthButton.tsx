@@ -16,9 +16,7 @@ export function AuthButton() {
   const [open, setOpen] = useState(false);
 
   if (loading) {
-    return (
-      <div className="h-10 w-10 rounded-full border border-border/70 bg-card/60" />
-    );
+    return <div className="h-10 w-10 rounded-full border border-border/70 bg-card/60" />;
   }
 
   if (!user) {

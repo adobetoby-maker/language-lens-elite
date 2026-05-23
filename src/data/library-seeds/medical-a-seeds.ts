@@ -1,7 +1,6 @@
 import type { LibrarySeed } from "./_types";
 
 export const MEDICAL_A_SEEDS: LibrarySeed[] = [
-
   // ── FAMILY MEDICINE ────────────────────────────────────────────────────────
 
   // Spanish — family medicine: chronic disease management / diabetes follow-up
@@ -16,15 +15,48 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good afternoon, Mr. Ramírez. Let's review your hemoglobin A1C result from last week's blood draw.", target: "Buenas tardes, señor Ramírez. Revisemos el resultado de su hemoglobina A1C del análisis de sangre de la semana pasada." },
-      { en: "Your A1C is 8.4 percent, which tells me your average blood sugar has been elevated over the past three months.", target: "Su A1C es del 8,4 por ciento, lo que indica que su glucosa promedio ha estado elevada durante los últimos tres meses." },
-      { en: "I'd like to adjust your metformin dose and add a second medication called a GLP-1 receptor agonist.", target: "Me gustaría ajustar la dosis de metformina y añadir un segundo medicamento llamado agonista del receptor GLP-1." },
-      { en: "This injectable medication also helps with weight loss, which is an important goal for managing your diabetes.", target: "Este medicamento inyectable también ayuda a perder peso, lo cual es un objetivo importante para el control de su diabetes." },
-      { en: "Have you been checking your fasting blood sugar at home in the mornings?", target: "¿Ha estado midiendo su glucosa en ayunas en casa por las mañanas?" },
-      { en: "I want you to aim for a fasting glucose between 80 and 130 milligrams per deciliter.", target: "Quiero que busque una glucosa en ayunas entre 80 y 130 miligramos por decilitro." },
-      { en: "A low-carbohydrate diet and 30 minutes of walking five days a week will make a real difference.", target: "Una dieta baja en carbohidratos y 30 minutos de caminata cinco días a la semana harán una diferencia real." },
-      { en: "I am also referring you to our diabetic educator for a nutrition and insulin management class.", target: "También lo refiero a nuestra educadora en diabetes para una clase de nutrición y manejo de insulina." },
-      { en: "We will repeat the A1C in three months to see how you respond to the new regimen.", target: "Repetiremos la A1C en tres meses para ver cómo responde al nuevo régimen." },
+      {
+        en: "Good afternoon, Mr. Ramírez. Let's review your hemoglobin A1C result from last week's blood draw.",
+        target:
+          "Buenas tardes, señor Ramírez. Revisemos el resultado de su hemoglobina A1C del análisis de sangre de la semana pasada.",
+      },
+      {
+        en: "Your A1C is 8.4 percent, which tells me your average blood sugar has been elevated over the past three months.",
+        target:
+          "Su A1C es del 8,4 por ciento, lo que indica que su glucosa promedio ha estado elevada durante los últimos tres meses.",
+      },
+      {
+        en: "I'd like to adjust your metformin dose and add a second medication called a GLP-1 receptor agonist.",
+        target:
+          "Me gustaría ajustar la dosis de metformina y añadir un segundo medicamento llamado agonista del receptor GLP-1.",
+      },
+      {
+        en: "This injectable medication also helps with weight loss, which is an important goal for managing your diabetes.",
+        target:
+          "Este medicamento inyectable también ayuda a perder peso, lo cual es un objetivo importante para el control de su diabetes.",
+      },
+      {
+        en: "Have you been checking your fasting blood sugar at home in the mornings?",
+        target: "¿Ha estado midiendo su glucosa en ayunas en casa por las mañanas?",
+      },
+      {
+        en: "I want you to aim for a fasting glucose between 80 and 130 milligrams per deciliter.",
+        target: "Quiero que busque una glucosa en ayunas entre 80 y 130 miligramos por decilitro.",
+      },
+      {
+        en: "A low-carbohydrate diet and 30 minutes of walking five days a week will make a real difference.",
+        target:
+          "Una dieta baja en carbohidratos y 30 minutos de caminata cinco días a la semana harán una diferencia real.",
+      },
+      {
+        en: "I am also referring you to our diabetic educator for a nutrition and insulin management class.",
+        target:
+          "También lo refiero a nuestra educadora en diabetes para una clase de nutrición y manejo de insulina.",
+      },
+      {
+        en: "We will repeat the A1C in three months to see how you respond to the new regimen.",
+        target: "Repetiremos la A1C en tres meses para ver cómo responde al nuevo régimen.",
+      },
     ],
   },
 
@@ -40,16 +72,56 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good morning, madame. This is your annual wellness visit, so we will go through your preventive screenings today.", target: "Bonjour, madame. C'est votre consultation annuelle de prévention, nous allons donc passer en revue vos dépistages aujourd'hui." },
-      { en: "You are turning 50 this year, which means it is time to schedule your first colonoscopy.", target: "Vous avez 50 ans cette année, ce qui signifie qu'il est temps de programmer votre première coloscopie." },
-      { en: "Your mammogram last year was normal, so we will repeat it annually as recommended.", target: "Votre mammographie de l'année dernière était normale, nous la répéterons donc chaque année comme recommandé." },
-      { en: "Your cholesterol panel shows an LDL of 148 — I would like to discuss whether medication is appropriate.", target: "Votre bilan lipidique montre un LDL à 148 — j'aimerais discuter si un traitement médicamenteux est approprié." },
-      { en: "Do you smoke, drink alcohol regularly, or use any recreational substances?", target: "Fumez-vous, buvez-vous de l'alcool régulièrement ou consommez-vous des substances récréatives ?" },
-      { en: "Your blood pressure today is 134 over 86 — slightly above the target range.", target: "Votre tension artérielle aujourd'hui est de 134 sur 86 — légèrement au-dessus de la plage cible." },
-      { en: "I want to check your thyroid function as well, since you mentioned fatigue and some weight gain.", target: "Je souhaite également vérifier votre fonction thyroïdienne, car vous avez mentionné de la fatigue et une légère prise de poids." },
-      { en: "Your influenza and pneumococcal vaccinations are both up to date — well done.", target: "Vos vaccinations contre la grippe et le pneumocoque sont toutes deux à jour — très bien." },
-      { en: "I also recommend a bone density scan now that you are approaching menopause.", target: "Je recommande également une ostéodensitométrie maintenant que vous approchez de la ménopause." },
-      { en: "We will go over all the lab results at your follow-up in two weeks.", target: "Nous reverrons tous les résultats de laboratoire lors de votre consultation de suivi dans deux semaines." },
+      {
+        en: "Good morning, madame. This is your annual wellness visit, so we will go through your preventive screenings today.",
+        target:
+          "Bonjour, madame. C'est votre consultation annuelle de prévention, nous allons donc passer en revue vos dépistages aujourd'hui.",
+      },
+      {
+        en: "You are turning 50 this year, which means it is time to schedule your first colonoscopy.",
+        target:
+          "Vous avez 50 ans cette année, ce qui signifie qu'il est temps de programmer votre première coloscopie.",
+      },
+      {
+        en: "Your mammogram last year was normal, so we will repeat it annually as recommended.",
+        target:
+          "Votre mammographie de l'année dernière était normale, nous la répéterons donc chaque année comme recommandé.",
+      },
+      {
+        en: "Your cholesterol panel shows an LDL of 148 — I would like to discuss whether medication is appropriate.",
+        target:
+          "Votre bilan lipidique montre un LDL à 148 — j'aimerais discuter si un traitement médicamenteux est approprié.",
+      },
+      {
+        en: "Do you smoke, drink alcohol regularly, or use any recreational substances?",
+        target:
+          "Fumez-vous, buvez-vous de l'alcool régulièrement ou consommez-vous des substances récréatives ?",
+      },
+      {
+        en: "Your blood pressure today is 134 over 86 — slightly above the target range.",
+        target:
+          "Votre tension artérielle aujourd'hui est de 134 sur 86 — légèrement au-dessus de la plage cible.",
+      },
+      {
+        en: "I want to check your thyroid function as well, since you mentioned fatigue and some weight gain.",
+        target:
+          "Je souhaite également vérifier votre fonction thyroïdienne, car vous avez mentionné de la fatigue et une légère prise de poids.",
+      },
+      {
+        en: "Your influenza and pneumococcal vaccinations are both up to date — well done.",
+        target:
+          "Vos vaccinations contre la grippe et le pneumocoque sont toutes deux à jour — très bien.",
+      },
+      {
+        en: "I also recommend a bone density scan now that you are approaching menopause.",
+        target:
+          "Je recommande également une ostéodensitométrie maintenant que vous approchez de la ménopause.",
+      },
+      {
+        en: "We will go over all the lab results at your follow-up in two weeks.",
+        target:
+          "Nous reverrons tous les résultats de laboratoire lors de votre consultation de suivi dans deux semaines.",
+      },
     ],
   },
 
@@ -65,15 +137,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Good morning, Mr. Weber. Welcome to our practice. I am Dr. Schneider, your new primary care physician.", target: "Guten Morgen, Herr Weber. Herzlich willkommen in unserer Praxis. Ich bin Dr. Schneider, Ihr neuer Hausarzt." },
-      { en: "To get started, I would like to take a thorough medical history — please tell me about any chronic illnesses you have.", target: "Zunächst möchte ich eine ausführliche Anamnese erheben — bitte berichten Sie mir von chronischen Erkrankungen, die Sie haben." },
-      { en: "Are you currently taking any prescription medications, supplements, or over-the-counter drugs?", target: "Nehmen Sie derzeit verschreibungspflichtige Medikamente, Nahrungsergänzungsmittel oder rezeptfreie Arzneimittel ein?" },
-      { en: "Do you have any known allergies to medications, and if so, what reaction did you experience?", target: "Haben Sie bekannte Medikamentenallergien, und wenn ja, welche Reaktion haben Sie dabei erlebt?" },
-      { en: "Your previous records indicate you had a myocardial infarction five years ago — how has your cardiac follow-up been since then?", target: "Ihre früheren Unterlagen zeigen, dass Sie vor fünf Jahren einen Myokardinfarkt erlitten haben — wie verlief Ihre kardiologische Nachsorge seitdem?" },
-      { en: "I will perform a complete physical examination today, including listening to your heart and lungs.", target: "Ich werde heute eine vollständige körperliche Untersuchung durchführen, einschließlich der Auskultation von Herz und Lunge." },
-      { en: "Your body mass index is 29 — we should discuss strategies for weight management and its impact on your cardiovascular risk.", target: "Ihr Body-Mass-Index beträgt 29 — wir sollten Strategien zur Gewichtskontrolle und deren Auswirkungen auf Ihr kardiovaskuläres Risiko besprechen." },
-      { en: "I will order a comprehensive metabolic panel, a lipid panel, and a complete blood count.", target: "Ich werde ein umfassendes Stoffwechselpanel, ein Lipidprofil und ein großes Blutbild veranlassen." },
-      { en: "Please make a follow-up appointment for two weeks so we can review all the laboratory results together.", target: "Bitte vereinbaren Sie einen Folgetermin in zwei Wochen, damit wir alle Laborergebnisse gemeinsam besprechen können." },
+      {
+        en: "Good morning, Mr. Weber. Welcome to our practice. I am Dr. Schneider, your new primary care physician.",
+        target:
+          "Guten Morgen, Herr Weber. Herzlich willkommen in unserer Praxis. Ich bin Dr. Schneider, Ihr neuer Hausarzt.",
+      },
+      {
+        en: "To get started, I would like to take a thorough medical history — please tell me about any chronic illnesses you have.",
+        target:
+          "Zunächst möchte ich eine ausführliche Anamnese erheben — bitte berichten Sie mir von chronischen Erkrankungen, die Sie haben.",
+      },
+      {
+        en: "Are you currently taking any prescription medications, supplements, or over-the-counter drugs?",
+        target:
+          "Nehmen Sie derzeit verschreibungspflichtige Medikamente, Nahrungsergänzungsmittel oder rezeptfreie Arzneimittel ein?",
+      },
+      {
+        en: "Do you have any known allergies to medications, and if so, what reaction did you experience?",
+        target:
+          "Haben Sie bekannte Medikamentenallergien, und wenn ja, welche Reaktion haben Sie dabei erlebt?",
+      },
+      {
+        en: "Your previous records indicate you had a myocardial infarction five years ago — how has your cardiac follow-up been since then?",
+        target:
+          "Ihre früheren Unterlagen zeigen, dass Sie vor fünf Jahren einen Myokardinfarkt erlitten haben — wie verlief Ihre kardiologische Nachsorge seitdem?",
+      },
+      {
+        en: "I will perform a complete physical examination today, including listening to your heart and lungs.",
+        target:
+          "Ich werde heute eine vollständige körperliche Untersuchung durchführen, einschließlich der Auskultation von Herz und Lunge.",
+      },
+      {
+        en: "Your body mass index is 29 — we should discuss strategies for weight management and its impact on your cardiovascular risk.",
+        target:
+          "Ihr Body-Mass-Index beträgt 29 — wir sollten Strategien zur Gewichtskontrolle und deren Auswirkungen auf Ihr kardiovaskuläres Risiko besprechen.",
+      },
+      {
+        en: "I will order a comprehensive metabolic panel, a lipid panel, and a complete blood count.",
+        target:
+          "Ich werde ein umfassendes Stoffwechselpanel, ein Lipidprofil und ein großes Blutbild veranlassen.",
+      },
+      {
+        en: "Please make a follow-up appointment for two weeks so we can review all the laboratory results together.",
+        target:
+          "Bitte vereinbaren Sie einen Folgetermin in zwei Wochen, damit wir alle Laborergebnisse gemeinsam besprechen können.",
+      },
     ],
   },
 
@@ -89,15 +197,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Ferretti, I have measured your blood pressure three times today and it is consistently above 150 over 95.", target: "Signor Ferretti, ho misurato la pressione tre volte oggi e risulta costantemente superiore a 150 su 95." },
-      { en: "This falls into the category of stage-two hypertension, and I want to discuss a management plan with you.", target: "Questo rientra nella categoria dell'ipertensione di secondo stadio e vorrei discutere con lei un piano terapeutico." },
-      { en: "Before starting medication, I recommend a 30-day trial of dietary changes and increased physical activity.", target: "Prima di iniziare i farmaci, raccomando un periodo di 30 giorni con modifiche alla dieta e aumento dell'attività fisica." },
-      { en: "Reducing your sodium intake to less than 2,000 milligrams per day is one of the most effective non-pharmacological interventions.", target: "Ridurre l'apporto di sodio a meno di 2.000 milligrammi al giorno è uno degli interventi non farmacologici più efficaci." },
-      { en: "The DASH diet — rich in fruits, vegetables, and low-fat dairy — has been shown to lower systolic pressure by up to 11 points.", target: "La dieta DASH — ricca di frutta, verdura e latticini magri — ha dimostrato di ridurre la pressione sistolica fino a 11 punti." },
-      { en: "I am also prescribing a home blood pressure monitor so you can record readings every morning before eating.", target: "Le prescrivo anche un misuratore di pressione domiciliare, così potrà registrare i valori ogni mattina prima di mangiare." },
-      { en: "If your pressure does not improve in one month, we will start you on an ACE inhibitor.", target: "Se la pressione non migliorerà entro un mese, inizieremo un trattamento con un ACE-inibitore." },
-      { en: "Uncontrolled hypertension increases the risk of stroke, kidney disease, and heart failure significantly.", target: "L'ipertensione non controllata aumenta significativamente il rischio di ictus, malattia renale e insufficienza cardiaca." },
-      { en: "Do you have any family history of cardiovascular disease or premature stroke?", target: "Ha una storia familiare di malattia cardiovascolare o ictus precoce?" },
+      {
+        en: "Mr. Ferretti, I have measured your blood pressure three times today and it is consistently above 150 over 95.",
+        target:
+          "Signor Ferretti, ho misurato la pressione tre volte oggi e risulta costantemente superiore a 150 su 95.",
+      },
+      {
+        en: "This falls into the category of stage-two hypertension, and I want to discuss a management plan with you.",
+        target:
+          "Questo rientra nella categoria dell'ipertensione di secondo stadio e vorrei discutere con lei un piano terapeutico.",
+      },
+      {
+        en: "Before starting medication, I recommend a 30-day trial of dietary changes and increased physical activity.",
+        target:
+          "Prima di iniziare i farmaci, raccomando un periodo di 30 giorni con modifiche alla dieta e aumento dell'attività fisica.",
+      },
+      {
+        en: "Reducing your sodium intake to less than 2,000 milligrams per day is one of the most effective non-pharmacological interventions.",
+        target:
+          "Ridurre l'apporto di sodio a meno di 2.000 milligrammi al giorno è uno degli interventi non farmacologici più efficaci.",
+      },
+      {
+        en: "The DASH diet — rich in fruits, vegetables, and low-fat dairy — has been shown to lower systolic pressure by up to 11 points.",
+        target:
+          "La dieta DASH — ricca di frutta, verdura e latticini magri — ha dimostrato di ridurre la pressione sistolica fino a 11 punti.",
+      },
+      {
+        en: "I am also prescribing a home blood pressure monitor so you can record readings every morning before eating.",
+        target:
+          "Le prescrivo anche un misuratore di pressione domiciliare, così potrà registrare i valori ogni mattina prima di mangiare.",
+      },
+      {
+        en: "If your pressure does not improve in one month, we will start you on an ACE inhibitor.",
+        target:
+          "Se la pressione non migliorerà entro un mese, inizieremo un trattamento con un ACE-inibitore.",
+      },
+      {
+        en: "Uncontrolled hypertension increases the risk of stroke, kidney disease, and heart failure significantly.",
+        target:
+          "L'ipertensione non controllata aumenta significativamente il rischio di ictus, malattia renale e insufficienza cardiaca.",
+      },
+      {
+        en: "Do you have any family history of cardiovascular disease or premature stroke?",
+        target: "Ha una storia familiare di malattia cardiovascolare o ictus precoce?",
+      },
     ],
   },
 
@@ -113,15 +256,43 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Yamamoto, your recent lab results show elevated liver enzymes that require further evaluation.", target: "山本さん、最近の血液検査で肝酵素の上昇が認められ、さらなる精査が必要です。" },
-      { en: "I am referring you to a gastroenterologist who specializes in liver diseases.", target: "肝疾患を専門とする消化器内科医にご紹介いたします。" },
-      { en: "The referral letter outlines your current medications and the abnormal findings from your blood work.", target: "紹介状には現在の投薬内容と血液検査の異常所見が記載されています。" },
-      { en: "Please bring your medication list and any prior imaging studies to the specialist appointment.", target: "専門医の受診には、お薬の一覧と過去の画像検査の結果をお持ちください。" },
-      { en: "The specialist will likely order an abdominal ultrasound to assess your liver and bile ducts.", target: "専門医はおそらく、肝臓と胆管を評価するための腹部超音波検査を指示するでしょう。" },
-      { en: "In the meantime, I recommend avoiding alcohol completely and reviewing any herbal supplements you may be taking.", target: "それまでの間、アルコールを完全に控え、服用しているハーブサプリメントを見直すことをお勧めします。" },
-      { en: "Do you have any symptoms such as jaundice, dark urine, or abdominal pain on the right side?", target: "黄疸、濃い色の尿、または右側の腹痛などの症状はありますか？" },
-      { en: "Please return to our clinic within two weeks of your specialist visit to discuss the findings together.", target: "専門医受診後2週間以内に当クリニックに戻り、所見を一緒に確認しましょう。" },
-      { en: "I have also updated your electronic health record so that the specialist can access your complete medical history.", target: "専門医が完全な病歴にアクセスできるよう、電子カルテも更新しました。" },
+      {
+        en: "Mr. Yamamoto, your recent lab results show elevated liver enzymes that require further evaluation.",
+        target: "山本さん、最近の血液検査で肝酵素の上昇が認められ、さらなる精査が必要です。",
+      },
+      {
+        en: "I am referring you to a gastroenterologist who specializes in liver diseases.",
+        target: "肝疾患を専門とする消化器内科医にご紹介いたします。",
+      },
+      {
+        en: "The referral letter outlines your current medications and the abnormal findings from your blood work.",
+        target: "紹介状には現在の投薬内容と血液検査の異常所見が記載されています。",
+      },
+      {
+        en: "Please bring your medication list and any prior imaging studies to the specialist appointment.",
+        target: "専門医の受診には、お薬の一覧と過去の画像検査の結果をお持ちください。",
+      },
+      {
+        en: "The specialist will likely order an abdominal ultrasound to assess your liver and bile ducts.",
+        target: "専門医はおそらく、肝臓と胆管を評価するための腹部超音波検査を指示するでしょう。",
+      },
+      {
+        en: "In the meantime, I recommend avoiding alcohol completely and reviewing any herbal supplements you may be taking.",
+        target:
+          "それまでの間、アルコールを完全に控え、服用しているハーブサプリメントを見直すことをお勧めします。",
+      },
+      {
+        en: "Do you have any symptoms such as jaundice, dark urine, or abdominal pain on the right side?",
+        target: "黄疸、濃い色の尿、または右側の腹痛などの症状はありますか？",
+      },
+      {
+        en: "Please return to our clinic within two weeks of your specialist visit to discuss the findings together.",
+        target: "専門医受診後2週間以内に当クリニックに戻り、所見を一緒に確認しましょう。",
+      },
+      {
+        en: "I have also updated your electronic health record so that the specialist can access your complete medical history.",
+        target: "専門医が完全な病歴にアクセスできるよう、電子カルテも更新しました。",
+      },
     ],
   },
 
@@ -137,15 +308,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mrs. Oliveira, I am going to prescribe a new medication for your thyroid called levothyroxine.", target: "Senhora Oliveira, vou prescrever um novo medicamento para a sua tireoide chamado levotiroxina." },
-      { en: "You should take this tablet every morning on an empty stomach, at least 30 minutes before breakfast.", target: "Você deve tomar este comprimido todas as manhãs em jejum, pelo menos 30 minutos antes do café da manhã." },
-      { en: "Common side effects include palpitations, sweating, and restlessness if the dose is too high.", target: "Os efeitos colaterais comuns incluem palpitações, sudorese e agitação se a dose estiver muito alta." },
-      { en: "We will recheck your TSH and free T4 levels in six weeks to confirm the dose is correct.", target: "Verificaremos novamente seus níveis de TSH e T4 livre em seis semanas para confirmar se a dose está correta." },
-      { en: "Do not take calcium supplements, antacids, or iron tablets within four hours of your levothyroxine dose.", target: "Não tome suplementos de cálcio, antiácidos ou comprimidos de ferro dentro de quatro horas da dose de levotiroxina." },
-      { en: "Your current list of medications includes a statin and a blood pressure pill — there are no interactions to worry about.", target: "Sua lista atual de medicamentos inclui uma estatina e um comprimido para pressão — não há interações preocupantes." },
-      { en: "Hypothyroidism can cause fatigue, weight gain, cold intolerance, and constipation — many of these should improve with treatment.", target: "O hipotireoidismo pode causar fadiga, ganho de peso, intolerância ao frio e constipação — muitos desses sintomas devem melhorar com o tratamento." },
-      { en: "Please bring your medication bottles to every visit so we can review them together.", target: "Por favor, traga seus frascos de medicamentos a cada consulta para que possamos revisá-los juntos." },
-      { en: "If you miss a dose, take it as soon as you remember — but skip it if it is almost time for the next one.", target: "Se você perder uma dose, tome-a assim que se lembrar — mas pule se já for quase hora da próxima." },
+      {
+        en: "Mrs. Oliveira, I am going to prescribe a new medication for your thyroid called levothyroxine.",
+        target:
+          "Senhora Oliveira, vou prescrever um novo medicamento para a sua tireoide chamado levotiroxina.",
+      },
+      {
+        en: "You should take this tablet every morning on an empty stomach, at least 30 minutes before breakfast.",
+        target:
+          "Você deve tomar este comprimido todas as manhãs em jejum, pelo menos 30 minutos antes do café da manhã.",
+      },
+      {
+        en: "Common side effects include palpitations, sweating, and restlessness if the dose is too high.",
+        target:
+          "Os efeitos colaterais comuns incluem palpitações, sudorese e agitação se a dose estiver muito alta.",
+      },
+      {
+        en: "We will recheck your TSH and free T4 levels in six weeks to confirm the dose is correct.",
+        target:
+          "Verificaremos novamente seus níveis de TSH e T4 livre em seis semanas para confirmar se a dose está correta.",
+      },
+      {
+        en: "Do not take calcium supplements, antacids, or iron tablets within four hours of your levothyroxine dose.",
+        target:
+          "Não tome suplementos de cálcio, antiácidos ou comprimidos de ferro dentro de quatro horas da dose de levotiroxina.",
+      },
+      {
+        en: "Your current list of medications includes a statin and a blood pressure pill — there are no interactions to worry about.",
+        target:
+          "Sua lista atual de medicamentos inclui uma estatina e um comprimido para pressão — não há interações preocupantes.",
+      },
+      {
+        en: "Hypothyroidism can cause fatigue, weight gain, cold intolerance, and constipation — many of these should improve with treatment.",
+        target:
+          "O hipotireoidismo pode causar fadiga, ganho de peso, intolerância ao frio e constipação — muitos desses sintomas devem melhorar com o tratamento.",
+      },
+      {
+        en: "Please bring your medication bottles to every visit so we can review them together.",
+        target:
+          "Por favor, traga seus frascos de medicamentos a cada consulta para que possamos revisá-los juntos.",
+      },
+      {
+        en: "If you miss a dose, take it as soon as you remember — but skip it if it is almost time for the next one.",
+        target:
+          "Se você perder uma dose, tome-a assim que se lembrar — mas pule se já for quase hora da próxima.",
+      },
     ],
   },
 
@@ -163,15 +370,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Good morning, señor López. I have your nuclear stress test results here and I want to walk you through them.", target: "Buenos días, señor López. Tengo aquí los resultados de su prueba de estrés nuclear y quiero explicárselos." },
-      { en: "The test showed a region of reduced blood flow to the lower wall of your heart during exercise.", target: "La prueba mostró una zona de flujo sanguíneo reducido en la pared inferior de su corazón durante el ejercicio." },
-      { en: "This pattern is consistent with significant coronary artery disease involving the right coronary artery.", target: "Este patrón es compatible con enfermedad coronaria significativa que involucra la arteria coronaria derecha." },
-      { en: "I am recommending a cardiac catheterization so we can visualize the arteries directly and determine the degree of stenosis.", target: "Recomiendo realizar un cateterismo cardíaco para visualizar las arterias directamente y determinar el grado de estenosis." },
-      { en: "During the catheterization, if we find a significant blockage, we may place a coronary stent in the same procedure.", target: "Durante el cateterismo, si encontramos una obstrucción significativa, podríamos colocar un stent coronario en el mismo procedimiento." },
-      { en: "You will need to stop taking blood thinners 48 hours before the procedure — I will give you a specific schedule.", target: "Deberá dejar de tomar los anticoagulantes 48 horas antes del procedimiento — le daré un horario específico." },
-      { en: "The catheterization is performed under local anesthesia and mild sedation; most patients go home the same day.", target: "El cateterismo se realiza con anestesia local y sedación leve; la mayoría de los pacientes se van a casa el mismo día." },
-      { en: "In the meantime, I am increasing your aspirin dose and adding a nitrate to manage your anginal symptoms.", target: "Mientras tanto, aumentaré su dosis de aspirina y añadiré un nitrato para controlar sus síntomas de angina." },
-      { en: "If you experience chest pain at rest or with minimal exertion before the procedure, go to the emergency department immediately.", target: "Si tiene dolor en el pecho en reposo o con mínimo esfuerzo antes del procedimiento, vaya a urgencias de inmediato." },
+      {
+        en: "Good morning, señor López. I have your nuclear stress test results here and I want to walk you through them.",
+        target:
+          "Buenos días, señor López. Tengo aquí los resultados de su prueba de estrés nuclear y quiero explicárselos.",
+      },
+      {
+        en: "The test showed a region of reduced blood flow to the lower wall of your heart during exercise.",
+        target:
+          "La prueba mostró una zona de flujo sanguíneo reducido en la pared inferior de su corazón durante el ejercicio.",
+      },
+      {
+        en: "This pattern is consistent with significant coronary artery disease involving the right coronary artery.",
+        target:
+          "Este patrón es compatible con enfermedad coronaria significativa que involucra la arteria coronaria derecha.",
+      },
+      {
+        en: "I am recommending a cardiac catheterization so we can visualize the arteries directly and determine the degree of stenosis.",
+        target:
+          "Recomiendo realizar un cateterismo cardíaco para visualizar las arterias directamente y determinar el grado de estenosis.",
+      },
+      {
+        en: "During the catheterization, if we find a significant blockage, we may place a coronary stent in the same procedure.",
+        target:
+          "Durante el cateterismo, si encontramos una obstrucción significativa, podríamos colocar un stent coronario en el mismo procedimiento.",
+      },
+      {
+        en: "You will need to stop taking blood thinners 48 hours before the procedure — I will give you a specific schedule.",
+        target:
+          "Deberá dejar de tomar los anticoagulantes 48 horas antes del procedimiento — le daré un horario específico.",
+      },
+      {
+        en: "The catheterization is performed under local anesthesia and mild sedation; most patients go home the same day.",
+        target:
+          "El cateterismo se realiza con anestesia local y sedación leve; la mayoría de los pacientes se van a casa el mismo día.",
+      },
+      {
+        en: "In the meantime, I am increasing your aspirin dose and adding a nitrate to manage your anginal symptoms.",
+        target:
+          "Mientras tanto, aumentaré su dosis de aspirina y añadiré un nitrato para controlar sus síntomas de angina.",
+      },
+      {
+        en: "If you experience chest pain at rest or with minimal exertion before the procedure, go to the emergency department immediately.",
+        target:
+          "Si tiene dolor en el pecho en reposo o con mínimo esfuerzo antes del procedimiento, vaya a urgencias de inmediato.",
+      },
     ],
   },
 
@@ -187,15 +430,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Mr. Dubois, your echocardiogram confirms a reduced ejection fraction of 35 percent — this is what we call heart failure with reduced ejection fraction.", target: "Monsieur Dubois, votre échocardiogramme confirme une fraction d'éjection abaissée à 35 % — c'est ce que l'on appelle une insuffisance cardiaque à fraction d'éjection réduite." },
-      { en: "We are going to start you on four guideline-directed medications: an ACE inhibitor, a beta-blocker, a mineralocorticoid antagonist, and a diuretic.", target: "Nous allons vous prescrire quatre médicaments conformes aux recommandations : un inhibiteur de l'enzyme de conversion, un bêtabloquant, un antagoniste des minéralocorticoïdes et un diurétique." },
-      { en: "Fluid restriction to 1.5 liters per day is essential — this includes all beverages including soup and ice cream.", target: "La restriction hydrique à 1,5 litre par jour est essentielle — cela comprend toutes les boissons, y compris les soupes et les glaces." },
-      { en: "Weigh yourself every morning before eating and before taking your diuretic.", target: "Pesez-vous chaque matin avant de manger et avant de prendre votre diurétique." },
-      { en: "If your weight increases by more than two kilograms in 48 hours, call us immediately — this means fluid is accumulating.", target: "Si votre poids augmente de plus de deux kilogrammes en 48 heures, appelez-nous immédiatement — cela signifie que des liquides s'accumulent." },
-      { en: "Sodium restriction to less than 2,000 milligrams per day will help prevent fluid retention.", target: "La restriction sodée à moins de 2 000 milligrammes par jour aidera à prévenir la rétention hydrique." },
-      { en: "Your BNP level today is 980 picograms per milliliter, which reflects the degree of cardiac wall stress.", target: "Votre taux de BNP aujourd'hui est de 980 picogrammes par millilitre, ce qui reflète le degré de contrainte de la paroi cardiaque." },
-      { en: "We will titrate the beta-blocker slowly over several weeks — do not stop it abruptly under any circumstances.", target: "Nous allons titrer le bêtabloquant lentement sur plusieurs semaines — ne l'arrêtez jamais brusquement en aucun cas." },
-      { en: "I want to see you in clinic every two weeks until your medications are fully titrated.", target: "Je souhaite vous voir en consultation toutes les deux semaines jusqu'à ce que vos médicaments soient complètement titrés." },
+      {
+        en: "Mr. Dubois, your echocardiogram confirms a reduced ejection fraction of 35 percent — this is what we call heart failure with reduced ejection fraction.",
+        target:
+          "Monsieur Dubois, votre échocardiogramme confirme une fraction d'éjection abaissée à 35 % — c'est ce que l'on appelle une insuffisance cardiaque à fraction d'éjection réduite.",
+      },
+      {
+        en: "We are going to start you on four guideline-directed medications: an ACE inhibitor, a beta-blocker, a mineralocorticoid antagonist, and a diuretic.",
+        target:
+          "Nous allons vous prescrire quatre médicaments conformes aux recommandations : un inhibiteur de l'enzyme de conversion, un bêtabloquant, un antagoniste des minéralocorticoïdes et un diurétique.",
+      },
+      {
+        en: "Fluid restriction to 1.5 liters per day is essential — this includes all beverages including soup and ice cream.",
+        target:
+          "La restriction hydrique à 1,5 litre par jour est essentielle — cela comprend toutes les boissons, y compris les soupes et les glaces.",
+      },
+      {
+        en: "Weigh yourself every morning before eating and before taking your diuretic.",
+        target: "Pesez-vous chaque matin avant de manger et avant de prendre votre diurétique.",
+      },
+      {
+        en: "If your weight increases by more than two kilograms in 48 hours, call us immediately — this means fluid is accumulating.",
+        target:
+          "Si votre poids augmente de plus de deux kilogrammes en 48 heures, appelez-nous immédiatement — cela signifie que des liquides s'accumulent.",
+      },
+      {
+        en: "Sodium restriction to less than 2,000 milligrams per day will help prevent fluid retention.",
+        target:
+          "La restriction sodée à moins de 2 000 milligrammes par jour aidera à prévenir la rétention hydrique.",
+      },
+      {
+        en: "Your BNP level today is 980 picograms per milliliter, which reflects the degree of cardiac wall stress.",
+        target:
+          "Votre taux de BNP aujourd'hui est de 980 picogrammes par millilitre, ce qui reflète le degré de contrainte de la paroi cardiaque.",
+      },
+      {
+        en: "We will titrate the beta-blocker slowly over several weeks — do not stop it abruptly under any circumstances.",
+        target:
+          "Nous allons titrer le bêtabloquant lentement sur plusieurs semaines — ne l'arrêtez jamais brusquement en aucun cas.",
+      },
+      {
+        en: "I want to see you in clinic every two weeks until your medications are fully titrated.",
+        target:
+          "Je souhaite vous voir en consultation toutes les deux semaines jusqu'à ce que vos médicaments soient complètement titrés.",
+      },
     ],
   },
 
@@ -211,15 +489,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Mr. Hoffmann, your 12-lead ECG shows a complete atrioventricular block, which means the electrical signal from the upper to the lower chambers is interrupted.", target: "Herr Hoffmann, Ihr 12-Kanal-EKG zeigt einen totalen atrioventrikulären Block, was bedeutet, dass das elektrische Signal von den Vorhöfen zu den Kammern unterbrochen ist." },
-      { en: "This finding explains the episodes of dizziness and near-fainting you reported over the past month.", target: "Dieser Befund erklärt die Schwindelattacken und Beinahohnmachten, die Sie im vergangenen Monat berichtet haben." },
-      { en: "I am recommending implantation of a permanent pacemaker, which will regulate your heart rate reliably.", target: "Ich empfehle die Implantation eines permanenten Herzschrittmachers, der Ihren Herzrhythmus zuverlässig regulieren wird." },
-      { en: "The procedure is performed under local anesthesia and takes approximately 90 minutes.", target: "Der Eingriff wird unter Lokalanästhesie durchgeführt und dauert ungefähr 90 Minuten." },
-      { en: "A thin lead is threaded through a vein beneath your collarbone and attached to the inner wall of the right ventricle.", target: "Eine dünne Elektrode wird durch eine Vene unterhalb des Schlüsselbeins geführt und an der Innenwand der rechten Herzkammer befestigt." },
-      { en: "The generator, which is about the size of a matchbox, is placed under the skin below the left shoulder.", target: "Der Generator, der etwa die Größe einer Streichholzschachtel hat, wird unter der Haut unterhalb der linken Schulter platziert." },
-      { en: "After implantation, you must avoid strong electromagnetic fields such as MRI machines unless the device is MRI-compatible.", target: "Nach der Implantation müssen Sie starke elektromagnetische Felder wie MRT-Geräte vermeiden, sofern das Gerät nicht MRT-kompatibel ist." },
-      { en: "The battery typically lasts eight to twelve years, after which only the generator — not the leads — needs to be replaced.", target: "Die Batterie hält in der Regel acht bis zwölf Jahre, danach muss nur der Generator — nicht die Elektroden — ausgetauscht werden." },
-      { en: "You will receive a pacemaker identification card that you must carry at all times and present at airport security.", target: "Sie erhalten einen Herzschrittmacherausweis, den Sie stets bei sich tragen und an Sicherheitskontrollen vorzeigen müssen." },
+      {
+        en: "Mr. Hoffmann, your 12-lead ECG shows a complete atrioventricular block, which means the electrical signal from the upper to the lower chambers is interrupted.",
+        target:
+          "Herr Hoffmann, Ihr 12-Kanal-EKG zeigt einen totalen atrioventrikulären Block, was bedeutet, dass das elektrische Signal von den Vorhöfen zu den Kammern unterbrochen ist.",
+      },
+      {
+        en: "This finding explains the episodes of dizziness and near-fainting you reported over the past month.",
+        target:
+          "Dieser Befund erklärt die Schwindelattacken und Beinahohnmachten, die Sie im vergangenen Monat berichtet haben.",
+      },
+      {
+        en: "I am recommending implantation of a permanent pacemaker, which will regulate your heart rate reliably.",
+        target:
+          "Ich empfehle die Implantation eines permanenten Herzschrittmachers, der Ihren Herzrhythmus zuverlässig regulieren wird.",
+      },
+      {
+        en: "The procedure is performed under local anesthesia and takes approximately 90 minutes.",
+        target:
+          "Der Eingriff wird unter Lokalanästhesie durchgeführt und dauert ungefähr 90 Minuten.",
+      },
+      {
+        en: "A thin lead is threaded through a vein beneath your collarbone and attached to the inner wall of the right ventricle.",
+        target:
+          "Eine dünne Elektrode wird durch eine Vene unterhalb des Schlüsselbeins geführt und an der Innenwand der rechten Herzkammer befestigt.",
+      },
+      {
+        en: "The generator, which is about the size of a matchbox, is placed under the skin below the left shoulder.",
+        target:
+          "Der Generator, der etwa die Größe einer Streichholzschachtel hat, wird unter der Haut unterhalb der linken Schulter platziert.",
+      },
+      {
+        en: "After implantation, you must avoid strong electromagnetic fields such as MRI machines unless the device is MRI-compatible.",
+        target:
+          "Nach der Implantation müssen Sie starke elektromagnetische Felder wie MRT-Geräte vermeiden, sofern das Gerät nicht MRT-kompatibel ist.",
+      },
+      {
+        en: "The battery typically lasts eight to twelve years, after which only the generator — not the leads — needs to be replaced.",
+        target:
+          "Die Batterie hält in der Regel acht bis zwölf Jahre, danach muss nur der Generator — nicht die Elektroden — ausgetauscht werden.",
+      },
+      {
+        en: "You will receive a pacemaker identification card that you must carry at all times and present at airport security.",
+        target:
+          "Sie erhalten einen Herzschrittmacherausweis, den Sie stets bei sich tragen und an Sicherheitskontrollen vorzeigen müssen.",
+      },
     ],
   },
 
@@ -235,15 +549,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Mrs. Conti, your lipid panel shows a total cholesterol of 268 and an LDL of 182 milligrams per deciliter.", target: "Signora Conti, il suo profilo lipidico mostra un colesterolo totale di 268 e un LDL di 182 milligrammi per decilitro." },
-      { en: "Given your age, your family history of premature heart disease, and your borderline blood pressure, your 10-year cardiovascular risk is approximately 18 percent.", target: "Dato il suo età, la storia familiare di cardiopatia precoce e la sua pressione borderline, il rischio cardiovascolare a 10 anni è di circa il 18 percento." },
-      { en: "I recommend initiating high-intensity statin therapy with rosuvastatin 20 milligrams at bedtime.", target: "Raccomando di iniziare una terapia con statine ad alta intensità con rosuvastatina 20 milligrammi alla sera." },
-      { en: "Statins are among the most evidence-based medications we have for reducing heart attack and stroke risk.", target: "Le statine sono tra i farmaci più supportati da evidenze per ridurre il rischio di infarto e ictus." },
-      { en: "The most common side effect is muscle discomfort — if you notice unexplained muscle pain or weakness, contact us promptly.", target: "L'effetto collaterale più comune è il disagio muscolare — se nota dolori o debolezza muscolari inspiegabili, la contatti prontamente." },
-      { en: "We will check a fasting lipid panel and a liver enzyme test in six weeks to confirm the response.", target: "Eseguiremo un profilo lipidico a digiuno e un test degli enzimi epatici tra sei settimane per confermare la risposta." },
-      { en: "Our target is an LDL below 70 milligrams per deciliter given your elevated cardiovascular risk category.", target: "Il nostro obiettivo è un LDL inferiore a 70 milligrammi per decilitro, dato il suo elevato rischio cardiovascolare." },
-      { en: "Dietary changes alone — reducing saturated fat and increasing soluble fiber — can lower LDL by 10 to 20 percent.", target: "Le sole modifiche dietetiche — riduzione dei grassi saturi e aumento delle fibre solubili — possono abbassare il colesterolo LDL del 10-20 percento." },
-      { en: "Do not take the statin with grapefruit juice, as it can significantly increase the blood level of the medication.", target: "Non prenda la statina con succo di pompelmo, poiché può aumentare significativamente il livello ematico del farmaco." },
+      {
+        en: "Mrs. Conti, your lipid panel shows a total cholesterol of 268 and an LDL of 182 milligrams per deciliter.",
+        target:
+          "Signora Conti, il suo profilo lipidico mostra un colesterolo totale di 268 e un LDL di 182 milligrammi per decilitro.",
+      },
+      {
+        en: "Given your age, your family history of premature heart disease, and your borderline blood pressure, your 10-year cardiovascular risk is approximately 18 percent.",
+        target:
+          "Dato il suo età, la storia familiare di cardiopatia precoce e la sua pressione borderline, il rischio cardiovascolare a 10 anni è di circa il 18 percento.",
+      },
+      {
+        en: "I recommend initiating high-intensity statin therapy with rosuvastatin 20 milligrams at bedtime.",
+        target:
+          "Raccomando di iniziare una terapia con statine ad alta intensità con rosuvastatina 20 milligrammi alla sera.",
+      },
+      {
+        en: "Statins are among the most evidence-based medications we have for reducing heart attack and stroke risk.",
+        target:
+          "Le statine sono tra i farmaci più supportati da evidenze per ridurre il rischio di infarto e ictus.",
+      },
+      {
+        en: "The most common side effect is muscle discomfort — if you notice unexplained muscle pain or weakness, contact us promptly.",
+        target:
+          "L'effetto collaterale più comune è il disagio muscolare — se nota dolori o debolezza muscolari inspiegabili, la contatti prontamente.",
+      },
+      {
+        en: "We will check a fasting lipid panel and a liver enzyme test in six weeks to confirm the response.",
+        target:
+          "Eseguiremo un profilo lipidico a digiuno e un test degli enzimi epatici tra sei settimane per confermare la risposta.",
+      },
+      {
+        en: "Our target is an LDL below 70 milligrams per deciliter given your elevated cardiovascular risk category.",
+        target:
+          "Il nostro obiettivo è un LDL inferiore a 70 milligrammi per decilitro, dato il suo elevato rischio cardiovascolare.",
+      },
+      {
+        en: "Dietary changes alone — reducing saturated fat and increasing soluble fiber — can lower LDL by 10 to 20 percent.",
+        target:
+          "Le sole modifiche dietetiche — riduzione dei grassi saturi e aumento delle fibre solubili — possono abbassare il colesterolo LDL del 10-20 percento.",
+      },
+      {
+        en: "Do not take the statin with grapefruit juice, as it can significantly increase the blood level of the medication.",
+        target:
+          "Non prenda la statina con succo di pompelmo, poiché può aumentare significativamente il livello ematico del farmaco.",
+      },
     ],
   },
 
@@ -259,15 +609,46 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Tanaka, you mentioned that you experience chest tightness when climbing stairs or walking fast — let me ask you more about that.", target: "田中さん、階段を上ったり早歩きをすると胸が締め付けられると話されましたね。もう少し詳しく聞かせてください。" },
-      { en: "This type of chest pain that occurs with exertion and is relieved by rest is called stable angina.", target: "労作時に起こり、安静にすると和らぐこのタイプの胸痛は安定狭心症と呼ばれます。" },
-      { en: "Angina is caused by insufficient blood flow to the heart muscle when the heart's demand increases.", target: "狭心症は、心臓の需要が増加したときに心筋への血流が不足することで起こります。" },
-      { en: "I am prescribing sublingual nitroglycerin, which you should place under your tongue at the onset of chest pain.", target: "舌下ニトログリセリンを処方します。胸痛が起きた際には舌の下に置いてください。" },
-      { en: "If chest pain persists for more than 15 minutes despite two nitroglycerin tablets, call emergency services immediately.", target: "ニトログリセリンを2錠使用しても15分以上胸痛が続く場合は、すぐに救急車を呼んでください。" },
-      { en: "I will schedule a coronary CT angiography to evaluate the anatomy of your coronary arteries non-invasively.", target: "冠動脈の解剖学的評価のため、低侵襲で行える冠動脈CTアンギオグラフィーを予約します。" },
-      { en: "In the meantime, avoid strenuous physical activity and heavy lifting until we have the imaging results.", target: "画像結果が出るまでの間、激しい運動や重いものを持つことは避けてください。" },
-      { en: "Your risk factors include diabetes, hypertension, and a 20-pack-year smoking history — all of which accelerate coronary artery disease.", target: "あなたのリスク因子は糖尿病、高血圧、20パック年の喫煙歴で、これらはすべて冠動脈疾患を加速させます。" },
-      { en: "Quitting smoking is the single most effective intervention you can make for your cardiovascular health.", target: "禁煙は、心血管の健康のために最も効果的な単一の介入です。" },
+      {
+        en: "Mr. Tanaka, you mentioned that you experience chest tightness when climbing stairs or walking fast — let me ask you more about that.",
+        target:
+          "田中さん、階段を上ったり早歩きをすると胸が締め付けられると話されましたね。もう少し詳しく聞かせてください。",
+      },
+      {
+        en: "This type of chest pain that occurs with exertion and is relieved by rest is called stable angina.",
+        target: "労作時に起こり、安静にすると和らぐこのタイプの胸痛は安定狭心症と呼ばれます。",
+      },
+      {
+        en: "Angina is caused by insufficient blood flow to the heart muscle when the heart's demand increases.",
+        target: "狭心症は、心臓の需要が増加したときに心筋への血流が不足することで起こります。",
+      },
+      {
+        en: "I am prescribing sublingual nitroglycerin, which you should place under your tongue at the onset of chest pain.",
+        target: "舌下ニトログリセリンを処方します。胸痛が起きた際には舌の下に置いてください。",
+      },
+      {
+        en: "If chest pain persists for more than 15 minutes despite two nitroglycerin tablets, call emergency services immediately.",
+        target:
+          "ニトログリセリンを2錠使用しても15分以上胸痛が続く場合は、すぐに救急車を呼んでください。",
+      },
+      {
+        en: "I will schedule a coronary CT angiography to evaluate the anatomy of your coronary arteries non-invasively.",
+        target:
+          "冠動脈の解剖学的評価のため、低侵襲で行える冠動脈CTアンギオグラフィーを予約します。",
+      },
+      {
+        en: "In the meantime, avoid strenuous physical activity and heavy lifting until we have the imaging results.",
+        target: "画像結果が出るまでの間、激しい運動や重いものを持つことは避けてください。",
+      },
+      {
+        en: "Your risk factors include diabetes, hypertension, and a 20-pack-year smoking history — all of which accelerate coronary artery disease.",
+        target:
+          "あなたのリスク因子は糖尿病、高血圧、20パック年の喫煙歴で、これらはすべて冠動脈疾患を加速させます。",
+      },
+      {
+        en: "Quitting smoking is the single most effective intervention you can make for your cardiovascular health.",
+        target: "禁煙は、心血管の健康のために最も効果的な単一の介入です。",
+      },
     ],
   },
 
@@ -283,15 +664,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Santos, your blood pressure reading is 198 over 115. This requires immediate attention.", target: "Senhor Santos, sua pressão arterial está em 198 por 115. Isso requer atenção imediata." },
-      { en: "This is called hypertensive urgency — blood pressure this high puts you at risk for stroke and heart attack.", target: "Isso se chama urgência hipertensiva — uma pressão tão alta coloca você em risco de derrame e infarto." },
-      { en: "I want to give you an oral antihypertensive medication now and monitor you here in the clinic for two hours.", target: "Quero administrar agora um anti-hipertensivo oral e monitorá-lo aqui na clínica por duas horas." },
-      { en: "Have you been taking your blood pressure medications as prescribed, or have you missed any doses recently?", target: "Você tem tomado seus medicamentos para pressão conforme prescrito, ou perdeu alguma dose recentemente?" },
-      { en: "Stopping antihypertensive medications abruptly can cause rebound hypertension, which is what may have happened.", target: "Interromper medicamentos anti-hipertensivos abruptamente pode causar hipertensão de rebote, o que pode ter ocorrido." },
-      { en: "I also want to check a urine sample and an ECG to make sure there is no end-organ damage.", target: "Também quero verificar uma amostra de urina e um ECG para garantir que não há lesão em órgão-alvo." },
-      { en: "Do you have any headache, blurred vision, chest pain, or shortness of breath right now?", target: "Você tem alguma dor de cabeça, visão turva, dor no peito ou falta de ar agora?" },
-      { en: "Going forward, I want you to measure your blood pressure twice a day and log the readings in a diary.", target: "Daqui para frente, quero que você meça sua pressão duas vezes ao dia e registre as leituras em um diário." },
-      { en: "We may need to adjust your current medication regimen or add a second agent — we will decide based on how you respond today.", target: "Pode ser necessário ajustar seu regime medicamentoso atual ou adicionar um segundo agente — decidiremos com base na sua resposta hoje." },
+      {
+        en: "Mr. Santos, your blood pressure reading is 198 over 115. This requires immediate attention.",
+        target:
+          "Senhor Santos, sua pressão arterial está em 198 por 115. Isso requer atenção imediata.",
+      },
+      {
+        en: "This is called hypertensive urgency — blood pressure this high puts you at risk for stroke and heart attack.",
+        target:
+          "Isso se chama urgência hipertensiva — uma pressão tão alta coloca você em risco de derrame e infarto.",
+      },
+      {
+        en: "I want to give you an oral antihypertensive medication now and monitor you here in the clinic for two hours.",
+        target:
+          "Quero administrar agora um anti-hipertensivo oral e monitorá-lo aqui na clínica por duas horas.",
+      },
+      {
+        en: "Have you been taking your blood pressure medications as prescribed, or have you missed any doses recently?",
+        target:
+          "Você tem tomado seus medicamentos para pressão conforme prescrito, ou perdeu alguma dose recentemente?",
+      },
+      {
+        en: "Stopping antihypertensive medications abruptly can cause rebound hypertension, which is what may have happened.",
+        target:
+          "Interromper medicamentos anti-hipertensivos abruptamente pode causar hipertensão de rebote, o que pode ter ocorrido.",
+      },
+      {
+        en: "I also want to check a urine sample and an ECG to make sure there is no end-organ damage.",
+        target:
+          "Também quero verificar uma amostra de urina e um ECG para garantir que não há lesão em órgão-alvo.",
+      },
+      {
+        en: "Do you have any headache, blurred vision, chest pain, or shortness of breath right now?",
+        target: "Você tem alguma dor de cabeça, visão turva, dor no peito ou falta de ar agora?",
+      },
+      {
+        en: "Going forward, I want you to measure your blood pressure twice a day and log the readings in a diary.",
+        target:
+          "Daqui para frente, quero que você meça sua pressão duas vezes ao dia e registre as leituras em um diário.",
+      },
+      {
+        en: "We may need to adjust your current medication regimen or add a second agent — we will decide based on how you respond today.",
+        target:
+          "Pode ser necessário ajustar seu regime medicamentoso atual ou adicionar um segundo agente — decidiremos com base na sua resposta hoje.",
+      },
     ],
   },
 
@@ -309,15 +725,48 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good morning, señora Herrera. Today we are doing your 20-week anatomy ultrasound — this is one of the most important scans of your pregnancy.", target: "Buenos días, señora Herrera. Hoy hacemos su ultrasonido anatómico de las 20 semanas — este es uno de los estudios más importantes del embarazo." },
-      { en: "We will evaluate the baby's brain, heart, spine, kidneys, and limbs in detail.", target: "Evaluaremos en detalle el cerebro, corazón, columna vertebral, riñones y extremidades del bebé." },
-      { en: "The fetal heart rate is 152 beats per minute — that is perfectly normal.", target: "La frecuencia cardíaca fetal es de 152 latidos por minuto — eso es completamente normal." },
-      { en: "I can see four chambers in the fetal heart and the great vessels appear to be in the correct positions.", target: "Puedo ver cuatro cámaras en el corazón fetal y los grandes vasos parecen estar en las posiciones correctas." },
-      { en: "The placenta is anterior — it is located on the front wall of the uterus — which can make you feel fetal movements a bit later than usual.", target: "La placenta es anterior — está ubicada en la pared frontal del útero — lo que puede hacer que sienta los movimientos fetales un poco más tarde de lo usual." },
-      { en: "Amniotic fluid levels are normal at this gestational age.", target: "Los niveles de líquido amniótico son normales para esta edad gestacional." },
-      { en: "Would you like to know the sex of the baby today, or would you prefer to wait?", target: "¿Le gustaría saber el sexo del bebé hoy, o prefiere esperar?" },
-      { en: "Your cervical length measures 38 millimeters, which is reassuring and reduces the risk of preterm labor.", target: "La longitud cervical mide 38 milímetros, lo cual es tranquilizador y reduce el riesgo de parto prematuro." },
-      { en: "Everything looks excellent today — I will send the full report to your obstetrician by this afternoon.", target: "Todo se ve excelente hoy — enviaré el informe completo a su obstetra esta tarde." },
+      {
+        en: "Good morning, señora Herrera. Today we are doing your 20-week anatomy ultrasound — this is one of the most important scans of your pregnancy.",
+        target:
+          "Buenos días, señora Herrera. Hoy hacemos su ultrasonido anatómico de las 20 semanas — este es uno de los estudios más importantes del embarazo.",
+      },
+      {
+        en: "We will evaluate the baby's brain, heart, spine, kidneys, and limbs in detail.",
+        target:
+          "Evaluaremos en detalle el cerebro, corazón, columna vertebral, riñones y extremidades del bebé.",
+      },
+      {
+        en: "The fetal heart rate is 152 beats per minute — that is perfectly normal.",
+        target:
+          "La frecuencia cardíaca fetal es de 152 latidos por minuto — eso es completamente normal.",
+      },
+      {
+        en: "I can see four chambers in the fetal heart and the great vessels appear to be in the correct positions.",
+        target:
+          "Puedo ver cuatro cámaras en el corazón fetal y los grandes vasos parecen estar en las posiciones correctas.",
+      },
+      {
+        en: "The placenta is anterior — it is located on the front wall of the uterus — which can make you feel fetal movements a bit later than usual.",
+        target:
+          "La placenta es anterior — está ubicada en la pared frontal del útero — lo que puede hacer que sienta los movimientos fetales un poco más tarde de lo usual.",
+      },
+      {
+        en: "Amniotic fluid levels are normal at this gestational age.",
+        target: "Los niveles de líquido amniótico son normales para esta edad gestacional.",
+      },
+      {
+        en: "Would you like to know the sex of the baby today, or would you prefer to wait?",
+        target: "¿Le gustaría saber el sexo del bebé hoy, o prefiere esperar?",
+      },
+      {
+        en: "Your cervical length measures 38 millimeters, which is reassuring and reduces the risk of preterm labor.",
+        target:
+          "La longitud cervical mide 38 milímetros, lo cual es tranquilizador y reduce el riesgo de parto prematuro.",
+      },
+      {
+        en: "Everything looks excellent today — I will send the full report to your obstetrician by this afternoon.",
+        target: "Todo se ve excelente hoy — enviaré el informe completo a su obstetra esta tarde.",
+      },
     ],
   },
 
@@ -333,15 +782,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Welcome back, madame Moreau. It has been six weeks since your delivery — how are you feeling overall?", target: "Bienvenue, madame Moreau. Cela fait six semaines depuis votre accouchement — comment vous sentez-vous en général ?" },
-      { en: "I would like to do a pelvic examination today to check on your episiotomy scar and confirm that the uterus has returned to its normal size.", target: "Je souhaite effectuer un examen pelvien aujourd'hui pour vérifier votre cicatrice d'épisiotomie et confirmer que l'utérus a retrouvé sa taille normale." },
-      { en: "Are you experiencing any leaking of urine when you cough, sneeze, or exercise?", target: "Avez-vous des fuites urinaires lorsque vous toussez, éternuez ou faites de l'exercice ?" },
-      { en: "Some degree of urinary incontinence is common after vaginal delivery — pelvic floor rehabilitation can help significantly.", target: "Un certain degré d'incontinence urinaire est courant après un accouchement par voie basse — la rééducation périnéale peut aider considérablement." },
-      { en: "How is breastfeeding going? Are you experiencing any nipple soreness, engorgement, or signs of mastitis?", target: "Comment se passe l'allaitement ? Avez-vous des douleurs aux mamelons, des engorgements ou des signes de mastite ?" },
-      { en: "If you develop a red, swollen, painful area on one breast with fever, that is mastitis — start antibiotics promptly.", target: "Si vous développez une zone rouge, gonflée et douloureuse sur un sein avec de la fièvre, c'est une mastite — commencez les antibiotiques rapidement." },
-      { en: "We also need to talk about contraception — breastfeeding alone is not a reliable method of birth control.", target: "Nous devons également parler de contraception — l'allaitement seul n'est pas une méthode fiable de contrôle des naissances." },
-      { en: "A progesterone-only pill or a hormonal IUD are safe options while breastfeeding.", target: "Une pilule progestative seule ou un DIU hormonal sont des options sûres pendant l'allaitement." },
-      { en: "I also want to screen you for postpartum depression today using the Edinburgh scale — it only takes a few minutes.", target: "Je souhaite également vous dépister pour la dépression post-partum aujourd'hui à l'aide de l'échelle d'Édimbourg — cela ne prend que quelques minutes." },
+      {
+        en: "Welcome back, madame Moreau. It has been six weeks since your delivery — how are you feeling overall?",
+        target:
+          "Bienvenue, madame Moreau. Cela fait six semaines depuis votre accouchement — comment vous sentez-vous en général ?",
+      },
+      {
+        en: "I would like to do a pelvic examination today to check on your episiotomy scar and confirm that the uterus has returned to its normal size.",
+        target:
+          "Je souhaite effectuer un examen pelvien aujourd'hui pour vérifier votre cicatrice d'épisiotomie et confirmer que l'utérus a retrouvé sa taille normale.",
+      },
+      {
+        en: "Are you experiencing any leaking of urine when you cough, sneeze, or exercise?",
+        target:
+          "Avez-vous des fuites urinaires lorsque vous toussez, éternuez ou faites de l'exercice ?",
+      },
+      {
+        en: "Some degree of urinary incontinence is common after vaginal delivery — pelvic floor rehabilitation can help significantly.",
+        target:
+          "Un certain degré d'incontinence urinaire est courant après un accouchement par voie basse — la rééducation périnéale peut aider considérablement.",
+      },
+      {
+        en: "How is breastfeeding going? Are you experiencing any nipple soreness, engorgement, or signs of mastitis?",
+        target:
+          "Comment se passe l'allaitement ? Avez-vous des douleurs aux mamelons, des engorgements ou des signes de mastite ?",
+      },
+      {
+        en: "If you develop a red, swollen, painful area on one breast with fever, that is mastitis — start antibiotics promptly.",
+        target:
+          "Si vous développez une zone rouge, gonflée et douloureuse sur un sein avec de la fièvre, c'est une mastite — commencez les antibiotiques rapidement.",
+      },
+      {
+        en: "We also need to talk about contraception — breastfeeding alone is not a reliable method of birth control.",
+        target:
+          "Nous devons également parler de contraception — l'allaitement seul n'est pas une méthode fiable de contrôle des naissances.",
+      },
+      {
+        en: "A progesterone-only pill or a hormonal IUD are safe options while breastfeeding.",
+        target:
+          "Une pilule progestative seule ou un DIU hormonal sont des options sûres pendant l'allaitement.",
+      },
+      {
+        en: "I also want to screen you for postpartum depression today using the Edinburgh scale — it only takes a few minutes.",
+        target:
+          "Je souhaite également vous dépister pour la dépression post-partum aujourd'hui à l'aide de l'échelle d'Édimbourg — cela ne prend que quelques minutes.",
+      },
     ],
   },
 
@@ -357,15 +842,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Mrs. Bauer, your glucose tolerance test results have come back and unfortunately show gestational diabetes.", target: "Frau Bauer, Ihre Ergebnisse des Glukosetoleranztest sind zurückgekommen und zeigen leider einen Schwangerschaftsdiabetes." },
-      { en: "This condition affects approximately 5 to 8 percent of pregnancies and is manageable with the right approach.", target: "Dieser Zustand betrifft etwa 5 bis 8 Prozent der Schwangerschaften und ist mit der richtigen Vorgehensweise gut beherrschbar." },
-      { en: "We will start with dietary modification and self-monitoring of blood glucose four times per day.", target: "Wir beginnen mit Ernährungsumstellung und Selbstkontrolle des Blutzuckers viermal täglich." },
-      { en: "A dietitian specializing in gestational diabetes will work with you on a carbohydrate-controlled meal plan.", target: "Eine auf Schwangerschaftsdiabetes spezialisierte Ernährungsberaterin wird gemeinsam mit Ihnen einen kohlenhydratkontrollierten Ernährungsplan erstellen." },
-      { en: "Your target fasting glucose should be below 95 milligrams per deciliter, and below 120 one hour after meals.", target: "Ihr Zielwert für den Nüchternblutzucker sollte unter 95 Milligramm pro Deziliter liegen, und unter 120 eine Stunde nach den Mahlzeiten." },
-      { en: "If blood glucose remains elevated after two weeks of dietary changes, we will discuss starting insulin therapy.", target: "Wenn der Blutzucker nach zwei Wochen Diätumstellung erhöht bleibt, werden wir die Einleitung einer Insulintherapie besprechen." },
-      { en: "Uncontrolled gestational diabetes increases the risk of macrosomia, birth injury, and neonatal hypoglycemia.", target: "Unkontrollierter Schwangerschaftsdiabetes erhöht das Risiko für Makrosomie, Geburtsverletzungen und neonatale Hypoglykämie." },
-      { en: "We will increase the frequency of your prenatal visits and add growth ultrasounds every four weeks.", target: "Wir werden die Häufigkeit Ihrer Vorsorgeuntersuchungen erhöhen und alle vier Wochen Wachstumsultraschalle hinzufügen." },
-      { en: "After delivery, your blood glucose will likely normalize, but you have an increased lifelong risk of developing type 2 diabetes.", target: "Nach der Geburt wird Ihr Blutzucker wahrscheinlich wieder normal, aber Sie haben ein erhöhtes lebenslanges Risiko, an Typ-2-Diabetes zu erkranken." },
+      {
+        en: "Mrs. Bauer, your glucose tolerance test results have come back and unfortunately show gestational diabetes.",
+        target:
+          "Frau Bauer, Ihre Ergebnisse des Glukosetoleranztest sind zurückgekommen und zeigen leider einen Schwangerschaftsdiabetes.",
+      },
+      {
+        en: "This condition affects approximately 5 to 8 percent of pregnancies and is manageable with the right approach.",
+        target:
+          "Dieser Zustand betrifft etwa 5 bis 8 Prozent der Schwangerschaften und ist mit der richtigen Vorgehensweise gut beherrschbar.",
+      },
+      {
+        en: "We will start with dietary modification and self-monitoring of blood glucose four times per day.",
+        target:
+          "Wir beginnen mit Ernährungsumstellung und Selbstkontrolle des Blutzuckers viermal täglich.",
+      },
+      {
+        en: "A dietitian specializing in gestational diabetes will work with you on a carbohydrate-controlled meal plan.",
+        target:
+          "Eine auf Schwangerschaftsdiabetes spezialisierte Ernährungsberaterin wird gemeinsam mit Ihnen einen kohlenhydratkontrollierten Ernährungsplan erstellen.",
+      },
+      {
+        en: "Your target fasting glucose should be below 95 milligrams per deciliter, and below 120 one hour after meals.",
+        target:
+          "Ihr Zielwert für den Nüchternblutzucker sollte unter 95 Milligramm pro Deziliter liegen, und unter 120 eine Stunde nach den Mahlzeiten.",
+      },
+      {
+        en: "If blood glucose remains elevated after two weeks of dietary changes, we will discuss starting insulin therapy.",
+        target:
+          "Wenn der Blutzucker nach zwei Wochen Diätumstellung erhöht bleibt, werden wir die Einleitung einer Insulintherapie besprechen.",
+      },
+      {
+        en: "Uncontrolled gestational diabetes increases the risk of macrosomia, birth injury, and neonatal hypoglycemia.",
+        target:
+          "Unkontrollierter Schwangerschaftsdiabetes erhöht das Risiko für Makrosomie, Geburtsverletzungen und neonatale Hypoglykämie.",
+      },
+      {
+        en: "We will increase the frequency of your prenatal visits and add growth ultrasounds every four weeks.",
+        target:
+          "Wir werden die Häufigkeit Ihrer Vorsorgeuntersuchungen erhöhen und alle vier Wochen Wachstumsultraschalle hinzufügen.",
+      },
+      {
+        en: "After delivery, your blood glucose will likely normalize, but you have an increased lifelong risk of developing type 2 diabetes.",
+        target:
+          "Nach der Geburt wird Ihr Blutzucker wahrscheinlich wieder normal, aber Sie haben ein erhöhtes lebenslanges Risiko, an Typ-2-Diabetes zu erkranken.",
+      },
     ],
   },
 
@@ -381,15 +902,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good afternoon, signora Rossi. You mentioned at your last visit that you would like to discuss long-term contraception options.", target: "Buon pomeriggio, signora Rossi. Ha menzionato alla sua ultima visita che vorrebbe discutere le opzioni contraccettive a lungo termine." },
-      { en: "There are several highly effective methods available: the intrauterine device, the subdermal implant, and the combined oral contraceptive pill.", target: "Esistono diversi metodi altamente efficaci: il dispositivo intrauterino, l'impianto sottocutaneo e la pillola contraccettiva combinata." },
-      { en: "The hormonal IUD is one of the most effective methods available — over 99 percent — and it can remain in place for up to five years.", target: "Il dispositivo intrauterino ormonale è uno dei metodi più efficaci disponibili — oltre il 99 percento — e può rimanere in sede fino a cinque anni." },
-      { en: "It releases a small amount of progestin locally, which significantly reduces menstrual flow and cramping.", target: "Rilascia localmente una piccola quantità di progestinico, che riduce significativamente il flusso mestruale e i crampi." },
-      { en: "The copper IUD is a non-hormonal option that is equally effective and can last up to ten years.", target: "Il dispositivo intrauterino al rame è un'opzione non ormonale altrettanto efficace e può durare fino a dieci anni." },
-      { en: "Do you have any history of blood clots, migraines with aura, or liver disease? These may affect which options are safe for you.", target: "Ha una storia di coaguli di sangue, emicrania con aura o malattia del fegato? Questi fattori possono influire su quali opzioni siano sicure per lei." },
-      { en: "The combined pill containing estrogen and progestin also helps regulate the menstrual cycle and reduce acne.", target: "La pillola combinata contenente estrogeni e progestinico aiuta anche a regolare il ciclo mestruale e a ridurre l'acne." },
-      { en: "Barrier methods such as condoms are the only contraceptives that also protect against sexually transmitted infections.", target: "I metodi di barriera come i preservativi sono gli unici contraccettivi che proteggono anche dalle infezioni sessualmente trasmissibili." },
-      { en: "Take the time to think about your priorities — effectiveness, convenience, hormonal preference — and we can choose together.", target: "Si prenda il tempo di riflettere sulle sue priorità — efficacia, comodità, preferenza ormonale — e possiamo scegliere insieme." },
+      {
+        en: "Good afternoon, signora Rossi. You mentioned at your last visit that you would like to discuss long-term contraception options.",
+        target:
+          "Buon pomeriggio, signora Rossi. Ha menzionato alla sua ultima visita che vorrebbe discutere le opzioni contraccettive a lungo termine.",
+      },
+      {
+        en: "There are several highly effective methods available: the intrauterine device, the subdermal implant, and the combined oral contraceptive pill.",
+        target:
+          "Esistono diversi metodi altamente efficaci: il dispositivo intrauterino, l'impianto sottocutaneo e la pillola contraccettiva combinata.",
+      },
+      {
+        en: "The hormonal IUD is one of the most effective methods available — over 99 percent — and it can remain in place for up to five years.",
+        target:
+          "Il dispositivo intrauterino ormonale è uno dei metodi più efficaci disponibili — oltre il 99 percento — e può rimanere in sede fino a cinque anni.",
+      },
+      {
+        en: "It releases a small amount of progestin locally, which significantly reduces menstrual flow and cramping.",
+        target:
+          "Rilascia localmente una piccola quantità di progestinico, che riduce significativamente il flusso mestruale e i crampi.",
+      },
+      {
+        en: "The copper IUD is a non-hormonal option that is equally effective and can last up to ten years.",
+        target:
+          "Il dispositivo intrauterino al rame è un'opzione non ormonale altrettanto efficace e può durare fino a dieci anni.",
+      },
+      {
+        en: "Do you have any history of blood clots, migraines with aura, or liver disease? These may affect which options are safe for you.",
+        target:
+          "Ha una storia di coaguli di sangue, emicrania con aura o malattia del fegato? Questi fattori possono influire su quali opzioni siano sicure per lei.",
+      },
+      {
+        en: "The combined pill containing estrogen and progestin also helps regulate the menstrual cycle and reduce acne.",
+        target:
+          "La pillola combinata contenente estrogeni e progestinico aiuta anche a regolare il ciclo mestruale e a ridurre l'acne.",
+      },
+      {
+        en: "Barrier methods such as condoms are the only contraceptives that also protect against sexually transmitted infections.",
+        target:
+          "I metodi di barriera come i preservativi sono gli unici contraccettivi che proteggono anche dalle infezioni sessualmente trasmissibili.",
+      },
+      {
+        en: "Take the time to think about your priorities — effectiveness, convenience, hormonal preference — and we can choose together.",
+        target:
+          "Si prenda il tempo di riflettere sulle sue priorità — efficacia, comodità, preferenza ormonale — e possiamo scegliere insieme.",
+      },
     ],
   },
 
@@ -405,15 +962,44 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mrs. Nakamura, you are now in active labor. Your contractions are coming every three minutes and lasting 60 seconds.", target: "中村さん、今は活動期分娩中です。陣痛は3分おきに来ており、60秒続いています。" },
-      { en: "Your cervix is currently dilated to 7 centimeters — you are making excellent progress.", target: "子宮口は現在7センチ開いています。とても順調に進んでいます。" },
-      { en: "The fetal monitor shows the baby's heart rate is responding well to contractions.", target: "胎児モニターでは、赤ちゃんの心拍数が陣痛にしっかりと反応しています。" },
-      { en: "Would you like to discuss pain relief options at this point? We can offer an epidural or intravenous analgesics.", target: "この段階で痛み止めの選択肢についてお話しましょうか？硬膜外麻酔か静脈内鎮痛薬をご提供できます。" },
-      { en: "If you choose an epidural, the anesthesiologist will be here within 20 minutes.", target: "硬膜外麻酔を選択された場合、麻酔科医は20分以内に来ます。" },
-      { en: "I recommend not eating anything at this stage in case you need a cesarean section.", target: "万が一帝王切開が必要になった場合に備えて、この段階では何も食べないようにしてください。" },
-      { en: "When you feel the urge to push strongly, let me know and I will guide you through the pushing technique.", target: "強くいきみたい感覚が出てきたら教えてください。いきみ方を一緒に行いましょう。" },
-      { en: "Your baby's head is crowning — just one or two more pushes and we will have a baby in the room.", target: "赤ちゃんの頭が出てきています。あと1〜2回いきめば、赤ちゃんが生まれます。" },
-      { en: "Congratulations — your baby boy is healthy and vigorous, with an Apgar score of nine at one minute.", target: "おめでとうございます。赤ちゃんは元気で、1分後のアプガースコアは9点です。" },
+      {
+        en: "Mrs. Nakamura, you are now in active labor. Your contractions are coming every three minutes and lasting 60 seconds.",
+        target: "中村さん、今は活動期分娩中です。陣痛は3分おきに来ており、60秒続いています。",
+      },
+      {
+        en: "Your cervix is currently dilated to 7 centimeters — you are making excellent progress.",
+        target: "子宮口は現在7センチ開いています。とても順調に進んでいます。",
+      },
+      {
+        en: "The fetal monitor shows the baby's heart rate is responding well to contractions.",
+        target: "胎児モニターでは、赤ちゃんの心拍数が陣痛にしっかりと反応しています。",
+      },
+      {
+        en: "Would you like to discuss pain relief options at this point? We can offer an epidural or intravenous analgesics.",
+        target:
+          "この段階で痛み止めの選択肢についてお話しましょうか？硬膜外麻酔か静脈内鎮痛薬をご提供できます。",
+      },
+      {
+        en: "If you choose an epidural, the anesthesiologist will be here within 20 minutes.",
+        target: "硬膜外麻酔を選択された場合、麻酔科医は20分以内に来ます。",
+      },
+      {
+        en: "I recommend not eating anything at this stage in case you need a cesarean section.",
+        target:
+          "万が一帝王切開が必要になった場合に備えて、この段階では何も食べないようにしてください。",
+      },
+      {
+        en: "When you feel the urge to push strongly, let me know and I will guide you through the pushing technique.",
+        target: "強くいきみたい感覚が出てきたら教えてください。いきみ方を一緒に行いましょう。",
+      },
+      {
+        en: "Your baby's head is crowning — just one or two more pushes and we will have a baby in the room.",
+        target: "赤ちゃんの頭が出てきています。あと1〜2回いきめば、赤ちゃんが生まれます。",
+      },
+      {
+        en: "Congratulations — your baby boy is healthy and vigorous, with an Apgar score of nine at one minute.",
+        target: "おめでとうございます。赤ちゃんは元気で、1分後のアプガースコアは9点です。",
+      },
     ],
   },
 
@@ -429,15 +1015,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Mrs. Alves, since you are 38 years old, I want to talk with you about prenatal genetic testing options.", target: "Senhora Alves, como tem 38 anos, gostaria de conversar sobre as opções de exames genéticos pré-natais." },
-      { en: "Cell-free fetal DNA testing, also called cfDNA or NIPT, is a non-invasive blood test that screens for Down syndrome and other chromosomal conditions.", target: "O teste de DNA fetal livre de células, também chamado de cfDNA ou NIPT, é um exame de sangue não invasivo que rastreia a síndrome de Down e outras condições cromossômicas." },
-      { en: "It has a detection rate greater than 99 percent for trisomy 21, with a very low false-positive rate.", target: "Tem uma taxa de detecção superior a 99 por cento para trissomia 21, com uma taxa muito baixa de falsos positivos." },
-      { en: "If the screening result is high-risk, we would then discuss diagnostic testing such as amniocentesis.", target: "Se o resultado do rastreamento for de alto risco, discutiríamos então exames diagnósticos como a amniocentese." },
-      { en: "Amniocentesis involves inserting a thin needle through the abdomen to collect a small amount of amniotic fluid.", target: "A amniocentese envolve a inserção de uma agulha fina pelo abdômen para coletar uma pequena quantidade de líquido amniótico." },
-      { en: "The procedure carries a miscarriage risk of approximately 0.1 to 0.3 percent.", target: "O procedimento apresenta um risco de aborto de aproximadamente 0,1 a 0,3 por cento." },
-      { en: "Results from amniocentesis are typically available in 10 to 14 days for full chromosomal analysis.", target: "Os resultados da amniocentese geralmente ficam disponíveis em 10 a 14 dias para análise cromossômica completa." },
-      { en: "This is a deeply personal decision — there is no right or wrong choice, and we will support you regardless.", target: "Esta é uma decisão profundamente pessoal — não existe escolha certa ou errada, e nós apoiaremos você independentemente." },
-      { en: "I can also refer you to a genetic counselor who specializes in helping families navigate these decisions.", target: "Posso também encaminhá-la a um geneticista clínico especializado em ajudar famílias a navegar essas decisões." },
+      {
+        en: "Mrs. Alves, since you are 38 years old, I want to talk with you about prenatal genetic testing options.",
+        target:
+          "Senhora Alves, como tem 38 anos, gostaria de conversar sobre as opções de exames genéticos pré-natais.",
+      },
+      {
+        en: "Cell-free fetal DNA testing, also called cfDNA or NIPT, is a non-invasive blood test that screens for Down syndrome and other chromosomal conditions.",
+        target:
+          "O teste de DNA fetal livre de células, também chamado de cfDNA ou NIPT, é um exame de sangue não invasivo que rastreia a síndrome de Down e outras condições cromossômicas.",
+      },
+      {
+        en: "It has a detection rate greater than 99 percent for trisomy 21, with a very low false-positive rate.",
+        target:
+          "Tem uma taxa de detecção superior a 99 por cento para trissomia 21, com uma taxa muito baixa de falsos positivos.",
+      },
+      {
+        en: "If the screening result is high-risk, we would then discuss diagnostic testing such as amniocentesis.",
+        target:
+          "Se o resultado do rastreamento for de alto risco, discutiríamos então exames diagnósticos como a amniocentese.",
+      },
+      {
+        en: "Amniocentesis involves inserting a thin needle through the abdomen to collect a small amount of amniotic fluid.",
+        target:
+          "A amniocentese envolve a inserção de uma agulha fina pelo abdômen para coletar uma pequena quantidade de líquido amniótico.",
+      },
+      {
+        en: "The procedure carries a miscarriage risk of approximately 0.1 to 0.3 percent.",
+        target:
+          "O procedimento apresenta um risco de aborto de aproximadamente 0,1 a 0,3 por cento.",
+      },
+      {
+        en: "Results from amniocentesis are typically available in 10 to 14 days for full chromosomal analysis.",
+        target:
+          "Os resultados da amniocentese geralmente ficam disponíveis em 10 a 14 dias para análise cromossômica completa.",
+      },
+      {
+        en: "This is a deeply personal decision — there is no right or wrong choice, and we will support you regardless.",
+        target:
+          "Esta é uma decisão profundamente pessoal — não existe escolha certa ou errada, e nós apoiaremos você independentemente.",
+      },
+      {
+        en: "I can also refer you to a genetic counselor who specializes in helping families navigate these decisions.",
+        target:
+          "Posso também encaminhá-la a um geneticista clínico especializado em ajudar famílias a navegar essas decisões.",
+      },
     ],
   },
 
@@ -455,15 +1077,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good afternoon, señora Torres. I am Dr. Mendoza and I will be your surgeon for the cholecystectomy tomorrow.", target: "Buenas tardes, señora Torres. Soy el Dr. Mendoza y seré su cirujano para la colecistectomía de mañana." },
-      { en: "We will remove your gallbladder laparoscopically — that means through three small incisions using a camera and specialized instruments.", target: "Extirparemos su vesícula biliar por laparoscopía — eso significa a través de tres pequeñas incisiones utilizando una cámara e instrumentos especializados." },
-      { en: "The procedure typically takes about 45 to 60 minutes under general anesthesia.", target: "El procedimiento generalmente toma entre 45 y 60 minutos bajo anestesia general." },
-      { en: "The risks include bleeding, infection, injury to the bile duct, and a small chance of conversion to an open procedure.", target: "Los riesgos incluyen sangrado, infección, lesión del conducto biliar y una pequeña posibilidad de conversión a una cirugía abierta." },
-      { en: "Most patients go home the same day or the following morning and return to normal activity within one to two weeks.", target: "La mayoría de los pacientes se van a casa el mismo día o la mañana siguiente y retoman la actividad normal en una a dos semanas." },
-      { en: "You must not eat or drink anything after midnight tonight — not even water.", target: "No debe comer ni beber nada después de la medianoche de esta noche — ni siquiera agua." },
-      { en: "Please arrive at the hospital at 6 a.m. tomorrow. Bring your insurance card and a list of your current medications.", target: "Por favor llegue al hospital a las 6 a.m. mañana. Traiga su tarjeta de seguro y una lista de sus medicamentos actuales." },
-      { en: "Do you have any questions about the procedure before you sign the consent form?", target: "¿Tiene alguna pregunta sobre el procedimiento antes de firmar el formulario de consentimiento?" },
-      { en: "After surgery, your diet can gradually advance from clear liquids to a regular low-fat diet within a few days.", target: "Después de la cirugía, su dieta puede avanzar gradualmente de líquidos claros a una dieta regular baja en grasas en pocos días." },
+      {
+        en: "Good afternoon, señora Torres. I am Dr. Mendoza and I will be your surgeon for the cholecystectomy tomorrow.",
+        target:
+          "Buenas tardes, señora Torres. Soy el Dr. Mendoza y seré su cirujano para la colecistectomía de mañana.",
+      },
+      {
+        en: "We will remove your gallbladder laparoscopically — that means through three small incisions using a camera and specialized instruments.",
+        target:
+          "Extirparemos su vesícula biliar por laparoscopía — eso significa a través de tres pequeñas incisiones utilizando una cámara e instrumentos especializados.",
+      },
+      {
+        en: "The procedure typically takes about 45 to 60 minutes under general anesthesia.",
+        target: "El procedimiento generalmente toma entre 45 y 60 minutos bajo anestesia general.",
+      },
+      {
+        en: "The risks include bleeding, infection, injury to the bile duct, and a small chance of conversion to an open procedure.",
+        target:
+          "Los riesgos incluyen sangrado, infección, lesión del conducto biliar y una pequeña posibilidad de conversión a una cirugía abierta.",
+      },
+      {
+        en: "Most patients go home the same day or the following morning and return to normal activity within one to two weeks.",
+        target:
+          "La mayoría de los pacientes se van a casa el mismo día o la mañana siguiente y retoman la actividad normal en una a dos semanas.",
+      },
+      {
+        en: "You must not eat or drink anything after midnight tonight — not even water.",
+        target:
+          "No debe comer ni beber nada después de la medianoche de esta noche — ni siquiera agua.",
+      },
+      {
+        en: "Please arrive at the hospital at 6 a.m. tomorrow. Bring your insurance card and a list of your current medications.",
+        target:
+          "Por favor llegue al hospital a las 6 a.m. mañana. Traiga su tarjeta de seguro y una lista de sus medicamentos actuales.",
+      },
+      {
+        en: "Do you have any questions about the procedure before you sign the consent form?",
+        target:
+          "¿Tiene alguna pregunta sobre el procedimiento antes de firmar el formulario de consentimiento?",
+      },
+      {
+        en: "After surgery, your diet can gradually advance from clear liquids to a regular low-fat diet within a few days.",
+        target:
+          "Después de la cirugía, su dieta puede avanzar gradualmente de líquidos claros a una dieta regular baja en grasas en pocos días.",
+      },
     ],
   },
 
@@ -479,15 +1136,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Girard, your procedure went very well and you are ready to be discharged home today.", target: "Monsieur Girard, votre intervention s'est très bien passée et vous êtes prêt à rentrer chez vous aujourd'hui." },
-      { en: "You have three small laparoscopic incisions covered with adhesive strips — do not remove them for at least five days.", target: "Vous avez trois petites incisions laparoscopiques recouvertes de bandelettes adhésives — ne les retirez pas avant au moins cinq jours." },
-      { en: "Keep the incision sites clean and dry. You may shower 48 hours after surgery but do not submerge them in water.", target: "Gardez les sites d'incision propres et secs. Vous pouvez prendre une douche 48 heures après l'opération, mais ne les plongez pas dans l'eau." },
-      { en: "Signs of wound infection include redness, increasing warmth, purulent drainage, and fever above 38.5 degrees Celsius.", target: "Les signes d'infection de la plaie comprennent rougeur, chaleur croissante, écoulement purulent et fièvre supérieure à 38,5 degrés Celsius." },
-      { en: "You may take paracetamol and ibuprofen alternately for pain — opioids are prescribed only if needed.", target: "Vous pouvez prendre alternativement du paracétamol et de l'ibuprofène pour la douleur — les opioïdes ne sont prescrits que si nécessaire." },
-      { en: "Avoid lifting anything heavier than five kilograms for the next four weeks.", target: "Évitez de soulever des objets de plus de cinq kilogrammes pendant les quatre prochaines semaines." },
-      { en: "Walk a little every hour while you are awake — this prevents blood clots and promotes recovery.", target: "Marchez un peu toutes les heures pendant vos heures d'éveil — cela prévient les caillots sanguins et favorise la récupération." },
-      { en: "Your follow-up appointment is in 14 days — at that visit we will also discuss the pathology result from the specimen.", target: "Votre rendez-vous de suivi est dans 14 jours — lors de cette visite, nous discuterons également du résultat anatomopathologique de la pièce opératoire." },
-      { en: "Call us immediately if you develop a high fever, severe abdominal pain, or notice bile-colored drainage from the incision.", target: "Appelez-nous immédiatement si vous développez une forte fièvre, des douleurs abdominales sévères ou si vous observez un écoulement biliaire à partir de l'incision." },
+      {
+        en: "Mr. Girard, your procedure went very well and you are ready to be discharged home today.",
+        target:
+          "Monsieur Girard, votre intervention s'est très bien passée et vous êtes prêt à rentrer chez vous aujourd'hui.",
+      },
+      {
+        en: "You have three small laparoscopic incisions covered with adhesive strips — do not remove them for at least five days.",
+        target:
+          "Vous avez trois petites incisions laparoscopiques recouvertes de bandelettes adhésives — ne les retirez pas avant au moins cinq jours.",
+      },
+      {
+        en: "Keep the incision sites clean and dry. You may shower 48 hours after surgery but do not submerge them in water.",
+        target:
+          "Gardez les sites d'incision propres et secs. Vous pouvez prendre une douche 48 heures après l'opération, mais ne les plongez pas dans l'eau.",
+      },
+      {
+        en: "Signs of wound infection include redness, increasing warmth, purulent drainage, and fever above 38.5 degrees Celsius.",
+        target:
+          "Les signes d'infection de la plaie comprennent rougeur, chaleur croissante, écoulement purulent et fièvre supérieure à 38,5 degrés Celsius.",
+      },
+      {
+        en: "You may take paracetamol and ibuprofen alternately for pain — opioids are prescribed only if needed.",
+        target:
+          "Vous pouvez prendre alternativement du paracétamol et de l'ibuprofène pour la douleur — les opioïdes ne sont prescrits que si nécessaire.",
+      },
+      {
+        en: "Avoid lifting anything heavier than five kilograms for the next four weeks.",
+        target:
+          "Évitez de soulever des objets de plus de cinq kilogrammes pendant les quatre prochaines semaines.",
+      },
+      {
+        en: "Walk a little every hour while you are awake — this prevents blood clots and promotes recovery.",
+        target:
+          "Marchez un peu toutes les heures pendant vos heures d'éveil — cela prévient les caillots sanguins et favorise la récupération.",
+      },
+      {
+        en: "Your follow-up appointment is in 14 days — at that visit we will also discuss the pathology result from the specimen.",
+        target:
+          "Votre rendez-vous de suivi est dans 14 jours — lors de cette visite, nous discuterons également du résultat anatomopathologique de la pièce opératoire.",
+      },
+      {
+        en: "Call us immediately if you develop a high fever, severe abdominal pain, or notice bile-colored drainage from the incision.",
+        target:
+          "Appelez-nous immédiatement si vous développez une forte fièvre, des douleurs abdominales sévères ou si vous observez un écoulement biliaire à partir de l'incision.",
+      },
     ],
   },
 
@@ -503,15 +1196,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Before we begin, let's conduct the mandatory surgical time-out to verify the correct patient, procedure, and site.", target: "Bevor wir beginnen, führen wir die obligatorische chirurgische Auszeit durch, um Patient, Eingriff und Operationsgebiet zu bestätigen." },
-      { en: "The patient is Mr. Fischer, date of birth March 12th 1972 — has everyone confirmed the patient's identity?", target: "Der Patient ist Herr Fischer, geboren am 12. März 1972 — hat jeder die Patientenidentität bestätigt?" },
-      { en: "We are performing a laparoscopic inguinal hernia repair on the right side.", target: "Wir führen eine laparoskopische Leistenbruchreparatur auf der rechten Seite durch." },
-      { en: "Antibiotics were administered 30 minutes before the incision — correct?", target: "Antibiotika wurden 30 Minuten vor dem Schnitt verabreicht — korrekt?" },
-      { en: "Please confirm that the sterile instrument count is complete before we drape the patient.", target: "Bitte bestätigen Sie, dass die Zählung der sterilen Instrumente vollständig ist, bevor wir den Patienten abdecken." },
-      { en: "The patient has a known allergy to penicillin — cefazolin was appropriately substituted with clindamycin.", target: "Der Patient ist penicillinallergisch — Cefazolin wurde korrekt durch Clindamycin ersetzt." },
-      { en: "Anesthesiologist, please confirm that the patient is intubated, ventilated, and hemodynamically stable.", target: "Anästhesist, bitte bestätigen Sie, dass der Patient intubiert, beatmet und hämodynamisch stabil ist." },
-      { en: "We will use a 10 millimeter trocar at the umbilicus and two 5 millimeter trocars in the lower abdomen.", target: "Wir verwenden einen 10-Millimeter-Trokar am Nabel und zwei 5-Millimeter-Trokare im Unterbauch." },
-      { en: "If at any point during the procedure someone identifies a concern, please speak up immediately — no hierarchy in this room.", target: "Wenn jemand während des Eingriffs zu irgendeinem Zeitpunkt ein Problem bemerkt, sprechen Sie es sofort an — in diesem Raum gibt es keine Hierarchie." },
+      {
+        en: "Before we begin, let's conduct the mandatory surgical time-out to verify the correct patient, procedure, and site.",
+        target:
+          "Bevor wir beginnen, führen wir die obligatorische chirurgische Auszeit durch, um Patient, Eingriff und Operationsgebiet zu bestätigen.",
+      },
+      {
+        en: "The patient is Mr. Fischer, date of birth March 12th 1972 — has everyone confirmed the patient's identity?",
+        target:
+          "Der Patient ist Herr Fischer, geboren am 12. März 1972 — hat jeder die Patientenidentität bestätigt?",
+      },
+      {
+        en: "We are performing a laparoscopic inguinal hernia repair on the right side.",
+        target:
+          "Wir führen eine laparoskopische Leistenbruchreparatur auf der rechten Seite durch.",
+      },
+      {
+        en: "Antibiotics were administered 30 minutes before the incision — correct?",
+        target: "Antibiotika wurden 30 Minuten vor dem Schnitt verabreicht — korrekt?",
+      },
+      {
+        en: "Please confirm that the sterile instrument count is complete before we drape the patient.",
+        target:
+          "Bitte bestätigen Sie, dass die Zählung der sterilen Instrumente vollständig ist, bevor wir den Patienten abdecken.",
+      },
+      {
+        en: "The patient has a known allergy to penicillin — cefazolin was appropriately substituted with clindamycin.",
+        target:
+          "Der Patient ist penicillinallergisch — Cefazolin wurde korrekt durch Clindamycin ersetzt.",
+      },
+      {
+        en: "Anesthesiologist, please confirm that the patient is intubated, ventilated, and hemodynamically stable.",
+        target:
+          "Anästhesist, bitte bestätigen Sie, dass der Patient intubiert, beatmet und hämodynamisch stabil ist.",
+      },
+      {
+        en: "We will use a 10 millimeter trocar at the umbilicus and two 5 millimeter trocars in the lower abdomen.",
+        target:
+          "Wir verwenden einen 10-Millimeter-Trokar am Nabel und zwei 5-Millimeter-Trokare im Unterbauch.",
+      },
+      {
+        en: "If at any point during the procedure someone identifies a concern, please speak up immediately — no hierarchy in this room.",
+        target:
+          "Wenn jemand während des Eingriffs zu irgendeinem Zeitpunkt ein Problem bemerkt, sprechen Sie es sofort an — in diesem Raum gibt es keine Hierarchie.",
+      },
     ],
   },
 
@@ -527,15 +1255,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Marino, your CT scan confirms acute appendicitis. We need to operate tonight.", target: "Signor Marino, la sua TC conferma un'appendicite acuta. Dobbiamo operare stanotte." },
-      { en: "We will perform a laparoscopic appendectomy — three small incisions, camera-guided, under general anesthesia.", target: "Eseguiremo un'appendicectomia laparoscopica — tre piccole incisioni, guidate da telecamera, in anestesia generale." },
-      { en: "The surgery typically takes 30 to 45 minutes and most patients return home within 24 hours.", target: "L'intervento dura in genere 30-45 minuti e la maggior parte dei pazienti torna a casa entro 24 ore." },
-      { en: "If the appendix has perforated, the surgery will be more complex and recovery will take longer.", target: "Se l'appendice si è perforata, l'intervento sarà più complesso e la guarigione richiederà più tempo." },
-      { en: "You will receive intravenous antibiotics both before and after the procedure.", target: "Riceverà antibiotici per via endovenosa sia prima che dopo l'intervento." },
-      { en: "The anesthesiologist will visit you now to explain the anesthesia and ask about allergies and prior experiences.", target: "L'anestesista verrà a trovarla ora per spiegare l'anestesia e chiedere di allergie ed esperienze precedenti." },
-      { en: "Please sign the informed consent form — and feel free to ask me anything before you do.", target: "La prego di firmare il modulo di consenso informato — e non esiti a chiedermi qualsiasi cosa prima." },
-      { en: "After surgery, you may experience some shoulder pain due to the gas used during laparoscopy — this is normal and resolves in a day or two.", target: "Dopo l'intervento, potrebbe avvertire un dolore alla spalla dovuto al gas usato durante la laparoscopia — è normale e si risolve in uno o due giorni." },
-      { en: "Activity restriction after discharge: no strenuous exercise or heavy lifting for two weeks.", target: "Restrizioni dell'attività dopo la dimissione: nessun esercizio intenso o sollevamento di pesi per due settimane." },
+      {
+        en: "Mr. Marino, your CT scan confirms acute appendicitis. We need to operate tonight.",
+        target:
+          "Signor Marino, la sua TC conferma un'appendicite acuta. Dobbiamo operare stanotte.",
+      },
+      {
+        en: "We will perform a laparoscopic appendectomy — three small incisions, camera-guided, under general anesthesia.",
+        target:
+          "Eseguiremo un'appendicectomia laparoscopica — tre piccole incisioni, guidate da telecamera, in anestesia generale.",
+      },
+      {
+        en: "The surgery typically takes 30 to 45 minutes and most patients return home within 24 hours.",
+        target:
+          "L'intervento dura in genere 30-45 minuti e la maggior parte dei pazienti torna a casa entro 24 ore.",
+      },
+      {
+        en: "If the appendix has perforated, the surgery will be more complex and recovery will take longer.",
+        target:
+          "Se l'appendice si è perforata, l'intervento sarà più complesso e la guarigione richiederà più tempo.",
+      },
+      {
+        en: "You will receive intravenous antibiotics both before and after the procedure.",
+        target: "Riceverà antibiotici per via endovenosa sia prima che dopo l'intervento.",
+      },
+      {
+        en: "The anesthesiologist will visit you now to explain the anesthesia and ask about allergies and prior experiences.",
+        target:
+          "L'anestesista verrà a trovarla ora per spiegare l'anestesia e chiedere di allergie ed esperienze precedenti.",
+      },
+      {
+        en: "Please sign the informed consent form — and feel free to ask me anything before you do.",
+        target:
+          "La prego di firmare il modulo di consenso informato — e non esiti a chiedermi qualsiasi cosa prima.",
+      },
+      {
+        en: "After surgery, you may experience some shoulder pain due to the gas used during laparoscopy — this is normal and resolves in a day or two.",
+        target:
+          "Dopo l'intervento, potrebbe avvertire un dolore alla spalla dovuto al gas usato durante la laparoscopia — è normale e si risolve in uno o due giorni.",
+      },
+      {
+        en: "Activity restriction after discharge: no strenuous exercise or heavy lifting for two weeks.",
+        target:
+          "Restrizioni dell'attività dopo la dimissione: nessun esercizio intenso o sollevamento di pesi per due settimane.",
+      },
     ],
   },
 
@@ -551,15 +1314,47 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good evening, Mr. Suzuki. I am the anesthesiologist who will be with you in the operating room tomorrow.", target: "こんばんは、鈴木さん。明日、手術室でご担当する麻酔科医です。" },
-      { en: "I need to ask you a few questions and examine you briefly to plan the safest anesthetic approach for your surgery.", target: "手術に向けて最も安全な麻酔方法を計画するために、いくつかご質問し、簡単に診察させていただく必要があります。" },
-      { en: "Have you ever had anesthesia before, and if so, did you have any complications such as severe nausea or difficulty waking up?", target: "以前に麻酔を受けたことはありますか？また、その際に重度の吐き気や覚醒困難などの合併症はありましたか？" },
-      { en: "Do you smoke, have sleep apnea, or have any family history of reactions to anesthesia?", target: "喫煙はしていますか、睡眠時無呼吸はありますか、あるいは麻酔に対する反応の家族歴はありますか？" },
-      { en: "I am going to assess your airway now — please open your mouth wide and tilt your head back slightly.", target: "これから気道を評価します。口を大きく開けて、頭をやや後ろに傾けてください。" },
-      { en: "You will receive general anesthesia through an intravenous line and a breathing tube placed in your airway after you are asleep.", target: "静脈ラインと、眠った後に気道に挿入する気管チューブを通じて全身麻酔を行います。" },
-      { en: "You must not eat solid food for at least eight hours before surgery, and may have clear liquids up to two hours before.", target: "手術の少なくとも8時間前から固形物を食べないでください。また、2時間前まで透明な液体は飲めます。" },
-      { en: "After surgery, you may feel groggy or nauseous for a few hours — our recovery room nurses will monitor you closely.", target: "手術後は数時間、ぼんやりしたり吐き気を感じることがあります。回復室の看護師が注意深く観察します。" },
-      { en: "Do you have any questions or concerns about the anesthesia that I can address for you tonight?", target: "今夜、麻酔について何かご質問やご不安な点はありますか？" },
+      {
+        en: "Good evening, Mr. Suzuki. I am the anesthesiologist who will be with you in the operating room tomorrow.",
+        target: "こんばんは、鈴木さん。明日、手術室でご担当する麻酔科医です。",
+      },
+      {
+        en: "I need to ask you a few questions and examine you briefly to plan the safest anesthetic approach for your surgery.",
+        target:
+          "手術に向けて最も安全な麻酔方法を計画するために、いくつかご質問し、簡単に診察させていただく必要があります。",
+      },
+      {
+        en: "Have you ever had anesthesia before, and if so, did you have any complications such as severe nausea or difficulty waking up?",
+        target:
+          "以前に麻酔を受けたことはありますか？また、その際に重度の吐き気や覚醒困難などの合併症はありましたか？",
+      },
+      {
+        en: "Do you smoke, have sleep apnea, or have any family history of reactions to anesthesia?",
+        target:
+          "喫煙はしていますか、睡眠時無呼吸はありますか、あるいは麻酔に対する反応の家族歴はありますか？",
+      },
+      {
+        en: "I am going to assess your airway now — please open your mouth wide and tilt your head back slightly.",
+        target: "これから気道を評価します。口を大きく開けて、頭をやや後ろに傾けてください。",
+      },
+      {
+        en: "You will receive general anesthesia through an intravenous line and a breathing tube placed in your airway after you are asleep.",
+        target: "静脈ラインと、眠った後に気道に挿入する気管チューブを通じて全身麻酔を行います。",
+      },
+      {
+        en: "You must not eat solid food for at least eight hours before surgery, and may have clear liquids up to two hours before.",
+        target:
+          "手術の少なくとも8時間前から固形物を食べないでください。また、2時間前まで透明な液体は飲めます。",
+      },
+      {
+        en: "After surgery, you may feel groggy or nauseous for a few hours — our recovery room nurses will monitor you closely.",
+        target:
+          "手術後は数時間、ぼんやりしたり吐き気を感じることがあります。回復室の看護師が注意深く観察します。",
+      },
+      {
+        en: "Do you have any questions or concerns about the anesthesia that I can address for you tonight?",
+        target: "今夜、麻酔について何かご質問やご不安な点はありますか？",
+      },
     ],
   },
 
@@ -575,15 +1370,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Costa, the imaging confirms a right inguinal hernia. Let me explain what that means and how we can fix it.", target: "Senhor Costa, o exame confirma uma hérnia inguinal direita. Deixe-me explicar o que isso significa e como podemos corrigir." },
-      { en: "A hernia occurs when part of the intestine or fatty tissue pushes through a weak spot in the abdominal wall.", target: "Uma hérnia ocorre quando parte do intestino ou tecido adiposo passa por um ponto fraco da parede abdominal." },
-      { en: "I recommend a laparoscopic repair under general anesthesia, which involves placing a mesh to reinforce the weakened area.", target: "Recomendo um reparo laparoscópico sob anestesia geral, que envolve a colocação de uma tela para reforçar a área enfraquecida." },
-      { en: "The mesh significantly reduces the risk of recurrence compared to a repair without prosthetic material.", target: "A tela reduz significativamente o risco de recidiva em comparação com um reparo sem material protético." },
-      { en: "You will need to stop taking anticoagulants five days before the surgery — I will coordinate this with your cardiologist.", target: "Você precisará parar de tomar anticoagulantes cinco dias antes da cirurgia — coordenarei isso com seu cardiologista." },
-      { en: "The procedure takes about 45 minutes and most patients go home the same day.", target: "O procedimento leva cerca de 45 minutos e a maioria dos pacientes vai para casa no mesmo dia." },
-      { en: "You should avoid strenuous physical exertion and heavy lifting for four weeks after the operation.", target: "Você deve evitar esforço físico intenso e levantamento de peso por quatro semanas após a operação." },
-      { en: "Scrotal swelling and bruising after inguinal hernia repair are common and resolve on their own within two weeks.", target: "Inchaço escrotal e hematomas após o reparo de hérnia inguinal são comuns e se resolvem sozinhos em duas semanas." },
-      { en: "If you develop fever, increasing pain at the incision, or difficulty urinating, contact us right away.", target: "Se você desenvolver febre, dor crescente na incisão ou dificuldade para urinar, entre em contato conosco imediatamente." },
+      {
+        en: "Mr. Costa, the imaging confirms a right inguinal hernia. Let me explain what that means and how we can fix it.",
+        target:
+          "Senhor Costa, o exame confirma uma hérnia inguinal direita. Deixe-me explicar o que isso significa e como podemos corrigir.",
+      },
+      {
+        en: "A hernia occurs when part of the intestine or fatty tissue pushes through a weak spot in the abdominal wall.",
+        target:
+          "Uma hérnia ocorre quando parte do intestino ou tecido adiposo passa por um ponto fraco da parede abdominal.",
+      },
+      {
+        en: "I recommend a laparoscopic repair under general anesthesia, which involves placing a mesh to reinforce the weakened area.",
+        target:
+          "Recomendo um reparo laparoscópico sob anestesia geral, que envolve a colocação de uma tela para reforçar a área enfraquecida.",
+      },
+      {
+        en: "The mesh significantly reduces the risk of recurrence compared to a repair without prosthetic material.",
+        target:
+          "A tela reduz significativamente o risco de recidiva em comparação com um reparo sem material protético.",
+      },
+      {
+        en: "You will need to stop taking anticoagulants five days before the surgery — I will coordinate this with your cardiologist.",
+        target:
+          "Você precisará parar de tomar anticoagulantes cinco dias antes da cirurgia — coordenarei isso com seu cardiologista.",
+      },
+      {
+        en: "The procedure takes about 45 minutes and most patients go home the same day.",
+        target:
+          "O procedimento leva cerca de 45 minutos e a maioria dos pacientes vai para casa no mesmo dia.",
+      },
+      {
+        en: "You should avoid strenuous physical exertion and heavy lifting for four weeks after the operation.",
+        target:
+          "Você deve evitar esforço físico intenso e levantamento de peso por quatro semanas após a operação.",
+      },
+      {
+        en: "Scrotal swelling and bruising after inguinal hernia repair are common and resolve on their own within two weeks.",
+        target:
+          "Inchaço escrotal e hematomas após o reparo de hérnia inguinal são comuns e se resolvem sozinhos em duas semanas.",
+      },
+      {
+        en: "If you develop fever, increasing pain at the incision, or difficulty urinating, contact us right away.",
+        target:
+          "Se você desenvolver febre, dor crescente na incisão ou dificuldade para urinar, entre em contato conosco imediatamente.",
+      },
     ],
   },
 
@@ -601,7 +1432,10 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning. What is your name, please?", target: "Buenos días. ¿Cómo se llama, por favor?" },
+      {
+        en: "Good morning. What is your name, please?",
+        target: "Buenos días. ¿Cómo se llama, por favor?",
+      },
       { en: "Do you have an appointment today?", target: "¿Tiene una cita hoy?" },
       { en: "How old are you?", target: "¿Cuántos años tiene?" },
       { en: "What is the reason for your visit?", target: "¿Cuál es el motivo de su consulta?" },
@@ -609,7 +1443,10 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
       { en: "When did the pain start?", target: "¿Cuándo empezó el dolor?" },
       { en: "Do you take any medications?", target: "¿Toma algún medicamento?" },
       { en: "Are you allergic to any medicine?", target: "¿Es alérgico a algún medicamento?" },
-      { en: "Please sit down. The doctor will see you soon.", target: "Por favor, siéntese. El doctor lo atenderá pronto." },
+      {
+        en: "Please sit down. The doctor will see you soon.",
+        target: "Por favor, siéntese. El doctor lo atenderá pronto.",
+      },
     ],
   },
 
@@ -625,16 +1462,52 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Your son has asthma, but don't worry — it's a condition we can manage very well.", target: "Votre fils a de l'asthme, mais ne vous inquiétez pas — c'est une maladie que nous pouvons très bien contrôler." },
-      { en: "Asthma means that the small tubes in his lungs sometimes get tight and inflamed.", target: "L'asthme signifie que les petites bronches dans ses poumons se resserrent et s'enflamment parfois." },
-      { en: "When that happens, he has trouble breathing, coughs a lot, or makes a whistling sound.", target: "Quand cela arrive, il a du mal à respirer, tousse beaucoup ou fait un sifflement." },
-      { en: "We'll give him two inhalers: a blue one for crises and a brown one to take every day.", target: "Nous allons lui donner deux inhalateurs : un bleu pour les crises et un marron à prendre tous les jours." },
-      { en: "The brown inhaler prevents attacks, even when he feels fine.", target: "L'inhalateur marron prévient les crises, même quand il se sent bien." },
-      { en: "It is very important to use it every morning and every evening, without skipping.", target: "Il est très important de l'utiliser chaque matin et chaque soir, sans sauter de prises." },
-      { en: "Common triggers are dust, pet hair, cigarette smoke, and cold air.", target: "Les déclencheurs courants sont la poussière, les poils d'animaux, la fumée de cigarette et l'air froid." },
-      { en: "If he uses the blue inhaler more than twice a week, please call us.", target: "S'il utilise l'inhalateur bleu plus de deux fois par semaine, appelez-nous." },
-      { en: "He can play sports normally, but he should always carry the blue inhaler with him.", target: "Il peut faire du sport normalement, mais il doit toujours avoir l'inhalateur bleu sur lui." },
-      { en: "Do you have any questions before you leave today?", target: "Avez-vous des questions avant de partir aujourd'hui ?" },
+      {
+        en: "Your son has asthma, but don't worry — it's a condition we can manage very well.",
+        target:
+          "Votre fils a de l'asthme, mais ne vous inquiétez pas — c'est une maladie que nous pouvons très bien contrôler.",
+      },
+      {
+        en: "Asthma means that the small tubes in his lungs sometimes get tight and inflamed.",
+        target:
+          "L'asthme signifie que les petites bronches dans ses poumons se resserrent et s'enflamment parfois.",
+      },
+      {
+        en: "When that happens, he has trouble breathing, coughs a lot, or makes a whistling sound.",
+        target: "Quand cela arrive, il a du mal à respirer, tousse beaucoup ou fait un sifflement.",
+      },
+      {
+        en: "We'll give him two inhalers: a blue one for crises and a brown one to take every day.",
+        target:
+          "Nous allons lui donner deux inhalateurs : un bleu pour les crises et un marron à prendre tous les jours.",
+      },
+      {
+        en: "The brown inhaler prevents attacks, even when he feels fine.",
+        target: "L'inhalateur marron prévient les crises, même quand il se sent bien.",
+      },
+      {
+        en: "It is very important to use it every morning and every evening, without skipping.",
+        target:
+          "Il est très important de l'utiliser chaque matin et chaque soir, sans sauter de prises.",
+      },
+      {
+        en: "Common triggers are dust, pet hair, cigarette smoke, and cold air.",
+        target:
+          "Les déclencheurs courants sont la poussière, les poils d'animaux, la fumée de cigarette et l'air froid.",
+      },
+      {
+        en: "If he uses the blue inhaler more than twice a week, please call us.",
+        target: "S'il utilise l'inhalateur bleu plus de deux fois par semaine, appelez-nous.",
+      },
+      {
+        en: "He can play sports normally, but he should always carry the blue inhaler with him.",
+        target:
+          "Il peut faire du sport normalement, mais il doit toujours avoir l'inhalateur bleu sur lui.",
+      },
+      {
+        en: "Do you have any questions before you leave today?",
+        target: "Avez-vous des questions avant de partir aujourd'hui ?",
+      },
     ],
   },
 
@@ -650,15 +1523,44 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Good news — your tests show that you have a viral infection, not a bacterial one.", target: "Buone notizie — gli esami mostrano che ha un'infezione virale, non batterica." },
-      { en: "This means antibiotics will not help, and they could even cause side effects.", target: "Questo significa che gli antibiotici non serviranno e potrebbero anche causare effetti collaterali." },
-      { en: "You should rest at home for at least three or four days.", target: "Deve riposare a casa per almeno tre o quattro giorni." },
-      { en: "Drink plenty of water, hot tea, or broth — fluids help your body heal.", target: "Beva molta acqua, tè caldo o brodo — i liquidi aiutano il corpo a guarire." },
-      { en: "You can take paracetamol every six hours if you have a fever or aches.", target: "Può prendere il paracetamolo ogni sei ore se ha febbre o dolori." },
-      { en: "Do not go to work or school until you have been free of fever for 24 hours.", target: "Non vada al lavoro o a scuola finché non è senza febbre da 24 ore." },
-      { en: "Wash your hands often and try to cover your mouth when you cough.", target: "Si lavi spesso le mani e cerchi di coprirsi la bocca quando tossisce." },
-      { en: "Come back if your fever lasts more than five days or if you have trouble breathing.", target: "Torni se la febbre dura più di cinque giorni o se ha difficoltà a respirare." },
-      { en: "If you feel much worse instead of better, do not wait — go to the emergency room.", target: "Se si sente molto peggio invece che meglio, non aspetti — vada al pronto soccorso." },
+      {
+        en: "Good news — your tests show that you have a viral infection, not a bacterial one.",
+        target: "Buone notizie — gli esami mostrano che ha un'infezione virale, non batterica.",
+      },
+      {
+        en: "This means antibiotics will not help, and they could even cause side effects.",
+        target:
+          "Questo significa che gli antibiotici non serviranno e potrebbero anche causare effetti collaterali.",
+      },
+      {
+        en: "You should rest at home for at least three or four days.",
+        target: "Deve riposare a casa per almeno tre o quattro giorni.",
+      },
+      {
+        en: "Drink plenty of water, hot tea, or broth — fluids help your body heal.",
+        target: "Beva molta acqua, tè caldo o brodo — i liquidi aiutano il corpo a guarire.",
+      },
+      {
+        en: "You can take paracetamol every six hours if you have a fever or aches.",
+        target: "Può prendere il paracetamolo ogni sei ore se ha febbre o dolori.",
+      },
+      {
+        en: "Do not go to work or school until you have been free of fever for 24 hours.",
+        target: "Non vada al lavoro o a scuola finché non è senza febbre da 24 ore.",
+      },
+      {
+        en: "Wash your hands often and try to cover your mouth when you cough.",
+        target: "Si lavi spesso le mani e cerchi di coprirsi la bocca quando tossisce.",
+      },
+      {
+        en: "Come back if your fever lasts more than five days or if you have trouble breathing.",
+        target: "Torni se la febbre dura più di cinque giorni o se ha difficoltà a respirare.",
+      },
+      {
+        en: "If you feel much worse instead of better, do not wait — go to the emergency room.",
+        target:
+          "Se si sente molto peggio invece che meglio, non aspetti — vada al pronto soccorso.",
+      },
     ],
   },
 
@@ -674,15 +1576,50 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Before we proceed, I want to make sure you understand the procedure and have time for questions.", target: "Bevor wir fortfahren, möchte ich sicherstellen, dass Sie den Eingriff verstehen und Zeit für Fragen haben." },
-      { en: "The benefits of this operation include relief from your chronic pain and improved mobility.", target: "Zu den Vorteilen dieser Operation gehören die Linderung Ihrer chronischen Schmerzen und eine verbesserte Beweglichkeit." },
-      { en: "The most common risks are bleeding, infection, and a reaction to the anesthesia.", target: "Die häufigsten Risiken sind Blutungen, Infektionen und eine Reaktion auf die Narkose." },
-      { en: "There are also rare but serious risks, such as nerve injury or blood clots.", target: "Es gibt auch seltene, aber schwerwiegende Risiken wie Nervenverletzungen oder Blutgerinnsel." },
-      { en: "We have considered alternatives: physical therapy, injections, or simply continuing observation.", target: "Wir haben Alternativen in Betracht gezogen: Physiotherapie, Injektionen oder einfach weitere Beobachtung." },
-      { en: "If you decide not to have the operation, your symptoms will most likely worsen over time.", target: "Wenn Sie sich gegen die Operation entscheiden, werden Ihre Beschwerden mit hoher Wahrscheinlichkeit mit der Zeit schlimmer." },
-      { en: "You have the right to withdraw your consent at any moment, even after signing this form.", target: "Sie haben das Recht, Ihre Einwilligung jederzeit zu widerrufen, auch nach Unterzeichnung dieses Formulars." },
-      { en: "Please take your time and ask me anything you would like to clarify.", target: "Lassen Sie sich Zeit und fragen Sie mich alles, was Sie klären möchten." },
-      { en: "Would you like to discuss this with a family member before signing?", target: "Möchten Sie das mit einem Familienangehörigen besprechen, bevor Sie unterschreiben?" },
+      {
+        en: "Before we proceed, I want to make sure you understand the procedure and have time for questions.",
+        target:
+          "Bevor wir fortfahren, möchte ich sicherstellen, dass Sie den Eingriff verstehen und Zeit für Fragen haben.",
+      },
+      {
+        en: "The benefits of this operation include relief from your chronic pain and improved mobility.",
+        target:
+          "Zu den Vorteilen dieser Operation gehören die Linderung Ihrer chronischen Schmerzen und eine verbesserte Beweglichkeit.",
+      },
+      {
+        en: "The most common risks are bleeding, infection, and a reaction to the anesthesia.",
+        target:
+          "Die häufigsten Risiken sind Blutungen, Infektionen und eine Reaktion auf die Narkose.",
+      },
+      {
+        en: "There are also rare but serious risks, such as nerve injury or blood clots.",
+        target:
+          "Es gibt auch seltene, aber schwerwiegende Risiken wie Nervenverletzungen oder Blutgerinnsel.",
+      },
+      {
+        en: "We have considered alternatives: physical therapy, injections, or simply continuing observation.",
+        target:
+          "Wir haben Alternativen in Betracht gezogen: Physiotherapie, Injektionen oder einfach weitere Beobachtung.",
+      },
+      {
+        en: "If you decide not to have the operation, your symptoms will most likely worsen over time.",
+        target:
+          "Wenn Sie sich gegen die Operation entscheiden, werden Ihre Beschwerden mit hoher Wahrscheinlichkeit mit der Zeit schlimmer.",
+      },
+      {
+        en: "You have the right to withdraw your consent at any moment, even after signing this form.",
+        target:
+          "Sie haben das Recht, Ihre Einwilligung jederzeit zu widerrufen, auch nach Unterzeichnung dieses Formulars.",
+      },
+      {
+        en: "Please take your time and ask me anything you would like to clarify.",
+        target: "Lassen Sie sich Zeit und fragen Sie mich alles, was Sie klären möchten.",
+      },
+      {
+        en: "Would you like to discuss this with a family member before signing?",
+        target:
+          "Möchten Sie das mit einem Familienangehörigen besprechen, bevor Sie unterschreiben?",
+      },
     ],
   },
 
@@ -698,15 +1635,49 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good evening, I am the triage nurse — please tell me what brought you to the emergency room today.", target: "Boa noite, sou a enfermeira da triagem — por favor, conte-me o que o trouxe ao pronto-socorro hoje." },
-      { en: "On a scale from zero to ten, where ten is the worst pain imaginable, how would you rate your pain?", target: "Em uma escala de zero a dez, em que dez é a pior dor imaginável, como classificaria sua dor?" },
-      { en: "I am going to take your vital signs: blood pressure, heart rate, temperature, and oxygen saturation.", target: "Vou aferir seus sinais vitais: pressão arterial, frequência cardíaca, temperatura e saturação de oxigênio." },
-      { en: "Your blood pressure is 90 over 60 and your heart rate is 118 — these readings are concerning.", target: "Sua pressão está em 90 por 60 e sua frequência cardíaca em 118 — esses valores são preocupantes." },
-      { en: "Based on the Manchester protocol, I am classifying you as red, which means immediate attention.", target: "Com base no protocolo de Manchester, vou classificá-lo como vermelho, o que significa atendimento imediato." },
-      { en: "I am going to take you straight to the resuscitation room — the doctor will see you right away.", target: "Vou levá-lo diretamente para a sala de reanimação — o médico vai atendê-lo agora mesmo." },
-      { en: "Have you taken any medication or used any substances in the last 24 hours?", target: "Tomou algum medicamento ou usou alguma substância nas últimas 24 horas?" },
-      { en: "Is there a family member or someone we can contact for you while we begin treatment?", target: "Há algum familiar ou alguém que possamos contatar enquanto iniciamos o tratamento?" },
-      { en: "Try to stay calm and breathe slowly — we are going to take very good care of you.", target: "Tente manter a calma e respire devagar — vamos cuidar muito bem do senhor." },
+      {
+        en: "Good evening, I am the triage nurse — please tell me what brought you to the emergency room today.",
+        target:
+          "Boa noite, sou a enfermeira da triagem — por favor, conte-me o que o trouxe ao pronto-socorro hoje.",
+      },
+      {
+        en: "On a scale from zero to ten, where ten is the worst pain imaginable, how would you rate your pain?",
+        target:
+          "Em uma escala de zero a dez, em que dez é a pior dor imaginável, como classificaria sua dor?",
+      },
+      {
+        en: "I am going to take your vital signs: blood pressure, heart rate, temperature, and oxygen saturation.",
+        target:
+          "Vou aferir seus sinais vitais: pressão arterial, frequência cardíaca, temperatura e saturação de oxigênio.",
+      },
+      {
+        en: "Your blood pressure is 90 over 60 and your heart rate is 118 — these readings are concerning.",
+        target:
+          "Sua pressão está em 90 por 60 e sua frequência cardíaca em 118 — esses valores são preocupantes.",
+      },
+      {
+        en: "Based on the Manchester protocol, I am classifying you as red, which means immediate attention.",
+        target:
+          "Com base no protocolo de Manchester, vou classificá-lo como vermelho, o que significa atendimento imediato.",
+      },
+      {
+        en: "I am going to take you straight to the resuscitation room — the doctor will see you right away.",
+        target:
+          "Vou levá-lo diretamente para a sala de reanimação — o médico vai atendê-lo agora mesmo.",
+      },
+      {
+        en: "Have you taken any medication or used any substances in the last 24 hours?",
+        target: "Tomou algum medicamento ou usou alguma substância nas últimas 24 horas?",
+      },
+      {
+        en: "Is there a family member or someone we can contact for you while we begin treatment?",
+        target:
+          "Há algum familiar ou alguém que possamos contatar enquanto iniciamos o tratamento?",
+      },
+      {
+        en: "Try to stay calm and breathe slowly — we are going to take very good care of you.",
+        target: "Tente manter a calma e respire devagar — vamos cuidar muito bem do senhor.",
+      },
     ],
   },
 
@@ -722,15 +1693,42 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Doctor, before tomorrow's surgery, I have a few questions I'd like to ask.", target: "先生、明日の手術の前に、いくつかお聞きしたいことがあります。" },
-      { en: "Could you please explain again exactly what you will be doing during the operation?", target: "手術中に具体的に何をされるのか、もう一度ご説明いただけますか。" },
-      { en: "How long will the procedure take, and how long will I be in the recovery room?", target: "手術にはどのくらいの時間がかかり、回復室にはどのくらいいることになりますか。" },
-      { en: "What kind of pain should I expect afterwards, and how will it be controlled?", target: "術後はどのような痛みが予想され、どのように管理されますか。" },
-      { en: "When will I be able to eat normally and walk on my own?", target: "通常の食事や自分で歩けるようになるのはいつ頃でしょうか。" },
-      { en: "Are there any signs of complications I should watch for after I go home?", target: "退院後に注意すべき合併症の兆候はありますか。" },
-      { en: "How long will it take to fully recover and return to my normal activities at work?", target: "完全に回復し、仕事の通常業務に戻れるまでどのくらいかかりますか。" },
-      { en: "Will I need physical therapy or follow-up imaging studies after surgery?", target: "手術後にリハビリや追加の画像検査は必要になりますか。" },
-      { en: "If something goes wrong at home in the middle of the night, who should I call?", target: "夜中に自宅で何か問題が起きた場合、どなたに連絡すればよいですか。" },
+      {
+        en: "Doctor, before tomorrow's surgery, I have a few questions I'd like to ask.",
+        target: "先生、明日の手術の前に、いくつかお聞きしたいことがあります。",
+      },
+      {
+        en: "Could you please explain again exactly what you will be doing during the operation?",
+        target: "手術中に具体的に何をされるのか、もう一度ご説明いただけますか。",
+      },
+      {
+        en: "How long will the procedure take, and how long will I be in the recovery room?",
+        target: "手術にはどのくらいの時間がかかり、回復室にはどのくらいいることになりますか。",
+      },
+      {
+        en: "What kind of pain should I expect afterwards, and how will it be controlled?",
+        target: "術後はどのような痛みが予想され、どのように管理されますか。",
+      },
+      {
+        en: "When will I be able to eat normally and walk on my own?",
+        target: "通常の食事や自分で歩けるようになるのはいつ頃でしょうか。",
+      },
+      {
+        en: "Are there any signs of complications I should watch for after I go home?",
+        target: "退院後に注意すべき合併症の兆候はありますか。",
+      },
+      {
+        en: "How long will it take to fully recover and return to my normal activities at work?",
+        target: "完全に回復し、仕事の通常業務に戻れるまでどのくらいかかりますか。",
+      },
+      {
+        en: "Will I need physical therapy or follow-up imaging studies after surgery?",
+        target: "手術後にリハビリや追加の画像検査は必要になりますか。",
+      },
+      {
+        en: "If something goes wrong at home in the middle of the night, who should I call?",
+        target: "夜中に自宅で何か問題が起きた場合、どなたに連絡すればよいですか。",
+      },
     ],
   },
 
@@ -746,15 +1744,48 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Code blue, room 412 — I need the crash cart and the resuscitation team immediately.", target: "Código azul, habitación 412 — necesito el carro de paros y el equipo de reanimación de inmediato." },
-      { en: "The patient has no pulse and is not breathing. Begin chest compressions now.", target: "El paciente no tiene pulso y no respira. Inicien compresiones torácicas ahora." },
-      { en: "Compressions at a rate of 100 to 120 per minute, two inches deep — let the chest fully recoil.", target: "Compresiones a un ritmo de 100 a 120 por minuto, cinco centímetros de profundidad — permitan la reexpansión completa del tórax." },
-      { en: "Place the defibrillator pads. Charge to 200 joules and prepare to shock.", target: "Coloquen los parches del desfibrilador. Carguen a 200 julios y prepárense para descargar." },
-      { en: "Everyone clear — shock delivered. Resume compressions immediately.", target: "Todos despejados — descarga aplicada. Reanuden las compresiones inmediatamente." },
-      { en: "Give one milligram of epinephrine intravenously every three to five minutes.", target: "Administren un miligramo de epinefrina por vía intravenosa cada tres a cinco minutos." },
-      { en: "Anesthesia, please secure the airway with an endotracheal tube as soon as possible.", target: "Anestesia, por favor asegure la vía aérea con un tubo endotraqueal lo antes posible." },
-      { en: "We have return of spontaneous circulation — pulse is palpable in the carotid.", target: "Tenemos retorno de la circulación espontánea — se palpa pulso en la carótida." },
-      { en: "Transfer the patient to the intensive care unit and notify the family right away.", target: "Trasladen al paciente a la unidad de cuidados intensivos y notifiquen a la familia de inmediato." },
+      {
+        en: "Code blue, room 412 — I need the crash cart and the resuscitation team immediately.",
+        target:
+          "Código azul, habitación 412 — necesito el carro de paros y el equipo de reanimación de inmediato.",
+      },
+      {
+        en: "The patient has no pulse and is not breathing. Begin chest compressions now.",
+        target: "El paciente no tiene pulso y no respira. Inicien compresiones torácicas ahora.",
+      },
+      {
+        en: "Compressions at a rate of 100 to 120 per minute, two inches deep — let the chest fully recoil.",
+        target:
+          "Compresiones a un ritmo de 100 a 120 por minuto, cinco centímetros de profundidad — permitan la reexpansión completa del tórax.",
+      },
+      {
+        en: "Place the defibrillator pads. Charge to 200 joules and prepare to shock.",
+        target:
+          "Coloquen los parches del desfibrilador. Carguen a 200 julios y prepárense para descargar.",
+      },
+      {
+        en: "Everyone clear — shock delivered. Resume compressions immediately.",
+        target: "Todos despejados — descarga aplicada. Reanuden las compresiones inmediatamente.",
+      },
+      {
+        en: "Give one milligram of epinephrine intravenously every three to five minutes.",
+        target:
+          "Administren un miligramo de epinefrina por vía intravenosa cada tres a cinco minutos.",
+      },
+      {
+        en: "Anesthesia, please secure the airway with an endotracheal tube as soon as possible.",
+        target:
+          "Anestesia, por favor asegure la vía aérea con un tubo endotraqueal lo antes posible.",
+      },
+      {
+        en: "We have return of spontaneous circulation — pulse is palpable in the carotid.",
+        target: "Tenemos retorno de la circulación espontánea — se palpa pulso en la carótida.",
+      },
+      {
+        en: "Transfer the patient to the intensive care unit and notify the family right away.",
+        target:
+          "Trasladen al paciente a la unidad de cuidados intensivos y notifiquen a la familia de inmediato.",
+      },
     ],
   },
 
@@ -770,15 +1801,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Thank you for taking my call — I'm phoning about a 68-year-old patient with cardiorenal syndrome that's becoming difficult to manage medically.", target: "Merci d'avoir pris mon appel — je vous contacte au sujet d'un patient de 68 ans présentant un syndrome cardiorénal de plus en plus difficile à équilibrer sur le plan médical." },
-      { en: "He has heart failure with reduced ejection fraction at 25 percent and a creatinine that has climbed from 1.4 to 2.6 in three weeks.", target: "Il présente une insuffisance cardiaque à fraction d'éjection réduite à 25 %, et une créatinine qui est passée de 14 à 26 milligrammes par litre en trois semaines." },
-      { en: "Despite escalating his loop diuretic and adding metolazone, his volume status remains markedly overloaded.", target: "Malgré une majoration du diurétique de l'anse et l'ajout de métolazone, sa volémie reste nettement excédentaire." },
-      { en: "I'm reluctant to push the diuresis further without your input, given the worsening renal function.", target: "Je suis réticent à pousser davantage la diurèse sans votre avis, étant donné la dégradation de la fonction rénale." },
-      { en: "His potassium is at the upper limit at 5.3, which restricts my options for adding a mineralocorticoid antagonist.", target: "Sa kaliémie est à la limite supérieure à 5,3 mmol/L, ce qui limite mes options pour l'ajout d'un antagoniste des minéralocorticoïdes." },
-      { en: "I'd like your thoughts on whether we should consider ultrafiltration or initiate renal replacement therapy.", target: "J'aimerais avoir votre avis sur l'opportunité d'envisager une ultrafiltration ou d'initier une épuration extrarénale." },
-      { en: "The renal ultrasound shows no obstruction, and the urinary sodium suggests a pre-renal component superimposed on chronic disease.", target: "L'échographie rénale ne montre pas d'obstruction, et le sodium urinaire évoque une composante pré-rénale surajoutée à une maladie chronique." },
-      { en: "If you could see him in consultation today, I'd be very grateful — his trajectory worries me.", target: "Si vous pouviez le voir en consultation aujourd'hui, je vous en serais très reconnaissant — sa trajectoire m'inquiète." },
-      { en: "I'll send you his complete file and the latest imaging through the secure messaging system.", target: "Je vous envoie son dossier complet et les derniers examens d'imagerie via la messagerie sécurisée." },
+      {
+        en: "Thank you for taking my call — I'm phoning about a 68-year-old patient with cardiorenal syndrome that's becoming difficult to manage medically.",
+        target:
+          "Merci d'avoir pris mon appel — je vous contacte au sujet d'un patient de 68 ans présentant un syndrome cardiorénal de plus en plus difficile à équilibrer sur le plan médical.",
+      },
+      {
+        en: "He has heart failure with reduced ejection fraction at 25 percent and a creatinine that has climbed from 1.4 to 2.6 in three weeks.",
+        target:
+          "Il présente une insuffisance cardiaque à fraction d'éjection réduite à 25 %, et une créatinine qui est passée de 14 à 26 milligrammes par litre en trois semaines.",
+      },
+      {
+        en: "Despite escalating his loop diuretic and adding metolazone, his volume status remains markedly overloaded.",
+        target:
+          "Malgré une majoration du diurétique de l'anse et l'ajout de métolazone, sa volémie reste nettement excédentaire.",
+      },
+      {
+        en: "I'm reluctant to push the diuresis further without your input, given the worsening renal function.",
+        target:
+          "Je suis réticent à pousser davantage la diurèse sans votre avis, étant donné la dégradation de la fonction rénale.",
+      },
+      {
+        en: "His potassium is at the upper limit at 5.3, which restricts my options for adding a mineralocorticoid antagonist.",
+        target:
+          "Sa kaliémie est à la limite supérieure à 5,3 mmol/L, ce qui limite mes options pour l'ajout d'un antagoniste des minéralocorticoïdes.",
+      },
+      {
+        en: "I'd like your thoughts on whether we should consider ultrafiltration or initiate renal replacement therapy.",
+        target:
+          "J'aimerais avoir votre avis sur l'opportunité d'envisager une ultrafiltration ou d'initier une épuration extrarénale.",
+      },
+      {
+        en: "The renal ultrasound shows no obstruction, and the urinary sodium suggests a pre-renal component superimposed on chronic disease.",
+        target:
+          "L'échographie rénale ne montre pas d'obstruction, et le sodium urinaire évoque une composante pré-rénale surajoutée à une maladie chronique.",
+      },
+      {
+        en: "If you could see him in consultation today, I'd be very grateful — his trajectory worries me.",
+        target:
+          "Si vous pouviez le voir en consultation aujourd'hui, je vous en serais très reconnaissant — sa trajectoire m'inquiète.",
+      },
+      {
+        en: "I'll send you his complete file and the latest imaging through the secure messaging system.",
+        target:
+          "Je vous envoie son dossier complet et les derniers examens d'imagerie via la messagerie sécurisée.",
+      },
     ],
   },
 
@@ -794,15 +1861,51 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "I'd like to present the case of a 72-year-old patient who developed an anastomotic leak on postoperative day five after a low anterior resection.", target: "Ich möchte den Fall einer 72-jährigen Patientin vorstellen, die am fünften postoperativen Tag nach tiefer anteriorer Resektion eine Anastomoseninsuffizienz entwickelt hat." },
-      { en: "Her preoperative risk factors included a BMI of 32, type-2 diabetes, and a history of pelvic radiation eight years ago.", target: "Zu ihren präoperativen Risikofaktoren zählten ein BMI von 32, ein Typ-2-Diabetes und eine Beckenbestrahlung in der Vorgeschichte vor acht Jahren." },
-      { en: "Intraoperatively, the anastomosis was tested with an air leak test, which was negative at the time of construction.", target: "Intraoperativ wurde die Anastomose mittels Luftdichtigkeitsprüfung getestet, die zum Zeitpunkt der Anlage negativ war." },
-      { en: "On postoperative day three she developed tachycardia and a low-grade fever, which were initially attributed to atelectasis.", target: "Am dritten postoperativen Tag entwickelte sie eine Tachykardie und subfebrile Temperaturen, die zunächst auf eine Atelektase zurückgeführt wurden." },
-      { en: "The CT scan on day five revealed extraluminal contrast extravasation and a presacral abscess.", target: "Die CT-Untersuchung am fünften Tag zeigte eine extraluminale Kontrastmittelextravasation und einen präsakralen Abszess." },
-      { en: "In retrospect, the early signs of sepsis should have prompted earlier imaging — that's the key learning point.", target: "Rückblickend hätten die frühen Zeichen einer Sepsis eine frühere Bildgebung veranlassen müssen — das ist der zentrale Lernpunkt." },
-      { en: "The patient was returned to the operating room for a diverting loop ileostomy and washout, and recovered without further events.", target: "Die Patientin wurde zur Anlage eines protektiven Ileostomas und Spülung in den Operationssaal zurückgebracht und erholte sich ohne weitere Ereignisse." },
-      { en: "For future cases, I propose lowering our threshold for cross-sectional imaging in any post-anastomosis patient with unexplained tachycardia.", target: "Für zukünftige Fälle schlage ich vor, die Schwelle für eine Schnittbildgebung bei jedem postoperativen Patienten mit unklarer Tachykardie nach Anastomose zu senken." },
-      { en: "I would also like to discuss whether selective use of a defunctioning stoma is warranted in patients with a history of pelvic radiation.", target: "Ich möchte außerdem zur Diskussion stellen, ob bei Patienten mit Beckenbestrahlung in der Vorgeschichte ein selektiver Einsatz eines protektiven Stomas gerechtfertigt ist." },
+      {
+        en: "I'd like to present the case of a 72-year-old patient who developed an anastomotic leak on postoperative day five after a low anterior resection.",
+        target:
+          "Ich möchte den Fall einer 72-jährigen Patientin vorstellen, die am fünften postoperativen Tag nach tiefer anteriorer Resektion eine Anastomoseninsuffizienz entwickelt hat.",
+      },
+      {
+        en: "Her preoperative risk factors included a BMI of 32, type-2 diabetes, and a history of pelvic radiation eight years ago.",
+        target:
+          "Zu ihren präoperativen Risikofaktoren zählten ein BMI von 32, ein Typ-2-Diabetes und eine Beckenbestrahlung in der Vorgeschichte vor acht Jahren.",
+      },
+      {
+        en: "Intraoperatively, the anastomosis was tested with an air leak test, which was negative at the time of construction.",
+        target:
+          "Intraoperativ wurde die Anastomose mittels Luftdichtigkeitsprüfung getestet, die zum Zeitpunkt der Anlage negativ war.",
+      },
+      {
+        en: "On postoperative day three she developed tachycardia and a low-grade fever, which were initially attributed to atelectasis.",
+        target:
+          "Am dritten postoperativen Tag entwickelte sie eine Tachykardie und subfebrile Temperaturen, die zunächst auf eine Atelektase zurückgeführt wurden.",
+      },
+      {
+        en: "The CT scan on day five revealed extraluminal contrast extravasation and a presacral abscess.",
+        target:
+          "Die CT-Untersuchung am fünften Tag zeigte eine extraluminale Kontrastmittelextravasation und einen präsakralen Abszess.",
+      },
+      {
+        en: "In retrospect, the early signs of sepsis should have prompted earlier imaging — that's the key learning point.",
+        target:
+          "Rückblickend hätten die frühen Zeichen einer Sepsis eine frühere Bildgebung veranlassen müssen — das ist der zentrale Lernpunkt.",
+      },
+      {
+        en: "The patient was returned to the operating room for a diverting loop ileostomy and washout, and recovered without further events.",
+        target:
+          "Die Patientin wurde zur Anlage eines protektiven Ileostomas und Spülung in den Operationssaal zurückgebracht und erholte sich ohne weitere Ereignisse.",
+      },
+      {
+        en: "For future cases, I propose lowering our threshold for cross-sectional imaging in any post-anastomosis patient with unexplained tachycardia.",
+        target:
+          "Für zukünftige Fälle schlage ich vor, die Schwelle für eine Schnittbildgebung bei jedem postoperativen Patienten mit unklarer Tachykardie nach Anastomose zu senken.",
+      },
+      {
+        en: "I would also like to discuss whether selective use of a defunctioning stoma is warranted in patients with a history of pelvic radiation.",
+        target:
+          "Ich möchte außerdem zur Diskussion stellen, ob bei Patienten mit Beckenbestrahlung in der Vorgeschichte ein selektiver Einsatz eines protektiven Stomas gerechtfertigt ist.",
+      },
     ],
   },
 
@@ -818,16 +1921,43 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Hello, I have a bad cold. Do you have something for it?", target: "안녕하세요, 감기가 심해요. 약 좀 있어요?" },
-      { en: "What are your symptoms? Cough, runny nose, or fever?", target: "증상이 어떻게 되세요? 기침, 콧물, 아니면 열이 있어요?" },
-      { en: "I have a cough and a sore throat. No fever yet.", target: "기침하고 목이 아파요. 아직 열은 없어요." },
+      {
+        en: "Hello, I have a bad cold. Do you have something for it?",
+        target: "안녕하세요, 감기가 심해요. 약 좀 있어요?",
+      },
+      {
+        en: "What are your symptoms? Cough, runny nose, or fever?",
+        target: "증상이 어떻게 되세요? 기침, 콧물, 아니면 열이 있어요?",
+      },
+      {
+        en: "I have a cough and a sore throat. No fever yet.",
+        target: "기침하고 목이 아파요. 아직 열은 없어요.",
+      },
       { en: "How long have you had these symptoms?", target: "증상이 시작된 지 얼마나 됐어요?" },
-      { en: "About three days. The cough is getting worse at night.", target: "삼 일 정도 됐어요. 밤에 기침이 더 심해져요." },
-      { en: "I will give you a cough syrup and a throat lozenge. Take them after meals.", target: "기침 시럽하고 목 사탕을 드릴게요. 식사 후에 드세요." },
-      { en: "Take the syrup three times a day, ten milliliters each time.", target: "시럽은 하루에 세 번, 한 번에 십 밀리리터씩 드세요." },
-      { en: "Are there any side effects I should know about?", target: "혹시 알아야 할 부작용이 있어요?" },
-      { en: "It can make you sleepy, so do not drive after taking it.", target: "졸릴 수 있으니까 드시고 운전하지 마세요." },
-      { en: "If you do not feel better in three days, please see a doctor.", target: "삼 일 안에 나아지지 않으면 병원에 꼭 가 보세요." },
+      {
+        en: "About three days. The cough is getting worse at night.",
+        target: "삼 일 정도 됐어요. 밤에 기침이 더 심해져요.",
+      },
+      {
+        en: "I will give you a cough syrup and a throat lozenge. Take them after meals.",
+        target: "기침 시럽하고 목 사탕을 드릴게요. 식사 후에 드세요.",
+      },
+      {
+        en: "Take the syrup three times a day, ten milliliters each time.",
+        target: "시럽은 하루에 세 번, 한 번에 십 밀리리터씩 드세요.",
+      },
+      {
+        en: "Are there any side effects I should know about?",
+        target: "혹시 알아야 할 부작용이 있어요?",
+      },
+      {
+        en: "It can make you sleepy, so do not drive after taking it.",
+        target: "졸릴 수 있으니까 드시고 운전하지 마세요.",
+      },
+      {
+        en: "If you do not feel better in three days, please see a doctor.",
+        target: "삼 일 안에 나아지지 않으면 병원에 꼭 가 보세요.",
+      },
     ],
   },
 
@@ -843,16 +1973,48 @@ export const MEDICAL_A_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Mr. Lee, please come in and have a seat. Let's review your three-month results today.", target: "이 선생님, 들어오셔서 앉으세요. 오늘은 삼 개월 결과를 함께 검토해 봅시다." },
-      { en: "Your fasting blood glucose has come down from 168 to 132, which is encouraging progress.", target: "공복 혈당이 168에서 132로 내려갔는데, 이는 고무적인 변화입니다." },
-      { en: "However, your hemoglobin A1c is still 7.8 percent, so we have not yet reached the target of 7.0.", target: "다만 당화혈색소는 아직 7.8 퍼센트라서 목표인 7.0에는 도달하지 못했습니다." },
-      { en: "Your blood pressure today is 138 over 86, which is slightly above the goal for diabetic patients.", target: "오늘 혈압은 138에 86으로, 당뇨 환자의 목표치보다 약간 높습니다." },
-      { en: "Have you been able to walk for thirty minutes a day as we discussed last visit?", target: "지난 방문 때 말씀드린 대로 매일 삼십 분 걷기는 잘 실천하고 계신가요?" },
-      { en: "I will increase your metformin from 500 milligrams twice a day to 1,000 milligrams twice a day.", target: "메트포민을 하루 두 번 500밀리그램에서 하루 두 번 1,000밀리그램으로 증량하겠습니다." },
-      { en: "Please watch for stomach upset or diarrhea, especially during the first two weeks.", target: "특히 첫 이 주 동안은 속이 더부룩하거나 설사하는지 잘 살펴보세요." },
-      { en: "I would also like to add a low-dose ARB to better control your blood pressure and protect your kidneys.", target: "혈압을 더 잘 조절하고 신장을 보호하기 위해 저용량 안지오텐신 수용체 차단제를 추가하고 싶습니다." },
-      { en: "Please get a fasting blood test and a urine microalbumin check two weeks before our next visit.", target: "다음 진료 이 주 전에 공복 혈액 검사와 소변 미세알부민 검사를 받고 오세요." },
-      { en: "If you feel dizzy when standing up, please reduce the new medication and call the clinic right away.", target: "일어설 때 어지러움을 느끼시면 새 약을 줄이시고 즉시 진료실로 전화 주세요." },
+      {
+        en: "Mr. Lee, please come in and have a seat. Let's review your three-month results today.",
+        target: "이 선생님, 들어오셔서 앉으세요. 오늘은 삼 개월 결과를 함께 검토해 봅시다.",
+      },
+      {
+        en: "Your fasting blood glucose has come down from 168 to 132, which is encouraging progress.",
+        target: "공복 혈당이 168에서 132로 내려갔는데, 이는 고무적인 변화입니다.",
+      },
+      {
+        en: "However, your hemoglobin A1c is still 7.8 percent, so we have not yet reached the target of 7.0.",
+        target: "다만 당화혈색소는 아직 7.8 퍼센트라서 목표인 7.0에는 도달하지 못했습니다.",
+      },
+      {
+        en: "Your blood pressure today is 138 over 86, which is slightly above the goal for diabetic patients.",
+        target: "오늘 혈압은 138에 86으로, 당뇨 환자의 목표치보다 약간 높습니다.",
+      },
+      {
+        en: "Have you been able to walk for thirty minutes a day as we discussed last visit?",
+        target: "지난 방문 때 말씀드린 대로 매일 삼십 분 걷기는 잘 실천하고 계신가요?",
+      },
+      {
+        en: "I will increase your metformin from 500 milligrams twice a day to 1,000 milligrams twice a day.",
+        target:
+          "메트포민을 하루 두 번 500밀리그램에서 하루 두 번 1,000밀리그램으로 증량하겠습니다.",
+      },
+      {
+        en: "Please watch for stomach upset or diarrhea, especially during the first two weeks.",
+        target: "특히 첫 이 주 동안은 속이 더부룩하거나 설사하는지 잘 살펴보세요.",
+      },
+      {
+        en: "I would also like to add a low-dose ARB to better control your blood pressure and protect your kidneys.",
+        target:
+          "혈압을 더 잘 조절하고 신장을 보호하기 위해 저용량 안지오텐신 수용체 차단제를 추가하고 싶습니다.",
+      },
+      {
+        en: "Please get a fasting blood test and a urine microalbumin check two weeks before our next visit.",
+        target: "다음 진료 이 주 전에 공복 혈액 검사와 소변 미세알부민 검사를 받고 오세요.",
+      },
+      {
+        en: "If you feel dizzy when standing up, please reduce the new medication and call the clinic right away.",
+        target: "일어설 때 어지러움을 느끼시면 새 약을 줄이시고 즉시 진료실로 전화 주세요.",
+      },
     ],
   },
 ];

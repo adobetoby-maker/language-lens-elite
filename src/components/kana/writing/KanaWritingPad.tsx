@@ -110,8 +110,16 @@ export function KanaWritingPad({ fullScreen = false }: { fullScreen?: boolean })
       )}
 
       {/* Mode content */}
-      <div className={fullScreen ? "flex-1 rounded-2xl border border-border/40 bg-card/40 p-4" : "rounded-2xl border border-border/40 bg-card/40 p-5"}>
-        {mode === "trace" && <TraceMode group={group} words={words} sentence={sentence} fullScreen={fullScreen} />}
+      <div
+        className={
+          fullScreen
+            ? "flex-1 rounded-2xl border border-border/40 bg-card/40 p-4"
+            : "rounded-2xl border border-border/40 bg-card/40 p-5"
+        }
+      >
+        {mode === "trace" && (
+          <TraceMode group={group} words={words} sentence={sentence} fullScreen={fullScreen} />
+        )}
         {mode === "complete" && <MissingHalfMode group={group} />}
         {mode === "penpal" && <PenPalMode />}
       </div>

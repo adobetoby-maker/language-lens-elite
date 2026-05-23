@@ -13,16 +13,43 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "To make a Spanish tortilla you need eggs, potatoes, onion, oil, and salt.", target: "Para hacer una tortilla española necesitas huevos, papas, cebolla, aceite y sal." },
-      { en: "First, peel and cut the potatoes into thin slices.", target: "Primero, pela y corta las papas en rodajas finas." },
+      {
+        en: "To make a Spanish tortilla you need eggs, potatoes, onion, oil, and salt.",
+        target: "Para hacer una tortilla española necesitas huevos, papas, cebolla, aceite y sal.",
+      },
+      {
+        en: "First, peel and cut the potatoes into thin slices.",
+        target: "Primero, pela y corta las papas en rodajas finas.",
+      },
       { en: "Cut the onion into small pieces.", target: "Corta la cebolla en trozos pequeños." },
-      { en: "Heat plenty of oil in a frying pan over medium heat.", target: "Calienta bastante aceite en una sartén a fuego medio." },
-      { en: "Cook the potatoes and the onion together for about twenty minutes.", target: "Cocina las papas y la cebolla juntas durante unos veinte minutos." },
-      { en: "Beat six eggs in a large bowl with a little salt.", target: "Bate seis huevos en un tazón grande con un poco de sal." },
-      { en: "Mix the cooked potatoes and onion with the eggs.", target: "Mezcla las papas y la cebolla cocidas con los huevos." },
-      { en: "Pour everything back into the pan and cook on low heat.", target: "Vuelve a poner todo en la sartén y cocínalo a fuego bajo." },
-      { en: "After five minutes, turn the tortilla using a flat plate.", target: "Después de cinco minutos, voltea la tortilla con un plato plano." },
-      { en: "Serve warm with a fresh green salad.", target: "Sírvela tibia con una ensalada verde fresca." },
+      {
+        en: "Heat plenty of oil in a frying pan over medium heat.",
+        target: "Calienta bastante aceite en una sartén a fuego medio.",
+      },
+      {
+        en: "Cook the potatoes and the onion together for about twenty minutes.",
+        target: "Cocina las papas y la cebolla juntas durante unos veinte minutos.",
+      },
+      {
+        en: "Beat six eggs in a large bowl with a little salt.",
+        target: "Bate seis huevos en un tazón grande con un poco de sal.",
+      },
+      {
+        en: "Mix the cooked potatoes and onion with the eggs.",
+        target: "Mezcla las papas y la cebolla cocidas con los huevos.",
+      },
+      {
+        en: "Pour everything back into the pan and cook on low heat.",
+        target: "Vuelve a poner todo en la sartén y cocínalo a fuego bajo.",
+      },
+      {
+        en: "After five minutes, turn the tortilla using a flat plate.",
+        target: "Después de cinco minutos, voltea la tortilla con un plato plano.",
+      },
+      {
+        en: "Serve warm with a fresh green salad.",
+        target: "Sírvela tibia con una ensalada verde fresca.",
+      },
     ],
   },
 
@@ -38,15 +65,39 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Good morning! How fresh are these tomatoes today?", target: "¡Buenos días! ¿Qué tan frescos están estos tomates hoy?" },
-      { en: "I picked them at five in the morning. They are very ripe and sweet.", target: "Los recogí a las cinco de la mañana. Están muy maduros y dulces." },
+      {
+        en: "Good morning! How fresh are these tomatoes today?",
+        target: "¡Buenos días! ¿Qué tan frescos están estos tomates hoy?",
+      },
+      {
+        en: "I picked them at five in the morning. They are very ripe and sweet.",
+        target: "Los recogí a las cinco de la mañana. Están muy maduros y dulces.",
+      },
       { en: "How much does a kilo cost?", target: "¿A cuánto está el kilo?" },
-      { en: "Forty pesos a kilo, but if you take three kilos I will leave it at one hundred.", target: "Cuarenta pesos el kilo, pero si llevas tres kilos te lo dejo en cien." },
-      { en: "I am going to make sauce for the whole week, so I will take three kilos.", target: "Voy a hacer salsa para toda la semana, así que me llevo tres kilos." },
-      { en: "Excellent choice! Do you also need fresh garlic and basil?", target: "¡Excelente elección! ¿También necesita ajo fresco y albahaca?" },
-      { en: "Yes, please give me a head of garlic and a small bunch of basil.", target: "Sí, por favor deme una cabeza de ajo y un manojo pequeño de albahaca." },
-      { en: "If you take the whole bunch I will give you the basil for free.", target: "Si lleva el manojo completo le regalo la albahaca." },
-      { en: "Thank you very much! I will see you next Saturday.", target: "¡Muchas gracias! Nos vemos el próximo sábado." },
+      {
+        en: "Forty pesos a kilo, but if you take three kilos I will leave it at one hundred.",
+        target: "Cuarenta pesos el kilo, pero si llevas tres kilos te lo dejo en cien.",
+      },
+      {
+        en: "I am going to make sauce for the whole week, so I will take three kilos.",
+        target: "Voy a hacer salsa para toda la semana, así que me llevo tres kilos.",
+      },
+      {
+        en: "Excellent choice! Do you also need fresh garlic and basil?",
+        target: "¡Excelente elección! ¿También necesita ajo fresco y albahaca?",
+      },
+      {
+        en: "Yes, please give me a head of garlic and a small bunch of basil.",
+        target: "Sí, por favor deme una cabeza de ajo y un manojo pequeño de albahaca.",
+      },
+      {
+        en: "If you take the whole bunch I will give you the basil for free.",
+        target: "Si lleva el manojo completo le regalo la albahaca.",
+      },
+      {
+        en: "Thank you very much! I will see you next Saturday.",
+        target: "¡Muchas gracias! Nos vemos el próximo sábado.",
+      },
     ],
   },
 
@@ -62,15 +113,51 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good evening, allow me to suggest some wines that will go beautifully with your menu choices tonight.", target: "Bonsoir, permettez-moi de vous suggérer quelques vins qui s'accorderont parfaitement avec vos choix de menu ce soir." },
-      { en: "For your starter of seared scallops, I would recommend a white wine with good minerality.", target: "Pour votre entrée de Saint-Jacques poêlées, je recommanderais un vin blanc avec une belle minéralité." },
-      { en: "A Sancerre from the upper Loire would highlight the iodized notes of the seafood without overpowering them.", target: "Un Sancerre du haut de la Loire mettrait en valeur les notes iodées du fruit de mer sans les écraser." },
-      { en: "For the main course, the rack of lamb with herb crust calls for a more structured red.", target: "Pour le plat principal, le carré d'agneau en croûte d'herbes appelle un rouge plus structuré." },
-      { en: "I would suggest a Saint-Émilion grand cru with about ten years of bottle age.", target: "Je vous suggérerais un Saint-Émilion grand cru avec une dizaine d'années de garde en bouteille." },
-      { en: "The tannins will have softened nicely and will marry the lamb's richness without dominating it.", target: "Les tanins se seront bien assouplis et épouseront la richesse de l'agneau sans la dominer." },
-      { en: "If you prefer to stay with whites throughout the evening, an aged white Burgundy could also work very well.", target: "Si vous préférez rester sur les blancs tout au long du soir, un grand bourgogne blanc évolué pourrait aussi très bien convenir." },
-      { en: "For dessert, may I propose a glass of Sauternes to accompany the apricot tart?", target: "Pour le dessert, puis-je vous proposer un verre de Sauternes pour accompagner la tarte à l'abricot ?" },
-      { en: "Its honeyed sweetness and slight acidity will balance the fruit perfectly without being cloying.", target: "Sa douceur miellée et sa légère acidité équilibreront le fruit à merveille sans être écœurantes." },
+      {
+        en: "Good evening, allow me to suggest some wines that will go beautifully with your menu choices tonight.",
+        target:
+          "Bonsoir, permettez-moi de vous suggérer quelques vins qui s'accorderont parfaitement avec vos choix de menu ce soir.",
+      },
+      {
+        en: "For your starter of seared scallops, I would recommend a white wine with good minerality.",
+        target:
+          "Pour votre entrée de Saint-Jacques poêlées, je recommanderais un vin blanc avec une belle minéralité.",
+      },
+      {
+        en: "A Sancerre from the upper Loire would highlight the iodized notes of the seafood without overpowering them.",
+        target:
+          "Un Sancerre du haut de la Loire mettrait en valeur les notes iodées du fruit de mer sans les écraser.",
+      },
+      {
+        en: "For the main course, the rack of lamb with herb crust calls for a more structured red.",
+        target:
+          "Pour le plat principal, le carré d'agneau en croûte d'herbes appelle un rouge plus structuré.",
+      },
+      {
+        en: "I would suggest a Saint-Émilion grand cru with about ten years of bottle age.",
+        target:
+          "Je vous suggérerais un Saint-Émilion grand cru avec une dizaine d'années de garde en bouteille.",
+      },
+      {
+        en: "The tannins will have softened nicely and will marry the lamb's richness without dominating it.",
+        target:
+          "Les tanins se seront bien assouplis et épouseront la richesse de l'agneau sans la dominer.",
+      },
+      {
+        en: "If you prefer to stay with whites throughout the evening, an aged white Burgundy could also work very well.",
+        target:
+          "Si vous préférez rester sur les blancs tout au long du soir, un grand bourgogne blanc évolué pourrait aussi très bien convenir.",
+      },
+      {
+        en: "For dessert, may I propose a glass of Sauternes to accompany the apricot tart?",
+        target:
+          "Pour le dessert, puis-je vous proposer un verre de Sauternes pour accompagner la tarte à l'abricot ?",
+      },
+      {
+        en: "Its honeyed sweetness and slight acidity will balance the fruit perfectly without being cloying.",
+        target:
+          "Sa douceur miellée et sa légère acidité équilibreront le fruit à merveille sans être écœurantes.",
+      },
     ],
   },
 
@@ -86,16 +173,49 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Welcome everyone, today we are going to make traditional French crêpes.", target: "Bienvenue à tous, aujourd'hui nous allons faire des crêpes françaises traditionnelles." },
-      { en: "First, weigh out 250 grams of flour and put it in a large bowl.", target: "D'abord, pesez 250 grammes de farine et mettez-les dans un grand saladier." },
-      { en: "Make a hole in the middle of the flour and crack four eggs into it.", target: "Faites un puits au milieu de la farine et cassez-y quatre œufs." },
-      { en: "Pour in the milk little by little while mixing with a whisk.", target: "Versez le lait petit à petit en mélangeant avec un fouet." },
-      { en: "Add a pinch of salt and two tablespoons of sugar.", target: "Ajoutez une pincée de sel et deux cuillères à soupe de sucre." },
-      { en: "Let the batter rest for at least thirty minutes at room temperature.", target: "Laissez reposer la pâte au moins trente minutes à température ambiante." },
-      { en: "Heat the pan over medium-high heat and grease it lightly with butter.", target: "Faites chauffer la poêle à feu moyen-vif et graissez-la légèrement avec du beurre." },
-      { en: "Pour a small ladle of batter and turn the pan to spread it well.", target: "Versez une petite louche de pâte et tournez la poêle pour bien l'étaler." },
-      { en: "After about a minute, flip the crêpe with a spatula or by tossing it.", target: "Au bout d'une minute environ, retournez la crêpe avec une spatule ou en la faisant sauter." },
-      { en: "Serve hot with sugar, jam, or melted chocolate.", target: "Servez chaud avec du sucre, de la confiture ou du chocolat fondu." },
+      {
+        en: "Welcome everyone, today we are going to make traditional French crêpes.",
+        target:
+          "Bienvenue à tous, aujourd'hui nous allons faire des crêpes françaises traditionnelles.",
+      },
+      {
+        en: "First, weigh out 250 grams of flour and put it in a large bowl.",
+        target: "D'abord, pesez 250 grammes de farine et mettez-les dans un grand saladier.",
+      },
+      {
+        en: "Make a hole in the middle of the flour and crack four eggs into it.",
+        target: "Faites un puits au milieu de la farine et cassez-y quatre œufs.",
+      },
+      {
+        en: "Pour in the milk little by little while mixing with a whisk.",
+        target: "Versez le lait petit à petit en mélangeant avec un fouet.",
+      },
+      {
+        en: "Add a pinch of salt and two tablespoons of sugar.",
+        target: "Ajoutez une pincée de sel et deux cuillères à soupe de sucre.",
+      },
+      {
+        en: "Let the batter rest for at least thirty minutes at room temperature.",
+        target: "Laissez reposer la pâte au moins trente minutes à température ambiante.",
+      },
+      {
+        en: "Heat the pan over medium-high heat and grease it lightly with butter.",
+        target:
+          "Faites chauffer la poêle à feu moyen-vif et graissez-la légèrement avec du beurre.",
+      },
+      {
+        en: "Pour a small ladle of batter and turn the pan to spread it well.",
+        target: "Versez une petite louche de pâte et tournez la poêle pour bien l'étaler.",
+      },
+      {
+        en: "After about a minute, flip the crêpe with a spatula or by tossing it.",
+        target:
+          "Au bout d'une minute environ, retournez la crêpe avec une spatule ou en la faisant sauter.",
+      },
+      {
+        en: "Serve hot with sugar, jam, or melted chocolate.",
+        target: "Servez chaud avec du sucre, de la confiture ou du chocolat fondu.",
+      },
     ],
   },
 
@@ -111,15 +231,46 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Good evening, before I order I would like to mention an important allergy.", target: "Guten Abend, bevor ich bestelle, möchte ich auf eine wichtige Allergie hinweisen." },
-      { en: "I have a severe nut allergy, especially to peanuts and hazelnuts.", target: "Ich habe eine schwere Nussallergie, insbesondere gegen Erdnüsse und Haselnüsse." },
-      { en: "Even small traces can cause a strong reaction, so the kitchen must be very careful.", target: "Schon kleinste Spuren können eine starke Reaktion auslösen, deshalb muss die Küche sehr vorsichtig sein." },
-      { en: "Could you please tell me which dishes are completely nut-free?", target: "Könnten Sie mir bitte sagen, welche Gerichte komplett nussfrei sind?" },
-      { en: "Of course, I will speak with the chef and check each option for you.", target: "Selbstverständlich, ich werde mit dem Koch sprechen und jede Option für Sie prüfen." },
-      { en: "It is also important that the dish is not prepared on the same surface as nuts.", target: "Wichtig ist auch, dass das Gericht nicht auf derselben Fläche wie Nüsse zubereitet wird." },
-      { en: "I will note that on the order so the kitchen team is fully aware.", target: "Ich werde das auf der Bestellung vermerken, damit das Küchenteam voll informiert ist." },
-      { en: "Thank you very much. I always carry an emergency injector with me, just in case.", target: "Vielen Dank. Ich habe immer einen Notfall-Injektor dabei, nur für alle Fälle." },
-      { en: "We take this very seriously. Your safety is more important than any dish.", target: "Wir nehmen das sehr ernst. Ihre Sicherheit ist wichtiger als jedes Gericht." },
+      {
+        en: "Good evening, before I order I would like to mention an important allergy.",
+        target: "Guten Abend, bevor ich bestelle, möchte ich auf eine wichtige Allergie hinweisen.",
+      },
+      {
+        en: "I have a severe nut allergy, especially to peanuts and hazelnuts.",
+        target: "Ich habe eine schwere Nussallergie, insbesondere gegen Erdnüsse und Haselnüsse.",
+      },
+      {
+        en: "Even small traces can cause a strong reaction, so the kitchen must be very careful.",
+        target:
+          "Schon kleinste Spuren können eine starke Reaktion auslösen, deshalb muss die Küche sehr vorsichtig sein.",
+      },
+      {
+        en: "Could you please tell me which dishes are completely nut-free?",
+        target: "Könnten Sie mir bitte sagen, welche Gerichte komplett nussfrei sind?",
+      },
+      {
+        en: "Of course, I will speak with the chef and check each option for you.",
+        target:
+          "Selbstverständlich, ich werde mit dem Koch sprechen und jede Option für Sie prüfen.",
+      },
+      {
+        en: "It is also important that the dish is not prepared on the same surface as nuts.",
+        target:
+          "Wichtig ist auch, dass das Gericht nicht auf derselben Fläche wie Nüsse zubereitet wird.",
+      },
+      {
+        en: "I will note that on the order so the kitchen team is fully aware.",
+        target:
+          "Ich werde das auf der Bestellung vermerken, damit das Küchenteam voll informiert ist.",
+      },
+      {
+        en: "Thank you very much. I always carry an emergency injector with me, just in case.",
+        target: "Vielen Dank. Ich habe immer einen Notfall-Injektor dabei, nur für alle Fälle.",
+      },
+      {
+        en: "We take this very seriously. Your safety is more important than any dish.",
+        target: "Wir nehmen das sehr ernst. Ihre Sicherheit ist wichtiger als jedes Gericht.",
+      },
     ],
   },
 
@@ -135,13 +286,31 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning! What would you like today?", target: "Guten Morgen! Was hätten Sie gern heute?" },
-      { en: "I would like a loaf of dark bread, please.", target: "Ich hätte gern ein Brot, dunkel bitte." },
-      { en: "Would you like the bread sliced or whole?", target: "Möchten Sie das Brot geschnitten oder ganz?" },
-      { en: "Sliced, please. And six fresh rolls.", target: "Geschnitten, bitte. Und sechs frische Brötchen." },
-      { en: "Would you also like a pretzel? They have just come out of the oven.", target: "Hätten Sie auch gern eine Brezel? Sie sind gerade aus dem Ofen gekommen." },
+      {
+        en: "Good morning! What would you like today?",
+        target: "Guten Morgen! Was hätten Sie gern heute?",
+      },
+      {
+        en: "I would like a loaf of dark bread, please.",
+        target: "Ich hätte gern ein Brot, dunkel bitte.",
+      },
+      {
+        en: "Would you like the bread sliced or whole?",
+        target: "Möchten Sie das Brot geschnitten oder ganz?",
+      },
+      {
+        en: "Sliced, please. And six fresh rolls.",
+        target: "Geschnitten, bitte. Und sechs frische Brötchen.",
+      },
+      {
+        en: "Would you also like a pretzel? They have just come out of the oven.",
+        target: "Hätten Sie auch gern eine Brezel? Sie sind gerade aus dem Ofen gekommen.",
+      },
       { en: "Yes, please give me two pretzels.", target: "Ja, bitte geben Sie mir zwei Brezeln." },
-      { en: "That comes to nine euros and forty cents.", target: "Das macht neun Euro und vierzig Cent." },
+      {
+        en: "That comes to nine euros and forty cents.",
+        target: "Das macht neun Euro und vierzig Cent.",
+      },
       { en: "Here you are. Have a nice weekend!", target: "Bitte schön. Schönes Wochenende!" },
     ],
   },
@@ -158,15 +327,51 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "C1",
     sentences: [
-      { en: "Good evening, I am the chef and I would like to walk you through tonight's nine-course tasting menu personally.", target: "Buonasera, sono lo chef e desidero accompagnarvi personalmente attraverso il menù degustazione di nove portate di questa sera." },
-      { en: "We open with an apparently simple dish, an oyster from Brittany lightly cooked at sixty degrees.", target: "Apriamo con un piatto apparentemente semplice, un'ostrica della Bretagna leggermente cotta a sessanta gradi." },
-      { en: "The accompanying mignonette has been deconstructed and reassembled in the form of a cucumber and shiso pearl.", target: "La mignonette di accompagnamento è stata decostruita e ricomposta sotto forma di una perla di cetriolo e shiso." },
-      { en: "The second course pays homage to my grandmother's Tuscan cuisine, but reread through Japanese fermentation techniques.", target: "Il secondo è un omaggio alla cucina toscana di mia nonna, ma riletto attraverso le tecniche di fermentazione giapponesi." },
-      { en: "The bean broth has been clarified for forty-eight hours to obtain absolute transparency without losing the flavor.", target: "Il brodo di fagioli è stato chiarificato per quarantotto ore per ottenere una trasparenza assoluta senza perdere il sapore." },
-      { en: "For the main course we present aged duck breast, smoked over hay from our own farm.", target: "Per la portata principale presentiamo un petto d'anatra frollato, affumicato con il fieno della nostra stessa cascina." },
-      { en: "The bird, raised in the open air for one hundred and twenty days, is dressed with a reduction of cherries fermented in port.", target: "L'animale, allevato all'aperto per centoventi giorni, è vestito con una riduzione di ciliegie fermentate al porto." },
-      { en: "Each plate that reaches you tells a precise story of place, season and the artisanal hands behind every ingredient.", target: "Ogni piatto che vi arriva racconta una storia precisa di territorio, di stagione e di mani artigiane dietro ogni singolo ingrediente." },
-      { en: "Please feel free to ask any question — it would be a pleasure for the team to share these stories with you.", target: "Vi prego di farmi qualsiasi domanda — sarà un piacere per la brigata condividere queste storie con voi." },
+      {
+        en: "Good evening, I am the chef and I would like to walk you through tonight's nine-course tasting menu personally.",
+        target:
+          "Buonasera, sono lo chef e desidero accompagnarvi personalmente attraverso il menù degustazione di nove portate di questa sera.",
+      },
+      {
+        en: "We open with an apparently simple dish, an oyster from Brittany lightly cooked at sixty degrees.",
+        target:
+          "Apriamo con un piatto apparentemente semplice, un'ostrica della Bretagna leggermente cotta a sessanta gradi.",
+      },
+      {
+        en: "The accompanying mignonette has been deconstructed and reassembled in the form of a cucumber and shiso pearl.",
+        target:
+          "La mignonette di accompagnamento è stata decostruita e ricomposta sotto forma di una perla di cetriolo e shiso.",
+      },
+      {
+        en: "The second course pays homage to my grandmother's Tuscan cuisine, but reread through Japanese fermentation techniques.",
+        target:
+          "Il secondo è un omaggio alla cucina toscana di mia nonna, ma riletto attraverso le tecniche di fermentazione giapponesi.",
+      },
+      {
+        en: "The bean broth has been clarified for forty-eight hours to obtain absolute transparency without losing the flavor.",
+        target:
+          "Il brodo di fagioli è stato chiarificato per quarantotto ore per ottenere una trasparenza assoluta senza perdere il sapore.",
+      },
+      {
+        en: "For the main course we present aged duck breast, smoked over hay from our own farm.",
+        target:
+          "Per la portata principale presentiamo un petto d'anatra frollato, affumicato con il fieno della nostra stessa cascina.",
+      },
+      {
+        en: "The bird, raised in the open air for one hundred and twenty days, is dressed with a reduction of cherries fermented in port.",
+        target:
+          "L'animale, allevato all'aperto per centoventi giorni, è vestito con una riduzione di ciliegie fermentate al porto.",
+      },
+      {
+        en: "Each plate that reaches you tells a precise story of place, season and the artisanal hands behind every ingredient.",
+        target:
+          "Ogni piatto che vi arriva racconta una storia precisa di territorio, di stagione e di mani artigiane dietro ogni singolo ingrediente.",
+      },
+      {
+        en: "Please feel free to ask any question — it would be a pleasure for the team to share these stories with you.",
+        target:
+          "Vi prego di farmi qualsiasi domanda — sarà un piacere per la brigata condividere queste storie con voi.",
+      },
     ],
   },
 
@@ -182,15 +387,36 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good evening! Are you ready to order?", target: "Buonasera! Siete pronti per ordinare?" },
-      { en: "Yes, we would like a margherita and a four cheeses, please.", target: "Sì, vorremmo una margherita e una quattro formaggi, per favore." },
+      {
+        en: "Good evening! Are you ready to order?",
+        target: "Buonasera! Siete pronti per ordinare?",
+      },
+      {
+        en: "Yes, we would like a margherita and a four cheeses, please.",
+        target: "Sì, vorremmo una margherita e una quattro formaggi, per favore.",
+      },
       { en: "Of course. Anything for the kids?", target: "Certo. Qualcosa per i bambini?" },
-      { en: "A small pizza with ham, please.", target: "Una pizza piccola al prosciutto, per favore." },
+      {
+        en: "A small pizza with ham, please.",
+        target: "Una pizza piccola al prosciutto, per favore.",
+      },
       { en: "What would you like to drink?", target: "Cosa vorreste da bere?" },
-      { en: "A bottle of natural water and a glass of red wine.", target: "Una bottiglia di acqua naturale e un calice di vino rosso." },
-      { en: "Would you like to start with an appetizer?", target: "Volete iniziare con un antipasto?" },
-      { en: "Yes, please bring us a mixed bruschetta plate.", target: "Sì, ci porti un tagliere di bruschette miste." },
-      { en: "Perfect. The pizzas will be ready in about fifteen minutes.", target: "Perfetto. Le pizze saranno pronte tra circa quindici minuti." },
+      {
+        en: "A bottle of natural water and a glass of red wine.",
+        target: "Una bottiglia di acqua naturale e un calice di vino rosso.",
+      },
+      {
+        en: "Would you like to start with an appetizer?",
+        target: "Volete iniziare con un antipasto?",
+      },
+      {
+        en: "Yes, please bring us a mixed bruschetta plate.",
+        target: "Sì, ci porti un tagliere di bruschette miste.",
+      },
+      {
+        en: "Perfect. The pizzas will be ready in about fifteen minutes.",
+        target: "Perfetto. Le pizze saranno pronte tra circa quindici minuti.",
+      },
     ],
   },
 
@@ -206,15 +432,43 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Welcome. Today's omakase will start with the lighter fish first.", target: "いらっしゃいませ。本日のおまかせは、まず淡白な白身からお出しいたします。" },
-      { en: "This is sea bream, lightly cured with kelp for two hours.", target: "こちらは真鯛で、二時間ほど軽く昆布締めにしてございます。" },
-      { en: "The kelp gently brings out the umami without overpowering the original flavor of the fish.", target: "昆布が魚本来の味を損なわずに、うまみを優しく引き出してくれます。" },
-      { en: "Next is the medium fatty tuna, which has been aged in the refrigerator for five days.", target: "次は中とろで、冷蔵庫で五日間ほど熟成させたものです。" },
-      { en: "By aging it, the texture softens and the fat becomes mellower.", target: "熟成させることで、食感がやわらかくなり、脂もまろやかになります。" },
-      { en: "Please dip only this side lightly in the soy sauce — too much will overwhelm the rice's sweetness.", target: "醤油はこちらの面だけに軽くつけてください。つけすぎるとシャリの甘みが負けてしまいます。" },
-      { en: "The sea urchin is a fresh delivery from Hokkaido that arrived this morning.", target: "うには今朝、北海道から直送で届いたものでございます。" },
-      { en: "If you have any food allergies or things you cannot eat, please tell me at any time.", target: "アレルギーや苦手なものがございましたら、いつでもおっしゃってください。" },
-      { en: "We will adjust the rest of the course to suit your preferences.", target: "残りのコースは、お客様のお好みに合わせて調整させていただきます。" },
+      {
+        en: "Welcome. Today's omakase will start with the lighter fish first.",
+        target: "いらっしゃいませ。本日のおまかせは、まず淡白な白身からお出しいたします。",
+      },
+      {
+        en: "This is sea bream, lightly cured with kelp for two hours.",
+        target: "こちらは真鯛で、二時間ほど軽く昆布締めにしてございます。",
+      },
+      {
+        en: "The kelp gently brings out the umami without overpowering the original flavor of the fish.",
+        target: "昆布が魚本来の味を損なわずに、うまみを優しく引き出してくれます。",
+      },
+      {
+        en: "Next is the medium fatty tuna, which has been aged in the refrigerator for five days.",
+        target: "次は中とろで、冷蔵庫で五日間ほど熟成させたものです。",
+      },
+      {
+        en: "By aging it, the texture softens and the fat becomes mellower.",
+        target: "熟成させることで、食感がやわらかくなり、脂もまろやかになります。",
+      },
+      {
+        en: "Please dip only this side lightly in the soy sauce — too much will overwhelm the rice's sweetness.",
+        target:
+          "醤油はこちらの面だけに軽くつけてください。つけすぎるとシャリの甘みが負けてしまいます。",
+      },
+      {
+        en: "The sea urchin is a fresh delivery from Hokkaido that arrived this morning.",
+        target: "うには今朝、北海道から直送で届いたものでございます。",
+      },
+      {
+        en: "If you have any food allergies or things you cannot eat, please tell me at any time.",
+        target: "アレルギーや苦手なものがございましたら、いつでもおっしゃってください。",
+      },
+      {
+        en: "We will adjust the rest of the course to suit your preferences.",
+        target: "残りのコースは、お客様のお好みに合わせて調整させていただきます。",
+      },
     ],
   },
 
@@ -230,7 +484,10 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Welcome. Will you use a point card today?", target: "いらっしゃいませ。本日はポイントカードをお使いになりますか?" },
+      {
+        en: "Welcome. Will you use a point card today?",
+        target: "いらっしゃいませ。本日はポイントカードをお使いになりますか?",
+      },
       { en: "No, I do not have one.", target: "いいえ、持っていません。" },
       { en: "Would you like the rice ball warmed up?", target: "おにぎりは温めますか?" },
       { en: "No, that is fine as it is.", target: "いいえ、そのままで大丈夫です。" },
@@ -255,16 +512,49 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Welcome to my home! Today we are going to have a real Brazilian barbecue.", target: "Bem-vindos à minha casa! Hoje vamos fazer um churrasco bem brasileiro." },
-      { en: "I have already lit the coals, so we can start eating in about thirty minutes.", target: "Já acendi o carvão, então a gente pode começar a comer em uns trinta minutos." },
-      { en: "The first cut to come off the grill will be picanha, which is the most beloved here.", target: "O primeiro corte que vai sair da grelha é a picanha, que é a mais querida aqui." },
-      { en: "While we wait, please serve yourselves the appetizer — there is cheese bread and fried cassava.", target: "Enquanto a gente espera, sirvam-se do tira-gosto — tem pão de queijo e mandioca frita." },
-      { en: "There is beer in the cooler and there are also caipirinhas if you would like.", target: "Tem cerveja no isopor e também tem caipirinha se vocês quiserem." },
-      { en: "Try a little of the homemade pepper sauce — it is spicy but very tasty.", target: "Provem um pouco da pimenta caseira — é apimentada, mas muito gostosa." },
-      { en: "After the picanha I will put the chicken hearts and the sausage on the grill.", target: "Depois da picanha eu vou colocar os corações de frango e a linguiça na grelha." },
-      { en: "The vinaigrette and the rice are on the table — please help yourselves.", target: "O vinagrete e o arroz estão na mesa — fiquem à vontade para se servirem." },
-      { en: "If anyone needs a special meal, please tell me — I have grilled vegetables ready too.", target: "Se alguém precisar de uma comida especial, me avisem — eu também tenho legumes na grelha prontos." },
-      { en: "Make yourselves at home and enjoy yourselves — Sunday lunch usually goes on for a few hours.", target: "Fiquem à vontade e aproveitem — almoço de domingo costuma se estender por algumas horas." },
+      {
+        en: "Welcome to my home! Today we are going to have a real Brazilian barbecue.",
+        target: "Bem-vindos à minha casa! Hoje vamos fazer um churrasco bem brasileiro.",
+      },
+      {
+        en: "I have already lit the coals, so we can start eating in about thirty minutes.",
+        target: "Já acendi o carvão, então a gente pode começar a comer em uns trinta minutos.",
+      },
+      {
+        en: "The first cut to come off the grill will be picanha, which is the most beloved here.",
+        target: "O primeiro corte que vai sair da grelha é a picanha, que é a mais querida aqui.",
+      },
+      {
+        en: "While we wait, please serve yourselves the appetizer — there is cheese bread and fried cassava.",
+        target:
+          "Enquanto a gente espera, sirvam-se do tira-gosto — tem pão de queijo e mandioca frita.",
+      },
+      {
+        en: "There is beer in the cooler and there are also caipirinhas if you would like.",
+        target: "Tem cerveja no isopor e também tem caipirinha se vocês quiserem.",
+      },
+      {
+        en: "Try a little of the homemade pepper sauce — it is spicy but very tasty.",
+        target: "Provem um pouco da pimenta caseira — é apimentada, mas muito gostosa.",
+      },
+      {
+        en: "After the picanha I will put the chicken hearts and the sausage on the grill.",
+        target: "Depois da picanha eu vou colocar os corações de frango e a linguiça na grelha.",
+      },
+      {
+        en: "The vinaigrette and the rice are on the table — please help yourselves.",
+        target: "O vinagrete e o arroz estão na mesa — fiquem à vontade para se servirem.",
+      },
+      {
+        en: "If anyone needs a special meal, please tell me — I have grilled vegetables ready too.",
+        target:
+          "Se alguém precisar de uma comida especial, me avisem — eu também tenho legumes na grelha prontos.",
+      },
+      {
+        en: "Make yourselves at home and enjoy yourselves — Sunday lunch usually goes on for a few hours.",
+        target:
+          "Fiquem à vontade e aproveitem — almoço de domingo costuma se estender por algumas horas.",
+      },
     ],
   },
 
@@ -280,16 +570,54 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Today we are going to review the wine service protocol from start to finish.", target: "Hoje vamos revisar o protocolo de serviço de vinho do início ao fim." },
-      { en: "When you bring the bottle to the table, always show the label to the host who chose the wine.", target: "Quando você levar a garrafa à mesa, sempre apresente o rótulo ao anfitrião que escolheu o vinho." },
-      { en: "Confirm the producer, the vintage and the appellation before opening the bottle.", target: "Confirme o produtor, a safra e a denominação de origem antes de abrir a garrafa." },
-      { en: "Cut the foil cleanly below the lip of the bottle so the wine doesn't touch any aluminum.", target: "Corte a cápsula de forma limpa abaixo do bocal para que o vinho não encoste no alumínio." },
-      { en: "After uncorking, smell the cork discreetly to check for any defects without making a show of it.", target: "Após retirar a rolha, cheire-a discretamente para verificar defeitos sem fazer disso um espetáculo." },
-      { en: "Pour about two centimeters into the host's glass for tasting and wait for their approval.", target: "Sirva cerca de dois centímetros na taça do anfitrião para a degustação e aguarde a aprovação." },
-      { en: "Once approved, serve the women first and finally fill the host's glass.", target: "Uma vez aprovado, sirva primeiro as mulheres e por último complete a taça do anfitrião." },
-      { en: "Never fill the glass more than a third for reds, and a quarter for whites and sparkling wines.", target: "Nunca encha a taça mais do que um terço para os tintos, e um quarto para os brancos e espumantes." },
-      { en: "The temperature also matters — verify in the cellar before bringing the bottle to the table.", target: "A temperatura também é importante — verifique na adega antes de levar a garrafa à mesa." },
-      { en: "If the customer says the wine is corked, never argue — bring another bottle immediately and notify the sommelier.", target: "Se o cliente disser que o vinho está encolhado, nunca discuta — traga outra garrafa imediatamente e avise o sommelier." },
+      {
+        en: "Today we are going to review the wine service protocol from start to finish.",
+        target: "Hoje vamos revisar o protocolo de serviço de vinho do início ao fim.",
+      },
+      {
+        en: "When you bring the bottle to the table, always show the label to the host who chose the wine.",
+        target:
+          "Quando você levar a garrafa à mesa, sempre apresente o rótulo ao anfitrião que escolheu o vinho.",
+      },
+      {
+        en: "Confirm the producer, the vintage and the appellation before opening the bottle.",
+        target: "Confirme o produtor, a safra e a denominação de origem antes de abrir a garrafa.",
+      },
+      {
+        en: "Cut the foil cleanly below the lip of the bottle so the wine doesn't touch any aluminum.",
+        target:
+          "Corte a cápsula de forma limpa abaixo do bocal para que o vinho não encoste no alumínio.",
+      },
+      {
+        en: "After uncorking, smell the cork discreetly to check for any defects without making a show of it.",
+        target:
+          "Após retirar a rolha, cheire-a discretamente para verificar defeitos sem fazer disso um espetáculo.",
+      },
+      {
+        en: "Pour about two centimeters into the host's glass for tasting and wait for their approval.",
+        target:
+          "Sirva cerca de dois centímetros na taça do anfitrião para a degustação e aguarde a aprovação.",
+      },
+      {
+        en: "Once approved, serve the women first and finally fill the host's glass.",
+        target:
+          "Uma vez aprovado, sirva primeiro as mulheres e por último complete a taça do anfitrião.",
+      },
+      {
+        en: "Never fill the glass more than a third for reds, and a quarter for whites and sparkling wines.",
+        target:
+          "Nunca encha a taça mais do que um terço para os tintos, e um quarto para os brancos e espumantes.",
+      },
+      {
+        en: "The temperature also matters — verify in the cellar before bringing the bottle to the table.",
+        target:
+          "A temperatura também é importante — verifique na adega antes de levar a garrafa à mesa.",
+      },
+      {
+        en: "If the customer says the wine is corked, never argue — bring another bottle immediately and notify the sommelier.",
+        target:
+          "Se o cliente disser que o vinho está encolhado, nunca discuta — traga outra garrafa imediatamente e avise o sommelier.",
+      },
     ],
   },
 
@@ -306,14 +634,29 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     level: "A2",
     sentences: [
       { en: "Welcome! How many people are there?", target: "어서 오세요! 몇 분이세요?" },
-      { en: "There are four of us. Is there a table available?", target: "네 명이에요. 자리 있어요?" },
+      {
+        en: "There are four of us. Is there a table available?",
+        target: "네 명이에요. 자리 있어요?",
+      },
       { en: "Yes, please come this way.", target: "네, 이쪽으로 오세요." },
-      { en: "Please give us four servings of pork belly and one bowl of soybean stew.", target: "삼겹살 사 인분하고 된장찌개 하나 주세요." },
-      { en: "Would you like soju or beer to drink?", target: "음료는 소주로 드릴까요, 맥주로 드릴까요?" },
-      { en: "We will have one bottle of soju and two bottles of beer.", target: "소주 한 병하고 맥주 두 병 주세요." },
+      {
+        en: "Please give us four servings of pork belly and one bowl of soybean stew.",
+        target: "삼겹살 사 인분하고 된장찌개 하나 주세요.",
+      },
+      {
+        en: "Would you like soju or beer to drink?",
+        target: "음료는 소주로 드릴까요, 맥주로 드릴까요?",
+      },
+      {
+        en: "We will have one bottle of soju and two bottles of beer.",
+        target: "소주 한 병하고 맥주 두 병 주세요.",
+      },
       { en: "Excuse me, can we get more lettuce, please?", target: "저기요, 상추 좀 더 주세요." },
       { en: "Sure, I will bring it right away.", target: "네, 바로 가져다 드릴게요." },
-      { en: "After we eat, we would like to order one cold noodle dish at the end.", target: "다 먹고 나서 마지막에 냉면 하나 주문할게요." },
+      {
+        en: "After we eat, we would like to order one cold noodle dish at the end.",
+        target: "다 먹고 나서 마지막에 냉면 하나 주문할게요.",
+      },
       { en: "Excuse me, the bill, please.", target: "저기요, 계산서 주세요." },
     ],
   },
@@ -330,15 +673,44 @@ export const COOKING_FOOD_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Today is finally kimjang day, so we are going to make kimchi together as a family.", target: "오늘이 드디어 김장하는 날이라, 가족이 다 같이 모여 김치를 담그려고 합니다." },
-      { en: "I salted these cabbages last night and rinsed them with water this morning.", target: "이 배추들은 어젯밤에 소금에 절였다가 오늘 아침에 물로 헹궈 두었어요." },
-      { en: "It's important to drain the cabbage well — if water remains, the kimchi can taste bland later.", target: "배추 물기를 잘 빼는 것이 중요한데, 물기가 남아 있으면 나중에 김치 맛이 싱거워질 수 있어요." },
-      { en: "The seasoning paste base is made from glutinous rice porridge, anchovy sauce and salted shrimp.", target: "양념 베이스는 찹쌀풀, 멸치액젓, 새우젓으로 만듭니다." },
-      { en: "I usually add Korean chili powder, garlic, ginger and shredded radish in roughly that ratio.", target: "고춧가루, 마늘, 생강, 무채를 대략 그 정도 비율로 넣는 편입니다." },
-      { en: "Spread the seasoning leaf by leaf so the flavor evenly seeps into the cabbage.", target: "양념이 배추 잎 사이사이에 골고루 배도록 한 잎씩 들춰 가며 발라 주세요." },
-      { en: "After packing it into the kimchi container, let it ferment at room temperature for one day before storing it in the fridge.", target: "김치통에 꾹꾹 눌러 담은 다음, 실온에서 하루 정도 익힌 뒤 냉장고에 보관하세요." },
-      { en: "Your grandmother used to say that kimchi is a food in which the cook's mood enters the taste.", target: "할머니께서는 김치는 담그는 사람의 기분이 맛에 들어가는 음식이라고 말씀하시곤 하셨어요." },
-      { en: "So no matter how busy the day, you have to make kimchi with a good heart.", target: "그러니 아무리 바쁜 날이라도 좋은 마음으로 김치를 담가야 한답니다." },
+      {
+        en: "Today is finally kimjang day, so we are going to make kimchi together as a family.",
+        target: "오늘이 드디어 김장하는 날이라, 가족이 다 같이 모여 김치를 담그려고 합니다.",
+      },
+      {
+        en: "I salted these cabbages last night and rinsed them with water this morning.",
+        target: "이 배추들은 어젯밤에 소금에 절였다가 오늘 아침에 물로 헹궈 두었어요.",
+      },
+      {
+        en: "It's important to drain the cabbage well — if water remains, the kimchi can taste bland later.",
+        target:
+          "배추 물기를 잘 빼는 것이 중요한데, 물기가 남아 있으면 나중에 김치 맛이 싱거워질 수 있어요.",
+      },
+      {
+        en: "The seasoning paste base is made from glutinous rice porridge, anchovy sauce and salted shrimp.",
+        target: "양념 베이스는 찹쌀풀, 멸치액젓, 새우젓으로 만듭니다.",
+      },
+      {
+        en: "I usually add Korean chili powder, garlic, ginger and shredded radish in roughly that ratio.",
+        target: "고춧가루, 마늘, 생강, 무채를 대략 그 정도 비율로 넣는 편입니다.",
+      },
+      {
+        en: "Spread the seasoning leaf by leaf so the flavor evenly seeps into the cabbage.",
+        target: "양념이 배추 잎 사이사이에 골고루 배도록 한 잎씩 들춰 가며 발라 주세요.",
+      },
+      {
+        en: "After packing it into the kimchi container, let it ferment at room temperature for one day before storing it in the fridge.",
+        target: "김치통에 꾹꾹 눌러 담은 다음, 실온에서 하루 정도 익힌 뒤 냉장고에 보관하세요.",
+      },
+      {
+        en: "Your grandmother used to say that kimchi is a food in which the cook's mood enters the taste.",
+        target:
+          "할머니께서는 김치는 담그는 사람의 기분이 맛에 들어가는 음식이라고 말씀하시곤 하셨어요.",
+      },
+      {
+        en: "So no matter how busy the day, you have to make kimchi with a good heart.",
+        target: "그러니 아무리 바쁜 날이라도 좋은 마음으로 김치를 담가야 한답니다.",
+      },
     ],
   },
 ];

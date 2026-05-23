@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { initSentry, Sentry } from '../lib/sentry'
-initSentry()
+import { initSentry, Sentry } from "../lib/sentry";
+initSentry();
 
 const MessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
@@ -58,7 +58,10 @@ const BodySchema = z.object({
     lastWord: z.string().max(80).optional(),
     module: ModuleSchema,
     userVocabWords: z.array(z.string().max(80)).max(15).optional(),
-    activePatterns: z.array(z.object({ name: z.string().max(80), pattern: z.string().max(200) })).max(8).optional(),
+    activePatterns: z
+      .array(z.object({ name: z.string().max(80), pattern: z.string().max(200) }))
+      .max(8)
+      .optional(),
   }),
 });
 
@@ -194,12 +197,8 @@ function anthropicStreamToSSE(
     async start(controller) {
       try {
         for await (const event of stream) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            const chunk =
-              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+            const chunk = `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
             controller.enqueue(enc.encode(chunk));
           }
         }
@@ -254,7 +253,7 @@ export const Route = createFileRoute("/api/tutor")({
             },
           });
         } catch (e) {
-          Sentry.captureException(e)
+          Sentry.captureException(e);
           console.error("Tutor stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,

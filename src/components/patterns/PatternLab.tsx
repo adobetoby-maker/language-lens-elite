@@ -1,6 +1,15 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ChevronLeft, ChevronRight, Sparkle, RotateCcw, CheckCircle2, XCircle, BookOpen, Zap } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Sparkle,
+  RotateCcw,
+  CheckCircle2,
+  XCircle,
+  BookOpen,
+  Zap,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/state/app-state";
 import {
@@ -30,7 +39,13 @@ interface DrillState {
 function FrequencyBadge({ frequency }: { frequency: GrammarPattern["frequency"] }) {
   const meta = FREQUENCY_META[frequency];
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold tracking-wider", meta.bg, meta.color)}>
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold tracking-wider",
+        meta.bg,
+        meta.color,
+      )}
+    >
       {frequency === "ultra" && <Sparkle className="h-2.5 w-2.5" />}
       {meta.label}
     </span>
@@ -39,10 +54,12 @@ function FrequencyBadge({ frequency }: { frequency: GrammarPattern["frequency"] 
 
 function PhaseTag({ phase }: { phase: PatternPhase }) {
   return (
-    <span className={cn(
-      "rounded px-1.5 py-0.5 text-[10px] font-medium",
-      phase === 1 ? "bg-violet-500/15 text-violet-400" : "bg-cyan-500/15 text-cyan-400"
-    )}>
+    <span
+      className={cn(
+        "rounded px-1.5 py-0.5 text-[10px] font-medium",
+        phase === 1 ? "bg-violet-500/15 text-violet-400" : "bg-cyan-500/15 text-cyan-400",
+      )}
+    >
       Phase {phase}
     </span>
   );
@@ -52,7 +69,10 @@ function PhaseTag({ phase }: { phase: PatternPhase }) {
 
 function MasteryPips({ count, threshold = 5 }: { count: number; threshold?: number }) {
   return (
-    <div className="flex items-center gap-0.5" title={`${Math.min(count, threshold)}/${threshold} correct`}>
+    <div
+      className="flex items-center gap-0.5"
+      title={`${Math.min(count, threshold)}/${threshold} correct`}
+    >
       {Array.from({ length: threshold }).map((_, i) => (
         <span
           key={i}
@@ -65,7 +85,15 @@ function MasteryPips({ count, threshold = 5 }: { count: number; threshold?: numb
   );
 }
 
-function PatternCard({ pattern, progress = 0, onSelect }: { pattern: GrammarPattern; progress?: number; onSelect: () => void }) {
+function PatternCard({
+  pattern,
+  progress = 0,
+  onSelect,
+}: {
+  pattern: GrammarPattern;
+  progress?: number;
+  onSelect: () => void;
+}) {
   const mastered = progress >= 5;
   return (
     <button
@@ -93,9 +121,7 @@ function PatternCard({ pattern, progress = 0, onSelect }: { pattern: GrammarPatt
       <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{pattern.hook}</p>
 
       <div className="mt-3 border-t border-border/30 pt-3">
-        <p className="text-xs text-muted-foreground/70 italic">
-          e.g. {pattern.examples[0].target}
-        </p>
+        <p className="text-xs text-muted-foreground/70 italic">e.g. {pattern.examples[0].target}</p>
       </div>
     </button>
   );
@@ -114,7 +140,10 @@ function PatternDetail({
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <button
+        onClick={onBack}
+        className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
         <ChevronLeft className="h-4 w-4" /> Back
       </button>
 
@@ -130,7 +159,9 @@ function PatternDetail({
         <p className="font-mono text-sm text-gold mb-3 bg-gold/5 rounded-md px-3 py-1.5 inline-block border border-gold/20">
           {pattern.pattern}
         </p>
-        <p className="text-sm text-muted-foreground">Means: <span className="text-foreground">{pattern.meaning}</span></p>
+        <p className="text-sm text-muted-foreground">
+          Means: <span className="text-foreground">{pattern.meaning}</span>
+        </p>
       </div>
 
       {/* Frequency context */}
@@ -143,20 +174,22 @@ function PatternDetail({
 
       {/* Hook */}
       <div className="rounded-xl border border-border/50 bg-card/30 p-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Why This Matters</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+          Why This Matters
+        </p>
         <p className="text-sm text-foreground leading-relaxed">{pattern.hook}</p>
       </div>
 
       {/* Examples */}
       <div className="rounded-xl border border-border/50 bg-card/30 p-4 space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Examples</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Examples
+        </p>
         {pattern.examples.map((ex, i) => (
           <div key={i} className="border-l-2 border-gold/30 pl-3">
             <p className="text-sm font-medium text-foreground">{ex.target}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{ex.english}</p>
-            {ex.breakdown && (
-              <p className="text-xs text-gold/70 mt-1 font-mono">{ex.breakdown}</p>
-            )}
+            {ex.breakdown && <p className="text-xs text-gold/70 mt-1 font-mono">{ex.breakdown}</p>}
           </div>
         ))}
       </div>
@@ -226,7 +259,7 @@ function DrillView({
   const isDone = drill ? drill.index >= drill.items.length : false;
 
   function reveal() {
-    setDrill((d) => d ? { ...d, revealed: true } : d);
+    setDrill((d) => (d ? { ...d, revealed: true } : d));
   }
 
   function score(got: boolean) {
@@ -247,7 +280,10 @@ function DrillView({
   if (loading) {
     return (
       <div className="flex flex-col gap-4">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           <ChevronLeft className="h-4 w-4" /> Back
         </button>
         <div className="flex items-center justify-center py-16 text-muted-foreground">
@@ -263,13 +299,19 @@ function DrillView({
   if (error) {
     return (
       <div className="flex flex-col gap-4">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           <ChevronLeft className="h-4 w-4" /> Back
         </button>
         <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
           {error}
         </div>
-        <button onClick={loadDrill} className="flex items-center justify-center gap-2 w-full rounded-xl border border-border/50 py-3 text-sm hover:bg-card/50 transition-colors">
+        <button
+          onClick={loadDrill}
+          className="flex items-center justify-center gap-2 w-full rounded-xl border border-border/50 py-3 text-sm hover:bg-card/50 transition-colors"
+        >
           <RotateCcw className="h-4 w-4" /> Try Again
         </button>
       </div>
@@ -280,14 +322,19 @@ function DrillView({
   if (isDone && drill) {
     return (
       <div className="flex flex-col gap-4">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           <ChevronLeft className="h-4 w-4" /> Back
         </button>
 
         <div className="rounded-xl border border-gold/25 bg-gold/5 p-6 text-center">
           <Sparkle className="h-8 w-8 text-gold mx-auto mb-3" />
           <h3 className="text-lg font-bold text-foreground mb-1">Drill Complete</h3>
-          <p className="text-sm text-muted-foreground mb-4">{pattern.name} · {pattern.pattern}</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {pattern.name} · {pattern.pattern}
+          </p>
           <div className="flex justify-center gap-8">
             <div>
               <p className="text-2xl font-bold text-emerald-400">{drill.correct}</p>
@@ -301,7 +348,9 @@ function DrillView({
         </div>
 
         <button
-          onClick={() => { void loadDrill(); }}
+          onClick={() => {
+            void loadDrill();
+          }}
           className="flex items-center justify-center gap-2 w-full rounded-xl bg-gold/10 border border-gold/25 py-3 text-sm font-semibold text-gold hover:bg-gold/20 transition-colors"
         >
           <RotateCcw className="h-4 w-4" /> Drill Again
@@ -313,7 +362,10 @@ function DrillView({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           <ChevronLeft className="h-4 w-4" /> Back
         </button>
         {drill && (
@@ -333,7 +385,9 @@ function DrillView({
         <div className="rounded-xl border border-border/50 bg-card/40 p-5 space-y-4">
           {/* Prompt */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Translate to {pattern.language}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Translate to {pattern.language}
+            </p>
             <p className="text-lg text-foreground font-medium leading-snug">{cur.prompt}</p>
           </div>
 
@@ -343,7 +397,9 @@ function DrillView({
               <input
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter" && answer.trim()) reveal(); }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && answer.trim()) reveal();
+                }}
                 placeholder={`Type in ${pattern.language}…`}
                 className="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40"
                 autoFocus
@@ -364,7 +420,9 @@ function DrillView({
               {/* User's attempt */}
               <div className="rounded-lg bg-background/40 border border-border/30 px-3 py-2">
                 <p className="text-xs text-muted-foreground mb-0.5">Your answer</p>
-                <p className="text-sm text-foreground">{answer || <em className="opacity-40">skipped</em>}</p>
+                <p className="text-sm text-foreground">
+                  {answer || <em className="opacity-40">skipped</em>}
+                </p>
               </div>
 
               {/* Correct answer */}
@@ -397,7 +455,9 @@ function DrillView({
               </div>
 
               {isLast && (
-                <p className="text-center text-xs text-muted-foreground/60">Last question — score after marking</p>
+                <p className="text-center text-xs text-muted-foreground/60">
+                  Last question — score after marking
+                </p>
               )}
             </div>
           )}
@@ -422,7 +482,10 @@ export function PatternLab() {
 
   const userVocabWords =
     app.userVocab.length > 0 && app.vocabLang === lang
-      ? app.userVocab.filter((v) => v.correctCount < 5).map((v) => v.word).slice(0, 10)
+      ? app.userVocab
+          .filter((v) => v.correctCount < 5)
+          .map((v) => v.word)
+          .slice(0, 10)
       : undefined;
 
   const hasPatterns = patterns.length > 0;
@@ -461,11 +524,7 @@ export function PatternLab() {
   if (view === "drill" && selected) {
     return (
       <div className="max-w-xl mx-auto px-4 pt-4 pb-24">
-        <DrillView
-          pattern={selected}
-          userVocabWords={userVocabWords}
-          onBack={goBack}
-        />
+        <DrillView pattern={selected} userVocabWords={userVocabWords} onBack={goBack} />
       </div>
     );
   }
@@ -474,11 +533,7 @@ export function PatternLab() {
   if (view === "card" && selected) {
     return (
       <div className="max-w-xl mx-auto px-4 pt-4 pb-24">
-        <PatternDetail
-          pattern={selected}
-          onBack={goBack}
-          onDrill={openDrill}
-        />
+        <PatternDetail pattern={selected} onBack={goBack} onDrill={openDrill} />
       </div>
     );
   }
@@ -520,7 +575,7 @@ export function PatternLab() {
               "rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
               phaseFilter === f
                 ? "bg-gold/15 text-gold border border-gold/30"
-                : "bg-card/30 text-muted-foreground border border-border/40 hover:text-foreground"
+                : "bg-card/30 text-muted-foreground border border-border/40 hover:text-foreground",
             )}
           >
             {f === "all" ? "All" : f === 1 ? "Phase 1 — Your Story" : "Phase 2 — Your World"}
@@ -533,13 +588,20 @@ export function PatternLab() {
         <section className="mb-6">
           {phaseFilter === "all" && (
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">Phase 1 — Your Story</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">
+                Phase 1 — Your Story
+              </span>
               <div className="flex-1 h-px bg-violet-500/20" />
             </div>
           )}
           <div className="space-y-3">
             {phase1.map((p) => (
-              <PatternCard key={p.id} pattern={p} progress={app.patternProgress[p.id] ?? 0} onSelect={() => openPattern(p)} />
+              <PatternCard
+                key={p.id}
+                pattern={p}
+                progress={app.patternProgress[p.id] ?? 0}
+                onSelect={() => openPattern(p)}
+              />
             ))}
           </div>
         </section>
@@ -549,13 +611,20 @@ export function PatternLab() {
         <section className="mb-6">
           {phaseFilter === "all" && (
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">Phase 2 — Your World</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                Phase 2 — Your World
+              </span>
               <div className="flex-1 h-px bg-cyan-500/20" />
             </div>
           )}
           <div className="space-y-3">
             {phase2.map((p) => (
-              <PatternCard key={p.id} pattern={p} progress={app.patternProgress[p.id] ?? 0} onSelect={() => openPattern(p)} />
+              <PatternCard
+                key={p.id}
+                pattern={p}
+                progress={app.patternProgress[p.id] ?? 0}
+                onSelect={() => openPattern(p)}
+              />
             ))}
           </div>
         </section>
@@ -569,11 +638,15 @@ export function PatternLab() {
 
       {/* Frequency legend */}
       <div className="mt-4 rounded-xl border border-border/30 bg-card/20 p-4 space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Frequency Guide</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+          Frequency Guide
+        </p>
         {(["ultra", "high", "medium"] as const).map((f) => (
           <div key={f} className="flex items-start gap-2">
             <FrequencyBadge frequency={f} />
-            <p className="text-xs text-muted-foreground leading-relaxed">{FREQUENCY_META[f].desc}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {FREQUENCY_META[f].desc}
+            </p>
           </div>
         ))}
       </div>

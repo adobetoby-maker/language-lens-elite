@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { toast } from "sonner";
 
 import appCss from "../styles.css?url";
 
@@ -36,19 +37,30 @@ export const Route = createRootRoute({
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "theme-color", content: "#0b0d12" },
       { title: "Language Threshold — AI Language Training" },
-      { name: "description", content: "AI-powered language training for professionals. Spanish for nurses, construction, missions, sports, and more. Plus English for Work for Spanish-speaking professionals." },
+      {
+        name: "description",
+        content:
+          "AI-powered language training for professionals. Spanish for nurses, construction, missions, sports, and more. Plus English for Work for Spanish-speaking professionals.",
+      },
       { property: "og:title", content: "Language Threshold — AI Language Training" },
-      { property: "og:description", content: "Role-specific AI language training. Spanish for nurses, foremen, coaches, missionaries, and more." },
+      {
+        property: "og:description",
+        content:
+          "Role-specific AI language training. Spanish for nurses, foremen, coaches, missionaries, and more.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Language Threshold — AI Language Training" },
-      { name: "twitter:description", content: "Role-specific AI language training for professionals in the field." },
+      {
+        name: "twitter:description",
+        content: "Role-specific AI language training for professionals in the field.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/icons/icon-192.svg" },
+      { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -78,11 +90,43 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => {
-        // SW registration failure is non-fatal — app works normally without it
+    if (!("serviceWorker" in navigator)) return;
+
+    // Snapshot before registration — falsy means first-ever install, no reload needed.
+    const hadController = !!navigator.serviceWorker.controller;
+    let toastShown = false;
+
+    const showUpdateToast = () => {
+      if (toastShown) return;
+      toastShown = true;
+      toast("New version available", {
+        id: "sw-update",
+        description: "Tap Reload to get the latest update.",
+        action: { label: "Reload", onClick: () => window.location.reload() },
+        duration: Infinity,
       });
-    }
+    };
+
+    // Primary: fires when new SW claims this client via skipWaiting — most reliable cross-browser
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (hadController) showUpdateToast();
+    });
+
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((reg) => {
+        // Fallback for browsers where controllerchange is unreliable
+        reg.addEventListener("updatefound", () => {
+          const newSW = reg.installing;
+          if (!newSW) return;
+          newSW.addEventListener("statechange", () => {
+            if (newSW.state === "activated" && navigator.serviceWorker.controller && hadController) {
+              showUpdateToast();
+            }
+          });
+        });
+      })
+      .catch(() => {});
   }, []);
 
   return <Outlet />;

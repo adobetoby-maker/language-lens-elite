@@ -6,11 +6,11 @@ import type { CefrLevel } from "./grammar.functions";
 // What grammatical axis is being tested. Level 1 = single axis (just tense, just
 // person, just number). Higher levels combine axes.
 export type ConjugationAxis =
-  | "tense"      // present → past / future / conditional
-  | "person"     // I → you / he / we / they
-  | "number"    // singular → plural
-  | "mood"       // indicative → subjunctive
-  | "mixed";     // 2+ axes at once (level 3+)
+  | "tense" // present → past / future / conditional
+  | "person" // I → you / he / we / they
+  | "number" // singular → plural
+  | "mood" // indicative → subjunctive
+  | "mixed"; // 2+ axes at once (level 3+)
 
 export type ConjugationLevel = 1 | 2 | 3;
 
@@ -25,15 +25,15 @@ const Input = z.object({
 });
 
 export interface ConjugationQuestion {
-  phrase: string;             // target-language sentence with "___" where the verb goes
-  phraseTranslation: string;  // English translation (uses [verb] for the blank)
-  infinitive: string;         // base form / lemma of the verb
+  phrase: string; // target-language sentence with "___" where the verb goes
+  phraseTranslation: string; // English translation (uses [verb] for the blank)
+  infinitive: string; // base form / lemma of the verb
   infinitiveTranslation: string; // English meaning of the infinitive
   correctConjugation: string; // the right answer
-  wrongOptions: string[];     // exactly 3 plausible-but-wrong forms (SAME verb)
-  explanation: string;        // 1-sentence reason the correct answer is correct
-  axisTested: ConjugationAxis;// what axis the question is testing
-  cefr: CefrLevel;            // difficulty bucket
+  wrongOptions: string[]; // exactly 3 plausible-but-wrong forms (SAME verb)
+  explanation: string; // 1-sentence reason the correct answer is correct
+  axisTested: ConjugationAxis; // what axis the question is testing
+  cefr: CefrLevel; // difficulty bucket
 }
 
 // ── Server-side cache ─────────────────────────────────────────────────────
@@ -42,7 +42,13 @@ export interface ConjugationQuestion {
 const MAX_CACHE = 200;
 const cache = new Map<string, ConjugationQuestion>();
 
-function cacheKey(language: string, level: number, axis: string | undefined, cefr: string | undefined, avoidHash: string): string {
+function cacheKey(
+  language: string,
+  level: number,
+  axis: string | undefined,
+  cefr: string | undefined,
+  avoidHash: string,
+): string {
   return `${language}|${level}|${axis ?? "auto"}|${cefr ?? "auto"}|${avoidHash}`;
 }
 
@@ -80,114 +86,141 @@ Rules — non-negotiable:
 
 export const generateConjugationQuestion = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => Input.parse(i))
-  .handler(async ({ data }): Promise<{ data: ConjugationQuestion | null; error: string | null; cached?: boolean }> => {
-    const KEY = process.env.ANTHROPIC_API_KEY;
-    if (!KEY) return { data: null, error: "AI is not configured" };
+  .handler(
+    async ({
+      data,
+    }): Promise<{ data: ConjugationQuestion | null; error: string | null; cached?: boolean }> => {
+      const KEY = process.env.ANTHROPIC_API_KEY;
+      if (!KEY) return { data: null, error: "AI is not configured" };
 
-    const cefr: CefrLevel =
-      data.cefr ?? (data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2");
-    const axis = data.axis ?? (data.level === 3 ? "mixed" : pickAxis(data.level));
+      const cefr: CefrLevel =
+        data.cefr ?? (data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2");
+      const axis = data.axis ?? (data.level === 3 ? "mixed" : pickAxis(data.level));
 
-    // Avoid hash so same avoid-set hits cache; small cap on size already.
-    const avoidHash = (data.avoid ?? []).slice().sort().join(",");
-    const key = cacheKey(data.language, data.level, axis, cefr, avoidHash);
-    const hit = cacheGet(key);
-    if (hit) return { data: hit, error: null, cached: true };
+      // Avoid hash so same avoid-set hits cache; small cap on size already.
+      const avoidHash = (data.avoid ?? []).slice().sort().join(",");
+      const key = cacheKey(data.language, data.level, axis, cefr, avoidHash);
+      const hit = cacheGet(key);
+      if (hit) return { data: hit, error: null, cached: true };
 
-    const avoidLine =
-      data.avoid && data.avoid.length
-        ? `\nDo NOT reuse any of these verbs (already used this run): ${data.avoid.join(", ")}.`
+      const avoidLine =
+        data.avoid && data.avoid.length
+          ? `\nDo NOT reuse any of these verbs (already used this run): ${data.avoid.join(", ")}.`
+          : "";
+
+      const levelGuidance =
+        data.level === 1
+          ? `Level 1: test exactly ONE axis (${axis}). Wrong options must vary on the SAME axis as the correct answer (e.g. if axis is "tense", wrong options are the same verb in 3 different tenses; person and number stay constant).`
+          : data.level === 2
+            ? `Level 2: test the ${axis} axis primarily, but you may include one secondary variation across options.`
+            : `Level 3: combine 2+ axes ("${axis}"). Wrong options should each get a different transformation wrong.`;
+
+      const topicLine = data.topic
+        ? `\nContext: the phrase MUST come from a "${data.topic}" scenario — use verbs a ${data.topic} practitioner would actually say.`
         : "";
+      const userWordsLine =
+        data.userWords && data.userWords.length
+          ? `\nPersonal vocab: try to use one of these learner-specific words as the verb or in the sentence context: ${data.userWords.join(", ")}.`
+          : "";
 
-    const levelGuidance =
-      data.level === 1
-        ? `Level 1: test exactly ONE axis (${axis}). Wrong options must vary on the SAME axis as the correct answer (e.g. if axis is "tense", wrong options are the same verb in 3 different tenses; person and number stay constant).`
-        : data.level === 2
-        ? `Level 2: test the ${axis} axis primarily, but you may include one secondary variation across options.`
-        : `Level 3: combine 2+ axes ("${axis}"). Wrong options should each get a different transformation wrong.`;
+      const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${topicLine}${userWordsLine}${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
 
-    const topicLine = data.topic
-      ? `\nContext: the phrase MUST come from a "${data.topic}" scenario — use verbs a ${data.topic} practitioner would actually say.`
-      : "";
-    const userWordsLine = data.userWords && data.userWords.length
-      ? `\nPersonal vocab: try to use one of these learner-specific words as the verb or in the sentence context: ${data.userWords.join(", ")}.`
-      : "";
-
-    const userMsg = `Generate ONE ${data.language} conjugation question at CEFR ${cefr}.${topicLine}${userWordsLine}${avoidLine}\n\n${levelGuidance}\n\nReturn the structured question via the tool.`;
-
-    try {
-      const client = new Anthropic({ apiKey: KEY });
-      const response = await client.messages.create({
-        // Sonnet 4.6 — grammar drill quality matters a lot. A bad distractor
-        // (e.g. wrong-options that are also grammatically valid for the phrase)
-        // breaks the game. Sonnet's much more reliable here than Haiku.
-        model: "claude-haiku-4-5",
-        max_tokens: 600,
-        system: SYSTEM,
-        messages: [{ role: "user", content: userMsg }],
-        tools: [
-          {
-            name: "return_conjugation_question",
-            description: "Return one fill-in-the-blank conjugation question.",
-            input_schema: {
-              type: "object" as const,
-              properties: {
-                phrase: { type: "string", description: 'Target-language sentence with exactly one "___" blank.' },
-                phraseTranslation: { type: "string", description: "English translation; use [verb] in place of the blank." },
-                infinitive: { type: "string", description: "Dictionary base form of the verb." },
-                infinitiveTranslation: { type: "string", description: "English meaning of the infinitive (1-3 words)." },
-                correctConjugation: { type: "string", description: "The single correct conjugated form." },
-                wrongOptions: {
-                  type: "array",
-                  minItems: 3,
-                  maxItems: 3,
-                  items: { type: "string" },
-                  description: "3 plausible-but-wrong forms of the SAME verb.",
+      try {
+        const client = new Anthropic({ apiKey: KEY });
+        const response = await client.messages.create({
+          // Sonnet 4.6 — grammar drill quality matters a lot. A bad distractor
+          // (e.g. wrong-options that are also grammatically valid for the phrase)
+          // breaks the game. Sonnet's much more reliable here than Haiku.
+          model: "claude-haiku-4-5",
+          max_tokens: 600,
+          system: SYSTEM,
+          messages: [{ role: "user", content: userMsg }],
+          tools: [
+            {
+              name: "return_conjugation_question",
+              description: "Return one fill-in-the-blank conjugation question.",
+              input_schema: {
+                type: "object" as const,
+                properties: {
+                  phrase: {
+                    type: "string",
+                    description: 'Target-language sentence with exactly one "___" blank.',
+                  },
+                  phraseTranslation: {
+                    type: "string",
+                    description: "English translation; use [verb] in place of the blank.",
+                  },
+                  infinitive: { type: "string", description: "Dictionary base form of the verb." },
+                  infinitiveTranslation: {
+                    type: "string",
+                    description: "English meaning of the infinitive (1-3 words).",
+                  },
+                  correctConjugation: {
+                    type: "string",
+                    description: "The single correct conjugated form.",
+                  },
+                  wrongOptions: {
+                    type: "array",
+                    minItems: 3,
+                    maxItems: 3,
+                    items: { type: "string" },
+                    description: "3 plausible-but-wrong forms of the SAME verb.",
+                  },
+                  explanation: {
+                    type: "string",
+                    description: "One-sentence English reason the correct form is correct.",
+                  },
+                  axisTested: {
+                    type: "string",
+                    enum: ["tense", "person", "number", "mood", "mixed"],
+                    description: "Primary grammar axis being tested.",
+                  },
+                  cefr: {
+                    type: "string",
+                    enum: ["A1", "A2", "B1", "B2", "C1", "C2"],
+                    description: "Difficulty bucket of this question.",
+                  },
                 },
-                explanation: { type: "string", description: "One-sentence English reason the correct form is correct." },
-                axisTested: {
-                  type: "string",
-                  enum: ["tense", "person", "number", "mood", "mixed"],
-                  description: "Primary grammar axis being tested.",
-                },
-                cefr: {
-                  type: "string",
-                  enum: ["A1", "A2", "B1", "B2", "C1", "C2"],
-                  description: "Difficulty bucket of this question.",
-                },
+                required: [
+                  "phrase",
+                  "phraseTranslation",
+                  "infinitive",
+                  "infinitiveTranslation",
+                  "correctConjugation",
+                  "wrongOptions",
+                  "explanation",
+                  "axisTested",
+                  "cefr",
+                ],
+                additionalProperties: false,
               },
-              required: [
-                "phrase", "phraseTranslation", "infinitive", "infinitiveTranslation",
-                "correctConjugation", "wrongOptions", "explanation", "axisTested", "cefr",
-              ],
-              additionalProperties: false,
             },
-          },
-        ],
-        tool_choice: { type: "tool", name: "return_conjugation_question" },
-      });
+          ],
+          tool_choice: { type: "tool", name: "return_conjugation_question" },
+        });
 
-      const toolUse = response.content.find((c) => c.type === "tool_use");
-      if (!toolUse || toolUse.type !== "tool_use") {
-        return { data: null, error: "No question returned." };
+        const toolUse = response.content.find((c) => c.type === "tool_use");
+        if (!toolUse || toolUse.type !== "tool_use") {
+          return { data: null, error: "No question returned." };
+        }
+        const q = toolUse.input as ConjugationQuestion;
+        // Defensive: ensure exactly 3 wrong options + correct isn't in wrong list.
+        if (!Array.isArray(q.wrongOptions) || q.wrongOptions.length !== 3) {
+          return { data: null, error: "Invalid wrongOptions array." };
+        }
+        if (q.wrongOptions.includes(q.correctConjugation)) {
+          // Strip and pad if needed — model occasionally duplicates.
+          q.wrongOptions = q.wrongOptions.filter((w) => w !== q.correctConjugation);
+          while (q.wrongOptions.length < 3) q.wrongOptions.push(`${q.infinitive}?`);
+        }
+        cacheSet(key, q);
+        return { data: q, error: null, cached: false };
+      } catch (e) {
+        console.error("generateConjugationQuestion failed", e);
+        return { data: null, error: "Generation failed." };
       }
-      const q = toolUse.input as ConjugationQuestion;
-      // Defensive: ensure exactly 3 wrong options + correct isn't in wrong list.
-      if (!Array.isArray(q.wrongOptions) || q.wrongOptions.length !== 3) {
-        return { data: null, error: "Invalid wrongOptions array." };
-      }
-      if (q.wrongOptions.includes(q.correctConjugation)) {
-        // Strip and pad if needed — model occasionally duplicates.
-        q.wrongOptions = q.wrongOptions.filter((w) => w !== q.correctConjugation);
-        while (q.wrongOptions.length < 3) q.wrongOptions.push(`${q.infinitive}?`);
-      }
-      cacheSet(key, q);
-      return { data: q, error: null, cached: false };
-    } catch (e) {
-      console.error("generateConjugationQuestion failed", e);
-      return { data: null, error: "Generation failed." };
-    }
-  });
+    },
+  );
 
 function pickAxis(level: 1 | 2 | 3): ConjugationAxis {
   if (level === 1) {

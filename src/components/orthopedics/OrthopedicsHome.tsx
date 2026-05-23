@@ -54,9 +54,8 @@ export function OrthopedicsHome() {
           Pick your clinical area
         </h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Each area gives you setting-appropriate phrases, vocabulary, and an
-          AI roleplay partner who plays the patient, colleague, or staff member
-          you'd actually be talking to.
+          Each area gives you setting-appropriate phrases, vocabulary, and an AI roleplay partner
+          who plays the patient, colleague, or staff member you'd actually be talking to.
         </p>
       </header>
 
@@ -70,9 +69,7 @@ export function OrthopedicsHome() {
             >
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{area.emoji}</span>
-                <span className="font-display text-lg font-semibold">
-                  {area.name}
-                </span>
+                <span className="font-display text-lg font-semibold">{area.name}</span>
               </div>
               <p className="text-xs text-muted-foreground">{area.blurb}</p>
               <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold/80 group-hover:text-gold">
@@ -133,10 +130,7 @@ function AreaDetail({
           </h3>
           <ul className="space-y-2">
             {area.phrases.map((p, i) => (
-              <li
-                key={i}
-                className="rounded-lg border border-border/40 bg-background/40 p-3"
-              >
+              <li key={i} className="rounded-lg border border-border/40 bg-background/40 p-3">
                 <p className="text-sm text-foreground">{p.en}</p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                   {p.intent}
@@ -176,9 +170,7 @@ function AreaDetail({
                     className="group flex w-full items-start gap-2 rounded-lg border border-border/40 bg-background/40 p-3 text-left transition-all hover:border-gold/60 hover:bg-background/70"
                   >
                     <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                    <span className="text-sm text-foreground group-hover:text-foreground">
-                      {c}
-                    </span>
+                    <span className="text-sm text-foreground group-hover:text-foreground">{c}</span>
                   </button>
                 </li>
               ))}

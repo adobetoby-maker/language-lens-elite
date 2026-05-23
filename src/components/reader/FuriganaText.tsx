@@ -114,8 +114,7 @@ export function FuriganaText({
   return (
     <>
       {rendered.map((seg, i) => {
-        const reading =
-          script === "romaji" ? seg.romaji : seg.hiragana;
+        const reading = script === "romaji" ? seg.romaji : seg.hiragana;
         if (reading) {
           if (mode === "inline") {
             // "Inline" mode: the reading sits directly ON TOP of the kanji as
@@ -161,12 +160,7 @@ export function FuriganaText({
           );
         }
         return (
-          <ClickableSpan
-            key={i}
-            text={seg.base}
-            sentence={sentence}
-            onWordClick={onWordClick}
-          />
+          <ClickableSpan key={i} text={seg.base} sentence={sentence} onWordClick={onWordClick} />
         );
       })}
     </>

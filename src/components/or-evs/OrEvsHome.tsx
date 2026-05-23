@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  ChevronDown,
-  ChevronRight,
-  ArrowLeft,
-  RotateCcw,
-  CheckCircle2,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, ArrowLeft, RotateCcw, CheckCircle2 } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { OR_EVS_CONTENT, type ModuleArea } from "@/data/or-evs-content";
 
@@ -25,9 +19,9 @@ export function OrEvsHome() {
       {/* Module notice */}
       <div className="mb-5 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3">
         <p className="text-sm text-foreground/80 leading-relaxed">
-          <span className="font-semibold text-gold">Job Skills Trainer.</span>{" "}
-          This module teaches English vocabulary for OR housekeeping staff.
-          Phrases are designed to be used directly on the job.
+          <span className="font-semibold text-gold">Job Skills Trainer.</span> This module teaches
+          English vocabulary for OR housekeeping staff. Phrases are designed to be used directly on
+          the job.
         </p>
       </div>
 
@@ -40,9 +34,8 @@ export function OrEvsHome() {
           OR EVS — English on the Job
         </h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          English vocabulary and phrases for OR housekeeping staff. Study by
-          work area, practice equipment terms with flashcards, or review all
-          key phrases at a glance.
+          English vocabulary and phrases for OR housekeeping staff. Study by work area, practice
+          equipment terms with flashcards, or review all key phrases at a glance.
         </p>
       </header>
 
@@ -87,8 +80,8 @@ function WorkAreasPanel() {
       {!openArea ? (
         <>
           <p className="mb-4 text-sm text-muted-foreground">
-            Select a work area to see the English phrases and vocabulary you
-            need for that part of your shift.
+            Select a work area to see the English phrases and vocabulary you need for that part of
+            your shift.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {OR_EVS_CONTENT.areas.map((area) => (
@@ -103,9 +96,7 @@ function WorkAreasPanel() {
                     {area.name}
                   </span>
                 </div>
-                <p className="text-xs text-muted-foreground line-clamp-3">
-                  {area.blurb}
-                </p>
+                <p className="text-xs text-muted-foreground line-clamp-3">{area.blurb}</p>
                 <div className="mt-auto pt-1 flex items-center gap-3">
                   <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground/70">
                     {area.phrases.length} phrases · {area.vocab.length} terms
@@ -125,13 +116,7 @@ function WorkAreasPanel() {
   );
 }
 
-function AreaDetail({
-  area,
-  onBack,
-}: {
-  area: ModuleArea;
-  onBack: () => void;
-}) {
+function AreaDetail({ area, onBack }: { area: ModuleArea; onBack: () => void }) {
   return (
     <div>
       <button
@@ -147,9 +132,7 @@ function AreaDetail({
           <span className="text-3xl">{area.emoji}</span>
           <div>
             <h2 className="font-display text-2xl font-semibold">{area.name}</h2>
-            <p className="text-xs text-muted-foreground mt-0.5 max-w-xl">
-              {area.blurb}
-            </p>
+            <p className="text-xs text-muted-foreground mt-0.5 max-w-xl">{area.blurb}</p>
           </div>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -165,18 +148,12 @@ function AreaDetail({
           English phrases to use on the job
         </h3>
         <p className="mb-4 text-xs text-muted-foreground">
-          These are the exact sentences you can say at work. Read them out loud
-          to practice.
+          These are the exact sentences you can say at work. Read them out loud to practice.
         </p>
         <ul className="space-y-2.5">
           {area.phrases.map((p, i) => (
-            <li
-              key={i}
-              className="rounded-xl border border-border/50 bg-background/60 p-4"
-            >
-              <p className="text-base font-medium text-foreground leading-snug">
-                "{p.en}"
-              </p>
+            <li key={i} className="rounded-xl border border-border/50 bg-background/60 p-4">
+              <p className="text-base font-medium text-foreground leading-snug">"{p.en}"</p>
               <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                 {p.intent}
               </p>
@@ -210,10 +187,7 @@ function AreaDetail({
           </h3>
           <ul className="space-y-2">
             {area.challenges.map((c, i) => (
-              <li
-                key={i}
-                className="rounded-lg border border-border/40 bg-background/40 p-3"
-              >
+              <li key={i} className="rounded-lg border border-border/40 bg-background/40 p-3">
                 <p className="text-sm text-foreground leading-relaxed">{c}</p>
               </li>
             ))}
@@ -282,8 +256,8 @@ function EquipmentFlashPanel() {
           🔧 Equipment Flashcards
         </p>
         <p className="text-sm text-muted-foreground">
-          An English term will appear on the card. Say it out loud and think of
-          what it means in Spanish. Tap to reveal context, then press Next.
+          An English term will appear on the card. Say it out loud and think of what it means in
+          Spanish. Tap to reveal context, then press Next.
         </p>
       </div>
 
@@ -310,13 +284,10 @@ function EquipmentFlashPanel() {
         onClick={() => setRevealed((r) => !r)}
         className="cursor-pointer rounded-2xl border border-gold/30 bg-card/60 p-8 text-center transition-all hover:border-gold/60 hover:bg-card/80 select-none min-h-[180px] flex flex-col items-center justify-center gap-3"
       >
-        <p className="font-display text-2xl font-semibold text-foreground leading-tight">
-          {word}
-        </p>
+        <p className="font-display text-2xl font-semibold text-foreground leading-tight">{word}</p>
         {revealed ? (
           <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-            Say this English term out loud. Think: when would you use this
-            word on your shift?
+            Say this English term out loud. Think: when would you use this word on your shift?
           </p>
         ) : (
           <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/50">
@@ -358,8 +329,8 @@ function EquipmentFlashPanel() {
 // ── Key Phrases Panel ─────────────────────────────────────────────────────────
 
 function KeyPhrasesPanel() {
-  const [openAreas, setOpenAreas] = useState<Record<string, boolean>>(
-    () => Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, true])),
+  const [openAreas, setOpenAreas] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, true])),
   );
 
   function toggleArea(id: string) {
@@ -367,21 +338,14 @@ function KeyPhrasesPanel() {
   }
 
   function collapseAll() {
-    setOpenAreas(
-      Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, false])),
-    );
+    setOpenAreas(Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, false])));
   }
 
   function expandAll() {
-    setOpenAreas(
-      Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, true])),
-    );
+    setOpenAreas(Object.fromEntries(OR_EVS_CONTENT.areas.map((a) => [a.id, true])));
   }
 
-  const totalPhrases = OR_EVS_CONTENT.areas.reduce(
-    (n, a) => n + a.phrases.length,
-    0,
-  );
+  const totalPhrases = OR_EVS_CONTENT.areas.reduce((n, a) => n + a.phrases.length, 0);
 
   return (
     <div>
@@ -391,8 +355,8 @@ function KeyPhrasesPanel() {
             💬 All key phrases
           </p>
           <p className="text-xs text-muted-foreground mt-0.5">
-            {totalPhrases} phrases across {OR_EVS_CONTENT.areas.length} work
-            areas — grouped for quick study or on-shift reference.
+            {totalPhrases} phrases across {OR_EVS_CONTENT.areas.length} work areas — grouped for
+            quick study or on-shift reference.
           </p>
         </div>
         <div className="flex gap-2">
@@ -425,9 +389,7 @@ function KeyPhrasesPanel() {
               >
                 <div className="flex items-center gap-2.5">
                   <span className="text-xl">{area.emoji}</span>
-                  <span className="font-display text-base font-semibold">
-                    {area.name}
-                  </span>
+                  <span className="font-display text-base font-semibold">{area.name}</span>
                   <span className="font-mono text-[10px] text-muted-foreground">
                     {area.phrases.length} phrases
                   </span>
@@ -446,9 +408,7 @@ function KeyPhrasesPanel() {
                       key={i}
                       className="rounded-xl border border-border/40 bg-background/60 px-4 py-3"
                     >
-                      <p className="text-sm font-medium text-foreground leading-snug">
-                        "{p.en}"
-                      </p>
+                      <p className="text-sm font-medium text-foreground leading-snug">"{p.en}"</p>
                       <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.13em] text-muted-foreground">
                         {p.intent}
                       </p>

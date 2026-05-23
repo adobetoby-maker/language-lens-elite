@@ -3,6 +3,7 @@ import { BookOpen, Sparkles } from "lucide-react";
 import { MissionaryQuickStart } from "@/components/grammar/MissionaryQuickStart";
 import { MissionaryLessonReader } from "@/components/missionary/MissionaryLessonReader";
 import { ModuleStudyGuide } from "@/components/modules/ModuleStudyGuide";
+import { MissionBanner } from "@/components/missionary/MissionBanner";
 
 type MissionaryView = "quickstart" | "lessons";
 
@@ -15,7 +16,10 @@ export function MissionaryHome() {
   const [view, setView] = useState<MissionaryView>("quickstart");
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6">
+      <div className="mb-6">
+        <MissionBanner />
+      </div>
       <ModuleStudyGuide />
       <div
         role="tablist"
@@ -58,9 +62,7 @@ function TabButton({
       aria-selected={active}
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors ${
-        active
-          ? "bg-gold/20 text-gold"
-          : "text-muted-foreground hover:text-foreground"
+        active ? "bg-gold/20 text-gold" : "text-muted-foreground hover:text-foreground"
       }`}
     >
       {icon}

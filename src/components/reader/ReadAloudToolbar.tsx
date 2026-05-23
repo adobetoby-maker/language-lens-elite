@@ -8,16 +8,8 @@ export function ReadAloudToolbar({
   onSpeakSentence: () => void;
   onSpeakParagraph: () => void;
 }) {
-  const {
-    rate,
-    setRate,
-    accent,
-    setAccent,
-    accentsForLanguage,
-    speakWord,
-    stop,
-    playing,
-  } = useSpeech();
+  const { rate, setRate, accent, setAccent, accentsForLanguage, speakWord, stop, playing } =
+    useSpeech();
 
   return (
     <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-gold/30 bg-card/70 px-4 py-2 backdrop-blur">
@@ -55,9 +47,7 @@ export function ReadAloudToolbar({
             onChange={(e) => setRate(Number(e.target.value))}
             className="h-1 w-24 cursor-pointer accent-[var(--color-gold)]"
           />
-          <span className="w-8 text-right font-mono text-[10px] text-gold">
-            {rate.toFixed(1)}x
-          </span>
+          <span className="w-8 text-right font-mono text-[10px] text-gold">{rate.toFixed(1)}x</span>
         </label>
 
         <label className="flex items-center gap-2">

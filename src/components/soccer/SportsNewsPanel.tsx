@@ -78,9 +78,7 @@ function ArticleCard({ article }: { article: NewsArticle }) {
       </div>
 
       {article.summary && (
-        <p className="mt-2 text-xs text-white/55 line-clamp-2 leading-relaxed">
-          {article.summary}
-        </p>
+        <p className="mt-2 text-xs text-white/55 line-clamp-2 leading-relaxed">{article.summary}</p>
       )}
 
       {article.teamMentions.length > 0 && (
@@ -246,8 +244,7 @@ export function SportsNewsPanel({
     sport === "soccer" && worldCupFilter
       ? articles.filter(
           (a) =>
-            a.title.toLowerCase().includes("world cup") ||
-            a.title.toLowerCase().includes("fifa"),
+            a.title.toLowerCase().includes("world cup") || a.title.toLowerCase().includes("fifa"),
         )
       : articles;
 
@@ -302,9 +299,7 @@ export function SportsNewsPanel({
       {/* ---- Content ---- */}
       {loading ? (
         <div className="flex flex-col gap-3">
-          {fetchMessage && (
-            <p className="text-xs text-white/40 text-center py-1">{fetchMessage}</p>
-          )}
+          {fetchMessage && <p className="text-xs text-white/40 text-center py-1">{fetchMessage}</p>}
           <SkeletonCards count={3} />
         </div>
       ) : error ? (

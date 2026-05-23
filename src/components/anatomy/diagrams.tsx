@@ -14,11 +14,7 @@ function regionFill(id: string, highlighted: string | null) {
 function regionStroke(id: string, highlighted: string | null) {
   return id === highlighted ? "hsl(var(--gold))" : "hsl(var(--border))";
 }
-function regionProps(
-  id: string,
-  highlighted: string | null,
-  onRegion?: (id: string) => void,
-) {
+function regionProps(id: string, highlighted: string | null, onRegion?: (id: string) => void) {
   return {
     fill: regionFill(id, highlighted),
     stroke: regionStroke(id, highlighted),
@@ -37,7 +33,16 @@ export function BodyDiagram({ highlighted, onRegion, className }: DiagramProps) 
   return (
     <svg viewBox="0 0 200 420" className={className} aria-label="Human body diagram">
       {/* Body silhouette outline */}
-      <ellipse cx="100" cy="42" rx="36" ry="40" fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="1" opacity="0.15" />
+      <ellipse
+        cx="100"
+        cy="42"
+        rx="36"
+        ry="40"
+        fill="hsl(var(--muted))"
+        stroke="hsl(var(--border))"
+        strokeWidth="1"
+        opacity="0.15"
+      />
       {/* Head */}
       <ellipse cx="100" cy="42" rx="33" ry="37" {...r("head")} />
       {/* Neck */}
@@ -59,7 +64,17 @@ export function BodyDiagram({ highlighted, onRegion, className }: DiagramProps) 
       {/* Left Elbow */}
       <ellipse cx="48" cy="162" rx="12" ry="9" {...r("l-elbow")} />
       {/* Right Elbow — shares same "l-elbow" id for simplicity (elbow) */}
-      <ellipse cx="152" cy="162" rx="12" ry="9" fill={regionFill("l-elbow", highlighted)} stroke={regionStroke("l-elbow", highlighted)} strokeWidth={highlighted === "l-elbow" ? 2.5 : 1.2} opacity={highlighted === "l-elbow" ? 0.9 : 0.55} style={{ transition: "fill 0.2s" }} />
+      <ellipse
+        cx="152"
+        cy="162"
+        rx="12"
+        ry="9"
+        fill={regionFill("l-elbow", highlighted)}
+        stroke={regionStroke("l-elbow", highlighted)}
+        strokeWidth={highlighted === "l-elbow" ? 2.5 : 1.2}
+        opacity={highlighted === "l-elbow" ? 0.9 : 0.55}
+        style={{ transition: "fill 0.2s" }}
+      />
       {/* Left Forearm */}
       <rect x="35" y="171" width="22" height="50" rx="7" {...r("l-forearm")} />
       {/* Right Forearm */}
@@ -95,7 +110,16 @@ export function FaceDiagram({ highlighted, onRegion, className }: DiagramProps) 
   return (
     <svg viewBox="0 0 200 240" className={className} aria-label="Face diagram">
       {/* Head outline */}
-      <ellipse cx="100" cy="120" rx="83" ry="108" fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="1" opacity="0.12" />
+      <ellipse
+        cx="100"
+        cy="120"
+        rx="83"
+        ry="108"
+        fill="hsl(var(--muted))"
+        stroke="hsl(var(--border))"
+        strokeWidth="1"
+        opacity="0.12"
+      />
       {/* Left Ear */}
       <ellipse cx="20" cy="120" rx="15" ry="27" {...r("l-ear")} />
       {/* Right Ear */}
@@ -125,9 +149,27 @@ export function FaceDiagram({ highlighted, onRegion, className }: DiagramProps) 
       {/* Lips */}
       <ellipse cx="100" cy="163" rx="22" ry="8" {...r("lips")} />
       {/* Jaw */}
-      <path d="M 44 148 Q 100 210 156 148" fill="none" stroke={regionStroke("jaw", highlighted)} strokeWidth={highlighted === "jaw" ? 3 : 1.5} opacity="0.6" onClick={onRegion ? () => onRegion("jaw") : undefined} cursor={onRegion ? "pointer" : "default"} />
+      <path
+        d="M 44 148 Q 100 210 156 148"
+        fill="none"
+        stroke={regionStroke("jaw", highlighted)}
+        strokeWidth={highlighted === "jaw" ? 3 : 1.5}
+        opacity="0.6"
+        onClick={onRegion ? () => onRegion("jaw") : undefined}
+        cursor={onRegion ? "pointer" : "default"}
+      />
       {/* Jaw clickable area */}
-      <ellipse cx="100" cy="178" rx="50" ry="22" fill={regionFill("jaw", highlighted)} stroke="none" opacity="0.3" onClick={onRegion ? () => onRegion("jaw") : undefined} cursor={onRegion ? "pointer" : "default"} />
+      <ellipse
+        cx="100"
+        cy="178"
+        rx="50"
+        ry="22"
+        fill={regionFill("jaw", highlighted)}
+        stroke="none"
+        opacity="0.3"
+        onClick={onRegion ? () => onRegion("jaw") : undefined}
+        cursor={onRegion ? "pointer" : "default"}
+      />
       {/* Chin */}
       <ellipse cx="100" cy="204" rx="28" ry="20" {...r("chin")} />
     </svg>
@@ -141,8 +183,25 @@ export function MuscleDiagram({ highlighted, onRegion, className }: DiagramProps
   return (
     <svg viewBox="0 0 200 420" className={className} aria-label="Muscle groups diagram">
       {/* Silhouette */}
-      <ellipse cx="100" cy="42" rx="36" ry="40" fill="hsl(var(--muted))" stroke="none" opacity="0.12" />
-      <rect x="64" y="82" width="72" height="120" rx="6" fill="hsl(var(--muted))" stroke="none" opacity="0.12" />
+      <ellipse
+        cx="100"
+        cy="42"
+        rx="36"
+        ry="40"
+        fill="hsl(var(--muted))"
+        stroke="none"
+        opacity="0.12"
+      />
+      <rect
+        x="64"
+        y="82"
+        width="72"
+        height="120"
+        rx="6"
+        fill="hsl(var(--muted))"
+        stroke="none"
+        opacity="0.12"
+      />
       {/* Trapezius (neck/upper back) */}
       <path d="M 80 82 Q 100 72 120 82 L 130 100 Q 100 94 70 100 Z" {...r("trapezius")} />
       {/* Left Deltoid */}
@@ -171,7 +230,18 @@ export function MuscleDiagram({ highlighted, onRegion, className }: DiagramProps
       <ellipse cx="122" cy="210" rx="18" ry="17" {...r("r-glute")} />
       {/* Latissimus (back side visible on sides) */}
       <rect x="62" y="130" width="12" height="55" rx="5" {...r("latissimus")} />
-      <rect x="126" y="130" width="12" height="55" rx="5" fill={regionFill("latissimus", highlighted)} stroke={regionStroke("latissimus", highlighted)} strokeWidth={highlighted === "latissimus" ? 2.5 : 1.2} opacity={highlighted === "latissimus" ? 0.9 : 0.55} style={{ transition: "fill 0.2s" }} />
+      <rect
+        x="126"
+        y="130"
+        width="12"
+        height="55"
+        rx="5"
+        fill={regionFill("latissimus", highlighted)}
+        stroke={regionStroke("latissimus", highlighted)}
+        strokeWidth={highlighted === "latissimus" ? 2.5 : 1.2}
+        opacity={highlighted === "latissimus" ? 0.9 : 0.55}
+        style={{ transition: "fill 0.2s" }}
+      />
       {/* Left Quad */}
       <rect x="65" y="228" width="32" height="70" rx="8" {...r("l-quad")} />
       {/* Right Quad */}
@@ -195,9 +265,28 @@ export function OrganDiagram({ highlighted, onRegion, className }: DiagramProps)
   return (
     <svg viewBox="0 0 180 310" className={className} aria-label="Internal organs diagram">
       {/* Torso outline */}
-      <rect x="20" y="50" width="140" height="240" rx="30" fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="1" opacity="0.1" />
+      <rect
+        x="20"
+        y="50"
+        width="140"
+        height="240"
+        rx="30"
+        fill="hsl(var(--muted))"
+        stroke="hsl(var(--border))"
+        strokeWidth="1"
+        opacity="0.1"
+      />
       {/* Head (for brain) */}
-      <ellipse cx="90" cy="30" rx="44" ry="36" fill="hsl(var(--muted))" stroke="hsl(var(--border))" strokeWidth="1" opacity="0.12" />
+      <ellipse
+        cx="90"
+        cy="30"
+        rx="44"
+        ry="36"
+        fill="hsl(var(--muted))"
+        stroke="hsl(var(--border))"
+        strokeWidth="1"
+        opacity="0.12"
+      />
       {/* Brain */}
       <ellipse cx="90" cy="28" rx="36" ry="26" {...r("brain")} />
       {/* Thyroid (neck area) */}
@@ -225,9 +314,31 @@ export function OrganDiagram({ highlighted, onRegion, className }: DiagramProps)
       {/* Small Intestine (center) */}
       <ellipse cx="90" cy="240" rx="28" ry="24" {...r("sm-intestine")} />
       {/* Large Intestine (frame around small) */}
-      <rect x="32" y="218" width="116" height="58" rx="20" fill="none" stroke={regionStroke("lg-intestine", highlighted)} strokeWidth={highlighted === "lg-intestine" ? 3 : 1.5} opacity="0.6" onClick={onRegion ? () => onRegion("lg-intestine") : undefined} cursor={onRegion ? "pointer" : "default"} />
+      <rect
+        x="32"
+        y="218"
+        width="116"
+        height="58"
+        rx="20"
+        fill="none"
+        stroke={regionStroke("lg-intestine", highlighted)}
+        strokeWidth={highlighted === "lg-intestine" ? 3 : 1.5}
+        opacity="0.6"
+        onClick={onRegion ? () => onRegion("lg-intestine") : undefined}
+        cursor={onRegion ? "pointer" : "default"}
+      />
       {/* Large Intestine fill area */}
-      <ellipse cx="90" cy="248" rx="42" ry="32" fill={regionFill("lg-intestine", highlighted)} stroke="none" opacity="0.25" onClick={onRegion ? () => onRegion("lg-intestine") : undefined} cursor={onRegion ? "pointer" : "default"} />
+      <ellipse
+        cx="90"
+        cy="248"
+        rx="42"
+        ry="32"
+        fill={regionFill("lg-intestine", highlighted)}
+        stroke="none"
+        opacity="0.25"
+        onClick={onRegion ? () => onRegion("lg-intestine") : undefined}
+        cursor={onRegion ? "pointer" : "default"}
+      />
       {/* Bladder (bottom) */}
       <ellipse cx="90" cy="284" rx="22" ry="16" {...r("bladder")} />
     </svg>

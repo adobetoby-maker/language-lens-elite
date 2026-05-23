@@ -1,4 +1,13 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  type ReactNode,
+} from "react";
 import type { Language } from "./app-state";
 import type { ConjugationLevel, ConjugationQuestion } from "@/fns/conjugation.functions";
 
@@ -38,7 +47,7 @@ export interface ConjugationRun {
   language: Language;
   level: ConjugationLevel;
   questions: ConjugationRunQuestion[]; // length grows up to 5
-  index: number;                        // current question index (0-based)
+  index: number; // current question index (0-based)
   startedAt: number;
 }
 
@@ -67,7 +76,9 @@ function loadLeaderboard(): Record<LeaderboardKey, ConjugationStats> {
   if (typeof window === "undefined") return {} as Record<LeaderboardKey, ConjugationStats>;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Record<LeaderboardKey, ConjugationStats>) : ({} as Record<LeaderboardKey, ConjugationStats>);
+    return raw
+      ? (JSON.parse(raw) as Record<LeaderboardKey, ConjugationStats>)
+      : ({} as Record<LeaderboardKey, ConjugationStats>);
   } catch {
     return {} as Record<LeaderboardKey, ConjugationStats>;
   }
@@ -82,7 +93,10 @@ function saveLeaderboard(lb: Record<LeaderboardKey, ConjugationStats>) {
   }
 }
 
-function statsFor(lb: Record<LeaderboardKey, ConjugationStats>, key: LeaderboardKey): ConjugationStats {
+function statsFor(
+  lb: Record<LeaderboardKey, ConjugationStats>,
+  key: LeaderboardKey,
+): ConjugationStats {
   return lb[key] ?? { ...EMPTY_STATS };
 }
 
@@ -126,7 +140,11 @@ function reducer(state: State, action: Action): State {
       const q = state.run.questions[idx];
       if (!q || q.correct !== null) return state; // double-click guard
       const updated = state.run.questions.slice();
-      updated[idx] = { ...q, selectedAnswer: action.payload.selected, correct: action.payload.correct };
+      updated[idx] = {
+        ...q,
+        selectedAnswer: action.payload.selected,
+        correct: action.payload.correct,
+      };
 
       // Update leaderboard immediately on each answer.
       const key: LeaderboardKey = `${state.run.language}-${state.run.level}` as LeaderboardKey;
@@ -154,7 +172,8 @@ function reducer(state: State, action: Action): State {
     }
     case "END_RUN": {
       if (!state.run) return state;
-      const allCorrect = state.run.questions.length === RUN_LENGTH &&
+      const allCorrect =
+        state.run.questions.length === RUN_LENGTH &&
         state.run.questions.every((q) => q.correct === true);
       let newLb = state.leaderboard;
       if (allCorrect) {
@@ -197,7 +216,15 @@ interface ConjugationContextValue {
   runScore: () => { correct: number; answered: number; total: number };
   RUN_LENGTH: number;
   // For the question fetcher — set by the component that owns useServerFn.
-  setFetcher: (fn: ((args: { language: Language; level: ConjugationLevel; avoid?: string[] }) => Promise<ConjugationQuestion>) | null) => void;
+  setFetcher: (
+    fn:
+      | ((args: {
+          language: Language;
+          level: ConjugationLevel;
+          avoid?: string[];
+        }) => Promise<ConjugationQuestion>)
+      | null,
+  ) => void;
 }
 
 const Ctx = createContext<ConjugationContextValue | null>(null);
@@ -220,7 +247,14 @@ export function ConjugationProvider({ children }: { children: ReactNode }) {
 
   // The fetcher is provided by the component that owns useServerFn (component
   // tree, not state file — server-fn hooks must be called from components).
-  const fetcherRef = useRef<((args: { language: Language; level: ConjugationLevel; avoid?: string[] }) => Promise<ConjugationQuestion>) | null>(null);
+  const fetcherRef = useRef<
+    | ((args: {
+        language: Language;
+        level: ConjugationLevel;
+        avoid?: string[];
+      }) => Promise<ConjugationQuestion>)
+    | null
+  >(null);
 
   const setFetcher = useCallback((fn: typeof fetcherRef.current) => {
     fetcherRef.current = fn;
@@ -252,13 +286,16 @@ export function ConjugationProvider({ children }: { children: ReactNode }) {
     }
   }, [state.run]);
 
-  const answer = useCallback((selected: string) => {
-    if (!state.run) return;
-    const cur = state.run.questions[state.run.index];
-    if (!cur || cur.correct !== null) return;
-    const correct = selected === cur.question.correctConjugation;
-    dispatch({ type: "ANSWER", payload: { selected, correct } });
-  }, [state.run]);
+  const answer = useCallback(
+    (selected: string) => {
+      if (!state.run) return;
+      const cur = state.run.questions[state.run.index];
+      if (!cur || cur.correct !== null) return;
+      const correct = selected === cur.question.correctConjugation;
+      dispatch({ type: "ANSWER", payload: { selected, correct } });
+    },
+    [state.run],
+  );
 
   const advance = useCallback(() => dispatch({ type: "ADVANCE" }), []);
   const endRun = useCallback(() => dispatch({ type: "END_RUN" }), []);
@@ -300,7 +337,19 @@ export function ConjugationProvider({ children }: { children: ReactNode }) {
       RUN_LENGTH,
       setFetcher,
     }),
-    [state, startRun, loadQuestion, answer, advance, endRun, resetLeaderboard, isRunComplete, currentQuestion, runScore, setFetcher],
+    [
+      state,
+      startRun,
+      loadQuestion,
+      answer,
+      advance,
+      endRun,
+      resetLeaderboard,
+      isRunComplete,
+      currentQuestion,
+      runScore,
+      setFetcher,
+    ],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
@@ -325,10 +374,15 @@ export function streakBadge(streak: number): StreakBadge {
 
 export function streakBadgeLabel(b: StreakBadge): string {
   switch (b) {
-    case "hot": return "Hot streak";
-    case "fire": return "On fire";
-    case "streaking": return "Streaking";
-    case "unstoppable": return "Unstoppable";
-    default: return "";
+    case "hot":
+      return "Hot streak";
+    case "fire":
+      return "On fire";
+    case "streaking":
+      return "Streaking";
+    case "unstoppable":
+      return "Unstoppable";
+    default:
+      return "";
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { X, Volume2, MessageCircle, Sparkle, BookmarkPlus, BookmarkCheck } from "lucide-react";
 import { lookupWord, type WordCardData } from "@/fns/word-lookup.functions";
@@ -15,7 +15,7 @@ const LOCALE: Record<Language, string> = {
   Italian: "it-IT",
   Japanese: "ja-JP",
   Korean: "ko-KR",
-  Portuguese: "pt-PT",
+  Portuguese: "pt-BR",
   English: "en-US",
 };
 
@@ -56,13 +56,13 @@ export function WordCard({
   const [loading, setLoading] = useState(true);
   const [vocabAdded, setVocabAdded] = useState(false);
   const [showEtymology, setShowEtymology] = useState(false);
-  const toggleEtymology = useCallback(() => setShowEtymology(v => !v), []);
+  const toggleEtymology = useCallback(() => setShowEtymology((v) => !v), []);
   const ref = useRef<HTMLDivElement>(null);
 
   const CARD_W = cardWidth(request.language);
 
-  // Smart positioning so the card never overflows the viewport
-  const pos = (() => {
+  // Initial position estimate — runs synchronously before first paint
+  const initialPos = (() => {
     const pad = 12;
     const vw = typeof window !== "undefined" ? window.innerWidth : 1024;
     const vh = typeof window !== "undefined" ? window.innerHeight : 768;
@@ -74,6 +74,19 @@ export function WordCard({
     top = Math.max(pad, Math.min(top, vh - CARD_H - pad));
     return { left, top };
   })();
+
+  const [pos, setPos] = useState(initialPos);
+
+  // After content loads/changes, clamp so the actual rendered bottom stays on-screen
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    const pad = 12;
+    const vh = typeof window !== "undefined" ? window.innerHeight : 768;
+    const rect = ref.current.getBoundingClientRect();
+    if (rect.bottom > vh - pad) {
+      setPos((p) => ({ ...p, top: Math.max(pad, p.top - (rect.bottom - vh + pad)) }));
+    }
+  }, [loading, card, error, showEtymology]);
 
   // XP flash on open + record last clicked word + count toward "First Word!" achievement
   useEffect(() => {
@@ -201,9 +214,7 @@ export function WordCard({
               )}
             </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-              {card.baseDefinition}
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-foreground/90">{card.baseDefinition}</p>
 
             <div className="my-4 flex items-center gap-3">
               <div className="h-px flex-1 bg-border/70" />
@@ -246,7 +257,9 @@ export function WordCard({
                     <li key={i} className="border-l-2 border-gold/40 pl-2">
                       {request.language === "Japanese" ? (
                         <FuriganaText text={c} mode="above" script="hiragana" />
-                      ) : c}
+                      ) : (
+                        c
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -269,7 +282,9 @@ export function WordCard({
                       {rw.reading && (
                         <span className="font-mono text-[9px] text-gold/80">{rw.reading}</span>
                       )}
-                      <span className="font-mono text-[10px] text-muted-foreground">— {rw.gloss}</span>
+                      <span className="font-mono text-[10px] text-muted-foreground">
+                        — {rw.gloss}
+                      </span>
                     </span>
                   ))}
                 </div>
@@ -335,7 +350,14 @@ export function WordCard({
                   if (!alreadyIn) {
                     dispatch({
                       type: "ADD_VOCAB_ITEMS",
-                      payload: [{ word: card.headword, translation: card.baseDefinition, category: "topic", correctCount: 0 }],
+                      payload: [
+                        {
+                          word: card.headword,
+                          translation: card.baseDefinition,
+                          category: "topic",
+                          correctCount: 0,
+                        },
+                      ],
                     });
                   }
                   setVocabAdded(true);
@@ -348,9 +370,13 @@ export function WordCard({
                 }`}
               >
                 {vocabAdded ? (
-                  <><BookmarkCheck className="h-3 w-3" /> Added</>
+                  <>
+                    <BookmarkCheck className="h-3 w-3" /> Added
+                  </>
                 ) : (
-                  <><BookmarkPlus className="h-3 w-3" /> My Vocab</>
+                  <>
+                    <BookmarkPlus className="h-3 w-3" /> My Vocab
+                  </>
                 )}
               </button>
             </div>

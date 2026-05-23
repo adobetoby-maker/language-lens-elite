@@ -57,10 +57,15 @@ export function FmgHome() {
     <div className="mx-auto max-w-4xl space-y-5">
       {/* Header */}
       <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">🩺 Medical English for FMGs</div>
-        <h2 className="mt-1 font-display text-2xl font-semibold">Clinical English for Foreign Medical Graduates</h2>
+        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+          🩺 Medical English for FMGs
+        </div>
+        <h2 className="mt-1 font-display text-2xl font-semibold">
+          Clinical English for Foreign Medical Graduates
+        </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Master the English of US hospital rounds, documentation, team communication, and patient conversations.
+          Master the English of US hospital rounds, documentation, team communication, and patient
+          conversations.
         </p>
       </div>
 
@@ -94,7 +99,12 @@ export function FmgHome() {
         />
       )}
       {activeTab === "phrases" && (
-        <PhraseDrillTab area={openArea} allAreas={FMG_CONTENT.areas} setOpenAreaId={setOpenAreaId} setActiveTab={setActiveTab} />
+        <PhraseDrillTab
+          area={openArea}
+          allAreas={FMG_CONTENT.areas}
+          setOpenAreaId={setOpenAreaId}
+          setActiveTab={setActiveTab}
+        />
       )}
       {activeTab === "vocab" && <VocabGlossTab />}
       {activeTab === "plain-language" && <PlainLanguageTab />}
@@ -105,7 +115,13 @@ export function FmgHome() {
 // ── Areas tab ─────────────────────────────────────────────────────────────────
 
 function AreasTab({
-  openArea, openAreaId, setOpenAreaId, dispatch, moduleId, state, tutor,
+  openArea,
+  openAreaId,
+  setOpenAreaId,
+  dispatch,
+  moduleId,
+  state,
+  tutor,
 }: {
   openArea: FmgArea | null;
   openAreaId: string | null;
@@ -151,19 +167,28 @@ function AreasTab({
                   <RoleCard label="AI plays" value={area.counterpart} />
                 </div>
                 <div className="rounded-xl border border-border/40 bg-background/30 px-4 py-2.5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Register note — </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    Register note —{" "}
+                  </span>
                   <span className="text-sm text-foreground/80">{area.toneNote}</span>
                 </div>
 
                 {/* Key vocab preview */}
                 <div>
-                  <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Key vocabulary</div>
+                  <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    Key vocabulary
+                  </div>
                   <div className="flex flex-wrap gap-1.5">
                     {area.vocab.slice(0, 10).map((w) => (
-                      <span key={w} className="rounded-full border border-border/50 bg-background/40 px-2.5 py-0.5 text-xs text-foreground/80">
+                      <span
+                        key={w}
+                        className="rounded-full border border-border/50 bg-background/40 px-2.5 py-0.5 text-xs text-foreground/80"
+                      >
                         {w}
                         {area.nativeGloss[w] && (
-                          <span className="ml-1 text-muted-foreground">· {area.nativeGloss[w]}</span>
+                          <span className="ml-1 text-muted-foreground">
+                            · {area.nativeGloss[w]}
+                          </span>
                         )}
                       </span>
                     ))}
@@ -174,8 +199,14 @@ function AreasTab({
                 <div className="flex gap-2 pt-1">
                   <button
                     onClick={() => {
-                      dispatch({ type: "SET_MODULE_ASSIGNMENT", payload: { moduleId, assignmentId: area.id } });
-                      dispatch({ type: "SET_TAB", payload: "tutor" as ReturnType<typeof useApp>["state"]["currentTab"] });
+                      dispatch({
+                        type: "SET_MODULE_ASSIGNMENT",
+                        payload: { moduleId, assignmentId: area.id },
+                      });
+                      dispatch({
+                        type: "SET_TAB",
+                        payload: "tutor" as ReturnType<typeof useApp>["state"]["currentTab"],
+                      });
                     }}
                     className="flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-gold transition-all hover:bg-gold/20"
                   >
@@ -184,7 +215,10 @@ function AreasTab({
                   </button>
                   <button
                     onClick={() => {
-                      dispatch({ type: "SET_MODULE_ASSIGNMENT", payload: { moduleId, assignmentId: area.id } });
+                      dispatch({
+                        type: "SET_MODULE_ASSIGNMENT",
+                        payload: { moduleId, assignmentId: area.id },
+                      });
                     }}
                     className="flex items-center gap-2 rounded-full border border-border/50 bg-background/30 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground transition-all hover:text-foreground"
                   >
@@ -204,7 +238,9 @@ function AreasTab({
 function RoleCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-border/40 bg-background/30 px-4 py-3">
-      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{label}</div>
+      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+        {label}
+      </div>
       <div className="mt-0.5 text-sm text-foreground">{value}</div>
     </div>
   );
@@ -213,7 +249,10 @@ function RoleCard({ label, value }: { label: string; value: string }) {
 // ── Phrase drill tab ───────────────────────────────────────────────────────────
 
 function PhraseDrillTab({
-  area, allAreas, setOpenAreaId, setActiveTab,
+  area,
+  allAreas,
+  setOpenAreaId,
+  setActiveTab,
 }: {
   area: FmgArea | null;
   allAreas: FmgArea[];
@@ -244,7 +283,11 @@ function PhraseDrillTab({
         {allAreas.map((a) => (
           <button
             key={a.id}
-            onClick={() => { setSelectedAreaId(a.id); setCurrentIdx(0); setFlipped(false); }}
+            onClick={() => {
+              setSelectedAreaId(a.id);
+              setCurrentIdx(0);
+              setFlipped(false);
+            }}
             className={
               "rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] transition-all " +
               (selectedAreaId === a.id
@@ -271,12 +314,16 @@ function PhraseDrillTab({
         ) : (
           <div className="space-y-3">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-gold">Intent: </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
+                Intent:{" "}
+              </span>
               <span className="text-sm text-foreground">{phrase.intent}</span>
             </div>
             {phrase.native && (
               <div className="rounded-xl border border-indigo-400/30 bg-indigo-400/5 px-4 py-3">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-indigo-400/70">Spanish</div>
+                <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-indigo-400/70">
+                  Spanish
+                </div>
                 <p className="text-sm leading-relaxed text-indigo-200">{phrase.native}</p>
               </div>
             )}
@@ -286,13 +333,19 @@ function PhraseDrillTab({
 
       {/* Navigation */}
       <div className="flex items-center justify-between">
-        <button onClick={prev} className="rounded-full border border-border/50 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground">
+        <button
+          onClick={prev}
+          className="rounded-full border border-border/50 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground"
+        >
           ← Prev
         </button>
         <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           {(currentIdx % phrases.length) + 1} / {phrases.length}
         </span>
-        <button onClick={next} className="rounded-full border border-border/50 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground">
+        <button
+          onClick={next}
+          className="rounded-full border border-border/50 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground"
+        >
           Next →
         </button>
       </div>
@@ -310,28 +363,42 @@ function VocabGlossTab() {
       {FMG_CONTENT.vocabSets.map((vs) => {
         const isOpen = openSet === vs.category;
         return (
-          <div key={vs.category} className={
-            "rounded-2xl border transition-all " +
-            (isOpen ? "border-gold/40 bg-card/60" : "border-border/60 bg-card/30")
-          }>
+          <div
+            key={vs.category}
+            className={
+              "rounded-2xl border transition-all " +
+              (isOpen ? "border-gold/40 bg-card/60" : "border-border/60 bg-card/30")
+            }
+          >
             <button
               onClick={() => setOpenSet(isOpen ? null : vs.category)}
               className="flex w-full items-center gap-3 px-5 py-3 text-left"
             >
               <span className="text-xl">{vs.emoji}</span>
               <span className="flex-1 font-display text-base font-semibold">{vs.category}</span>
-              <span className="font-mono text-[10px] text-muted-foreground">{vs.words.length} terms</span>
-              {isOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+              <span className="font-mono text-[10px] text-muted-foreground">
+                {vs.words.length} terms
+              </span>
+              {isOpen ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
             </button>
             {isOpen && (
               <div className="border-t border-border/40 px-5 pb-4 pt-3">
                 <div className="grid gap-2 sm:grid-cols-2">
                   {vs.words.map((w) => (
-                    <div key={w} className="flex items-start gap-3 rounded-xl border border-border/40 bg-background/30 px-3 py-2.5">
+                    <div
+                      key={w}
+                      className="flex items-start gap-3 rounded-xl border border-border/40 bg-background/30 px-3 py-2.5"
+                    >
                       <div className="flex-1">
                         <div className="text-sm font-medium text-foreground">{w}</div>
                         {vs.nativeGloss[w] && (
-                          <div className="mt-0.5 text-xs text-indigo-300/80">{vs.nativeGloss[w]}</div>
+                          <div className="mt-0.5 text-xs text-indigo-300/80">
+                            {vs.nativeGloss[w]}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -359,13 +426,16 @@ function PlainLanguageTab() {
     <div className="space-y-5">
       {/* Principle callout */}
       <div className="rounded-2xl border border-indigo-400/40 bg-indigo-400/8 px-5 py-4">
-        <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-indigo-300">The rule</div>
+        <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-indigo-300">
+          The rule
+        </div>
         <p className="text-base font-semibold text-foreground">
           Great doctors leave the clinical vocabulary at the nurses station.
         </p>
         <p className="mt-1.5 text-sm text-muted-foreground">
-          When talking <em>to</em> patients and families, replace every medical term with the plainest possible English.
-          Clarity builds trust. Jargon creates fear and misunderstanding — even from a doctor who means well.
+          When talking <em>to</em> patients and families, replace every medical term with the
+          plainest possible English. Clarity builds trust. Jargon creates fear and misunderstanding
+          — even from a doctor who means well.
         </p>
       </div>
 
@@ -396,18 +466,29 @@ function PlainLanguageTab() {
 
       {/* Sample exchange */}
       <div className="rounded-2xl border border-border/60 bg-card/30 px-5 py-4">
-        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Example rewrite</div>
+        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Example rewrite
+        </div>
         <div className="space-y-3">
           <div className="rounded-xl border border-rose-400/30 bg-rose-400/5 px-4 py-3">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-rose-400/70">❌ Too clinical for patients</div>
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-rose-400/70">
+              ❌ Too clinical for patients
+            </div>
             <p className="text-sm text-foreground/80">
-              "You have bilateral lower extremity edema secondary to acute decompensated heart failure. We will initiate IV diuresis with furosemide to address your fluid overload and dyspnea."
+              "You have bilateral lower extremity edema secondary to acute decompensated heart
+              failure. We will initiate IV diuresis with furosemide to address your fluid overload
+              and dyspnea."
             </p>
           </div>
           <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-4 py-3">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-emerald-400/70">✓ Plain English for patients</div>
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-emerald-400/70">
+              ✓ Plain English for patients
+            </div>
             <p className="text-sm text-foreground/80">
-              "Your heart is having trouble pumping, and that's causing fluid to build up in your legs and lungs — that's why they're swollen and why you're short of breath. We're going to give you a medication through your IV that will help your body get rid of that extra fluid."
+              "Your heart is having trouble pumping, and that's causing fluid to build up in your
+              legs and lungs — that's why they're swollen and why you're short of breath. We're
+              going to give you a medication through your IV that will help your body get rid of
+              that extra fluid."
             </p>
           </div>
         </div>

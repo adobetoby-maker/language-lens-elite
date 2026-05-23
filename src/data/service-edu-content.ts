@@ -25,9 +25,9 @@ export interface ModuleArea {
   learnerRole: string;
   /** Tone / register guidance for the AI. */
   toneNote: string;
-  phrases: ModulePhrase[];       // 6-8 phrases
-  vocab: string[];               // 6-10 terms
-  challenges: string[];          // 3 roleplay prompts
+  phrases: ModulePhrase[]; // 6-8 phrases
+  vocab: string[]; // 6-10 terms
+  challenges: string[]; // 3 roleplay prompts
   sampleConversation: SampleTurn[]; // 4-6 turns
 }
 
@@ -62,13 +62,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Professional, efficient, motivating. Good pre-shift is brief — five minutes, specific information, send people out ready.",
     phrases: [
-      { en: "Tonight's 86 list: we're out of the salmon and the crème brûlée — don't let guests order them.", intent: "Announce item unavailability" },
-      { en: "Table 12 is a VIP — the guest is a food critic. No errors, no rushing, be invisible when they're eating.", intent: "Brief team on VIP guests" },
-      { en: "The kitchen is running a special tonight — pan-seared duck breast, $42. Learn the description cold.", intent: "Introduce a nightly special" },
-      { en: "Turnover is going to be heavy — we have three large parties at 7:30. Coordinate your sections or we'll have chaos.", intent: "Warn of a high-volume window" },
-      { en: "Greet every table within 60 seconds. That's not a suggestion — that's the standard.", intent: "Reinforce a service standard" },
-      { en: "If a guest has a complaint, solve it first and inform me after. Don't escalate minor issues.", intent: "Empower staff to handle problems" },
-      { en: "Any questions before we open? Let's make tonight a great one.", intent: "Close the briefing and motivate the team" },
+      {
+        en: "Tonight's 86 list: we're out of the salmon and the crème brûlée — don't let guests order them.",
+        intent: "Announce item unavailability",
+      },
+      {
+        en: "Table 12 is a VIP — the guest is a food critic. No errors, no rushing, be invisible when they're eating.",
+        intent: "Brief team on VIP guests",
+      },
+      {
+        en: "The kitchen is running a special tonight — pan-seared duck breast, $42. Learn the description cold.",
+        intent: "Introduce a nightly special",
+      },
+      {
+        en: "Turnover is going to be heavy — we have three large parties at 7:30. Coordinate your sections or we'll have chaos.",
+        intent: "Warn of a high-volume window",
+      },
+      {
+        en: "Greet every table within 60 seconds. That's not a suggestion — that's the standard.",
+        intent: "Reinforce a service standard",
+      },
+      {
+        en: "If a guest has a complaint, solve it first and inform me after. Don't escalate minor issues.",
+        intent: "Empower staff to handle problems",
+      },
+      {
+        en: "Any questions before we open? Let's make tonight a great one.",
+        intent: "Close the briefing and motivate the team",
+      },
     ],
     vocab: [
       "86",
@@ -123,13 +144,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Warm, polished, and attentive without being intrusive. Read the table's energy — some guests want conversation, others want to be left alone.",
     phrases: [
-      { en: "Good evening — welcome. My name is Marco and I'll be taking care of you tonight. Can I start you off with still or sparkling water?", intent: "Greeting and opening the table" },
-      { en: "Our sea bass tonight is prepared with a lemon beurre blanc — it's one of the chef's favorites this season.", intent: "Describe a dish with enthusiasm" },
-      { en: "Excellent choice. Would you like me to pair that with a glass of the Sancerre? It's a beautiful match.", intent: "Wine pairing upsell" },
-      { en: "I'll put that right in for you — your appetizers should be out in about ten minutes.", intent: "Set course timing expectations" },
-      { en: "I noticed you haven't touched your entrée — is everything alright? I'm happy to have the kitchen make any adjustments.", intent: "Check in on a guest who isn't eating" },
-      { en: "Can I tempt you with our dessert menu? The chocolate fondant takes about twelve minutes, so now would be the perfect time.", intent: "Time the dessert offer" },
-      { en: "Whenever you're ready — I'll bring your bill. It's been a pleasure having you with us tonight.", intent: "Close out the table gracefully" },
+      {
+        en: "Good evening — welcome. My name is Marco and I'll be taking care of you tonight. Can I start you off with still or sparkling water?",
+        intent: "Greeting and opening the table",
+      },
+      {
+        en: "Our sea bass tonight is prepared with a lemon beurre blanc — it's one of the chef's favorites this season.",
+        intent: "Describe a dish with enthusiasm",
+      },
+      {
+        en: "Excellent choice. Would you like me to pair that with a glass of the Sancerre? It's a beautiful match.",
+        intent: "Wine pairing upsell",
+      },
+      {
+        en: "I'll put that right in for you — your appetizers should be out in about ten minutes.",
+        intent: "Set course timing expectations",
+      },
+      {
+        en: "I noticed you haven't touched your entrée — is everything alright? I'm happy to have the kitchen make any adjustments.",
+        intent: "Check in on a guest who isn't eating",
+      },
+      {
+        en: "Can I tempt you with our dessert menu? The chocolate fondant takes about twelve minutes, so now would be the perfect time.",
+        intent: "Time the dessert offer",
+      },
+      {
+        en: "Whenever you're ready — I'll bring your bill. It's been a pleasure having you with us tonight.",
+        intent: "Close out the table gracefully",
+      },
     ],
     vocab: [
       "beurre blanc",
@@ -184,13 +226,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Direct and precise. Kitchen communication is not a conversation — it's a relay of exact information. No ambiguity.",
     phrases: [
-      { en: "Fire table 7 — two mains when you're ready.", intent: "Call to start cooking main courses" },
-      { en: "Modification on table 4 — the chicken needs to be dairy-free. No butter, no cream sauce. Allergy.", intent: "Communicate a dietary modification" },
-      { en: "How long on the sea bass for table 9? Guest has a hard out at 9:30.", intent: "Request ETA on a dish" },
-      { en: "I need a re-fire on table 11 — the steak came out medium when they ordered medium-rare. Priority, please.", intent: "Request a remake" },
-      { en: "Table 3 is 86 on knowledge — they don't know the hen was the last one. Let's comp them an appetizer and offer an alternative.", intent: "Handle a supply shortage at the table gracefully" },
-      { en: "Running food to table 6 — two salmon, one duck. Who can carry the third?", intent: "Coordinate food running" },
-      { en: "Thank you, chef — that's perfect. Sending it now.", intent: "Acknowledge and dispatch food" },
+      {
+        en: "Fire table 7 — two mains when you're ready.",
+        intent: "Call to start cooking main courses",
+      },
+      {
+        en: "Modification on table 4 — the chicken needs to be dairy-free. No butter, no cream sauce. Allergy.",
+        intent: "Communicate a dietary modification",
+      },
+      {
+        en: "How long on the sea bass for table 9? Guest has a hard out at 9:30.",
+        intent: "Request ETA on a dish",
+      },
+      {
+        en: "I need a re-fire on table 11 — the steak came out medium when they ordered medium-rare. Priority, please.",
+        intent: "Request a remake",
+      },
+      {
+        en: "Table 3 is 86 on knowledge — they don't know the hen was the last one. Let's comp them an appetizer and offer an alternative.",
+        intent: "Handle a supply shortage at the table gracefully",
+      },
+      {
+        en: "Running food to table 6 — two salmon, one duck. Who can carry the third?",
+        intent: "Coordinate food running",
+      },
+      {
+        en: "Thank you, chef — that's perfect. Sending it now.",
+        intent: "Acknowledge and dispatch food",
+      },
     ],
     vocab: [
       "fire",
@@ -241,13 +304,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Calm, empathetic, solution-first. Never argue or make excuses — acknowledge, apologize, and act.",
     phrases: [
-      { en: "I'm so sorry about this — that's absolutely not the experience we want you to have.", intent: "Sincere apology without defensiveness" },
-      { en: "Let me fix that right now. I'll have a fresh one out to you within five minutes.", intent: "Immediate action response" },
-      { en: "I completely understand your frustration — the wait time tonight was not acceptable.", intent: "Validate the guest's feeling" },
-      { en: "I'd like to remove that from your bill and offer you a dessert on us.", intent: "Offer a concrete service recovery gesture" },
-      { en: "May I ask — is there anything else I can do to make the rest of your evening better?", intent: "Check in after resolution" },
-      { en: "I'm going to personally make sure this doesn't happen on your next visit.", intent: "Commitment to future improvement" },
-      { en: "Thank you for letting me know — your feedback genuinely helps us improve.", intent: "Thank the guest for raising the issue" },
+      {
+        en: "I'm so sorry about this — that's absolutely not the experience we want you to have.",
+        intent: "Sincere apology without defensiveness",
+      },
+      {
+        en: "Let me fix that right now. I'll have a fresh one out to you within five minutes.",
+        intent: "Immediate action response",
+      },
+      {
+        en: "I completely understand your frustration — the wait time tonight was not acceptable.",
+        intent: "Validate the guest's feeling",
+      },
+      {
+        en: "I'd like to remove that from your bill and offer you a dessert on us.",
+        intent: "Offer a concrete service recovery gesture",
+      },
+      {
+        en: "May I ask — is there anything else I can do to make the rest of your evening better?",
+        intent: "Check in after resolution",
+      },
+      {
+        en: "I'm going to personally make sure this doesn't happen on your next visit.",
+        intent: "Commitment to future improvement",
+      },
+      {
+        en: "Thank you for letting me know — your feedback genuinely helps us improve.",
+        intent: "Thank the guest for raising the issue",
+      },
     ],
     vocab: [
       "service recovery",
@@ -302,13 +386,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Polished, welcoming, efficient. Guests want to feel recognized and get to their room quickly — balance warmth with speed.",
     phrases: [
-      { en: "Good evening — welcome to the hotel. May I have the name on the reservation?", intent: "Open the check-in" },
-      { en: "I see your reservation — we have you in a king room on the 14th floor. Check-out is Sunday at noon.", intent: "Confirm reservation details" },
-      { en: "I'd like to upgrade you to a corner suite at no additional charge — it has a great view of the harbor.", intent: "Offer a complimentary upgrade" },
-      { en: "Breakfast is served in the Terrace Restaurant from 6:30 to 10:30. Your room rate includes a continental buffet.", intent: "Explain included amenities" },
-      { en: "If you need anything during your stay, dial zero for the front desk — we're available 24 hours.", intent: "Communicate concierge availability" },
-      { en: "Here are your key cards — please keep them away from your phone to avoid demagnetization.", intent: "Hand over room keys" },
-      { en: "Is there anything I can arrange before you head up — restaurant reservations, a wake-up call, late checkout?", intent: "Proactive service offer" },
+      {
+        en: "Good evening — welcome to the hotel. May I have the name on the reservation?",
+        intent: "Open the check-in",
+      },
+      {
+        en: "I see your reservation — we have you in a king room on the 14th floor. Check-out is Sunday at noon.",
+        intent: "Confirm reservation details",
+      },
+      {
+        en: "I'd like to upgrade you to a corner suite at no additional charge — it has a great view of the harbor.",
+        intent: "Offer a complimentary upgrade",
+      },
+      {
+        en: "Breakfast is served in the Terrace Restaurant from 6:30 to 10:30. Your room rate includes a continental buffet.",
+        intent: "Explain included amenities",
+      },
+      {
+        en: "If you need anything during your stay, dial zero for the front desk — we're available 24 hours.",
+        intent: "Communicate concierge availability",
+      },
+      {
+        en: "Here are your key cards — please keep them away from your phone to avoid demagnetization.",
+        intent: "Hand over room keys",
+      },
+      {
+        en: "Is there anything I can arrange before you head up — restaurant reservations, a wake-up call, late checkout?",
+        intent: "Proactive service offer",
+      },
     ],
     vocab: [
       "reservation",
@@ -363,13 +468,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Efficient and service-oriented. Housekeeping communication must be precise about room numbers and status — errors affect the whole hotel.",
     phrases: [
-      { en: "Room 408 is ready for inspection — turned, fresh linens, amenities restocked.", intent: "Report a completed room" },
-      { en: "The guest in 312 has a do-not-disturb on — we'll skip and come back after 2 PM.", intent: "Report a skipped room" },
-      { en: "I have a late checkout in 520 — they're staying until 4. Please hold that room off the assignment board.", intent: "Flag a late checkout" },
-      { en: "Guest in 215 called for extra towels and a rollaway bed — can someone handle that in the next fifteen minutes?", intent: "Relay a guest request to the team" },
-      { en: "We're running low on the herbal shampoo — I'll need a restock before I can finish the floor.", intent: "Report a supply shortage" },
-      { en: "Maintenance needs to look at 417 — the shower drain is slow and the ceiling fan is making noise.", intent: "Flag a room for maintenance" },
-      { en: "All eight rooms on floor three are complete — ready for new arrivals.", intent: "Report a floor as finished" },
+      {
+        en: "Room 408 is ready for inspection — turned, fresh linens, amenities restocked.",
+        intent: "Report a completed room",
+      },
+      {
+        en: "The guest in 312 has a do-not-disturb on — we'll skip and come back after 2 PM.",
+        intent: "Report a skipped room",
+      },
+      {
+        en: "I have a late checkout in 520 — they're staying until 4. Please hold that room off the assignment board.",
+        intent: "Flag a late checkout",
+      },
+      {
+        en: "Guest in 215 called for extra towels and a rollaway bed — can someone handle that in the next fifteen minutes?",
+        intent: "Relay a guest request to the team",
+      },
+      {
+        en: "We're running low on the herbal shampoo — I'll need a restock before I can finish the floor.",
+        intent: "Report a supply shortage",
+      },
+      {
+        en: "Maintenance needs to look at 417 — the shower drain is slow and the ceiling fan is making noise.",
+        intent: "Flag a room for maintenance",
+      },
+      {
+        en: "All eight rooms on floor three are complete — ready for new arrivals.",
+        intent: "Report a floor as finished",
+      },
     ],
     vocab: [
       "do-not-disturb",
@@ -420,13 +546,34 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Organized, service-focused, discreet. Banquets require military-level coordination — every table on the same cadence.",
     phrases: [
-      { en: "Tables 1 through 10 have a vegetarian option flagged — they're marked with the purple napkin fold.", intent: "Brief the team on dietary placeholders" },
-      { en: "We're serving simultaneously — start when I give the signal, not before. Keep the pace even.", intent: "Coordinate simultaneous service" },
-      { en: "The speeches start at 7:45 — clear all appetizer plates by 7:30 or we'll be working around the microphone.", intent: "Time service around the program" },
-      { en: "The bar is open until the first toast — after that, table wine service only. Keep it moving.", intent: "Communicate bar policy to the team" },
-      { en: "The client has requested that no one clears a plate while the head table is still eating.", intent: "Relay a client-specific instruction" },
-      { en: "If a guest has a question about the dietary options, direct them to me — don't guess.", intent: "Manage allergy escalation" },
-      { en: "End of service — clear from the outside in, start with glassware, stay quiet.", intent: "Direct the post-dinner clear" },
+      {
+        en: "Tables 1 through 10 have a vegetarian option flagged — they're marked with the purple napkin fold.",
+        intent: "Brief the team on dietary placeholders",
+      },
+      {
+        en: "We're serving simultaneously — start when I give the signal, not before. Keep the pace even.",
+        intent: "Coordinate simultaneous service",
+      },
+      {
+        en: "The speeches start at 7:45 — clear all appetizer plates by 7:30 or we'll be working around the microphone.",
+        intent: "Time service around the program",
+      },
+      {
+        en: "The bar is open until the first toast — after that, table wine service only. Keep it moving.",
+        intent: "Communicate bar policy to the team",
+      },
+      {
+        en: "The client has requested that no one clears a plate while the head table is still eating.",
+        intent: "Relay a client-specific instruction",
+      },
+      {
+        en: "If a guest has a question about the dietary options, direct them to me — don't guess.",
+        intent: "Manage allergy escalation",
+      },
+      {
+        en: "End of service — clear from the outside in, start with glassware, stay quiet.",
+        intent: "Direct the post-dinner clear",
+      },
     ],
     vocab: [
       "banquet",
@@ -477,12 +624,30 @@ const restaurantHospitalityAreas: ModuleArea[] = [
     toneNote:
       "Honest and appreciative. A good close-of-shift debrief is fast — five minutes max. Thank people specifically and fix one thing.",
     phrases: [
-      { en: "Seriously solid service tonight — we turned 90 covers and had zero complaints. That's on all of you.", intent: "Open with specific praise" },
-      { en: "One thing I want us to improve tomorrow — we were slow on the dessert course. Let's fire it earlier.", intent: "Name a single specific improvement" },
-      { en: "The kitchen was exceptional tonight — make sure you thank them before you leave.", intent: "Credit the back of house" },
-      { en: "Table 12 left a very kind note for the team — I'll read it out and post it in the back.", intent: "Share positive guest feedback" },
-      { en: "Side work is done, cash is counted — you're good to go. Safe trip home.", intent: "Release the team" },
-      { en: "Tomorrow we have a private buyout at 7 PM. I'll brief you at 5:30 — be here by 5:15.", intent: "Set expectations for the next shift" },
+      {
+        en: "Seriously solid service tonight — we turned 90 covers and had zero complaints. That's on all of you.",
+        intent: "Open with specific praise",
+      },
+      {
+        en: "One thing I want us to improve tomorrow — we were slow on the dessert course. Let's fire it earlier.",
+        intent: "Name a single specific improvement",
+      },
+      {
+        en: "The kitchen was exceptional tonight — make sure you thank them before you leave.",
+        intent: "Credit the back of house",
+      },
+      {
+        en: "Table 12 left a very kind note for the team — I'll read it out and post it in the back.",
+        intent: "Share positive guest feedback",
+      },
+      {
+        en: "Side work is done, cash is counted — you're good to go. Safe trip home.",
+        intent: "Release the team",
+      },
+      {
+        en: "Tomorrow we have a private buyout at 7 PM. I'll brief you at 5:30 — be here by 5:15.",
+        intent: "Set expectations for the next shift",
+      },
     ],
     vocab: [
       "side work",
@@ -533,17 +698,44 @@ const restaurantHospitalityVocabSets: ModuleVocabSet[] = [
   {
     category: "Menu & Kitchen",
     emoji: "👨‍🍳",
-    words: ["special", "prix fixe", "allergy", "modification", "re-fire", "plating", "course", "amuse-bouche"],
+    words: [
+      "special",
+      "prix fixe",
+      "allergy",
+      "modification",
+      "re-fire",
+      "plating",
+      "course",
+      "amuse-bouche",
+    ],
   },
   {
     category: "Hotel Operations",
     emoji: "🏨",
-    words: ["check-in", "check-out", "upgrade", "amenity", "concierge", "stayover", "DND", "work order"],
+    words: [
+      "check-in",
+      "check-out",
+      "upgrade",
+      "amenity",
+      "concierge",
+      "stayover",
+      "DND",
+      "work order",
+    ],
   },
   {
     category: "Events & Banquets",
     emoji: "🎉",
-    words: ["banquet", "buyout", "event order", "head table", "dietary flag", "simultaneous service", "toast", "turndown"],
+    words: [
+      "banquet",
+      "buyout",
+      "event order",
+      "head table",
+      "dietary flag",
+      "simultaneous service",
+      "toast",
+      "turndown",
+    ],
   },
 ];
 
@@ -563,13 +755,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Warm, clear, and patient. Many clients have never spoken to a lawyer before — explain everything, assume nothing.",
     phrases: [
-      { en: "Everything you tell me today is confidential — it stays between us. I can't share it without your permission.", intent: "Explain attorney-client privilege in plain language" },
-      { en: "I want to understand your situation fully before we talk about options. There are no wrong answers here.", intent: "Open the conversation without judgment" },
-      { en: "Can you tell me when you first entered the United States, and how you entered?", intent: "Gather immigration entry information" },
-      { en: "Have you ever had any immigration applications filed before — a visa, a green card, a work permit? Even if they were denied.", intent: "Check for prior filings" },
-      { en: "Have you ever been arrested, charged, or convicted of any crime — even a minor one?", intent: "Screen for criminal history that affects eligibility" },
-      { en: "I want to be honest with you about what I'm seeing — there are some challenges, but there are also options. Let me explain.", intent: "Set realistic expectations honestly" },
-      { en: "Do you have any documents with you today — a passport, a visa, any letters from immigration?", intent: "Request supporting documents" },
+      {
+        en: "Everything you tell me today is confidential — it stays between us. I can't share it without your permission.",
+        intent: "Explain attorney-client privilege in plain language",
+      },
+      {
+        en: "I want to understand your situation fully before we talk about options. There are no wrong answers here.",
+        intent: "Open the conversation without judgment",
+      },
+      {
+        en: "Can you tell me when you first entered the United States, and how you entered?",
+        intent: "Gather immigration entry information",
+      },
+      {
+        en: "Have you ever had any immigration applications filed before — a visa, a green card, a work permit? Even if they were denied.",
+        intent: "Check for prior filings",
+      },
+      {
+        en: "Have you ever been arrested, charged, or convicted of any crime — even a minor one?",
+        intent: "Screen for criminal history that affects eligibility",
+      },
+      {
+        en: "I want to be honest with you about what I'm seeing — there are some challenges, but there are also options. Let me explain.",
+        intent: "Set realistic expectations honestly",
+      },
+      {
+        en: "Do you have any documents with you today — a passport, a visa, any letters from immigration?",
+        intent: "Request supporting documents",
+      },
     ],
     vocab: [
       "attorney-client privilege",
@@ -624,13 +837,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Organized and clear. Document checklists can overwhelm clients — break it into manageable steps and explain why each item matters.",
     phrases: [
-      { en: "I need you to gather these documents — I'll give you a written list so you don't have to memorize it.", intent: "Provide a clear document checklist" },
-      { en: "This form asks for your complete address history going back ten years. If you don't remember exact dates, do your best — we can estimate.", intent: "Explain a common form requirement" },
-      { en: "Your birth certificate needs to be officially translated into English by a certified translator — I can refer you to one.", intent: "Explain a translation requirement" },
-      { en: "Any document you send to immigration becomes part of the official record. Never submit anything that isn't accurate.", intent: "Stress the importance of accuracy" },
-      { en: "This part of the form might feel personal or scary — it's asking about any time you've been in trouble with police. Fill it out completely and let me review it before we submit.", intent: "Guide a client through a sensitive form section" },
-      { en: "Once we file, processing can take anywhere from six months to two years. I'll send you status updates whenever there's movement.", intent: "Set realistic timeline expectations" },
-      { en: "If immigration contacts you directly — by mail, phone, or in person — please tell me immediately before responding.", intent: "Instruct client how to handle government contact" },
+      {
+        en: "I need you to gather these documents — I'll give you a written list so you don't have to memorize it.",
+        intent: "Provide a clear document checklist",
+      },
+      {
+        en: "This form asks for your complete address history going back ten years. If you don't remember exact dates, do your best — we can estimate.",
+        intent: "Explain a common form requirement",
+      },
+      {
+        en: "Your birth certificate needs to be officially translated into English by a certified translator — I can refer you to one.",
+        intent: "Explain a translation requirement",
+      },
+      {
+        en: "Any document you send to immigration becomes part of the official record. Never submit anything that isn't accurate.",
+        intent: "Stress the importance of accuracy",
+      },
+      {
+        en: "This part of the form might feel personal or scary — it's asking about any time you've been in trouble with police. Fill it out completely and let me review it before we submit.",
+        intent: "Guide a client through a sensitive form section",
+      },
+      {
+        en: "Once we file, processing can take anywhere from six months to two years. I'll send you status updates whenever there's movement.",
+        intent: "Set realistic timeline expectations",
+      },
+      {
+        en: "If immigration contacts you directly — by mail, phone, or in person — please tell me immediately before responding.",
+        intent: "Instruct client how to handle government contact",
+      },
     ],
     vocab: [
       "filing",
@@ -685,13 +919,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Clear and reassuring. Clients are terrified of court — demystify the process, give them specific guidance, and build confidence.",
     phrases: [
-      { en: "When the judge addresses you, stand up, speak clearly, and answer only what they ask. Don't volunteer extra information.", intent: "Instruct courtroom conduct" },
-      { en: "The government attorney will ask you questions — their job is to challenge your case. That's normal. Answer calmly and honestly.", intent: "Prepare for cross-examination" },
-      { en: "If you don't understand a question, it's completely acceptable to say so and ask for it to be repeated.", intent: "Normalize asking for clarification in court" },
-      { en: "Always say 'I don't remember' rather than guessing — if you guess and it contradicts your documents, it looks like a lie.", intent: "Instruct against guessing in testimony" },
-      { en: "The judge is not your enemy — they are neutral. Answer directly and respectfully, not emotionally.", intent: "Reframe the judge's role to reduce anxiety" },
-      { en: "We've rehearsed your story. Stick to it. If something surprises you, don't panic — look at me and pause.", intent: "Establish a safety signal during testimony" },
-      { en: "Dress professionally, arrive 30 minutes early, and turn off your phone. First impressions matter in court.", intent: "Practical day-of instructions" },
+      {
+        en: "When the judge addresses you, stand up, speak clearly, and answer only what they ask. Don't volunteer extra information.",
+        intent: "Instruct courtroom conduct",
+      },
+      {
+        en: "The government attorney will ask you questions — their job is to challenge your case. That's normal. Answer calmly and honestly.",
+        intent: "Prepare for cross-examination",
+      },
+      {
+        en: "If you don't understand a question, it's completely acceptable to say so and ask for it to be repeated.",
+        intent: "Normalize asking for clarification in court",
+      },
+      {
+        en: "Always say 'I don't remember' rather than guessing — if you guess and it contradicts your documents, it looks like a lie.",
+        intent: "Instruct against guessing in testimony",
+      },
+      {
+        en: "The judge is not your enemy — they are neutral. Answer directly and respectfully, not emotionally.",
+        intent: "Reframe the judge's role to reduce anxiety",
+      },
+      {
+        en: "We've rehearsed your story. Stick to it. If something surprises you, don't panic — look at me and pause.",
+        intent: "Establish a safety signal during testimony",
+      },
+      {
+        en: "Dress professionally, arrive 30 minutes early, and turn off your phone. First impressions matter in court.",
+        intent: "Practical day-of instructions",
+      },
     ],
     vocab: [
       "immigration judge",
@@ -746,13 +1001,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Compassionate and precise. Asylum cases involve trauma — listen carefully, don't rush, and explain the legal standards gently.",
     phrases: [
-      { en: "To qualify for asylum, you need to show that you were persecuted — or have a well-founded fear of persecution — because of your race, religion, nationality, political opinion, or membership in a particular social group.", intent: "Explain the five protected grounds in plain language" },
-      { en: "I need you to tell me everything that happened — in as much detail as you can remember. Even things that seem small may matter legally.", intent: "Encourage full disclosure of the claim" },
-      { en: "The government will try to verify your story. Consistency is very important — your written declaration, your testimony, and what you tell me must all match.", intent: "Explain the importance of a consistent record" },
-      { en: "If you were harmed by the government itself — police, military, officials — that strengthens the claim significantly.", intent: "Explain state-actor persecution" },
-      { en: "If a private group harmed you, we need to show that the government was unwilling or unable to protect you.", intent: "Explain persecution by non-state actors" },
-      { en: "Your declaration is the heart of your case. We'll write it together — I'll help you tell your story in legal terms without changing what happened.", intent: "Explain the declaration process" },
-      { en: "You have one year from the date you entered the US to file for asylum. If that deadline has passed, we'll need to look at an exception.", intent: "Explain the one-year filing deadline" },
+      {
+        en: "To qualify for asylum, you need to show that you were persecuted — or have a well-founded fear of persecution — because of your race, religion, nationality, political opinion, or membership in a particular social group.",
+        intent: "Explain the five protected grounds in plain language",
+      },
+      {
+        en: "I need you to tell me everything that happened — in as much detail as you can remember. Even things that seem small may matter legally.",
+        intent: "Encourage full disclosure of the claim",
+      },
+      {
+        en: "The government will try to verify your story. Consistency is very important — your written declaration, your testimony, and what you tell me must all match.",
+        intent: "Explain the importance of a consistent record",
+      },
+      {
+        en: "If you were harmed by the government itself — police, military, officials — that strengthens the claim significantly.",
+        intent: "Explain state-actor persecution",
+      },
+      {
+        en: "If a private group harmed you, we need to show that the government was unwilling or unable to protect you.",
+        intent: "Explain persecution by non-state actors",
+      },
+      {
+        en: "Your declaration is the heart of your case. We'll write it together — I'll help you tell your story in legal terms without changing what happened.",
+        intent: "Explain the declaration process",
+      },
+      {
+        en: "You have one year from the date you entered the US to file for asylum. If that deadline has passed, we'll need to look at an exception.",
+        intent: "Explain the one-year filing deadline",
+      },
     ],
     vocab: [
       "asylum",
@@ -807,13 +1083,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Encouraging and celebratory in spirit — becoming a citizen is a milestone. But the content must be accurate and thorough.",
     phrases: [
-      { en: "To apply for citizenship, you generally need to have been a permanent resident for five years — or three years if you're married to a US citizen.", intent: "Explain the basic residency requirement" },
-      { en: "The N-400 is the main application form. It asks detailed questions about your residency, your character, and your background.", intent: "Introduce the N-400 application" },
-      { en: "After we file, USCIS will schedule you for a biometrics appointment — they'll take your fingerprints and photo. It's routine.", intent: "Explain biometrics" },
-      { en: "The civics interview covers 100 questions about US history and government. Most people pass easily — USCIS only asks ten, and you need six correct.", intent: "Explain the civics test in plain terms" },
-      { en: "During the interview, the officer will also ask you questions from your N-400. Answer just as you did on the form.", intent: "Prepare for the interview" },
-      { en: "If you pass, you'll be scheduled for a naturalization ceremony. You'll take the Oath of Allegiance in front of a judge — it's a meaningful moment.", intent: "Describe the ceremony" },
-      { en: "Once you're a citizen, you can apply for a US passport and petition for close family members.", intent: "Explain post-naturalization benefits" },
+      {
+        en: "To apply for citizenship, you generally need to have been a permanent resident for five years — or three years if you're married to a US citizen.",
+        intent: "Explain the basic residency requirement",
+      },
+      {
+        en: "The N-400 is the main application form. It asks detailed questions about your residency, your character, and your background.",
+        intent: "Introduce the N-400 application",
+      },
+      {
+        en: "After we file, USCIS will schedule you for a biometrics appointment — they'll take your fingerprints and photo. It's routine.",
+        intent: "Explain biometrics",
+      },
+      {
+        en: "The civics interview covers 100 questions about US history and government. Most people pass easily — USCIS only asks ten, and you need six correct.",
+        intent: "Explain the civics test in plain terms",
+      },
+      {
+        en: "During the interview, the officer will also ask you questions from your N-400. Answer just as you did on the form.",
+        intent: "Prepare for the interview",
+      },
+      {
+        en: "If you pass, you'll be scheduled for a naturalization ceremony. You'll take the Oath of Allegiance in front of a judge — it's a meaningful moment.",
+        intent: "Describe the ceremony",
+      },
+      {
+        en: "Once you're a citizen, you can apply for a US passport and petition for close family members.",
+        intent: "Explain post-naturalization benefits",
+      },
     ],
     vocab: [
       "N-400",
@@ -868,13 +1165,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Calm and decisive. A client in crisis needs a clear voice — take control of the call, get the facts, and tell them exactly what to do.",
     phrases: [
-      { en: "Take a deep breath — I'm here and I'm going to help you. Tell me exactly what happened.", intent: "Calm the client and begin gathering facts" },
-      { en: "Where is your family member right now — which detention facility?", intent: "Locate a detained individual" },
-      { en: "Do not say anything to the officers beyond your name and that you want an attorney. That is your right.", intent: "Instruct on right to silence" },
-      { en: "I'm going to call the detention center right now — give me 20 minutes and I'll call you back with information.", intent: "Take immediate action and set a callback time" },
-      { en: "Do you have the notice or document they gave you? Read me the case number at the top.", intent: "Gather case reference information" },
-      { en: "This is serious but it is not hopeless. There are motions we can file to stop a removal while we pursue your case.", intent: "Give honest perspective without false hope" },
-      { en: "Call me immediately if anything changes or if officers contact you again before I call back.", intent: "Establish a communication protocol" },
+      {
+        en: "Take a deep breath — I'm here and I'm going to help you. Tell me exactly what happened.",
+        intent: "Calm the client and begin gathering facts",
+      },
+      {
+        en: "Where is your family member right now — which detention facility?",
+        intent: "Locate a detained individual",
+      },
+      {
+        en: "Do not say anything to the officers beyond your name and that you want an attorney. That is your right.",
+        intent: "Instruct on right to silence",
+      },
+      {
+        en: "I'm going to call the detention center right now — give me 20 minutes and I'll call you back with information.",
+        intent: "Take immediate action and set a callback time",
+      },
+      {
+        en: "Do you have the notice or document they gave you? Read me the case number at the top.",
+        intent: "Gather case reference information",
+      },
+      {
+        en: "This is serious but it is not hopeless. There are motions we can file to stop a removal while we pursue your case.",
+        intent: "Give honest perspective without false hope",
+      },
+      {
+        en: "Call me immediately if anything changes or if officers contact you again before I call back.",
+        intent: "Establish a communication protocol",
+      },
     ],
     vocab: [
       "detention",
@@ -929,13 +1247,34 @@ const legalImmigrationAreas: ModuleArea[] = [
     toneNote:
       "Clear, empowering, and non-condescending. Many clients don't know their rights — explaining them clearly is one of the most valuable things you can do.",
     phrases: [
-      { en: "You have the right to remain silent. You do not have to answer questions from immigration officers beyond confirming your identity.", intent: "Explain the right to silence" },
-      { en: "You have the right to speak to an attorney before answering any questions. You can ask for one at any time.", intent: "Explain the right to counsel" },
-      { en: "If an immigration officer comes to your home, you do not have to open the door unless they show you a warrant signed by a judge. An ICE administrative warrant is not the same as a judicial warrant.", intent: "Explain door rights in plain terms" },
-      { en: "Your US-born children are American citizens regardless of your immigration status. They have full rights.", intent: "Clarify children's citizenship rights" },
-      { en: "Even without documents, you have the right to emergency medical care and to enroll your children in public school.", intent: "Explain rights that apply regardless of status" },
-      { en: "Anything you sign without understanding can affect your case. Never sign a document from immigration without consulting an attorney.", intent: "Warn against signing without legal review" },
-      { en: "You cannot be deported simply for being undocumented — there is a legal process that must be followed, and you have the right to appear before a judge.", intent: "Correct a common misconception about deportation" },
+      {
+        en: "You have the right to remain silent. You do not have to answer questions from immigration officers beyond confirming your identity.",
+        intent: "Explain the right to silence",
+      },
+      {
+        en: "You have the right to speak to an attorney before answering any questions. You can ask for one at any time.",
+        intent: "Explain the right to counsel",
+      },
+      {
+        en: "If an immigration officer comes to your home, you do not have to open the door unless they show you a warrant signed by a judge. An ICE administrative warrant is not the same as a judicial warrant.",
+        intent: "Explain door rights in plain terms",
+      },
+      {
+        en: "Your US-born children are American citizens regardless of your immigration status. They have full rights.",
+        intent: "Clarify children's citizenship rights",
+      },
+      {
+        en: "Even without documents, you have the right to emergency medical care and to enroll your children in public school.",
+        intent: "Explain rights that apply regardless of status",
+      },
+      {
+        en: "Anything you sign without understanding can affect your case. Never sign a document from immigration without consulting an attorney.",
+        intent: "Warn against signing without legal review",
+      },
+      {
+        en: "You cannot be deported simply for being undocumented — there is a legal process that must be followed, and you have the right to appear before a judge.",
+        intent: "Correct a common misconception about deportation",
+      },
     ],
     vocab: [
       "fifth amendment",
@@ -985,22 +1324,56 @@ const legalImmigrationVocabSets: ModuleVocabSet[] = [
   {
     category: "Immigration Status",
     emoji: "📋",
-    words: ["undocumented", "permanent resident", "visa", "green card", "naturalization", "asylum", "TPS", "DACA"],
+    words: [
+      "undocumented",
+      "permanent resident",
+      "visa",
+      "green card",
+      "naturalization",
+      "asylum",
+      "TPS",
+      "DACA",
+    ],
   },
   {
     category: "Court & Process",
     emoji: "⚖️",
-    words: ["immigration judge", "removal order", "master calendar", "individual hearing", "motion to reopen", "appeal", "continuance"],
+    words: [
+      "immigration judge",
+      "removal order",
+      "master calendar",
+      "individual hearing",
+      "motion to reopen",
+      "appeal",
+      "continuance",
+    ],
   },
   {
     category: "Documents & Forms",
     emoji: "📄",
-    words: ["I-485", "I-589", "N-400", "notice to appear", "biometrics", "petition", "affidavit", "declaration"],
+    words: [
+      "I-485",
+      "I-589",
+      "N-400",
+      "notice to appear",
+      "biometrics",
+      "petition",
+      "affidavit",
+      "declaration",
+    ],
   },
   {
     category: "Rights & Protections",
     emoji: "🛡️",
-    words: ["right to remain silent", "right to counsel", "judicial warrant", "due process", "stay of removal", "bond hearing", "habeas corpus"],
+    words: [
+      "right to remain silent",
+      "right to counsel",
+      "judicial warrant",
+      "due process",
+      "stay of removal",
+      "bond hearing",
+      "habeas corpus",
+    ],
   },
 ];
 
@@ -1020,13 +1393,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Warm, confident, and clear. Students need to feel safe and curious on day one — not overwhelmed by rules.",
     phrases: [
-      { en: "Welcome, everyone — I'm so glad you're here. I've been looking forward to meeting this class.", intent: "Warm opening to establish relationship" },
-      { en: "We're going to do something before I go over any rules — I want to hear from each of you first.", intent: "Center students before procedures" },
-      { en: "In this classroom, there's one rule above all others: we respect each other. Everything else builds from that.", intent: "State the core principle" },
-      { en: "I'm going to make mistakes this year — and so will you. That's okay. What matters is that we keep trying.", intent: "Normalize mistakes to build psychological safety" },
-      { en: "I don't give homework to punish — I give it when I know it helps you practice something important.", intent: "Set homework expectations with rationale" },
-      { en: "If you're ever confused, or struggling, or something is going on outside of school — my door is open.", intent: "Signal availability and care" },
-      { en: "By the end of this year, you're going to surprise yourselves. I've seen it happen, and I can already see it in this room.", intent: "Express genuine belief in the class" },
+      {
+        en: "Welcome, everyone — I'm so glad you're here. I've been looking forward to meeting this class.",
+        intent: "Warm opening to establish relationship",
+      },
+      {
+        en: "We're going to do something before I go over any rules — I want to hear from each of you first.",
+        intent: "Center students before procedures",
+      },
+      {
+        en: "In this classroom, there's one rule above all others: we respect each other. Everything else builds from that.",
+        intent: "State the core principle",
+      },
+      {
+        en: "I'm going to make mistakes this year — and so will you. That's okay. What matters is that we keep trying.",
+        intent: "Normalize mistakes to build psychological safety",
+      },
+      {
+        en: "I don't give homework to punish — I give it when I know it helps you practice something important.",
+        intent: "Set homework expectations with rationale",
+      },
+      {
+        en: "If you're ever confused, or struggling, or something is going on outside of school — my door is open.",
+        intent: "Signal availability and care",
+      },
+      {
+        en: "By the end of this year, you're going to surprise yourselves. I've seen it happen, and I can already see it in this room.",
+        intent: "Express genuine belief in the class",
+      },
     ],
     vocab: [
       "classroom expectations",
@@ -1077,13 +1471,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Professional and collaborative. Parents are partners — even in difficult calls, begin with something genuine and positive.",
     phrases: [
-      { en: "Good afternoon — this is Ms. Ramirez calling from Jefferson Middle School. Do you have a few minutes?", intent: "Open the call professionally" },
-      { en: "I want to start by saying — Marcus is a delight to have in class. He brings real energy.", intent: "Open a difficult call with a genuine positive" },
-      { en: "I'm calling because I've noticed a change in Marcus's focus lately and I want to make sure we're working together on it.", intent: "Raise a concern collaboratively" },
-      { en: "I want to ask you — is there anything going on at home that might help me support him better?", intent: "Invite parental context without prying" },
-      { en: "Here's what I'm going to do on my end — here's what I'd love your support on at home.", intent: "Propose a partnership plan" },
-      { en: "Please know — you can call me anytime. I'm also reachable by email if that's easier.", intent: "Open communication going forward" },
-      { en: "I appreciate you taking the time. Marcus is lucky to have a parent who's engaged.", intent: "Close the call warmly" },
+      {
+        en: "Good afternoon — this is Ms. Ramirez calling from Jefferson Middle School. Do you have a few minutes?",
+        intent: "Open the call professionally",
+      },
+      {
+        en: "I want to start by saying — Marcus is a delight to have in class. He brings real energy.",
+        intent: "Open a difficult call with a genuine positive",
+      },
+      {
+        en: "I'm calling because I've noticed a change in Marcus's focus lately and I want to make sure we're working together on it.",
+        intent: "Raise a concern collaboratively",
+      },
+      {
+        en: "I want to ask you — is there anything going on at home that might help me support him better?",
+        intent: "Invite parental context without prying",
+      },
+      {
+        en: "Here's what I'm going to do on my end — here's what I'd love your support on at home.",
+        intent: "Propose a partnership plan",
+      },
+      {
+        en: "Please know — you can call me anytime. I'm also reachable by email if that's easier.",
+        intent: "Open communication going forward",
+      },
+      {
+        en: "I appreciate you taking the time. Marcus is lucky to have a parent who's engaged.",
+        intent: "Close the call warmly",
+      },
     ],
     vocab: [
       "conference",
@@ -1138,13 +1553,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Collaborative and specific. Parents in IEP meetings often feel defensive or overwhelmed — use clear language, cite observations, and honor their expertise on their child.",
     phrases: [
-      { en: "In my classroom, Darius is showing real strengths in verbal participation — he contributes thoughtful ideas to discussion.", intent: "Open with a genuine strength" },
-      { en: "His reading fluency in grade-level texts is below benchmark — I'm seeing about a two-year gap. We have data on that.", intent: "Present an academic challenge with specific evidence" },
-      { en: "The accommodations from the last IEP — extended time and preferential seating — I'm implementing both. He responds well to the seating.", intent: "Report on accommodation fidelity and effectiveness" },
-      { en: "I'd like to propose adding a note-taking support — either a peer notes model or a structured outline I provide.", intent: "Suggest a new accommodation" },
-      { en: "Mr. and Mrs. Jones — what are you seeing at home? Your observations help us set goals that are realistic across settings.", intent: "Invite parent input into goal-setting" },
-      { en: "Our goal for the next six months: increase his independent reading at grade level by 20%, with the supports in place.", intent: "State a measurable IEP goal" },
-      { en: "I want Darius to know we all believe in him — that's the foundation everything else is built on.", intent: "Affirm the student-centered purpose of the meeting" },
+      {
+        en: "In my classroom, Darius is showing real strengths in verbal participation — he contributes thoughtful ideas to discussion.",
+        intent: "Open with a genuine strength",
+      },
+      {
+        en: "His reading fluency in grade-level texts is below benchmark — I'm seeing about a two-year gap. We have data on that.",
+        intent: "Present an academic challenge with specific evidence",
+      },
+      {
+        en: "The accommodations from the last IEP — extended time and preferential seating — I'm implementing both. He responds well to the seating.",
+        intent: "Report on accommodation fidelity and effectiveness",
+      },
+      {
+        en: "I'd like to propose adding a note-taking support — either a peer notes model or a structured outline I provide.",
+        intent: "Suggest a new accommodation",
+      },
+      {
+        en: "Mr. and Mrs. Jones — what are you seeing at home? Your observations help us set goals that are realistic across settings.",
+        intent: "Invite parent input into goal-setting",
+      },
+      {
+        en: "Our goal for the next six months: increase his independent reading at grade level by 20%, with the supports in place.",
+        intent: "State a measurable IEP goal",
+      },
+      {
+        en: "I want Darius to know we all believe in him — that's the foundation everything else is built on.",
+        intent: "Affirm the student-centered purpose of the meeting",
+      },
     ],
     vocab: [
       "IEP",
@@ -1195,13 +1631,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Calm, quiet, and private whenever possible. Effective redirection avoids power struggles — give the student a way to save face.",
     phrases: [
-      { en: "Hey — I need you with me right now. What's going on?", intent: "Low-key check-in before formal redirection" },
-      { en: "I'm going to come back to you in thirty seconds — take a breath and be ready.", intent: "Give the student a moment to self-regulate" },
-      { en: "That choice isn't going to work in here. Let's figure out a better one together.", intent: "Redirect without shaming" },
-      { en: "I'm not going to argue about this right now — we can talk after class. For now, I need you to get started.", intent: "Defer the conflict to preserve instructional time" },
-      { en: "I see you're frustrated. That's okay. Show me you can handle it — I know you can.", intent: "Validate and challenge simultaneously" },
-      { en: "You have two options — you can take your work to the quiet corner and finish, or you can stay here and get back on task. Your choice.", intent: "Give structured choice to return agency to the student" },
-      { en: "I'm not going to put you on the spot in front of the class — let's talk after the lesson.", intent: "Protect the student's dignity" },
+      {
+        en: "Hey — I need you with me right now. What's going on?",
+        intent: "Low-key check-in before formal redirection",
+      },
+      {
+        en: "I'm going to come back to you in thirty seconds — take a breath and be ready.",
+        intent: "Give the student a moment to self-regulate",
+      },
+      {
+        en: "That choice isn't going to work in here. Let's figure out a better one together.",
+        intent: "Redirect without shaming",
+      },
+      {
+        en: "I'm not going to argue about this right now — we can talk after class. For now, I need you to get started.",
+        intent: "Defer the conflict to preserve instructional time",
+      },
+      {
+        en: "I see you're frustrated. That's okay. Show me you can handle it — I know you can.",
+        intent: "Validate and challenge simultaneously",
+      },
+      {
+        en: "You have two options — you can take your work to the quiet corner and finish, or you can stay here and get back on task. Your choice.",
+        intent: "Give structured choice to return agency to the student",
+      },
+      {
+        en: "I'm not going to put you on the spot in front of the class — let's talk after the lesson.",
+        intent: "Protect the student's dignity",
+      },
     ],
     vocab: [
       "redirection",
@@ -1256,13 +1713,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Calm, clear, and authoritative. Students take cues from teacher affect — panic in your voice creates panic in the room. Be steady.",
     phrases: [
-      { en: "Attention, everyone — we're going to do a safety drill right now. Stop what you're doing and listen.", intent: "Call attention immediately and clearly" },
-      { en: "This is a lockdown drill — it is a practice, not a real emergency. Follow my instructions and stay calm.", intent: "Clarify drill status to prevent panic" },
-      { en: "Move quickly and quietly to the back corner. Leave your things where they are.", intent: "Direct movement without hesitation" },
-      { en: "No phones out. We stay silent until the all-clear. Does everyone understand?", intent: "Enforce protocol during the drill" },
-      { en: "I know this can feel uncomfortable — you're doing a great job staying calm.", intent: "Acknowledge student discomfort mid-drill" },
-      { en: "All clear — we can return to our seats. You followed the instructions exactly right.", intent: "Release and praise after the drill" },
-      { en: "If any of this brought up feelings or questions, I'm here after class — please come see me.", intent: "Check in after a drill that may trigger anxiety" },
+      {
+        en: "Attention, everyone — we're going to do a safety drill right now. Stop what you're doing and listen.",
+        intent: "Call attention immediately and clearly",
+      },
+      {
+        en: "This is a lockdown drill — it is a practice, not a real emergency. Follow my instructions and stay calm.",
+        intent: "Clarify drill status to prevent panic",
+      },
+      {
+        en: "Move quickly and quietly to the back corner. Leave your things where they are.",
+        intent: "Direct movement without hesitation",
+      },
+      {
+        en: "No phones out. We stay silent until the all-clear. Does everyone understand?",
+        intent: "Enforce protocol during the drill",
+      },
+      {
+        en: "I know this can feel uncomfortable — you're doing a great job staying calm.",
+        intent: "Acknowledge student discomfort mid-drill",
+      },
+      {
+        en: "All clear — we can return to our seats. You followed the instructions exactly right.",
+        intent: "Release and praise after the drill",
+      },
+      {
+        en: "If any of this brought up feelings or questions, I'm here after class — please come see me.",
+        intent: "Check in after a drill that may trigger anxiety",
+      },
     ],
     vocab: [
       "lockdown",
@@ -1317,13 +1795,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Warm and specific. Good conferences feel like a conversation between two people who both care about the same child — not a judgment.",
     phrases: [
-      { en: "Thank you for coming in — it means everything to your child when parents are this engaged.", intent: "Open by honoring parent presence" },
-      { en: "Let me start with what's going well, because I want you to hear that first.", intent: "Lead with strengths" },
-      { en: "In math, Zoe is performing at grade level — her computation skills are strong. Where she struggles is multi-step word problems.", intent: "Give a specific, balanced academic picture" },
-      { en: "I measure progress with both grades and effort. Zoe's grade might not show how hard she's working — and she's working very hard.", intent: "Contextualize grades with effort and growth" },
-      { en: "I'd recommend about 20 minutes of reading per night — not worksheets, just a book she enjoys. Builds fluency without pressure.", intent: "Make a specific, doable home recommendation" },
-      { en: "Here's my goal for the rest of the year — what's yours for her at home?", intent: "Invite shared goal-setting" },
-      { en: "You can email me anytime if something comes up before our next conference.", intent: "Maintain open communication" },
+      {
+        en: "Thank you for coming in — it means everything to your child when parents are this engaged.",
+        intent: "Open by honoring parent presence",
+      },
+      {
+        en: "Let me start with what's going well, because I want you to hear that first.",
+        intent: "Lead with strengths",
+      },
+      {
+        en: "In math, Zoe is performing at grade level — her computation skills are strong. Where she struggles is multi-step word problems.",
+        intent: "Give a specific, balanced academic picture",
+      },
+      {
+        en: "I measure progress with both grades and effort. Zoe's grade might not show how hard she's working — and she's working very hard.",
+        intent: "Contextualize grades with effort and growth",
+      },
+      {
+        en: "I'd recommend about 20 minutes of reading per night — not worksheets, just a book she enjoys. Builds fluency without pressure.",
+        intent: "Make a specific, doable home recommendation",
+      },
+      {
+        en: "Here's my goal for the rest of the year — what's yours for her at home?",
+        intent: "Invite shared goal-setting",
+      },
+      {
+        en: "You can email me anytime if something comes up before our next conference.",
+        intent: "Maintain open communication",
+      },
     ],
     vocab: [
       "grade report",
@@ -1378,12 +1877,30 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Warm, low-pressure, and attentive. New students are watching the whole class for social cues — how the teacher treats them signals everything.",
     phrases: [
-      { en: "Everyone — I want to introduce someone who's joining us today. Please make her feel as welcome as this class made you feel on your first day.", intent: "Frame the welcome as a community responsibility" },
-      { en: "You don't have to know everything today — just get a feel for the class. I've got you.", intent: "Relieve pressure from the new student" },
-      { en: "Marcus, would you be willing to be her buddy today — show her around, sit with her at lunch?", intent: "Assign a class buddy without embarrassing anyone" },
-      { en: "If you get lost or confused about anything — homework, where things are, anything — come to me after class.", intent: "Make yourself available privately" },
-      { en: "We're going to do a quick introduction — you can share as much or as little as you like.", intent: "Make the introduction low-stakes" },
-      { en: "I think you're going to like it here. This is a really good group of people.", intent: "Offer genuine reassurance" },
+      {
+        en: "Everyone — I want to introduce someone who's joining us today. Please make her feel as welcome as this class made you feel on your first day.",
+        intent: "Frame the welcome as a community responsibility",
+      },
+      {
+        en: "You don't have to know everything today — just get a feel for the class. I've got you.",
+        intent: "Relieve pressure from the new student",
+      },
+      {
+        en: "Marcus, would you be willing to be her buddy today — show her around, sit with her at lunch?",
+        intent: "Assign a class buddy without embarrassing anyone",
+      },
+      {
+        en: "If you get lost or confused about anything — homework, where things are, anything — come to me after class.",
+        intent: "Make yourself available privately",
+      },
+      {
+        en: "We're going to do a quick introduction — you can share as much or as little as you like.",
+        intent: "Make the introduction low-stakes",
+      },
+      {
+        en: "I think you're going to like it here. This is a really good group of people.",
+        intent: "Offer genuine reassurance",
+      },
     ],
     vocab: [
       "buddy system",
@@ -1434,13 +1951,34 @@ const k12TeacherAreas: ModuleArea[] = [
     toneNote:
       "Collegial and professional. Teachers are often protective of their autonomy — offer ideas, not instructions.",
     phrases: [
-      { en: "I tried something last week that worked really well — mind if I share it?", intent: "Offer a strategy without imposing" },
-      { en: "I'm struggling with my fifth period — they're a tough group. Can I pick your brain?", intent: "Ask a colleague for help without undermining yourself" },
-      { en: "I think we could save ourselves a lot of time if we co-plan this unit together.", intent: "Propose a collaborative planning effort" },
-      { en: "I noticed something about how you handled that transition — I'd love to try it in my room.", intent: "Give a genuine compliment about a colleague's technique" },
-      { en: "I want to be honest with you — I think the pacing on this unit is too fast for our students. Can we look at it together?", intent: "Raise a concern with a colleague constructively" },
-      { en: "Your idea about the warm-up routine is exactly what I needed — would you be okay with me adapting it?", intent: "Credit a colleague and seek permission" },
-      { en: "Let's schedule 20 minutes next week — I want your eyes on this lesson plan before I teach it.", intent: "Invite peer feedback proactively" },
+      {
+        en: "I tried something last week that worked really well — mind if I share it?",
+        intent: "Offer a strategy without imposing",
+      },
+      {
+        en: "I'm struggling with my fifth period — they're a tough group. Can I pick your brain?",
+        intent: "Ask a colleague for help without undermining yourself",
+      },
+      {
+        en: "I think we could save ourselves a lot of time if we co-plan this unit together.",
+        intent: "Propose a collaborative planning effort",
+      },
+      {
+        en: "I noticed something about how you handled that transition — I'd love to try it in my room.",
+        intent: "Give a genuine compliment about a colleague's technique",
+      },
+      {
+        en: "I want to be honest with you — I think the pacing on this unit is too fast for our students. Can we look at it together?",
+        intent: "Raise a concern with a colleague constructively",
+      },
+      {
+        en: "Your idea about the warm-up routine is exactly what I needed — would you be okay with me adapting it?",
+        intent: "Credit a colleague and seek permission",
+      },
+      {
+        en: "Let's schedule 20 minutes next week — I want your eyes on this lesson plan before I teach it.",
+        intent: "Invite peer feedback proactively",
+      },
     ],
     vocab: [
       "common planning",
@@ -1490,22 +2028,56 @@ const k12TeacherVocabSets: ModuleVocabSet[] = [
   {
     category: "Classroom Management",
     emoji: "🏫",
-    words: ["norms", "procedures", "redirection", "de-escalation", "restorative", "growth mindset", "positive reinforcement", "reset"],
+    words: [
+      "norms",
+      "procedures",
+      "redirection",
+      "de-escalation",
+      "restorative",
+      "growth mindset",
+      "positive reinforcement",
+      "reset",
+    ],
   },
   {
     category: "Student Support",
     emoji: "📊",
-    words: ["IEP", "504 plan", "accommodation", "modification", "benchmark", "intervention", "differentiation", "progress monitoring"],
+    words: [
+      "IEP",
+      "504 plan",
+      "accommodation",
+      "modification",
+      "benchmark",
+      "intervention",
+      "differentiation",
+      "progress monitoring",
+    ],
   },
   {
     category: "Parent Communication",
     emoji: "📞",
-    words: ["conference", "behavior log", "academic concern", "communication log", "school counselor", "home-school connection"],
+    words: [
+      "conference",
+      "behavior log",
+      "academic concern",
+      "communication log",
+      "school counselor",
+      "home-school connection",
+    ],
   },
   {
     category: "Colleague & Professional",
     emoji: "🤝",
-    words: ["PLC", "co-planning", "instructional coach", "data team", "lesson study", "peer observation", "vertical alignment", "common assessment"],
+    words: [
+      "PLC",
+      "co-planning",
+      "instructional coach",
+      "data team",
+      "lesson study",
+      "peer observation",
+      "vertical alignment",
+      "common assessment",
+    ],
   },
 ];
 
@@ -1535,10 +2107,7 @@ export function getServiceEduContent(moduleId: string): ServiceEduContent | null
   return SERVICE_EDU_CONTENT.find((m) => m.moduleId === moduleId) ?? null;
 }
 
-export function getServiceEduArea(
-  moduleId: string,
-  areaId: string
-): ModuleArea | null {
+export function getServiceEduArea(moduleId: string, areaId: string): ModuleArea | null {
   const module = getServiceEduContent(moduleId);
   if (!module) return null;
   return module.areas.find((a) => a.id === areaId) ?? null;

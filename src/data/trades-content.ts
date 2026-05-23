@@ -1,6 +1,6 @@
 export interface ModulePhrase {
-  en: string;       // The English phrase a tradesperson would say
-  intent: string;   // One short label for what this phrase accomplishes
+  en: string; // The English phrase a tradesperson would say
+  intent: string; // One short label for what this phrase accomplishes
 }
 
 export interface SampleTurn {
@@ -13,25 +13,25 @@ export interface ModuleArea {
   name: string;
   emoji: string;
   blurb: string;
-  counterpart: string;   // who the AI plays in this scenario
-  learnerRole: string;   // who the learner plays
-  toneNote: string;      // register/style guidance for the AI tutor
-  phrases: ModulePhrase[];  // 6-8 phrases
-  vocab: string[];          // 6-10 key terms
-  challenges: string[];     // 3 roleplay prompts
-  sampleConversation: SampleTurn[];  // 4-6 turn back-and-forth showing authentic exchange
+  counterpart: string; // who the AI plays in this scenario
+  learnerRole: string; // who the learner plays
+  toneNote: string; // register/style guidance for the AI tutor
+  phrases: ModulePhrase[]; // 6-8 phrases
+  vocab: string[]; // 6-10 key terms
+  challenges: string[]; // 3 roleplay prompts
+  sampleConversation: SampleTurn[]; // 4-6 turn back-and-forth showing authentic exchange
 }
 
 export interface ModuleVocabSet {
   category: string;
   emoji: string;
-  words: string[];  // 8-10 words
+  words: string[]; // 8-10 words
 }
 
 export interface TradesModuleContent {
   moduleId: string;
-  areas: ModuleArea[];      // 6-8 scenario areas per module
-  vocabSets: ModuleVocabSet[];  // 4-5 themed vocab sets per module
+  areas: ModuleArea[]; // 6-8 scenario areas per module
+  vocabSets: ModuleVocabSet[]; // 4-5 themed vocab sets per module
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -45,23 +45,45 @@ const framerModule: TradesModuleContent = {
       id: "morning-crew-brief",
       name: "Morning Crew Brief",
       emoji: "🌅",
-      blurb: "Start the day right — lay out the plan, assign tasks, and make sure everyone knows the sequence before the first nail goes in.",
+      blurb:
+        "Start the day right — lay out the plan, assign tasks, and make sure everyone knows the sequence before the first nail goes in.",
       counterpart: "Lead Carpenter",
       learnerRole: "Framing Foreman",
-      toneNote: "Direct, efficient, no fluff. Foreman talk is short sentences and clear assignments. Mild Spanish loan words are normal here.",
+      toneNote:
+        "Direct, efficient, no fluff. Foreman talk is short sentences and clear assignments. Mild Spanish loan words are normal here.",
       phrases: [
         { en: "Alright, listen up — here's the plan for today.", intent: "open briefing" },
-        { en: "We're framing the north wall first, then we'll work our way around.", intent: "set sequence" },
+        {
+          en: "We're framing the north wall first, then we'll work our way around.",
+          intent: "set sequence",
+        },
         { en: "Carlos, you're on plates. Miguel, start pulling layout.", intent: "assign tasks" },
         { en: "We need to be at lock-up by Thursday — no exceptions.", intent: "set deadline" },
-        { en: "If you run into anything that doesn't match the plans, stop and call me.", intent: "set protocol" },
-        { en: "Keep your cords out of the walkway — I don't want anyone going down.", intent: "safety reminder" },
-        { en: "We're short on LVL — don't start the header until I get back with the order.", intent: "hold work" },
+        {
+          en: "If you run into anything that doesn't match the plans, stop and call me.",
+          intent: "set protocol",
+        },
+        {
+          en: "Keep your cords out of the walkway — I don't want anyone going down.",
+          intent: "safety reminder",
+        },
+        {
+          en: "We're short on LVL — don't start the header until I get back with the order.",
+          intent: "hold work",
+        },
         { en: "Good work yesterday. Let's keep that pace.", intent: "motivate crew" },
       ],
       vocab: [
-        "plates", "layout", "LVL (laminated veneer lumber)", "header", "lock-up",
-        "plumb", "level", "king stud", "cripple", "chalk line",
+        "plates",
+        "layout",
+        "LVL (laminated veneer lumber)",
+        "header",
+        "lock-up",
+        "plumb",
+        "level",
+        "king stud",
+        "cripple",
+        "chalk line",
       ],
       challenges: [
         "You arrive to find two workers about to frame a window opening 6 inches too wide. Redirect them without embarrassing anyone.",
@@ -69,11 +91,26 @@ const framerModule: TradesModuleContent = {
         "The lumber drop is late. Reorganize the crew's morning tasks on the fly.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Alright everybody, gather up. Here's the deal — we're doing the east wall this morning, north wall after lunch." },
-        { speaker: "ai", en: "Hey, boss — what do we do about that window opening on the east wall? The plans show a 4-foot header but we only got 3-ply on the truck." },
-        { speaker: "learner", en: "Use what we've got for now. Stack it and nail it tight. I'll call the yard and get the right LVL out here by noon." },
-        { speaker: "ai", en: "Copy that. You want us to snap lines first or start cutting plates?" },
-        { speaker: "learner", en: "Snap your lines first — always. Plates go nowhere until the layout's right. Last thing I need is a wall that's 2 inches off." },
+        {
+          speaker: "learner",
+          en: "Alright everybody, gather up. Here's the deal — we're doing the east wall this morning, north wall after lunch.",
+        },
+        {
+          speaker: "ai",
+          en: "Hey, boss — what do we do about that window opening on the east wall? The plans show a 4-foot header but we only got 3-ply on the truck.",
+        },
+        {
+          speaker: "learner",
+          en: "Use what we've got for now. Stack it and nail it tight. I'll call the yard and get the right LVL out here by noon.",
+        },
+        {
+          speaker: "ai",
+          en: "Copy that. You want us to snap lines first or start cutting plates?",
+        },
+        {
+          speaker: "learner",
+          en: "Snap your lines first — always. Plates go nowhere until the layout's right. Last thing I need is a wall that's 2 inches off.",
+        },
         { speaker: "ai", en: "Understood. I'll grab the chalk line. You want 16 on-center or 24?" },
       ],
     },
@@ -81,22 +118,47 @@ const framerModule: TradesModuleContent = {
       id: "wall-layout",
       name: "Wall Layout",
       emoji: "📐",
-      blurb: "Pulling layout is where framing gets accurate or gets ugly. Learn how to read the plans, snap lines, and mark plates so the crew can follow.",
+      blurb:
+        "Pulling layout is where framing gets accurate or gets ugly. Learn how to read the plans, snap lines, and mark plates so the crew can follow.",
       counterpart: "Apprentice Framer",
       learnerRole: "Lead Framer",
-      toneNote: "Patient but precise — teaching while doing. Use numbers and directions freely. Metric slip-ins (metros, centímetros) are fine if the learner uses them.",
+      toneNote:
+        "Patient but precise — teaching while doing. Use numbers and directions freely. Metric slip-ins (metros, centímetros) are fine if the learner uses them.",
       phrases: [
         { en: "Measure from this corner — that's your baseline.", intent: "establish reference" },
-        { en: "Hook the end of the tape right here, don't let it slip.", intent: "measurement instruction" },
-        { en: "Mark your OC layout every 16 inches, start from the left edge.", intent: "on-center spacing" },
+        {
+          en: "Hook the end of the tape right here, don't let it slip.",
+          intent: "measurement instruction",
+        },
+        {
+          en: "Mark your OC layout every 16 inches, start from the left edge.",
+          intent: "on-center spacing",
+        },
         { en: "Snap the chalk line from here to here — keep it tight.", intent: "snap line" },
-        { en: "These two plates need to be identical — lay them side by side when you mark.", intent: "plate matching" },
-        { en: "That wall is 2 inches out of square — we need to fix it before we lift.", intent: "identify problem" },
-        { en: "Make sure your crown is up on every stud before you nail.", intent: "quality check" },
+        {
+          en: "These two plates need to be identical — lay them side by side when you mark.",
+          intent: "plate matching",
+        },
+        {
+          en: "That wall is 2 inches out of square — we need to fix it before we lift.",
+          intent: "identify problem",
+        },
+        {
+          en: "Make sure your crown is up on every stud before you nail.",
+          intent: "quality check",
+        },
       ],
       vocab: [
-        "OC (on-center)", "baseline", "chalk line", "crown", "plumb bob",
-        "story pole", "bearing wall", "rough opening (RO)", "double top plate", "layout marks",
+        "OC (on-center)",
+        "baseline",
+        "chalk line",
+        "crown",
+        "plumb bob",
+        "story pole",
+        "bearing wall",
+        "rough opening (RO)",
+        "double top plate",
+        "layout marks",
       ],
       challenges: [
         "Your apprentice has snapped the chalk line in the wrong place. Correct the layout without tearing out completed work.",
@@ -104,11 +166,20 @@ const framerModule: TradesModuleContent = {
         "You need to lay out a wall that starts from an existing framed corner — explain how to pick up the layout.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay, grab both plates and lay them right here on the deck, crown side up." },
+        {
+          speaker: "learner",
+          en: "Okay, grab both plates and lay them right here on the deck, crown side up.",
+        },
         { speaker: "ai", en: "How do I know which way the crown is?" },
-        { speaker: "learner", en: "Sight down the length of the board — see that slight bow? That's the crown. Always points up, never down." },
+        {
+          speaker: "learner",
+          en: "Sight down the length of the board — see that slight bow? That's the crown. Always points up, never down.",
+        },
         { speaker: "ai", en: "Got it. So they're both crown up. Now what?" },
-        { speaker: "learner", en: "Line them up end to end, same edge facing you. We're marking both at once so they match perfect. Hook your tape at this end — X marks a stud, O marks a space." },
+        {
+          speaker: "learner",
+          en: "Line them up end to end, same edge facing you. We're marking both at once so they match perfect. Hook your tape at this end — X marks a stud, O marks a space.",
+        },
         { speaker: "ai", en: "What happens at the window opening?" },
       ],
     },
@@ -116,23 +187,48 @@ const framerModule: TradesModuleContent = {
       id: "material-order",
       name: "Material Order",
       emoji: "🪵",
-      blurb: "Running out of lumber mid-job kills momentum. Learn how to count a take-off, call the yard, and make sure the right material shows up on time.",
+      blurb:
+        "Running out of lumber mid-job kills momentum. Learn how to count a take-off, call the yard, and make sure the right material shows up on time.",
       counterpart: "Lumberyard Rep",
       learnerRole: "Framing Contractor",
-      toneNote: "Business casual — professional but not stiff. Know your species, grades, and dimensions. The yard rep expects precision.",
+      toneNote:
+        "Business casual — professional but not stiff. Know your species, grades, and dimensions. The yard rep expects precision.",
       phrases: [
-        { en: "I need a quote on framing lumber for a 2,200 square foot single-story.", intent: "open request" },
+        {
+          en: "I need a quote on framing lumber for a 2,200 square foot single-story.",
+          intent: "open request",
+        },
         { en: "Give me 200 studs, 2x4x92-5/8, KD Doug fir.", intent: "specify material" },
         { en: "I also need 40 sticks of 2x10x16 for floor joists.", intent: "add to order" },
         { en: "What's your lead time on LVL right now?", intent: "check availability" },
-        { en: "Can you deliver Thursday morning? We go up that afternoon.", intent: "schedule delivery" },
-        { en: "Make sure the load is straight and no splits — I had bowed boards last time.", intent: "quality request" },
-        { en: "I'll need 50 sheets of OSB, 7/16, and 20 of 3/4 T&G for the subfloor.", intent: "add sheathing" },
-        { en: "Shoot me the invoice by email — same billing as last time.", intent: "billing instruction" },
+        {
+          en: "Can you deliver Thursday morning? We go up that afternoon.",
+          intent: "schedule delivery",
+        },
+        {
+          en: "Make sure the load is straight and no splits — I had bowed boards last time.",
+          intent: "quality request",
+        },
+        {
+          en: "I'll need 50 sheets of OSB, 7/16, and 20 of 3/4 T&G for the subfloor.",
+          intent: "add sheathing",
+        },
+        {
+          en: "Shoot me the invoice by email — same billing as last time.",
+          intent: "billing instruction",
+        },
       ],
       vocab: [
-        "KD (kiln-dried)", "Doug fir", "stud", "LVL", "OSB (oriented strand board)",
-        "T&G (tongue and groove)", "take-off", "board feet", "sticker stock", "lead time",
+        "KD (kiln-dried)",
+        "Doug fir",
+        "stud",
+        "LVL",
+        "OSB (oriented strand board)",
+        "T&G (tongue and groove)",
+        "take-off",
+        "board feet",
+        "sticker stock",
+        "lead time",
       ],
       challenges: [
         "The yard is out of KD 2x6. Negotiate an acceptable substitute for an exterior wall order.",
@@ -140,34 +236,80 @@ const framerModule: TradesModuleContent = {
         "You forgot to order hurricane ties. Place an add-on order without losing your delivery slot.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Hey, this is Marcos over at Summit Framing. I need to place an order for a delivery Thursday AM." },
+        {
+          speaker: "learner",
+          en: "Hey, this is Marcos over at Summit Framing. I need to place an order for a delivery Thursday AM.",
+        },
         { speaker: "ai", en: "Morning, Marcos. What do you need?" },
-        { speaker: "learner", en: "Start with 250 pre-cuts, 2x4x92-5/8, Doug fir KD. Then 60 sticks of 2x6x16 for the headers." },
-        { speaker: "ai", en: "I can do the pre-cuts no problem. On the 2x6 — you want select structural or number 2?" },
-        { speaker: "learner", en: "Number 2 is fine for headers as long as there are no big knots near the ends. Header stock, you know how it is." },
-        { speaker: "ai", en: "Understood. I'll pull the better boards from the pile. What else you got?" },
+        {
+          speaker: "learner",
+          en: "Start with 250 pre-cuts, 2x4x92-5/8, Doug fir KD. Then 60 sticks of 2x6x16 for the headers.",
+        },
+        {
+          speaker: "ai",
+          en: "I can do the pre-cuts no problem. On the 2x6 — you want select structural or number 2?",
+        },
+        {
+          speaker: "learner",
+          en: "Number 2 is fine for headers as long as there are no big knots near the ends. Header stock, you know how it is.",
+        },
+        {
+          speaker: "ai",
+          en: "Understood. I'll pull the better boards from the pile. What else you got?",
+        },
       ],
     },
     {
       id: "blueprint-reading",
       name: "Blueprint Reading",
       emoji: "📋",
-      blurb: "Plans on the table, crew looking over your shoulder — learn to read and explain what the drawings say before anyone picks up a tool.",
+      blurb:
+        "Plans on the table, crew looking over your shoulder — learn to read and explain what the drawings say before anyone picks up a tool.",
       counterpart: "Field Supervisor",
       learnerRole: "Lead Framer",
-      toneNote: "Confident and clear. Tradespersons reference plans with direction, dimension, and sheet number. Uncertainty is okay but must be resolved before work starts.",
+      toneNote:
+        "Confident and clear. Tradespersons reference plans with direction, dimension, and sheet number. Uncertainty is okay but must be resolved before work starts.",
       phrases: [
-        { en: "Pull out sheet A2.1 — that's the floor plan we're working from today.", intent: "reference document" },
-        { en: "This symbol here means a bearing wall — we can't modify that without engineering.", intent: "explain symbol" },
-        { en: "The dimension string runs from face of stud to face of stud — not finished surface.", intent: "clarify dimension type" },
-        { en: "See this note? It says 'verify in field' — that means we measure before we frame.", intent: "flag field condition" },
-        { en: "The header schedule is on A5 — look up every opening before you start.", intent: "direct to schedule" },
-        { en: "North is up on this plan. The street side is the bottom of the page.", intent: "orient to plan" },
-        { en: "There's a conflict between the structural and architectural sheets — hold work until we get an RFI answer.", intent: "flag discrepancy" },
+        {
+          en: "Pull out sheet A2.1 — that's the floor plan we're working from today.",
+          intent: "reference document",
+        },
+        {
+          en: "This symbol here means a bearing wall — we can't modify that without engineering.",
+          intent: "explain symbol",
+        },
+        {
+          en: "The dimension string runs from face of stud to face of stud — not finished surface.",
+          intent: "clarify dimension type",
+        },
+        {
+          en: "See this note? It says 'verify in field' — that means we measure before we frame.",
+          intent: "flag field condition",
+        },
+        {
+          en: "The header schedule is on A5 — look up every opening before you start.",
+          intent: "direct to schedule",
+        },
+        {
+          en: "North is up on this plan. The street side is the bottom of the page.",
+          intent: "orient to plan",
+        },
+        {
+          en: "There's a conflict between the structural and architectural sheets — hold work until we get an RFI answer.",
+          intent: "flag discrepancy",
+        },
       ],
       vocab: [
-        "bearing wall", "RFI (request for information)", "dimension string", "header schedule",
-        "section cut", "elevation", "scale", "callout", "detail bubble", "as-built",
+        "bearing wall",
+        "RFI (request for information)",
+        "dimension string",
+        "header schedule",
+        "section cut",
+        "elevation",
+        "scale",
+        "callout",
+        "detail bubble",
+        "as-built",
       ],
       challenges: [
         "The architectural and structural plans show different window sizes. Explain why you're stopping work and what you need from the GC.",
@@ -175,11 +317,20 @@ const framerModule: TradesModuleContent = {
         "The inspector asks you where the header schedule is. Walk him through the plan set to find it.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Come take a look at this. We've got an issue on the east elevation." },
+        {
+          speaker: "learner",
+          en: "Come take a look at this. We've got an issue on the east elevation.",
+        },
         { speaker: "ai", en: "What's going on?" },
-        { speaker: "learner", en: "The architectural sheet shows a 6-foot window here, but the structural sheet calls out a 4-foot rough opening. Those two don't match." },
+        {
+          speaker: "learner",
+          en: "The architectural sheet shows a 6-foot window here, but the structural sheet calls out a 4-foot rough opening. Those two don't match.",
+        },
         { speaker: "ai", en: "So which one do we go by?" },
-        { speaker: "learner", en: "Neither — not until we get clarification. I'm writing an RFI right now. You don't frame a bearing wall based on a guess." },
+        {
+          speaker: "learner",
+          en: "Neither — not until we get clarification. I'm writing an RFI right now. You don't frame a bearing wall based on a guess.",
+        },
         { speaker: "ai", en: "How long does an RFI usually take?" },
       ],
     },
@@ -187,22 +338,53 @@ const framerModule: TradesModuleContent = {
       id: "inspection-walk",
       name: "Inspection Walk",
       emoji: "🔍",
-      blurb: "The framing inspector is on site. Know what they're looking at, answer their questions confidently, and catch your own issues before they do.",
+      blurb:
+        "The framing inspector is on site. Know what they're looking at, answer their questions confidently, and catch your own issues before they do.",
       counterpart: "Building Inspector",
       learnerRole: "Framing Contractor",
-      toneNote: "Respectful and straightforward. Inspectors are not adversaries — treat them as professionals. Don't over-explain; answer what's asked.",
+      toneNote:
+        "Respectful and straightforward. Inspectors are not adversaries — treat them as professionals. Don't over-explain; answer what's asked.",
       phrases: [
-        { en: "Good morning — framing's ready for inspection on building one.", intent: "initiate inspection" },
-        { en: "The header schedule is right here on the plans — everything matches.", intent: "show documentation" },
-        { en: "These are double top plates with a half-inch minimum lap at the splice — per code.", intent: "explain compliance" },
-        { en: "Yes, sir — all hangers are nailed out with the manufacturer-specified fasteners.", intent: "confirm compliance" },
-        { en: "That notch is within the allowable depth for a non-bearing stud.", intent: "defend work" },
-        { en: "I'll get that strapping installed before you come back — what time works for a re-check?", intent: "address correction" },
-        { en: "Can I get that in writing so I know exactly what needs to change?", intent: "request written correction" },
+        {
+          en: "Good morning — framing's ready for inspection on building one.",
+          intent: "initiate inspection",
+        },
+        {
+          en: "The header schedule is right here on the plans — everything matches.",
+          intent: "show documentation",
+        },
+        {
+          en: "These are double top plates with a half-inch minimum lap at the splice — per code.",
+          intent: "explain compliance",
+        },
+        {
+          en: "Yes, sir — all hangers are nailed out with the manufacturer-specified fasteners.",
+          intent: "confirm compliance",
+        },
+        {
+          en: "That notch is within the allowable depth for a non-bearing stud.",
+          intent: "defend work",
+        },
+        {
+          en: "I'll get that strapping installed before you come back — what time works for a re-check?",
+          intent: "address correction",
+        },
+        {
+          en: "Can I get that in writing so I know exactly what needs to change?",
+          intent: "request written correction",
+        },
       ],
       vocab: [
-        "framing inspection", "red tag", "correction notice", "double top plate", "hanger",
-        "shear wall", "hold-down", "blocking", "notch limit", "re-inspection",
+        "framing inspection",
+        "red tag",
+        "correction notice",
+        "double top plate",
+        "hanger",
+        "shear wall",
+        "hold-down",
+        "blocking",
+        "notch limit",
+        "re-inspection",
       ],
       challenges: [
         "The inspector finds that your shear wall nailing pattern is wrong. Accept the correction professionally and explain your correction plan.",
@@ -212,32 +394,75 @@ const framerModule: TradesModuleContent = {
       sampleConversation: [
         { speaker: "learner", en: "Morning. We're ready for framing inspection on the east wing." },
         { speaker: "ai", en: "Morning. You got your plans and the approved permit on site?" },
-        { speaker: "learner", en: "Right here. Plans are stamped, permit's posted at the front entrance." },
-        { speaker: "ai", en: "Okay. I'm going to walk the shear walls first. What's your nailing schedule on the OSB?" },
-        { speaker: "learner", en: "6 inches on the edges, 12 in the field — per the structural sheets right here on page S3." },
-        { speaker: "ai", en: "Let me check a few spots. I see some gaps in this corner panel — looks like you missed a few nails along the bottom plate." },
+        {
+          speaker: "learner",
+          en: "Right here. Plans are stamped, permit's posted at the front entrance.",
+        },
+        {
+          speaker: "ai",
+          en: "Okay. I'm going to walk the shear walls first. What's your nailing schedule on the OSB?",
+        },
+        {
+          speaker: "learner",
+          en: "6 inches on the edges, 12 in the field — per the structural sheets right here on page S3.",
+        },
+        {
+          speaker: "ai",
+          en: "Let me check a few spots. I see some gaps in this corner panel — looks like you missed a few nails along the bottom plate.",
+        },
       ],
     },
     {
       id: "subcontractor-coordination",
       name: "Subcontractor Coordination",
       emoji: "🤝",
-      blurb: "Framers don't work alone — plumbers, electricians, and HVAC all need their holes and openings. Learn to coordinate without conflict.",
+      blurb:
+        "Framers don't work alone — plumbers, electricians, and HVAC all need their holes and openings. Learn to coordinate without conflict.",
       counterpart: "Plumbing Foreman",
       learnerRole: "Framing Foreman",
-      toneNote: "Collegial but firm about structural limits. Trades respect each other but protect their own work. Keep it direct and solution-focused.",
+      toneNote:
+        "Collegial but firm about structural limits. Trades respect each other but protect their own work. Keep it direct and solution-focused.",
       phrases: [
-        { en: "Hey, before you cut anything, run it by me — I need to know it's not a bearing member.", intent: "establish protocol" },
-        { en: "You can't notch that beam — that's structural. We need to find another way.", intent: "protect structure" },
-        { en: "I can drill you a 3-inch hole right here, but I need it by tomorrow or the wall goes up.", intent: "offer and deadline" },
-        { en: "What size sleeve do you need for the vent penetration through the top plate?", intent: "gather info" },
-        { en: "Let's walk the walls together before you start drilling so we're on the same page.", intent: "coordinate walk" },
-        { en: "I'll hold the soffit framing until you confirm your duct size.", intent: "sequence hold" },
-        { en: "Any changes from the rough-in drawings, you tell me first — I don't want surprises.", intent: "set communication rule" },
+        {
+          en: "Hey, before you cut anything, run it by me — I need to know it's not a bearing member.",
+          intent: "establish protocol",
+        },
+        {
+          en: "You can't notch that beam — that's structural. We need to find another way.",
+          intent: "protect structure",
+        },
+        {
+          en: "I can drill you a 3-inch hole right here, but I need it by tomorrow or the wall goes up.",
+          intent: "offer and deadline",
+        },
+        {
+          en: "What size sleeve do you need for the vent penetration through the top plate?",
+          intent: "gather info",
+        },
+        {
+          en: "Let's walk the walls together before you start drilling so we're on the same page.",
+          intent: "coordinate walk",
+        },
+        {
+          en: "I'll hold the soffit framing until you confirm your duct size.",
+          intent: "sequence hold",
+        },
+        {
+          en: "Any changes from the rough-in drawings, you tell me first — I don't want surprises.",
+          intent: "set communication rule",
+        },
       ],
       vocab: [
-        "penetration", "sleeve", "bearing member", "soffit framing", "rough-in",
-        "notch limit", "boring", "top plate", "fire blocking", "coordination drawing",
+        "penetration",
+        "sleeve",
+        "bearing member",
+        "soffit framing",
+        "rough-in",
+        "notch limit",
+        "boring",
+        "top plate",
+        "fire blocking",
+        "coordination drawing",
       ],
       challenges: [
         "A plumber wants to notch a king stud to run a supply line. Explain why you can't allow it and offer an alternative path.",
@@ -245,11 +470,23 @@ const framerModule: TradesModuleContent = {
         "The electrician needs three 4-inch holes through a doubled LVL. Walk through the structural concern and find a solution.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Hey Ruben — before your guys start drilling on the second floor, let's walk it together." },
-        { speaker: "ai", en: "Yeah, good idea. I've got three supply runs going up through the floor system. My guy says the joists are in the way." },
+        {
+          speaker: "learner",
+          en: "Hey Ruben — before your guys start drilling on the second floor, let's walk it together.",
+        },
+        {
+          speaker: "ai",
+          en: "Yeah, good idea. I've got three supply runs going up through the floor system. My guy says the joists are in the way.",
+        },
         { speaker: "learner", en: "Which joists are we talking about? Show me on the plan." },
-        { speaker: "ai", en: "Right here — joist bay 4 and 5. He wants to drill through the web of both." },
-        { speaker: "learner", en: "Joist 5 is a doubled LVL. You can bore through it, but there are limits on location and diameter. I need to check the span tables before anyone touches it." },
+        {
+          speaker: "ai",
+          en: "Right here — joist bay 4 and 5. He wants to drill through the web of both.",
+        },
+        {
+          speaker: "learner",
+          en: "Joist 5 is a doubled LVL. You can bore through it, but there are limits on location and diameter. I need to check the span tables before anyone touches it.",
+        },
         { speaker: "ai", en: "How long will that take? My crew is here now." },
       ],
     },
@@ -257,23 +494,54 @@ const framerModule: TradesModuleContent = {
       id: "safety-talk",
       name: "Safety Talk",
       emoji: "⛑️",
-      blurb: "Framing sites have real hazards — falls, nail guns, heavy loads. Learn to lead a toolbox talk that actually sticks.",
+      blurb:
+        "Framing sites have real hazards — falls, nail guns, heavy loads. Learn to lead a toolbox talk that actually sticks.",
       counterpart: "Crew Member",
       learnerRole: "Safety Lead / Foreman",
-      toneNote: "Serious but not preachy. Safety talks should feel practical and real, not like a corporate compliance video. Short and specific beats long and vague.",
+      toneNote:
+        "Serious but not preachy. Safety talks should feel practical and real, not like a corporate compliance video. Short and specific beats long and vague.",
       phrases: [
-        { en: "Before we touch the nail guns today, I want to run through a few things.", intent: "open safety talk" },
-        { en: "Nobody's going above 6 feet without a harness — that's non-negotiable.", intent: "set fall protection rule" },
-        { en: "Keep your finger off the trigger until you're ready to nail.", intent: "nail gun safety" },
-        { en: "If a wall starts to rack when we raise it, let it go — no one gets hurt for a wall.", intent: "emergency protocol" },
+        {
+          en: "Before we touch the nail guns today, I want to run through a few things.",
+          intent: "open safety talk",
+        },
+        {
+          en: "Nobody's going above 6 feet without a harness — that's non-negotiable.",
+          intent: "set fall protection rule",
+        },
+        {
+          en: "Keep your finger off the trigger until you're ready to nail.",
+          intent: "nail gun safety",
+        },
+        {
+          en: "If a wall starts to rack when we raise it, let it go — no one gets hurt for a wall.",
+          intent: "emergency protocol",
+        },
         { en: "Hard hats are on when the crane is running. No exceptions.", intent: "PPE rule" },
-        { en: "If you get hurt, tell me immediately — don't walk it off.", intent: "incident reporting" },
-        { en: "Watch out for protruding nails on the deck — we had two punctures last month.", intent: "site hazard callout" },
-        { en: "Everyone clear on that? Any questions before we start?", intent: "confirm understanding" },
+        {
+          en: "If you get hurt, tell me immediately — don't walk it off.",
+          intent: "incident reporting",
+        },
+        {
+          en: "Watch out for protruding nails on the deck — we had two punctures last month.",
+          intent: "site hazard callout",
+        },
+        {
+          en: "Everyone clear on that? Any questions before we start?",
+          intent: "confirm understanding",
+        },
       ],
       vocab: [
-        "harness", "lanyard", "PPE (personal protective equipment)", "toolbox talk",
-        "nail gun", "kickback", "fall hazard", "guardrail", "incident report", "near miss",
+        "harness",
+        "lanyard",
+        "PPE (personal protective equipment)",
+        "toolbox talk",
+        "nail gun",
+        "kickback",
+        "fall hazard",
+        "guardrail",
+        "incident report",
+        "near miss",
       ],
       challenges: [
         "A worker removed their harness on a second-story deck because it was 'getting in the way.' Address it in front of the crew without humiliating them.",
@@ -281,11 +549,20 @@ const framerModule: TradesModuleContent = {
         "A near-miss just happened — a wall racked and almost fell on a worker. Lead an impromptu debrief.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay, before we lift these walls — gather around, I've got three things." },
+        {
+          speaker: "learner",
+          en: "Okay, before we lift these walls — gather around, I've got three things.",
+        },
         { speaker: "ai", en: "What's up, boss?" },
-        { speaker: "learner", en: "We're going up 14 feet today on the gable end. I need harnesses on before anyone steps within 6 feet of the edge. No debate." },
+        {
+          speaker: "learner",
+          en: "We're going up 14 feet today on the gable end. I need harnesses on before anyone steps within 6 feet of the edge. No debate.",
+        },
         { speaker: "ai", en: "Mine's in the truck — is it okay if I run and grab it real quick?" },
-        { speaker: "learner", en: "That's exactly what you should do. Go. Second thing — when we raise the wall, four of us on the pike poles. If she starts to go, we let go and get clear. We raise another day." },
+        {
+          speaker: "learner",
+          en: "That's exactly what you should do. Go. Second thing — when we raise the wall, four of us on the pike poles. If she starts to go, we let go and get clear. We raise another day.",
+        },
         { speaker: "ai", en: "What do we do if it tips toward the deck?" },
       ],
     },
@@ -295,41 +572,80 @@ const framerModule: TradesModuleContent = {
       category: "Lumber Dimensions & Types",
       emoji: "🪵",
       words: [
-        "2x4", "2x6", "2x10", "2x12", "LVL (laminated veneer lumber)",
-        "PSL (parallel strand lumber)", "OSB", "CDX plywood", "pre-cut stud", "Doug fir",
+        "2x4",
+        "2x6",
+        "2x10",
+        "2x12",
+        "LVL (laminated veneer lumber)",
+        "PSL (parallel strand lumber)",
+        "OSB",
+        "CDX plywood",
+        "pre-cut stud",
+        "Doug fir",
       ],
     },
     {
       category: "Wall Framing Terms",
       emoji: "🔨",
       words: [
-        "king stud", "jack stud", "cripple", "trimmer", "sill plate",
-        "double top plate", "rough opening", "header", "bearing wall", "shear wall",
+        "king stud",
+        "jack stud",
+        "cripple",
+        "trimmer",
+        "sill plate",
+        "double top plate",
+        "rough opening",
+        "header",
+        "bearing wall",
+        "shear wall",
       ],
     },
     {
       category: "Tools of the Trade",
       emoji: "🛠️",
       words: [
-        "framing nailer", "chalk line", "speed square", "plumb bob", "laser level",
-        "sawzall", "circular saw", "cat's paw", "sledge", "tape measure",
+        "framing nailer",
+        "chalk line",
+        "speed square",
+        "plumb bob",
+        "laser level",
+        "sawzall",
+        "circular saw",
+        "cat's paw",
+        "sledge",
+        "tape measure",
       ],
     },
     {
       category: "Inspection & Code",
       emoji: "📋",
       words: [
-        "red tag", "correction notice", "hold-down anchor", "shear nailing", "blocking",
-        "hurricane tie", "hanger", "re-inspection", "permit", "as-built",
+        "red tag",
+        "correction notice",
+        "hold-down anchor",
+        "shear nailing",
+        "blocking",
+        "hurricane tie",
+        "hanger",
+        "re-inspection",
+        "permit",
+        "as-built",
       ],
     },
     {
       category: "Jobsite Commands (Bilingual Crew)",
       emoji: "🗣️",
       words: [
-        "pásame el tape", "snap the line", "más plumb", "hold it level",
-        "cuidado con los clavos", "move the stack", "amarra eso", "check your layout",
-        "doble arriba", "clear the deck",
+        "pásame el tape",
+        "snap the line",
+        "más plumb",
+        "hold it level",
+        "cuidado con los clavos",
+        "move the stack",
+        "amarra eso",
+        "check your layout",
+        "doble arriba",
+        "clear the deck",
       ],
     },
   ],
@@ -346,23 +662,54 @@ const plumberModule: TradesModuleContent = {
       id: "service-call-intake",
       name: "Service Call Intake",
       emoji: "📞",
-      blurb: "First contact sets the tone. Diagnose over the phone, set expectations, and book the call — all without being there yet.",
+      blurb:
+        "First contact sets the tone. Diagnose over the phone, set expectations, and book the call — all without being there yet.",
       counterpart: "Homeowner",
       learnerRole: "Plumber / Service Tech",
-      toneNote: "Calm, professional, reassuring. Homeowners are often stressed about plumbing problems. Ask good questions, don't promise what you can't confirm.",
+      toneNote:
+        "Calm, professional, reassuring. Homeowners are often stressed about plumbing problems. Ask good questions, don't promise what you can't confirm.",
       phrases: [
-        { en: "Tell me what's happening — when did you first notice it?", intent: "open diagnosis" },
-        { en: "Is the water shut off right now, or is it still running?", intent: "assess urgency" },
+        {
+          en: "Tell me what's happening — when did you first notice it?",
+          intent: "open diagnosis",
+        },
+        {
+          en: "Is the water shut off right now, or is it still running?",
+          intent: "assess urgency",
+        },
         { en: "Do you know where your main shutoff is?", intent: "emergency prep" },
-        { en: "That sounds like it could be a P-trap issue — pretty common and usually a quick fix.", intent: "preliminary diagnosis" },
-        { en: "I can have someone out between 10 and noon — does that work?", intent: "schedule service" },
-        { en: "There's a $95 dispatch fee that gets applied to the repair if we do the work.", intent: "quote dispatch fee" },
-        { en: "Don't pour any more water down that drain until we look at it.", intent: "prevent further damage" },
-        { en: "I'll send you a confirmation text with the tech's name and estimated arrival.", intent: "confirm booking" },
+        {
+          en: "That sounds like it could be a P-trap issue — pretty common and usually a quick fix.",
+          intent: "preliminary diagnosis",
+        },
+        {
+          en: "I can have someone out between 10 and noon — does that work?",
+          intent: "schedule service",
+        },
+        {
+          en: "There's a $95 dispatch fee that gets applied to the repair if we do the work.",
+          intent: "quote dispatch fee",
+        },
+        {
+          en: "Don't pour any more water down that drain until we look at it.",
+          intent: "prevent further damage",
+        },
+        {
+          en: "I'll send you a confirmation text with the tech's name and estimated arrival.",
+          intent: "confirm booking",
+        },
       ],
       vocab: [
-        "main shutoff", "P-trap", "dispatch fee", "service call", "drain snake",
-        "backflow", "sewer smell", "water pressure", "shutoff valve", "slow drain",
+        "main shutoff",
+        "P-trap",
+        "dispatch fee",
+        "service call",
+        "drain snake",
+        "backflow",
+        "sewer smell",
+        "water pressure",
+        "shutoff valve",
+        "slow drain",
       ],
       challenges: [
         "A homeowner describes water coming up from their toilet when the washer drains. Diagnose the likely cause and explain it simply.",
@@ -370,11 +717,23 @@ const plumberModule: TradesModuleContent = {
         "Quote a service call to someone who insists there should be no dispatch fee. Handle the objection professionally.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Thanks for calling Rivera Plumbing, this is José. What can I help you with?" },
-        { speaker: "ai", en: "Hi — I've got water coming up in my bathtub every time I flush the toilet. It started this morning." },
-        { speaker: "learner", en: "Okay — that's usually a sign of a blockage downstream in your main line. Is the water clear or dark?" },
+        {
+          speaker: "learner",
+          en: "Thanks for calling Rivera Plumbing, this is José. What can I help you with?",
+        },
+        {
+          speaker: "ai",
+          en: "Hi — I've got water coming up in my bathtub every time I flush the toilet. It started this morning.",
+        },
+        {
+          speaker: "learner",
+          en: "Okay — that's usually a sign of a blockage downstream in your main line. Is the water clear or dark?",
+        },
         { speaker: "ai", en: "It's kind of brownish. Should I be worried?" },
-        { speaker: "learner", en: "Brownish means it's probably sewer water — you'll want to keep everyone away from that tub. Don't use any drains in the house until we get there." },
+        {
+          speaker: "learner",
+          en: "Brownish means it's probably sewer water — you'll want to keep everyone away from that tub. Don't use any drains in the house until we get there.",
+        },
         { speaker: "ai", en: "Oh wow. Can you come today?" },
       ],
     },
@@ -382,23 +741,57 @@ const plumberModule: TradesModuleContent = {
       id: "rough-in",
       name: "Rough-In",
       emoji: "🔧",
-      blurb: "Getting the DWV and supply rough-in right saves headaches for every trade that follows. Learn the language of grade, slope, and chase.",
+      blurb:
+        "Getting the DWV and supply rough-in right saves headaches for every trade that follows. Learn the language of grade, slope, and chase.",
       counterpart: "Apprentice Plumber",
       learnerRole: "Journeyman Plumber",
-      toneNote: "Teaching mode — methodical and precise. Code numbers, slope fractions, and pipe sizes are common. Don't skip the why.",
+      toneNote:
+        "Teaching mode — methodical and precise. Code numbers, slope fractions, and pipe sizes are common. Don't skip the why.",
       phrases: [
-        { en: "Your drain needs to slope 1/4 inch per foot — no more, no less.", intent: "specify slope" },
-        { en: "We're running a 3-inch DWV stack from the basement to the roof penetration.", intent: "describe scope" },
-        { en: "Make sure you support the pipe every 4 feet — don't let it sag.", intent: "support instruction" },
-        { en: "The vent needs to be within 6 feet of the trap — or we need a re-vent.", intent: "vent code" },
-        { en: "Glue it, don't just push it — primer first, then cement, full rotation.", intent: "joining instruction" },
-        { en: "Stub out the supply lines 6 inches past the finished wall plane.", intent: "supply stubout" },
-        { en: "Leave a cleanout at every change of direction over 45 degrees.", intent: "cleanout placement" },
-        { en: "Get a pressure test scheduled before drywall goes up.", intent: "inspection timing" },
+        {
+          en: "Your drain needs to slope 1/4 inch per foot — no more, no less.",
+          intent: "specify slope",
+        },
+        {
+          en: "We're running a 3-inch DWV stack from the basement to the roof penetration.",
+          intent: "describe scope",
+        },
+        {
+          en: "Make sure you support the pipe every 4 feet — don't let it sag.",
+          intent: "support instruction",
+        },
+        {
+          en: "The vent needs to be within 6 feet of the trap — or we need a re-vent.",
+          intent: "vent code",
+        },
+        {
+          en: "Glue it, don't just push it — primer first, then cement, full rotation.",
+          intent: "joining instruction",
+        },
+        {
+          en: "Stub out the supply lines 6 inches past the finished wall plane.",
+          intent: "supply stubout",
+        },
+        {
+          en: "Leave a cleanout at every change of direction over 45 degrees.",
+          intent: "cleanout placement",
+        },
+        {
+          en: "Get a pressure test scheduled before drywall goes up.",
+          intent: "inspection timing",
+        },
       ],
       vocab: [
-        "DWV (drain-waste-vent)", "stack", "slope", "cleanout", "vent",
-        "stub-out", "P-trap", "ABS", "PVC", "wet wall",
+        "DWV (drain-waste-vent)",
+        "stack",
+        "slope",
+        "cleanout",
+        "vent",
+        "stub-out",
+        "P-trap",
+        "ABS",
+        "PVC",
+        "wet wall",
       ],
       challenges: [
         "Your apprentice installed a drain with too much slope — now it's a siphoning risk. Explain the problem and walk through the fix.",
@@ -406,11 +799,20 @@ const plumberModule: TradesModuleContent = {
         "You're relocating a toilet 3 feet from the existing stack. Walk through how you'll handle the new rough-in.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay, before you glue anything — let's walk the drain run first." },
+        {
+          speaker: "learner",
+          en: "Okay, before you glue anything — let's walk the drain run first.",
+        },
         { speaker: "ai", en: "I've got it all dry-fit. Looks good to me." },
-        { speaker: "learner", en: "Humor me. Lay your level on that horizontal run. What's the slope reading?" },
+        {
+          speaker: "learner",
+          en: "Humor me. Lay your level on that horizontal run. What's the slope reading?",
+        },
         { speaker: "ai", en: "It's showing about 3/8 inch per foot." },
-        { speaker: "learner", en: "That's too steep. You want 1/4 per foot — any more and the water outruns the solids and you get blockages. Pull the section back and re-support it." },
+        {
+          speaker: "learner",
+          en: "That's too steep. You want 1/4 per foot — any more and the water outruns the solids and you get blockages. Pull the section back and re-support it.",
+        },
         { speaker: "ai", en: "I thought steeper meant faster drainage." },
       ],
     },
@@ -418,22 +820,53 @@ const plumberModule: TradesModuleContent = {
       id: "fixture-installation",
       name: "Fixture Installation",
       emoji: "🚿",
-      blurb: "Finish work is where the homeowner sees results. Install it clean, test it right, and leave the customer confident.",
+      blurb:
+        "Finish work is where the homeowner sees results. Install it clean, test it right, and leave the customer confident.",
       counterpart: "Homeowner",
       learnerRole: "Plumber",
-      toneNote: "Professional and personable. Homeowners notice how you treat their space. Explain what you're doing, answer questions without condescension.",
+      toneNote:
+        "Professional and personable. Homeowners notice how you treat their space. Explain what you're doing, answer questions without condescension.",
       phrases: [
-        { en: "I'm going to shut off the supply valves under the sink before I start.", intent: "prep for install" },
-        { en: "This faucet uses a cartridge — if it ever drips, that's the first thing to replace.", intent: "educate customer" },
-        { en: "Make sure you caulk around the base of the toilet — it keeps sewer gas from getting in.", intent: "advise on finish" },
-        { en: "I'm going to run the water for two minutes and check under the cabinet — just want to be sure.", intent: "test and verify" },
-        { en: "That's your shutoff right there — if something ever leaks, that's the first thing to hit.", intent: "point out shutoff" },
-        { en: "The toilet should be rock solid — if you feel any movement, call us.", intent: "set performance expectation" },
-        { en: "Don't use silicone on the threads — use Teflon tape, two to three wraps.", intent: "installation tip" },
+        {
+          en: "I'm going to shut off the supply valves under the sink before I start.",
+          intent: "prep for install",
+        },
+        {
+          en: "This faucet uses a cartridge — if it ever drips, that's the first thing to replace.",
+          intent: "educate customer",
+        },
+        {
+          en: "Make sure you caulk around the base of the toilet — it keeps sewer gas from getting in.",
+          intent: "advise on finish",
+        },
+        {
+          en: "I'm going to run the water for two minutes and check under the cabinet — just want to be sure.",
+          intent: "test and verify",
+        },
+        {
+          en: "That's your shutoff right there — if something ever leaks, that's the first thing to hit.",
+          intent: "point out shutoff",
+        },
+        {
+          en: "The toilet should be rock solid — if you feel any movement, call us.",
+          intent: "set performance expectation",
+        },
+        {
+          en: "Don't use silicone on the threads — use Teflon tape, two to three wraps.",
+          intent: "installation tip",
+        },
       ],
       vocab: [
-        "cartridge", "wax ring", "supply line", "shutoff angle stop", "caulk",
-        "Teflon tape", "flange", "p-trap", "escutcheon", "aerator",
+        "cartridge",
+        "wax ring",
+        "supply line",
+        "shutoff angle stop",
+        "caulk",
+        "Teflon tape",
+        "flange",
+        "p-trap",
+        "escutcheon",
+        "aerator",
       ],
       challenges: [
         "After installing a faucet, you find a slow drip from the connection. Diagnose it in front of the homeowner without making them panic.",
@@ -441,11 +874,23 @@ const plumberModule: TradesModuleContent = {
         "A homeowner asks why you're using Teflon tape instead of pipe dope. Give a clear, confident answer.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay, I've got the new faucet in. Let me turn the supply back on and check everything." },
+        {
+          speaker: "learner",
+          en: "Okay, I've got the new faucet in. Let me turn the supply back on and check everything.",
+        },
         { speaker: "ai", en: "Looks great — it matches the rest of the hardware we picked out." },
-        { speaker: "learner", en: "Good. I'm running the hot and cold — you'll hear it fill the lines. Check under the cabinet with me." },
-        { speaker: "ai", en: "I see a little bit of moisture right there at the supply connection." },
-        { speaker: "learner", en: "Good catch. That's just the braided line wasn't seated all the way. Hand me my channel locks — I'll snug it up and we'll recheck." },
+        {
+          speaker: "learner",
+          en: "Good. I'm running the hot and cold — you'll hear it fill the lines. Check under the cabinet with me.",
+        },
+        {
+          speaker: "ai",
+          en: "I see a little bit of moisture right there at the supply connection.",
+        },
+        {
+          speaker: "learner",
+          en: "Good catch. That's just the braided line wasn't seated all the way. Hand me my channel locks — I'll snug it up and we'll recheck.",
+        },
         { speaker: "ai", en: "Is that a common problem?" },
       ],
     },
@@ -453,22 +898,53 @@ const plumberModule: TradesModuleContent = {
       id: "leak-diagnosis",
       name: "Leak Diagnosis",
       emoji: "💧",
-      blurb: "Water goes where it wants. Learn how to trace a leak back to its source — which is rarely where the damage appears.",
+      blurb:
+        "Water goes where it wants. Learn how to trace a leak back to its source — which is rarely where the damage appears.",
       counterpart: "Homeowner",
       learnerRole: "Plumber",
-      toneNote: "Investigative and methodical. Homeowners often misidentify the source. Lead them through the logic without dismissing their observations.",
+      toneNote:
+        "Investigative and methodical. Homeowners often misidentify the source. Lead them through the logic without dismissing their observations.",
       phrases: [
-        { en: "The stain is on the ceiling, but the leak is almost never directly above the stain.", intent: "set expectations" },
-        { en: "Let me do a dye test in the toilet — we'll know in 15 minutes if it's the flapper.", intent: "propose test" },
-        { en: "When does it drip — while water's running, or after everything's off?", intent: "narrow diagnosis" },
-        { en: "I'm going to cut a small inspection hole to trace the pipe path.", intent: "invasive diagnosis" },
-        { en: "That's condensation, not a leak — cold pipes sweat in humid weather.", intent: "correct misdiagnosis" },
-        { en: "The pressure coming in is over 80 PSI — that's too high and it stresses all your joints.", intent: "identify systemic cause" },
-        { en: "We'll need to check behind the shower valve — that's a common failure point for this brand.", intent: "identify suspect" },
+        {
+          en: "The stain is on the ceiling, but the leak is almost never directly above the stain.",
+          intent: "set expectations",
+        },
+        {
+          en: "Let me do a dye test in the toilet — we'll know in 15 minutes if it's the flapper.",
+          intent: "propose test",
+        },
+        {
+          en: "When does it drip — while water's running, or after everything's off?",
+          intent: "narrow diagnosis",
+        },
+        {
+          en: "I'm going to cut a small inspection hole to trace the pipe path.",
+          intent: "invasive diagnosis",
+        },
+        {
+          en: "That's condensation, not a leak — cold pipes sweat in humid weather.",
+          intent: "correct misdiagnosis",
+        },
+        {
+          en: "The pressure coming in is over 80 PSI — that's too high and it stresses all your joints.",
+          intent: "identify systemic cause",
+        },
+        {
+          en: "We'll need to check behind the shower valve — that's a common failure point for this brand.",
+          intent: "identify suspect",
+        },
       ],
       vocab: [
-        "dye test", "pressure gauge", "PRV (pressure reducing valve)", "flapper",
-        "sweating pipe", "pinhole leak", "shutoff test", "water meter", "inspection hole", "moisture meter",
+        "dye test",
+        "pressure gauge",
+        "PRV (pressure reducing valve)",
+        "flapper",
+        "sweating pipe",
+        "pinhole leak",
+        "shutoff test",
+        "water meter",
+        "inspection hole",
+        "moisture meter",
       ],
       challenges: [
         "A homeowner insists the upstairs toilet is leaking into the kitchen ceiling. Your inspection suggests it's actually the shower supply. Navigate the conversation.",
@@ -476,11 +952,23 @@ const plumberModule: TradesModuleContent = {
         "A homeowner had another plumber look at this leak and was told it was 'nothing.' Now it's gotten worse. Handle the delicate situation professionally.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "So you said the stain showed up about a week ago. Is it getting bigger or staying the same size?" },
-        { speaker: "ai", en: "It looks a little bigger to me, honestly. We've been scared to use the upstairs bathroom." },
-        { speaker: "learner", en: "That's actually the right call. Let me run a quick test — I'm going to flush the toilet once and have you watch the stain while I watch up here." },
+        {
+          speaker: "learner",
+          en: "So you said the stain showed up about a week ago. Is it getting bigger or staying the same size?",
+        },
+        {
+          speaker: "ai",
+          en: "It looks a little bigger to me, honestly. We've been scared to use the upstairs bathroom.",
+        },
+        {
+          speaker: "learner",
+          en: "That's actually the right call. Let me run a quick test — I'm going to flush the toilet once and have you watch the stain while I watch up here.",
+        },
         { speaker: "ai", en: "Okay — I just flushed it. Did you see anything?" },
-        { speaker: "learner", en: "Yeah — it's dripping right after the flush. That points to the wax ring or the flange seal, not the supply. Good news: that's a contained fix." },
+        {
+          speaker: "learner",
+          en: "Yeah — it's dripping right after the flush. That points to the wax ring or the flange seal, not the supply. Good news: that's a contained fix.",
+        },
         { speaker: "ai", en: "Does that mean you have to tear out the ceiling?" },
       ],
     },
@@ -488,22 +976,50 @@ const plumberModule: TradesModuleContent = {
       id: "permit-inspection",
       name: "Permit & Inspection",
       emoji: "📝",
-      blurb: "Pulling a permit and passing inspection is part of the job. Learn how to talk to the inspector and keep the project moving.",
+      blurb:
+        "Pulling a permit and passing inspection is part of the job. Learn how to talk to the inspector and keep the project moving.",
       counterpart: "Plumbing Inspector",
       learnerRole: "Licensed Plumber",
-      toneNote: "Respectful and factual. Inspectors have authority but also want the job to pass. Be organized, have your documentation, and don't guess on code questions.",
+      toneNote:
+        "Respectful and factual. Inspectors have authority but also want the job to pass. Be organized, have your documentation, and don't guess on code questions.",
       phrases: [
-        { en: "I've got my permit pulled and rough-in is ready for inspection.", intent: "request inspection" },
+        {
+          en: "I've got my permit pulled and rough-in is ready for inspection.",
+          intent: "request inspection",
+        },
         { en: "All DWV lines are at 10 PSI air test and holding.", intent: "report test results" },
-        { en: "The trap arm length is within code — I measured it at 4 feet to the vent.", intent: "confirm compliance" },
-        { en: "I can reference the UPC if you want — section 904 covers vent sizing.", intent: "cite code" },
-        { en: "I'll fix the cleanout location and call for re-inspection by tomorrow.", intent: "accept correction" },
-        { en: "The supply lines passed pressure test at 100 PSI for 15 minutes.", intent: "confirm pressure test" },
-        { en: "Can I get your name and the correction items in writing, please?", intent: "document correction" },
+        {
+          en: "The trap arm length is within code — I measured it at 4 feet to the vent.",
+          intent: "confirm compliance",
+        },
+        {
+          en: "I can reference the UPC if you want — section 904 covers vent sizing.",
+          intent: "cite code",
+        },
+        {
+          en: "I'll fix the cleanout location and call for re-inspection by tomorrow.",
+          intent: "accept correction",
+        },
+        {
+          en: "The supply lines passed pressure test at 100 PSI for 15 minutes.",
+          intent: "confirm pressure test",
+        },
+        {
+          en: "Can I get your name and the correction items in writing, please?",
+          intent: "document correction",
+        },
       ],
       vocab: [
-        "UPC (Uniform Plumbing Code)", "air test", "pressure test", "trap arm", "vent stack",
-        "cleanout", "re-inspection", "permit", "licensed plumber", "as-built",
+        "UPC (Uniform Plumbing Code)",
+        "air test",
+        "pressure test",
+        "trap arm",
+        "vent stack",
+        "cleanout",
+        "re-inspection",
+        "permit",
+        "licensed plumber",
+        "as-built",
       ],
       challenges: [
         "An inspector flags your vent stack for insufficient diameter. Pull the code reference and defend your installation.",
@@ -511,34 +1027,80 @@ const plumberModule: TradesModuleContent = {
         "A GC pressures you to have the inspector sign off before you've finished the pressure test. Hold your ground.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Good morning — I'm ready for the plumbing rough-in inspection on unit 4." },
+        {
+          speaker: "learner",
+          en: "Good morning — I'm ready for the plumbing rough-in inspection on unit 4.",
+        },
         { speaker: "ai", en: "Morning. Is your air test holding?" },
-        { speaker: "learner", en: "Yes sir — DWV is at 10 PSI, been holding for an hour. Supply is tested to 100 PSI — 15-minute hold, no drop." },
-        { speaker: "ai", en: "Good. Let me walk the stack. I'm looking at this vent on the master bath — what's the diameter here?" },
-        { speaker: "learner", en: "That's a 2-inch individual vent serving the lav and the tub. The stack is 3-inch." },
-        { speaker: "ai", en: "The tub drain is a 1-1/2. Your vent needs to be at least 1-1/4 to match, but I'd rather see it as big as the drain. Who sized this?" },
+        {
+          speaker: "learner",
+          en: "Yes sir — DWV is at 10 PSI, been holding for an hour. Supply is tested to 100 PSI — 15-minute hold, no drop.",
+        },
+        {
+          speaker: "ai",
+          en: "Good. Let me walk the stack. I'm looking at this vent on the master bath — what's the diameter here?",
+        },
+        {
+          speaker: "learner",
+          en: "That's a 2-inch individual vent serving the lav and the tub. The stack is 3-inch.",
+        },
+        {
+          speaker: "ai",
+          en: "The tub drain is a 1-1/2. Your vent needs to be at least 1-1/4 to match, but I'd rather see it as big as the drain. Who sized this?",
+        },
       ],
     },
     {
       id: "parts-order",
       name: "Parts Order",
       emoji: "🏪",
-      blurb: "Knowing part numbers, specs, and where to get things fast is half the job in service plumbing. Don't lose a day waiting for the wrong part.",
+      blurb:
+        "Knowing part numbers, specs, and where to get things fast is half the job in service plumbing. Don't lose a day waiting for the wrong part.",
       counterpart: "Supply House Counter Rep",
       learnerRole: "Plumber",
-      toneNote: "Quick and precise. Supply house conversations are fast-paced. Know your specs and don't waste the counter rep's time.",
+      toneNote:
+        "Quick and precise. Supply house conversations are fast-paced. Know your specs and don't waste the counter rep's time.",
       phrases: [
-        { en: "I need a Kohler Coralais cartridge — the one with the two tabs on top.", intent: "specify part" },
-        { en: "What's the OD on that fitting? I need to match my existing line.", intent: "verify dimension" },
-        { en: "Do you have a 3/4-inch ball valve, full port, sweat ends, in stock?", intent: "check stock" },
-        { en: "I'll take two of those. Can you put them on my account?", intent: "charge to account" },
-        { en: "I need a wax ring with a horn for a 3-inch closet flange.", intent: "specify consumable" },
-        { en: "Can you pull a Moen 1225 — homeowner has a Posi-Temp single-handle.", intent: "identify cartridge" },
-        { en: "If you don't have it, can you have it transferred from the other branch by noon?", intent: "request transfer" },
+        {
+          en: "I need a Kohler Coralais cartridge — the one with the two tabs on top.",
+          intent: "specify part",
+        },
+        {
+          en: "What's the OD on that fitting? I need to match my existing line.",
+          intent: "verify dimension",
+        },
+        {
+          en: "Do you have a 3/4-inch ball valve, full port, sweat ends, in stock?",
+          intent: "check stock",
+        },
+        {
+          en: "I'll take two of those. Can you put them on my account?",
+          intent: "charge to account",
+        },
+        {
+          en: "I need a wax ring with a horn for a 3-inch closet flange.",
+          intent: "specify consumable",
+        },
+        {
+          en: "Can you pull a Moen 1225 — homeowner has a Posi-Temp single-handle.",
+          intent: "identify cartridge",
+        },
+        {
+          en: "If you don't have it, can you have it transferred from the other branch by noon?",
+          intent: "request transfer",
+        },
       ],
       vocab: [
-        "OD (outside diameter)", "ball valve", "full port", "sweat ends", "wax ring",
-        "cartridge", "Posi-Temp", "closet flange", "supply house", "will-call",
+        "OD (outside diameter)",
+        "ball valve",
+        "full port",
+        "sweat ends",
+        "wax ring",
+        "cartridge",
+        "Posi-Temp",
+        "closet flange",
+        "supply house",
+        "will-call",
       ],
       challenges: [
         "You're at the counter and realize you grabbed the wrong faucet model number. Get help identifying the right cartridge using only a description of the faucet.",
@@ -547,34 +1109,77 @@ const plumberModule: TradesModuleContent = {
       ],
       sampleConversation: [
         { speaker: "learner", en: "Hey — I need a Moen 1225B cartridge. You got it?" },
-        { speaker: "ai", en: "Let me check. Yeah, I've got two in stock. Standard or the B-series?" },
+        {
+          speaker: "ai",
+          en: "Let me check. Yeah, I've got two in stock. Standard or the B-series?",
+        },
         { speaker: "learner", en: "B-series — it's a Posi-Temp valve, single-handle shower." },
         { speaker: "ai", en: "Gotcha. That'll be $22.50. You want the retainer clip with it?" },
-        { speaker: "learner", en: "Yeah, throw it in. And I need a 3/4-inch SharkBite ball valve while I'm here — full port." },
-        { speaker: "ai", en: "I've got the 1/2-inch in SharkBite but the 3/4 full port I only have in press-fit right now. Will that work?" },
+        {
+          speaker: "learner",
+          en: "Yeah, throw it in. And I need a 3/4-inch SharkBite ball valve while I'm here — full port.",
+        },
+        {
+          speaker: "ai",
+          en: "I've got the 1/2-inch in SharkBite but the 3/4 full port I only have in press-fit right now. Will that work?",
+        },
       ],
     },
     {
       id: "customer-estimate",
       name: "Customer Estimate",
       emoji: "💰",
-      blurb: "Presenting a price is a skill. Be clear about scope, set expectations on timing, and give the customer confidence they're making a good decision.",
+      blurb:
+        "Presenting a price is a skill. Be clear about scope, set expectations on timing, and give the customer confidence they're making a good decision.",
       counterpart: "Homeowner",
       learnerRole: "Plumber / Estimator",
-      toneNote: "Professional and transparent. Don't bury the price. Explain what drives the cost. Let the customer say yes or no without pressure.",
+      toneNote:
+        "Professional and transparent. Don't bury the price. Explain what drives the cost. Let the customer say yes or no without pressure.",
       phrases: [
-        { en: "Based on what I've seen, this is going to be a one-day job.", intent: "set time expectation" },
-        { en: "The estimate for parts and labor is $485 — that includes everything to fix this leak.", intent: "present price" },
-        { en: "If we find something unexpected inside the wall, I'll call you before we go any further.", intent: "set change order protocol" },
-        { en: "This price is good for 30 days. If you want to move forward, just give us a call.", intent: "quote validity" },
-        { en: "The biggest cost here is labor — it's a tight space and it'll take us about 3 hours.", intent: "explain cost driver" },
-        { en: "I can't do it cheaper without knowing what's in the wall — I don't want to low-ball you and then surprise you.", intent: "defend price" },
-        { en: "We do offer a senior discount — 10% off parts if that helps.", intent: "offer discount" },
-        { en: "We're licensed, bonded, and insured — that's part of what you're paying for.", intent: "justify value" },
+        {
+          en: "Based on what I've seen, this is going to be a one-day job.",
+          intent: "set time expectation",
+        },
+        {
+          en: "The estimate for parts and labor is $485 — that includes everything to fix this leak.",
+          intent: "present price",
+        },
+        {
+          en: "If we find something unexpected inside the wall, I'll call you before we go any further.",
+          intent: "set change order protocol",
+        },
+        {
+          en: "This price is good for 30 days. If you want to move forward, just give us a call.",
+          intent: "quote validity",
+        },
+        {
+          en: "The biggest cost here is labor — it's a tight space and it'll take us about 3 hours.",
+          intent: "explain cost driver",
+        },
+        {
+          en: "I can't do it cheaper without knowing what's in the wall — I don't want to low-ball you and then surprise you.",
+          intent: "defend price",
+        },
+        {
+          en: "We do offer a senior discount — 10% off parts if that helps.",
+          intent: "offer discount",
+        },
+        {
+          en: "We're licensed, bonded, and insured — that's part of what you're paying for.",
+          intent: "justify value",
+        },
       ],
       vocab: [
-        "estimate", "change order", "time and material", "flat rate", "scope of work",
-        "parts and labor", "contingency", "warranty", "bonded", "licensed",
+        "estimate",
+        "change order",
+        "time and material",
+        "flat rate",
+        "scope of work",
+        "parts and labor",
+        "contingency",
+        "warranty",
+        "bonded",
+        "licensed",
       ],
       challenges: [
         "A homeowner says they got a quote $200 cheaper from another plumber. Respond without badmouthing the competition.",
@@ -582,11 +1187,20 @@ const plumberModule: TradesModuleContent = {
         "A homeowner asks for an estimate over the phone without a site visit. Explain why you need to see it first.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay, I've had a chance to look at everything. Here's what I'm seeing." },
+        {
+          speaker: "learner",
+          en: "Okay, I've had a chance to look at everything. Here's what I'm seeing.",
+        },
         { speaker: "ai", en: "Is it bad?" },
-        { speaker: "learner", en: "It's manageable. The main line has a root intrusion about 40 feet out. We need to hydro-jet it and put in a clean-out access point. I'm looking at $650 for the job." },
+        {
+          speaker: "learner",
+          en: "It's manageable. The main line has a root intrusion about 40 feet out. We need to hydro-jet it and put in a clean-out access point. I'm looking at $650 for the job.",
+        },
         { speaker: "ai", en: "That's more than I was expecting. Is there a cheaper option?" },
-        { speaker: "learner", en: "We could just snake it today for $250 — but I've done that on roots and they come back within 6 months. The hydro-jet clears it for 2-3 years and you get a camera video showing the result." },
+        {
+          speaker: "learner",
+          en: "We could just snake it today for $250 — but I've done that on roots and they come back within 6 months. The hydro-jet clears it for 2-3 years and you get a camera video showing the result.",
+        },
         { speaker: "ai", en: "Okay, that makes sense. Can you do it today?" },
       ],
     },
@@ -596,41 +1210,80 @@ const plumberModule: TradesModuleContent = {
       category: "Pipe Types & Fittings",
       emoji: "🔩",
       words: [
-        "PVC", "ABS", "copper", "PEX", "CPVC",
-        "elbow", "coupling", "tee", "reducer", "union",
+        "PVC",
+        "ABS",
+        "copper",
+        "PEX",
+        "CPVC",
+        "elbow",
+        "coupling",
+        "tee",
+        "reducer",
+        "union",
       ],
     },
     {
       category: "DWV System",
       emoji: "🚰",
       words: [
-        "P-trap", "vent stack", "cleanout", "wye", "slope",
-        "air admittance valve", "wet vent", "dry vent", "stack", "drain line",
+        "P-trap",
+        "vent stack",
+        "cleanout",
+        "wye",
+        "slope",
+        "air admittance valve",
+        "wet vent",
+        "dry vent",
+        "stack",
+        "drain line",
       ],
     },
     {
       category: "Supply & Pressure",
       emoji: "💧",
       words: [
-        "PRV (pressure reducing valve)", "shutoff valve", "angle stop", "ball valve",
-        "gate valve", "water pressure", "expansion tank", "supply line", "stub-out", "manifold",
+        "PRV (pressure reducing valve)",
+        "shutoff valve",
+        "angle stop",
+        "ball valve",
+        "gate valve",
+        "water pressure",
+        "expansion tank",
+        "supply line",
+        "stub-out",
+        "manifold",
       ],
     },
     {
       category: "Service & Diagnosis",
       emoji: "🔍",
       words: [
-        "dye test", "smoke test", "camera inspection", "hydro-jetting", "auger",
-        "drain snake", "moisture meter", "leak detector", "backflow preventer", "water hammer",
+        "dye test",
+        "smoke test",
+        "camera inspection",
+        "hydro-jetting",
+        "auger",
+        "drain snake",
+        "moisture meter",
+        "leak detector",
+        "backflow preventer",
+        "water hammer",
       ],
     },
     {
       category: "Jobsite Terms (Bilingual)",
       emoji: "🗣️",
       words: [
-        "la llave maestra", "shut off the water", "el desagüe", "check for leaks",
-        "la trampa / the trap", "pon cinta teflon", "más presión", "la cañería",
-        "tighten the connection", "aguas / watch out",
+        "la llave maestra",
+        "shut off the water",
+        "el desagüe",
+        "check for leaks",
+        "la trampa / the trap",
+        "pon cinta teflon",
+        "más presión",
+        "la cañería",
+        "tighten the connection",
+        "aguas / watch out",
       ],
     },
   ],
@@ -647,23 +1300,51 @@ const drywallModule: TradesModuleContent = {
       id: "hang-day-brief",
       name: "Hang Day Brief",
       emoji: "📋",
-      blurb: "A good hang day starts with a plan. Assign lift heights, sequence rooms, and make sure everyone knows the sheet size and ceiling height before the truck gets unloaded.",
+      blurb:
+        "A good hang day starts with a plan. Assign lift heights, sequence rooms, and make sure everyone knows the sheet size and ceiling height before the truck gets unloaded.",
       counterpart: "Drywall Hanger",
       learnerRole: "Drywall Foreman",
-      toneNote: "Fast and direct. Drywall crews move quick. The brief should be short — job assignments, not long explanations. Use room names and directions.",
+      toneNote:
+        "Fast and direct. Drywall crews move quick. The brief should be short — job assignments, not long explanations. Use room names and directions.",
       phrases: [
         { en: "Ceilings first in every room — no exceptions.", intent: "set sequence rule" },
-        { en: "We're using 5/8 throughout — this is a Type X fire-rated assembly.", intent: "specify board" },
-        { en: "Bedrooms get 12-foot boards — keep your seams off the window center.", intent: "layout instruction" },
-        { en: "Don't let the edges land on the same stud on back-to-back rooms.", intent: "stagger seams" },
-        { en: "Use the lift on the great room ceiling — no one's holding sheet rock over their heads all day.", intent: "equipment instruction" },
+        {
+          en: "We're using 5/8 throughout — this is a Type X fire-rated assembly.",
+          intent: "specify board",
+        },
+        {
+          en: "Bedrooms get 12-foot boards — keep your seams off the window center.",
+          intent: "layout instruction",
+        },
+        {
+          en: "Don't let the edges land on the same stud on back-to-back rooms.",
+          intent: "stagger seams",
+        },
+        {
+          en: "Use the lift on the great room ceiling — no one's holding sheet rock over their heads all day.",
+          intent: "equipment instruction",
+        },
         { en: "Screw pattern is 12 inches on walls, 8 on ceilings.", intent: "fastener spacing" },
-        { en: "Stack the boards inside the rooms before we start — don't stage them in the hall.", intent: "material staging" },
-        { en: "We're done when the last sheet is up and tagged, not when you're tired.", intent: "set completion standard" },
+        {
+          en: "Stack the boards inside the rooms before we start — don't stage them in the hall.",
+          intent: "material staging",
+        },
+        {
+          en: "We're done when the last sheet is up and tagged, not when you're tired.",
+          intent: "set completion standard",
+        },
       ],
       vocab: [
-        "Type X", "fire-rated", "lift (drywall panel lift)", "screw pattern", "butt joint",
-        "taper joint", "stagger", "field cut", "header", "load bearing",
+        "Type X",
+        "fire-rated",
+        "lift (drywall panel lift)",
+        "screw pattern",
+        "butt joint",
+        "taper joint",
+        "stagger",
+        "field cut",
+        "header",
+        "load bearing",
       ],
       challenges: [
         "Two hangers are about to run 4x8 sheets in a room where 4x12s fit — stopping them wastes sheets but saves taping joints. Make the call and explain it.",
@@ -671,11 +1352,20 @@ const drywallModule: TradesModuleContent = {
         "A hanger put a butt joint at the center of a wide wall — explain why that's a problem and how to fix it.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Alright — listen up. We've got 22 squares today across four rooms. Here's the order." },
+        {
+          speaker: "learner",
+          en: "Alright — listen up. We've got 22 squares today across four rooms. Here's the order.",
+        },
         { speaker: "ai", en: "Are we doing ceilings first or walls?" },
-        { speaker: "learner", en: "Ceilings first, always. You run walls without a ceiling board, you've got no backing at the top of the wall when you tape. Master bedroom starts, then we work north to south." },
+        {
+          speaker: "learner",
+          en: "Ceilings first, always. You run walls without a ceiling board, you've got no backing at the top of the wall when you tape. Master bedroom starts, then we work north to south.",
+        },
         { speaker: "ai", en: "What board in the master — 12-foot?" },
-        { speaker: "learner", en: "Yeah. And keep your butt joints off the center of the ceiling. Any butt joint goes within 16 inches of the wall. Center seams are where cracks show up later." },
+        {
+          speaker: "learner",
+          en: "Yeah. And keep your butt joints off the center of the ceiling. Any butt joint goes within 16 inches of the wall. Center seams are where cracks show up later.",
+        },
         { speaker: "ai", en: "Got it. What's the screw pattern?" },
       ],
     },
@@ -683,23 +1373,57 @@ const drywallModule: TradesModuleContent = {
       id: "taping-bedding",
       name: "Taping & Bedding",
       emoji: "🖌️",
-      blurb: "Mud work is a craft. Learn the language of coats, tools, and timing — and why rushing the tape coat creates problems that show up through the paint.",
+      blurb:
+        "Mud work is a craft. Learn the language of coats, tools, and timing — and why rushing the tape coat creates problems that show up through the paint.",
       counterpart: "Taper Apprentice",
       learnerRole: "Lead Taper",
-      toneNote: "Methodical and exacting. Taping is technique-heavy. Be precise about coat thickness, drying time, and tool choice. Don't skip the why.",
+      toneNote:
+        "Methodical and exacting. Taping is technique-heavy. Be precise about coat thickness, drying time, and tool choice. Don't skip the why.",
       phrases: [
-        { en: "First coat is all tape — get it embedded, scrape it flat, and walk away.", intent: "tape coat instruction" },
-        { en: "The tape bubbles because you didn't put enough mud under it. Skim more on the next pass.", intent: "diagnose bubble" },
-        { en: "Let this coat dry bone dry before you touch it — 24 hours minimum in cold weather.", intent: "drying time" },
-        { en: "Your second coat, widen out about 4 inches on each side of the tape.", intent: "feather second coat" },
-        { en: "Use the 10-inch knife on the flat joints, the 6-inch in the corners.", intent: "tool selection" },
-        { en: "Don't try to sand out mud that isn't dry — you'll dig yourself a hole.", intent: "prevent mistake" },
-        { en: "Hot mud sets in 45 minutes — once you mix it, move.", intent: "setting compound timing" },
-        { en: "Corners need two passes — one side, dry, then the other. Never both wet.", intent: "corner technique" },
+        {
+          en: "First coat is all tape — get it embedded, scrape it flat, and walk away.",
+          intent: "tape coat instruction",
+        },
+        {
+          en: "The tape bubbles because you didn't put enough mud under it. Skim more on the next pass.",
+          intent: "diagnose bubble",
+        },
+        {
+          en: "Let this coat dry bone dry before you touch it — 24 hours minimum in cold weather.",
+          intent: "drying time",
+        },
+        {
+          en: "Your second coat, widen out about 4 inches on each side of the tape.",
+          intent: "feather second coat",
+        },
+        {
+          en: "Use the 10-inch knife on the flat joints, the 6-inch in the corners.",
+          intent: "tool selection",
+        },
+        {
+          en: "Don't try to sand out mud that isn't dry — you'll dig yourself a hole.",
+          intent: "prevent mistake",
+        },
+        {
+          en: "Hot mud sets in 45 minutes — once you mix it, move.",
+          intent: "setting compound timing",
+        },
+        {
+          en: "Corners need two passes — one side, dry, then the other. Never both wet.",
+          intent: "corner technique",
+        },
       ],
       vocab: [
-        "all-purpose mud", "setting compound (hot mud)", "joint tape", "paper tape",
-        "mesh tape", "feathering", "crown", "taping knife", "corner bead", "coat (first/second/finish)",
+        "all-purpose mud",
+        "setting compound (hot mud)",
+        "joint tape",
+        "paper tape",
+        "mesh tape",
+        "feathering",
+        "crown",
+        "taping knife",
+        "corner bead",
+        "coat (first/second/finish)",
       ],
       challenges: [
         "An apprentice used mesh tape on a butt joint and it's cracking. Explain the correct tape choice and what to do with the bad joint.",
@@ -709,9 +1433,15 @@ const drywallModule: TradesModuleContent = {
       sampleConversation: [
         { speaker: "learner", en: "Okay — look at this joint. What do you see wrong?" },
         { speaker: "ai", en: "It looks a little rough. There's kind of a ridge on one side." },
-        { speaker: "learner", en: "Right — you crowned it. That means the center is higher than the edges. When you paint, light catches it and you can see the whole joint from across the room." },
+        {
+          speaker: "learner",
+          en: "Right — you crowned it. That means the center is higher than the edges. When you paint, light catches it and you can see the whole joint from across the room.",
+        },
         { speaker: "ai", en: "How do I fix it?" },
-        { speaker: "learner", en: "Sand it flat when it's completely dry — not damp. Then skim another thin coat and feather it out wider on both sides. The trick is in the width, not the depth." },
+        {
+          speaker: "learner",
+          en: "Sand it flat when it's completely dry — not damp. Then skim another thin coat and feather it out wider on both sides. The trick is in the width, not the depth.",
+        },
         { speaker: "ai", en: "Should I use the 6-inch or the 10-inch for that?" },
       ],
     },
@@ -719,22 +1449,53 @@ const drywallModule: TradesModuleContent = {
       id: "finish-coat",
       name: "Finish Coat",
       emoji: "✨",
-      blurb: "The finish coat is what customers see. Learn to skim flat, eliminate ridges, and leave a surface ready for paint — without leaving tool marks.",
+      blurb:
+        "The finish coat is what customers see. Learn to skim flat, eliminate ridges, and leave a surface ready for paint — without leaving tool marks.",
       counterpart: "GC / Project Manager",
       learnerRole: "Lead Finisher",
-      toneNote: "Confident and professional. GCs and homeowners inspect finish work under raking light. Set clear expectations about what Level 5 means vs. Level 4.",
+      toneNote:
+        "Confident and professional. GCs and homeowners inspect finish work under raking light. Set clear expectations about what Level 5 means vs. Level 4.",
       phrases: [
-        { en: "This is a Level 4 finish — all joints and fasteners, no skim coat on the face.", intent: "set finish level" },
-        { en: "If you want Level 5, we need to skim the entire board surface — that's a separate price.", intent: "upsell finish level" },
-        { en: "Shine a work light at a low angle before you call it done — it shows everything.", intent: "inspection technique" },
-        { en: "That's called a picture frame — where the mud stops at the board edge. We need to feather it out.", intent: "identify defect" },
-        { en: "The finish coat goes on thin — you're filling, not building.", intent: "coat technique" },
-        { en: "This wall needs a skim — the board surface is too rough for semi-gloss.", intent: "recommend skim" },
-        { en: "Don't sand the paper face — once you cut through it, you've got a repair job.", intent: "sanding warning" },
+        {
+          en: "This is a Level 4 finish — all joints and fasteners, no skim coat on the face.",
+          intent: "set finish level",
+        },
+        {
+          en: "If you want Level 5, we need to skim the entire board surface — that's a separate price.",
+          intent: "upsell finish level",
+        },
+        {
+          en: "Shine a work light at a low angle before you call it done — it shows everything.",
+          intent: "inspection technique",
+        },
+        {
+          en: "That's called a picture frame — where the mud stops at the board edge. We need to feather it out.",
+          intent: "identify defect",
+        },
+        {
+          en: "The finish coat goes on thin — you're filling, not building.",
+          intent: "coat technique",
+        },
+        {
+          en: "This wall needs a skim — the board surface is too rough for semi-gloss.",
+          intent: "recommend skim",
+        },
+        {
+          en: "Don't sand the paper face — once you cut through it, you've got a repair job.",
+          intent: "sanding warning",
+        },
       ],
       vocab: [
-        "Level 4 finish", "Level 5 finish", "skim coat", "raking light", "feather",
-        "picture frame (defect)", "lap mark", "hot spot", "sandpaper grit", "primer",
+        "Level 4 finish",
+        "Level 5 finish",
+        "skim coat",
+        "raking light",
+        "feather",
+        "picture frame (defect)",
+        "lap mark",
+        "hot spot",
+        "sandpaper grit",
+        "primer",
       ],
       challenges: [
         "A GC is pushing for Level 5 finish but hasn't budgeted for it. Have the conversation about scope and price.",
@@ -742,11 +1503,23 @@ const drywallModule: TradesModuleContent = {
         "Paint was applied before the finish coat dried completely. Explain what happened and what needs to be redone.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "We're ready for your walk-through on the living room. I'll be honest — shine a light on that north wall at a low angle first." },
+        {
+          speaker: "learner",
+          en: "We're ready for your walk-through on the living room. I'll be honest — shine a light on that north wall at a low angle first.",
+        },
         { speaker: "ai", en: "Okay — I see some ridges right there near the top corner." },
-        { speaker: "learner", en: "Yeah — that's a lap mark from the second coat. We didn't feather far enough. We'll knock that back and hit it again today — dry by tomorrow." },
-        { speaker: "ai", en: "The painter is scheduled for Wednesday. Is that still going to work?" },
-        { speaker: "learner", en: "If it's warm enough in here, yes. You need at least 65 degrees and 24 hours of dry time. Can you confirm the heat is on?" },
+        {
+          speaker: "learner",
+          en: "Yeah — that's a lap mark from the second coat. We didn't feather far enough. We'll knock that back and hit it again today — dry by tomorrow.",
+        },
+        {
+          speaker: "ai",
+          en: "The painter is scheduled for Wednesday. Is that still going to work?",
+        },
+        {
+          speaker: "learner",
+          en: "If it's warm enough in here, yes. You need at least 65 degrees and 24 hours of dry time. Can you confirm the heat is on?",
+        },
         { speaker: "ai", en: "I'll have the HVAC guys keep it at 68. Will that be enough?" },
       ],
     },
@@ -754,22 +1527,53 @@ const drywallModule: TradesModuleContent = {
       id: "texture",
       name: "Texture",
       emoji: "🎨",
-      blurb: "Orange peel, knockdown, skip trowel — matching existing texture is one of the hardest finish skills. Learn to talk through patterns and test panels.",
+      blurb:
+        "Orange peel, knockdown, skip trowel — matching existing texture is one of the hardest finish skills. Learn to talk through patterns and test panels.",
       counterpart: "Homeowner",
       learnerRole: "Drywall Finisher",
-      toneNote: "Patient and visual. Texture is hard to describe — use comparisons, references, and always recommend a test panel before committing.",
+      toneNote:
+        "Patient and visual. Texture is hard to describe — use comparisons, references, and always recommend a test panel before committing.",
       phrases: [
-        { en: "Before I spray the whole room, let me do a test panel so you can approve the pattern.", intent: "propose test panel" },
-        { en: "What you've got is orange peel — medium splatter. I can match that.", intent: "identify existing texture" },
-        { en: "Knockdown takes more skill to match — the trowel pattern is different every time.", intent: "set complexity expectation" },
-        { en: "Is there another room in the house I can look at that hasn't been painted over?", intent: "find texture reference" },
-        { en: "The texture needs to dry before we paint — at least an hour for orange peel, longer for knockdown.", intent: "dry time" },
-        { en: "I'm going to adjust the air pressure — it was coming out too heavy.", intent: "adjust spray equipment" },
-        { en: "If you want smooth walls throughout, we'd have to skim the existing texture off first. That's a bigger job.", intent: "scope change" },
+        {
+          en: "Before I spray the whole room, let me do a test panel so you can approve the pattern.",
+          intent: "propose test panel",
+        },
+        {
+          en: "What you've got is orange peel — medium splatter. I can match that.",
+          intent: "identify existing texture",
+        },
+        {
+          en: "Knockdown takes more skill to match — the trowel pattern is different every time.",
+          intent: "set complexity expectation",
+        },
+        {
+          en: "Is there another room in the house I can look at that hasn't been painted over?",
+          intent: "find texture reference",
+        },
+        {
+          en: "The texture needs to dry before we paint — at least an hour for orange peel, longer for knockdown.",
+          intent: "dry time",
+        },
+        {
+          en: "I'm going to adjust the air pressure — it was coming out too heavy.",
+          intent: "adjust spray equipment",
+        },
+        {
+          en: "If you want smooth walls throughout, we'd have to skim the existing texture off first. That's a bigger job.",
+          intent: "scope change",
+        },
       ],
       vocab: [
-        "orange peel", "knockdown", "skip trowel", "splatter", "hopper gun",
-        "air pressure", "consistency (mud)", "test panel", "lace texture", "Santa Fe finish",
+        "orange peel",
+        "knockdown",
+        "skip trowel",
+        "splatter",
+        "hopper gun",
+        "air pressure",
+        "consistency (mud)",
+        "test panel",
+        "lace texture",
+        "Santa Fe finish",
       ],
       challenges: [
         "A homeowner wants you to match a texture that was applied 15 years ago and painted 3 times. Set realistic expectations.",
@@ -777,11 +1581,23 @@ const drywallModule: TradesModuleContent = {
         "A homeowner doesn't know what texture they have and wants you to guess from a photo. Walk them through how you'd assess it in person.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Before we talk about the repair, can you show me a wall in another room that still has the original texture?" },
-        { speaker: "ai", en: "Sure — this hallway here hasn't been repainted since the house was built." },
-        { speaker: "learner", en: "Okay, that's a medium orange peel. I can match that. I'll do a test patch on a scrap board first so you can hold it up to the wall and approve it before I spray." },
+        {
+          speaker: "learner",
+          en: "Before we talk about the repair, can you show me a wall in another room that still has the original texture?",
+        },
+        {
+          speaker: "ai",
+          en: "Sure — this hallway here hasn't been repainted since the house was built.",
+        },
+        {
+          speaker: "learner",
+          en: "Okay, that's a medium orange peel. I can match that. I'll do a test patch on a scrap board first so you can hold it up to the wall and approve it before I spray.",
+        },
         { speaker: "ai", en: "That sounds good. What if it doesn't match?" },
-        { speaker: "learner", en: "Then I adjust the gun — air pressure and distance from the wall change the pattern. Give me 10 minutes to dial it in. You won't see a test panel before I commit to the room." },
+        {
+          speaker: "learner",
+          en: "Then I adjust the gun — air pressure and distance from the wall change the pattern. Give me 10 minutes to dial it in. You won't see a test panel before I commit to the room.",
+        },
         { speaker: "ai", en: "What about the popcorn in the bedroom? Can you match that too?" },
       ],
     },
@@ -789,22 +1605,53 @@ const drywallModule: TradesModuleContent = {
       id: "inspection-prep",
       name: "Inspection Prep",
       emoji: "🔦",
-      blurb: "Whether it's a GC walk or a city inspection, getting to a clean sign-off means catching your own issues first.",
+      blurb:
+        "Whether it's a GC walk or a city inspection, getting to a clean sign-off means catching your own issues first.",
       counterpart: "Project Manager",
       learnerRole: "Drywall Foreman",
-      toneNote: "Self-critical and proactive. The best walk-through is one where you already flagged everything. Never let the PM find something you missed.",
+      toneNote:
+        "Self-critical and proactive. The best walk-through is one where you already flagged everything. Never let the PM find something you missed.",
       phrases: [
-        { en: "I walked it under raking light this morning — I've already got a punch list.", intent: "proactive inspection" },
-        { en: "We've got four fastener pops and two corner cracks to address.", intent: "report defects" },
-        { en: "That crack at the window corner is stress-related — we'll V-cut it, tape it, and it should hold.", intent: "diagnose and plan repair" },
-        { en: "Everything is Level 4 as specified — if the spec changes, I need it in writing.", intent: "protect scope" },
-        { en: "The bathroom ceiling will need another pass — there's a shadow seam I don't like.", intent: "self-flag defect" },
-        { en: "We're ready for prime — all fasteners set and filled, no tape showing.", intent: "confirm readiness" },
-        { en: "I'll have the punch list items done by end of day Thursday.", intent: "commit to timeline" },
+        {
+          en: "I walked it under raking light this morning — I've already got a punch list.",
+          intent: "proactive inspection",
+        },
+        {
+          en: "We've got four fastener pops and two corner cracks to address.",
+          intent: "report defects",
+        },
+        {
+          en: "That crack at the window corner is stress-related — we'll V-cut it, tape it, and it should hold.",
+          intent: "diagnose and plan repair",
+        },
+        {
+          en: "Everything is Level 4 as specified — if the spec changes, I need it in writing.",
+          intent: "protect scope",
+        },
+        {
+          en: "The bathroom ceiling will need another pass — there's a shadow seam I don't like.",
+          intent: "self-flag defect",
+        },
+        {
+          en: "We're ready for prime — all fasteners set and filled, no tape showing.",
+          intent: "confirm readiness",
+        },
+        {
+          en: "I'll have the punch list items done by end of day Thursday.",
+          intent: "commit to timeline",
+        },
       ],
       vocab: [
-        "punch list", "fastener pop", "shadow seam", "V-cut", "stress crack",
-        "corner bead crack", "raking light", "Level 4", "prime-ready", "touch-up",
+        "punch list",
+        "fastener pop",
+        "shadow seam",
+        "V-cut",
+        "stress crack",
+        "corner bead crack",
+        "raking light",
+        "Level 4",
+        "prime-ready",
+        "touch-up",
       ],
       challenges: [
         "The PM finds a shadow seam in the living room that you thought you had addressed. Own the issue and commit to a timeline.",
@@ -812,34 +1659,77 @@ const drywallModule: TradesModuleContent = {
         "You find stress cracks at a window corner the day before prime. Decide whether to repair now or flag it as a post-paint issue and explain why.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Hey — before you walk it, I want to give you my list so we're not surprised." },
+        {
+          speaker: "learner",
+          en: "Hey — before you walk it, I want to give you my list so we're not surprised.",
+        },
         { speaker: "ai", en: "Go ahead." },
-        { speaker: "learner", en: "Master bath ceiling has a shadow seam — I'll hit it today. Kitchen has two fastener pops I missed last pass. Hallway corner bead is clean, but there's a hairline at the west window." },
+        {
+          speaker: "learner",
+          en: "Master bath ceiling has a shadow seam — I'll hit it today. Kitchen has two fastener pops I missed last pass. Hallway corner bead is clean, but there's a hairline at the west window.",
+        },
         { speaker: "ai", en: "How bad is the window crack?" },
-        { speaker: "learner", en: "Typical stress crack — just needs a V-cut and re-tape. It'll be invisible under paint. I'm not worried about it." },
-        { speaker: "ai", en: "Can you have everything prime-ready by Friday morning? Painter is on site at 7 AM." },
+        {
+          speaker: "learner",
+          en: "Typical stress crack — just needs a V-cut and re-tape. It'll be invisible under paint. I'm not worried about it.",
+        },
+        {
+          speaker: "ai",
+          en: "Can you have everything prime-ready by Friday morning? Painter is on site at 7 AM.",
+        },
       ],
     },
     {
       id: "touch-up-walk",
       name: "Touch-Up Walk",
       emoji: "🏠",
-      blurb: "The final walk with the homeowner or GC is your last chance to get it right. Know how to handle feedback, document what's needed, and close the job professionally.",
+      blurb:
+        "The final walk with the homeowner or GC is your last chance to get it right. Know how to handle feedback, document what's needed, and close the job professionally.",
       counterpart: "Homeowner",
       learnerRole: "Drywall Finisher",
-      toneNote: "Professional and receptive. Take notes, be honest about what you can and cannot fix, and don't get defensive. The customer sees the job finished, not in process.",
+      toneNote:
+        "Professional and receptive. Take notes, be honest about what you can and cannot fix, and don't get defensive. The customer sees the job finished, not in process.",
       phrases: [
-        { en: "Walk me through anything that doesn't look right — I'd rather hear it now.", intent: "open feedback" },
-        { en: "That's a painting issue, not a drywall issue — see how the line is sharp? That's a paint edge.", intent: "distinguish responsibility" },
-        { en: "You're right, that seam shows — I'll skim it and we'll put primer on before we leave.", intent: "accept correction" },
-        { en: "I'm going to tag every spot so my guy doesn't miss anything.", intent: "document issues" },
-        { en: "The marks on this wall are from the painter's tape — that's not our scope.", intent: "protect scope" },
-        { en: "Everything on this list will be done by end of day — I'll send you a photo when we're out.", intent: "commit and confirm" },
-        { en: "Is there anything upstairs we should walk before I send the crew home?", intent: "check for more" },
+        {
+          en: "Walk me through anything that doesn't look right — I'd rather hear it now.",
+          intent: "open feedback",
+        },
+        {
+          en: "That's a painting issue, not a drywall issue — see how the line is sharp? That's a paint edge.",
+          intent: "distinguish responsibility",
+        },
+        {
+          en: "You're right, that seam shows — I'll skim it and we'll put primer on before we leave.",
+          intent: "accept correction",
+        },
+        {
+          en: "I'm going to tag every spot so my guy doesn't miss anything.",
+          intent: "document issues",
+        },
+        {
+          en: "The marks on this wall are from the painter's tape — that's not our scope.",
+          intent: "protect scope",
+        },
+        {
+          en: "Everything on this list will be done by end of day — I'll send you a photo when we're out.",
+          intent: "commit and confirm",
+        },
+        {
+          en: "Is there anything upstairs we should walk before I send the crew home?",
+          intent: "check for more",
+        },
       ],
       vocab: [
-        "touch-up", "punch list", "tape pop", "paint line", "skim coat",
-        "scope of work", "tag (defect marker)", "primer", "GC signoff", "warranty",
+        "touch-up",
+        "punch list",
+        "tape pop",
+        "paint line",
+        "skim coat",
+        "scope of work",
+        "tag (defect marker)",
+        "primer",
+        "GC signoff",
+        "warranty",
       ],
       challenges: [
         "A homeowner is pointing out marks on the wall that are clearly from the mover's furniture — not drywall defects. Handle it diplomatically.",
@@ -847,11 +1737,23 @@ const drywallModule: TradesModuleContent = {
         "The homeowner asks if the drywall comes with a warranty. Explain what is and isn't covered.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Thanks for taking the time for this walk. Please point out anything that doesn't look right to you." },
-        { speaker: "ai", en: "Okay — right here in the dining room, I can see the outline of a seam when the light hits it." },
-        { speaker: "learner", en: "Yeah — I see it too. That one's on me. The board crown moved when it dried. I'll skim that today and spot prime it. It'll be invisible." },
+        {
+          speaker: "learner",
+          en: "Thanks for taking the time for this walk. Please point out anything that doesn't look right to you.",
+        },
+        {
+          speaker: "ai",
+          en: "Okay — right here in the dining room, I can see the outline of a seam when the light hits it.",
+        },
+        {
+          speaker: "learner",
+          en: "Yeah — I see it too. That one's on me. The board crown moved when it dried. I'll skim that today and spot prime it. It'll be invisible.",
+        },
         { speaker: "ai", en: "What about this spot in the hallway? It looks like a small dent." },
-        { speaker: "learner", en: "That's a paint ding — you can see the paper isn't broken, the paint just has a divot. That one goes to your painter to fill before the final coat." },
+        {
+          speaker: "learner",
+          en: "That's a paint ding — you can see the paper isn't broken, the paint just has a divot. That one goes to your painter to fill before the final coat.",
+        },
         { speaker: "ai", en: "How do I know which is which?" },
       ],
     },
@@ -859,22 +1761,53 @@ const drywallModule: TradesModuleContent = {
       id: "materials-order",
       name: "Materials Order",
       emoji: "📦",
-      blurb: "Ordering for a drywall job means knowing your square footage, board sizes, mud quantities, and what the job spec calls for — before you call the supplier.",
+      blurb:
+        "Ordering for a drywall job means knowing your square footage, board sizes, mud quantities, and what the job spec calls for — before you call the supplier.",
       counterpart: "Drywall Supply Rep",
       learnerRole: "Drywall Contractor",
-      toneNote: "Businesslike and specific. Have your take-off ready before you call. Supply reps move fast — know your numbers and your delivery window.",
+      toneNote:
+        "Businesslike and specific. Have your take-off ready before you call. Supply reps move fast — know your numbers and your delivery window.",
       phrases: [
-        { en: "I need a delivery quote for a 2,800-square-foot single story.", intent: "open request" },
-        { en: "Give me 180 sheets of 4x12, half-inch, regular — and 20 sheets of 5/8 Type X for the garage.", intent: "specify board order" },
-        { en: "I need 8 buckets of all-purpose and 2 boxes of hot mud, 45-minute.", intent: "order mud" },
-        { en: "Throw in 4 rolls of paper tape and 2 boxes of corner bead.", intent: "add consumables" },
-        { en: "Can you deliver Thursday morning — I need it before 7 AM.", intent: "schedule delivery" },
-        { en: "No bent boards — last time three sheets came off the truck bowed. I sent them back.", intent: "quality note" },
-        { en: "Bill it to the Riverside job account — same as last week.", intent: "billing instruction" },
+        {
+          en: "I need a delivery quote for a 2,800-square-foot single story.",
+          intent: "open request",
+        },
+        {
+          en: "Give me 180 sheets of 4x12, half-inch, regular — and 20 sheets of 5/8 Type X for the garage.",
+          intent: "specify board order",
+        },
+        {
+          en: "I need 8 buckets of all-purpose and 2 boxes of hot mud, 45-minute.",
+          intent: "order mud",
+        },
+        {
+          en: "Throw in 4 rolls of paper tape and 2 boxes of corner bead.",
+          intent: "add consumables",
+        },
+        {
+          en: "Can you deliver Thursday morning — I need it before 7 AM.",
+          intent: "schedule delivery",
+        },
+        {
+          en: "No bent boards — last time three sheets came off the truck bowed. I sent them back.",
+          intent: "quality note",
+        },
+        {
+          en: "Bill it to the Riverside job account — same as last week.",
+          intent: "billing instruction",
+        },
       ],
       vocab: [
-        "4x12 drywall", "5/8 Type X", "all-purpose mud", "45-minute hot mud", "paper tape",
-        "corner bead", "take-off", "square footage", "board count", "delivery window",
+        "4x12 drywall",
+        "5/8 Type X",
+        "all-purpose mud",
+        "45-minute hot mud",
+        "paper tape",
+        "corner bead",
+        "take-off",
+        "square footage",
+        "board count",
+        "delivery window",
       ],
       challenges: [
         "You under-estimated the mud needed and need an emergency add-on delivery without paying a second delivery fee. Negotiate it.",
@@ -882,12 +1815,27 @@ const drywallModule: TradesModuleContent = {
         "A spec change requires Type X board in rooms you already ordered regular drywall for. Place the change order and figure out what to do with the wrong material.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Hey, this is Diego at Pinnacle Drywall. I need to place a delivery for Thursday morning, needs to be there by 6:30." },
-        { speaker: "ai", en: "Good timing — I've still got a Thursday slot open. What are you looking at?" },
-        { speaker: "learner", en: "200 sheets of 4x12 half-inch regular, 30 sheets of 5/8 Type X. I also need 10 buckets all-purpose, 4 buckets topping, and 2 boxes 45-minute." },
+        {
+          speaker: "learner",
+          en: "Hey, this is Diego at Pinnacle Drywall. I need to place a delivery for Thursday morning, needs to be there by 6:30.",
+        },
+        {
+          speaker: "ai",
+          en: "Good timing — I've still got a Thursday slot open. What are you looking at?",
+        },
+        {
+          speaker: "learner",
+          en: "200 sheets of 4x12 half-inch regular, 30 sheets of 5/8 Type X. I also need 10 buckets all-purpose, 4 buckets topping, and 2 boxes 45-minute.",
+        },
         { speaker: "ai", en: "I can do all of that. You want pre-mixed or powder on the topping?" },
-        { speaker: "learner", en: "Pre-mixed. And I need real paper tape — not the mesh. I'm doing all the butt joints with paper." },
-        { speaker: "ai", en: "Two rolls paper tape, noted. Corner bead — do you need vinyl or metal?" },
+        {
+          speaker: "learner",
+          en: "Pre-mixed. And I need real paper tape — not the mesh. I'm doing all the butt joints with paper.",
+        },
+        {
+          speaker: "ai",
+          en: "Two rolls paper tape, noted. Corner bead — do you need vinyl or metal?",
+        },
       ],
     },
   ],
@@ -896,42 +1844,80 @@ const drywallModule: TradesModuleContent = {
       category: "Board Types",
       emoji: "🧱",
       words: [
-        "regular (white board)", "Type X (fire-rated)", "moisture-resistant (green board)",
-        "mold-resistant (purple board)", "foil-back", "abuse-resistant", "5/8 inch", "1/2 inch",
-        "4x8", "4x12",
+        "regular (white board)",
+        "Type X (fire-rated)",
+        "moisture-resistant (green board)",
+        "mold-resistant (purple board)",
+        "foil-back",
+        "abuse-resistant",
+        "5/8 inch",
+        "1/2 inch",
+        "4x8",
+        "4x12",
       ],
     },
     {
       category: "Mud & Taping",
       emoji: "🪣",
       words: [
-        "all-purpose compound", "topping compound", "setting compound (hot mud)", "paper tape",
-        "mesh tape", "joint knife", "hawk", "corner bead", "feather edge", "crown",
+        "all-purpose compound",
+        "topping compound",
+        "setting compound (hot mud)",
+        "paper tape",
+        "mesh tape",
+        "joint knife",
+        "hawk",
+        "corner bead",
+        "feather edge",
+        "crown",
       ],
     },
     {
       category: "Finish Levels & Defects",
       emoji: "🔦",
       words: [
-        "Level 4", "Level 5", "skim coat", "fastener pop", "tape crack",
-        "shadow seam", "picture frame", "lap mark", "bubble", "raking light",
+        "Level 4",
+        "Level 5",
+        "skim coat",
+        "fastener pop",
+        "tape crack",
+        "shadow seam",
+        "picture frame",
+        "lap mark",
+        "bubble",
+        "raking light",
       ],
     },
     {
       category: "Tools",
       emoji: "🛠️",
       words: [
-        "drywall lift", "screw gun", "taping knife (6-inch)", "taping knife (10-inch)",
-        "corner finisher", "hopper gun", "sander", "pole sander", "stilts", "T-square",
+        "drywall lift",
+        "screw gun",
+        "taping knife (6-inch)",
+        "taping knife (10-inch)",
+        "corner finisher",
+        "hopper gun",
+        "sander",
+        "pole sander",
+        "stilts",
+        "T-square",
       ],
     },
     {
       category: "Jobsite Terms (Bilingual)",
       emoji: "🗣️",
       words: [
-        "el tablarroca / drywall", "la masa / mud", "la cinta / tape", "clavos / screws",
-        "el techo / ceiling", "la esquina / corner", "pon más masa", "está chueco",
-        "lija eso / sand that", "ya secó / it's dry",
+        "el tablarroca / drywall",
+        "la masa / mud",
+        "la cinta / tape",
+        "clavos / screws",
+        "el techo / ceiling",
+        "la esquina / corner",
+        "pon más masa",
+        "está chueco",
+        "lija eso / sand that",
+        "ya secó / it's dry",
       ],
     },
   ],
@@ -948,23 +1934,57 @@ const electricianModule: TradesModuleContent = {
       id: "panel-work",
       name: "Panel Work",
       emoji: "⚡",
-      blurb: "The panel is the heart of any electrical system. Learn how to talk about load calculations, breakers, and panel upgrades safely and accurately.",
+      blurb:
+        "The panel is the heart of any electrical system. Learn how to talk about load calculations, breakers, and panel upgrades safely and accurately.",
       counterpart: "Homeowner",
       learnerRole: "Electrician",
-      toneNote: "Authoritative but accessible. Panels intimidate homeowners. Explain things clearly without being condescending. Safety language is non-negotiable.",
+      toneNote:
+        "Authoritative but accessible. Panels intimidate homeowners. Explain things clearly without being condescending. Safety language is non-negotiable.",
       phrases: [
-        { en: "I'm going to kill the main before I open the panel — stand back, please.", intent: "safety before work" },
-        { en: "You've got a 200-amp service — that's standard for this size house.", intent: "describe existing service" },
-        { en: "This double-tap is a code violation — two circuits can't share one breaker.", intent: "flag violation" },
-        { en: "You're going to need a sub-panel in the garage for all those circuits.", intent: "recommend sub-panel" },
-        { en: "I'm not touching those federal Pacific breakers — they need to go before we do anything else.", intent: "flag unsafe equipment" },
-        { en: "Your neutral bar is full — we need to address that before we add anything.", intent: "identify capacity issue" },
-        { en: "I can have a load calculation done — that'll tell us if the service needs to be upgraded.", intent: "offer analysis" },
-        { en: "Label every breaker before I leave — I won't close this panel without a complete directory.", intent: "set standard" },
+        {
+          en: "I'm going to kill the main before I open the panel — stand back, please.",
+          intent: "safety before work",
+        },
+        {
+          en: "You've got a 200-amp service — that's standard for this size house.",
+          intent: "describe existing service",
+        },
+        {
+          en: "This double-tap is a code violation — two circuits can't share one breaker.",
+          intent: "flag violation",
+        },
+        {
+          en: "You're going to need a sub-panel in the garage for all those circuits.",
+          intent: "recommend sub-panel",
+        },
+        {
+          en: "I'm not touching those federal Pacific breakers — they need to go before we do anything else.",
+          intent: "flag unsafe equipment",
+        },
+        {
+          en: "Your neutral bar is full — we need to address that before we add anything.",
+          intent: "identify capacity issue",
+        },
+        {
+          en: "I can have a load calculation done — that'll tell us if the service needs to be upgraded.",
+          intent: "offer analysis",
+        },
+        {
+          en: "Label every breaker before I leave — I won't close this panel without a complete directory.",
+          intent: "set standard",
+        },
       ],
       vocab: [
-        "main breaker", "double-tap", "neutral bar", "sub-panel", "load calculation",
-        "service upgrade", "AFCI breaker", "GFCI breaker", "Federal Pacific (Stab-Lok)", "panel directory",
+        "main breaker",
+        "double-tap",
+        "neutral bar",
+        "sub-panel",
+        "load calculation",
+        "service upgrade",
+        "AFCI breaker",
+        "GFCI breaker",
+        "Federal Pacific (Stab-Lok)",
+        "panel directory",
       ],
       challenges: [
         "A homeowner wants to add a hot tub and you're looking at a 100-amp service. Walk through why they need an upgrade.",
@@ -972,11 +1992,23 @@ const electricianModule: TradesModuleContent = {
         "A DIY homeowner added three circuits with a double-tap on a 15-amp breaker. Document the violation and explain the fix.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay — I've killed the main. I'm going to open the panel now. Come have a look with me." },
+        {
+          speaker: "learner",
+          en: "Okay — I've killed the main. I'm going to open the panel now. Come have a look with me.",
+        },
         { speaker: "ai", en: "Is everything okay in there?" },
-        { speaker: "learner", en: "See this breaker right here — two wires on one terminal? That's called a double-tap. It's a code violation and a fire hazard. One of those circuits has no protection." },
-        { speaker: "ai", en: "My brother-in-law added that circuit last year. He said it was fine." },
-        { speaker: "learner", en: "I understand — but it's not fine. It means if that circuit draws too much, the other circuit won't trip. That's when wires get hot inside a wall." },
+        {
+          speaker: "learner",
+          en: "See this breaker right here — two wires on one terminal? That's called a double-tap. It's a code violation and a fire hazard. One of those circuits has no protection.",
+        },
+        {
+          speaker: "ai",
+          en: "My brother-in-law added that circuit last year. He said it was fine.",
+        },
+        {
+          speaker: "learner",
+          en: "I understand — but it's not fine. It means if that circuit draws too much, the other circuit won't trip. That's when wires get hot inside a wall.",
+        },
         { speaker: "ai", en: "What does it take to fix it?" },
       ],
     },
@@ -984,23 +2016,54 @@ const electricianModule: TradesModuleContent = {
       id: "rough-in",
       name: "Rough-In",
       emoji: "🔌",
-      blurb: "Rough-in is where the work gets locked in the walls. Get the box locations, wire sizing, and staple spacing right before anyone picks up sheetrock.",
+      blurb:
+        "Rough-in is where the work gets locked in the walls. Get the box locations, wire sizing, and staple spacing right before anyone picks up sheetrock.",
       counterpart: "Apprentice Electrician",
       learnerRole: "Journeyman Electrician",
-      toneNote: "Methodical and code-precise. Rough-in has to survive inspection. Every dimension, wire size, and box height matters.",
+      toneNote:
+        "Methodical and code-precise. Rough-in has to survive inspection. Every dimension, wire size, and box height matters.",
       phrases: [
-        { en: "Switch boxes are 48 inches to center — measure from the subfloor.", intent: "set box height" },
-        { en: "Outlet boxes are 12 inches to center on the wall — mark them with a nail before drywall.", intent: "set outlet height" },
-        { en: "All kitchen countertop circuits get 12-gauge — no 14 on those runs.", intent: "wire sizing rule" },
-        { en: "Staple every 4 feet and within 12 inches of every box — that's code.", intent: "staple spacing" },
-        { en: "Don't let wire run loose across a joist bay — it needs to be protected or supported.", intent: "wire support" },
+        {
+          en: "Switch boxes are 48 inches to center — measure from the subfloor.",
+          intent: "set box height",
+        },
+        {
+          en: "Outlet boxes are 12 inches to center on the wall — mark them with a nail before drywall.",
+          intent: "set outlet height",
+        },
+        {
+          en: "All kitchen countertop circuits get 12-gauge — no 14 on those runs.",
+          intent: "wire sizing rule",
+        },
+        {
+          en: "Staple every 4 feet and within 12 inches of every box — that's code.",
+          intent: "staple spacing",
+        },
+        {
+          en: "Don't let wire run loose across a joist bay — it needs to be protected or supported.",
+          intent: "wire support",
+        },
         { en: "Label both ends of every wire before you close anything up.", intent: "label wire" },
-        { en: "Leave 8 inches of wire sticking out of every box — minimum.", intent: "wire stub length" },
-        { en: "Bathroom circuit needs to be GFCI — everything within 6 feet of water.", intent: "GFCI requirement" },
+        {
+          en: "Leave 8 inches of wire sticking out of every box — minimum.",
+          intent: "wire stub length",
+        },
+        {
+          en: "Bathroom circuit needs to be GFCI — everything within 6 feet of water.",
+          intent: "GFCI requirement",
+        },
       ],
       vocab: [
-        "rough-in", "box height", "12-gauge wire", "14-gauge wire", "staple spacing",
-        "joist bay", "wire stub", "GFCI", "AFCI", "home run",
+        "rough-in",
+        "box height",
+        "12-gauge wire",
+        "14-gauge wire",
+        "staple spacing",
+        "joist bay",
+        "wire stub",
+        "GFCI",
+        "AFCI",
+        "home run",
       ],
       challenges: [
         "An apprentice ran 14-gauge wire on a kitchen countertop circuit. Explain why it has to come out and be replaced.",
@@ -1010,9 +2073,15 @@ const electricianModule: TradesModuleContent = {
       sampleConversation: [
         { speaker: "learner", en: "Before you staple that run — show me what wire you used." },
         { speaker: "ai", en: "It's 14-2. Same as everything else." },
-        { speaker: "learner", en: "Not on countertop circuits. This is the kitchen counter — needs to be 12-gauge on a 20-amp breaker. 14-2 is only rated for 15 amps." },
+        {
+          speaker: "learner",
+          en: "Not on countertop circuits. This is the kitchen counter — needs to be 12-gauge on a 20-amp breaker. 14-2 is only rated for 15 amps.",
+        },
         { speaker: "ai", en: "But the box said it's a 15-amp outlet." },
-        { speaker: "learner", en: "Doesn't matter what the outlet is rated for — the code says kitchen countertop small appliance circuits need to be 20-amp capable. That means 12-gauge all the way from the panel." },
+        {
+          speaker: "learner",
+          en: "Doesn't matter what the outlet is rated for — the code says kitchen countertop small appliance circuits need to be 20-amp capable. That means 12-gauge all the way from the panel.",
+        },
         { speaker: "ai", en: "So I need to pull this whole run back?" },
       ],
     },
@@ -1020,23 +2089,57 @@ const electricianModule: TradesModuleContent = {
       id: "service-call",
       name: "Service Call",
       emoji: "🔦",
-      blurb: "Diagnosing electrical issues in the field requires systematic thinking and good communication. Learn how to walk through a problem with a homeowner.",
+      blurb:
+        "Diagnosing electrical issues in the field requires systematic thinking and good communication. Learn how to walk through a problem with a homeowner.",
       counterpart: "Homeowner",
       learnerRole: "Electrician",
-      toneNote: "Calm and investigative. Electrical problems can be scary for homeowners. Speak clearly, test before you assume, and explain as you go.",
+      toneNote:
+        "Calm and investigative. Electrical problems can be scary for homeowners. Speak clearly, test before you assume, and explain as you go.",
       phrases: [
-        { en: "Before I start, tell me exactly what happened — what were you doing when the power went out?", intent: "gather history" },
-        { en: "Let me check the panel first — this sounds like a tripped breaker, not a wiring issue.", intent: "start diagnosis" },
-        { en: "I'm going to test each outlet with my meter — give me about 10 minutes.", intent: "explain process" },
-        { en: "This outlet is downstream of a GFCI you don't know about — check the bathrooms.", intent: "GFCI chain diagnosis" },
-        { en: "That outlet's wired with aluminum — that's common from the 70s and it needs attention.", intent: "flag aluminum wiring" },
-        { en: "The breaker trips because the circuit is overloaded — not because anything's broken.", intent: "diagnose overload" },
-        { en: "I found the problem — a wire came loose at the junction box in the attic.", intent: "report finding" },
-        { en: "This is a 3-hour job minimum — I'll get you an exact number once I open the wall.", intent: "set time estimate" },
+        {
+          en: "Before I start, tell me exactly what happened — what were you doing when the power went out?",
+          intent: "gather history",
+        },
+        {
+          en: "Let me check the panel first — this sounds like a tripped breaker, not a wiring issue.",
+          intent: "start diagnosis",
+        },
+        {
+          en: "I'm going to test each outlet with my meter — give me about 10 minutes.",
+          intent: "explain process",
+        },
+        {
+          en: "This outlet is downstream of a GFCI you don't know about — check the bathrooms.",
+          intent: "GFCI chain diagnosis",
+        },
+        {
+          en: "That outlet's wired with aluminum — that's common from the 70s and it needs attention.",
+          intent: "flag aluminum wiring",
+        },
+        {
+          en: "The breaker trips because the circuit is overloaded — not because anything's broken.",
+          intent: "diagnose overload",
+        },
+        {
+          en: "I found the problem — a wire came loose at the junction box in the attic.",
+          intent: "report finding",
+        },
+        {
+          en: "This is a 3-hour job minimum — I'll get you an exact number once I open the wall.",
+          intent: "set time estimate",
+        },
       ],
       vocab: [
-        "multimeter", "GFCI chain", "tripped breaker", "loose connection", "aluminum wiring",
-        "junction box", "overloaded circuit", "open neutral", "downstream", "voltage drop",
+        "multimeter",
+        "GFCI chain",
+        "tripped breaker",
+        "loose connection",
+        "aluminum wiring",
+        "junction box",
+        "overloaded circuit",
+        "open neutral",
+        "downstream",
+        "voltage drop",
       ],
       challenges: [
         "Half a homeowner's house has no power but the main breaker hasn't tripped. Walk through how you'd diagnose a split-phase issue.",
@@ -1044,11 +2147,23 @@ const electricianModule: TradesModuleContent = {
         "You find aluminum wiring at an outlet in a 1972 house. Explain the options — pigtailing vs. full rewire — to the homeowner.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "So which outlets are out? Let's start by walking me to the first one." },
-        { speaker: "ai", en: "It's everything in this corner of the living room and the whole guest bedroom." },
-        { speaker: "learner", en: "Okay — that pattern tells me it's probably one circuit. Let me check the panel. You haven't reset anything yet?" },
+        {
+          speaker: "learner",
+          en: "So which outlets are out? Let's start by walking me to the first one.",
+        },
+        {
+          speaker: "ai",
+          en: "It's everything in this corner of the living room and the whole guest bedroom.",
+        },
+        {
+          speaker: "learner",
+          en: "Okay — that pattern tells me it's probably one circuit. Let me check the panel. You haven't reset anything yet?",
+        },
         { speaker: "ai", en: "No — should I have?" },
-        { speaker: "learner", en: "It's fine that you didn't. Actually better — I want to see the panel in its natural state. Nothing tripped in here. That means it's not the breaker. Let me grab my meter." },
+        {
+          speaker: "learner",
+          en: "It's fine that you didn't. Actually better — I want to see the panel in its natural state. Nothing tripped in here. That means it's not the breaker. Let me grab my meter.",
+        },
         { speaker: "ai", en: "Could it be the GFCI in the bathroom?" },
       ],
     },
@@ -1056,22 +2171,53 @@ const electricianModule: TradesModuleContent = {
       id: "permit-inspection-elec",
       name: "Permit & Inspection",
       emoji: "📝",
-      blurb: "Electrical inspections are strict for good reason. Know what the inspector is looking for, have your documentation ready, and don't guess on code questions.",
+      blurb:
+        "Electrical inspections are strict for good reason. Know what the inspector is looking for, have your documentation ready, and don't guess on code questions.",
       counterpart: "Electrical Inspector",
       learnerRole: "Electrician",
-      toneNote: "Respectful and code-knowledgeable. Inspectors are there to protect public safety. Have your permit, know your NEC section, and don't argue — listen first.",
+      toneNote:
+        "Respectful and code-knowledgeable. Inspectors are there to protect public safety. Have your permit, know your NEC section, and don't argue — listen first.",
       phrases: [
-        { en: "Rough-in's ready on unit 3 — wire's in, no drywall yet.", intent: "request inspection" },
-        { en: "All circuits are labeled at the panel and at each box.", intent: "confirm labeling" },
-        { en: "AFCI protection is on all bedroom circuits — per the 2020 NEC.", intent: "confirm code compliance" },
-        { en: "The junction box in the attic has a cover plate — it's accessible through the hatch.", intent: "confirm accessibility" },
-        { en: "I can reference NEC 314.16 on that — the box fill calculation is within limits.", intent: "cite code" },
-        { en: "I'll fix the wire support on that run and call for re-inspection tomorrow.", intent: "accept correction" },
-        { en: "Is there a specific NEC section you'd like me to reference for the variance?", intent: "request code clarification" },
+        {
+          en: "Rough-in's ready on unit 3 — wire's in, no drywall yet.",
+          intent: "request inspection",
+        },
+        {
+          en: "All circuits are labeled at the panel and at each box.",
+          intent: "confirm labeling",
+        },
+        {
+          en: "AFCI protection is on all bedroom circuits — per the 2020 NEC.",
+          intent: "confirm code compliance",
+        },
+        {
+          en: "The junction box in the attic has a cover plate — it's accessible through the hatch.",
+          intent: "confirm accessibility",
+        },
+        {
+          en: "I can reference NEC 314.16 on that — the box fill calculation is within limits.",
+          intent: "cite code",
+        },
+        {
+          en: "I'll fix the wire support on that run and call for re-inspection tomorrow.",
+          intent: "accept correction",
+        },
+        {
+          en: "Is there a specific NEC section you'd like me to reference for the variance?",
+          intent: "request code clarification",
+        },
       ],
       vocab: [
-        "NEC (National Electrical Code)", "AFCI", "GFCI", "box fill", "wire support",
-        "accessible junction box", "service entrance", "permit", "re-inspection", "variance",
+        "NEC (National Electrical Code)",
+        "AFCI",
+        "GFCI",
+        "box fill",
+        "wire support",
+        "accessible junction box",
+        "service entrance",
+        "permit",
+        "re-inspection",
+        "variance",
       ],
       challenges: [
         "An inspector says your bedroom circuits don't have AFCI protection. You installed AFCI breakers. Walk through how you'd show him they're there.",
@@ -1079,35 +2225,78 @@ const electricianModule: TradesModuleContent = {
         "Your permit was pulled for a panel upgrade but you also ran three new circuits. Explain the scope change to the inspector before he finds it himself.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Morning. Electrical rough-in is ready on the second-floor addition — four bedrooms and the hallway." },
+        {
+          speaker: "learner",
+          en: "Morning. Electrical rough-in is ready on the second-floor addition — four bedrooms and the hallway.",
+        },
         { speaker: "ai", en: "Permit on site?" },
-        { speaker: "learner", en: "Posted at the main entrance. I've also got the load calc and the panel schedule right here." },
+        {
+          speaker: "learner",
+          en: "Posted at the main entrance. I've also got the load calc and the panel schedule right here.",
+        },
         { speaker: "ai", en: "Okay. Show me the bedroom circuits. I'm checking for AFCI." },
-        { speaker: "learner", en: "Every bedroom is on a dual-function AFCI/GFCI breaker in the panel — breakers 14 through 20. They're all labeled." },
-        { speaker: "ai", en: "What about this wire run in the hallway — I only see one staple in about an 8-foot span." },
+        {
+          speaker: "learner",
+          en: "Every bedroom is on a dual-function AFCI/GFCI breaker in the panel — breakers 14 through 20. They're all labeled.",
+        },
+        {
+          speaker: "ai",
+          en: "What about this wire run in the hallway — I only see one staple in about an 8-foot span.",
+        },
       ],
     },
     {
       id: "crew-safety-brief",
       name: "Crew Safety Brief",
       emoji: "⛑️",
-      blurb: "Electricity kills quietly. Lead a safety brief that your crew actually listens to — specific, short, and tied to what's happening today.",
+      blurb:
+        "Electricity kills quietly. Lead a safety brief that your crew actually listens to — specific, short, and tied to what's happening today.",
       counterpart: "Crew Member",
       learnerRole: "Foreman / Safety Lead",
-      toneNote: "Serious and grounded. Electrical safety talks must be specific and actionable. No vague corporate language — use real scenarios from the job.",
+      toneNote:
+        "Serious and grounded. Electrical safety talks must be specific and actionable. No vague corporate language — use real scenarios from the job.",
       phrases: [
-        { en: "Before we start on the panel, I need to see everyone's PPE — rubber gloves and safety glasses.", intent: "confirm PPE" },
-        { en: "The main is live on the south service entrance — nobody goes near that unless I'm with you.", intent: "identify live hazard" },
+        {
+          en: "Before we start on the panel, I need to see everyone's PPE — rubber gloves and safety glasses.",
+          intent: "confirm PPE",
+        },
+        {
+          en: "The main is live on the south service entrance — nobody goes near that unless I'm with you.",
+          intent: "identify live hazard",
+        },
         { en: "Assume every wire is hot until you test it yourself.", intent: "core safety rule" },
-        { en: "If your GFCI cord keeps tripping, stop and swap it — don't reset and keep going.", intent: "GFCI extension cord rule" },
-        { en: "We're working near water today — double rubber, and no standing in it.", intent: "wet location rule" },
-        { en: "If someone gets shocked, don't touch them — kill the power first, then call 911.", intent: "shock response protocol" },
-        { en: "Lockout/tagout on every panel you open — no exceptions on this site.", intent: "LOTO rule" },
-        { en: "Has anyone had any electrical safety concerns this week? Now's the time.", intent: "open discussion" },
+        {
+          en: "If your GFCI cord keeps tripping, stop and swap it — don't reset and keep going.",
+          intent: "GFCI extension cord rule",
+        },
+        {
+          en: "We're working near water today — double rubber, and no standing in it.",
+          intent: "wet location rule",
+        },
+        {
+          en: "If someone gets shocked, don't touch them — kill the power first, then call 911.",
+          intent: "shock response protocol",
+        },
+        {
+          en: "Lockout/tagout on every panel you open — no exceptions on this site.",
+          intent: "LOTO rule",
+        },
+        {
+          en: "Has anyone had any electrical safety concerns this week? Now's the time.",
+          intent: "open discussion",
+        },
       ],
       vocab: [
-        "PPE (rubber gloves, safety glasses)", "LOTO (lockout/tagout)", "live wire",
-        "GFCI extension cord", "wet location", "arc flash", "shock response", "de-energize", "isolate", "assume energized",
+        "PPE (rubber gloves, safety glasses)",
+        "LOTO (lockout/tagout)",
+        "live wire",
+        "GFCI extension cord",
+        "wet location",
+        "arc flash",
+        "shock response",
+        "de-energize",
+        "isolate",
+        "assume energized",
       ],
       challenges: [
         "A crew member was resetting a GFCI extension cord that kept tripping. Lead a debrief that explains why that's dangerous.",
@@ -1115,11 +2304,20 @@ const electricianModule: TradesModuleContent = {
         "A crew member says the voltage in the conduit 'probably isn't live anymore.' Address the assumption safely and firmly.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Before we go up into that ceiling space — I need everyone's attention for two minutes." },
+        {
+          speaker: "learner",
+          en: "Before we go up into that ceiling space — I need everyone's attention for two minutes.",
+        },
         { speaker: "ai", en: "What's up?" },
-        { speaker: "learner", en: "There are live conductors in that ceiling from the old branch circuit. They're not on our panel. They're live and they're not labeled." },
+        {
+          speaker: "learner",
+          en: "There are live conductors in that ceiling from the old branch circuit. They're not on our panel. They're live and they're not labeled.",
+        },
         { speaker: "ai", en: "Can't we just tape them off?" },
-        { speaker: "learner", en: "No. We need to find the source and kill it before anyone goes in there. That's not optional — that's how guys get hurt. I'm calling the GC right now to find out which panel feeds that circuit." },
+        {
+          speaker: "learner",
+          en: "No. We need to find the source and kill it before anyone goes in there. That's not optional — that's how guys get hurt. I'm calling the GC right now to find out which panel feeds that circuit.",
+        },
         { speaker: "ai", en: "What do we do in the meantime?" },
       ],
     },
@@ -1127,22 +2325,53 @@ const electricianModule: TradesModuleContent = {
       id: "customer-walk-through",
       name: "Customer Walk-Through",
       emoji: "🏠",
-      blurb: "Finishing a job means explaining it to the customer — where the circuits are, what everything does, and how to use it safely.",
+      blurb:
+        "Finishing a job means explaining it to the customer — where the circuits are, what everything does, and how to use it safely.",
       counterpart: "Homeowner",
       learnerRole: "Electrician",
-      toneNote: "Clear and educational. Homeowners don't know electrical systems — that's fine. Use plain language, point at things, and make sure they feel confident.",
+      toneNote:
+        "Clear and educational. Homeowners don't know electrical systems — that's fine. Use plain language, point at things, and make sure they feel confident.",
       phrases: [
-        { en: "Let me walk you through the panel real quick — it'll take five minutes.", intent: "initiate walk-through" },
-        { en: "Every breaker is labeled — if something trips, look here first.", intent: "explain panel directory" },
-        { en: "These GFCI outlets protect the whole bathroom circuit — the reset button is on the outlet by the sink.", intent: "explain GFCI" },
-        { en: "Your EV charger is on a dedicated 50-amp circuit — nothing else runs on that breaker.", intent: "explain dedicated circuit" },
-        { en: "If you ever add high-draw appliances, call us before you plug in — I want to make sure the circuits can handle it.", intent: "advise future use" },
-        { en: "Don't put anything in front of the panel — we need 36 inches of clearance by code.", intent: "clearance reminder" },
-        { en: "I recommend a whole-home surge protector — it installs in the panel and protects everything.", intent: "upsell surge protection" },
+        {
+          en: "Let me walk you through the panel real quick — it'll take five minutes.",
+          intent: "initiate walk-through",
+        },
+        {
+          en: "Every breaker is labeled — if something trips, look here first.",
+          intent: "explain panel directory",
+        },
+        {
+          en: "These GFCI outlets protect the whole bathroom circuit — the reset button is on the outlet by the sink.",
+          intent: "explain GFCI",
+        },
+        {
+          en: "Your EV charger is on a dedicated 50-amp circuit — nothing else runs on that breaker.",
+          intent: "explain dedicated circuit",
+        },
+        {
+          en: "If you ever add high-draw appliances, call us before you plug in — I want to make sure the circuits can handle it.",
+          intent: "advise future use",
+        },
+        {
+          en: "Don't put anything in front of the panel — we need 36 inches of clearance by code.",
+          intent: "clearance reminder",
+        },
+        {
+          en: "I recommend a whole-home surge protector — it installs in the panel and protects everything.",
+          intent: "upsell surge protection",
+        },
       ],
       vocab: [
-        "panel directory", "dedicated circuit", "GFCI", "AFCI", "EV charger circuit",
-        "surge protector", "circuit load", "clearance", "whole-home surge", "breaker reset",
+        "panel directory",
+        "dedicated circuit",
+        "GFCI",
+        "AFCI",
+        "EV charger circuit",
+        "surge protector",
+        "circuit load",
+        "clearance",
+        "whole-home surge",
+        "breaker reset",
       ],
       challenges: [
         "A homeowner trips a breaker their first night and can't figure out the panel directory. Walk them through it on the phone.",
@@ -1150,34 +2379,74 @@ const electricianModule: TradesModuleContent = {
         "Explain GFCI vs. AFCI to a homeowner who wants to know why there are different types of breakers.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Okay — before I pack up, let me show you a few things so you're not calling me at midnight." },
+        {
+          speaker: "learner",
+          en: "Okay — before I pack up, let me show you a few things so you're not calling me at midnight.",
+        },
         { speaker: "ai", en: "Sure — I appreciate that." },
-        { speaker: "learner", en: "This is your panel. Every breaker is labeled right here on the directory. If a circuit goes out, come here first. If the breaker is in the middle position — that's tripped — push it all the way off and then back on." },
+        {
+          speaker: "learner",
+          en: "This is your panel. Every breaker is labeled right here on the directory. If a circuit goes out, come here first. If the breaker is in the middle position — that's tripped — push it all the way off and then back on.",
+        },
         { speaker: "ai", en: "What if that doesn't work?" },
-        { speaker: "learner", en: "Then it means the circuit is still overloaded, or something else is wrong. Unplug whatever you were running and try again. Still nothing, give me a call." },
-        { speaker: "ai", en: "What about the outlets in the bathroom — those have buttons on them?" },
+        {
+          speaker: "learner",
+          en: "Then it means the circuit is still overloaded, or something else is wrong. Unplug whatever you were running and try again. Still nothing, give me a call.",
+        },
+        {
+          speaker: "ai",
+          en: "What about the outlets in the bathroom — those have buttons on them?",
+        },
       ],
     },
     {
       id: "parts-order-elec",
       name: "Parts Order",
       emoji: "🏪",
-      blurb: "Electrical supply houses move fast. Know your catalog numbers, specify the right amperage and voltage, and confirm stock before you're standing in front of a missing part.",
+      blurb:
+        "Electrical supply houses move fast. Know your catalog numbers, specify the right amperage and voltage, and confirm stock before you're standing in front of a missing part.",
       counterpart: "Electrical Supply Counter Rep",
       learnerRole: "Electrician",
-      toneNote: "Quick and precise. Counter reps deal in catalog numbers and specs. Don't say 'that breaker thing' — know exactly what you need.",
+      toneNote:
+        "Quick and precise. Counter reps deal in catalog numbers and specs. Don't say 'that breaker thing' — know exactly what you need.",
       phrases: [
-        { en: "I need a 20-amp AFCI/GFCI dual-function breaker — Square D QO.", intent: "specify breaker" },
+        {
+          en: "I need a 20-amp AFCI/GFCI dual-function breaker — Square D QO.",
+          intent: "specify breaker",
+        },
         { en: "Do you have 200-foot rolls of 12-2 NM-B in stock?", intent: "check wire stock" },
-        { en: "I need a 50-amp double-pole for an EV charger — what do you have in Square D?", intent: "specify large breaker" },
-        { en: "Throw in a box of 20-amp duplex outlets — commercial grade, not residential.", intent: "specify outlet grade" },
-        { en: "What's the difference between your conduit fittings — liquid-tight or standard EMT?", intent: "differentiate fittings" },
-        { en: "I'll need 100 feet of 10-3 NM-B for a dryer circuit.", intent: "specify wire for large appliance" },
-        { en: "Put it on the Lopez Electric account — I'll pick it up in an hour.", intent: "charge and pickup" },
+        {
+          en: "I need a 50-amp double-pole for an EV charger — what do you have in Square D?",
+          intent: "specify large breaker",
+        },
+        {
+          en: "Throw in a box of 20-amp duplex outlets — commercial grade, not residential.",
+          intent: "specify outlet grade",
+        },
+        {
+          en: "What's the difference between your conduit fittings — liquid-tight or standard EMT?",
+          intent: "differentiate fittings",
+        },
+        {
+          en: "I'll need 100 feet of 10-3 NM-B for a dryer circuit.",
+          intent: "specify wire for large appliance",
+        },
+        {
+          en: "Put it on the Lopez Electric account — I'll pick it up in an hour.",
+          intent: "charge and pickup",
+        },
       ],
       vocab: [
-        "AFCI/GFCI dual-function breaker", "NM-B (Romex)", "EMT conduit", "liquid-tight conduit",
-        "double-pole breaker", "commercial grade outlet", "tandem breaker", "wire gauge", "ampacity", "catalog number",
+        "AFCI/GFCI dual-function breaker",
+        "NM-B (Romex)",
+        "EMT conduit",
+        "liquid-tight conduit",
+        "double-pole breaker",
+        "commercial grade outlet",
+        "tandem breaker",
+        "wire gauge",
+        "ampacity",
+        "catalog number",
       ],
       challenges: [
         "You need a replacement breaker for a brand the supply house doesn't carry. Get help identifying a cross-compatible substitute.",
@@ -1185,11 +2454,23 @@ const electricianModule: TradesModuleContent = {
         "A homeowner bought the wrong outlet at a big-box store — residential grade in a commercial application. Explain the difference and get the right part.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Hey, I need to grab a few things. You got QO220 in stock — the 20-amp double-pole?" },
+        {
+          speaker: "learner",
+          en: "Hey, I need to grab a few things. You got QO220 in stock — the 20-amp double-pole?",
+        },
         { speaker: "ai", en: "Yeah, I've got those. How many?" },
-        { speaker: "learner", en: "Four of those. And I need six QO120DFIC — that's the dual-function AFCI/GFCI in 20-amp." },
-        { speaker: "ai", en: "Let me check. I've got four on the shelf, I'd have to pull two from the back. Give me a second." },
-        { speaker: "learner", en: "That's fine. While you're doing that, do you have 12-2 NM-B — I need at least a 250-foot roll." },
+        {
+          speaker: "learner",
+          en: "Four of those. And I need six QO120DFIC — that's the dual-function AFCI/GFCI in 20-amp.",
+        },
+        {
+          speaker: "ai",
+          en: "Let me check. I've got four on the shelf, I'd have to pull two from the back. Give me a second.",
+        },
+        {
+          speaker: "learner",
+          en: "That's fine. While you're doing that, do you have 12-2 NM-B — I need at least a 250-foot roll.",
+        },
         { speaker: "ai", en: "I've got 250 and 500. The 250 is about $89. You want one?" },
       ],
     },
@@ -1199,41 +2480,80 @@ const electricianModule: TradesModuleContent = {
       category: "Panel & Service",
       emoji: "⚡",
       words: [
-        "main breaker", "sub-panel", "service entrance", "double-pole breaker", "single-pole breaker",
-        "neutral bar", "ground bar", "load calculation", "200-amp service", "panel directory",
+        "main breaker",
+        "sub-panel",
+        "service entrance",
+        "double-pole breaker",
+        "single-pole breaker",
+        "neutral bar",
+        "ground bar",
+        "load calculation",
+        "200-amp service",
+        "panel directory",
       ],
     },
     {
       category: "Wire & Conduit",
       emoji: "🔌",
       words: [
-        "NM-B (Romex)", "EMT conduit", "liquid-tight flex", "THHN wire", "12-gauge",
-        "10-gauge", "6-gauge", "wire nut", "pull string", "home run",
+        "NM-B (Romex)",
+        "EMT conduit",
+        "liquid-tight flex",
+        "THHN wire",
+        "12-gauge",
+        "10-gauge",
+        "6-gauge",
+        "wire nut",
+        "pull string",
+        "home run",
       ],
     },
     {
       category: "Protection Devices",
       emoji: "🛡️",
       words: [
-        "GFCI breaker", "AFCI breaker", "dual-function breaker", "GFCI outlet", "surge protector",
-        "tamper-resistant outlet", "GFCI reset", "ground fault", "arc fault", "LOTO (lockout/tagout)",
+        "GFCI breaker",
+        "AFCI breaker",
+        "dual-function breaker",
+        "GFCI outlet",
+        "surge protector",
+        "tamper-resistant outlet",
+        "GFCI reset",
+        "ground fault",
+        "arc fault",
+        "LOTO (lockout/tagout)",
       ],
     },
     {
       category: "Inspection & Code",
       emoji: "📋",
       words: [
-        "NEC (National Electrical Code)", "box fill", "wire support", "accessible junction box",
-        "LOTO", "permit", "rough-in inspection", "final inspection", "re-inspection", "variance",
+        "NEC (National Electrical Code)",
+        "box fill",
+        "wire support",
+        "accessible junction box",
+        "LOTO",
+        "permit",
+        "rough-in inspection",
+        "final inspection",
+        "re-inspection",
+        "variance",
       ],
     },
     {
       category: "Jobsite Terms (Bilingual)",
       emoji: "🗣️",
       words: [
-        "el breaker / breaker", "la caja / box", "el cable / wire", "cuidado — hay corriente",
-        "apaga eso / kill that circuit", "está caliente / it's live", "el panel / panel",
-        "la tierra / ground", "pónganse los guantes / put on your gloves", "no toques eso",
+        "el breaker / breaker",
+        "la caja / box",
+        "el cable / wire",
+        "cuidado — hay corriente",
+        "apaga eso / kill that circuit",
+        "está caliente / it's live",
+        "el panel / panel",
+        "la tierra / ground",
+        "pónganse los guantes / put on your gloves",
+        "no toques eso",
       ],
     },
   ],
@@ -1250,23 +2570,57 @@ const landscaperModule: TradesModuleContent = {
       id: "client-consultation",
       name: "Client Consultation",
       emoji: "🌿",
-      blurb: "Before a single plant goes in the ground, you need to understand what the client wants — and guide them away from ideas that won't work in their climate or budget.",
+      blurb:
+        "Before a single plant goes in the ground, you need to understand what the client wants — and guide them away from ideas that won't work in their climate or budget.",
       counterpart: "Homeowner",
       learnerRole: "Landscape Contractor",
-      toneNote: "Professional and consultative. Clients often come in with inspiration photos that don't match their yard, budget, or climate. Lead gently with expertise.",
+      toneNote:
+        "Professional and consultative. Clients often come in with inspiration photos that don't match their yard, budget, or climate. Lead gently with expertise.",
       phrases: [
-        { en: "Walk me through what you're envisioning — what would this space feel like when we're done?", intent: "open vision conversation" },
-        { en: "What's your irrigation situation? If you don't have drip, that changes the plant palette significantly.", intent: "assess water infrastructure" },
-        { en: "That plant is beautiful but it won't survive a hard frost — let me show you something that gives the same look in our climate.", intent: "redirect plant choice" },
-        { en: "For a space this size, I'd budget around $8,000 to $12,000 depending on materials.", intent: "set budget range" },
-        { en: "Is low maintenance a priority, or are you okay with seasonal upkeep?", intent: "assess maintenance preference" },
-        { en: "Let me take photos and measurements today and get you a proposal by end of the week.", intent: "set next step" },
-        { en: "I'd recommend a 2-inch layer of mulch throughout — keeps moisture in and weeds down.", intent: "recommend standard practice" },
-        { en: "The slope here is going to create drainage issues — we need to address that before planting.", intent: "flag site challenge" },
+        {
+          en: "Walk me through what you're envisioning — what would this space feel like when we're done?",
+          intent: "open vision conversation",
+        },
+        {
+          en: "What's your irrigation situation? If you don't have drip, that changes the plant palette significantly.",
+          intent: "assess water infrastructure",
+        },
+        {
+          en: "That plant is beautiful but it won't survive a hard frost — let me show you something that gives the same look in our climate.",
+          intent: "redirect plant choice",
+        },
+        {
+          en: "For a space this size, I'd budget around $8,000 to $12,000 depending on materials.",
+          intent: "set budget range",
+        },
+        {
+          en: "Is low maintenance a priority, or are you okay with seasonal upkeep?",
+          intent: "assess maintenance preference",
+        },
+        {
+          en: "Let me take photos and measurements today and get you a proposal by end of the week.",
+          intent: "set next step",
+        },
+        {
+          en: "I'd recommend a 2-inch layer of mulch throughout — keeps moisture in and weeds down.",
+          intent: "recommend standard practice",
+        },
+        {
+          en: "The slope here is going to create drainage issues — we need to address that before planting.",
+          intent: "flag site challenge",
+        },
       ],
       vocab: [
-        "drip irrigation", "plant palette", "hardiness zone", "frost line", "mulch",
-        "grade", "drainage", "site analysis", "design proposal", "client brief",
+        "drip irrigation",
+        "plant palette",
+        "hardiness zone",
+        "frost line",
+        "mulch",
+        "grade",
+        "drainage",
+        "site analysis",
+        "design proposal",
+        "client brief",
       ],
       challenges: [
         "A client wants a lawn of tropical plants in a Zone 5 climate. Walk them toward a practical alternative without dismissing their vision.",
@@ -1274,11 +2628,23 @@ const landscaperModule: TradesModuleContent = {
         "A client shows you an Instagram photo of a garden in a completely different climate. Explain why it won't translate directly and offer alternatives.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "So you said you want a more finished look back here. What are you hoping to use the space for?" },
-        { speaker: "ai", en: "We'd love to entertain back here — a patio area, some plants for privacy, maybe a fire pit." },
-        { speaker: "learner", en: "Okay — that's very doable. Do you have irrigation out here now, or is this all hose-watered?" },
+        {
+          speaker: "learner",
+          en: "So you said you want a more finished look back here. What are you hoping to use the space for?",
+        },
+        {
+          speaker: "ai",
+          en: "We'd love to entertain back here — a patio area, some plants for privacy, maybe a fire pit.",
+        },
+        {
+          speaker: "learner",
+          en: "Okay — that's very doable. Do you have irrigation out here now, or is this all hose-watered?",
+        },
         { speaker: "ai", en: "Just a hose. Is that going to be a problem?" },
-        { speaker: "learner", en: "It's not a problem, but it affects what plants will work long-term. Drip irrigation is actually something we'd recommend adding — it pays for itself in plant survival. Let me include a drip zone in the proposal." },
+        {
+          speaker: "learner",
+          en: "It's not a problem, but it affects what plants will work long-term. Drip irrigation is actually something we'd recommend adding — it pays for itself in plant survival. Let me include a drip zone in the proposal.",
+        },
         { speaker: "ai", en: "How much does that usually add to the cost?" },
       ],
     },
@@ -1286,23 +2652,57 @@ const landscaperModule: TradesModuleContent = {
       id: "crew-morning-brief",
       name: "Crew Morning Brief",
       emoji: "🌅",
-      blurb: "Get the crew moving in the right direction before anyone digs, plants, or builds. Cover the site, the sequence, and any hazards before the tools come off the truck.",
+      blurb:
+        "Get the crew moving in the right direction before anyone digs, plants, or builds. Cover the site, the sequence, and any hazards before the tools come off the truck.",
       counterpart: "Crew Member",
       learnerRole: "Landscape Foreman",
-      toneNote: "Direct and practical. Morning briefings should be short. Give locations, sequences, and any site-specific information. Skip the lecture.",
+      toneNote:
+        "Direct and practical. Morning briefings should be short. Give locations, sequences, and any site-specific information. Skip the lecture.",
       phrases: [
-        { en: "We're starting with the boulder placement on the north side — crane arrives at 8.", intent: "set first task" },
-        { en: "Don't dig within 18 inches of the marked utility flags without calling me.", intent: "safety protocol" },
-        { en: "Mow crew, you're on the rear lawn first — client's home, be quiet with the blowers until 8 AM.", intent: "crew-specific task" },
-        { en: "Plant material is staged in the driveway — don't plant anything until I walk it with you.", intent: "sequence instruction" },
-        { en: "It's going to hit 95 today — water at every break, no exceptions.", intent: "heat safety" },
-        { en: "Keep the truck off the lawn — I don't want ruts in this turf.", intent: "site protection" },
-        { en: "If you find anything underground — pipe, wire, old foundation — stop and flag it.", intent: "underground hazard protocol" },
-        { en: "Cleanup crew starts at 4 PM — I want everything blown out and loaded before we leave.", intent: "end-of-day standard" },
+        {
+          en: "We're starting with the boulder placement on the north side — crane arrives at 8.",
+          intent: "set first task",
+        },
+        {
+          en: "Don't dig within 18 inches of the marked utility flags without calling me.",
+          intent: "safety protocol",
+        },
+        {
+          en: "Mow crew, you're on the rear lawn first — client's home, be quiet with the blowers until 8 AM.",
+          intent: "crew-specific task",
+        },
+        {
+          en: "Plant material is staged in the driveway — don't plant anything until I walk it with you.",
+          intent: "sequence instruction",
+        },
+        {
+          en: "It's going to hit 95 today — water at every break, no exceptions.",
+          intent: "heat safety",
+        },
+        {
+          en: "Keep the truck off the lawn — I don't want ruts in this turf.",
+          intent: "site protection",
+        },
+        {
+          en: "If you find anything underground — pipe, wire, old foundation — stop and flag it.",
+          intent: "underground hazard protocol",
+        },
+        {
+          en: "Cleanup crew starts at 4 PM — I want everything blown out and loaded before we leave.",
+          intent: "end-of-day standard",
+        },
       ],
       vocab: [
-        "utility flag", "call 811", "staging area", "plant material", "ruts",
-        "blower", "heat stroke", "boulder placement", "equipment operator", "mulch ring",
+        "utility flag",
+        "call 811",
+        "staging area",
+        "plant material",
+        "ruts",
+        "blower",
+        "heat stroke",
+        "boulder placement",
+        "equipment operator",
+        "mulch ring",
       ],
       challenges: [
         "A crew member starts digging in an unflagged area near the house. Stop the work, have the area marked, and explain 811.",
@@ -1310,11 +2710,20 @@ const landscaperModule: TradesModuleContent = {
         "The plant delivery arrived with wrong species. Reorganize the crew's morning tasks while you sort out the delivery issue.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Alright — let's go over the day. Jorge, you and your partner are starting on the bed prep in the back. Everything east of the boulder wall gets cleared first." },
+        {
+          speaker: "learner",
+          en: "Alright — let's go over the day. Jorge, you and your partner are starting on the bed prep in the back. Everything east of the boulder wall gets cleared first.",
+        },
         { speaker: "ai", en: "Are the utilities flagged back there?" },
-        { speaker: "learner", en: "Yes — 811 was out yesterday. You'll see the flags. Orange is gas, blue is water, yellow is electric. Don't get within 18 inches of any flag without telling me first." },
+        {
+          speaker: "learner",
+          en: "Yes — 811 was out yesterday. You'll see the flags. Orange is gas, blue is water, yellow is electric. Don't get within 18 inches of any flag without telling me first.",
+        },
         { speaker: "ai", en: "Got it. How deep are we going on the bed prep?" },
-        { speaker: "learner", en: "Six inches down, remove all the grass and weeds, and loosen the soil. We're putting in a drip system before we plant, so don't compact it once you've tilled." },
+        {
+          speaker: "learner",
+          en: "Six inches down, remove all the grass and weeds, and loosen the soil. We're putting in a drip system before we plant, so don't compact it once you've tilled.",
+        },
         { speaker: "ai", en: "Where are we putting all the material we remove?" },
       ],
     },
@@ -1322,23 +2731,57 @@ const landscaperModule: TradesModuleContent = {
       id: "irrigation",
       name: "Irrigation",
       emoji: "💦",
-      blurb: "A good irrigation system is invisible when it works and obvious when it doesn't. Learn the language of heads, zones, and controllers so nothing gets missed.",
+      blurb:
+        "A good irrigation system is invisible when it works and obvious when it doesn't. Learn the language of heads, zones, and controllers so nothing gets missed.",
       counterpart: "Homeowner",
       learnerRole: "Irrigation Technician",
-      toneNote: "Technical but approachable. Irrigation systems confuse most homeowners. Translate zones, heads, and schedules into plain language.",
+      toneNote:
+        "Technical but approachable. Irrigation systems confuse most homeowners. Translate zones, heads, and schedules into plain language.",
       phrases: [
-        { en: "You've got 6 zones — I'm going to run through each one while you watch for full coverage.", intent: "zone verification" },
-        { en: "Zone 3 has a broken head — it's shooting straight up instead of rotating.", intent: "identify head failure" },
-        { en: "Your run times are too long — you're getting runoff instead of absorption.", intent: "diagnose overwatering" },
-        { en: "I'd recommend switching this zone to drip — spray heads on a slope waste a lot of water.", intent: "recommend drip conversion" },
-        { en: "The controller battery died and wiped your schedule — let me reprogram it.", intent: "controller issue" },
-        { en: "Winterize means we blow out all the lines before the first hard freeze.", intent: "explain winterization" },
-        { en: "This head needs to be adjusted — the arc is watering the driveway, not the lawn.", intent: "adjust arc" },
-        { en: "Your pressure is too high — we need a pressure regulator or the heads will mist off instead of throwing.", intent: "identify pressure problem" },
+        {
+          en: "You've got 6 zones — I'm going to run through each one while you watch for full coverage.",
+          intent: "zone verification",
+        },
+        {
+          en: "Zone 3 has a broken head — it's shooting straight up instead of rotating.",
+          intent: "identify head failure",
+        },
+        {
+          en: "Your run times are too long — you're getting runoff instead of absorption.",
+          intent: "diagnose overwatering",
+        },
+        {
+          en: "I'd recommend switching this zone to drip — spray heads on a slope waste a lot of water.",
+          intent: "recommend drip conversion",
+        },
+        {
+          en: "The controller battery died and wiped your schedule — let me reprogram it.",
+          intent: "controller issue",
+        },
+        {
+          en: "Winterize means we blow out all the lines before the first hard freeze.",
+          intent: "explain winterization",
+        },
+        {
+          en: "This head needs to be adjusted — the arc is watering the driveway, not the lawn.",
+          intent: "adjust arc",
+        },
+        {
+          en: "Your pressure is too high — we need a pressure regulator or the heads will mist off instead of throwing.",
+          intent: "identify pressure problem",
+        },
       ],
       vocab: [
-        "zone", "head (rotary/spray)", "controller", "run time", "arc adjustment",
-        "drip emitter", "pressure regulator", "winterize", "blow-out", "soaker zone",
+        "zone",
+        "head (rotary/spray)",
+        "controller",
+        "run time",
+        "arc adjustment",
+        "drip emitter",
+        "pressure regulator",
+        "winterize",
+        "blow-out",
+        "soaker zone",
       ],
       challenges: [
         "A homeowner's lawn has dry patches on zone 2. Walk through a systematic diagnosis from the controller to the head.",
@@ -1346,11 +2789,23 @@ const landscaperModule: TradesModuleContent = {
         "Explain how to program a smart irrigation controller to a homeowner who is not tech-savvy.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "I'm going to run each zone from the controller while you walk the yard. Tell me if anything looks off." },
-        { speaker: "ai", en: "Zone 1 looks fine. Zone 2 just came on — wait, there's water shooting straight up by the rose bed." },
-        { speaker: "learner", en: "That's a broken pop-up head — the wiper seal is gone. It's stuck in the open position. That's why zone 2 runs out of water pressure before it reaches the back corner." },
+        {
+          speaker: "learner",
+          en: "I'm going to run each zone from the controller while you walk the yard. Tell me if anything looks off.",
+        },
+        {
+          speaker: "ai",
+          en: "Zone 1 looks fine. Zone 2 just came on — wait, there's water shooting straight up by the rose bed.",
+        },
+        {
+          speaker: "learner",
+          en: "That's a broken pop-up head — the wiper seal is gone. It's stuck in the open position. That's why zone 2 runs out of water pressure before it reaches the back corner.",
+        },
         { speaker: "ai", en: "Is that expensive to fix?" },
-        { speaker: "learner", en: "It's a $12 head and about 20 minutes of work. I'll swap it today. That corner that's been dying — it should green back up in 2-3 weeks once the zone has full pressure." },
+        {
+          speaker: "learner",
+          en: "It's a $12 head and about 20 minutes of work. I'll swap it today. That corner that's been dying — it should green back up in 2-3 weeks once the zone has full pressure.",
+        },
         { speaker: "ai", en: "How often should I actually be running these zones?" },
       ],
     },
@@ -1358,23 +2813,57 @@ const landscaperModule: TradesModuleContent = {
       id: "hardscape",
       name: "Hardscape",
       emoji: "🧱",
-      blurb: "Patios, walkways, and retaining walls are permanent. Get the base, grade, and drainage right before the first paver goes down.",
+      blurb:
+        "Patios, walkways, and retaining walls are permanent. Get the base, grade, and drainage right before the first paver goes down.",
       counterpart: "Homeowner",
       learnerRole: "Hardscape Contractor",
-      toneNote: "Confident and construction-minded. Hardscape requires precision and structural thinking. Homeowners don't always see the base work — explain why it matters.",
+      toneNote:
+        "Confident and construction-minded. Hardscape requires precision and structural thinking. Homeowners don't always see the base work — explain why it matters.",
       phrases: [
-        { en: "We're excavating 8 inches for the base — you won't see it, but that's what keeps it from heaving.", intent: "explain base depth" },
-        { en: "All the water needs to shed away from the house — we're grading at 2% minimum.", intent: "explain drainage grade" },
-        { en: "The compacted gravel base is what makes a paver patio last 20 years. Skip that and it shifts.", intent: "explain structural importance" },
-        { en: "We'll cut the edges in with a wet saw — no snapping, no uneven gaps.", intent: "describe edge cuts" },
-        { en: "The retaining wall needs a deadman every 6 feet to tie it back — otherwise it leans.", intent: "explain retaining wall structure" },
-        { en: "Polymeric sand goes in the joints — it hardens and locks the pavers, keeps weeds out.", intent: "specify joint material" },
-        { en: "This patio is going to be 12x16 — we'll need about 280 square feet of pavers including cuts and waste.", intent: "quantify material" },
-        { en: "I need to know where your downspouts go before I finalize the grade.", intent: "request drainage info" },
+        {
+          en: "We're excavating 8 inches for the base — you won't see it, but that's what keeps it from heaving.",
+          intent: "explain base depth",
+        },
+        {
+          en: "All the water needs to shed away from the house — we're grading at 2% minimum.",
+          intent: "explain drainage grade",
+        },
+        {
+          en: "The compacted gravel base is what makes a paver patio last 20 years. Skip that and it shifts.",
+          intent: "explain structural importance",
+        },
+        {
+          en: "We'll cut the edges in with a wet saw — no snapping, no uneven gaps.",
+          intent: "describe edge cuts",
+        },
+        {
+          en: "The retaining wall needs a deadman every 6 feet to tie it back — otherwise it leans.",
+          intent: "explain retaining wall structure",
+        },
+        {
+          en: "Polymeric sand goes in the joints — it hardens and locks the pavers, keeps weeds out.",
+          intent: "specify joint material",
+        },
+        {
+          en: "This patio is going to be 12x16 — we'll need about 280 square feet of pavers including cuts and waste.",
+          intent: "quantify material",
+        },
+        {
+          en: "I need to know where your downspouts go before I finalize the grade.",
+          intent: "request drainage info",
+        },
       ],
       vocab: [
-        "base course", "compacted gravel", "paver", "polymeric sand", "deadman",
-        "retaining wall", "grade", "2% slope", "wet saw", "edging restraint",
+        "base course",
+        "compacted gravel",
+        "paver",
+        "polymeric sand",
+        "deadman",
+        "retaining wall",
+        "grade",
+        "2% slope",
+        "wet saw",
+        "edging restraint",
       ],
       challenges: [
         "A homeowner wants to save money by skipping the gravel base. Explain in concrete terms what will happen to their patio in 3 years.",
@@ -1382,11 +2871,20 @@ const landscaperModule: TradesModuleContent = {
         "A client wants a retaining wall on a steep slope with no footer. Walk through why that's a structural problem.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Before we start laying pavers, I want to show you what we've got so far." },
+        {
+          speaker: "learner",
+          en: "Before we start laying pavers, I want to show you what we've got so far.",
+        },
         { speaker: "ai", en: "It looks like a big hole. I didn't realize you'd dig that deep." },
-        { speaker: "learner", en: "That's 8 inches down — that's your base. Four inches of crushed gravel, compacted, then 1 inch of bedding sand on top. That base is what keeps your patio level in 10 years." },
+        {
+          speaker: "learner",
+          en: "That's 8 inches down — that's your base. Four inches of crushed gravel, compacted, then 1 inch of bedding sand on top. That base is what keeps your patio level in 10 years.",
+        },
         { speaker: "ai", en: "And without it?" },
-        { speaker: "learner", en: "It shifts. Pavers settle unevenly, roots get under them, they rock and crack. I've done repairs on patios that were done without base — it's not pretty." },
+        {
+          speaker: "learner",
+          en: "It shifts. Pavers settle unevenly, roots get under them, they rock and crack. I've done repairs on patios that were done without base — it's not pretty.",
+        },
         { speaker: "ai", en: "Okay — I get it now. What's next?" },
       ],
     },
@@ -1394,23 +2892,57 @@ const landscaperModule: TradesModuleContent = {
       id: "plant-installation",
       name: "Plant Installation",
       emoji: "🌳",
-      blurb: "Right plant, right place, right depth — get these three things right and plants thrive. Learn the language of installation specs, soil amendments, and spacing.",
+      blurb:
+        "Right plant, right place, right depth — get these three things right and plants thrive. Learn the language of installation specs, soil amendments, and spacing.",
       counterpart: "Crew Member",
       learnerRole: "Lead Landscaper",
-      toneNote: "Instructional and horticultural. Plant installation is where craft meets science. Depth, spacing, and soil conditions matter.",
+      toneNote:
+        "Instructional and horticultural. Plant installation is where craft meets science. Depth, spacing, and soil conditions matter.",
       phrases: [
-        { en: "Plant it at the same level it was in the container — never deeper.", intent: "depth instruction" },
-        { en: "Rough up the rootball before you set it — circling roots need to be broken up.", intent: "root prep" },
-        { en: "Spacing on these shrubs is 4 feet on center — they'll fill in over the next 2 seasons.", intent: "set spacing" },
-        { en: "Amend the backfill with compost at a 50/50 ratio — this soil has too much clay.", intent: "soil amendment" },
-        { en: "Stake that tree for the first season — the root ball isn't established enough to hold in wind.", intent: "stake instruction" },
-        { en: "Water in slow — you want the water in the hole, not running off the root ball.", intent: "watering instruction" },
-        { en: "Keep the mulch 2 inches back from the trunk — volcano mulching kills trees.", intent: "mulch placement" },
-        { en: "All balled and burlapped trees — cut the wire cage and peel back the burlap before you backfill.", intent: "B&B installation" },
+        {
+          en: "Plant it at the same level it was in the container — never deeper.",
+          intent: "depth instruction",
+        },
+        {
+          en: "Rough up the rootball before you set it — circling roots need to be broken up.",
+          intent: "root prep",
+        },
+        {
+          en: "Spacing on these shrubs is 4 feet on center — they'll fill in over the next 2 seasons.",
+          intent: "set spacing",
+        },
+        {
+          en: "Amend the backfill with compost at a 50/50 ratio — this soil has too much clay.",
+          intent: "soil amendment",
+        },
+        {
+          en: "Stake that tree for the first season — the root ball isn't established enough to hold in wind.",
+          intent: "stake instruction",
+        },
+        {
+          en: "Water in slow — you want the water in the hole, not running off the root ball.",
+          intent: "watering instruction",
+        },
+        {
+          en: "Keep the mulch 2 inches back from the trunk — volcano mulching kills trees.",
+          intent: "mulch placement",
+        },
+        {
+          en: "All balled and burlapped trees — cut the wire cage and peel back the burlap before you backfill.",
+          intent: "B&B installation",
+        },
       ],
       vocab: [
-        "rootball", "B&B (balled and burlap)", "container plant", "backfill", "soil amendment",
-        "mulch ring", "staking", "circling roots", "compost", "plant spacing",
+        "rootball",
+        "B&B (balled and burlap)",
+        "container plant",
+        "backfill",
+        "soil amendment",
+        "mulch ring",
+        "staking",
+        "circling roots",
+        "compost",
+        "plant spacing",
       ],
       challenges: [
         "A crew member planted a tree 4 inches too deep. Explain why this is a serious problem and walk through the correction.",
@@ -1420,9 +2952,15 @@ const landscaperModule: TradesModuleContent = {
       sampleConversation: [
         { speaker: "learner", en: "Before you start digging — come look at this rootball." },
         { speaker: "ai", en: "It looks fine to me." },
-        { speaker: "learner", en: "Feel the outside here — see how those roots are circling? If we plant it like that, those roots will keep circling and eventually girdle the trunk. We need to score the outside with a knife before it goes in." },
+        {
+          speaker: "learner",
+          en: "Feel the outside here — see how those roots are circling? If we plant it like that, those roots will keep circling and eventually girdle the trunk. We need to score the outside with a knife before it goes in.",
+        },
         { speaker: "ai", en: "Won't that hurt the roots?" },
-        { speaker: "learner", en: "It stresses the plant for a week, but it forces the roots to grow outward. A girdled tree dies in 10 years. This is the fix." },
+        {
+          speaker: "learner",
+          en: "It stresses the plant for a week, but it forces the roots to grow outward. A girdled tree dies in 10 years. This is the fix.",
+        },
         { speaker: "ai", en: "Okay — how deep does the hole go?" },
       ],
     },
@@ -1430,22 +2968,53 @@ const landscaperModule: TradesModuleContent = {
       id: "complaint-handling",
       name: "Complaint Handling",
       emoji: "📞",
-      blurb: "A plant died, a patio is cracking, or the lawn looks worse after service — handling a complaint professionally is how you keep a client and your reputation.",
+      blurb:
+        "A plant died, a patio is cracking, or the lawn looks worse after service — handling a complaint professionally is how you keep a client and your reputation.",
       counterpart: "Frustrated Homeowner",
       learnerRole: "Landscape Contractor",
-      toneNote: "Calm, empathetic, and solution-focused. Don't get defensive. Listen first. The goal is a resolved problem and a retained client, not a win.",
+      toneNote:
+        "Calm, empathetic, and solution-focused. Don't get defensive. Listen first. The goal is a resolved problem and a retained client, not a win.",
       phrases: [
-        { en: "I hear you — that's not the result we were going for either. Let me come take a look.", intent: "acknowledge and commit to inspect" },
-        { en: "Before I can tell you what happened, I need to see it in person.", intent: "defer diagnosis" },
-        { en: "If that plant died due to our installation, we will replace it — that's our guarantee.", intent: "invoke guarantee" },
-        { en: "I want to be honest with you — that shrub went in healthy, but irrigation coverage in that corner was low. I should have caught that sooner.", intent: "own partial responsibility" },
-        { en: "Let me make this right. I'll have a crew out Thursday to assess and we'll go from there.", intent: "commit to resolution" },
-        { en: "Can you send me a photo so I have a sense of what I'm looking at before I come out?", intent: "gather info remotely" },
-        { en: "I understand this is frustrating, especially after what you invested. Let's fix it.", intent: "validate frustration" },
+        {
+          en: "I hear you — that's not the result we were going for either. Let me come take a look.",
+          intent: "acknowledge and commit to inspect",
+        },
+        {
+          en: "Before I can tell you what happened, I need to see it in person.",
+          intent: "defer diagnosis",
+        },
+        {
+          en: "If that plant died due to our installation, we will replace it — that's our guarantee.",
+          intent: "invoke guarantee",
+        },
+        {
+          en: "I want to be honest with you — that shrub went in healthy, but irrigation coverage in that corner was low. I should have caught that sooner.",
+          intent: "own partial responsibility",
+        },
+        {
+          en: "Let me make this right. I'll have a crew out Thursday to assess and we'll go from there.",
+          intent: "commit to resolution",
+        },
+        {
+          en: "Can you send me a photo so I have a sense of what I'm looking at before I come out?",
+          intent: "gather info remotely",
+        },
+        {
+          en: "I understand this is frustrating, especially after what you invested. Let's fix it.",
+          intent: "validate frustration",
+        },
       ],
       vocab: [
-        "plant warranty", "installation guarantee", "replacement", "root cause", "irrigation gap",
-        "soil failure", "documentation", "punch list", "credit", "re-inspection",
+        "plant warranty",
+        "installation guarantee",
+        "replacement",
+        "root cause",
+        "irrigation gap",
+        "soil failure",
+        "documentation",
+        "punch list",
+        "credit",
+        "re-inspection",
       ],
       challenges: [
         "Three trees died six months after installation and the homeowner is threatening to go online. Navigate the complaint toward a resolution.",
@@ -1453,11 +3022,23 @@ const landscaperModule: TradesModuleContent = {
         "A client complains that the crew damaged their sprinkler system during a mulch job. Handle it fairly even though you're not sure it was your crew.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "Thanks for calling — I'm sorry to hear the Japanese maple isn't looking good. Tell me what you're seeing." },
-        { speaker: "ai", en: "All the leaves are yellow and dropping. It looked fine two weeks ago. I'm really upset — that was an expensive tree." },
-        { speaker: "learner", en: "I completely understand. Yellowing and drop on a Japanese maple after transplant could be a few things. Can you send me a photo of the base of the trunk — right where it meets the soil?" },
+        {
+          speaker: "learner",
+          en: "Thanks for calling — I'm sorry to hear the Japanese maple isn't looking good. Tell me what you're seeing.",
+        },
+        {
+          speaker: "ai",
+          en: "All the leaves are yellow and dropping. It looked fine two weeks ago. I'm really upset — that was an expensive tree.",
+        },
+        {
+          speaker: "learner",
+          en: "I completely understand. Yellowing and drop on a Japanese maple after transplant could be a few things. Can you send me a photo of the base of the trunk — right where it meets the soil?",
+        },
         { speaker: "ai", en: "Why the base?" },
-        { speaker: "learner", en: "I want to see if it was planted too deep or if the mulch is too close to the trunk. Both can cause exactly what you're describing. I'm not making excuses — if we made an error, we'll fix it." },
+        {
+          speaker: "learner",
+          en: "I want to see if it was planted too deep or if the mulch is too close to the trunk. Both can cause exactly what you're describing. I'm not making excuses — if we made an error, we'll fix it.",
+        },
         { speaker: "ai", en: "And if it dies? Will you replace it?" },
       ],
     },
@@ -1465,22 +3046,53 @@ const landscaperModule: TradesModuleContent = {
       id: "seasonal-prep",
       name: "Seasonal Prep",
       emoji: "🍂",
-      blurb: "Spring startup and fall cleanup are recurring revenue — and a chance to catch problems before they become disasters. Know the checklist and how to sell it.",
+      blurb:
+        "Spring startup and fall cleanup are recurring revenue — and a chance to catch problems before they become disasters. Know the checklist and how to sell it.",
       counterpart: "Homeowner",
       learnerRole: "Landscape Contractor",
-      toneNote: "Helpful and proactive. Seasonal services are expected by experienced clients and need to be explained to new ones. Frame them as protecting the investment.",
+      toneNote:
+        "Helpful and proactive. Seasonal services are expected by experienced clients and need to be explained to new ones. Frame them as protecting the investment.",
       phrases: [
-        { en: "It's time to schedule your spring startup — irrigation activation, fertilization, and a full site walk.", intent: "initiate spring service" },
-        { en: "We'll blow out the irrigation lines before November 1 — last year we had a hard freeze early.", intent: "schedule winterization" },
-        { en: "Fall cleanup includes leaf removal, bed edging, and cutting back the ornamental grasses.", intent: "define fall scope" },
-        { en: "I recommend a pre-emergent application in early spring — get ahead of the crabgrass before it sets.", intent: "recommend pre-emergent" },
-        { en: "The mulch from last year has broken down — I'd budget a refresh, about 3 yards for this property.", intent: "recommend mulch refresh" },
-        { en: "Your irrigation timer needs to come out of winter mode — let me program it for the new season.", intent: "controller programming" },
-        { en: "I'll flag anything I see during the walk that needs attention — sometimes winter reveals things.", intent: "set walk expectations" },
+        {
+          en: "It's time to schedule your spring startup — irrigation activation, fertilization, and a full site walk.",
+          intent: "initiate spring service",
+        },
+        {
+          en: "We'll blow out the irrigation lines before November 1 — last year we had a hard freeze early.",
+          intent: "schedule winterization",
+        },
+        {
+          en: "Fall cleanup includes leaf removal, bed edging, and cutting back the ornamental grasses.",
+          intent: "define fall scope",
+        },
+        {
+          en: "I recommend a pre-emergent application in early spring — get ahead of the crabgrass before it sets.",
+          intent: "recommend pre-emergent",
+        },
+        {
+          en: "The mulch from last year has broken down — I'd budget a refresh, about 3 yards for this property.",
+          intent: "recommend mulch refresh",
+        },
+        {
+          en: "Your irrigation timer needs to come out of winter mode — let me program it for the new season.",
+          intent: "controller programming",
+        },
+        {
+          en: "I'll flag anything I see during the walk that needs attention — sometimes winter reveals things.",
+          intent: "set walk expectations",
+        },
       ],
       vocab: [
-        "spring startup", "winterization (blow-out)", "fall cleanup", "pre-emergent", "fertilization",
-        "mulch refresh", "bed edging", "ornamental grass cutback", "dormant pruning", "aeration",
+        "spring startup",
+        "winterization (blow-out)",
+        "fall cleanup",
+        "pre-emergent",
+        "fertilization",
+        "mulch refresh",
+        "bed edging",
+        "ornamental grass cutback",
+        "dormant pruning",
+        "aeration",
       ],
       challenges: [
         "A client calls in September and says they don't want to pay for winterization this year. Explain the risk to their irrigation system.",
@@ -1488,11 +3100,23 @@ const landscaperModule: TradesModuleContent = {
         "Sell a spring fertilization program to a client who says their lawn 'looks fine' and doesn't see the point.",
       ],
       sampleConversation: [
-        { speaker: "learner", en: "I'm reaching out because we're booking fall cleanups and winterizations for October. You'll want to get on the schedule." },
-        { speaker: "ai", en: "What's involved in the winterization? I've never actually had it done." },
-        { speaker: "learner", en: "We connect a compressor to your irrigation system and blow all the water out of the lines before it freezes. If there's water sitting in the lines when it freezes, the pipes crack and heads blow out. Repairs in spring can run $400 to $800." },
+        {
+          speaker: "learner",
+          en: "I'm reaching out because we're booking fall cleanups and winterizations for October. You'll want to get on the schedule.",
+        },
+        {
+          speaker: "ai",
+          en: "What's involved in the winterization? I've never actually had it done.",
+        },
+        {
+          speaker: "learner",
+          en: "We connect a compressor to your irrigation system and blow all the water out of the lines before it freezes. If there's water sitting in the lines when it freezes, the pipes crack and heads blow out. Repairs in spring can run $400 to $800.",
+        },
         { speaker: "ai", en: "And the winterization is cheaper than that?" },
-        { speaker: "learner", en: "For a property your size, it's $150. Straightforward insurance. We also check every zone and head while we're there — so you know the system is in good shape before spring." },
+        {
+          speaker: "learner",
+          en: "For a property your size, it's $150. Straightforward insurance. We also check every zone and head while we're there — so you know the system is in good shape before spring.",
+        },
         { speaker: "ai", en: "Okay — when can you fit me in?" },
       ],
     },
@@ -1502,41 +3126,79 @@ const landscaperModule: TradesModuleContent = {
       category: "Plant Material",
       emoji: "🌱",
       words: [
-        "perennial", "annual", "shrub", "ornamental grass", "groundcover",
-        "balled and burlap (B&B)", "container plant", "native plant", "specimen tree", "pollinator plant",
+        "perennial",
+        "annual",
+        "shrub",
+        "ornamental grass",
+        "groundcover",
+        "balled and burlap (B&B)",
+        "container plant",
+        "native plant",
+        "specimen tree",
+        "pollinator plant",
       ],
     },
     {
       category: "Irrigation",
       emoji: "💧",
       words: [
-        "rotary head", "spray head", "drip emitter", "zone", "controller",
-        "pressure regulator", "backflow preventer", "winterize", "run time", "soaker hose",
+        "rotary head",
+        "spray head",
+        "drip emitter",
+        "zone",
+        "controller",
+        "pressure regulator",
+        "backflow preventer",
+        "winterize",
+        "run time",
+        "soaker hose",
       ],
     },
     {
       category: "Hardscape Materials",
       emoji: "🧱",
       words: [
-        "paver", "flagstone", "crushed gravel", "polymeric sand", "edging restraint",
-        "retaining wall block", "boulder", "base course", "compactor", "wet saw",
+        "paver",
+        "flagstone",
+        "crushed gravel",
+        "polymeric sand",
+        "edging restraint",
+        "retaining wall block",
+        "boulder",
+        "base course",
+        "compactor",
+        "wet saw",
       ],
     },
     {
       category: "Lawn & Soil",
       emoji: "🌾",
       words: [
-        "aeration", "overseeding", "pre-emergent", "post-emergent", "fertilizer (NPK)",
-        "compost", "top dressing", "thatch", "soil amendment", "pH level",
+        "aeration",
+        "overseeding",
+        "pre-emergent",
+        "post-emergent",
+        "fertilizer (NPK)",
+        "compost",
+        "top dressing",
+        "thatch",
+        "soil amendment",
+        "pH level",
       ],
     },
     {
       category: "Jobsite Terms (Bilingual)",
       emoji: "🗣️",
       words: [
-        "las plantas / plants", "el riego / irrigation", "la tierra / soil",
-        "cava más hondo / dig deeper", "la manguera / hose", "el soplador / blower",
-        "el pasto / lawn", "más abono / more fertilizer", "aguas con las rocas / careful with the rocks",
+        "las plantas / plants",
+        "el riego / irrigation",
+        "la tierra / soil",
+        "cava más hondo / dig deeper",
+        "la manguera / hose",
+        "el soplador / blower",
+        "el pasto / lawn",
+        "más abono / more fertilizer",
+        "aguas con las rocas / careful with the rocks",
         "ya terminamos / we're done",
       ],
     },
@@ -1556,11 +3218,11 @@ export const TRADES_CONTENT: TradesModuleContent[] = [
 ];
 
 export function getTradesContent(moduleId: string): TradesModuleContent | null {
-  return TRADES_CONTENT.find(m => m.moduleId === moduleId) ?? null;
+  return TRADES_CONTENT.find((m) => m.moduleId === moduleId) ?? null;
 }
 
 export function getTradesArea(moduleId: string, areaId: string): ModuleArea | null {
-  return getTradesContent(moduleId)?.areas.find(a => a.id === areaId) ?? null;
+  return getTradesContent(moduleId)?.areas.find((a) => a.id === areaId) ?? null;
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -1581,42 +3243,42 @@ export function getTradesArea(moduleId: string, areaId: string): ModuleArea | nu
 
 export interface TradeScript {
   id: string;
-  scenario: string;   // What situation this script is used in
-  speaker: string;    // Who is speaking (master plumber, foreman, etc.)
-  audience: string;   // Who they are talking to
-  script: string;     // The exact words — verbatim trade language
-  notes: string;      // Why this phrasing, register note, or teaching point
-  codeRef?: string;   // Code citation if applicable
+  scenario: string; // What situation this script is used in
+  speaker: string; // Who is speaking (master plumber, foreman, etc.)
+  audience: string; // Who they are talking to
+  script: string; // The exact words — verbatim trade language
+  notes: string; // Why this phrasing, register note, or teaching point
+  codeRef?: string; // Code citation if applicable
 }
 
 export interface JobContext {
   id: string;
   name: string;
   description: string;
-  typicalAudience: string;   // Who the learner talks to in this context
-  languageNote: string;      // Register, bilingual context, or culture note
-  paceNote: string;          // Urgency / pace of communication
+  typicalAudience: string; // Who the learner talks to in this context
+  languageNote: string; // Register, bilingual context, or culture note
+  paceNote: string; // Urgency / pace of communication
 }
 
 export interface VocabPhase {
-  phase: string;   // rough-in, finish, inspection, supplier, emergency
+  phase: string; // rough-in, finish, inspection, supplier, emergency
   emoji: string;
   terms: Array<{
     en: string;
-    es?: string;    // Spanish where it differs or is commonly used on site
-    note?: string;  // Brand name, slang, or usage note
+    es?: string; // Spanish where it differs or is commonly used on site
+    note?: string; // Brand name, slang, or usage note
   }>;
 }
 
 export interface TradeCodeRef {
-  citation: string;  // e.g. "NEC 210.52"
-  plain: string;     // Plain-English explanation
+  citation: string; // e.g. "NEC 210.52"
+  plain: string; // Plain-English explanation
 }
 
 export interface SupplierTerm {
-  term: string;      // How you say it at the counter
-  meaning: string;   // What it means
-  example: string;   // Example sentence
+  term: string; // How you say it at the counter
+  meaning: string; // What it means
+  example: string; // Example sentence
 }
 
 export interface FreeTradeResource {
@@ -1740,8 +3402,7 @@ export const PLUMBER_V2: TradeModuleV2 = {
         "Okay escúchenme — listen up. El baño principal va aquí. The toilet rough-in is 12 inches off the finished wall — doce pulgadas de la pared terminada. The lav drain goes here, 17 inches from center of toilet. Mark it with the keel. El venteo — the vent stack — goes up through the wall right here and ties into the three-inch line above the plate. No mistakes on the rough-in; the inspector comes Friday.",
       notes:
         "Authentic bilingual foreman speech. Key measurements in English for the plans; everyday terms in both. 'Keel' is the lumber crayon used to mark. 'Off the finished wall' not 'off the framing' — important distinction.",
-      codeRef:
-        "IPC Section 405 — water closet rough-in, standard 12-inch from finished wall.",
+      codeRef: "IPC Section 405 — water closet rough-in, standard 12-inch from finished wall.",
     },
     {
       id: "water-heater-estimate",
@@ -1782,11 +3443,27 @@ export const PLUMBER_V2: TradeModuleV2 = {
       phase: "Underground / Rough-In",
       emoji: "⛏️",
       terms: [
-        { en: "cleanout", es: "limpieza / acceso de limpieza", note: "Access point for rodding the drain" },
-        { en: "stub-out", es: "espigón / salida de tubería", note: "Capped pipe end waiting for fixture" },
-        { en: "rough-in measurement", es: "medida de instalación", note: "Distance from wall to drain center" },
-        { en: "soil stack", es: "bajante de aguas negras", note: "Main vertical drain for toilets" },
-        { en: "slope / fall", es: "pendiente", note: "1/4\" per foot minimum per IPC" },
+        {
+          en: "cleanout",
+          es: "limpieza / acceso de limpieza",
+          note: "Access point for rodding the drain",
+        },
+        {
+          en: "stub-out",
+          es: "espigón / salida de tubería",
+          note: "Capped pipe end waiting for fixture",
+        },
+        {
+          en: "rough-in measurement",
+          es: "medida de instalación",
+          note: "Distance from wall to drain center",
+        },
+        {
+          en: "soil stack",
+          es: "bajante de aguas negras",
+          note: "Main vertical drain for toilets",
+        },
+        { en: "slope / fall", es: "pendiente", note: '1/4" per foot minimum per IPC' },
         { en: "bedding", es: "cama de grava", note: "Gravel under underground pipe" },
         { en: "hub", es: "campana", note: "Bell end of cast iron or ABS fitting" },
         { en: "spigot end", es: "extremo liso", note: "Plain end that inserts into hub" },
@@ -1796,27 +3473,71 @@ export const PLUMBER_V2: TradeModuleV2 = {
       phase: "Top-Out / Venting",
       emoji: "🏠",
       terms: [
-        { en: "vent stack", es: "chimenea de ventilación / el venteo", note: "Main vertical vent pipe through roof" },
+        {
+          en: "vent stack",
+          es: "chimenea de ventilación / el venteo",
+          note: "Main vertical vent pipe through roof",
+        },
         { en: "wet vent", es: "ventilación húmeda", note: "Drain pipe that also serves as vent" },
-        { en: "air admittance valve (AAV)", es: "válvula de admisión de aire", note: "Code-permitted vent alternative in many states" },
-        { en: "flood level rim", es: "nivel de rebose", note: "Top edge of fixture; vents tie in above this" },
+        {
+          en: "air admittance valve (AAV)",
+          es: "válvula de admisión de aire",
+          note: "Code-permitted vent alternative in many states",
+        },
+        {
+          en: "flood level rim",
+          es: "nivel de rebose",
+          note: "Top edge of fixture; vents tie in above this",
+        },
         { en: "trap arm", es: "brazo del sifón", note: "Horizontal section between trap and vent" },
         { en: "P-trap", es: "sifón en P", note: "U-shaped trap under every fixture" },
-        { en: "sanitary tee", es: "té sanitaria", note: "DWV fitting — directional, not reversible" },
-        { en: "wye + 1/8 bend", es: "ye con codo", note: "Preferred fitting for branch drain connections" },
+        {
+          en: "sanitary tee",
+          es: "té sanitaria",
+          note: "DWV fitting — directional, not reversible",
+        },
+        {
+          en: "wye + 1/8 bend",
+          es: "ye con codo",
+          note: "Preferred fitting for branch drain connections",
+        },
       ],
     },
     {
       phase: "Finish / Trim-Out",
       emoji: "🪛",
       terms: [
-        { en: "supply stop", es: "válvula de paso / ángulo de paso", note: "Angle stop or straight stop under fixture" },
-        { en: "wax ring", es: "anillo de cera", note: "Seal between toilet and flange; also wax-free options" },
-        { en: "flange", es: "flange / collarín", note: "Closet flange — toilet mounting ring at floor" },
-        { en: "escutcheon", es: "roseón / embellecedor", note: "Decorative cover plate at wall penetration" },
+        {
+          en: "supply stop",
+          es: "válvula de paso / ángulo de paso",
+          note: "Angle stop or straight stop under fixture",
+        },
+        {
+          en: "wax ring",
+          es: "anillo de cera",
+          note: "Seal between toilet and flange; also wax-free options",
+        },
+        {
+          en: "flange",
+          es: "flange / collarín",
+          note: "Closet flange — toilet mounting ring at floor",
+        },
+        {
+          en: "escutcheon",
+          es: "roseón / embellecedor",
+          note: "Decorative cover plate at wall penetration",
+        },
         { en: "aerator", es: "aireador", note: "Screen at faucet spout end; often first to clog" },
-        { en: "flex connector", es: "flexible / conexión flexible", note: "Braided supply line from stop to faucet" },
-        { en: "pressure balancing valve", es: "válvula de equilibrio de presión", note: "Shower valve that prevents scalding; required by code" },
+        {
+          en: "flex connector",
+          es: "flexible / conexión flexible",
+          note: "Braided supply line from stop to faucet",
+        },
+        {
+          en: "pressure balancing valve",
+          es: "válvula de equilibrio de presión",
+          note: "Shower valve that prevents scalding; required by code",
+        },
         { en: "drain assembly", es: "desagüe", note: "Stopper, strainer, and tailpiece as a unit" },
       ],
     },
@@ -1824,11 +3545,31 @@ export const PLUMBER_V2: TradeModuleV2 = {
       phase: "Inspection & Testing",
       emoji: "📋",
       terms: [
-        { en: "pressure test", es: "prueba de presión", note: "Air or water test; DWV holds 10 PSI for 15 min" },
-        { en: "air test", es: "prueba de aire", note: "Preferred over water test on some inspections" },
-        { en: "final inspection", es: "inspección final", note: "Fixtures installed, all trim in place" },
-        { en: "rough inspection", es: "inspección de rústico / inspección gruesa", note: "Before walls are closed — all pipe exposed" },
-        { en: "as-built", es: "como construido", note: "Drawing that shows what was actually installed" },
+        {
+          en: "pressure test",
+          es: "prueba de presión",
+          note: "Air or water test; DWV holds 10 PSI for 15 min",
+        },
+        {
+          en: "air test",
+          es: "prueba de aire",
+          note: "Preferred over water test on some inspections",
+        },
+        {
+          en: "final inspection",
+          es: "inspección final",
+          note: "Fixtures installed, all trim in place",
+        },
+        {
+          en: "rough inspection",
+          es: "inspección de rústico / inspección gruesa",
+          note: "Before walls are closed — all pipe exposed",
+        },
+        {
+          en: "as-built",
+          es: "como construido",
+          note: "Drawing that shows what was actually installed",
+        },
         { en: "redline", es: "marcas en rojo", note: "Inspector corrections noted on plans" },
       ],
     },
@@ -1837,42 +3578,125 @@ export const PLUMBER_V2: TradeModuleV2 = {
       emoji: "🏪",
       terms: [
         { en: "half-inch copper type L", note: "Medium-wall; residential water supply standard" },
-        { en: "3/4 PEX-A", note: "Most flexible type; requires expansion fittings (Uponor/Wirsbo)" },
+        {
+          en: "3/4 PEX-A",
+          note: "Most flexible type; requires expansion fittings (Uponor/Wirsbo)",
+        },
         { en: "1-1/2 schedule 40 ABS", note: "Black plastic drain; common in Western U.S." },
-        { en: "3\" cast iron no-hub", note: "Cast iron with rubber coupling; used in multifamily" },
+        { en: '3" cast iron no-hub', note: "Cast iron with rubber coupling; used in multifamily" },
         { en: "Fernco coupling", note: "Brand name (like Kleenex) for no-hub rubber coupling" },
-        { en: "Moen 1225 cartridge", note: "Common single-handle cartridge — always specify model" },
-        { en: "shark bite", note: "Push-fit fitting brand — fast repairs, not preferred for permanent" },
-        { en: "Oatey wax ring with horn", note: "Standard brand; 'with horn' for flanges set below floor" },
-        { en: "ball valve vs gate valve", note: "Ball valves for shutoffs; gate valves are legacy, avoid on new work" },
+        {
+          en: "Moen 1225 cartridge",
+          note: "Common single-handle cartridge — always specify model",
+        },
+        {
+          en: "shark bite",
+          note: "Push-fit fitting brand — fast repairs, not preferred for permanent",
+        },
+        {
+          en: "Oatey wax ring with horn",
+          note: "Standard brand; 'with horn' for flanges set below floor",
+        },
+        {
+          en: "ball valve vs gate valve",
+          note: "Ball valves for shutoffs; gate valves are legacy, avoid on new work",
+        },
       ],
     },
   ],
 
   codeReferences: [
-    { citation: "IPC Section 604.8", plain: "Maximum water service pressure is 80 PSI. Above that you need a PRV." },
-    { citation: "IPC Section 712.2", plain: "Horizontal drain pipes must slope 1/4 inch per foot toward the outlet." },
-    { citation: "IPC Section 404", plain: "Water closet rough-in: 15 inches minimum from center to side wall, 30 inches center-to-center between toilets." },
-    { citation: "IPC Section 904", plain: "Vent stack termination must be 6 inches above the roof, 10 feet from any operable door or window." },
-    { citation: "IPC Section 607.1", plain: "Hot water supply temperature must not exceed 120°F at fixtures accessible to children, elderly, or disabled." },
-    { citation: "IPC Section 305.4", plain: "Underground plastic pipe requires 12 inches cover; copper requires 12 inches under slabs." },
-    { citation: "UPC Section 603", plain: "Uniform Plumbing Code (Western states): water supply pressure 15–80 PSI; PRV required above 80." },
+    {
+      citation: "IPC Section 604.8",
+      plain: "Maximum water service pressure is 80 PSI. Above that you need a PRV.",
+    },
+    {
+      citation: "IPC Section 712.2",
+      plain: "Horizontal drain pipes must slope 1/4 inch per foot toward the outlet.",
+    },
+    {
+      citation: "IPC Section 404",
+      plain:
+        "Water closet rough-in: 15 inches minimum from center to side wall, 30 inches center-to-center between toilets.",
+    },
+    {
+      citation: "IPC Section 904",
+      plain:
+        "Vent stack termination must be 6 inches above the roof, 10 feet from any operable door or window.",
+    },
+    {
+      citation: "IPC Section 607.1",
+      plain:
+        "Hot water supply temperature must not exceed 120°F at fixtures accessible to children, elderly, or disabled.",
+    },
+    {
+      citation: "IPC Section 305.4",
+      plain:
+        "Underground plastic pipe requires 12 inches cover; copper requires 12 inches under slabs.",
+    },
+    {
+      citation: "UPC Section 603",
+      plain:
+        "Uniform Plumbing Code (Western states): water supply pressure 15–80 PSI; PRV required above 80.",
+    },
   ],
 
   supplierLanguage: [
-    { term: "Pull a Moen 1225", meaning: "Request a Moen single-handle cartridge, part 1225", example: "\"I need a Moen 1225 — the standard Posi-Temp cartridge.\"" },
-    { term: "Half-inch type L sweat", meaning: "Copper pipe, medium wall, to be soldered", example: "\"Give me 20 feet of half-inch type L and a bag of half-inch elbows and couplings.\"" },
-    { term: "Fernco 3x3", meaning: "Fernco rubber coupling, 3-inch to 3-inch", example: "\"Two Ferncos — 3x3 and one 3x4 for the transition.\"" },
-    { term: "Ball valve, full port, 3/4 lead-free", meaning: "Full-bore ball valve, 3/4-inch, low-lead brass (required in CA and other states)", example: "\"Four 3/4 full-port ball valves — make sure they're lead-free certified.\"" },
-    { term: "Uponor/Wirsbo", meaning: "Brand name for PEX-A pipe and expansion fittings; often used generically", example: "\"We're running Wirsbo throughout — I need the expansion tool and a box of half-inch fittings.\"" },
-    { term: "Wax ring with horn", meaning: "Toilet wax ring with plastic extension collar (for flanges set below finished floor)", example: "\"Give me a wax ring with horn — the flange is an inch low.\"" },
+    {
+      term: "Pull a Moen 1225",
+      meaning: "Request a Moen single-handle cartridge, part 1225",
+      example: '"I need a Moen 1225 — the standard Posi-Temp cartridge."',
+    },
+    {
+      term: "Half-inch type L sweat",
+      meaning: "Copper pipe, medium wall, to be soldered",
+      example: '"Give me 20 feet of half-inch type L and a bag of half-inch elbows and couplings."',
+    },
+    {
+      term: "Fernco 3x3",
+      meaning: "Fernco rubber coupling, 3-inch to 3-inch",
+      example: '"Two Ferncos — 3x3 and one 3x4 for the transition."',
+    },
+    {
+      term: "Ball valve, full port, 3/4 lead-free",
+      meaning: "Full-bore ball valve, 3/4-inch, low-lead brass (required in CA and other states)",
+      example: '"Four 3/4 full-port ball valves — make sure they\'re lead-free certified."',
+    },
+    {
+      term: "Uponor/Wirsbo",
+      meaning: "Brand name for PEX-A pipe and expansion fittings; often used generically",
+      example:
+        '"We\'re running Wirsbo throughout — I need the expansion tool and a box of half-inch fittings."',
+    },
+    {
+      term: "Wax ring with horn",
+      meaning:
+        "Toilet wax ring with plastic extension collar (for flanges set below finished floor)",
+      example: '"Give me a wax ring with horn — the flange is an inch low."',
+    },
   ],
 
   freeResources: [
-    { label: "International Plumbing Code (IPC) — ICC", url: "https://codes.iccsafe.org/content/IPC2021P3", note: "Adopted in most U.S. states; free read-only access online." },
-    { label: "Uniform Plumbing Code (UPC) — IAPMO", url: "https://www.iapmo.org/uniform-codes/upc/", note: "Used in California, Arizona, Oregon, and Western states." },
-    { label: "EPA WaterSense Program", url: "https://www.epa.gov/watersense", note: "Fixture efficiency ratings — useful for customer education on upgrades." },
-    { label: "PHCC — Plumbing-Heating-Cooling Contractors Association", url: "https://www.phccweb.org", note: "Industry training resources, apprenticeship materials." },
+    {
+      label: "International Plumbing Code (IPC) — ICC",
+      url: "https://codes.iccsafe.org/content/IPC2021P3",
+      note: "Adopted in most U.S. states; free read-only access online.",
+    },
+    {
+      label: "Uniform Plumbing Code (UPC) — IAPMO",
+      url: "https://www.iapmo.org/uniform-codes/upc/",
+      note: "Used in California, Arizona, Oregon, and Western states.",
+    },
+    {
+      label: "EPA WaterSense Program",
+      url: "https://www.epa.gov/watersense",
+      note: "Fixture efficiency ratings — useful for customer education on upgrades.",
+    },
+    {
+      label: "PHCC — Plumbing-Heating-Cooling Contractors Association",
+      url: "https://www.phccweb.org",
+      note: "Industry training resources, apprenticeship materials.",
+    },
   ],
 };
 
@@ -2016,25 +3840,66 @@ export const ELECTRICIAN_V2: TradeModuleV2 = {
       phase: "Rough-In",
       emoji: "🔌",
       terms: [
-        { en: "home run", note: "Circuit wire running directly back to the panel without splicing" },
-        { en: "pull wire / fish wire", es: "jalar el cable", note: "Threading wire through conduit or walls" },
-        { en: "Romex / NM cable", es: "cable Romex", note: "Non-metallic sheathed cable; brand name used generically" },
-        { en: "EMT conduit", es: "conduit metálico", note: "Electrical metallic tubing — commercial and exposed residential" },
+        {
+          en: "home run",
+          note: "Circuit wire running directly back to the panel without splicing",
+        },
+        {
+          en: "pull wire / fish wire",
+          es: "jalar el cable",
+          note: "Threading wire through conduit or walls",
+        },
+        {
+          en: "Romex / NM cable",
+          es: "cable Romex",
+          note: "Non-metallic sheathed cable; brand name used generically",
+        },
+        {
+          en: "EMT conduit",
+          es: "conduit metálico",
+          note: "Electrical metallic tubing — commercial and exposed residential",
+        },
         { en: "box fill", note: "Code calculation for wires allowed in a box; NEC 314.16" },
-        { en: "rough-in location", es: "ubicación de caja", note: "Where outlet, switch, or fixture boxes are placed before drywall" },
+        {
+          en: "rough-in location",
+          es: "ubicación de caja",
+          note: "Where outlet, switch, or fixture boxes are placed before drywall",
+        },
       ],
     },
     {
       phase: "Panel / Service",
       emoji: "⚡",
       terms: [
-        { en: "main breaker", es: "breaker principal", note: "Disconnects the entire panel from the service entrance" },
-        { en: "service entrance", es: "acometida", note: "Utility conductors from the meter to the panel" },
-        { en: "sub-panel", es: "sub-tablero / tablero auxiliar", note: "Secondary panel fed from the main" },
+        {
+          en: "main breaker",
+          es: "breaker principal",
+          note: "Disconnects the entire panel from the service entrance",
+        },
+        {
+          en: "service entrance",
+          es: "acometida",
+          note: "Utility conductors from the meter to the panel",
+        },
+        {
+          en: "sub-panel",
+          es: "sub-tablero / tablero auxiliar",
+          note: "Secondary panel fed from the main",
+        },
         { en: "bus bar", es: "barra de bus", note: "Metal bar in panel that breakers snap onto" },
-        { en: "neutral bar", es: "barra neutral", note: "Where white wires and grounding conductors land" },
-        { en: "double-tap", note: "Two wires on one breaker terminal — code violation in most cases" },
-        { en: "tandem breaker", note: "Two breakers in one slot space; also called cheater, slimline, half-size" },
+        {
+          en: "neutral bar",
+          es: "barra neutral",
+          note: "Where white wires and grounding conductors land",
+        },
+        {
+          en: "double-tap",
+          note: "Two wires on one breaker terminal — code violation in most cases",
+        },
+        {
+          en: "tandem breaker",
+          note: "Two breakers in one slot space; also called cheater, slimline, half-size",
+        },
         { en: "ampacity", note: "The current-carrying capacity of a conductor" },
       ],
     },
@@ -2042,62 +3907,174 @@ export const ELECTRICIAN_V2: TradeModuleV2 = {
       phase: "Finish / Devices",
       emoji: "🪛",
       terms: [
-        { en: "GFCI receptacle", es: "tomacorriente GFCI / toma con protección", note: "Ground fault circuit interrupter outlet" },
-        { en: "AFCI breaker", note: "Arc fault circuit interrupter — required in bedrooms and living areas per NEC 2014+" },
-        { en: "wire nut", es: "conector / tuerca de alambre", note: "Twist-on connector; brand name used generically" },
-        { en: "pigtail", es: "colita", note: "Short jumper wire used to connect multiple wires to a device" },
-        { en: "recessed can / pot light", es: "ojo de buey", note: "'Ojo de buey' (bull's eye) common on bilingual sites" },
-        { en: "panel schedule", note: "Labels for every breaker — required before final inspection" },
+        {
+          en: "GFCI receptacle",
+          es: "tomacorriente GFCI / toma con protección",
+          note: "Ground fault circuit interrupter outlet",
+        },
+        {
+          en: "AFCI breaker",
+          note: "Arc fault circuit interrupter — required in bedrooms and living areas per NEC 2014+",
+        },
+        {
+          en: "wire nut",
+          es: "conector / tuerca de alambre",
+          note: "Twist-on connector; brand name used generically",
+        },
+        {
+          en: "pigtail",
+          es: "colita",
+          note: "Short jumper wire used to connect multiple wires to a device",
+        },
+        {
+          en: "recessed can / pot light",
+          es: "ojo de buey",
+          note: "'Ojo de buey' (bull's eye) common on bilingual sites",
+        },
+        {
+          en: "panel schedule",
+          note: "Labels for every breaker — required before final inspection",
+        },
       ],
     },
     {
       phase: "Inspection & Code",
       emoji: "📋",
       terms: [
-        { en: "rough inspection", es: "inspección de rústico", note: "Before drywall — all wiring exposed" },
-        { en: "final inspection", es: "inspección final", note: "All devices and fixtures installed, panel labeled" },
+        {
+          en: "rough inspection",
+          es: "inspección de rústico",
+          note: "Before drywall — all wiring exposed",
+        },
+        {
+          en: "final inspection",
+          es: "inspección final",
+          note: "All devices and fixtures installed, panel labeled",
+        },
         { en: "arc flash label", note: "Required on electrical equipment per NFPA 70E" },
         { en: "LOTO", note: "Lock-out/tag-out — mandatory energy isolation procedure" },
-        { en: "code violation", es: "violación de código", note: "Inspector correction that must be fixed before approval" },
+        {
+          en: "code violation",
+          es: "violación de código",
+          note: "Inspector correction that must be fixed before approval",
+        },
       ],
     },
     {
       phase: "Supplier / Parts Counter",
       emoji: "🏪",
       terms: [
-        { en: "12-2 Romex w/ground, 250-foot roll", note: "12 AWG, 2 conductor plus ground; standard 20-amp circuit cable" },
+        {
+          en: "12-2 Romex w/ground, 250-foot roll",
+          note: "12 AWG, 2 conductor plus ground; standard 20-amp circuit cable",
+        },
         { en: "14-2 Romex", note: "14 AWG; 15-amp circuits only; never on a 20-amp breaker" },
-        { en: "Leviton Decora GFCI", note: "Flat-face style GFCI outlet; specify amperage (15A or 20A) and color" },
-        { en: "Square D QO vs Homeline", note: "QO = higher quality; Homeline = economy; breakers are not interchangeable" },
-        { en: "Eaton BR", note: "Competing panel brand; Eaton breakers do not fit Square D panels" },
-        { en: "3/4 EMT with set-screw connectors", note: "Specify connector type — set-screw vs compression" },
-        { en: "Ideal 344 wire nuts", note: "Yellow Ideal 344 for 2 to 4 #12 wires; color codes the quantity" },
+        {
+          en: "Leviton Decora GFCI",
+          note: "Flat-face style GFCI outlet; specify amperage (15A or 20A) and color",
+        },
+        {
+          en: "Square D QO vs Homeline",
+          note: "QO = higher quality; Homeline = economy; breakers are not interchangeable",
+        },
+        {
+          en: "Eaton BR",
+          note: "Competing panel brand; Eaton breakers do not fit Square D panels",
+        },
+        {
+          en: "3/4 EMT with set-screw connectors",
+          note: "Specify connector type — set-screw vs compression",
+        },
+        {
+          en: "Ideal 344 wire nuts",
+          note: "Yellow Ideal 344 for 2 to 4 #12 wires; color codes the quantity",
+        },
       ],
     },
   ],
 
   codeReferences: [
-    { citation: "NEC 210.52", plain: "Receptacle outlets required every 12 feet along any wall — no point on a wall more than 6 feet from an outlet." },
-    { citation: "NEC 210.8", plain: "GFCI protection required in: bathrooms, kitchens within 6 feet of a sink, garages, unfinished basements, outdoors." },
-    { citation: "NEC 210.52(B)", plain: "Kitchen requires at least two 20-amp small appliance circuits for countertop receptacles." },
-    { citation: "NEC 314.16", plain: "Box fill calculation — each 12 AWG conductor counts as 2.25 cubic inches. Don't overfill boxes." },
-    { citation: "NEC 230.79", plain: "Minimum 100-amp service for a single-family dwelling; 200-amp strongly recommended for new construction." },
-    { citation: "NFPA 70E Article 120", plain: "Electrically safe work condition: de-energize, lock out, test with meter before touching any conductor." },
+    {
+      citation: "NEC 210.52",
+      plain:
+        "Receptacle outlets required every 12 feet along any wall — no point on a wall more than 6 feet from an outlet.",
+    },
+    {
+      citation: "NEC 210.8",
+      plain:
+        "GFCI protection required in: bathrooms, kitchens within 6 feet of a sink, garages, unfinished basements, outdoors.",
+    },
+    {
+      citation: "NEC 210.52(B)",
+      plain:
+        "Kitchen requires at least two 20-amp small appliance circuits for countertop receptacles.",
+    },
+    {
+      citation: "NEC 314.16",
+      plain:
+        "Box fill calculation — each 12 AWG conductor counts as 2.25 cubic inches. Don't overfill boxes.",
+    },
+    {
+      citation: "NEC 230.79",
+      plain:
+        "Minimum 100-amp service for a single-family dwelling; 200-amp strongly recommended for new construction.",
+    },
+    {
+      citation: "NFPA 70E Article 120",
+      plain:
+        "Electrically safe work condition: de-energize, lock out, test with meter before touching any conductor.",
+    },
   ],
 
   supplierLanguage: [
-    { term: "12-2 with ground, 250-foot roll", meaning: "NM cable, 12 AWG, 2 conductors + ground, 250-foot spool", example: "\"Give me four rolls of 12-2 with ground and two rolls of 10-2.\"" },
-    { term: "QO220 — 20-amp double pole", meaning: "Square D QO series, 20-amp, 2-pole breaker (use for 240V circuits)", example: "\"I need a QO220 for the dryer circuit.\"" },
-    { term: "Half-inch liquidtite", meaning: "Flexible liquid-tight conduit; used at motor connections and outdoor equipment", example: "\"Ten feet of half-inch liquidtite and two 90-degree connectors.\"" },
-    { term: "Decora GFCI, 20-amp, white", meaning: "Leviton Decora-style GFCI outlet, 20A, white", example: "\"Six Decora GFCIs, 20-amp white — need them for the kitchen.\"" },
-    { term: "1-gang old-work box", meaning: "Plastic electrical box for adding an outlet to existing finished wall", example: "\"Dozen 1-gang old-work boxes — I'm adding outlets to an existing house.\"" },
+    {
+      term: "12-2 with ground, 250-foot roll",
+      meaning: "NM cable, 12 AWG, 2 conductors + ground, 250-foot spool",
+      example: '"Give me four rolls of 12-2 with ground and two rolls of 10-2."',
+    },
+    {
+      term: "QO220 — 20-amp double pole",
+      meaning: "Square D QO series, 20-amp, 2-pole breaker (use for 240V circuits)",
+      example: '"I need a QO220 for the dryer circuit."',
+    },
+    {
+      term: "Half-inch liquidtite",
+      meaning: "Flexible liquid-tight conduit; used at motor connections and outdoor equipment",
+      example: '"Ten feet of half-inch liquidtite and two 90-degree connectors."',
+    },
+    {
+      term: "Decora GFCI, 20-amp, white",
+      meaning: "Leviton Decora-style GFCI outlet, 20A, white",
+      example: '"Six Decora GFCIs, 20-amp white — need them for the kitchen."',
+    },
+    {
+      term: "1-gang old-work box",
+      meaning: "Plastic electrical box for adding an outlet to existing finished wall",
+      example: '"Dozen 1-gang old-work boxes — I\'m adding outlets to an existing house."',
+    },
   ],
 
   freeResources: [
-    { label: "National Electrical Code (NEC) — NFPA 70", url: "https://www.nfpa.org/codes-and-standards/nfpa-70-standard-for-electrical-installations", note: "Current adopted code; free read-only access available through NFPA." },
-    { label: "NFPA 70E — Electrical Safety in the Workplace", url: "https://www.nfpa.org/codes-and-standards/nfpa-70e-standard-for-electrical-safety-in-the-workplace", note: "Arc flash and LOTO requirements; required for industrial work." },
-    { label: "IBEW — International Brotherhood of Electrical Workers", url: "https://www.ibew.org", note: "Apprenticeship programs, continuing education, trade resources." },
-    { label: "Mike Holt Enterprises", url: "https://www.mikeholt.com", note: "Free NEC training videos and articles; widely used for licensing exam prep." },
+    {
+      label: "National Electrical Code (NEC) — NFPA 70",
+      url: "https://www.nfpa.org/codes-and-standards/nfpa-70-standard-for-electrical-installations",
+      note: "Current adopted code; free read-only access available through NFPA.",
+    },
+    {
+      label: "NFPA 70E — Electrical Safety in the Workplace",
+      url: "https://www.nfpa.org/codes-and-standards/nfpa-70e-standard-for-electrical-safety-in-the-workplace",
+      note: "Arc flash and LOTO requirements; required for industrial work.",
+    },
+    {
+      label: "IBEW — International Brotherhood of Electrical Workers",
+      url: "https://www.ibew.org",
+      note: "Apprenticeship programs, continuing education, trade resources.",
+    },
+    {
+      label: "Mike Holt Enterprises",
+      url: "https://www.mikeholt.com",
+      note: "Free NEC training videos and articles; widely used for licensing exam prep.",
+    },
   ],
 };
 
@@ -2203,7 +4180,8 @@ export const FRAMER_V2: TradeModuleV2 = {
         "Inspectors are going to check fire blocking. Every wall cavity over ten feet gets a block at mid-height — a horizontal 2x4 between the studs, tight, no gaps. Soffits over cabinets, chase walls around the fireplace, any concealed space over 10 feet — all need blocking. At the bottom of stairs where the wall meets the subfloor, blocking. I'll go through the punch list after rough framing and flag anything that needs it. The city gets strict about this — they'll fail the inspection for a missing block.",
       notes:
         "Frame it as 'inspectors check this' — it motivates the crew better than pure code citation. Walk the fire-blocking punch list before calling for inspection.",
-      codeRef: "IRC R302.11 — fire blocking required in concealed spaces over 10 feet vertical height.",
+      codeRef:
+        "IRC R302.11 — fire blocking required in concealed spaces over 10 feet vertical height.",
     },
     {
       id: "shear-wall-nailing",
@@ -2234,12 +4212,36 @@ export const FRAMER_V2: TradeModuleV2 = {
       phase: "Layout & Foundation",
       emoji: "📐",
       terms: [
-        { en: "snap line / chalk line", es: "tirar línea / línea de tiza", note: "Mark layout on slab or subfloor before walls go up" },
-        { en: "sill plate / mud sill", es: "solera / placa de piso", note: "Bottom plate bolted to foundation; PT lumber required" },
-        { en: "anchor bolt", es: "perno de anclaje", note: "Embeds in foundation; holds sill plate" },
-        { en: "PT (pressure-treated)", es: "madera tratada", note: "Required wherever wood contacts concrete" },
-        { en: "floor joist", es: "vigueta de piso", note: "Horizontal framing supporting floor deck" },
-        { en: "rim joist / band board", es: "viga de remate / cabezal", note: "Perimeter joist that caps the floor frame" },
+        {
+          en: "snap line / chalk line",
+          es: "tirar línea / línea de tiza",
+          note: "Mark layout on slab or subfloor before walls go up",
+        },
+        {
+          en: "sill plate / mud sill",
+          es: "solera / placa de piso",
+          note: "Bottom plate bolted to foundation; PT lumber required",
+        },
+        {
+          en: "anchor bolt",
+          es: "perno de anclaje",
+          note: "Embeds in foundation; holds sill plate",
+        },
+        {
+          en: "PT (pressure-treated)",
+          es: "madera tratada",
+          note: "Required wherever wood contacts concrete",
+        },
+        {
+          en: "floor joist",
+          es: "vigueta de piso",
+          note: "Horizontal framing supporting floor deck",
+        },
+        {
+          en: "rim joist / band board",
+          es: "viga de remate / cabezal",
+          note: "Perimeter joist that caps the floor frame",
+        },
         { en: "subfloor", es: "subpiso", note: "OSB or plywood layer over joists" },
       ],
     },
@@ -2248,13 +4250,41 @@ export const FRAMER_V2: TradeModuleV2 = {
       emoji: "🔨",
       terms: [
         { en: "king stud", es: "montante rey", note: "Full-height stud running beside an opening" },
-        { en: "jack stud / trimmer", es: "montante corto / recortado", note: "Shorter stud supporting the header" },
-        { en: "cripple stud", es: "montante enano / estaca enana", note: "Short stud above header or below sill" },
-        { en: "header", es: "viga de cabecera / el cabezal", note: "Horizontal member spanning a door or window opening" },
-        { en: "top plate / double top plate", es: "placa superior / doble placa", note: "Horizontal plate at top of wall; doubled to tie corners" },
-        { en: "bottom plate / sole plate", es: "placa inferior / solera", note: "Bottom of wall frame" },
-        { en: "stud", es: "montante / estaca", note: "Vertical framing member; typically 16\" o.c." },
-        { en: "on center (o.c.)", es: "entre ejes / de centro a centro", note: "Spacing measured center-to-center" },
+        {
+          en: "jack stud / trimmer",
+          es: "montante corto / recortado",
+          note: "Shorter stud supporting the header",
+        },
+        {
+          en: "cripple stud",
+          es: "montante enano / estaca enana",
+          note: "Short stud above header or below sill",
+        },
+        {
+          en: "header",
+          es: "viga de cabecera / el cabezal",
+          note: "Horizontal member spanning a door or window opening",
+        },
+        {
+          en: "top plate / double top plate",
+          es: "placa superior / doble placa",
+          note: "Horizontal plate at top of wall; doubled to tie corners",
+        },
+        {
+          en: "bottom plate / sole plate",
+          es: "placa inferior / solera",
+          note: "Bottom of wall frame",
+        },
+        {
+          en: "stud",
+          es: "montante / estaca",
+          note: 'Vertical framing member; typically 16" o.c.',
+        },
+        {
+          en: "on center (o.c.)",
+          es: "entre ejes / de centro a centro",
+          note: "Spacing measured center-to-center",
+        },
         { en: "plumb", es: "a plomo", note: "Perfectly vertical" },
         { en: "level", es: "a nivel", note: "Perfectly horizontal" },
         { en: "square", es: "escuadrado / cuadrado", note: "90-degree corners" },
@@ -2264,24 +4294,56 @@ export const FRAMER_V2: TradeModuleV2 = {
       phase: "Roof Framing",
       emoji: "🏠",
       terms: [
-        { en: "ridge board / ridge beam", es: "cumbrera", note: "Horizontal member at peak of roof" },
-        { en: "rafter", es: "cabio / rafta", note: "Sloped framing from ridge to top plate; 'rafta' common on bilingual sites" },
-        { en: "birdsmouth cut", es: "corte de pájaro", note: "Notch in rafter where it sits on the top plate" },
+        {
+          en: "ridge board / ridge beam",
+          es: "cumbrera",
+          note: "Horizontal member at peak of roof",
+        },
+        {
+          en: "rafter",
+          es: "cabio / rafta",
+          note: "Sloped framing from ridge to top plate; 'rafta' common on bilingual sites",
+        },
+        {
+          en: "birdsmouth cut",
+          es: "corte de pájaro",
+          note: "Notch in rafter where it sits on the top plate",
+        },
         { en: "hip rafter", es: "lima tesa", note: "Corner rafter at a hip roof" },
         { en: "valley", es: "lima hoya", note: "Inside corner where two roof planes meet" },
         { en: "I-joist / TJI", note: "Engineered wood I-beam; TJI is the Weyerhaeuser brand" },
-        { en: "LVL beam", es: "viga LVL", note: "Laminated veneer lumber; specify size: 3.5x9.5, 3.5x11.75, etc." },
+        {
+          en: "LVL beam",
+          es: "viga LVL",
+          note: "Laminated veneer lumber; specify size: 3.5x9.5, 3.5x11.75, etc.",
+        },
       ],
     },
     {
       phase: "Sheathing & Inspection",
       emoji: "📋",
       terms: [
-        { en: "OSB (oriented strand board)", es: "OSB / tablero de virutas", note: "Standard sheathing for walls and roof" },
+        {
+          en: "OSB (oriented strand board)",
+          es: "OSB / tablero de virutas",
+          note: "Standard sheathing for walls and roof",
+        },
         { en: "H-clips", note: "Metal clips between OSB roof panels — required without blocking" },
-        { en: "shear wall", es: "muro de corte / muro resistente", note: "Structural wall resisting lateral (wind/seismic) loads" },
-        { en: "nailing pattern", es: "patrón de clavado", note: "Edge spacing and field spacing for shear panels" },
-        { en: "Simpson hardware", es: "harwear Simpson / el Simpson", note: "Simpson Strong-Tie brand; used generically for all metal connectors" },
+        {
+          en: "shear wall",
+          es: "muro de corte / muro resistente",
+          note: "Structural wall resisting lateral (wind/seismic) loads",
+        },
+        {
+          en: "nailing pattern",
+          es: "patrón de clavado",
+          note: "Edge spacing and field spacing for shear panels",
+        },
+        {
+          en: "Simpson hardware",
+          es: "harwear Simpson / el Simpson",
+          note: "Simpson Strong-Tie brand; used generically for all metal connectors",
+        },
         { en: "hold-down", note: "Mechanical anchor at base of shear wall; resists overturning" },
       ],
     },
@@ -2289,38 +4351,110 @@ export const FRAMER_V2: TradeModuleV2 = {
       phase: "Supplier / Material Order",
       emoji: "🏪",
       terms: [
-        { en: "2x6 studs, 16-foot", note: "Standard exterior wall stud for 9-foot finished ceilings" },
-        { en: "16d sinker nails", note: "16-penny coated nails for framing — most common framing nail" },
+        {
+          en: "2x6 studs, 16-foot",
+          note: "Standard exterior wall stud for 9-foot finished ceilings",
+        },
+        {
+          en: "16d sinker nails",
+          note: "16-penny coated nails for framing — most common framing nail",
+        },
         { en: "8d common nails", note: "8-penny for sheathing nailing" },
-        { en: "joist hangers — LUS26 / LUS28", note: "Simpson catalog numbers for 2x6 and 2x8 joist hangers" },
-        { en: "hurricane ties / H2.5A", note: "Simpson H2.5A: rafter-to-top-plate connector required in wind zones" },
+        {
+          en: "joist hangers — LUS26 / LUS28",
+          note: "Simpson catalog numbers for 2x6 and 2x8 joist hangers",
+        },
+        {
+          en: "hurricane ties / H2.5A",
+          note: "Simpson H2.5A: rafter-to-top-plate connector required in wind zones",
+        },
         { en: "7/16 OSB, 4x8 sheets", note: "Standard wall and roof sheathing thickness" },
       ],
     },
   ],
 
   codeReferences: [
-    { citation: "IRC R602", plain: "Prescriptive wall framing requirements: stud size, spacing, and height limits for bearing walls." },
-    { citation: "IRC R802", plain: "Roof framing requirements: rafter spans, ridge board sizing, collar ties, and ceiling joist spans." },
-    { citation: "IRC R302.11", plain: "Fire blocking required in concealed wall and floor cavities exceeding 10 feet vertical or horizontal." },
-    { citation: "IBC Section 2305 / AWC SDPWS", plain: "Shear wall nailing schedules and sheathing requirements per engineered design documents." },
-    { citation: "OSHA 29 CFR 1926.502", plain: "Fall protection required for residential construction work at heights of 6 feet or more." },
-    { citation: "IRC R317", plain: "Pressure-treated or naturally durable wood required wherever wood contacts concrete, masonry, or soil." },
+    {
+      citation: "IRC R602",
+      plain:
+        "Prescriptive wall framing requirements: stud size, spacing, and height limits for bearing walls.",
+    },
+    {
+      citation: "IRC R802",
+      plain:
+        "Roof framing requirements: rafter spans, ridge board sizing, collar ties, and ceiling joist spans.",
+    },
+    {
+      citation: "IRC R302.11",
+      plain:
+        "Fire blocking required in concealed wall and floor cavities exceeding 10 feet vertical or horizontal.",
+    },
+    {
+      citation: "IBC Section 2305 / AWC SDPWS",
+      plain:
+        "Shear wall nailing schedules and sheathing requirements per engineered design documents.",
+    },
+    {
+      citation: "OSHA 29 CFR 1926.502",
+      plain:
+        "Fall protection required for residential construction work at heights of 6 feet or more.",
+    },
+    {
+      citation: "IRC R317",
+      plain:
+        "Pressure-treated or naturally durable wood required wherever wood contacts concrete, masonry, or soil.",
+    },
   ],
 
   supplierLanguage: [
-    { term: "200 sticks of 2x6x16", meaning: "200 pieces of 2-inch x 6-inch x 16-foot dimensional lumber", example: "\"Two hundred sticks of 2x6x16 and a hundred 2x6x10 for plates.\"" },
-    { term: "3.5x11.75 LVL, 18-foot length", meaning: "Laminated veneer lumber, 3.5-inch x 11.75-inch, 18-foot length", example: "\"I need four pieces of 3.5x11.75 LVL at 18 feet for the main beam.\"" },
-    { term: "H2.5A hurricane ties", meaning: "Simpson H2.5A rafter-to-top-plate connectors", example: "\"Give me 200 H2.5A ties and 5 pounds of 10d joist hanger nails.\"" },
-    { term: "7/16 OSB, Exposure 1", meaning: "OSB sheathing rated for exposure to weather before cladding; specify for roof", example: "\"120 sheets of 7/16 OSB — make sure it's rated Exposure 1 for the roof.\"" },
-    { term: "16d galvanized sinkers", meaning: "Coated 16-penny framing nails; galvanized for treated lumber contact", example: "\"Thirty pounds of 16d galvanized sinkers — we're framing against PT sill plates.\"" },
+    {
+      term: "200 sticks of 2x6x16",
+      meaning: "200 pieces of 2-inch x 6-inch x 16-foot dimensional lumber",
+      example: '"Two hundred sticks of 2x6x16 and a hundred 2x6x10 for plates."',
+    },
+    {
+      term: "3.5x11.75 LVL, 18-foot length",
+      meaning: "Laminated veneer lumber, 3.5-inch x 11.75-inch, 18-foot length",
+      example: '"I need four pieces of 3.5x11.75 LVL at 18 feet for the main beam."',
+    },
+    {
+      term: "H2.5A hurricane ties",
+      meaning: "Simpson H2.5A rafter-to-top-plate connectors",
+      example: '"Give me 200 H2.5A ties and 5 pounds of 10d joist hanger nails."',
+    },
+    {
+      term: "7/16 OSB, Exposure 1",
+      meaning: "OSB sheathing rated for exposure to weather before cladding; specify for roof",
+      example: '"120 sheets of 7/16 OSB — make sure it\'s rated Exposure 1 for the roof."',
+    },
+    {
+      term: "16d galvanized sinkers",
+      meaning: "Coated 16-penny framing nails; galvanized for treated lumber contact",
+      example: '"Thirty pounds of 16d galvanized sinkers — we\'re framing against PT sill plates."',
+    },
   ],
 
   freeResources: [
-    { label: "International Residential Code (IRC) — ICC", url: "https://codes.iccsafe.org/content/IRC2021P1", note: "Primary residential building code; free read-only access. Chapters R6 (walls) and R8 (roof) for framing." },
-    { label: "AWC Wood Frame Construction Manual (WFCM)", url: "https://www.awc.org/publications/wfcm/", note: "American Wood Council prescriptive framing guide; free download." },
-    { label: "Simpson Strong-Tie Product Catalog", url: "https://www.strongtie.com/resources/literature/catalogs", note: "Free catalog of all metal connectors with installation specs and code compliance." },
-    { label: "OSHA Construction Safety — Residential", url: "https://www.osha.gov/residential-construction", note: "Fall protection, scaffold, and general safety requirements for residential framing." },
+    {
+      label: "International Residential Code (IRC) — ICC",
+      url: "https://codes.iccsafe.org/content/IRC2021P1",
+      note: "Primary residential building code; free read-only access. Chapters R6 (walls) and R8 (roof) for framing.",
+    },
+    {
+      label: "AWC Wood Frame Construction Manual (WFCM)",
+      url: "https://www.awc.org/publications/wfcm/",
+      note: "American Wood Council prescriptive framing guide; free download.",
+    },
+    {
+      label: "Simpson Strong-Tie Product Catalog",
+      url: "https://www.strongtie.com/resources/literature/catalogs",
+      note: "Free catalog of all metal connectors with installation specs and code compliance.",
+    },
+    {
+      label: "OSHA Construction Safety — Residential",
+      url: "https://www.osha.gov/residential-construction",
+      note: "Fall protection, scaffold, and general safety requirements for residential framing.",
+    },
   ],
 };
 
@@ -2454,13 +4588,37 @@ export const LANDSCAPER_V2: TradeModuleV2 = {
       phase: "Maintenance Operations",
       emoji: "🌱",
       terms: [
-        { en: "mow height", es: "altura de corte", note: "Expressed in inches; 3 to 3.5\" for most lawn types" },
-        { en: "edge", es: "orillado / bordar", note: "Cuts a clean line between turf and hard surface or beds" },
-        { en: "blow out", es: "soplar / limpiar con el soplador", note: "Clear clippings from hard surfaces with blower" },
-        { en: "string trimmer / weed eater", es: "desmalezadora / el desbrozador / el hilo", note: "'El hilo' (the string) is common on bilingual sites" },
+        {
+          en: "mow height",
+          es: "altura de corte",
+          note: 'Expressed in inches; 3 to 3.5" for most lawn types',
+        },
+        {
+          en: "edge",
+          es: "orillado / bordar",
+          note: "Cuts a clean line between turf and hard surface or beds",
+        },
+        {
+          en: "blow out",
+          es: "soplar / limpiar con el soplador",
+          note: "Clear clippings from hard surfaces with blower",
+        },
+        {
+          en: "string trimmer / weed eater",
+          es: "desmalezadora / el desbrozador / el hilo",
+          note: "'El hilo' (the string) is common on bilingual sites",
+        },
         { en: "blower", es: "el soplador", note: "Backpack or handheld leaf blower" },
-        { en: "shear / hedge trimmer", es: "las tijeras / el tijeral", note: "Power hedge trimmer" },
-        { en: "turf", es: "pasto / zacate", note: "'Zacate' common in Southwest and Mexican Spanish" },
+        {
+          en: "shear / hedge trimmer",
+          es: "las tijeras / el tijeral",
+          note: "Power hedge trimmer",
+        },
+        {
+          en: "turf",
+          es: "pasto / zacate",
+          note: "'Zacate' common in Southwest and Mexican Spanish",
+        },
         { en: "bed edge", es: "borde del jardín", note: "Clean cut between lawn and planting bed" },
       ],
     },
@@ -2468,13 +4626,40 @@ export const LANDSCAPER_V2: TradeModuleV2 = {
       phase: "Irrigation",
       emoji: "💧",
       terms: [
-        { en: "spray head", es: "aspersor / cabeza de riego", note: "Fixed-spray head; waters in a set arc pattern" },
-        { en: "rotor head", es: "rotor", note: "Rotating head; lower precipitation rate, longer run time needed" },
-        { en: "valve / zone valve", es: "válvula de zona", note: "Solenoid valve controlling each irrigation zone" },
-        { en: "controller / timer", es: "controlador / el timer", note: "Programs run times and schedules" },
-        { en: "backflow preventer", es: "válvula antirretorno", note: "Code-required device preventing irrigation water from entering potable supply" },
-        { en: "drip line", es: "riego por goteo", note: "Low-volume tubing for bed and tree irrigation" },
-        { en: "precipitation rate", note: "Inches per hour output; rotors ~0.5\"/hr, sprays ~1.5\"/hr" },
+        {
+          en: "spray head",
+          es: "aspersor / cabeza de riego",
+          note: "Fixed-spray head; waters in a set arc pattern",
+        },
+        {
+          en: "rotor head",
+          es: "rotor",
+          note: "Rotating head; lower precipitation rate, longer run time needed",
+        },
+        {
+          en: "valve / zone valve",
+          es: "válvula de zona",
+          note: "Solenoid valve controlling each irrigation zone",
+        },
+        {
+          en: "controller / timer",
+          es: "controlador / el timer",
+          note: "Programs run times and schedules",
+        },
+        {
+          en: "backflow preventer",
+          es: "válvula antirretorno",
+          note: "Code-required device preventing irrigation water from entering potable supply",
+        },
+        {
+          en: "drip line",
+          es: "riego por goteo",
+          note: "Low-volume tubing for bed and tree irrigation",
+        },
+        {
+          en: "precipitation rate",
+          note: 'Inches per hour output; rotors ~0.5"/hr, sprays ~1.5"/hr',
+        },
         { en: "run time", es: "tiempo de riego", note: "Minutes each zone runs per cycle" },
       ],
     },
@@ -2482,65 +4667,195 @@ export const LANDSCAPER_V2: TradeModuleV2 = {
       phase: "Installation / Hardscape",
       emoji: "🪨",
       terms: [
-        { en: "grading", es: "nivelación / la grade", note: "Shaping soil slope for drainage — water flows away from structures" },
-        { en: "compaction", es: "compactación", note: "Mechanical tamping of base material before hardscape" },
-        { en: "base material / road base", es: "base / material de base", note: "Crushed aggregate base under pavers or wall blocks" },
-        { en: "segmental retaining wall block", es: "bloque de muro / el bloque", note: "Versa-Lok, Allan Block, etc." },
+        {
+          en: "grading",
+          es: "nivelación / la grade",
+          note: "Shaping soil slope for drainage — water flows away from structures",
+        },
+        {
+          en: "compaction",
+          es: "compactación",
+          note: "Mechanical tamping of base material before hardscape",
+        },
+        {
+          en: "base material / road base",
+          es: "base / material de base",
+          note: "Crushed aggregate base under pavers or wall blocks",
+        },
+        {
+          en: "segmental retaining wall block",
+          es: "bloque de muro / el bloque",
+          note: "Versa-Lok, Allan Block, etc.",
+        },
         { en: "geogrid", note: "Structural mesh embedded in wall backfill on taller walls" },
-        { en: "screeded sand", es: "arena nivelada", note: "Level sand bed for paver installation" },
-        { en: "drainage fabric / filter fabric", es: "geotextil / tela de drenaje", note: "Separates aggregate from soil in drainage systems" },
+        {
+          en: "screeded sand",
+          es: "arena nivelada",
+          note: "Level sand bed for paver installation",
+        },
+        {
+          en: "drainage fabric / filter fabric",
+          es: "geotextil / tela de drenaje",
+          note: "Separates aggregate from soil in drainage systems",
+        },
       ],
     },
     {
       phase: "Plants & Soil",
       emoji: "🌳",
       terms: [
-        { en: "annual / perennial", es: "anual / perenne", note: "Annual = replant every year; perennial = comes back" },
-        { en: "container size / gallon", es: "tamaño de contenedor / el galón", note: "1-gal, 3-gal, 5-gal, 15-gal; larger = faster establishment" },
-        { en: "balled-and-burlapped (B&B)", es: "con tierra y arpillera", note: "Trees dug with soil ball; better survival for large specimens" },
-        { en: "mulch — double-ground hardwood", es: "abono / mantillo", note: "Specify type: hardwood, cedar, pine, dyed black/red" },
-        { en: "slow-release fertilizer", es: "fertilizante de liberación lenta", note: "Pellet form; releases over 3–6 months" },
-        { en: "crown of plant", es: "corona de la planta", note: "Where stem meets roots; never bury the crown" },
-        { en: "sod", es: "tepe / pasto en rollo", note: "Pre-grown turf installed in strips; 'rollo' common" },
+        {
+          en: "annual / perennial",
+          es: "anual / perenne",
+          note: "Annual = replant every year; perennial = comes back",
+        },
+        {
+          en: "container size / gallon",
+          es: "tamaño de contenedor / el galón",
+          note: "1-gal, 3-gal, 5-gal, 15-gal; larger = faster establishment",
+        },
+        {
+          en: "balled-and-burlapped (B&B)",
+          es: "con tierra y arpillera",
+          note: "Trees dug with soil ball; better survival for large specimens",
+        },
+        {
+          en: "mulch — double-ground hardwood",
+          es: "abono / mantillo",
+          note: "Specify type: hardwood, cedar, pine, dyed black/red",
+        },
+        {
+          en: "slow-release fertilizer",
+          es: "fertilizante de liberación lenta",
+          note: "Pellet form; releases over 3–6 months",
+        },
+        {
+          en: "crown of plant",
+          es: "corona de la planta",
+          note: "Where stem meets roots; never bury the crown",
+        },
+        {
+          en: "sod",
+          es: "tepe / pasto en rollo",
+          note: "Pre-grown turf installed in strips; 'rollo' common",
+        },
       ],
     },
     {
       phase: "Supplier / Parts Counter",
       emoji: "🏪",
       terms: [
-        { en: "3 yards double-ground hardwood mulch", note: "Order by cubic yard; 1 yard covers ~100 sq ft at 3\" depth" },
-        { en: "Hunter PGP rotor head", note: "Industry-standard rotor; Hunter brand used generically in some markets" },
+        {
+          en: "3 yards double-ground hardwood mulch",
+          note: 'Order by cubic yard; 1 yard covers ~100 sq ft at 3" depth',
+        },
+        {
+          en: "Hunter PGP rotor head",
+          note: "Industry-standard rotor; Hunter brand used generically in some markets",
+        },
         { en: "Rainbird 1800 spray body", note: "Most common spray head in Western U.S." },
-        { en: "1-inch Orbit valve, 24V", note: "Common irrigation zone valve; specify 24V for standard controllers" },
-        { en: "Versa-Lok standard block, quarry color", note: "Segmental wall block; ~30 lb each; specify color at order" },
-        { en: "road base / Class II base", note: "3/4\" minus crushed aggregate; specify 4\" compacted depth minimum" },
-        { en: "pre-emergent herbicide / Preen", note: "Applied to beds to prevent weed seed germination; 'Preen' used generically" },
+        {
+          en: "1-inch Orbit valve, 24V",
+          note: "Common irrigation zone valve; specify 24V for standard controllers",
+        },
+        {
+          en: "Versa-Lok standard block, quarry color",
+          note: "Segmental wall block; ~30 lb each; specify color at order",
+        },
+        {
+          en: "road base / Class II base",
+          note: '3/4" minus crushed aggregate; specify 4" compacted depth minimum',
+        },
+        {
+          en: "pre-emergent herbicide / Preen",
+          note: "Applied to beds to prevent weed seed germination; 'Preen' used generically",
+        },
       ],
     },
   ],
 
   codeReferences: [
-    { citation: "IRC R405 / local drainage codes", plain: "Positive drainage required away from all foundations — minimum 6-inch drop in first 10 feet." },
-    { citation: "Local irrigation backflow requirements", plain: "Most municipalities require a backflow preventer on all irrigation systems connected to potable water — inspected annually in many jurisdictions." },
-    { citation: "OSHA 29 CFR 1928 — heat illness prevention", plain: "Provide water (1 quart per hour per worker), shade, and rest breaks during high-temperature outdoor work." },
-    { citation: "Pesticide applicator licensing", plain: "Applying any EPA-registered pesticide commercially requires a state-issued pesticide applicator's license. Herbicides, insecticides, and fungicides all count." },
-    { citation: "ADA 403 — accessible routes", plain: "Commercial hardscape paths must be 36 inches wide minimum, slope less than 5% (1:20), cross slope less than 2%." },
+    {
+      citation: "IRC R405 / local drainage codes",
+      plain:
+        "Positive drainage required away from all foundations — minimum 6-inch drop in first 10 feet.",
+    },
+    {
+      citation: "Local irrigation backflow requirements",
+      plain:
+        "Most municipalities require a backflow preventer on all irrigation systems connected to potable water — inspected annually in many jurisdictions.",
+    },
+    {
+      citation: "OSHA 29 CFR 1928 — heat illness prevention",
+      plain:
+        "Provide water (1 quart per hour per worker), shade, and rest breaks during high-temperature outdoor work.",
+    },
+    {
+      citation: "Pesticide applicator licensing",
+      plain:
+        "Applying any EPA-registered pesticide commercially requires a state-issued pesticide applicator's license. Herbicides, insecticides, and fungicides all count.",
+    },
+    {
+      citation: "ADA 403 — accessible routes",
+      plain:
+        "Commercial hardscape paths must be 36 inches wide minimum, slope less than 5% (1:20), cross slope less than 2%.",
+    },
   ],
 
   supplierLanguage: [
-    { term: "3 yards double-ground hardwood, bulk", meaning: "3 cubic yards of double-processed hardwood mulch, bulk delivery (not bags)", example: "\"I need 3 yards of double-ground delivered to the job site by 7 AM Tuesday.\"" },
-    { term: "Rainbird 1800 bodies with 15-foot nozzles", meaning: "Rainbird 1800-series spray bodies with 15-foot arc nozzles installed", example: "\"Give me 20 1800 bodies with 15H nozzles and 10 with 15Q for the corners.\"" },
-    { term: "Pallet of Versa-Lok standard, charcoal", meaning: "Approximately 80 blocks per pallet; specify color at order", example: "\"Two pallets of Versa-Lok standard in charcoal — and I need the capstones too.\"" },
-    { term: "Knock Out rose, 3-gallon", meaning: "Proven Winners Knock Out rose shrub, 3-gallon container", example: "\"Twenty Knock Out roses, 3-gallon, whatever color you have in stock.\"" },
-    { term: "Bermuda sod, full pallet", meaning: "Bermuda grass sod, approximately 450 sq ft per pallet", example: "\"Four pallets of Bermuda — can you deliver Thursday and hold it in the shade?\"" },
-    { term: "Hunter Pro-C controller, 6-station", meaning: "Hunter Pro-C irrigation controller, 6-zone capacity; expandable", example: "\"One Hunter Pro-C 6-station and the outdoor cabinet kit.\"" },
+    {
+      term: "3 yards double-ground hardwood, bulk",
+      meaning: "3 cubic yards of double-processed hardwood mulch, bulk delivery (not bags)",
+      example: '"I need 3 yards of double-ground delivered to the job site by 7 AM Tuesday."',
+    },
+    {
+      term: "Rainbird 1800 bodies with 15-foot nozzles",
+      meaning: "Rainbird 1800-series spray bodies with 15-foot arc nozzles installed",
+      example: '"Give me 20 1800 bodies with 15H nozzles and 10 with 15Q for the corners."',
+    },
+    {
+      term: "Pallet of Versa-Lok standard, charcoal",
+      meaning: "Approximately 80 blocks per pallet; specify color at order",
+      example: '"Two pallets of Versa-Lok standard in charcoal — and I need the capstones too."',
+    },
+    {
+      term: "Knock Out rose, 3-gallon",
+      meaning: "Proven Winners Knock Out rose shrub, 3-gallon container",
+      example: '"Twenty Knock Out roses, 3-gallon, whatever color you have in stock."',
+    },
+    {
+      term: "Bermuda sod, full pallet",
+      meaning: "Bermuda grass sod, approximately 450 sq ft per pallet",
+      example: '"Four pallets of Bermuda — can you deliver Thursday and hold it in the shade?"',
+    },
+    {
+      term: "Hunter Pro-C controller, 6-station",
+      meaning: "Hunter Pro-C irrigation controller, 6-zone capacity; expandable",
+      example: '"One Hunter Pro-C 6-station and the outdoor cabinet kit."',
+    },
   ],
 
   freeResources: [
-    { label: "Irrigation Association — Best Practices", url: "https://www.irrigation.org/IA/Resources/Best_Practices/IA/Resources/Best_Practices.aspx", note: "System design, installation, and water management best practices." },
-    { label: "NALP — National Association of Landscape Professionals", url: "https://www.landscapeprofessionals.org", note: "Industry training, certification programs, and business resources." },
-    { label: "EPA WaterSense Irrigation", url: "https://www.epa.gov/watersense/outdoor-water-use-us", note: "Outdoor water use statistics and smart irrigation program — useful for client education." },
-    { label: "OSHA Heat Safety Tool (app)", url: "https://www.osha.gov/heat/heat-app", note: "Free mobile app — input location and date, get heat index and protective measures for outdoor crews." },
+    {
+      label: "Irrigation Association — Best Practices",
+      url: "https://www.irrigation.org/IA/Resources/Best_Practices/IA/Resources/Best_Practices.aspx",
+      note: "System design, installation, and water management best practices.",
+    },
+    {
+      label: "NALP — National Association of Landscape Professionals",
+      url: "https://www.landscapeprofessionals.org",
+      note: "Industry training, certification programs, and business resources.",
+    },
+    {
+      label: "EPA WaterSense Irrigation",
+      url: "https://www.epa.gov/watersense/outdoor-water-use-us",
+      note: "Outdoor water use statistics and smart irrigation program — useful for client education.",
+    },
+    {
+      label: "OSHA Heat Safety Tool (app)",
+      url: "https://www.osha.gov/heat/heat-app",
+      note: "Free mobile app — input location and date, get heat index and protective measures for outdoor crews.",
+    },
   ],
 };
 
@@ -2557,7 +4872,7 @@ export const TRADES_MODULES_V2: TradeModuleV2[] = [
 
 export function getTradeModuleV2(id: string | null | undefined): TradeModuleV2 | null {
   if (!id) return null;
-  return TRADES_MODULES_V2.find(m => m.id === id) ?? null;
+  return TRADES_MODULES_V2.find((m) => m.id === id) ?? null;
 }
 
 export function getJobContexts(tradeId: string): JobContext[] {
@@ -2565,5 +4880,5 @@ export function getJobContexts(tradeId: string): JobContext[] {
 }
 
 export function getJobContext(tradeId: string, contextId: string): JobContext | null {
-  return getJobContexts(tradeId).find(c => c.id === contextId) ?? null;
+  return getJobContexts(tradeId).find((c) => c.id === contextId) ?? null;
 }

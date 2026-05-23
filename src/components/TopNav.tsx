@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Moon, Sun, Sparkle, ChevronDown, Puzzle } from "lucide-react";
-import { useApp, NATIVE_LANGUAGES, type Language, type NativeLanguage, type TabKey } from "@/state/app-state";
+import { toast } from "sonner";
+import {
+  useApp,
+  NATIVE_LANGUAGES,
+  type Language,
+  type NativeLanguage,
+  type TabKey,
+} from "@/state/app-state";
 import { getModule } from "@/data/modules";
 import {
   DropdownMenu,
@@ -21,9 +28,21 @@ const LANGUAGES: Language[] = [
   "German",
   "Italian",
   "Japanese",
+  "Korean",
   "Portuguese",
   "English",
 ];
+
+// Languages that show in the switcher but have no content yet.
+// Clicking them shows a toast rather than switching.
+const COMING_SOON_LANGUAGES = new Set<Language>([
+  "French",
+  "German",
+  "Italian",
+  "Japanese",
+  "Korean",
+  "Portuguese",
+]);
 
 const TABS: { key: TabKey; label: string; module?: string; language?: Language }[] = [
   { key: "modules", label: "Modules" },
@@ -49,7 +68,6 @@ const TABS: { key: TabKey; label: string; module?: string; language?: Language }
 const TAB_VISIT_XP = 5;
 const VISITED_TABS_KEY = "lt.visitedTabs.session";
 
-
 export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   const { state, dispatch } = useApp();
   const [moduleDialogOpen, setModuleDialogOpen] = useState(false);
@@ -73,15 +91,11 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 hidden border-b border-border/60 bg-background/85 backdrop-blur-xl [padding-top:env(safe-area-inset-top)] md:block">
+    <header className="sticky top-0 z-40 hidden border-b border-border/60 bg-background/85 backdrop-blur-xl [padding-top:env(safe-area-inset-top)] lg:block">
       <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:h-20 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0">
         {/* Logo */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <Sparkle
-            className="h-5 w-5 text-gold"
-            strokeWidth={1.5}
-            fill="currentColor"
-          />
+          <Sparkle className="h-5 w-5 text-gold" strokeWidth={1.5} fill="currentColor" />
           <span className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
             Language Threshold
           </span>
@@ -89,9 +103,7 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
 
         {/* Language selector */}
         <DropdownMenu>
-          <DropdownMenuTrigger
-            className="group order-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-all hover:border-gold/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-5 sm:text-xs"
-          >
+          <DropdownMenuTrigger className="group order-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-all hover:border-gold/60 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:order-none sm:w-auto sm:px-5 sm:text-xs">
             <span className="text-gold">◈</span>
             <span>{state.selectedLanguage}</span>
             <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
@@ -100,22 +112,32 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
             align="center"
             className="min-w-[200px] border-border/70 bg-popover/95 backdrop-blur-xl"
           >
-            {LANGUAGES.map((lang) => (
-              <DropdownMenuItem
-                key={lang}
-                onSelect={() => dispatch({ type: "SET_LANGUAGE", payload: lang })}
-                className="font-mono text-xs uppercase tracking-[0.16em]"
-              >
-                <span
-                  className={
-                    state.selectedLanguage === lang ? "text-gold" : "opacity-60"
-                  }
+            {LANGUAGES.map((lang) => {
+              const soon = COMING_SOON_LANGUAGES.has(lang);
+              return (
+                <DropdownMenuItem
+                  key={lang}
+                  onSelect={() => {
+                    if (soon) {
+                      toast(`${lang} is coming soon — Spanish is live now.`);
+                      return;
+                    }
+                    dispatch({ type: "SET_LANGUAGE", payload: lang });
+                  }}
+                  className="font-mono text-xs uppercase tracking-[0.16em]"
                 >
-                  ◈
-                </span>
-                {lang}
-              </DropdownMenuItem>
-            ))}
+                  <span className={state.selectedLanguage === lang ? "text-gold" : "opacity-60"}>
+                    ◈
+                  </span>
+                  <span className={soon ? "opacity-40" : ""}>{lang}</span>
+                  {soon && (
+                    <span className="ml-auto text-[9px] font-normal normal-case tracking-wide text-muted-foreground/60">
+                      soon
+                    </span>
+                  )}
+                </DropdownMenuItem>
+              );
+            })}
           </DropdownMenuContent>
         </DropdownMenu>
 
@@ -161,16 +183,10 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
               {NATIVE_LANGUAGES.map((lang: NativeLanguage) => (
                 <DropdownMenuItem
                   key={lang}
-                  onSelect={() =>
-                    dispatch({ type: "SET_NATIVE_LANGUAGE", payload: lang })
-                  }
+                  onSelect={() => dispatch({ type: "SET_NATIVE_LANGUAGE", payload: lang })}
                   className="font-mono text-xs uppercase tracking-[0.16em]"
                 >
-                  <span
-                    className={
-                      state.nativeLanguage === lang ? "text-gold" : "opacity-60"
-                    }
-                  >
+                  <span className={state.nativeLanguage === lang ? "text-gold" : "opacity-60"}>
                     ◈
                   </span>
                   {lang}
@@ -205,7 +221,11 @@ export function TopNav({ onOpenMatch }: { onOpenMatch?: () => void }) {
       {/* Tabs — wraps to two rows so all items are always visible */}
       <nav className="border-t border-border/40">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-1 gap-y-0 px-3 sm:gap-x-2 sm:px-6">
-          {TABS.filter((t) => (!t.module || state.activeModuleId === t.module) && (!t.language || state.selectedLanguage === t.language)).map((tab) => {
+          {TABS.filter(
+            (t) =>
+              (!t.module || state.activeModuleId === t.module) &&
+              (!t.language || state.selectedLanguage === t.language),
+          ).map((tab) => {
             const active = state.currentTab === tab.key;
             return (
               <button

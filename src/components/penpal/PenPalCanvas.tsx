@@ -60,30 +60,36 @@ export function PenPalCanvas({ mode, guideText, onReady }: Props) {
     return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
   }, []);
 
-  const startDraw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
-    historyRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-    isDrawingRef.current = true;
-    const { x, y } = coords(e);
-    ctx.strokeStyle = BRUSH_COLOR;
-    ctx.lineWidth = BRUSH_SIZE;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    setHasStrokes(true);
-  }, [coords]);
+  const startDraw = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      const canvas = canvasRef.current!;
+      const ctx = canvas.getContext("2d")!;
+      historyRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+      isDrawingRef.current = true;
+      const { x, y } = coords(e);
+      ctx.strokeStyle = BRUSH_COLOR;
+      ctx.lineWidth = BRUSH_SIZE;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      setHasStrokes(true);
+    },
+    [coords],
+  );
 
-  const draw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (!isDrawingRef.current) return;
-    const ctx = canvasRef.current!.getContext("2d")!;
-    const { x, y } = coords(e);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-  }, [coords]);
+  const draw = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      if (!isDrawingRef.current) return;
+      const ctx = canvasRef.current!.getContext("2d")!;
+      const { x, y } = coords(e);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    },
+    [coords],
+  );
 
   const endDraw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
@@ -117,7 +123,14 @@ export function PenPalCanvas({ mode, guideText, onReady }: Props) {
   return (
     <div className="flex flex-col gap-2">
       {guideText && (
-        <div className="rounded-lg px-3 py-2 text-sm font-semibold" style={{ backgroundColor: "rgba(201,168,76,0.08)", color: "#8A7A5A", fontFamily: "monospace" }}>
+        <div
+          className="rounded-lg px-3 py-2 text-sm font-semibold"
+          style={{
+            backgroundColor: "rgba(201,168,76,0.08)",
+            color: "#8A7A5A",
+            fontFamily: "monospace",
+          }}
+        >
           ✏️ Write: <span style={{ color: "#1a1a2e" }}>{guideText}</span>
         </div>
       )}

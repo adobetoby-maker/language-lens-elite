@@ -17,14 +17,14 @@ const Input = z.object({
 });
 
 export interface ListeningDrillQuestion {
-  phrase: string;             // target-language phrase that will be spoken
+  phrase: string; // target-language phrase that will be spoken
   englishTranslation: string;
   cefr: CefrLevel;
-  topic: string;              // 1-3 word topic
+  topic: string; // 1-3 word topic
   // 4 short candidate texts; one matches `phrase` exactly
-  options: string[];          // length 4
-  correctIndex: number;       // 0..3
-  listenFor: string;          // 1-sentence English tip on what to listen for
+  options: string[]; // length 4
+  correctIndex: number; // 0..3
+  listenFor: string; // 1-sentence English tip on what to listen for
 }
 
 const MAX_CACHE = 200;
@@ -71,119 +71,148 @@ Rules — non-negotiable:
 
 export const generateListeningDrill = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => Input.parse(i))
-  .handler(async ({ data }): Promise<{ data: ListeningDrillQuestion | null; error: string | null; cached?: boolean }> => {
-    const KEY = process.env.ANTHROPIC_API_KEY;
-    if (!KEY) return { data: null, error: "AI is not configured" };
+  .handler(
+    async ({
+      data,
+    }): Promise<{
+      data: ListeningDrillQuestion | null;
+      error: string | null;
+      cached?: boolean;
+    }> => {
+      const KEY = process.env.ANTHROPIC_API_KEY;
+      if (!KEY) return { data: null, error: "AI is not configured" };
 
-    const cefr: CefrLevel =
-      data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
+      const cefr: CefrLevel = data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
 
-    const avoidHash = (data.avoid ?? []).slice().sort().join(",");
-    const key = cacheKey(data.language, data.level, avoidHash);
-    const hit = cacheGet(key);
-    if (hit) return { data: hit, error: null, cached: true };
+      const avoidHash = (data.avoid ?? []).slice().sort().join(",");
+      const key = cacheKey(data.language, data.level, avoidHash);
+      const hit = cacheGet(key);
+      if (hit) return { data: hit, error: null, cached: true };
 
-    const lengthGuidance =
-      data.level === 1 ? "4-7 words, common everyday vocab, present tense."
-      : data.level === 2 ? "7-12 words, may include past or future tense and prepositional phrases."
-      : "12-18 words, may include subjunctive, relative clauses, or conditional.";
+      const lengthGuidance =
+        data.level === 1
+          ? "4-7 words, common everyday vocab, present tense."
+          : data.level === 2
+            ? "7-12 words, may include past or future tense and prepositional phrases."
+            : "12-18 words, may include subjunctive, relative clauses, or conditional.";
 
-    const avoidLine = data.avoid && data.avoid.length
-      ? `\nAvoid these recent phrases or topics: ${data.avoid.join(", ")}.`
-      : "";
+      const avoidLine =
+        data.avoid && data.avoid.length
+          ? `\nAvoid these recent phrases or topics: ${data.avoid.join(", ")}.`
+          : "";
 
-    const topicLine = data.topic
-      ? `\nDomain: the phrase MUST be something heard in a "${data.topic}" context — use vocabulary a ${data.topic} practitioner would actually say.`
-      : "";
+      const topicLine = data.topic
+        ? `\nDomain: the phrase MUST be something heard in a "${data.topic}" context — use vocabulary a ${data.topic} practitioner would actually say.`
+        : "";
 
-    const userMsg = `Generate ONE ${data.language} listening-drill question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
+      const userMsg = `Generate ONE ${data.language} listening-drill question at CEFR ${cefr}.\n${lengthGuidance}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
-    try {
-      const client = new Anthropic({ apiKey: KEY });
-      const response = await client.messages.create({
-        // Sonnet 4.6 — quality matters because bad distractors destroy the
-        // game. A distractor that doesn't share sound profile with the phrase
-        // makes the answer obvious from text alone, defeating the listening
-        // drill entirely.
-        model: "claude-haiku-4-5",
-        max_tokens: 700,
-        system: SYSTEM,
-        messages: [{ role: "user", content: userMsg }],
-        tools: [
-          {
-            name: "return_listening_question",
-            description: "Return one listening-drill question.",
-            input_schema: {
-              type: "object" as const,
-              properties: {
-                phrase: { type: "string", description: "Target-language phrase the learner will hear." },
-                englishTranslation: { type: "string", description: "English translation of the phrase." },
-                cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
-                topic: { type: "string", description: "1-3 word topic label." },
-                options: {
-                  type: "array",
-                  items: { type: "string" },
-                  minItems: 4,
-                  maxItems: 4,
-                  description: "Exactly 4 candidate transcripts; one equals phrase exactly.",
+      try {
+        const client = new Anthropic({ apiKey: KEY });
+        const response = await client.messages.create({
+          // Sonnet 4.6 — quality matters because bad distractors destroy the
+          // game. A distractor that doesn't share sound profile with the phrase
+          // makes the answer obvious from text alone, defeating the listening
+          // drill entirely.
+          model: "claude-haiku-4-5",
+          max_tokens: 700,
+          system: SYSTEM,
+          messages: [{ role: "user", content: userMsg }],
+          tools: [
+            {
+              name: "return_listening_question",
+              description: "Return one listening-drill question.",
+              input_schema: {
+                type: "object" as const,
+                properties: {
+                  phrase: {
+                    type: "string",
+                    description: "Target-language phrase the learner will hear.",
+                  },
+                  englishTranslation: {
+                    type: "string",
+                    description: "English translation of the phrase.",
+                  },
+                  cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+                  topic: { type: "string", description: "1-3 word topic label." },
+                  options: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 4,
+                    maxItems: 4,
+                    description: "Exactly 4 candidate transcripts; one equals phrase exactly.",
+                  },
+                  correctIndex: {
+                    type: "integer",
+                    minimum: 0,
+                    maximum: 3,
+                    description: "Index in options whose text equals phrase exactly.",
+                  },
+                  listenFor: {
+                    type: "string",
+                    description: "One short English sentence on the discrimination target.",
+                  },
                 },
-                correctIndex: {
-                  type: "integer",
-                  minimum: 0,
-                  maximum: 3,
-                  description: "Index in options whose text equals phrase exactly.",
-                },
-                listenFor: {
-                  type: "string",
-                  description: "One short English sentence on the discrimination target.",
-                },
+                required: [
+                  "phrase",
+                  "englishTranslation",
+                  "cefr",
+                  "topic",
+                  "options",
+                  "correctIndex",
+                  "listenFor",
+                ],
+                additionalProperties: false,
               },
-              required: ["phrase", "englishTranslation", "cefr", "topic", "options", "correctIndex", "listenFor"],
-              additionalProperties: false,
             },
-          },
-        ],
-        tool_choice: { type: "tool", name: "return_listening_question" },
-      });
+          ],
+          tool_choice: { type: "tool", name: "return_listening_question" },
+        });
 
-      const toolUse = response.content.find((c) => c.type === "tool_use");
-      if (!toolUse || toolUse.type !== "tool_use") {
-        return { data: null, error: "No question returned." };
-      }
-      const q = toolUse.input as ListeningDrillQuestion;
-
-      // Defensive validation. The drill silently breaks if any of these are
-      // wrong, so we'd rather fail fast and let the client retry than ship a
-      // broken question.
-      if (!Array.isArray(q.options) || q.options.length !== 4) {
-        return { data: null, error: "Options must be exactly 4." };
-      }
-      if (!q.options.every((o): o is string => typeof o === "string" && o.trim().length > 0)) {
-        return { data: null, error: "Each option must be a non-empty string." };
-      }
-      if (typeof q.correctIndex !== "number" || q.correctIndex < 0 || q.correctIndex > 3 || !Number.isInteger(q.correctIndex)) {
-        return { data: null, error: "correctIndex must be an integer 0..3." };
-      }
-      if (typeof q.phrase !== "string" || q.phrase.trim().length === 0) {
-        return { data: null, error: "phrase must be a non-empty string." };
-      }
-
-      // The model occasionally puts the phrase at a different index than it
-      // claims. If options[correctIndex] doesn't match phrase exactly, try to
-      // recover by searching for an exact match; otherwise fail.
-      if (q.options[q.correctIndex] !== q.phrase) {
-        const found = q.options.indexOf(q.phrase);
-        if (found >= 0) {
-          q.correctIndex = found;
-        } else {
-          return { data: null, error: "phrase not present in options." };
+        const toolUse = response.content.find((c) => c.type === "tool_use");
+        if (!toolUse || toolUse.type !== "tool_use") {
+          return { data: null, error: "No question returned." };
         }
-      }
+        const q = toolUse.input as ListeningDrillQuestion;
 
-      cacheSet(key, q);
-      return { data: q, error: null, cached: false };
-    } catch (e) {
-      console.error("generateListeningDrill failed", e);
-      return { data: null, error: "Generation failed." };
-    }
-  });
+        // Defensive validation. The drill silently breaks if any of these are
+        // wrong, so we'd rather fail fast and let the client retry than ship a
+        // broken question.
+        if (!Array.isArray(q.options) || q.options.length !== 4) {
+          return { data: null, error: "Options must be exactly 4." };
+        }
+        if (!q.options.every((o): o is string => typeof o === "string" && o.trim().length > 0)) {
+          return { data: null, error: "Each option must be a non-empty string." };
+        }
+        if (
+          typeof q.correctIndex !== "number" ||
+          q.correctIndex < 0 ||
+          q.correctIndex > 3 ||
+          !Number.isInteger(q.correctIndex)
+        ) {
+          return { data: null, error: "correctIndex must be an integer 0..3." };
+        }
+        if (typeof q.phrase !== "string" || q.phrase.trim().length === 0) {
+          return { data: null, error: "phrase must be a non-empty string." };
+        }
+
+        // The model occasionally puts the phrase at a different index than it
+        // claims. If options[correctIndex] doesn't match phrase exactly, try to
+        // recover by searching for an exact match; otherwise fail.
+        if (q.options[q.correctIndex] !== q.phrase) {
+          const found = q.options.indexOf(q.phrase);
+          if (found >= 0) {
+            q.correctIndex = found;
+          } else {
+            return { data: null, error: "phrase not present in options." };
+          }
+        }
+
+        cacheSet(key, q);
+        return { data: q, error: null, cached: false };
+      } catch (e) {
+        console.error("generateListeningDrill failed", e);
+        return { data: null, error: "Generation failed." };
+      }
+    },
+  );

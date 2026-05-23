@@ -12,7 +12,7 @@ export interface LibraryText {
   subtitle: string;
   language: Language;
   targetLabel: string; // e.g. "Español"
-  level?: CefrLevel;   // CEFR reading level (A1..C2). Optional during migration.
+  level?: CefrLevel; // CEFR reading level (A1..C2). Optional during migration.
   sentences: SentencePair[];
 }
 
@@ -173,8 +173,7 @@ export const LIBRARY: LibraryText[] = [
       },
       {
         en: "We will close with a prayer of gratitude for your faith and your example.",
-        target:
-          "Cerraremos con una oración de gratitud por su fe y su ejemplo.",
+        target: "Cerraremos con una oración de gratitud por su fe y su ejemplo.",
       },
     ],
   },
@@ -195,8 +194,7 @@ export const LIBRARY: LibraryText[] = [
       },
       {
         en: "There is dorsal angulation of approximately twenty degrees with mild shortening.",
-        target:
-          "Hay angulación dorsal de aproximadamente veinte grados con acortamiento leve.",
+        target: "Hay angulación dorsal de aproximadamente veinte grados con acortamiento leve.",
       },
       {
         en: "The ulnar styloid is intact and the distal radioulnar joint appears congruent.",
@@ -232,8 +230,7 @@ export const LIBRARY: LibraryText[] = [
       },
       {
         en: "Check that the wall is plumb and level before you nail off the bottom plate.",
-        target:
-          "Verifica que la pared esté a plomo y nivelada antes de clavar la placa inferior.",
+        target: "Verifica que la pared esté a plomo y nivelada antes de clavar la placa inferior.",
       },
       {
         en: "We need thirty more studs and ten sheets of OSB delivered before lunch.",

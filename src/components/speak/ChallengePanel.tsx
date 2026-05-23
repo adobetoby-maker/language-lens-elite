@@ -22,13 +22,7 @@ interface Props {
   onSpeakAloud: (text: string) => void;
 }
 
-export function ChallengePanel({
-  language,
-  level,
-  active,
-  onStart,
-  onSpeakAloud,
-}: Props) {
+export function ChallengePanel({ language, level, active, onStart, onSpeakAloud }: Props) {
   const { state } = useGrammar();
   const [loading, setLoading] = useState<"grammar" | "reach" | null>(null);
 
@@ -110,13 +104,9 @@ export function ChallengePanel({
               <Target className="h-3.5 w-3.5 text-gold" />
               Grammar challenge
             </div>
-            <div className="text-xs text-muted-foreground">
-              Use a concept from Grammar Studio
-            </div>
+            <div className="text-xs text-muted-foreground">Use a concept from Grammar Studio</div>
           </div>
-          <span className="text-xs text-gold">
-            {loading === "grammar" ? "…" : "→"}
-          </span>
+          <span className="text-xs text-gold">{loading === "grammar" ? "…" : "→"}</span>
         </button>
         <button
           onClick={() => fetchChallenge("reach")}
@@ -132,9 +122,7 @@ export function ChallengePanel({
               Stretch into a slightly harder vocabulary
             </div>
           </div>
-          <span className="text-xs text-gold">
-            {loading === "reach" ? "…" : "→"}
-          </span>
+          <span className="text-xs text-gold">{loading === "reach" ? "…" : "→"}</span>
         </button>
       </div>
 
@@ -152,9 +140,7 @@ export function ChallengePanel({
               🔊 replay
             </button>
           </div>
-          <p className="mt-2 font-serif text-xl text-foreground">
-            {active.target}
-          </p>
+          <p className="mt-2 font-serif text-xl text-foreground">{active.target}</p>
           <p className="mt-1 text-sm text-muted-foreground">{active.english}</p>
           <p className="mt-2 text-xs text-gold/90">💡 {active.hint}</p>
           <p className="mt-2 text-xs text-muted-foreground">

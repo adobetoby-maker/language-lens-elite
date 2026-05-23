@@ -1,4 +1,13 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  type ReactNode,
+} from "react";
 import type { Language } from "./app-state";
 import type { IdiomMasterLevel, IdiomQuestion } from "@/fns/idiom-master.functions";
 
@@ -33,7 +42,7 @@ export interface IdiomRun {
   language: Language;
   level: IdiomMasterLevel;
   questions: IdiomRunQuestion[]; // length grows up to RUN_LENGTH
-  index: number;                   // current question index (0-based)
+  index: number; // current question index (0-based)
   startedAt: number;
 }
 
@@ -78,7 +87,10 @@ function saveLeaderboard(lb: Record<IMLeaderboardKey, IdiomMasterStats>) {
   }
 }
 
-function statsFor(lb: Record<IMLeaderboardKey, IdiomMasterStats>, key: IMLeaderboardKey): IdiomMasterStats {
+function statsFor(
+  lb: Record<IMLeaderboardKey, IdiomMasterStats>,
+  key: IMLeaderboardKey,
+): IdiomMasterStats {
   return lb[key] ?? { ...EMPTY_STATS };
 }
 
@@ -159,7 +171,8 @@ function reducer(state: State, action: Action): State {
         state.run.questions.every((q) => q.correct === true);
       let newLb = state.leaderboard;
       if (allCorrect) {
-        const key: IMLeaderboardKey = `${state.run.language}-${state.run.level}` as IMLeaderboardKey;
+        const key: IMLeaderboardKey =
+          `${state.run.language}-${state.run.level}` as IMLeaderboardKey;
         const prev = statsFor(state.leaderboard, key);
         newLb = {
           ...state.leaderboard,
@@ -187,7 +200,13 @@ interface IdiomMasterContextValue {
   runScore: () => { correct: number; answered: number; total: number };
   RUN_LENGTH: number;
   setFetcher: (
-    fn: ((args: { language: Language; level: IdiomMasterLevel; avoid?: string[] }) => Promise<IdiomQuestion>) | null,
+    fn:
+      | ((args: {
+          language: Language;
+          level: IdiomMasterLevel;
+          avoid?: string[];
+        }) => Promise<IdiomQuestion>)
+      | null,
   ) => void;
 }
 
@@ -211,8 +230,14 @@ export function IdiomMasterProvider({ children }: { children: ReactNode }) {
 
   // The fetcher is provided by the component that owns useServerFn (server-fn
   // hooks must be called from React components, not from a state file).
-  const fetcherRef =
-    useRef<((args: { language: Language; level: IdiomMasterLevel; avoid?: string[] }) => Promise<IdiomQuestion>) | null>(null);
+  const fetcherRef = useRef<
+    | ((args: {
+        language: Language;
+        level: IdiomMasterLevel;
+        avoid?: string[];
+      }) => Promise<IdiomQuestion>)
+    | null
+  >(null);
 
   const setFetcher = useCallback((fn: typeof fetcherRef.current) => {
     fetcherRef.current = fn;
@@ -246,12 +271,15 @@ export function IdiomMasterProvider({ children }: { children: ReactNode }) {
     }
   }, [state.run]);
 
-  const answer = useCallback((selected: string) => {
-    if (!state.run) return;
-    const cur = state.run.questions[state.run.index];
-    if (!cur || cur.correct !== null) return;
-    dispatch({ type: "ANSWER", payload: { selected } });
-  }, [state.run]);
+  const answer = useCallback(
+    (selected: string) => {
+      if (!state.run) return;
+      const cur = state.run.questions[state.run.index];
+      if (!cur || cur.correct !== null) return;
+      dispatch({ type: "ANSWER", payload: { selected } });
+    },
+    [state.run],
+  );
 
   const advance = useCallback(() => dispatch({ type: "ADVANCE" }), []);
   const endRun = useCallback(() => dispatch({ type: "END_RUN" }), []);
@@ -288,7 +316,18 @@ export function IdiomMasterProvider({ children }: { children: ReactNode }) {
       RUN_LENGTH,
       setFetcher,
     }),
-    [state, startRun, loadQuestion, answer, advance, endRun, isRunComplete, currentQuestion, runScore, setFetcher],
+    [
+      state,
+      startRun,
+      loadQuestion,
+      answer,
+      advance,
+      endRun,
+      isRunComplete,
+      currentQuestion,
+      runScore,
+      setFetcher,
+    ],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

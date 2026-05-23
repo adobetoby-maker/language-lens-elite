@@ -37,10 +37,10 @@ export type LDLeaderboardKey = `${Language}-${ListeningDrillLevel}`;
 
 export interface LDRunQuestion {
   question: ListeningDrillQuestion;
-  selectedIndex: number | null;  // null until the user picks
-  correct: boolean | null;       // null until answered
+  selectedIndex: number | null; // null until the user picks
+  correct: boolean | null; // null until answered
   submitted: boolean;
-  playCount: number;             // number of times the audio was played for this question
+  playCount: number; // number of times the audio was played for this question
 }
 
 export interface LDRun {
@@ -91,7 +91,11 @@ function loadLeaderboard(): Record<LDLeaderboardKey, ListeningDrillStats> {
 
 function saveLeaderboard(lb: Record<LDLeaderboardKey, ListeningDrillStats>) {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(lb)); } catch { /* quota */ }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(lb));
+  } catch {
+    /* quota */
+  }
 }
 
 function statsFor(
@@ -191,11 +195,13 @@ function reducer(state: State, action: Action): State {
 
     case "END_RUN": {
       if (!state.run) return state;
-      const allCorrect = state.run.questions.length === RUN_LENGTH &&
+      const allCorrect =
+        state.run.questions.length === RUN_LENGTH &&
         state.run.questions.every((q) => q.correct === true);
       let newLb = state.leaderboard;
       if (allCorrect) {
-        const key: LDLeaderboardKey = `${state.run.language}-${state.run.level}` as LDLeaderboardKey;
+        const key: LDLeaderboardKey =
+          `${state.run.language}-${state.run.level}` as LDLeaderboardKey;
         const prev = statsFor(state.leaderboard, key);
         newLb = { ...state.leaderboard, [key]: { ...prev, perfectRuns: prev.perfectRuns + 1 } };
         saveLeaderboard(newLb);
@@ -221,7 +227,13 @@ interface ListeningDrillContextValue {
   runScore: () => { correct: number; answered: number; total: number };
   RUN_LENGTH: number;
   setFetcher: (
-    fn: ((args: { language: Language; level: ListeningDrillLevel; avoid?: string[] }) => Promise<ListeningDrillQuestion>) | null,
+    fn:
+      | ((args: {
+          language: Language;
+          level: ListeningDrillLevel;
+          avoid?: string[];
+        }) => Promise<ListeningDrillQuestion>)
+      | null,
   ) => void;
 }
 
@@ -241,7 +253,12 @@ export function ListeningDrillProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const fetcherRef = useRef<
-    ((args: { language: Language; level: ListeningDrillLevel; avoid?: string[] }) => Promise<ListeningDrillQuestion>) | null
+    | ((args: {
+        language: Language;
+        level: ListeningDrillLevel;
+        avoid?: string[];
+      }) => Promise<ListeningDrillQuestion>)
+    | null
   >(null);
 
   const setFetcher = useCallback((fn: typeof fetcherRef.current) => {

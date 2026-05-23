@@ -12,7 +12,16 @@
  */
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { CheckCircle2, XCircle, Flame, Trophy, RotateCcw, ChevronRight, MapPin, BookOpen } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  Flame,
+  Trophy,
+  RotateCcw,
+  ChevronRight,
+  MapPin,
+  BookOpen,
+} from "lucide-react";
 import {
   BASEBALL_POSITIONS,
   BASEBALL_DUGOUT_VOCAB,
@@ -96,7 +105,11 @@ function buildFieldQuestion(language: string): FieldQuestion {
 
   // name
   const correct = pos.en;
-  const distractors = pickDistractors(BASEBALL_POSITIONS.map((p) => p.en), correct, 3);
+  const distractors = pickDistractors(
+    BASEBALL_POSITIONS.map((p) => p.en),
+    correct,
+    3,
+  );
   return { position: pos, variant, correct, options: shuffle([correct, ...distractors]) };
 }
 
@@ -131,16 +144,22 @@ function Diamond({ activeId, flashId, flashState }: DiamondProps) {
   // Second base ≈ (50%, 48%) → (150, 144) — top of diamond
   // Third base ≈ (25%, 68%) → (75, 204) — left corner of diamond
 
-  const homeX = 150, homeY = 270;
-  const firstX = 225, firstY = 204;
-  const secondX = 150, secondY = 144;
-  const thirdX = 75, thirdY = 204;
+  const homeX = 150,
+    homeY = 270;
+  const firstX = 225,
+    firstY = 204;
+  const secondX = 150,
+    secondY = 144;
+  const thirdX = 75,
+    thirdY = 204;
 
   const diamondPath = `M ${homeX} ${homeY} L ${firstX} ${firstY} L ${secondX} ${secondY} L ${thirdX} ${thirdY} Z`;
 
   // Foul lines extend from home to the corners of the SVG
-  const leftFoulX = 0, leftFoulY = 300;
-  const rightFoulX = 300, rightFoulY = 300;
+  const leftFoulX = 0,
+    leftFoulY = 300;
+  const rightFoulX = 300,
+    rightFoulY = 300;
 
   function positionStyle(pos: BaseballPosition) {
     const isActive = pos.id === activeId;
@@ -181,8 +200,24 @@ function Diamond({ activeId, flashId, flashState }: DiamondProps) {
       <rect x="0" y="0" width={VIEWBOX} height={VIEWBOX} fill="#1a4a1a" />
 
       {/* Foul lines */}
-      <line x1={homeX} y1={homeY} x2={leftFoulX} y2={leftFoulY} stroke="white" strokeWidth="1.5" opacity="0.5" />
-      <line x1={homeX} y1={homeY} x2={rightFoulX} y2={rightFoulY} stroke="white" strokeWidth="1.5" opacity="0.5" />
+      <line
+        x1={homeX}
+        y1={homeY}
+        x2={leftFoulX}
+        y2={leftFoulY}
+        stroke="white"
+        strokeWidth="1.5"
+        opacity="0.5"
+      />
+      <line
+        x1={homeX}
+        y1={homeY}
+        x2={rightFoulX}
+        y2={rightFoulY}
+        stroke="white"
+        strokeWidth="1.5"
+        opacity="0.5"
+      />
 
       {/* Infield dirt — rough circle around the diamond */}
       <ellipse cx="150" cy="210" rx="110" ry="85" fill="#8B6914" opacity="0.75" />
@@ -209,21 +244,80 @@ function Diamond({ activeId, flashId, flashState }: DiamondProps) {
         strokeWidth="1"
       />
       {/* First base */}
-      <rect x={firstX - 6} y={firstY - 6} width="12" height="12" fill="white" stroke="#ccc" strokeWidth="1" transform={`rotate(45 ${firstX} ${firstY})`} />
+      <rect
+        x={firstX - 6}
+        y={firstY - 6}
+        width="12"
+        height="12"
+        fill="white"
+        stroke="#ccc"
+        strokeWidth="1"
+        transform={`rotate(45 ${firstX} ${firstY})`}
+      />
       {/* Second base */}
-      <rect x={secondX - 6} y={secondY - 6} width="12" height="12" fill="white" stroke="#ccc" strokeWidth="1" transform={`rotate(45 ${secondX} ${secondY})`} />
+      <rect
+        x={secondX - 6}
+        y={secondY - 6}
+        width="12"
+        height="12"
+        fill="white"
+        stroke="#ccc"
+        strokeWidth="1"
+        transform={`rotate(45 ${secondX} ${secondY})`}
+      />
       {/* Third base */}
-      <rect x={thirdX - 6} y={thirdY - 6} width="12" height="12" fill="white" stroke="#ccc" strokeWidth="1" transform={`rotate(45 ${thirdX} ${thirdY})`} />
+      <rect
+        x={thirdX - 6}
+        y={thirdY - 6}
+        width="12"
+        height="12"
+        fill="white"
+        stroke="#ccc"
+        strokeWidth="1"
+        transform={`rotate(45 ${thirdX} ${thirdY})`}
+      />
 
       {/* Pitcher's mound */}
       <ellipse cx="150" cy="207" rx="10" ry="8" fill="#9a7020" stroke="#c0902a" strokeWidth="1" />
       <ellipse cx="150" cy="206" rx="5" ry="4" fill="#b08030" />
 
       {/* Baseline chalk lines */}
-      <line x1={homeX} y1={homeY} x2={firstX} y2={firstY} stroke="white" strokeWidth="1" opacity="0.3" />
-      <line x1={firstX} y1={firstY} x2={secondX} y2={secondY} stroke="white" strokeWidth="1" opacity="0.3" />
-      <line x1={secondX} y1={secondY} x2={thirdX} y2={thirdY} stroke="white" strokeWidth="1" opacity="0.3" />
-      <line x1={thirdX} y1={thirdY} x2={homeX} y2={homeY} stroke="white" strokeWidth="1" opacity="0.3" />
+      <line
+        x1={homeX}
+        y1={homeY}
+        x2={firstX}
+        y2={firstY}
+        stroke="white"
+        strokeWidth="1"
+        opacity="0.3"
+      />
+      <line
+        x1={firstX}
+        y1={firstY}
+        x2={secondX}
+        y2={secondY}
+        stroke="white"
+        strokeWidth="1"
+        opacity="0.3"
+      />
+      <line
+        x1={secondX}
+        y1={secondY}
+        x2={thirdX}
+        y2={thirdY}
+        stroke="white"
+        strokeWidth="1"
+        opacity="0.3"
+      />
+      <line
+        x1={thirdX}
+        y1={thirdY}
+        x2={homeX}
+        y2={homeY}
+        stroke="white"
+        strokeWidth="1"
+        opacity="0.3"
+      />
 
       {/* Position markers */}
       {BASEBALL_POSITIONS.map((pos) => {
@@ -245,12 +339,7 @@ function Diamond({ activeId, flashId, flashState }: DiamondProps) {
                 stroke="hsl(var(--gold) / 0.5)"
                 strokeWidth="1.5"
               >
-                <animate
-                  attributeName="r"
-                  values="16;22;16"
-                  dur="1.6s"
-                  repeatCount="indefinite"
-                />
+                <animate attributeName="r" values="16;22;16" dur="1.6s" repeatCount="indefinite" />
                 <animate
                   attributeName="opacity"
                   values="0.6;0.1;0.6"
@@ -348,7 +437,8 @@ function OptionButton({
     "group relative flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 font-mono text-[12px] uppercase tracking-[0.14em] transition-all ";
 
   if (!revealed) {
-    cls += "border-border/70 bg-background/40 text-foreground/90 hover:border-gold/60 hover:bg-card/70 active:scale-[0.98]";
+    cls +=
+      "border-border/70 bg-background/40 text-foreground/90 hover:border-gold/60 hover:bg-card/70 active:scale-[0.98]";
   } else if (correct) {
     cls += "border-emerald-500/80 bg-emerald-500/20 text-emerald-200";
   } else if (selected && !correct) {
@@ -358,13 +448,11 @@ function OptionButton({
   }
 
   return (
-    <button
-      onClick={onClick}
-      disabled={revealed}
-      className={cls}
-    >
+    <button onClick={onClick} disabled={revealed} className={cls}>
       {revealed && correct && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />}
-      {revealed && selected && !correct && <XCircle className="h-3.5 w-3.5 shrink-0 text-rose-400" />}
+      {revealed && selected && !correct && (
+        <XCircle className="h-3.5 w-3.5 shrink-0 text-rose-400" />
+      )}
       <span className="text-center leading-tight">{label}</span>
     </button>
   );
@@ -499,9 +587,7 @@ function FieldPositionsGame({ language, onXp }: FieldGameProps) {
               <XCircle className="h-4 w-4 text-rose-400" />
             )}
             <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-              {answerState === "correct"
-                ? "Correct!"
-                : `Answer: ${question.correct}`}
+              {answerState === "correct" ? "Correct!" : `Answer: ${question.correct}`}
             </span>
           </div>
           <button
@@ -601,7 +687,8 @@ function DugoutVocabGame({ language, onXp }: DugoutGameProps) {
     play: "border-amber-500/40 bg-amber-500/10 text-amber-300",
     equipment: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
   };
-  const catCls = categoryColors[question.vocab.category] ?? "border-border/60 bg-card/40 text-muted-foreground";
+  const catCls =
+    categoryColors[question.vocab.category] ?? "border-border/60 bg-card/40 text-muted-foreground";
 
   return (
     <div className="space-y-4">
@@ -611,7 +698,9 @@ function DugoutVocabGame({ language, onXp }: DugoutGameProps) {
       {/* Question card */}
       <div className="rounded-2xl border border-border/60 bg-card/40 p-6 text-center">
         <div className="mb-3 flex items-center justify-center gap-2">
-          <span className={`rounded-full border px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] ${catCls}`}>
+          <span
+            className={`rounded-full border px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] ${catCls}`}
+          >
             {question.vocab.category.replace("-", " ")}
           </span>
           <span className="rounded-full border border-border/50 bg-background/30 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -656,9 +745,7 @@ function DugoutVocabGame({ language, onXp }: DugoutGameProps) {
               <XCircle className="h-4 w-4 text-rose-400" />
             )}
             <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-              {answerState === "correct"
-                ? "Correct!"
-                : `Answer: ${question.vocab[targetLang]}`}
+              {answerState === "correct" ? "Correct!" : `Answer: ${question.vocab[targetLang]}`}
             </span>
           </div>
           <button
@@ -681,7 +768,10 @@ function DugoutVocabGame({ language, onXp }: DugoutGameProps) {
           </div>
           <div className="mt-3 grid grid-cols-3 gap-1">
             {BASEBALL_POSITIONS.map((p) => (
-              <div key={p.id} className="flex items-center gap-1.5 rounded-md border border-border/40 bg-background/20 px-2 py-1">
+              <div
+                key={p.id}
+                className="flex items-center gap-1.5 rounded-md border border-border/40 bg-background/20 px-2 py-1"
+              >
                 <span className="font-mono text-[9px] font-bold text-gold">{p.abbreviation}</span>
                 <span className="truncate font-mono text-[9px] text-muted-foreground">{p.en}</span>
               </div>
@@ -711,7 +801,9 @@ export function BaseballPositionsGame({ language, onXp }: BaseballPositionsGameP
     <div className="mx-auto max-w-2xl space-y-5">
       {/* Header */}
       <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">⚾ Baseball</div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+          ⚾ Baseball
+        </div>
         <h2 className="mt-1 font-display text-3xl font-semibold">Know Your Diamond</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Learn field positions and dugout vocabulary for Spanish-speaking players.
@@ -739,12 +831,8 @@ export function BaseballPositionsGame({ language, onXp }: BaseballPositionsGameP
       </div>
 
       {/* Game panes */}
-      {mode === "field" && (
-        <FieldPositionsGame key={fieldKey} language={language} onXp={onXp} />
-      )}
-      {mode === "dugout" && (
-        <DugoutVocabGame key={dugoutKey} language={language} onXp={onXp} />
-      )}
+      {mode === "field" && <FieldPositionsGame key={fieldKey} language={language} onXp={onXp} />}
+      {mode === "dugout" && <DugoutVocabGame key={dugoutKey} language={language} onXp={onXp} />}
     </div>
   );
 }

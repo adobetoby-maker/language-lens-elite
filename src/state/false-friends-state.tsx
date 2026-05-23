@@ -1,4 +1,13 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  type ReactNode,
+} from "react";
 import type { Language } from "./app-state";
 import type { FalseFriendQuestion } from "@/fns/false-friends.functions";
 
@@ -12,20 +21,25 @@ export interface FalseFriendsStats {
   totalAttempts: number;
   // How well the player handles ACTUAL traps (false friends specifically) —
   // this is the harder cohort and worth surfacing separately.
-  trapsCaught: number;       // false-friends correctly identified as wrong
-  trapsMissed: number;       // false-friends the player thought were true
+  trapsCaught: number; // false-friends correctly identified as wrong
+  trapsMissed: number; // false-friends the player thought were true
 }
 
 const EMPTY: FalseFriendsStats = {
-  bestStreak: 0, currentStreak: 0, perfectRuns: 0, totalCorrect: 0, totalAttempts: 0,
-  trapsCaught: 0, trapsMissed: 0,
+  bestStreak: 0,
+  currentStreak: 0,
+  perfectRuns: 0,
+  totalCorrect: 0,
+  totalAttempts: 0,
+  trapsCaught: 0,
+  trapsMissed: 0,
 };
 
 export type FFLeaderboardKey = `${Language}-${FalseFriendsLevel}`;
 
 export interface FFRunQuestion {
   question: FalseFriendQuestion;
-  answer: boolean | null;     // user's true/false guess; null = unanswered
+  answer: boolean | null; // user's true/false guess; null = unanswered
   correct: boolean | null;
 }
 
@@ -64,7 +78,10 @@ function loadLB(): Record<FFLeaderboardKey, FalseFriendsStats> {
     if (!raw) return {} as Record<FFLeaderboardKey, FalseFriendsStats>;
     // Migrate: spread EMPTY over each entry so any added field gets a default.
     const parsed = JSON.parse(raw) as Record<string, Partial<FalseFriendsStats>>;
-    const out: Record<FFLeaderboardKey, FalseFriendsStats> = {} as Record<FFLeaderboardKey, FalseFriendsStats>;
+    const out: Record<FFLeaderboardKey, FalseFriendsStats> = {} as Record<
+      FFLeaderboardKey,
+      FalseFriendsStats
+    >;
     for (const [k, v] of Object.entries(parsed)) {
       out[k as FFLeaderboardKey] = { ...EMPTY, ...v };
     }
@@ -76,10 +93,17 @@ function loadLB(): Record<FFLeaderboardKey, FalseFriendsStats> {
 
 function saveLB(lb: Record<FFLeaderboardKey, FalseFriendsStats>) {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(lb)); } catch { /* quota */ }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(lb));
+  } catch {
+    /* quota */
+  }
 }
 
-function statsFor(lb: Record<FFLeaderboardKey, FalseFriendsStats>, key: FFLeaderboardKey): FalseFriendsStats {
+function statsFor(
+  lb: Record<FFLeaderboardKey, FalseFriendsStats>,
+  key: FFLeaderboardKey,
+): FalseFriendsStats {
   return lb[key] ?? { ...EMPTY };
 }
 
@@ -111,7 +135,10 @@ function reducer(state: State, action: Action): State {
         loading: false,
         run: {
           ...state.run,
-          questions: [...state.run.questions, { question: action.payload, answer: null, correct: null }],
+          questions: [
+            ...state.run.questions,
+            { question: action.payload, answer: null, correct: null },
+          ],
         },
       };
     }
@@ -155,11 +182,13 @@ function reducer(state: State, action: Action): State {
 
     case "END_RUN": {
       if (!state.run) return state;
-      const allCorrect = state.run.questions.length === RUN_LENGTH &&
+      const allCorrect =
+        state.run.questions.length === RUN_LENGTH &&
         state.run.questions.every((q) => q.correct === true);
       let newLb = state.leaderboard;
       if (allCorrect) {
-        const key: FFLeaderboardKey = `${state.run.language}-${state.run.level}` as FFLeaderboardKey;
+        const key: FFLeaderboardKey =
+          `${state.run.language}-${state.run.level}` as FFLeaderboardKey;
         const prev = statsFor(state.leaderboard, key);
         newLb = { ...state.leaderboard, [key]: { ...prev, perfectRuns: prev.perfectRuns + 1 } };
         saveLB(newLb);
@@ -183,7 +212,15 @@ interface FFContextValue {
   currentQuestion: () => FFRunQuestion | null;
   runScore: () => { correct: number; answered: number; total: number };
   RUN_LENGTH: number;
-  setFetcher: (fn: ((args: { language: Language; level: FalseFriendsLevel; avoid?: string[] }) => Promise<FalseFriendQuestion>) | null) => void;
+  setFetcher: (
+    fn:
+      | ((args: {
+          language: Language;
+          level: FalseFriendsLevel;
+          avoid?: string[];
+        }) => Promise<FalseFriendQuestion>)
+      | null,
+  ) => void;
 }
 
 const Ctx = createContext<FFContextValue | null>(null);
@@ -201,8 +238,17 @@ export function FalseFriendsProvider({ children }: { children: ReactNode }) {
     if (Object.keys(lb).length) dispatch({ type: "HYDRATE", payload: lb });
   }, []);
 
-  const fetcherRef = useRef<((args: { language: Language; level: FalseFriendsLevel; avoid?: string[] }) => Promise<FalseFriendQuestion>) | null>(null);
-  const setFetcher = useCallback((fn: typeof fetcherRef.current) => { fetcherRef.current = fn; }, []);
+  const fetcherRef = useRef<
+    | ((args: {
+        language: Language;
+        level: FalseFriendsLevel;
+        avoid?: string[];
+      }) => Promise<FalseFriendQuestion>)
+    | null
+  >(null);
+  const setFetcher = useCallback((fn: typeof fetcherRef.current) => {
+    fetcherRef.current = fn;
+  }, []);
 
   const startRun = useCallback((language: Language, level: FalseFriendsLevel) => {
     dispatch({ type: "START_RUN", payload: { language, level } });
@@ -229,14 +275,17 @@ export function FalseFriendsProvider({ children }: { children: ReactNode }) {
     }
   }, [state.run]);
 
-  const answer = useCallback((guess: boolean) => {
-    if (!state.run) return;
-    const cur = state.run.questions[state.run.index];
-    if (!cur || cur.correct !== null) return;
-    const isTrueFriend = cur.question.isTrueFriend;
-    const correct = guess === isTrueFriend;
-    dispatch({ type: "ANSWER", payload: { guess, correct, isTrap: !isTrueFriend } });
-  }, [state.run]);
+  const answer = useCallback(
+    (guess: boolean) => {
+      if (!state.run) return;
+      const cur = state.run.questions[state.run.index];
+      if (!cur || cur.correct !== null) return;
+      const isTrueFriend = cur.question.isTrueFriend;
+      const correct = guess === isTrueFriend;
+      dispatch({ type: "ANSWER", payload: { guess, correct, isTrap: !isTrueFriend } });
+    },
+    [state.run],
+  );
 
   const advance = useCallback(() => dispatch({ type: "ADVANCE" }), []);
   const endRun = useCallback(() => dispatch({ type: "END_RUN" }), []);
@@ -259,10 +308,33 @@ export function FalseFriendsProvider({ children }: { children: ReactNode }) {
     return { correct, answered, total: RUN_LENGTH };
   }, [state.run]);
 
-  const value = useMemo<FFContextValue>(() => ({
-    state, startRun, loadQuestion, answer, advance, endRun,
-    isRunComplete, currentQuestion, runScore, RUN_LENGTH, setFetcher,
-  }), [state, startRun, loadQuestion, answer, advance, endRun, isRunComplete, currentQuestion, runScore, setFetcher]);
+  const value = useMemo<FFContextValue>(
+    () => ({
+      state,
+      startRun,
+      loadQuestion,
+      answer,
+      advance,
+      endRun,
+      isRunComplete,
+      currentQuestion,
+      runScore,
+      RUN_LENGTH,
+      setFetcher,
+    }),
+    [
+      state,
+      startRun,
+      loadQuestion,
+      answer,
+      advance,
+      endRun,
+      isRunComplete,
+      currentQuestion,
+      runScore,
+      setFetcher,
+    ],
+  );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

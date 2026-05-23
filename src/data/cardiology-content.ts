@@ -155,7 +155,8 @@ export const CARDIO_SCRIPTS: CardioScript[] = [
       "Good news — your coronary arteries are open. No blockages significant enough to explain your symptoms. That doesn't mean your chest pain wasn't real; it means the plumbing isn't the problem. I want to look more carefully at whether the arteries are going into spasm, or whether there's another explanation.",
     context:
       "Communicating a negative coronary angiogram. Patients can feel dismissed if the negative result isn't framed carefully. Acknowledges symptoms while directing next steps.",
-    reference: "ACC/AHA Chest Pain Guideline 2021 — Chest Pain with Non-Obstructive Coronary Disease (MINOCA/INOCA)",
+    reference:
+      "ACC/AHA Chest Pain Guideline 2021 — Chest Pain with Non-Obstructive Coronary Disease (MINOCA/INOCA)",
   },
   {
     id: "stent-explanation",
@@ -253,7 +254,8 @@ export const CARDIO_SCRIPTS: CardioScript[] = [
       "I know this is devastating. What I can tell you is that we did everything — the team moved immediately when the code was called. I'd like to sit with you for a few minutes if that's okay.",
     context:
       "Notifying family of a cardiac arrest death in the hospital. 'We did everything' is appropriate when it is true. Offering to stay — not leaving after delivering the news — is what families most remember.",
-    reference: "AHA Resuscitation Science Statement — Communicating with Families After Resuscitation",
+    reference:
+      "AHA Resuscitation Science Statement — Communicating with Families After Resuscitation",
   },
 ];
 
@@ -436,7 +438,9 @@ export const CARDIOLOGY_CONTEXTS: CardiologyClinicalContext[] = [
   },
 ];
 
-export function getCardiologyContext(id: string | null | undefined): CardiologyClinicalContext | null {
+export function getCardiologyContext(
+  id: string | null | undefined,
+): CardiologyClinicalContext | null {
   if (!id) return null;
   return CARDIOLOGY_CONTEXTS.find((c) => c.id === id) ?? null;
 }

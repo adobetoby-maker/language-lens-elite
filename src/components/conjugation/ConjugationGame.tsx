@@ -1,6 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle2, XCircle, Sparkle, Flame, Zap, Trophy, RotateCcw, ChevronRight } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  Sparkle,
+  Flame,
+  Zap,
+  Trophy,
+  RotateCcw,
+  ChevronRight,
+} from "lucide-react";
 import { useApp } from "@/state/app-state";
 import {
   useConjugation,
@@ -8,7 +17,11 @@ import {
   streakBadgeLabel,
   type LeaderboardKey,
 } from "@/state/conjugation-state";
-import { generateConjugationQuestion, type ConjugationLevel, type ConjugationQuestion } from "@/fns/conjugation.functions";
+import {
+  generateConjugationQuestion,
+  type ConjugationLevel,
+  type ConjugationQuestion,
+} from "@/fns/conjugation.functions";
 import { ConjugationLeaderboard } from "./ConjugationLeaderboard";
 import { MODULES } from "@/data/modules";
 
@@ -29,9 +42,10 @@ export function ConjugationGame() {
     return `${mod.name} (${mod.vocabFocus.slice(0, 5).join(", ")})`;
   }, [app.activeModuleId]);
 
-  const userWords = app.userVocab.length > 0 && app.vocabLang === app.selectedLanguage
-    ? app.userVocab.map((v) => v.word).slice(0, 20)
-    : undefined;
+  const userWords =
+    app.userVocab.length > 0 && app.vocabLang === app.selectedLanguage
+      ? app.userVocab.map((v) => v.word).slice(0, 20)
+      : undefined;
 
   useEffect(() => {
     conj.setFetcher(async ({ language, level, avoid }) => {
@@ -77,7 +91,11 @@ export function ConjugationGame() {
 
   const lbKey: LeaderboardKey = `${app.selectedLanguage}-${selectedLevel}` as LeaderboardKey;
   const stats = conj.state.leaderboard[lbKey] ?? {
-    bestStreak: 0, currentStreak: 0, perfectRuns: 0, totalCorrect: 0, totalAttempts: 0,
+    bestStreak: 0,
+    currentStreak: 0,
+    perfectRuns: 0,
+    totalCorrect: 0,
+    totalAttempts: 0,
   };
   const badge = streakBadge(stats.currentStreak);
 
@@ -97,8 +115,12 @@ export function ConjugationGame() {
           onClick={() => conj.startRun(app.selectedLanguage, selectedLevel)}
           className="group relative w-full overflow-hidden rounded-2xl border border-gold/60 bg-gradient-to-br from-gold/10 via-gold/5 to-transparent px-6 py-6 text-left transition-all hover:border-gold hover:from-gold/20"
         >
-          <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">▶ Start Run</div>
-          <div className="mt-1 font-display text-3xl font-semibold">5 questions in {app.selectedLanguage}</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
+            ▶ Start Run
+          </div>
+          <div className="mt-1 font-display text-3xl font-semibold">
+            5 questions in {app.selectedLanguage}
+          </div>
           <div className="mt-1 text-sm text-muted-foreground">
             {LEVEL_LABELS[selectedLevel].sub}
           </div>
@@ -117,19 +139,32 @@ export function ConjugationGame() {
         <div className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 via-card/40 to-transparent p-8 text-center">
           {allCorrect ? (
             <>
-              <Trophy className="mx-auto h-12 w-12 text-gold" strokeWidth={1.5} fill="currentColor" />
-              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-gold">Perfect Run</div>
-              <div className="mt-1 font-display text-4xl font-bold">{score.correct} / {score.total}</div>
+              <Trophy
+                className="mx-auto h-12 w-12 text-gold"
+                strokeWidth={1.5}
+                fill="currentColor"
+              />
+              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+                Perfect Run
+              </div>
+              <div className="mt-1 font-display text-4xl font-bold">
+                {score.correct} / {score.total}
+              </div>
             </>
           ) : (
             <>
               <Sparkle className="mx-auto h-10 w-10 text-gold/70" strokeWidth={1.5} />
-              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Run Complete</div>
-              <div className="mt-1 font-display text-4xl font-bold">{score.correct} / {score.total}</div>
+              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+                Run Complete
+              </div>
+              <div className="mt-1 font-display text-4xl font-bold">
+                {score.correct} / {score.total}
+              </div>
             </>
           )}
           <div className="mt-3 font-mono text-xs text-muted-foreground">
-            Current streak: <span className="text-foreground">{stats.currentStreak}</span> · Best: <span className="text-foreground">{stats.bestStreak}</span>
+            Current streak: <span className="text-foreground">{stats.currentStreak}</span> · Best:{" "}
+            <span className="text-foreground">{stats.bestStreak}</span>
           </div>
           <div className="mt-6 flex items-center justify-center gap-3">
             <button
@@ -212,7 +247,9 @@ export function ConjugationGame() {
 function Header() {
   return (
     <div>
-      <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">⊛ Conjugation Drills</div>
+      <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+        ⊛ Conjugation Drills
+      </div>
       <h2 className="mt-1 font-display text-3xl font-semibold">Pick the right form</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Five-question runs. Build streaks. Earn perfect-run badges.
@@ -231,10 +268,17 @@ function LevelPicker({
   language: string;
   selected: ConjugationLevel;
   onPick: (l: ConjugationLevel) => void;
-  stats: { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number };
+  stats: {
+    bestStreak: number;
+    currentStreak: number;
+    perfectRuns: number;
+    totalCorrect: number;
+    totalAttempts: number;
+  };
   currentBadge: ReturnType<typeof streakBadge>;
 }) {
-  const accuracy = stats.totalAttempts === 0 ? 0 : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
+  const accuracy =
+    stats.totalAttempts === 0 ? 0 : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
   return (
     <div className="rounded-2xl border border-border/60 bg-card/30 p-5">
       <div className="mb-3 flex items-baseline justify-between">
@@ -242,9 +286,15 @@ function LevelPicker({
           Difficulty · {language}
         </div>
         <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          <span>Best <span className="text-foreground">{stats.bestStreak}</span></span>
-          <span>Perfect <span className="text-foreground">{stats.perfectRuns}</span></span>
-          <span>Accuracy <span className="text-foreground">{accuracy}%</span></span>
+          <span>
+            Best <span className="text-foreground">{stats.bestStreak}</span>
+          </span>
+          <span>
+            Perfect <span className="text-foreground">{stats.perfectRuns}</span>
+          </span>
+          <span>
+            Accuracy <span className="text-foreground">{accuracy}%</span>
+          </span>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -255,14 +305,22 @@ function LevelPicker({
             data-active={selected === l}
             className="rounded-xl border border-border/70 bg-background/40 p-3 text-left transition-all hover:border-gold/60 data-[active=true]:border-gold/80 data-[active=true]:bg-gold/[0.08]"
           >
-            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">{LEVEL_LABELS[l].name}</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+              {LEVEL_LABELS[l].name}
+            </div>
             <div className="mt-1 text-xs text-foreground/80">{LEVEL_LABELS[l].sub}</div>
           </button>
         ))}
       </div>
       {currentBadge && (
         <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold">
-          {currentBadge === "unstoppable" ? <Trophy className="h-3 w-3" /> : currentBadge === "streaking" ? <Zap className="h-3 w-3" /> : <Flame className="h-3 w-3" />}
+          {currentBadge === "unstoppable" ? (
+            <Trophy className="h-3 w-3" />
+          ) : currentBadge === "streaking" ? (
+            <Zap className="h-3 w-3" />
+          ) : (
+            <Flame className="h-3 w-3" />
+          )}
           {streakBadgeLabel(currentBadge)} · {stats.currentStreak} in a row
         </div>
       )}
@@ -271,7 +329,11 @@ function LevelPicker({
 }
 
 function RunHeader({
-  index, total, score, currentStreak, badge,
+  index,
+  total,
+  score,
+  currentStreak,
+  badge,
 }: {
   index: number;
   total: number;
@@ -285,7 +347,9 @@ function RunHeader({
         Question <span className="text-foreground">{index + 1}</span> / {total}
       </div>
       <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-        <span>Score <span className="text-foreground">{score}</span></span>
+        <span>
+          Score <span className="text-foreground">{score}</span>
+        </span>
         {badge && (
           <span className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 text-gold">
             <Flame className="h-3 w-3" /> {currentStreak}
@@ -297,7 +361,13 @@ function RunHeader({
 }
 
 function QuestionCard({
-  question, shuffled, selected, correct, showExplanation, onAnswer, onNext,
+  question,
+  shuffled,
+  selected,
+  correct,
+  showExplanation,
+  onAnswer,
+  onNext,
 }: {
   question: ConjugationQuestion;
   shuffled: string[];
@@ -317,7 +387,8 @@ function QuestionCard({
           axis: {question.axisTested}
         </span>
         <span className="rounded-full border border-border/70 bg-background/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          base: <span className="text-foreground">{question.infinitive}</span> ({question.infinitiveTranslation})
+          base: <span className="text-foreground">{question.infinitive}</span> (
+          {question.infinitiveTranslation})
         </span>
       </div>
 
@@ -331,10 +402,11 @@ function QuestionCard({
           const isSelected = selected === opt;
           const isCorrectOpt = opt === question.correctConjugation;
           const reveal = correct !== null;
-          let tone =
-            "border-border/70 bg-background/40 hover:border-gold/60";
-          if (reveal && isCorrectOpt) tone = "border-emerald-500/60 bg-emerald-500/15 text-emerald-100";
-          else if (reveal && isSelected && !isCorrectOpt) tone = "border-rose-500/60 bg-rose-500/15 text-rose-100";
+          let tone = "border-border/70 bg-background/40 hover:border-gold/60";
+          if (reveal && isCorrectOpt)
+            tone = "border-emerald-500/60 bg-emerald-500/15 text-emerald-100";
+          else if (reveal && isSelected && !isCorrectOpt)
+            tone = "border-rose-500/60 bg-rose-500/15 text-rose-100";
           else if (reveal) tone = "border-border/40 bg-background/20 opacity-60";
           return (
             <button
@@ -346,7 +418,9 @@ function QuestionCard({
               <div className="flex items-center justify-between gap-2">
                 <span>{opt}</span>
                 {reveal && isCorrectOpt && <CheckCircle2 className="h-4 w-4 text-emerald-400" />}
-                {reveal && isSelected && !isCorrectOpt && <XCircle className="h-4 w-4 text-rose-400" />}
+                {reveal && isSelected && !isCorrectOpt && (
+                  <XCircle className="h-4 w-4 text-rose-400" />
+                )}
               </div>
             </button>
           );
@@ -355,7 +429,9 @@ function QuestionCard({
 
       {showExplanation && (
         <div className="mt-5 rounded-xl border border-violet-500/30 bg-violet-500/10 p-3">
-          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-violet-300">✎ Why</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-violet-300">
+            ✎ Why
+          </div>
           <p className="mt-1 text-sm text-foreground/90">{question.explanation}</p>
         </div>
       )}
@@ -382,7 +458,10 @@ function renderPhrase(phrase: string) {
       {parts.map((p, i) => {
         if (/^_{3,}$/.test(p)) {
           return (
-            <span key={i} className="mx-1 inline-block min-w-[3.5em] border-b-2 border-gold/70 align-baseline">
+            <span
+              key={i}
+              className="mx-1 inline-block min-w-[3.5em] border-b-2 border-gold/70 align-baseline"
+            >
               &nbsp;
             </span>
           );
@@ -409,21 +488,35 @@ function QuestionSkeleton() {
   );
 }
 
-function RunReview({ run }: { run: NonNullable<ReturnType<typeof useConjugation>["state"]["run"]> }) {
+function RunReview({
+  run,
+}: {
+  run: NonNullable<ReturnType<typeof useConjugation>["state"]["run"]>;
+}) {
   // Shows a compact recap of the 5 questions with right/wrong markers.
   return (
     <div className="rounded-2xl border border-border/60 bg-card/30 p-5">
-      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Run Review</div>
+      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+        Run Review
+      </div>
       <ul className="space-y-2">
         {run.questions.map((q, i) => (
-          <li key={i} className="flex items-start gap-3 rounded-lg border border-border/50 bg-background/30 p-3">
+          <li
+            key={i}
+            className="flex items-start gap-3 rounded-lg border border-border/50 bg-background/30 p-3"
+          >
             <span className="mt-0.5 font-mono text-[10px] text-muted-foreground">{i + 1}.</span>
             <div className="flex-1 min-w-0">
-              <div className="truncate font-display text-sm text-foreground/90">{q.question.phrase.replace(/_+/g, "___")}</div>
+              <div className="truncate font-display text-sm text-foreground/90">
+                {q.question.phrase.replace(/_+/g, "___")}
+              </div>
               <div className="mt-1 font-mono text-[10px] text-muted-foreground">
                 Correct: <span className="text-emerald-300">{q.question.correctConjugation}</span>
                 {q.selectedAnswer && q.selectedAnswer !== q.question.correctConjugation && (
-                  <> · You picked: <span className="text-rose-300">{q.selectedAnswer}</span></>
+                  <>
+                    {" "}
+                    · You picked: <span className="text-rose-300">{q.selectedAnswer}</span>
+                  </>
                 )}
               </div>
             </div>

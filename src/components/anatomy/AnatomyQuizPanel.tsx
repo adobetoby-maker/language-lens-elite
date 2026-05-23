@@ -17,22 +17,22 @@ type AnswerState = "idle" | "correct" | "wrong";
 
 interface QuizState {
   region: AnatomyRegion;
-  choices: string[];  // label strings in target language
+  choices: string[]; // label strings in target language
   correctLabel: string;
 }
 
 const CATEGORIES: { key: AnatomyCategory; label: string; emoji: string }[] = [
-  { key: "body",   label: "Body Parts",       emoji: "🧍" },
-  { key: "face",   label: "Face",             emoji: "😶" },
-  { key: "muscle", label: "Muscles",          emoji: "💪" },
-  { key: "organ",  label: "Internal Organs",  emoji: "❤️" },
+  { key: "body", label: "Body Parts", emoji: "🧍" },
+  { key: "face", label: "Face", emoji: "😶" },
+  { key: "muscle", label: "Muscles", emoji: "💪" },
+  { key: "organ", label: "Internal Organs", emoji: "❤️" },
 ];
 
 const REGIONS_BY_CAT: Record<AnatomyCategory, AnatomyRegion[]> = {
-  body:   BODY_REGIONS,
-  face:   FACE_REGIONS,
+  body: BODY_REGIONS,
+  face: FACE_REGIONS,
   muscle: MUSCLE_REGIONS,
-  organ:  ORGAN_REGIONS,
+  organ: ORGAN_REGIONS,
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -44,22 +44,14 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildQuiz(
-  regions: AnatomyRegion[],
-  exclude: string | null,
-  language: string,
-): QuizState {
-  const pool = regions.length > 1
-    ? regions.filter((r) => r.id !== exclude)
-    : regions;
+function buildQuiz(regions: AnatomyRegion[], exclude: string | null, language: string): QuizState {
+  const pool = regions.length > 1 ? regions.filter((r) => r.id !== exclude) : regions;
   const region = pool[Math.floor(Math.random() * pool.length)];
   const correctLabel = region.labels[language] ?? region.en;
 
   // Pick 2 wrong choices from same category
   const wrong = shuffle(
-    regions
-      .filter((r) => r.id !== region.id)
-      .map((r) => r.labels[language] ?? r.en),
+    regions.filter((r) => r.id !== region.id).map((r) => r.labels[language] ?? r.en),
   ).slice(0, 2);
 
   const choices = shuffle([correctLabel, ...wrong]);
@@ -92,9 +84,7 @@ export function AnatomyQuizPanel() {
     return base;
   }, [category, sportFocusIds]);
 
-  const [quiz, setQuiz] = useState<QuizState>(() =>
-    buildQuiz(activeRegions, null, language),
-  );
+  const [quiz, setQuiz] = useState<QuizState>(() => buildQuiz(activeRegions, null, language));
 
   const nextQuiz = useCallback(
     (excludeId?: string) => {
@@ -130,10 +120,14 @@ export function AnatomyQuizPanel() {
     }
   };
 
-  const Diagram = category === "body"   ? BodyDiagram
-               : category === "face"   ? FaceDiagram
-               : category === "muscle" ? MuscleDiagram
-               :                         OrganDiagram;
+  const Diagram =
+    category === "body"
+      ? BodyDiagram
+      : category === "face"
+        ? FaceDiagram
+        : category === "muscle"
+          ? MuscleDiagram
+          : OrganDiagram;
 
   const isSportMuscleMode = category === "muscle" && !!sportFocusIds;
 
@@ -152,9 +146,7 @@ export function AnatomyQuizPanel() {
             </span>
           )}
           {streak >= 3 && (
-            <span className="ml-auto font-mono text-[11px] text-gold">
-              🔥 {streak} streak
-            </span>
+            <span className="ml-auto font-mono text-[11px] text-gold">🔥 {streak} streak</span>
           )}
         </div>
 
@@ -187,10 +179,7 @@ export function AnatomyQuizPanel() {
       <div className="flex flex-1 flex-col gap-4 overflow-auto p-4 md:flex-row">
         {/* Diagram */}
         <div className="flex shrink-0 items-center justify-center rounded-2xl border border-gold/20 bg-card/40 p-3 md:w-52">
-          <Diagram
-            highlighted={quiz.region.id}
-            className="h-auto max-h-[320px] w-full"
-          />
+          <Diagram highlighted={quiz.region.id} className="h-auto max-h-[320px] w-full" />
         </div>
 
         {/* Quiz prompt + choices */}
@@ -200,9 +189,7 @@ export function AnatomyQuizPanel() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
               Name the highlighted region in
             </p>
-            <p className="mt-1 font-display text-lg text-gold">
-              {language}
-            </p>
+            <p className="mt-1 font-display text-lg text-gold">{language}</p>
             <p className="mt-2 text-sm text-foreground/70">
               English: <span className="font-medium text-foreground">{quiz.region.en}</span>
             </p>
@@ -218,15 +205,15 @@ export function AnatomyQuizPanel() {
           {answerState === "wrong" && (
             <div className="flex items-center gap-2 rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
               <XCircle className="h-4 w-4 shrink-0" />
-              Not quite — the answer is:{" "}
-              <span className="font-semibold">{quiz.correctLabel}</span>
+              Not quite — the answer is: <span className="font-semibold">{quiz.correctLabel}</span>
             </div>
           )}
 
           {mode === "choose" ? (
             <div className="grid gap-2">
               {quiz.choices.map((choice) => {
-                let variant = "border-border/60 bg-background/40 hover:border-gold/40 hover:bg-gold/5";
+                let variant =
+                  "border-border/60 bg-background/40 hover:border-gold/40 hover:bg-gold/5";
                 if (answerState !== "idle") {
                   if (choice === quiz.correctLabel) {
                     variant = "border-emerald-500/60 bg-emerald-500/10 text-emerald-400";

@@ -177,10 +177,7 @@ export function GrammarProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "MARK_COMPLETE", payload: { language, level, lessonId } }),
     [],
   );
-  const addBadge = useCallback(
-    (b: string) => dispatch({ type: "ADD_BADGE", payload: b }),
-    [],
-  );
+  const addBadge = useCallback((b: string) => dispatch({ type: "ADD_BADGE", payload: b }), []);
   const getLevel = useCallback(
     (language: Language, level: CefrLevel) => state.store[language]?.[level],
     [state.store],

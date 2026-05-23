@@ -15,21 +15,21 @@ export interface CircleQuestion {
 export interface PenPalTopic {
   id: string;
   phase: 1 | 2;
-  topic: string;          // "Your Name"
-  question: string;       // "¿Cómo te llamas?"
+  topic: string; // "Your Name"
+  question: string; // "¿Cómo te llamas?"
   questionEnglish: string;
   vocab: PenPalVocab[];
-  copyWord: string;       // single phrase to trace
-  copySentence: string;   // full sentence to copy
+  copyWord: string; // single phrase to trace
+  copySentence: string; // full sentence to copy
   circleQuestion: CircleQuestion;
-  writePrompt: string;    // shown above the free-write canvas
-  exampleAnswer: string;  // shown as a hint
+  writePrompt: string; // shown above the free-write canvas
+  exampleAnswer: string; // shown as a hint
 }
 
 export interface PenPalCurriculum {
   penpalName: string;
   penpalCity: string;
-  greeting: string;       // opening of the letter template
+  greeting: string; // opening of the letter template
   topics: PenPalTopic[];
 }
 
@@ -123,7 +123,12 @@ const SPANISH: PenPalCurriculum = {
       copySentence: "Soy médico. Trabajo en un hospital.",
       circleQuestion: {
         question: "'¿A qué te dedicas?' means:",
-        choices: ["What do you do?", "Where do you live?", "How old are you?", "What is your name?"],
+        choices: [
+          "What do you do?",
+          "Where do you live?",
+          "How old are you?",
+          "What is your name?",
+        ],
         correct: 0,
       },
       writePrompt: "¿A qué te dedicas? Write your answer.",
@@ -256,7 +261,12 @@ const SPANISH: PenPalCurriculum = {
       copySentence: "Llevo jugando al golf diez años. Me encanta.",
       circleQuestion: {
         question: "'Llevo diez años jugando' means:",
-        choices: ["I've been playing for 10 years", "I played 10 times", "I play 10 hours", "I started 10 days ago"],
+        choices: [
+          "I've been playing for 10 years",
+          "I played 10 times",
+          "I play 10 hours",
+          "I started 10 days ago",
+        ],
         correct: 0,
       },
       writePrompt: "Describe tu pasatiempo favorito con detalle.",
@@ -421,7 +431,12 @@ const FRENCH: PenPalCurriculum = {
       copySentence: "Je suis médecin. Je travaille dans un hôpital.",
       circleQuestion: {
         question: "'Que faites-vous ?' means:",
-        choices: ["What do you do?", "Where do you live?", "How old are you?", "What is your name?"],
+        choices: [
+          "What do you do?",
+          "Where do you live?",
+          "How old are you?",
+          "What is your name?",
+        ],
         correct: 0,
       },
       writePrompt: "Que faites-vous dans la vie ? Write your answer.",
@@ -600,7 +615,11 @@ const JAPANESE: PenPalCurriculum = {
       question: "なぜにほんごをべんきょうしていますか？",
       questionEnglish: "Why are you studying Japanese?",
       vocab: [
-        { text: "にほんごをべんきょうしています", translation: "I study Japanese", pronunciation: "nihongo wo benkyou shiteimasu" },
+        {
+          text: "にほんごをべんきょうしています",
+          translation: "I study Japanese",
+          pronunciation: "nihongo wo benkyou shiteimasu",
+        },
         { text: "なぜなら", translation: "because", pronunciation: "nazenara" },
         { text: "はなしたい", translation: "I want to speak", pronunciation: "hanashitai" },
         { text: "にほん", translation: "Japan", pronunciation: "nihon" },
@@ -623,7 +642,11 @@ const JAPANESE: PenPalCurriculum = {
       question: "ふだんのしごとのいちにちをおしえてください。",
       questionEnglish: "Tell me about a typical day at work.",
       vocab: [
-        { text: "〜じにはじまります", translation: "starts at ~ o'clock", pronunciation: "~ ji ni hajimarimasu" },
+        {
+          text: "〜じにはじまります",
+          translation: "starts at ~ o'clock",
+          pronunciation: "~ ji ni hajimarimasu",
+        },
         { text: "きんむ", translation: "shift / duty", pronunciation: "kinmu" },
         { text: "かんじゃ", translation: "patient", pronunciation: "kanja" },
         { text: "おわります", translation: "finishes / ends", pronunciation: "owarimasu" },
@@ -679,7 +702,11 @@ const KOREAN: PenPalCurriculum = {
       questionEnglish: "What is your name?",
       vocab: [
         { text: "저는 ~입니다", translation: "I am ~", pronunciation: "jeoneun ~ imnida" },
-        { text: "만나서 반갑습니다", translation: "Nice to meet you", pronunciation: "mannaseo bangapseumnida" },
+        {
+          text: "만나서 반갑습니다",
+          translation: "Nice to meet you",
+          pronunciation: "mannaseo bangapseumnida",
+        },
         { text: "이름", translation: "name", pronunciation: "ireum" },
         { text: "안녕하세요", translation: "Hello", pronunciation: "annyeonghaseyo" },
       ],

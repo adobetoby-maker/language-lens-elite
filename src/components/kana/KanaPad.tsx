@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Copy, RefreshCw, BookOpen, Sparkle, PenLine, Hand, Maximize2, X } from "lucide-react";
 import { toast } from "sonner";
-import {
-  toHiragana,
-  toKatakana,
-} from "@/lib/romaji-to-kana";
+import { toHiragana, toKatakana } from "@/lib/romaji-to-kana";
 import { convertKana, type KanaConvertResult } from "@/fns/kana-convert.functions";
 import { useApp } from "@/state/app-state";
 import { KanaWritingPad } from "./writing/KanaWritingPad";
@@ -49,9 +46,21 @@ export function KanaPad() {
 
   // Live client-side conversion for hiragana/katakana
   useEffect(() => {
-    if (script === "romaji") { setConverted(input); setAiResult(null); return; }
-    if (script === "hiragana") { setConverted(toHiragana(input)); setAiResult(null); return; }
-    if (script === "katakana") { setConverted(toKatakana(input)); setAiResult(null); return; }
+    if (script === "romaji") {
+      setConverted(input);
+      setAiResult(null);
+      return;
+    }
+    if (script === "hiragana") {
+      setConverted(toHiragana(input));
+      setAiResult(null);
+      return;
+    }
+    if (script === "katakana") {
+      setConverted(toKatakana(input));
+      setAiResult(null);
+      return;
+    }
     setConverted(toHiragana(input));
   }, [input, script]);
 
@@ -107,7 +116,8 @@ export function KanaPad() {
         <span className="text-4xl">🇯🇵</span>
         <h2 className="font-display text-2xl font-semibold">Japanese Kana Pad</h2>
         <p className="text-sm text-muted-foreground">
-          Switch your study language to <strong>Japanese</strong> in the top navigation to use this feature.
+          Switch your study language to <strong>Japanese</strong> in the top navigation to use this
+          feature.
         </p>
       </div>
     );
@@ -144,7 +154,9 @@ export function KanaPad() {
         {/* Header */}
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="font-display text-2xl font-semibold tracking-tight">Japanese Kana Pad</h1>
+            <h1 className="font-display text-2xl font-semibold tracking-tight">
+              Japanese Kana Pad
+            </h1>
             <p className="mt-1 text-sm text-muted-foreground">
               Type, convert, draw, or practice writing kana and kanji.
             </p>
@@ -217,7 +229,10 @@ export function KanaPad() {
                 return (
                   <button
                     key={s}
-                    onClick={() => { setScript(s); setAiResult(null); }}
+                    onClick={() => {
+                      setScript(s);
+                      setAiResult(null);
+                    }}
                     title={hint}
                     data-active={active}
                     className="inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-sm transition-all data-[active=true]:border-gold data-[active=true]:bg-gold/10 data-[active=true]:text-gold data-[active=false]:border-border/60 data-[active=false]:text-muted-foreground hover:border-gold/50"
@@ -238,7 +253,10 @@ export function KanaPad() {
               <textarea
                 ref={textareaRef}
                 value={input}
-                onChange={(e) => { setInput(e.target.value); setAiResult(null); }}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                  setAiResult(null);
+                }}
                 rows={3}
                 placeholder="Type romaji here, e.g. konnichiwa…"
                 className="w-full resize-none rounded-xl border border-border/50 bg-background/40 px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-gold/60 focus:outline-none"
@@ -258,7 +276,11 @@ export function KanaPad() {
                       disabled={loading || !input.trim()}
                       className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/20 disabled:opacity-40"
                     >
-                      {loading ? <RefreshCw className="h-3 w-3 animate-spin" /> : <Sparkle className="h-3 w-3" />}
+                      {loading ? (
+                        <RefreshCw className="h-3 w-3 animate-spin" />
+                      ) : (
+                        <Sparkle className="h-3 w-3" />
+                      )}
                       Convert with AI
                     </button>
                   )}
@@ -269,12 +291,20 @@ export function KanaPad() {
                       title="Verify with AI and get kanji breakdown"
                       className="inline-flex items-center gap-1.5 rounded-full border border-border/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-40"
                     >
-                      {loading ? <RefreshCw className="h-3 w-3 animate-spin" /> : <BookOpen className="h-3 w-3" />}
+                      {loading ? (
+                        <RefreshCw className="h-3 w-3 animate-spin" />
+                      ) : (
+                        <BookOpen className="h-3 w-3" />
+                      )}
                       Breakdown
                     </button>
                   )}
                   {displayText && (
-                    <button onClick={copyDisplay} className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/50 bg-background/40 text-muted-foreground hover:border-gold/50 hover:text-gold" title="Copy">
+                    <button
+                      onClick={copyDisplay}
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/50 bg-background/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
+                      title="Copy"
+                    >
                       <Copy className="h-3 w-3" />
                     </button>
                   )}
@@ -283,23 +313,34 @@ export function KanaPad() {
 
               <div className="min-h-[4rem] rounded-xl border border-gold/20 bg-background/30 px-4 py-3">
                 {displayText ? (
-                  <p className="font-display text-xl leading-relaxed tracking-wide text-foreground">{displayText}</p>
+                  <p className="font-display text-xl leading-relaxed tracking-wide text-foreground">
+                    {displayText}
+                  </p>
                 ) : (
                   <p className="text-sm text-muted-foreground/50">
-                    {script === "kanji" ? "Type romaji above, then click Convert with AI →" : "Start typing above…"}
+                    {script === "kanji"
+                      ? "Type romaji above, then click Convert with AI →"
+                      : "Start typing above…"}
                   </p>
                 )}
               </div>
 
               {aiResult && aiResult.breakdown.length > 0 && (
                 <div className="mt-4 space-y-2">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Word Breakdown</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                    Word Breakdown
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {aiResult.breakdown.map((item, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-card/60 px-3 py-2 text-center">
+                      <div
+                        key={i}
+                        className="rounded-xl border border-border/60 bg-card/60 px-3 py-2 text-center"
+                      >
                         <div className="font-display text-lg leading-none">{item.original}</div>
                         <div className="mt-1 font-mono text-[10px] text-gold">{item.reading}</div>
-                        <div className="mt-0.5 text-[11px] text-muted-foreground">{item.meaning}</div>
+                        <div className="mt-0.5 text-[11px] text-muted-foreground">
+                          {item.meaning}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -317,9 +358,13 @@ export function KanaPad() {
                   <div key={label} className="rounded-2xl border border-border/60 bg-card/40 p-4">
                     <div className="mb-2 flex items-center gap-2">
                       <span className="font-display text-base text-gold">{char}</span>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{label}</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                        {label}
+                      </span>
                     </div>
-                    <p className="font-display text-base leading-relaxed text-foreground/80">{text}</p>
+                    <p className="font-display text-base leading-relaxed text-foreground/80">
+                      {text}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -327,7 +372,9 @@ export function KanaPad() {
 
             {/* Example phrases */}
             <div>
-              <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Example Phrases</div>
+              <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                Example Phrases
+              </div>
               <div className="flex flex-wrap gap-2">
                 {EXAMPLE_PHRASES.map((ex) => (
                   <button
@@ -335,8 +382,12 @@ export function KanaPad() {
                     onClick={() => loadExample(ex.romaji)}
                     className="rounded-full border border-border/60 bg-card/40 px-3 py-1.5 text-left transition-colors hover:border-gold/50"
                   >
-                    <span className="block font-mono text-[10px] text-muted-foreground">{ex.romaji}</span>
-                    <span className="block font-mono text-[9px] text-muted-foreground/70">{ex.meaning}</span>
+                    <span className="block font-mono text-[10px] text-muted-foreground">
+                      {ex.romaji}
+                    </span>
+                    <span className="block font-mono text-[9px] text-muted-foreground/70">
+                      {ex.meaning}
+                    </span>
                   </button>
                 ))}
               </div>

@@ -41,7 +41,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "Before we do any operation, I need to walk you through what we're doing, why we're doing it, and what can go wrong. I'm not trying to scare you — I want you to have the full picture so that you're the one making this decision, not me making it for you.",
     context:
       "Opening informed consent. The framing — 'you're making this decision, not me' — reflects the legal and ethical standard of informed consent as a process, not a signature.",
-    reference: "ACS Statement on Principles — Informed Consent; ACGME Surgery Milestone: PC-13 (Informed Consent)",
+    reference:
+      "ACS Statement on Principles — Informed Consent; ACGME Surgery Milestone: PC-13 (Informed Consent)",
   },
   {
     id: "lap-appy-consent",
@@ -88,7 +89,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "Time out. Patient name — everyone confirm. Procedure: laparoscopic cholecystectomy. Site: right upper quadrant, gallbladder. Consent signed. Allergies on the board — confirm. Antibiotics given within the last hour? Anesthesia, any concerns? Scrub, instruments counted and confirmed. Circulator — documentation complete. Everyone in agreement? Proceed.",
     context:
       "Universal protocol surgical time-out — Joint Commission mandatory. The complete verbal confirmation with each team member responding is what the protocol requires. Partial time-outs are a compliance failure.",
-    reference: "Joint Commission Universal Protocol for Preventing Wrong Site, Wrong Procedure, Wrong Person Surgery",
+    reference:
+      "Joint Commission Universal Protocol for Preventing Wrong Site, Wrong Procedure, Wrong Person Surgery",
   },
   {
     id: "or-instrument-request",
@@ -115,7 +117,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "Specimen going off the field — right colon, labeled for permanent. Orientation: proximal margin is tied with a suture, distal margin is free. I want it opened fresh at the cut margin so path can look at it. Any lymph nodes harvested separately — those are in the second container.",
     context:
       "Specimen labeling and handoff to the pathology tech via the circulating nurse. Incorrect orientation or missing specimens are never-events. Verbal confirmation before the specimen leaves the field prevents errors.",
-    reference: "CAP Surgical Pathology Specimen Labeling Guidelines; ACS NSQIP Surgical Specimen Handling",
+    reference:
+      "CAP Surgical Pathology Specimen Labeling Guidelines; ACS NSQIP Surgical Specimen Handling",
   },
 
   // ── Post-op Management ────────────────────────────────────────────────────
@@ -126,7 +129,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "Good morning — surgery went well last night. Your appendix is out, no perforation. Right now I'm listening to your belly — your bowel sounds are back, which is good. Pain controlled? Walk once today if you can; that's the single best thing you can do for your recovery. If you tolerate liquids by noon, we can probably get you home tonight.",
     context:
       "Post-op day 0 or 1 rounds after laparoscopic appendectomy — the three questions that drive disposition: pain, bowel function, ambulation. Giving the patient one specific action ('walk once today') improves compliance.",
-    reference: "ERAS (Enhanced Recovery After Surgery) Society — Colorectal Protocol; ACS NSQIP Discharge Criteria",
+    reference:
+      "ERAS (Enhanced Recovery After Surgery) Society — Colorectal Protocol; ACS NSQIP Discharge Criteria",
   },
   {
     id: "wound-care-instructions",
@@ -164,7 +168,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "This is a perforated peptic ulcer — the X-ray shows free air under the diaphragm, and his exam is a rigid abdomen. He needs emergent surgery. I'm going to talk to the family, and I need anesthesia to see him now. What's his last INR?",
     context:
       "Perforated peptic ulcer — a surgical emergency. 'Free air plus rigid abdomen' is the clinical one-two punch that eliminates the workup. Simultaneous family communication and anesthesia notification reflects real attending-level parallelism.",
-    reference: "SAGES Guidelines for Perforated Peptic Ulcer; EAST Trauma Guidelines — Hollow Viscus Injury",
+    reference:
+      "SAGES Guidelines for Perforated Peptic Ulcer; EAST Trauma Guidelines — Hollow Viscus Injury",
   },
   {
     id: "small-bowel-obstruction-management",
@@ -173,7 +178,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "This looks like a small bowel obstruction — probably adhesions from your prior surgery. I want to admit you, give you a nasogastric tube to decompress the bowel, and watch it for 24 to 48 hours. Most of these resolve without surgery. If you're not improving, or if your exam gets worse, we operate.",
     context:
       "SBO management — non-operative trial is first-line for partial SBO without signs of strangulation. Explaining the two-track plan (conservative first, OR if needed) up front prevents patients from feeling like the goalposts are moving.",
-    reference: "EAST Adhesive Small Bowel Obstruction Guidelines — Nonoperative vs. Operative Management",
+    reference:
+      "EAST Adhesive Small Bowel Obstruction Guidelines — Nonoperative vs. Operative Management",
   },
 
   // ── Trauma ───────────────────────────────────────────────────────────────
@@ -184,7 +190,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "Trauma incoming — ETA 8 minutes. Motorcyclist, MVC, ejected, unresponsive in the field, BP 80 systolic on scene. I want the team in gowns, massive transfusion protocol on standby, bedside ultrasound at the head of the bed, and radiology notified for a trauma pan-scan. Questions?",
     context:
       "Trauma team activation announcement — ATLS principles. MTP on standby before the patient arrives reduces time to transfusion. FAST exam at bedside is mandatory in any hemodynamically unstable trauma.",
-    reference: "ATLS Student Course Manual, 10th Edition; ACS Committee on Trauma — Resource Document",
+    reference:
+      "ATLS Student Course Manual, 10th Edition; ACS Committee on Trauma — Resource Document",
   },
   {
     id: "fast-exam-findings",
@@ -193,7 +200,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "FAST is positive — free fluid in the hepatorenal space. He's hemodynamically unstable. We're going to the OR right now. This is a positive FAST with instability — that's exploratory laparotomy, not more workup.",
     context:
       "Positive FAST with hemodynamic instability bypasses CT scan — going directly to OR is the ATLS standard. The explicit decision chain ('positive FAST + instability = OR') narrated out loud coordinates the team.",
-    reference: "ATLS 10th Edition — Algorithm for Abdominal Trauma; EAST Blunt Abdominal Trauma Guidelines",
+    reference:
+      "ATLS 10th Edition — Algorithm for Abdominal Trauma; EAST Blunt Abdominal Trauma Guidelines",
   },
   {
     id: "damage-control-surgery-family",
@@ -222,7 +230,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "I found and removed two polyps — we sent them to pathology and I'll call you with the results in about a week. Most polyps like these are benign, but removing them is how we prevent colon cancer. Based on what I saw, I'd recommend your next colonoscopy in three years rather than ten.",
     context:
       "Post-colonoscopy polyp communication. Adjusting surveillance interval based on findings is a key decision the patient needs to understand and remember for future scheduling.",
-    reference: "ACG/USMSTF Multi-Society Task Force — Colorectal Cancer Surveillance After Polypectomy, 2020",
+    reference:
+      "ACG/USMSTF Multi-Society Task Force — Colorectal Cancer Surveillance After Polypectomy, 2020",
   },
 
   // ── Oncology ──────────────────────────────────────────────────────────────
@@ -233,7 +242,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "When we did the operation, we found something we didn't expect — the tissue looked abnormal and I sent it to pathology while you were on the table. The frozen section came back as cancer. I need to talk to you about what that means for what we did and what comes next.",
     context:
       "Intraoperative cancer finding — frozen section diagnosis requires immediate patient disclosure. Structuring the conversation with 'what we did' (completed resection or not) before 'what comes next' is the recommended disclosure framework.",
-    reference: "ACGME Surgery Milestone PC-13 — Difficult Conversations; ACS Oncology Communication Guidelines",
+    reference:
+      "ACGME Surgery Milestone PC-13 — Difficult Conversations; ACS Oncology Communication Guidelines",
   },
   {
     id: "colostomy-counseling",
@@ -242,7 +252,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "I need to be honest with you about what the surgery may involve. Depending on where the tumor is, there's a possibility I'll need to create a colostomy — a bag on your abdomen for waste. I know that's a lot to hear. I want you to talk to our ostomy nurse before the operation so you know what it actually looks like and how people live with it — because people live very well with it.",
     context:
       "Colostomy counseling before rectal or sigmoid resection. Pre-op ostomy nurse consultation improves acceptance and self-care post-op. Acknowledging the emotional weight before the practical information is the clinically validated sequence.",
-    reference: "WOCN Ostomy Education and Pre-op Counseling Guidelines; ACS Cancer Surgical Communication Standards",
+    reference:
+      "WOCN Ostomy Education and Pre-op Counseling Guidelines; ACS Cancer Surgical Communication Standards",
   },
 
   // ── Difficult Conversations ───────────────────────────────────────────────
@@ -253,7 +264,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "I have to tell you something I wish I had different words for. When I got inside, the cancer had spread to places where I can't remove it surgically. I didn't take anything out — taking out part of it wouldn't have helped and would have added risk. What I can tell you is that this means we need to change the goal of treatment. I'd like to bring in oncology today.",
     context:
       "Intraoperative upstaging to unresectable disease — the surgeon must tell the patient that the original plan changed. 'Change the goal of treatment' is the phrase that opens the palliative vs. curative conversation without using the word 'palliative,' which patients often interpret as 'nothing more to do.'",
-    reference: "ACS Committee on Ethics — Communicating Intraoperative Findings; ASCO Communication Guidelines",
+    reference:
+      "ACS Committee on Ethics — Communicating Intraoperative Findings; ASCO Communication Guidelines",
   },
   {
     id: "surgical-complication-disclosure",
@@ -262,7 +274,8 @@ export const SURGERY_SCRIPTS: SurgeryScript[] = [
       "I need to tell you about something that happened during surgery that you deserve to know about. There was a complication — we injured a small part of the bile duct that we then repaired. I've been involved in the repair and it looks solid, but I want you to know it happened. We're monitoring your drain output closely, and I'll be checking on you twice today.",
     context:
       "Intraoperative complication disclosure — ACS and Joint Commission require honest disclosure to patients. The structure: what happened, what was done about it, what monitoring is in place. Avoiding vague language ('there were some difficulties') is an ethical and legal requirement.",
-    reference: "ACS Statement on Surgical Complications Disclosure; Joint Commission Sentinel Event Policy",
+    reference:
+      "ACS Statement on Surgical Complications Disclosure; Joint Commission Sentinel Event Policy",
   },
 ];
 

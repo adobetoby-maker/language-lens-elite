@@ -79,9 +79,7 @@ export function AddTextModal({
     setError(null);
     // Decide what to translate: book chunks (file upload) or pasted text.
     const sourceChunks: BookChunk[] =
-      chunks && chunks.length > 0
-        ? chunks
-        : [{ title: "Full text", text: text.trim() }];
+      chunks && chunks.length > 0 ? chunks : [{ title: "Full text", text: text.trim() }];
 
     if (sourceChunks[0].text.length < 10) {
       setError("Please paste or upload at least a few sentences.");
@@ -207,9 +205,7 @@ export function AddTextModal({
     }
   };
 
-  const totalChars = chunks
-    ? chunks.reduce((n, c) => n + c.text.length, 0)
-    : text.length;
+  const totalChars = chunks ? chunks.reduce((n, c) => n + c.text.length, 0) : text.length;
   const chapterCount = chunks?.length ?? 0;
   const canSubmit = (chunks ? chunks.length > 0 : text.trim().length >= 10) && !loading;
 

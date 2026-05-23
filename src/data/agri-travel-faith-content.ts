@@ -125,7 +125,6 @@ const dairyFarmerAreas: ModuleArea[] = [
       {
         speaker: "learner",
         en: "Done. Also, number 308 stripped bloody on the left front — I pulled her out.",
-
       },
       {
         speaker: "ai",
@@ -1863,8 +1862,7 @@ const internationalTravelAreas: ModuleArea[] = [
     id: "getting-around",
     name: "Getting Around",
     emoji: "🚕",
-    blurb:
-      "Navigating taxis, rideshares, buses, and metro systems in an unfamiliar city.",
+    blurb: "Navigating taxis, rideshares, buses, and metro systems in an unfamiliar city.",
     counterpart: "Taxi driver, transit worker, or fellow traveler",
     learnerRole: "Tourist trying to get from point A to point B",
     toneNote:
@@ -1947,8 +1945,7 @@ const internationalTravelAreas: ModuleArea[] = [
     id: "medical-pharmacy-emergency",
     name: "Medical & Pharmacy Emergency",
     emoji: "🏥",
-    blurb:
-      "Getting help when you are sick or injured abroad — at a pharmacy, clinic, or hospital.",
+    blurb: "Getting help when you are sick or injured abroad — at a pharmacy, clinic, or hospital.",
     counterpart: "Pharmacist, doctor, or clinic nurse",
     learnerRole: "Sick or injured traveler",
     toneNote:
@@ -2870,18 +2867,10 @@ export const AGRI_TRAVEL_FAITH_CONTENT: AgriTravelFaithContent[] = [
 // HELPER FUNCTIONS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function getAgriTravelFaithContent(
-  moduleId: string
-): AgriTravelFaithContent | null {
+export function getAgriTravelFaithContent(moduleId: string): AgriTravelFaithContent | null {
   return AGRI_TRAVEL_FAITH_CONTENT.find((m) => m.moduleId === moduleId) ?? null;
 }
 
-export function getAgriTravelFaithArea(
-  moduleId: string,
-  areaId: string
-): ModuleArea | null {
-  return (
-    getAgriTravelFaithContent(moduleId)?.areas.find((a) => a.id === areaId) ??
-    null
-  );
+export function getAgriTravelFaithArea(moduleId: string, areaId: string): ModuleArea | null {
+  return getAgriTravelFaithContent(moduleId)?.areas.find((a) => a.id === areaId) ?? null;
 }

@@ -45,13 +45,7 @@ function emptyLang(): LangStore {
   return { turns: [], exchanges: 0, totalSeconds: 0 };
 }
 
-export function SpeakProvider({
-  children,
-  language,
-}: {
-  children: ReactNode;
-  language: Language;
-}) {
+export function SpeakProvider({ children, language }: { children: ReactNode; language: Language }) {
   const [store, setStore] = useState<Store>({});
   const [hydrated, setHydrated] = useState(false);
 
@@ -119,9 +113,7 @@ export function SpeakProvider({
           ...s,
           [language]: {
             ...cur,
-            turns: cur.turns.map((t) =>
-              t.id === id ? { ...t, text: t.text + chunk } : t,
-            ),
+            turns: cur.turns.map((t) => (t.id === id ? { ...t, text: t.text + chunk } : t)),
           },
         };
       });

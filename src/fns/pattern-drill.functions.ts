@@ -12,9 +12,9 @@ const Input = z.object({
 });
 
 export interface PatternDrillItem {
-  prompt: string;   // English sentence the learner must translate
-  answer: string;   // correct target-language sentence
-  hint: string;     // structural breakdown, e.g. "Soy [noun] — use present tense"
+  prompt: string; // English sentence the learner must translate
+  answer: string; // correct target-language sentence
+  hint: string; // structural breakdown, e.g. "Soy [noun] — use present tense"
 }
 
 export interface PatternDrillSet {
@@ -75,7 +75,10 @@ Return the exercises via the tool.`;
                     type: "object",
                     properties: {
                       prompt: { type: "string", description: "English sentence to translate." },
-                      answer: { type: "string", description: "Correct target-language translation." },
+                      answer: {
+                        type: "string",
+                        description: "Correct target-language translation.",
+                      },
                       hint: { type: "string", description: "1-sentence structural breakdown." },
                     },
                     required: ["prompt", "answer", "hint"],

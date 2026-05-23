@@ -34,12 +34,8 @@ const FEEDS: Record<"soccer" | "baseball" | "general", string[]> = {
     "https://feeds.bbci.co.uk/sport/football/rss.xml",
     "https://www.theguardian.com/football/rss",
   ],
-  baseball: [
-    "https://feeds.feedburner.com/baseballprospectus",
-  ],
-  general: [
-    "https://feeds.bbci.co.uk/sport/rss.xml",
-  ],
+  baseball: ["https://feeds.feedburner.com/baseballprospectus"],
+  general: ["https://feeds.bbci.co.uk/sport/rss.xml"],
 };
 
 const SOURCE_NAMES: Record<string, string> = {
@@ -53,23 +49,76 @@ const SOURCE_NAMES: Record<string, string> = {
 // ---------------------------------------------------------------------------
 
 const SOCCER_TEAMS = [
-  "Arsenal", "Aston Villa", "Chelsea", "Everton", "Liverpool",
-  "Manchester City", "Manchester United", "Newcastle", "Tottenham",
-  "West Ham", "Barcelona", "Real Madrid", "Atletico Madrid", "Sevilla",
-  "Juventus", "AC Milan", "Inter Milan", "Napoli", "Bayern Munich",
-  "Borussia Dortmund", "PSG", "Paris Saint-Germain",
-  "Ajax", "Porto", "Benfica", "Celtic", "Rangers",
-  "England", "Spain", "France", "Germany", "Italy", "Brazil",
-  "Argentina", "Portugal", "Netherlands", "USA", "Mexico",
+  "Arsenal",
+  "Aston Villa",
+  "Chelsea",
+  "Everton",
+  "Liverpool",
+  "Manchester City",
+  "Manchester United",
+  "Newcastle",
+  "Tottenham",
+  "West Ham",
+  "Barcelona",
+  "Real Madrid",
+  "Atletico Madrid",
+  "Sevilla",
+  "Juventus",
+  "AC Milan",
+  "Inter Milan",
+  "Napoli",
+  "Bayern Munich",
+  "Borussia Dortmund",
+  "PSG",
+  "Paris Saint-Germain",
+  "Ajax",
+  "Porto",
+  "Benfica",
+  "Celtic",
+  "Rangers",
+  "England",
+  "Spain",
+  "France",
+  "Germany",
+  "Italy",
+  "Brazil",
+  "Argentina",
+  "Portugal",
+  "Netherlands",
+  "USA",
+  "Mexico",
 ];
 
 const BASEBALL_TEAMS = [
-  "Yankees", "Red Sox", "Dodgers", "Giants", "Cubs",
-  "Cardinals", "Mets", "Astros", "Braves", "Padres",
-  "Phillies", "Mariners", "Blue Jays", "Tigers", "Angels",
-  "Rays", "Orioles", "Royals", "White Sox", "Twins",
-  "Brewers", "Pirates", "Reds", "Rockies", "Diamondbacks",
-  "Athletics", "Rangers", "Marlins", "Nationals",
+  "Yankees",
+  "Red Sox",
+  "Dodgers",
+  "Giants",
+  "Cubs",
+  "Cardinals",
+  "Mets",
+  "Astros",
+  "Braves",
+  "Padres",
+  "Phillies",
+  "Mariners",
+  "Blue Jays",
+  "Tigers",
+  "Angels",
+  "Rays",
+  "Orioles",
+  "Royals",
+  "White Sox",
+  "Twins",
+  "Brewers",
+  "Pirates",
+  "Reds",
+  "Rockies",
+  "Diamondbacks",
+  "Athletics",
+  "Rangers",
+  "Marlins",
+  "Nationals",
 ];
 
 // ---------------------------------------------------------------------------
@@ -114,9 +163,7 @@ function simpleHash(str: string): string {
 
 function extractTeamMentions(title: string, sport: "soccer" | "baseball" | "general"): string[] {
   const pool = sport === "baseball" ? BASEBALL_TEAMS : SOCCER_TEAMS;
-  return pool.filter((team) =>
-    title.toLowerCase().includes(team.toLowerCase()),
-  );
+  return pool.filter((team) => title.toLowerCase().includes(team.toLowerCase()));
 }
 
 function hostnameFrom(url: string): string {
@@ -144,7 +191,8 @@ const BASEBALL_SEED: NewsArticle[] = [
   {
     id: "seed-bb-1",
     title: "MLB Power Rankings: Who's hot heading into the second half",
-    summary: "A look at which teams are surging and which are fading as we approach the all-star break.",
+    summary:
+      "A look at which teams are surging and which are fading as we approach the all-star break.",
     url: "https://www.mlb.com/news",
     pubDate: new Date().toISOString(),
     source: "MLB",
@@ -164,7 +212,8 @@ const BASEBALL_SEED: NewsArticle[] = [
   {
     id: "seed-bb-3",
     title: "Rookie watch: breakout stars making their mark in 2026",
-    summary: "Several first-year players are turning heads with impressive early-season statistics.",
+    summary:
+      "Several first-year players are turning heads with impressive early-season statistics.",
     url: "https://www.mlb.com/news",
     pubDate: new Date().toISOString(),
     source: "MLB",
@@ -243,7 +292,8 @@ export const Route = createFileRoute("/api/sports-news")({
           if (result.status === "fulfilled") {
             articles = articles.concat(result.value);
           } else {
-            const msg = result.reason instanceof Error ? result.reason.message : String(result.reason);
+            const msg =
+              result.reason instanceof Error ? result.reason.message : String(result.reason);
             errors.push(msg);
             Sentry.captureException(result.reason);
           }
@@ -270,16 +320,15 @@ export const Route = createFileRoute("/api/sports-news")({
         });
 
         // Sort by pubDate descending
-        articles.sort(
-          (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-        );
+        articles.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
         // Promote favorite-team articles to the top
         const favTeam = payload.favoriteTeam?.trim().toLowerCase();
         if (favTeam) {
-          const matching = articles.filter((a) =>
-            a.title.toLowerCase().includes(favTeam) ||
-            a.teamMentions.some((t) => t.toLowerCase().includes(favTeam)),
+          const matching = articles.filter(
+            (a) =>
+              a.title.toLowerCase().includes(favTeam) ||
+              a.teamMentions.some((t) => t.toLowerCase().includes(favTeam)),
           );
           const rest = articles.filter(
             (a) =>

@@ -25,8 +25,20 @@ interface PrayerSpec {
 }
 
 const PRAYERS: PrayerSpec[] = [
-  { id: "bread", title: "Blessing on the Bread", reference: "D&C 20:77 · Moroni 4:3", icon: Wheat, text: PRAYER_BREAD },
-  { id: "water", title: "Blessing on the Water", reference: "D&C 20:79 · Moroni 5:2", icon: Droplet, text: PRAYER_WATER },
+  {
+    id: "bread",
+    title: "Blessing on the Bread",
+    reference: "D&C 20:77 · Moroni 4:3",
+    icon: Wheat,
+    text: PRAYER_BREAD,
+  },
+  {
+    id: "water",
+    title: "Blessing on the Water",
+    reference: "D&C 20:79 · Moroni 5:2",
+    icon: Droplet,
+    text: PRAYER_WATER,
+  },
 ];
 
 /**
@@ -65,8 +77,8 @@ export function SacramentPrayersPanel() {
           </h2>
           <p className="mt-1 max-w-2xl text-xs text-muted-foreground">
             The exact words spoken by the priest each Sunday, from{" "}
-            <em>Doctrine and Covenants 20:77, 79</em> (also Moroni 4–5). Tap any
-            word to translate it into your target language.
+            <em>Doctrine and Covenants 20:77, 79</em> (also Moroni 4–5). Tap any word to translate
+            it into your target language.
           </p>
         </div>
         <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
@@ -78,10 +90,7 @@ export function SacramentPrayersPanel() {
           const speakId = `sacrament-${p.id}`;
           const isSpeaking = speaking?.id === speakId;
           return (
-            <article
-              key={p.id}
-              className="rounded-xl border border-border/60 bg-background/50 p-4"
-            >
+            <article key={p.id} className="rounded-xl border border-border/60 bg-background/50 p-4">
               <div className="mb-2 flex items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-gold">
                   <Icon className="h-3 w-3" />
@@ -120,9 +129,7 @@ export function SacramentPrayersPanel() {
         })}
       </div>
 
-      {wordReq && (
-        <WordCard request={wordReq} onClose={() => setWordReq(null)} onXp={onXp} />
-      )}
+      {wordReq && <WordCard request={wordReq} onClose={() => setWordReq(null)} onXp={onXp} />}
     </section>
   );
 }

@@ -17,7 +17,11 @@ const HARD_TOTAL_CAP = 250_000; // ~250k chars across the whole book to keep thi
 const MAX_PDF_PAGES = 400;
 
 function clean(text: string): string {
-  return text.replace(/\u0000/g, "").replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+  return text
+    .replace(/\u0000/g, "")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 /**

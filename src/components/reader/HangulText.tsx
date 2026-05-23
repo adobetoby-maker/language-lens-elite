@@ -57,9 +57,7 @@ export function HangulText({
   mode?: "above" | "inline";
 }) {
   const fetchRomaja = useServerFn(addRomaja);
-  const [segments, setSegments] = useState<RomajaSegment[] | null>(
-    () => loadCache()[text] ?? null,
-  );
+  const [segments, setSegments] = useState<RomajaSegment[] | null>(() => loadCache()[text] ?? null);
   const inFlight = useRef(false);
   const sentence = fullSentence ?? text;
 
@@ -150,12 +148,7 @@ export function HangulText({
           );
         }
         return (
-          <ClickableSpan
-            key={i}
-            text={seg.base}
-            sentence={sentence}
-            onWordClick={onWordClick}
-          />
+          <ClickableSpan key={i} text={seg.base} sentence={sentence} onWordClick={onWordClick} />
         );
       })}
     </>

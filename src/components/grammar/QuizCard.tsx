@@ -5,11 +5,7 @@ import { toast } from "sonner";
 import { X, Loader2, Check, AlertCircle } from "lucide-react";
 import { useApp } from "@/state/app-state";
 import { useGrammar, type CefrLevel } from "@/state/grammar-state";
-import {
-  generateLessonQuiz,
-  type LessonStub,
-  type QuizQuestion,
-} from "@/fns/grammar.functions";
+import { generateLessonQuiz, type LessonStub, type QuizQuestion } from "@/fns/grammar.functions";
 
 const BADGE_BY_LEVEL: Record<CefrLevel, string> = {
   A1: "A1 Graduate 🎓",
@@ -183,9 +179,7 @@ export function QuizCard({
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
               ✦ Quiz · {level}
             </div>
-            <h3 className="mt-1 font-display text-xl italic text-foreground">
-              {lesson.title}
-            </h3>
+            <h3 className="mt-1 font-display text-xl italic text-foreground">{lesson.title}</h3>
           </div>
           {!done && questions.length > 0 && (
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -268,9 +262,7 @@ export function QuizCard({
             {revealed && (
               <div
                 className={`mt-4 rounded-xl border px-4 py-3 ${
-                  isCorrect
-                    ? "border-gold/40 bg-gold/10"
-                    : "border-destructive/40 bg-destructive/5"
+                  isCorrect ? "border-gold/40 bg-gold/10" : "border-destructive/40 bg-destructive/5"
                 }`}
               >
                 <div
@@ -288,9 +280,7 @@ export function QuizCard({
                     </>
                   )}
                 </div>
-                <p className="font-display text-sm italic text-foreground/85">
-                  {q.explanation}
-                </p>
+                <p className="font-display text-sm italic text-foreground/85">{q.explanation}</p>
               </div>
             )}
 

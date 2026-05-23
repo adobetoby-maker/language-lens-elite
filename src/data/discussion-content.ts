@@ -44,25 +44,13 @@ export const MISSIONARY_LESSONS: MissionaryLesson[] = [
       {
         id: "first-vision",
         title: "Joseph Smith's First Vision",
-        keyConcepts: [
-          "Joseph Smith",
-          "First Vision",
-          "grove",
-          "Father and Son",
-          "1820",
-        ],
+        keyConcepts: ["Joseph Smith", "First Vision", "grove", "Father and Son", "1820"],
         sampleQuestion: "What happened when Joseph Smith prayed in the grove?",
       },
       {
         id: "book-of-mormon",
         title: "The Book of Mormon — another testament",
-        keyConcepts: [
-          "Book of Mormon",
-          "another testament",
-          "Moroni",
-          "translate",
-          "ancient",
-        ],
+        keyConcepts: ["Book of Mormon", "another testament", "Moroni", "translate", "ancient"],
         sampleQuestion: "How is the Book of Mormon different from the Bible?",
       },
       {
@@ -107,13 +95,7 @@ export const MISSIONARY_LESSONS: MissionaryLesson[] = [
       {
         id: "kingdoms",
         title: "Kingdoms of glory and eternal life",
-        keyConcepts: [
-          "celestial",
-          "terrestrial",
-          "telestial",
-          "eternal life",
-          "exaltation",
-        ],
+        keyConcepts: ["celestial", "terrestrial", "telestial", "eternal life", "exaltation"],
         sampleQuestion: "Is heaven the same for everyone?",
       },
     ],
@@ -185,13 +167,7 @@ export const MISSIONARY_LESSONS: MissionaryLesson[] = [
       {
         id: "wow-chastity",
         title: "Word of Wisdom and law of chastity",
-        keyConcepts: [
-          "Word of Wisdom",
-          "chastity",
-          "tobacco",
-          "alcohol",
-          "purity",
-        ],
+        keyConcepts: ["Word of Wisdom", "chastity", "tobacco", "alcohol", "purity"],
         sampleQuestion: "Why these standards specifically?",
       },
       {
@@ -255,8 +231,7 @@ export const INVESTIGATORS: InvestigatorProfile[] = [
     name: "Maria — Golden Investigator",
     emoji: "🌟",
     shortLabel: "Golden",
-    description:
-      "Open, prepared by the Spirit. One sincere question per topic. Easy to teach.",
+    description: "Open, prepared by the Spirit. One sincere question per topic. Easy to teach.",
     questionsPerTopic: 1,
     conceptThreshold: 0.4,
     tone: "warm, eager, soft-spoken; thanks the missionaries often; accepts invitations readily.",

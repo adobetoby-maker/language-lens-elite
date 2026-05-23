@@ -1,18 +1,7 @@
 import { useMemo } from "react";
 import { Flame, Star, BookOpen, Award, Lock, Trophy, Sparkles, Swords } from "lucide-react";
-import {
-  ACHIEVEMENTS,
-  nextTierProgress,
-  useApp,
-  type Language,
-} from "@/state/app-state";
-import {
-  POINTS_PER_TIER,
-  RANK_BADGE,
-  RANK_COLOR,
-  RANK_TITLE,
-  useMatch,
-} from "@/state/match-state";
+import { ACHIEVEMENTS, nextTierProgress, useApp, type Language } from "@/state/app-state";
+import { POINTS_PER_TIER, RANK_BADGE, RANK_COLOR, RANK_TITLE, useMatch } from "@/state/match-state";
 import { CountUp } from "@/components/CountUp";
 import { flagFor } from "@/state/library-state";
 import { ModuleBadgesPanel } from "@/components/dashboard/ModuleBadgesPanel";
@@ -91,9 +80,7 @@ export function Dashboard() {
         <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
           ✦ Trophy Case
         </div>
-        <h1 className="mt-2 font-display text-4xl italic text-foreground">
-          Your Dashboard
-        </h1>
+        <h1 className="mt-2 font-display text-4xl italic text-foreground">Your Dashboard</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Every word, note, and conversation — together they form your story.
         </p>
@@ -152,10 +139,7 @@ export function Dashboard() {
               <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
                 <Swords className="mr-1 inline h-3 w-3" /> Language Match
               </div>
-              <div
-                className="mt-1 font-display text-2xl italic"
-                style={{ color: m.glowColor }}
-              >
+              <div className="mt-1 font-display text-2xl italic" style={{ color: m.glowColor }}>
                 {m.tier}
               </div>
               <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -169,9 +153,7 @@ export function Dashboard() {
             </div>
             <div className="mt-1 font-display text-2xl text-foreground">
               {m.points}
-              <span className="ml-1 text-xs text-muted-foreground">
-                / {POINTS_PER_TIER}
-              </span>
+              <span className="ml-1 text-xs text-muted-foreground">/ {POINTS_PER_TIER}</span>
             </div>
             <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
               {m.wins}W · {m.losses}L · {m.ties}T
@@ -244,7 +226,8 @@ export function Dashboard() {
         </div>
         {state.recentChallenges.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            Speak a challenge in <span className="text-gold">Speak & Learn</span> to fill this trophy shelf with mastered sentences.
+            Speak a challenge in <span className="text-gold">Speak & Learn</span> to fill this
+            trophy shelf with mastered sentences.
           </p>
         ) : (
           <ul className="space-y-3">
@@ -323,7 +306,9 @@ export function Dashboard() {
                   >
                     {a.title}
                   </div>
-                  {!unlocked && <Lock className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />}
+                  {!unlocked && (
+                    <Lock className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
+                  )}
                 </div>
                 <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                   {unlocked ? "Unlocked" : a.hint}
@@ -343,9 +328,7 @@ export function Dashboard() {
           </span>
         </div>
         {state.xpSessions.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            Earn XP to see your activity bloom here.
-          </p>
+          <p className="text-sm text-muted-foreground">Earn XP to see your activity bloom here.</p>
         ) : (
           <div className="flex h-48 items-end justify-between gap-3">
             {sessions.map((s, i) => {
@@ -374,9 +357,7 @@ export function Dashboard() {
 
       {/* Language history */}
       <section className="rounded-2xl border border-border/60 bg-card/60 p-6">
-        <h2 className="mb-4 font-display text-2xl italic text-foreground">
-          Languages Practiced
-        </h2>
+        <h2 className="mb-4 font-display text-2xl italic text-foreground">Languages Practiced</h2>
         <div className="flex flex-wrap gap-3">
           {langHistory.map((l) => (
             <div

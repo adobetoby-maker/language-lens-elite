@@ -59,18 +59,40 @@ export const NATIVE_LANGUAGES: NativeLanguage[] = [
   "Korean",
 ];
 
-export type TabKey = "missionary" | "orthopedics" | "reader" | "grammar" | "speak" | "discussions" | "dashboard" | "anatomy" | "modules" | "kana" | "conjugation" | "sentenceBuild" | "games" | "listeningDrill" | "wordMatch" | "idiomMaster" | "falseFriends" | "soccer" | "baseball" | "orEvs" | "fmg" | "penpal" | "patterns" | "story" | "guide" | "climbing";
+export type TabKey =
+  | "missionary"
+  | "orthopedics"
+  | "reader"
+  | "grammar"
+  | "speak"
+  | "discussions"
+  | "dashboard"
+  | "anatomy"
+  | "modules"
+  | "kana"
+  | "conjugation"
+  | "sentenceBuild"
+  | "games"
+  | "listeningDrill"
+  | "wordMatch"
+  | "idiomMaster"
+  | "falseFriends"
+  | "soccer"
+  | "baseball"
+  | "orEvs"
+  | "fmg"
+  | "penpal"
+  | "patterns"
+  | "story"
+  | "guide"
+  | "climbing"
+  | "fieldPrep";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";
 
 // Gamified XP tier
-export type XpTier =
-  | "Beginner 🌱"
-  | "Apprentice 📖"
-  | "Scholar 🎓"
-  | "Linguist 🗣️"
-  | "Maestro ✦";
+export type XpTier = "Beginner 🌱" | "Apprentice 📖" | "Scholar 🎓" | "Linguist 🗣️" | "Maestro ✦";
 
 const TIERS: { min: number; max: number; name: XpTier }[] = [
   { min: 0, max: 99, name: "Beginner 🌱" },
@@ -140,7 +162,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "beyond-diamond", title: "Beyond Diamond 💠", hint: "Reach Diamond rank" },
   { id: "undisputed", title: "Undisputed 🏆", hint: "Reach Champion rank" },
   { id: "unreal", title: "UNREAL 🌟", hint: "Reach Unreal rank" },
-  { id: "first-sentence", title: "First Real Sentence! 🗣️✨", hint: "Use your own vocab word with a grammar pattern in Pen Pal" },
+  {
+    id: "first-sentence",
+    title: "First Real Sentence! 🗣️✨",
+    hint: "Use your own vocab word with a grammar pattern in Pen Pal",
+  },
 ];
 
 export const VOCAB_MASTERY_THRESHOLD = 5; // correct matches before a word is mastered
@@ -166,7 +192,7 @@ export interface AppState {
   userNotes: Note[];
 
   // Personal vocab — built from user's guided Q&A, used to seed games
-  vocabAnswers: string[];     // 5 free-text answers (language-agnostic)
+  vocabAnswers: string[]; // 5 free-text answers (language-agnostic)
   userVocab: UserVocabItem[]; // generated words for vocabLang
   vocabLang: Language | null; // which language userVocab was built for
 
@@ -205,6 +231,9 @@ export interface AppState {
   // Sports news preference — favorite team name for RSS filtering
   favoriteTeam: string | null;
 
+  // LDS Missionary departure date (YYYY-MM-DD) — drives Field Prep countdown
+  departureDate: string | null;
+
   onboardingComplete: boolean;
   lessonProgress: Record<string, number>; // moduleId → completed lesson count
 
@@ -233,7 +262,19 @@ export type AppAction =
   | { type: "SET_LEVEL"; payload: Level }
   | { type: "ADD_ACHIEVEMENT"; payload: string }
   | { type: "ADD_NOTE"; payload: Note }
-  | { type: "INC_COUNTER"; payload: keyof Pick<AppState, "wordsLookedUp" | "notesSaved" | "tutorMessages" | "conversationExchanges" | "lessonsCompleted" | "customTextsAdded" | "lettersWritten"> }
+  | {
+      type: "INC_COUNTER";
+      payload: keyof Pick<
+        AppState,
+        | "wordsLookedUp"
+        | "notesSaved"
+        | "tutorMessages"
+        | "conversationExchanges"
+        | "lessonsCompleted"
+        | "customTextsAdded"
+        | "lettersWritten"
+      >;
+    }
   | { type: "MARK_CULTURE_READ"; payload: string }
   | { type: "MARK_CEFR_COMPLETE"; payload: string }
   | { type: "ADD_SPEAK_SECONDS"; payload: { lang: Language; seconds: number } }
@@ -243,14 +284,18 @@ export type AppAction =
   | { type: "SET_ACTIVE_MODULE"; payload: string | null }
   | { type: "SET_MODULE_ASSIGNMENT"; payload: { moduleId: string; assignmentId: string | null } }
   | { type: "SET_FAVORITE_TEAM"; payload: string | null }
+  | { type: "SET_DEPARTURE_DATE"; payload: string | null }
   | { type: "COMPLETE_ONBOARDING" }
-  | { type: "SET_USER_VOCAB"; payload: { answers: string[]; vocab: UserVocabItem[]; lang: Language } }
+  | {
+      type: "SET_USER_VOCAB";
+      payload: { answers: string[]; vocab: UserVocabItem[]; lang: Language };
+    }
   | { type: "MASTER_VOCAB_WORD"; payload: string } // word string — increments correctCount
   | { type: "ADD_VOCAB_ITEMS"; payload: UserVocabItem[] } // append replacement words
   | { type: "START_REGRESSION_CHECK" } // reset mastered words to count=3 for re-drill
-  | { type: "SCORE_PATTERN"; payload: string }        // patternId — increments correctCount
-  | { type: "PATTERN_REGRESSION_CHECK" }              // reset mastered patterns to threshold-2
-  | { type: "FIRST_SENTENCE_MOMENT" }                 // fires achievement + XP
+  | { type: "SCORE_PATTERN"; payload: string } // patternId — increments correctCount
+  | { type: "PATTERN_REGRESSION_CHECK" } // reset mastered patterns to threshold-2
+  | { type: "FIRST_SENTENCE_MOMENT" } // fires achievement + XP
   | { type: "_DERIVE" } // internal: re-derive tier + pendingLevelUp
   | { type: "COMPLETE_LESSON"; payload: string } // moduleId
   | { type: "MERGE_REMOTE"; payload: PersistedShape }; // merge remote profile, taking best values
@@ -283,9 +328,10 @@ const initialState: AppState = {
   recentChallenges: [],
   pendingLevelUp: null,
   purchasedModules: ["orthopedics", "lds-missionary", "framer", "soccer", "baseball", "or-evs"],
-  activeModuleId: "orthopedics",
+  activeModuleId: null,
   moduleAssignments: {},
   favoriteTeam: null,
+  departureDate: null,
   onboardingComplete: false,
   lessonProgress: {},
   vocabAnswers: [],
@@ -410,6 +456,8 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "SET_FAVORITE_TEAM":
       return { ...state, favoriteTeam: action.payload };
+    case "SET_DEPARTURE_DATE":
+      return { ...state, departureDate: action.payload };
     case "COMPLETE_ONBOARDING":
       return { ...state, onboardingComplete: true };
     case "COMPLETE_LESSON": {
@@ -432,9 +480,7 @@ function reducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         userVocab: state.userVocab.map((v) =>
-          v.word === action.payload
-            ? { ...v, correctCount: (v.correctCount ?? 0) + 1 }
-            : v
+          v.word === action.payload ? { ...v, correctCount: (v.correctCount ?? 0) + 1 } : v,
         ),
       };
     case "ADD_VOCAB_ITEMS":
@@ -442,9 +488,9 @@ function reducer(state: AppState, action: AppAction): AppState {
         ...state,
         userVocab: [
           ...state.userVocab,
-          ...action.payload.filter(
-            (item) => !state.userVocab.some((existing) => existing.word === item.word)
-          ).map((v) => ({ ...v, correctCount: 0 })),
+          ...action.payload
+            .filter((item) => !state.userVocab.some((existing) => existing.word === item.word))
+            .map((v) => ({ ...v, correctCount: 0 })),
         ],
       };
     case "START_REGRESSION_CHECK":
@@ -453,7 +499,7 @@ function reducer(state: AppState, action: AppAction): AppState {
         userVocab: state.userVocab.map((v) =>
           (v.correctCount ?? 0) >= VOCAB_MASTERY_THRESHOLD
             ? { ...v, correctCount: VOCAB_MASTERY_THRESHOLD - 2 }
-            : v
+            : v,
         ),
       };
     case "SCORE_PATTERN":
@@ -506,18 +552,29 @@ function reducer(state: AppState, action: AppAction): AppState {
       const localXp = state.xp;
       const remoteXp = typeof remote.xp === "number" ? remote.xp : 0;
       const xp = Math.max(localXp, remoteXp);
-      const achievements = Array.from(new Set([...state.achievements, ...(remote.achievements ?? [])]));
+      const achievements = Array.from(
+        new Set([...state.achievements, ...(remote.achievements ?? [])]),
+      );
       const userNotes = (() => {
         const seen = new Set(state.userNotes.map((n) => n.id));
         const merged = [...state.userNotes];
-        for (const n of (remote.userNotes ?? [])) {
-          if (!seen.has(n.id)) { merged.push(n); seen.add(n.id); }
+        for (const n of remote.userNotes ?? []) {
+          if (!seen.has(n.id)) {
+            merged.push(n);
+            seen.add(n.id);
+          }
         }
         return merged.sort((a, b) => b.createdAt - a.createdAt);
       })();
-      const cultureRead = Array.from(new Set([...state.cultureRead, ...(remote.cultureRead ?? [])]));
-      const languagesUsed = Array.from(new Set([...state.languagesUsed, ...(remote.languagesUsed ?? [])])) as Language[];
-      const cefrLevelsCompleted = Array.from(new Set([...state.cefrLevelsCompleted, ...(remote.cefrLevelsCompleted ?? [])]));
+      const cultureRead = Array.from(
+        new Set([...state.cultureRead, ...(remote.cultureRead ?? [])]),
+      );
+      const languagesUsed = Array.from(
+        new Set([...state.languagesUsed, ...(remote.languagesUsed ?? [])]),
+      ) as Language[];
+      const cefrLevelsCompleted = Array.from(
+        new Set([...state.cefrLevelsCompleted, ...(remote.cefrLevelsCompleted ?? [])]),
+      );
       return {
         ...state,
         ...(remote as Partial<AppState>),
@@ -532,7 +589,10 @@ function reducer(state: AppState, action: AppAction): AppState {
         wordsLookedUp: Math.max(state.wordsLookedUp, remote.wordsLookedUp ?? 0),
         notesSaved: Math.max(state.notesSaved, remote.notesSaved ?? 0),
         tutorMessages: Math.max(state.tutorMessages, remote.tutorMessages ?? 0),
-        conversationExchanges: Math.max(state.conversationExchanges, remote.conversationExchanges ?? 0),
+        conversationExchanges: Math.max(
+          state.conversationExchanges,
+          remote.conversationExchanges ?? 0,
+        ),
         lessonsCompleted: Math.max(state.lessonsCompleted, remote.lessonsCompleted ?? 0),
         challengesCleared: Math.max(state.challengesCleared, remote.challengesCleared ?? 0),
         lessonProgress: (() => {
@@ -592,7 +652,14 @@ function migrate(raw: unknown): PersistedShape {
 
   // Validate selectedLanguage against current Language union
   const validLangs: Language[] = [
-    "Spanish", "French", "German", "Italian", "Japanese", "Korean", "Portuguese", "English",
+    "Spanish",
+    "French",
+    "German",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Portuguese",
+    "English",
   ];
   if (data.selectedLanguage && !validLangs.includes(data.selectedLanguage)) {
     delete data.selectedLanguage;
@@ -608,14 +675,22 @@ function loadPersisted(): PersistedShape | null {
     if (!raw) {
       for (const legacy of LEGACY_STORAGE_KEYS) {
         const v = localStorage.getItem(legacy);
-        if (v) { raw = v; localStorage.removeItem(legacy); break; }
+        if (v) {
+          raw = v;
+          localStorage.removeItem(legacy);
+          break;
+        }
       }
     }
     if (!raw) return null;
     return migrate(JSON.parse(raw));
   } catch {
     // Corrupt JSON — clear so we don't loop on the same bad payload
-    try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
     return null;
   }
 }
@@ -655,6 +730,8 @@ const PERSIST_KEYS: (keyof AppState)[] = [
   "patternProgress",
   "onboardingComplete",
   "lessonProgress",
+  "favoriteTeam",
+  "departureDate",
 ];
 
 function todayKey() {
@@ -786,11 +863,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
       if (uid) {
         // Fetch remote profile and merge into current (already localStorage-hydrated) state.
-        const { data } = await supabase
-          .from("profiles")
-          .select("data")
-          .eq("id", uid)
-          .maybeSingle();
+        const { data } = await supabase.from("profiles").select("data").eq("id", uid).maybeSingle();
 
         if (data?.data) {
           const remote = migrate(data.data as unknown);
@@ -810,7 +883,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       for (const k of PERSIST_KEYS) toSave[k] = (state as unknown as Record<string, unknown>)[k];
       await supabase.from("profiles").upsert({ id: userId, data: toSave });
     }, 2000);
-    return () => { if (syncTimer.current) clearTimeout(syncTimer.current); };
+    return () => {
+      if (syncTimer.current) clearTimeout(syncTimer.current);
+    };
   }, [state, userId]);
   // ────────────────────────────────────────────────────────────────────────
 
@@ -823,7 +898,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return;
     }
     const delta = dateDelta(state.lastActiveDate, today);
-    if (delta === 1) dispatch({ type: "SET_STREAK", payload: { streak: state.streak + 1, date: today } });
+    if (delta === 1)
+      dispatch({ type: "SET_STREAK", payload: { streak: state.streak + 1, date: today } });
     else if (delta >= 2) dispatch({ type: "SET_STREAK", payload: { streak: 1, date: today } });
   }, [state.lastActiveDate, state.streak]);
 

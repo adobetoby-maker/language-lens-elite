@@ -35,7 +35,11 @@ const RELATIONSHIPS = [
 ];
 
 function generateCode(lastName: string) {
-  const stem = (lastName || "FAM").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 5) || "FAM";
+  const stem =
+    (lastName || "FAM")
+      .toUpperCase()
+      .replace(/[^A-Z]/g, "")
+      .slice(0, 5) || "FAM";
   const tail = Math.random().toString(36).slice(2, 6).toUpperCase();
   return `${stem}-${tail}`;
 }
@@ -159,7 +163,9 @@ export function FamilyPackagePanel() {
       setFeedback("No family group found with that code.");
       return;
     }
-    if ((group as FamilyGroup).last_name.trim().toLowerCase() !== joinLastName.trim().toLowerCase()) {
+    if (
+      (group as FamilyGroup).last_name.trim().toLowerCase() !== joinLastName.trim().toLowerCase()
+    ) {
       setJoining(false);
       setFeedback("Last name doesn't match this family group.");
       return;
@@ -251,7 +257,11 @@ export function FamilyPackagePanel() {
       {feedback && (
         <div className="flex items-center justify-between gap-3 border-b border-rose-400/20 bg-rose-500/5 px-5 py-2 text-xs text-foreground">
           <span>{feedback}</span>
-          <button onClick={() => setFeedback(null)} className="text-muted-foreground hover:text-foreground" aria-label="Dismiss">
+          <button
+            onClick={() => setFeedback(null)}
+            className="text-muted-foreground hover:text-foreground"
+            aria-label="Dismiss"
+          >
             <X className="h-3.5 w-3.5" />
           </button>
         </div>
@@ -282,7 +292,11 @@ export function FamilyPackagePanel() {
               onClick={createGroup}
               className="inline-flex items-center gap-2 rounded-full border border-rose-400/60 bg-rose-500/15 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-rose-200 hover:bg-rose-500/25 disabled:opacity-40"
             >
-              {creating ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
+              {creating ? (
+                <Loader2 className="h-3 w-3 animate-spin" />
+              ) : (
+                <Check className="h-3 w-3" />
+              )}
               Create group
             </button>
             <button
@@ -307,7 +321,9 @@ export function FamilyPackagePanel() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Family code</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Family code
+              </label>
               <input
                 type="text"
                 value={joinCode}
@@ -317,7 +333,9 @@ export function FamilyPackagePanel() {
               />
             </div>
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Last name</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Last name
+              </label>
               <input
                 type="text"
                 value={joinLastName}
@@ -327,7 +345,9 @@ export function FamilyPackagePanel() {
               />
             </div>
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Your name / nickname</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Your name / nickname
+              </label>
               <input
                 type="text"
                 value={joinName}
@@ -337,19 +357,25 @@ export function FamilyPackagePanel() {
               />
             </div>
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Relationship</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Relationship
+              </label>
               <select
                 value={joinRelationship}
                 onChange={(e) => setJoinRelationship(e.target.value)}
                 className="w-full rounded-md border border-border/60 bg-background/60 px-2 py-1.5 text-sm"
               >
                 {RELATIONSHIPS.filter((r) => r !== "Missionary").map((r) => (
-                  <option key={r} value={r}>{r}</option>
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Hometown city (optional)</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Hometown city (optional)
+              </label>
               <input
                 type="text"
                 value={joinCity}
@@ -358,7 +384,9 @@ export function FamilyPackagePanel() {
               />
             </div>
             <div>
-              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Hometown country (optional)</label>
+              <label className="mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                Hometown country (optional)
+              </label>
               <input
                 type="text"
                 value={joinCountry}
@@ -379,7 +407,11 @@ export function FamilyPackagePanel() {
               onClick={joinGroup}
               className="inline-flex items-center gap-2 rounded-full border border-rose-400/60 bg-rose-500/15 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-rose-200 hover:bg-rose-500/25 disabled:opacity-40"
             >
-              {joining ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
+              {joining ? (
+                <Loader2 className="h-3 w-3 animate-spin" />
+              ) : (
+                <Check className="h-3 w-3" />
+              )}
               Join group
             </button>
           </div>
@@ -404,7 +436,11 @@ export function FamilyPackagePanel() {
                 title="Click to copy"
               >
                 {myGroup.family_code}
-                {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5 opacity-70" />}
+                {copied ? (
+                  <Check className="h-3.5 w-3.5" />
+                ) : (
+                  <Copy className="h-3.5 w-3.5 opacity-70" />
+                )}
               </button>
             </div>
             <div className="text-[11px] text-muted-foreground">
@@ -415,14 +451,17 @@ export function FamilyPackagePanel() {
             {members.map((m) => (
               <li key={m.id} className="flex items-center justify-between px-3 py-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className={`inline-flex h-7 w-7 items-center justify-center rounded-full font-mono text-[10px] uppercase ${m.is_missionary ? "bg-gold/20 text-gold" : "bg-rose-500/15 text-rose-200"}`}>
+                  <span
+                    className={`inline-flex h-7 w-7 items-center justify-center rounded-full font-mono text-[10px] uppercase ${m.is_missionary ? "bg-gold/20 text-gold" : "bg-rose-500/15 text-rose-200"}`}
+                  >
                     {m.display_name.slice(0, 2)}
                   </span>
                   <div>
                     <div className="text-foreground">{m.display_name}</div>
                     <div className="text-[11px] text-muted-foreground">
                       {m.relationship}
-                      {m.hometown_city && ` · ${m.hometown_city}${m.hometown_country ? ", " + m.hometown_country : ""}`}
+                      {m.hometown_city &&
+                        ` · ${m.hometown_city}${m.hometown_country ? ", " + m.hometown_country : ""}`}
                     </div>
                   </div>
                 </div>
@@ -447,7 +486,7 @@ export function FamilyPackagePanel() {
       ) : (
         <div className="px-5 py-5 text-xs text-muted-foreground">
           {user
-            ? "You haven't created a family group yet. Click \"Create family group\" to get started — or join an existing one with a code."
+            ? 'You haven\'t created a family group yet. Click "Create family group" to get started — or join an existing one with a code.'
             : "Sign in to create a family group, or use a code to join one your missionary already created."}
         </div>
       )}

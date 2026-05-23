@@ -54,9 +54,7 @@ interface Opponent {
 
 function nearbyTier(tier: RankTier): RankTier {
   const idx = RANK_ORDER.indexOf(tier);
-  const candidates = [idx - 1, idx, idx + 1].filter(
-    (i) => i >= 0 && i < RANK_ORDER.length,
-  );
+  const candidates = [idx - 1, idx, idx + 1].filter((i) => i >= 0 && i < RANK_ORDER.length);
   return RANK_ORDER[candidates[Math.floor(Math.random() * candidates.length)]];
 }
 
@@ -70,13 +68,7 @@ function generateOpponent(language: Language, tier: RankTier): Opponent {
   };
 }
 
-export function MatchmakingOverlay({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+export function MatchmakingOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { state, dispatch } = useApp();
   const language = state.selectedLanguage;
   const {
@@ -252,9 +244,7 @@ export function MatchmakingOverlay({
       className={`fixed inset-0 z-[100] ${open ? "match-overlay-open" : "match-overlay-closed"} pointer-events-none`}
       aria-hidden={!open}
     >
-      <div
-        className={`absolute inset-0 ${open ? "pointer-events-auto" : ""} match-overlay-bg`}
-      >
+      <div className={`absolute inset-0 ${open ? "pointer-events-auto" : ""} match-overlay-bg`}>
         {/* Particle field */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {particles.map((p, i) => (
@@ -300,9 +290,7 @@ export function MatchmakingOverlay({
             <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
               ⚔ Language Match ⚔
             </div>
-            <h1 className="mt-2 font-display text-4xl italic text-white">
-              The Arena
-            </h1>
+            <h1 className="mt-2 font-display text-4xl italic text-white">The Arena</h1>
           </div>
         )}
 
@@ -347,9 +335,7 @@ export function MatchmakingOverlay({
                 </div>
               )}
 
-              {phase === "searching" && (
-                <SearchingState onCancel={cancelSearch} />
-              )}
+              {phase === "searching" && <SearchingState onCancel={cancelSearch} />}
 
               {phase === "found" && (
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-gold/80">
@@ -367,10 +353,7 @@ export function MatchmakingOverlay({
               key={String(countdown)}
               className="countdown-pop font-display italic text-gold drop-shadow-[0_0_40px_rgba(201,168,76,0.8)]"
               style={{
-                fontSize:
-                  countdown === "BATTLE"
-                    ? "min(18vw, 220px)"
-                    : "min(28vw, 340px)",
+                fontSize: countdown === "BATTLE" ? "min(18vw, 220px)" : "min(28vw, 340px)",
               }}
             >
               {countdown === "BATTLE" ? "⚔️ BATTLE!" : countdown}
@@ -433,9 +416,7 @@ export function MatchmakingOverlay({
         )}
 
         {/* Leaderboard panel */}
-        {showLeaderboard && (
-          <LeaderboardPanel onClose={() => setShowLeaderboard(false)} />
-        )}
+        {showLeaderboard && <LeaderboardPanel onClose={() => setShowLeaderboard(false)} />}
       </div>
     </div>
   );
@@ -490,9 +471,7 @@ function PlayerCard({
       <div className="flex flex-col items-center text-center">
         <RankBadge tier={tier} badge={badge} size="xl" intense />
 
-        <div className="mt-4 font-display text-2xl italic text-white">
-          {username}
-        </div>
+        <div className="mt-4 font-display text-2xl italic text-white">{username}</div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-gold/80">
           {title}
         </div>

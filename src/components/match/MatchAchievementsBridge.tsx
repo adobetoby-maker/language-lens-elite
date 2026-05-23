@@ -35,10 +35,7 @@ export function MatchAchievementsBridge() {
 
     // Rank-tier achievements based on highest tier ever reached.
     const highestIdx = RANK_ORDER.indexOf(m.highestTier);
-    for (const [tier, title] of Object.entries(RANK_ACHIEVEMENT) as [
-      RankTier,
-      string,
-    ][]) {
+    for (const [tier, title] of Object.entries(RANK_ACHIEVEMENT) as [RankTier, string][]) {
       if (RANK_ORDER.indexOf(tier) <= highestIdx) {
         unlocks.push({ title, tier });
       }

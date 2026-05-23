@@ -46,10 +46,7 @@ export const MODULE_LESSONS: LessonMap = {
       "seed-ja-faith-plan-of-salvation",
       "seed-ja-faith-alma-32-exegesis",
     ],
-    Korean: [
-      "seed-ko-lds-first-lesson",
-      "seed-ko-faith-sermon-grace",
-    ],
+    Korean: ["seed-ko-lds-first-lesson", "seed-ko-faith-sermon-grace"],
     Portuguese: [
       "seed-pt-lds-teaching",
       "seed-pt-faith-baptismal-interview",
@@ -60,7 +57,7 @@ export const MODULE_LESSONS: LessonMap = {
     ],
   },
 
-  "orthopedics": {
+  orthopedics: {
     Spanish: ["seed-es-ortho-fracture"],
     French: ["seed-fr-ortho-joint"],
     German: ["seed-de-ortho-postop"],
@@ -70,7 +67,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-ortho-surgery"],
   },
 
-  "framer": {
+  framer: {
     Spanish: ["seed-es-framer-layout"],
     French: ["seed-fr-framer-lumber"],
     German: ["seed-de-framer-studs"],
@@ -89,7 +86,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-em-shock"],
   },
 
-  "nursing": {
+  nursing: {
     Spanish: ["seed-es-nursing-sbar"],
     French: ["seed-fr-nursing-medadmin"],
     German: ["seed-de-nursing-ivwound"],
@@ -101,7 +98,11 @@ export const MODULE_LESSONS: LessonMap = {
   "restaurant-hospitality": {
     Spanish: ["seed-es-restaurant-prep"],
     French: ["seed-fr-restaurant-service", "seed-fr-hotel-checkin"],
-    German: ["seed-de-restaurant-hospitality", "seed-de-restaurant-wine", "seed-de-hotel-complaint"],
+    German: [
+      "seed-de-restaurant-hospitality",
+      "seed-de-restaurant-wine",
+      "seed-de-hotel-complaint",
+    ],
     Italian: ["seed-it-restaurant-order", "seed-it-restaurant-trattoria"],
     Japanese: ["seed-ja-restaurant-izakaya"],
     Korean: ["seed-ko-service-cafe-order"],
@@ -137,7 +138,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-k12-curriculum"],
   },
 
-  "plumber": {
+  plumber: {
     Spanish: ["seed-es-plumber-leak"],
     French: ["seed-fr-plumber-pipe"],
     German: ["seed-de-plumber-valve"],
@@ -147,7 +148,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-plumber-sewer"],
   },
 
-  "drywall": {
+  drywall: {
     Spanish: ["seed-es-drywall-mud"],
     French: ["seed-fr-drywall-taping"],
     German: ["seed-de-drywall-texture"],
@@ -157,7 +158,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-drywall-fasteners"],
   },
 
-  "electrician": {
+  electrician: {
     Spanish: ["seed-es-electrician-wiring"],
     French: ["seed-fr-electrician-circuit"],
     German: ["seed-de-electrician-panel"],
@@ -167,7 +168,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-electrician-outlet"],
   },
 
-  "landscaper": {
+  landscaper: {
     Spanish: ["seed-es-landscaper-irrigation"],
     French: ["seed-fr-landscaper-plants"],
     German: ["seed-de-landscaper-grading"],
@@ -230,7 +231,11 @@ export const MODULE_LESSONS: LessonMap = {
   "international-travel": {
     Spanish: ["seed-es-travel-hotel", "seed-es-travel-train-ticket", "seed-es-travel-lost-luggage"],
     French: ["seed-fr-travel-museum", "seed-fr-travel-tour-guide"],
-    German: ["seed-de-travel-airport", "seed-de-travel-hostel-checkin", "seed-de-travel-border-crossing"],
+    German: [
+      "seed-de-travel-airport",
+      "seed-de-travel-hostel-checkin",
+      "seed-de-travel-border-crossing",
+    ],
     Italian: ["seed-it-travel-transport"],
     Japanese: ["seed-ja-travel-japan"],
     Korean: ["seed-ko-travel-pharmacy"],
@@ -267,7 +272,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-pain-clinic"],
   },
 
-  "cardiology": {
+  cardiology: {
     Spanish: ["seed-es-cardiology-stress-test"],
     French: ["seed-fr-cardiology-heart-failure"],
     German: ["seed-de-cardiology-ecg"],
@@ -287,7 +292,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-general-surgery-hernia"],
   },
 
-  "soccer": {
+  soccer: {
     Spanish: ["seed-es-soccer-match", "seed-es-soccer-broadcast", "seed-es-soccer-nutrition"],
     French: ["seed-fr-soccer-match", "seed-fr-soccer-youth-coaching", "seed-fr-soccer-nutrition"],
     German: ["seed-de-soccer-match", "seed-de-soccer-nutrition"],
@@ -297,7 +302,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-soccer-match", "seed-pt-soccer-trainer", "seed-pt-soccer-nutrition"],
   },
 
-  "hockey": {
+  hockey: {
     Spanish: ["seed-es-hockey-rink", "seed-es-hockey-nutrition"],
     French: ["seed-fr-hockey-rink", "seed-fr-hockey-nutrition"],
     German: ["seed-de-hockey-rink", "seed-de-hockey-nutrition"],
@@ -307,7 +312,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-hockey-rink", "seed-pt-hockey-nutrition"],
   },
 
-  "baseball": {
+  baseball: {
     Spanish: ["seed-es-baseball-dugout", "seed-es-baseball-nutrition"],
     French: ["seed-fr-baseball-dugout", "seed-fr-baseball-nutrition"],
     German: ["seed-de-baseball-dugout", "seed-de-baseball-nutrition"],
@@ -317,7 +322,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-baseball-dugout", "seed-pt-baseball-nutrition"],
   },
 
-  "tennis": {
+  tennis: {
     Spanish: ["seed-es-tennis-court", "seed-es-tennis-nutrition"],
     French: ["seed-fr-tennis-court", "seed-fr-tennis-nutrition"],
     German: ["seed-de-tennis-court", "seed-de-tennis-nutrition"],
@@ -327,7 +332,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-tennis-court", "seed-pt-tennis-nutrition"],
   },
 
-  "bowling": {
+  bowling: {
     Spanish: ["seed-es-bowling-lane", "seed-es-bowling-nutrition"],
     French: ["seed-fr-bowling-lane", "seed-fr-bowling-nutrition"],
     German: ["seed-de-bowling-lane", "seed-de-bowling-nutrition"],
@@ -347,7 +352,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-football-play", "seed-pt-american-football-nutrition"],
   },
 
-  "lacrosse": {
+  lacrosse: {
     Spanish: ["seed-es-lacrosse-field", "seed-es-lacrosse-nutrition"],
     French: ["seed-fr-lacrosse-field", "seed-fr-lacrosse-nutrition"],
     German: ["seed-de-lacrosse-field", "seed-de-lacrosse-nutrition"],
@@ -357,7 +362,7 @@ export const MODULE_LESSONS: LessonMap = {
     Portuguese: ["seed-pt-lacrosse-field", "seed-pt-lacrosse-nutrition"],
   },
 
-  "rugby": {
+  rugby: {
     Spanish: ["seed-es-rugby-pitch", "seed-es-rugby-nutrition"],
     French: ["seed-fr-rugby-pitch", "seed-fr-rugby-nutrition"],
     German: ["seed-de-rugby-pitch", "seed-de-rugby-nutrition"],
@@ -369,12 +374,29 @@ export const MODULE_LESSONS: LessonMap = {
 
   "sports-hobbies": {
     Spanish: ["seed-es-hobbies-gym", "seed-es-sports-hobbies-nutrition"],
-    French: ["seed-fr-hobbies-gym", "seed-fr-sports-hiking-trail", "seed-fr-sports-hobbies-nutrition"],
+    French: [
+      "seed-fr-hobbies-gym",
+      "seed-fr-sports-hiking-trail",
+      "seed-fr-sports-hobbies-nutrition",
+    ],
     German: ["seed-de-hobbies-gym", "seed-de-sports-hobbies-nutrition"],
-    Italian: ["seed-it-hobbies-gym", "seed-it-sports-bike-rental", "seed-it-sports-hobbies-nutrition"],
-    Japanese: ["seed-ja-hobbies-gym", "seed-ja-sports-cycling-gear", "seed-ja-sports-hobbies-nutrition"],
+    Italian: [
+      "seed-it-hobbies-gym",
+      "seed-it-sports-bike-rental",
+      "seed-it-sports-hobbies-nutrition",
+    ],
+    Japanese: [
+      "seed-ja-hobbies-gym",
+      "seed-ja-sports-cycling-gear",
+      "seed-ja-sports-hobbies-nutrition",
+    ],
     Korean: ["seed-ko-sports-taekwondo-warmup", "seed-ko-sports-kbo-postgame"],
-    Portuguese: ["seed-pt-hobbies-gym", "seed-pt-sports-surf-briefing", "seed-pt-sports-camping-setup", "seed-pt-sports-hobbies-nutrition"],
+    Portuguese: [
+      "seed-pt-hobbies-gym",
+      "seed-pt-sports-surf-briefing",
+      "seed-pt-sports-camping-setup",
+      "seed-pt-sports-hobbies-nutrition",
+    ],
   },
 
   "physical-therapy": {

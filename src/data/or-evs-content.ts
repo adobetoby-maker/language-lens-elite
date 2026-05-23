@@ -75,7 +75,8 @@ const orTurnoverArea: ModuleArea = {
     },
     {
       en: "Is this room a terminal clean or a turnover?",
-      intent: "Asking whether the room needs a quick between-case clean or a full end-of-day deep clean",
+      intent:
+        "Asking whether the room needs a quick between-case clean or a full end-of-day deep clean",
     },
     {
       en: "How many minutes do I have before the next case?",
@@ -338,11 +339,13 @@ const orSafetyArea: ModuleArea = {
     },
     {
       en: "I will not go near the sterile field. I will clean around it.",
-      intent: "Verbally confirming to the scrub tech that you understand the sterile field boundary",
+      intent:
+        "Verbally confirming to the scrub tech that you understand the sterile field boundary",
     },
     {
       en: "This is a blood spill — I am going to use the blood kit.",
-      intent: "Announcing your plan to use a proper blood cleanup kit so staff know what you are doing",
+      intent:
+        "Announcing your plan to use a proper blood cleanup kit so staff know what you are doing",
     },
     {
       en: "I am putting this in the biohazard bag, not the regular trash.",
@@ -423,7 +426,8 @@ const orSupplyArea: ModuleArea = {
   phrases: [
     {
       en: "What supplies do you need restocked in Suite 2?",
-      intent: "Asking the charge nurse what items are needed before going into the suite to restock",
+      intent:
+        "Asking the charge nurse what items are needed before going into the suite to restock",
     },
     {
       en: "We are out of blue biohazard bags in the supply room.",
@@ -520,7 +524,8 @@ const orTerminalCleanArea: ModuleArea = {
     },
     {
       en: "I finished the walls and ceiling vents. Starting on the floor now.",
-      intent: "Giving a progress update during the terminal clean so the supervisor knows the status",
+      intent:
+        "Giving a progress update during the terminal clean so the supervisor knows the status",
     },
     {
       en: "The floor has been mopped — waiting for it to dry before the UV light.",
@@ -532,7 +537,8 @@ const orTerminalCleanArea: ModuleArea = {
     },
     {
       en: "Suite 7 terminal clean is complete — ready for inspection.",
-      intent: "Formally reporting the terminal clean is done and requesting the sign-off walkthrough",
+      intent:
+        "Formally reporting the terminal clean is done and requesting the sign-off walkthrough",
     },
     {
       en: "Do you want me to run the UV light for the standard time or longer tonight?",
@@ -540,7 +546,8 @@ const orTerminalCleanArea: ModuleArea = {
     },
     {
       en: "I used the high-level disinfectant on all horizontal surfaces — floors, table, equipment tops.",
-      intent: "Reporting which disinfectant was used and which surfaces were covered for compliance documentation",
+      intent:
+        "Reporting which disinfectant was used and which surfaces were covered for compliance documentation",
     },
     {
       en: "There is a scuff mark on the wall that will not come off — do I need to report it?",

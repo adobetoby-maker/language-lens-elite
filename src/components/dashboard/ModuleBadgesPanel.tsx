@@ -64,9 +64,7 @@ export function ModuleBadgesPanel() {
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
                 Challenges Cleared
               </div>
-              <div className="mt-1 font-display text-2xl text-foreground">
-                {progress.cleared}
-              </div>
+              <div className="mt-1 font-display text-2xl text-foreground">{progress.cleared}</div>
               {progress.next ? (
                 <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   {progress.toNext} to {progress.next.title}
@@ -105,16 +103,10 @@ export function ModuleBadgesPanel() {
                       : `Locked — clear ${b.threshold} challenges`
                   }
                   className={`relative overflow-hidden rounded-xl border p-3 transition-all ${
-                    isCurrent
-                      ? "shadow-gold"
-                      : unlocked
-                        ? ""
-                        : "opacity-55 hover:opacity-80"
+                    isCurrent ? "shadow-gold" : unlocked ? "" : "opacity-55 hover:opacity-80"
                   }`}
                   style={{
-                    borderColor: unlocked
-                      ? `${activeLadder.accent}80`
-                      : "hsl(var(--border) / 0.5)",
+                    borderColor: unlocked ? `${activeLadder.accent}80` : "hsl(var(--border) / 0.5)",
                     background: unlocked
                       ? `linear-gradient(160deg, ${activeLadder.accent}1f, transparent 70%)`
                       : undefined,
@@ -133,10 +125,7 @@ export function ModuleBadgesPanel() {
                       {unlocked ? b.emoji : "✦"}
                     </span>
                     {!unlocked && (
-                      <Lock
-                        className="h-3.5 w-3.5 text-muted-foreground/70"
-                        strokeWidth={1.6}
-                      />
+                      <Lock className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
                     )}
                   </div>
                   <div
@@ -147,9 +136,7 @@ export function ModuleBadgesPanel() {
                     {b.title}
                   </div>
                   <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {b.threshold === 0
-                      ? "Starter"
-                      : `${b.threshold} clears`}
+                    {b.threshold === 0 ? "Starter" : `${b.threshold} clears`}
                   </div>
                 </div>
               );
@@ -206,9 +193,7 @@ export function ModuleBadgesPanel() {
                   Top rank · {top.emoji} {top.title}
                 </div>
                 <div className="mt-1 line-clamp-2 text-xs text-muted-foreground">
-                  {ladder.badges
-                    .map((b) => `${b.emoji} ${b.title}`)
-                    .join("  →  ")}
+                  {ladder.badges.map((b) => `${b.emoji} ${b.title}`).join("  →  ")}
                 </div>
               </button>
             );

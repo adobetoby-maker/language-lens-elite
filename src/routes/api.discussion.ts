@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { initSentry, Sentry } from '../lib/sentry'
-initSentry()
+import { initSentry, Sentry } from "../lib/sentry";
+initSentry();
 
 const MessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
@@ -91,12 +91,8 @@ function anthropicStreamToSSE(
     async start(controller) {
       try {
         for await (const event of stream) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            const chunk =
-              `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
+          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+            const chunk = `data: ${JSON.stringify({ choices: [{ delta: { content: event.delta.text } }] })}\n\n`;
             controller.enqueue(enc.encode(chunk));
           }
         }
@@ -132,9 +128,7 @@ export const Route = createFileRoute("/api/discussion")({
 
         const client = new Anthropic({ apiKey: KEY });
         const system =
-          payload.mode === "investigator"
-            ? investigatorPrompt(payload)
-            : companionPrompt(payload);
+          payload.mode === "investigator" ? investigatorPrompt(payload) : companionPrompt(payload);
 
         // Companion mode: single short tip (non-streaming)
         if (payload.mode === "companion") {
@@ -151,9 +145,7 @@ export const Route = createFileRoute("/api/discussion")({
               ],
             });
             const tip =
-              response.content[0]?.type === "text"
-                ? response.content[0].text.trim()
-                : null;
+              response.content[0]?.type === "text" ? response.content[0].text.trim() : null;
             return new Response(JSON.stringify({ tip }), {
               status: 200,
               headers: { "Content-Type": "application/json" },
@@ -185,7 +177,7 @@ export const Route = createFileRoute("/api/discussion")({
             },
           });
         } catch (e) {
-          Sentry.captureException(e)
+          Sentry.captureException(e);
           console.error("Discussion stream error:", e);
           return new Response(JSON.stringify({ error: "AI request failed." }), {
             status: 500,

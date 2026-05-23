@@ -25,14 +25,14 @@ const Input = z.object({
 });
 
 export interface FalseFriendQuestion {
-  word: string;                 // target-language word (the cognate or look-alike)
-  englishLookAlike: string;     // the English word it resembles
-  contextSentence: string;      // short target-language sentence using the word
-  contextTranslation: string;   // English translation of the sentence
-  candidateMeaning: string;     // the candidate English meaning being tested
-  isTrueFriend: boolean;        // true = candidateMeaning IS correct; false = trap
-  actualMeaning: string;        // the real English meaning (always shown on reveal)
-  trapExplanation: string;      // 1-sentence note on the trap or true-friend status
+  word: string; // target-language word (the cognate or look-alike)
+  englishLookAlike: string; // the English word it resembles
+  contextSentence: string; // short target-language sentence using the word
+  contextTranslation: string; // English translation of the sentence
+  candidateMeaning: string; // the candidate English meaning being tested
+  isTrueFriend: boolean; // true = candidateMeaning IS correct; false = trap
+  actualMeaning: string; // the real English meaning (always shown on reveal)
+  trapExplanation: string; // 1-sentence note on the trap or true-friend status
   cefr: CefrLevel;
 }
 
@@ -92,79 +92,93 @@ Rules:
 
 export const generateFalseFriend = createServerFn({ method: "POST" })
   .inputValidator((i: unknown) => Input.parse(i))
-  .handler(async ({ data }): Promise<{ data: FalseFriendQuestion | null; error: string | null; cached?: boolean }> => {
-    const KEY = process.env.ANTHROPIC_API_KEY;
-    if (!KEY) return { data: null, error: "AI is not configured" };
+  .handler(
+    async ({
+      data,
+    }): Promise<{ data: FalseFriendQuestion | null; error: string | null; cached?: boolean }> => {
+      const KEY = process.env.ANTHROPIC_API_KEY;
+      if (!KEY) return { data: null, error: "AI is not configured" };
 
-    const cefr: CefrLevel = data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
+      const cefr: CefrLevel = data.level === 1 ? "A2" : data.level === 2 ? "B1" : "B2";
 
-    const avoidHash = (data.avoid ?? []).slice().sort().join(",");
-    const key = cacheKey(data.language, data.level, avoidHash);
-    const hit = cacheGet(key);
-    if (hit) return { data: hit, error: null, cached: true };
+      const avoidHash = (data.avoid ?? []).slice().sort().join(",");
+      const key = cacheKey(data.language, data.level, avoidHash);
+      const hit = cacheGet(key);
+      if (hit) return { data: hit, error: null, cached: true };
 
-    const levelNotes =
-      data.level === 1 ? "Use everyday cognates a beginner could plausibly encounter."
-      : data.level === 2 ? "Use intermediate-frequency cognates that trip up many learners."
-      : "Use lower-frequency or more subtle cognates — the kind that catch out advanced learners.";
+      const levelNotes =
+        data.level === 1
+          ? "Use everyday cognates a beginner could plausibly encounter."
+          : data.level === 2
+            ? "Use intermediate-frequency cognates that trip up many learners."
+            : "Use lower-frequency or more subtle cognates — the kind that catch out advanced learners.";
 
-    const avoidLine = data.avoid && data.avoid.length
-      ? `\nAvoid these recent words: ${data.avoid.join(", ")}.`
-      : "";
+      const avoidLine =
+        data.avoid && data.avoid.length
+          ? `\nAvoid these recent words: ${data.avoid.join(", ")}.`
+          : "";
 
-    const topicLine = data.topic
-      ? `\nPrefer a false friend that a "${data.topic}" learner would plausibly encounter — vocabulary from that professional domain.`
-      : "";
+      const topicLine = data.topic
+        ? `\nPrefer a false friend that a "${data.topic}" learner would plausibly encounter — vocabulary from that professional domain.`
+        : "";
 
-    const userMsg = `Generate ONE ${data.language} false-friends question at CEFR ${cefr}.\n${levelNotes}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
+      const userMsg = `Generate ONE ${data.language} false-friends question at CEFR ${cefr}.\n${levelNotes}${topicLine}${avoidLine}\n\nReturn the structured question via the tool.`;
 
-    try {
-      const client = new Anthropic({ apiKey: KEY });
-      const response = await client.messages.create({
-        model: "claude-haiku-4-5",
-        max_tokens: 500,
-        system: SYSTEM,
-        messages: [{ role: "user", content: userMsg }],
-        tools: [
-          {
-            name: "return_false_friend",
-            description: "Return one false-friend / true-friend question.",
-            input_schema: {
-              type: "object" as const,
-              properties: {
-                word: { type: "string" },
-                englishLookAlike: { type: "string" },
-                contextSentence: { type: "string" },
-                contextTranslation: { type: "string" },
-                candidateMeaning: { type: "string" },
-                isTrueFriend: { type: "boolean" },
-                actualMeaning: { type: "string" },
-                trapExplanation: { type: "string" },
-                cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+      try {
+        const client = new Anthropic({ apiKey: KEY });
+        const response = await client.messages.create({
+          model: "claude-haiku-4-5",
+          max_tokens: 500,
+          system: SYSTEM,
+          messages: [{ role: "user", content: userMsg }],
+          tools: [
+            {
+              name: "return_false_friend",
+              description: "Return one false-friend / true-friend question.",
+              input_schema: {
+                type: "object" as const,
+                properties: {
+                  word: { type: "string" },
+                  englishLookAlike: { type: "string" },
+                  contextSentence: { type: "string" },
+                  contextTranslation: { type: "string" },
+                  candidateMeaning: { type: "string" },
+                  isTrueFriend: { type: "boolean" },
+                  actualMeaning: { type: "string" },
+                  trapExplanation: { type: "string" },
+                  cefr: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+                },
+                required: [
+                  "word",
+                  "englishLookAlike",
+                  "contextSentence",
+                  "contextTranslation",
+                  "candidateMeaning",
+                  "isTrueFriend",
+                  "actualMeaning",
+                  "trapExplanation",
+                  "cefr",
+                ],
+                additionalProperties: false,
               },
-              required: [
-                "word", "englishLookAlike", "contextSentence", "contextTranslation",
-                "candidateMeaning", "isTrueFriend", "actualMeaning", "trapExplanation", "cefr",
-              ],
-              additionalProperties: false,
             },
-          },
-        ],
-        tool_choice: { type: "tool", name: "return_false_friend" },
-      });
+          ],
+          tool_choice: { type: "tool", name: "return_false_friend" },
+        });
 
-      const toolUse = response.content.find((c) => c.type === "tool_use");
-      if (!toolUse || toolUse.type !== "tool_use") {
-        return { data: null, error: "No question returned." };
+        const toolUse = response.content.find((c) => c.type === "tool_use");
+        if (!toolUse || toolUse.type !== "tool_use") {
+          return { data: null, error: "No question returned." };
+        }
+        const q = toolUse.input as FalseFriendQuestion;
+
+        // Defensive sanity check: contextSentence should contain the word OR
+        // a recognizable inflected form. Don't fail on it — just log.
+        cacheSet(key, q);
+        return { data: q, error: null, cached: false };
+      } catch (e) {
+        console.error("generateFalseFriend failed", e);
+        return { data: null, error: "Generation failed." };
       }
-      const q = toolUse.input as FalseFriendQuestion;
-
-      // Defensive sanity check: contextSentence should contain the word OR
-      // a recognizable inflected form. Don't fail on it — just log.
-      cacheSet(key, q);
-      return { data: q, error: null, cached: false };
-    } catch (e) {
-      console.error("generateFalseFriend failed", e);
-      return { data: null, error: "Generation failed." };
-    }
-  });
+    },
+  );

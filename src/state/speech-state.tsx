@@ -122,8 +122,7 @@ export function SpeechProvider({
       if (raw) {
         const parsed = JSON.parse(raw);
         if (typeof parsed.rate === "number") setRateState(parsed.rate);
-        if (typeof parsed.listenedCount === "number")
-          setListenedCount(parsed.listenedCount);
+        if (typeof parsed.listenedCount === "number") setListenedCount(parsed.listenedCount);
         if (parsed.voiceByLang && typeof parsed.voiceByLang === "object") {
           const v = parsed.voiceByLang[language];
           if (typeof v === "string") setVoiceURIState(v);
@@ -143,10 +142,7 @@ export function SpeechProvider({
       const voiceByLang = { ...(prev.voiceByLang ?? {}) };
       if (voiceURI) voiceByLang[language] = voiceURI;
       else delete voiceByLang[language];
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ rate, listenedCount, voiceByLang }),
-      );
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ rate, listenedCount, voiceByLang }));
     } catch {
       /* ignore */
     }
@@ -218,12 +214,7 @@ export function SpeechProvider({
   }, [hasAchievement, onAchievement, onXp]);
 
   const speakOne = useCallback(
-    (
-      text: string,
-      sentenceIndex: number,
-      mode: SpeechMode,
-      onEnd?: () => void,
-    ) => {
+    (text: string, sentenceIndex: number, mode: SpeechMode, onEnd?: () => void) => {
       if (typeof window === "undefined" || !window.speechSynthesis) return;
       const u = new SpeechSynthesisUtterance(text);
       configureUtterance(u, accent, voiceURI);
@@ -282,10 +273,7 @@ export function SpeechProvider({
   );
 
   const speakSentences = useCallback(
-    (
-      sentences: { text: string; index: number }[],
-      onMove?: (i: number) => void,
-    ) => {
+    (sentences: { text: string; index: number }[], onMove?: (i: number) => void) => {
       if (sentences.length === 0) return;
       stop();
       cancelledRef.current = false;

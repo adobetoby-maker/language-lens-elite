@@ -24,7 +24,13 @@ export function CefrCompletionBridge() {
         dispatch({ type: "MARK_CEFR_COMPLETE", payload: tag });
       }
     }
-  }, [grammar.hydrated, grammar.store, state.selectedLanguage, state.cefrLevelsCompleted, dispatch]);
+  }, [
+    grammar.hydrated,
+    grammar.store,
+    state.selectedLanguage,
+    state.cefrLevelsCompleted,
+    dispatch,
+  ]);
 
   return null;
 }

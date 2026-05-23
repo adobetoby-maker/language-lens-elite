@@ -23,13 +23,7 @@ const LEVEL_LABEL: Record<CefrLevel, string> = {
   C2: "Mastery",
 };
 
-export function LessonView({
-  level,
-  lesson,
-}: {
-  level: CefrLevel;
-  lesson: LessonStub;
-}) {
+export function LessonView({ level, lesson }: { level: CefrLevel; lesson: LessonStub }) {
   const { state, dispatch } = useApp();
   const { getLevel, setContent } = useGrammar();
   const genContent = useServerFn(generateLessonContent);
@@ -50,7 +44,12 @@ export function LessonView({
       setError(null);
       try {
         const res = await genContent({
-          data: { language: state.selectedLanguage, level, concept: lesson.concept, nativeLanguage: state.nativeLanguage },
+          data: {
+            language: state.selectedLanguage,
+            level,
+            concept: lesson.concept,
+            nativeLanguage: state.nativeLanguage,
+          },
         });
         if (cancelled) return;
         if (res.data) setContent(state.selectedLanguage, level, lesson.id, res.data);

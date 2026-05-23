@@ -146,20 +146,14 @@ export function MissionaryDiscussions() {
   const lessonComplete = topic == null;
 
   const mod = getModule(state.activeModuleId);
-  const area = getMissionArea(
-    mod ? state.moduleAssignments[mod.id] ?? null : null,
-  );
+  const area = getMissionArea(mod ? (state.moduleAssignments[mod.id] ?? null) : null);
 
   // Auto-advance when concept threshold hit AND investigator has asked enough questions
   useEffect(() => {
     if (!topic) return;
     const required = Math.ceil(topic.keyConcepts.length * investigator.conceptThreshold);
-    if (
-      topicHits.length >= required &&
-      topicQuestions >= investigator.questionsPerTopic
-    ) {
-      const bonus =
-        topic.keyConcepts.length * 5 * investigator.pointMultiplier;
+    if (topicHits.length >= required && topicQuestions >= investigator.questionsPerTopic) {
+      const bonus = topic.keyConcepts.length * 5 * investigator.pointMultiplier;
       dispatch({ type: "ADVANCE_TOPIC", payload: { bonus } });
       appDispatch({ type: "ADD_XP", payload: bonus });
       toast(`✓ Topic cleared: ${topic.title}`, {
@@ -176,13 +170,9 @@ export function MissionaryDiscussions() {
   }, [s.turns.length, thinking]);
 
   // ----- Stats -----
-  const elapsedMin = s.startedAt
-    ? Math.max(0.05, (Date.now() - s.startedAt) / 60000)
-    : 0;
+  const elapsedMin = s.startedAt ? Math.max(0.05, (Date.now() - s.startedAt) / 60000) : 0;
   const distancePct = (s.topicsCompleted / Math.max(1, lesson.topics.length)) * 100;
-  const speed = s.startedAt
-    ? (s.topicsCompleted / Math.max(0.05, elapsedMin)).toFixed(2)
-    : "0.00";
+  const speed = s.startedAt ? (s.topicsCompleted / Math.max(0.05, elapsedMin)).toFixed(2) : "0.00";
 
   // ----- Send a missionary turn -----
   const sendTurn = async (raw: string) => {
@@ -240,9 +230,7 @@ export function MissionaryDiscussions() {
             topicKeyConcepts: topic.keyConcepts,
             questionsAskedOnTopic: topicQuestions,
           },
-          missionArea: area
-            ? { name: area.name, cultureNote: area.cultureNote }
-            : undefined,
+          missionArea: area ? { name: area.name, cultureNote: area.cultureNote } : undefined,
           messages: history,
         }),
       });
@@ -274,9 +262,7 @@ export function MissionaryDiscussions() {
           }
           try {
             const parsed = JSON.parse(data);
-            const delta = parsed?.choices?.[0]?.delta?.content as
-              | string
-              | undefined;
+            const delta = parsed?.choices?.[0]?.delta?.content as string | undefined;
             if (delta) dispatch({ type: "APPEND_DELTA", payload: { id: aiTurn.id, delta } });
           } catch {
             buf = line + "\n" + buf;
@@ -354,17 +340,13 @@ export function MissionaryDiscussions() {
                 {inv.emoji}
               </span>
               <div>
-                <div className="font-display text-sm italic text-foreground">
-                  {inv.shortLabel}
-                </div>
+                <div className="font-display text-sm italic text-foreground">{inv.shortLabel}</div>
                 <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
                   {inv.questionsPerTopic} Qs · ×{inv.pointMultiplier} pts
                 </div>
               </div>
             </div>
-            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
-              {inv.description}
-            </p>
+            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">{inv.description}</p>
           </button>
         );
       })}
@@ -397,11 +379,9 @@ export function MissionaryDiscussions() {
           Roleplay a discussion in {state.selectedLanguage}
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Choose your investigator, pick a lesson, and teach. Hit the key gospel
-          concepts to advance — your companion is listening with tips.
-          {area && (
-            <span className="ml-1 text-gold">· {area.name}</span>
-          )}
+          Choose your investigator, pick a lesson, and teach. Hit the key gospel concepts to advance
+          — your companion is listening with tips.
+          {area && <span className="ml-1 text-gold">· {area.name}</span>}
         </p>
       </header>
 
@@ -422,11 +402,7 @@ export function MissionaryDiscussions() {
               value={`${s.topicsCompleted}/${lesson.topics.length}`}
               accent
             />
-            <Stat
-              icon={<Gauge className="h-3.5 w-3.5" />}
-              label="Topics / min"
-              value={speed}
-            />
+            <Stat icon={<Gauge className="h-3.5 w-3.5" />} label="Topics / min" value={speed} />
             <Stat
               icon={<Sparkles className="h-3.5 w-3.5" />}
               label="Bonus pts"
@@ -459,8 +435,7 @@ export function MissionaryDiscussions() {
                 </p>
                 <p className="mt-2 max-w-sm text-xs text-muted-foreground">
                   Greet {investigator.name.split(" — ")[0]} and start teaching{" "}
-                  <span className="text-gold">{topic?.title}</span> in{" "}
-                  {state.selectedLanguage}.
+                  <span className="text-gold">{topic?.title}</span> in {state.selectedLanguage}.
                 </p>
               </div>
             ) : (
@@ -468,9 +443,7 @@ export function MissionaryDiscussions() {
                 {s.turns.map((t) => (
                   <li
                     key={t.id}
-                    className={
-                      t.role === "user" ? "flex justify-end" : "flex justify-start"
-                    }
+                    className={t.role === "user" ? "flex justify-end" : "flex justify-start"}
                   >
                     <div className="max-w-[85%]">
                       <div
@@ -649,8 +622,11 @@ export function MissionaryDiscussions() {
               Investigator threshold
             </div>
             <p className="mt-0.5 text-[11px] text-foreground/80">
-              Mention <strong>{Math.ceil((topic?.keyConcepts.length ?? 0) * investigator.conceptThreshold)}</strong> of{" "}
-              {topic?.keyConcepts.length ?? 0} key concepts AND let{" "}
+              Mention{" "}
+              <strong>
+                {Math.ceil((topic?.keyConcepts.length ?? 0) * investigator.conceptThreshold)}
+              </strong>{" "}
+              of {topic?.keyConcepts.length ?? 0} key concepts AND let{" "}
               {investigator.shortLabel.toLowerCase()} ask{" "}
               <strong>{investigator.questionsPerTopic}</strong> question
               {investigator.questionsPerTopic === 1 ? "" : "s"} to advance.

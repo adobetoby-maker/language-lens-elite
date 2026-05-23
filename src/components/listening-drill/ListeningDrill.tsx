@@ -13,14 +13,8 @@ import {
 } from "lucide-react";
 import { useApp, type Language } from "@/state/app-state";
 import { MODULES } from "@/data/modules";
-import {
-  useListeningDrill,
-  type LDLeaderboardKey,
-} from "@/state/listening-drill-state";
-import {
-  generateListeningDrill,
-  type ListeningDrillLevel,
-} from "@/fns/listening-drill.functions";
+import { useListeningDrill, type LDLeaderboardKey } from "@/state/listening-drill-state";
+import { generateListeningDrill, type ListeningDrillLevel } from "@/fns/listening-drill.functions";
 import { configureUtterance } from "@/lib/voices";
 
 const LEVEL_LABELS: Record<ListeningDrillLevel, { name: string; sub: string }> = {
@@ -58,7 +52,11 @@ function speak(text: string, language: Language) {
 
 function cancelSpeak() {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-  try { window.speechSynthesis.cancel(); } catch { /* noop */ }
+  try {
+    window.speechSynthesis.cancel();
+  } catch {
+    /* noop */
+  }
 }
 
 export function ListeningDrill() {
@@ -158,7 +156,9 @@ export function ListeningDrill() {
           onClick={() => ld.startRun(app.selectedLanguage, selectedLevel)}
           className="group relative w-full overflow-hidden rounded-2xl border border-gold/60 bg-gradient-to-br from-gold/10 via-gold/5 to-transparent px-6 py-6 text-left transition-all hover:border-gold hover:from-gold/20"
         >
-          <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">▶ Start Run</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
+            ▶ Start Run
+          </div>
           <div className="mt-1 font-display text-3xl font-semibold">
             5 listening rounds in {app.selectedLanguage}
           </div>
@@ -184,8 +184,14 @@ export function ListeningDrill() {
         <div className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 via-card/40 to-transparent p-8 text-center">
           {allCorrect ? (
             <>
-              <Trophy className="mx-auto h-12 w-12 text-gold" strokeWidth={1.5} fill="currentColor" />
-              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-gold">Perfect Run</div>
+              <Trophy
+                className="mx-auto h-12 w-12 text-gold"
+                strokeWidth={1.5}
+                fill="currentColor"
+              />
+              <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+                Perfect Run
+              </div>
             </>
           ) : (
             <>
@@ -251,14 +257,7 @@ export function ListeningDrill() {
         </div>
       )}
 
-      {cur && (
-        <QuestionCard
-          q={cur}
-          onReplay={onReplay}
-          onAnswer={onAnswer}
-          onNext={onNext}
-        />
-      )}
+      {cur && <QuestionCard q={cur} onReplay={onReplay} onAnswer={onAnswer} onNext={onNext} />}
     </div>
   );
 }
@@ -271,8 +270,8 @@ function Header() {
       </div>
       <h2 className="mt-1 font-display text-3xl font-semibold">Hear it. Pick it.</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        Listen to a phrase, then choose the matching transcript from 4 options. Replay as many
-        times as you need.
+        Listen to a phrase, then choose the matching transcript from 4 options. Replay as many times
+        as you need.
       </p>
     </div>
   );
@@ -305,9 +304,15 @@ function LevelPicker({
           Difficulty · {language}
         </div>
         <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          <span>Best <span className="text-foreground">{stats.bestStreak}</span></span>
-          <span>Perfect <span className="text-foreground">{stats.perfectRuns}</span></span>
-          <span>Acc <span className="text-foreground">{accuracy}%</span></span>
+          <span>
+            Best <span className="text-foreground">{stats.bestStreak}</span>
+          </span>
+          <span>
+            Perfect <span className="text-foreground">{stats.perfectRuns}</span>
+          </span>
+          <span>
+            Acc <span className="text-foreground">{accuracy}%</span>
+          </span>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -346,7 +351,9 @@ function RunHeader({
         Round <span className="text-foreground">{index + 1}</span> / {total}
       </div>
       <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-        <span>Score <span className="text-foreground">{score}</span></span>
+        <span>
+          Score <span className="text-foreground">{score}</span>
+        </span>
         {streak >= 3 && (
           <span className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 text-gold">
             <Flame className="h-3 w-3" /> {streak}
@@ -393,9 +400,7 @@ function QuestionCard({
           <span className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-gold/30" />
         </button>
         <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          {q.playCount === 0
-            ? "Tap to play audio"
-            : `Tap to replay · played ${q.playCount}×`}
+          {q.playCount === 0 ? "Tap to play audio" : `Tap to replay · played ${q.playCount}×`}
         </div>
       </div>
 
@@ -453,9 +458,7 @@ function QuestionCard({
                 {q.correct ? "Correct" : "Not quite"}
               </span>
             </div>
-            <p className="mt-1 font-display text-base text-foreground/95">
-              {q.question.phrase}
-            </p>
+            <p className="mt-1 font-display text-base text-foreground/95">{q.question.phrase}</p>
             <p className="mt-1 text-[13px] text-muted-foreground">
               {q.question.englishTranslation}
             </p>

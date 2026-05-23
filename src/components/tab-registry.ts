@@ -11,84 +11,75 @@ import type { TabKey } from "@/state/app-state";
  * loader maps the named export to the `{ default }` shape `lazy` expects.
  */
 const ParallelReader = lazy(() =>
-  import("./reader/ParallelReader").then((m) => ({ default: m.ParallelReader }))
+  import("./reader/ParallelReader").then((m) => ({ default: m.ParallelReader })),
 );
 const GrammarStudio = lazy(() =>
-  import("./grammar/GrammarStudio").then((m) => ({ default: m.GrammarStudio }))
+  import("./grammar/GrammarStudio").then((m) => ({ default: m.GrammarStudio })),
 );
 const SpeakLearn = lazy(() =>
-  import("./speak/SpeakLearn").then((m) => ({ default: m.SpeakLearn }))
+  import("./speak/SpeakLearn").then((m) => ({ default: m.SpeakLearn })),
 );
 const Dashboard = lazy(() =>
-  import("./dashboard/Dashboard").then((m) => ({ default: m.Dashboard }))
+  import("./dashboard/Dashboard").then((m) => ({ default: m.Dashboard })),
 );
 const MissionaryDiscussions = lazy(() =>
   import("./missionary/MissionaryDiscussions").then((m) => ({
     default: m.MissionaryDiscussions,
-  }))
+  })),
 );
 const MissionaryHome = lazy(() =>
-  import("./missionary/MissionaryHome").then((m) => ({ default: m.MissionaryHome }))
+  import("./missionary/MissionaryHome").then((m) => ({ default: m.MissionaryHome })),
 );
 const OrthopedicsHome = lazy(() =>
-  import("./orthopedics/OrthopedicsHome").then((m) => ({ default: m.OrthopedicsHome }))
+  import("./orthopedics/OrthopedicsHome").then((m) => ({ default: m.OrthopedicsHome })),
 );
 const AnatomyQuizPanel = lazy(() =>
-  import("./anatomy/AnatomyQuizPanel").then((m) => ({ default: m.AnatomyQuizPanel }))
+  import("./anatomy/AnatomyQuizPanel").then((m) => ({ default: m.AnatomyQuizPanel })),
 );
 const ModulesPage = lazy(() =>
-  import("./modules/ModulesPage").then((m) => ({ default: m.ModulesPage }))
+  import("./modules/ModulesPage").then((m) => ({ default: m.ModulesPage })),
 );
-const KanaPad = lazy(() =>
-  import("./kana/KanaPad").then((m) => ({ default: m.KanaPad }))
-);
+const KanaPad = lazy(() => import("./kana/KanaPad").then((m) => ({ default: m.KanaPad })));
 const ConjugationGame = lazy(() =>
-  import("./conjugation/ConjugationGame").then((m) => ({ default: m.ConjugationGame }))
+  import("./conjugation/ConjugationGame").then((m) => ({ default: m.ConjugationGame })),
 );
 const SentenceBuilder = lazy(() =>
-  import("./sentence-build/SentenceBuilder").then((m) => ({ default: m.SentenceBuilder }))
+  import("./sentence-build/SentenceBuilder").then((m) => ({ default: m.SentenceBuilder })),
 );
-const GamesHub = lazy(() =>
-  import("./games/GamesHub").then((m) => ({ default: m.GamesHub }))
-);
+const GamesHub = lazy(() => import("./games/GamesHub").then((m) => ({ default: m.GamesHub })));
 const ListeningDrill = lazy(() =>
-  import("./listening-drill/ListeningDrill").then((m) => ({ default: m.ListeningDrill }))
+  import("./listening-drill/ListeningDrill").then((m) => ({ default: m.ListeningDrill })),
 );
 const WordMatch = lazy(() =>
-  import("./word-match/WordMatch").then((m) => ({ default: m.WordMatch }))
+  import("./word-match/WordMatch").then((m) => ({ default: m.WordMatch })),
 );
 const IdiomMaster = lazy(() =>
-  import("./idiom-master/IdiomMaster").then((m) => ({ default: m.IdiomMaster }))
+  import("./idiom-master/IdiomMaster").then((m) => ({ default: m.IdiomMaster })),
 );
 const FalseFriends = lazy(() =>
-  import("./false-friends/FalseFriends").then((m) => ({ default: m.FalseFriends }))
+  import("./false-friends/FalseFriends").then((m) => ({ default: m.FalseFriends })),
 );
 const SoccerHome = lazy(() =>
-  import("./soccer/SoccerHome").then((m) => ({ default: m.SoccerHome }))
+  import("./soccer/SoccerHome").then((m) => ({ default: m.SoccerHome })),
 );
 const BaseballHome = lazy(() =>
-  import("./baseball/BaseballHome").then((m) => ({ default: m.BaseballHome }))
+  import("./baseball/BaseballHome").then((m) => ({ default: m.BaseballHome })),
 );
-const OrEvsHome = lazy(() =>
-  import("./or-evs/OrEvsHome").then((m) => ({ default: m.OrEvsHome }))
-);
-const FmgHome = lazy(() =>
-  import("./fmg/FmgHome").then((m) => ({ default: m.FmgHome }))
-);
-const PenPalPad = lazy(() =>
-  import("./penpal/PenPalPad").then((m) => ({ default: m.PenPalPad }))
-);
+const OrEvsHome = lazy(() => import("./or-evs/OrEvsHome").then((m) => ({ default: m.OrEvsHome })));
+const FmgHome = lazy(() => import("./fmg/FmgHome").then((m) => ({ default: m.FmgHome })));
+const PenPalPad = lazy(() => import("./penpal/PenPalPad").then((m) => ({ default: m.PenPalPad })));
 const PatternLab = lazy(() =>
-  import("./patterns/PatternLab").then((m) => ({ default: m.PatternLab }))
+  import("./patterns/PatternLab").then((m) => ({ default: m.PatternLab })),
 );
 const DailyStory = lazy(() =>
-  import("./story/DailyStory").then((m) => ({ default: m.DailyStory }))
+  import("./story/DailyStory").then((m) => ({ default: m.DailyStory })),
 );
-const AppGuide = lazy(() =>
-  import("./guide/AppGuide").then((m) => ({ default: m.AppGuide }))
-);
+const AppGuide = lazy(() => import("./guide/AppGuide").then((m) => ({ default: m.AppGuide })));
 const ClimbingHome = lazy(() =>
-  import("./climbing/ClimbingHome").then((m) => ({ default: m.ClimbingHome }))
+  import("./climbing/ClimbingHome").then((m) => ({ default: m.ClimbingHome })),
+);
+const FieldPrepRouter = lazy(() =>
+  import("./modules/FieldPrepRouter").then((m) => ({ default: m.FieldPrepRouter })),
 );
 
 /**
@@ -126,6 +117,7 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   story: DailyStory,
   guide: AppGuide,
   climbing: ClimbingHome,
+  fieldPrep: FieldPrepRouter,
 };
 
 if (import.meta.env.DEV) {

@@ -14,6 +14,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
 import { Route as ApiSportsNewsRouteImport } from './routes/api.sports-news'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
+import { Route as ApiModuleFieldPrepRouteImport } from './routes/api.module-field-prep'
+import { Route as ApiFieldPrepRouteImport } from './routes/api.field-prep'
 import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
 
 const Char91indexChar93Route = Char91indexChar93RouteImport.update({
@@ -41,6 +43,16 @@ const ApiSpeakRoute = ApiSpeakRouteImport.update({
   path: '/api/speak',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiModuleFieldPrepRoute = ApiModuleFieldPrepRouteImport.update({
+  id: '/api/module-field-prep',
+  path: '/api/module-field-prep',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFieldPrepRoute = ApiFieldPrepRouteImport.update({
+  id: '/api/field-prep',
+  path: '/api/field-prep',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiDiscussionRoute = ApiDiscussionRouteImport.update({
   id: '/api/discussion',
   path: '/api/discussion',
@@ -51,6 +63,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/field-prep': typeof ApiFieldPrepRoute
+  '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
@@ -59,6 +73,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/field-prep': typeof ApiFieldPrepRoute
+  '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
@@ -68,6 +84,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/field-prep': typeof ApiFieldPrepRoute
+  '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/tutor': typeof ApiTutorRoute
@@ -78,6 +96,8 @@ export interface FileRouteTypes {
     | '/'
     | '/index'
     | '/api/discussion'
+    | '/api/field-prep'
+    | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
     | '/api/tutor'
@@ -86,6 +106,8 @@ export interface FileRouteTypes {
     | '/'
     | '/index'
     | '/api/discussion'
+    | '/api/field-prep'
+    | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
     | '/api/tutor'
@@ -94,6 +116,8 @@ export interface FileRouteTypes {
     | '/'
     | '/index'
     | '/api/discussion'
+    | '/api/field-prep'
+    | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
     | '/api/tutor'
@@ -103,6 +127,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
   ApiDiscussionRoute: typeof ApiDiscussionRoute
+  ApiFieldPrepRoute: typeof ApiFieldPrepRoute
+  ApiModuleFieldPrepRoute: typeof ApiModuleFieldPrepRoute
   ApiSpeakRoute: typeof ApiSpeakRoute
   ApiSportsNewsRoute: typeof ApiSportsNewsRoute
   ApiTutorRoute: typeof ApiTutorRoute
@@ -145,6 +171,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSpeakRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/module-field-prep': {
+      id: '/api/module-field-prep'
+      path: '/api/module-field-prep'
+      fullPath: '/api/module-field-prep'
+      preLoaderRoute: typeof ApiModuleFieldPrepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/field-prep': {
+      id: '/api/field-prep'
+      path: '/api/field-prep'
+      fullPath: '/api/field-prep'
+      preLoaderRoute: typeof ApiFieldPrepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/discussion': {
       id: '/api/discussion'
       path: '/api/discussion'
@@ -159,6 +199,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Char91indexChar93Route: Char91indexChar93Route,
   ApiDiscussionRoute: ApiDiscussionRoute,
+  ApiFieldPrepRoute: ApiFieldPrepRoute,
+  ApiModuleFieldPrepRoute: ApiModuleFieldPrepRoute,
   ApiSpeakRoute: ApiSpeakRoute,
   ApiSportsNewsRoute: ApiSportsNewsRoute,
   ApiTutorRoute: ApiTutorRoute,

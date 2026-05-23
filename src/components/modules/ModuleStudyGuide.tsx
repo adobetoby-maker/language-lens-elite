@@ -42,14 +42,9 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
   const moduleId = state.activeModuleId;
   const language = state.selectedLanguage;
-  const module = useMemo(
-    () => MODULES.find((m) => m.id === moduleId) ?? null,
-    [moduleId],
-  );
+  const module = useMemo(() => MODULES.find((m) => m.id === moduleId) ?? null, [moduleId]);
 
-  const dismissKey = moduleId
-    ? `lt.studyguide.dismissed.${moduleId}.${language}`
-    : null;
+  const dismissKey = moduleId ? `lt.studyguide.dismissed.${moduleId}.${language}` : null;
   const [open, setOpen] = useState(() => {
     if (!moduleId) return true;
     try {
@@ -82,12 +77,20 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
 
   function dismiss() {
     setOpen(false);
-    try { if (dismissKey) localStorage.setItem(dismissKey, "1"); } catch { /* ignore */ }
+    try {
+      if (dismissKey) localStorage.setItem(dismissKey, "1");
+    } catch {
+      /* ignore */
+    }
   }
 
   function reopen() {
     setOpen(true);
-    try { if (dismissKey) localStorage.removeItem(dismissKey); } catch { /* ignore */ }
+    try {
+      if (dismissKey) localStorage.removeItem(dismissKey);
+    } catch {
+      /* ignore */
+    }
   }
 
   if (!module) return null;
@@ -147,9 +150,7 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
           <h2 className="font-display text-lg italic leading-snug text-foreground">
             {module.name} <span className="text-muted-foreground">— in {language}</span>
           </h2>
-          <p className="mt-1 text-xs leading-relaxed text-foreground/75">
-            {module.blurb}
-          </p>
+          <p className="mt-1 text-xs leading-relaxed text-foreground/75">{module.blurb}</p>
         </div>
         <button
           onClick={dismiss}
@@ -245,7 +246,9 @@ export function ModuleStudyGuide({ className = "" }: { className?: string }) {
                     </p>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-[11px] leading-relaxed text-muted-foreground">{pair.en}</span>
+                    <span className="text-[11px] leading-relaxed text-muted-foreground">
+                      {pair.en}
+                    </span>
                     <button
                       onClick={() => startRoleplay(pair.en)}
                       className="inline-flex shrink-0 items-center gap-1 rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-gold transition-colors hover:bg-gold/25"
@@ -447,13 +450,14 @@ function buildGuide(module: AppModule, language: Language): Guide {
   ];
 
   // Use first 4 challenge prompts as starter "short stories / interactions".
-  const interactions = (module.challengePrompts.length
-    ? module.challengePrompts
-    : [
-        `Introduce yourself as a ${role.toLowerCase()} in ${language}.`,
-        `Describe your typical workday using ${focus.slice(0, 3).join(", ")}.`,
-        `Ask three follow-up questions to keep a conversation going.`,
-      ]
+  const interactions = (
+    module.challengePrompts.length
+      ? module.challengePrompts
+      : [
+          `Introduce yourself as a ${role.toLowerCase()} in ${language}.`,
+          `Describe your typical workday using ${focus.slice(0, 3).join(", ")}.`,
+          `Ask three follow-up questions to keep a conversation going.`,
+        ]
   ).slice(0, 4);
 
   return { readings, fastestPath, games, interactions, firstLessonTab };

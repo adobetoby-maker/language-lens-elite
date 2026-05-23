@@ -11,10 +11,7 @@ import { matchesFocus, partitionByFocus } from "@/lib/module-filter";
 
 function entryHaystack(e: LibraryEntry): string {
   const titleBlob = `${e.title} ${e.subtitle ?? ""}`;
-  const sentenceBlob = (e.chapters
-    ? e.chapters.flatMap((c) => c.sentences)
-    : e.sentences
-  )
+  const sentenceBlob = (e.chapters ? e.chapters.flatMap((c) => c.sentences) : e.sentences)
     .slice(0, 6)
     .map((s) => `${s.en} ${s.target}`)
     .join(" ");
@@ -41,10 +38,7 @@ function highlightKeywords(text: string, keywords: string[]) {
   const parts = text.split(re);
   return parts.map((p, i) =>
     re.test(p) ? (
-      <mark
-        key={i}
-        className="rounded bg-gold/30 px-0.5 text-foreground"
-      >
+      <mark key={i} className="rounded bg-gold/30 px-0.5 text-foreground">
         {p}
       </mark>
     ) : (
@@ -77,10 +71,7 @@ export function ModuleMatchPanel({ surface, className }: Props) {
   // Render even with no active module so users can confirm "filter is off".
   return (
     <section
-      className={
-        "rounded-2xl border border-gold/30 bg-card/40 backdrop-blur " +
-        (className ?? "")
-      }
+      className={"rounded-2xl border border-gold/30 bg-card/40 backdrop-blur " + (className ?? "")}
     >
       <button
         onClick={() => setOpen((v) => !v)}

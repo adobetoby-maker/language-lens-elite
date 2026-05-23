@@ -51,7 +51,10 @@ export interface MissionMapProps {
   highlightLastName?: string | null;
 }
 
-export function MissionMapInner({ filterPinId = null, highlightLastName = null }: MissionMapProps = {}) {
+export function MissionMapInner({
+  filterPinId = null,
+  highlightLastName = null,
+}: MissionMapProps = {}) {
   const { user } = useAuth();
   const groupedMissions = useMemo(() => getMissionsByArea(), []);
   const sortedAreas = useMemo(() => Object.keys(groupedMissions).sort(), [groupedMissions]);
@@ -76,10 +79,12 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
 
   const selectedMission = findMissionById(selectedMissionId);
   const filteredMissions = useMemo(() => {
-    const list = areaFilter ? groupedMissions[areaFilter] ?? [] : WORLDWIDE_MISSIONS;
+    const list = areaFilter ? (groupedMissions[areaFilter] ?? []) : WORLDWIDE_MISSIONS;
     const q = missionSearch.trim().toLowerCase();
     if (!q) return list;
-    return list.filter((m) => m.name.toLowerCase().includes(q) || m.country.toLowerCase().includes(q));
+    return list.filter(
+      (m) => m.name.toLowerCase().includes(q) || m.country.toLowerCase().includes(q),
+    );
   }, [areaFilter, missionSearch, groupedMissions]);
 
   // Load all shared pins (public read).
@@ -88,7 +93,9 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
     (async () => {
       const { data, error } = await supabase
         .from("mission_pins")
-        .select("id, mission_id, mission_name, mission_lat, mission_lng, hometown_city, hometown_country, hometown_lat, hometown_lng, user_id");
+        .select(
+          "id, mission_id, mission_name, mission_lat, mission_lng, hometown_city, hometown_country, hometown_lat, hometown_lng, user_id",
+        );
       if (cancelled) return;
       if (error) {
         console.error("Failed to load mission pins", error);
@@ -118,7 +125,12 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
 
   // Resolve the mission to use — either a selected official mission, or a custom
   // user-entered one anchored to its country's centroid (for historic missions).
-  function resolveEffectiveMission(): { id: string; name: string; lat: number; lng: number } | null {
+  function resolveEffectiveMission(): {
+    id: string;
+    name: string;
+    lat: number;
+    lng: number;
+  } | null {
     if (customMode) {
       const name = customMissionName.trim();
       const c = COUNTRY_CENTROIDS[customMissionCountry];
@@ -150,7 +162,8 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
       return;
     }
     if (!user) {
-      setFeedback("Sign in to share your mission on the community map.");
+      setShowPicker(false);
+      setFeedback("Mission saved! Sign in to share your pin on the community map.");
       return;
     }
     const mission = resolveEffectiveMission();
@@ -291,8 +304,12 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
               <Popup>
                 <div className="text-xs">
                   <div className="font-semibold">Serving in {p.mission_name}</div>
-                  <div className="text-muted-foreground">From {p.hometown_city}, {p.hometown_country}</div>
-                  <div className="mt-1 italic text-[10px] text-muted-foreground">Anonymous • shared by a missionary</div>
+                  <div className="text-muted-foreground">
+                    From {p.hometown_city}, {p.hometown_country}
+                  </div>
+                  <div className="mt-1 italic text-[10px] text-muted-foreground">
+                    Anonymous • shared by a missionary
+                  </div>
                 </div>
               </Popup>
             </Marker>
@@ -305,11 +322,18 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                 key={`h-${p.id}`}
                 center={[p.hometown_lat as number, p.hometown_lng as number]}
                 radius={4}
-                pathOptions={{ color: "#a78bfa", fillColor: "#a78bfa", fillOpacity: 0.7, weight: 1 }}
+                pathOptions={{
+                  color: "#a78bfa",
+                  fillColor: "#a78bfa",
+                  fillOpacity: 0.7,
+                  weight: 1,
+                }}
               >
                 <Popup>
                   <div className="text-xs">
-                    <div className="font-semibold">Hometown: {p.hometown_city}, {p.hometown_country}</div>
+                    <div className="font-semibold">
+                      Hometown: {p.hometown_city}, {p.hometown_country}
+                    </div>
                     <div className="text-muted-foreground">Serving in {p.mission_name}</div>
                   </div>
                 </Popup>
@@ -330,11 +354,16 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
       {myPinId && (
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gold/15 px-5 py-3 text-xs">
           <div className="text-muted-foreground">
-            Your pin: <span className="text-foreground">{pins.find((p) => p.id === myPinId)?.mission_name ?? selectedMission?.name ?? "—"}</span>
+            Your pin:{" "}
+            <span className="text-foreground">
+              {pins.find((p) => p.id === myPinId)?.mission_name ?? selectedMission?.name ?? "—"}
+            </span>
             {hometownCity && (
               <>
                 <span className="mx-1 opacity-50">←</span>
-                <span className="text-foreground">{hometownCity}, {hometownCountry}</span>
+                <span className="text-foreground">
+                  {hometownCity}, {hometownCountry}
+                </span>
               </>
             )}
           </div>
@@ -411,7 +440,9 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                       >
                         <option value="">Mission country…</option>
                         {COUNTRIES.map((c) => (
-                          <option key={c} value={c}>{c}</option>
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -425,7 +456,9 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                         >
                           <option value="">All areas</option>
                           {sortedAreas.map((a) => (
-                            <option key={a} value={a}>{a}</option>
+                            <option key={a} value={a}>
+                              {a}
+                            </option>
                           ))}
                         </select>
                         <input
@@ -444,7 +477,9 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                               key={m.id}
                               onClick={() => setSelectedMissionId(m.id)}
                               className={`flex w-full items-center justify-between px-3 py-1.5 text-left text-xs transition-colors ${
-                                active ? "bg-gold/15 text-gold" : "text-foreground/80 hover:bg-card/60"
+                                active
+                                  ? "bg-gold/15 text-gold"
+                                  : "text-foreground/80 hover:bg-card/60"
                               }`}
                             >
                               <span>{m.name}</span>
@@ -488,7 +523,9 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                     >
                       <option value="">Select country…</option>
                       {COUNTRIES.map((c) => (
-                        <option key={c} value={c}>{c}</option>
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -520,15 +557,12 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">
                       Other users will see <strong>{effectiveMission?.name}</strong> connected to{" "}
-                      <strong>{hometownCity}, {hometownCountry}</strong>. Your name is never shown
-                      — pins display anonymously as “a missionary.” You can remove your pin at any
-                      time.
+                      <strong>
+                        {hometownCity}, {hometownCountry}
+                      </strong>
+                      . Your name is never shown — pins display anonymously as “a missionary.” You
+                      can remove your pin at any time.
                     </p>
-                    {!user && (
-                      <p className="mt-2 text-xs text-amber-500">
-                        You'll need to be signed in to share. Sign in first, then come back.
-                      </p>
-                    )}
                   </div>
                 </div>
                 <div className="flex flex-wrap justify-end gap-2">
@@ -540,11 +574,15 @@ export function MissionMapInner({ filterPinId = null, highlightLastName = null }
                     Keep private
                   </button>
                   <button
-                    disabled={saving || !user}
+                    disabled={saving}
                     onClick={() => confirmShare(true)}
                     className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/25 disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
+                    {saving ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      <Check className="h-3 w-3" />
+                    )}
                     Yes, share anonymously
                   </button>
                 </div>

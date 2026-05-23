@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  RANK_BADGE,
-  RANK_COLOR,
-  RANK_TITLE,
-  type RankTier,
-} from "@/state/match-state";
+import { RANK_BADGE, RANK_COLOR, RANK_TITLE, type RankTier } from "@/state/match-state";
 import { RankBadge } from "./RankBadge";
 import { CountUp } from "@/components/CountUp";
 
@@ -57,8 +52,10 @@ function VictoryScreen({
     <div className="absolute inset-0 z-40 overflow-hidden bg-[#06101e]">
       <GoldRain count={70} />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <div className="victory-title font-display italic text-gold drop-shadow-[0_0_40px_rgba(201,168,76,0.85)]"
-          style={{ fontSize: "clamp(4rem, 10vw, 8rem)" }}>
+        <div
+          className="victory-title font-display italic text-gold drop-shadow-[0_0_40px_rgba(201,168,76,0.85)]"
+          style={{ fontSize: "clamp(4rem, 10vw, 8rem)" }}
+        >
           VICTORY
         </div>
 
@@ -84,7 +81,11 @@ function VictoryScreen({
           line={`Better luck next time, ${opponentName}.`}
         />
 
-        <LearningCard word={finalWord} definition={finalCorrectDefinition} note="Their stumble — your lesson." />
+        <LearningCard
+          word={finalWord}
+          definition={finalCorrectDefinition}
+          note="Their stumble — your lesson."
+        />
 
         <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} />
       </div>
@@ -109,8 +110,10 @@ function DefeatScreen({
     <div className="absolute inset-0 z-40 overflow-hidden bg-[#080F1A]">
       <div className="defeat-wash absolute inset-0" />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <div className="defeat-title font-display text-white/85"
-          style={{ fontSize: "clamp(3.5rem, 9vw, 7rem)" }}>
+        <div
+          className="defeat-title font-display text-white/85"
+          style={{ fontSize: "clamp(3.5rem, 9vw, 7rem)" }}
+        >
           DEFEATED
         </div>
         <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
@@ -136,7 +139,12 @@ function DefeatScreen({
           warm
         />
 
-        <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} rematchLabel="⚔️ Try Again" />
+        <ResultButtons
+          onRematch={onRematch}
+          onReturn={onReturn}
+          onReview={onReview}
+          rematchLabel="⚔️ Try Again"
+        />
       </div>
     </div>
   );
@@ -158,8 +166,10 @@ function TieScreen({
     <div className="absolute inset-0 z-40 overflow-hidden">
       <div className="tie-bg absolute inset-0" />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <div className="font-display italic text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.4)] match-result-pop"
-          style={{ fontSize: "clamp(4rem, 10vw, 7rem)" }}>
+        <div
+          className="font-display italic text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.4)] match-result-pop"
+          style={{ fontSize: "clamp(4rem, 10vw, 7rem)" }}
+        >
           DRAW
         </div>
         <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-white/70">
@@ -178,9 +188,18 @@ function TieScreen({
           Survived {rounds} rounds
         </div>
 
-        <LearningCard word={finalWord} definition={finalCorrectDefinition} note="A word for both warriors to remember." />
+        <LearningCard
+          word={finalWord}
+          definition={finalCorrectDefinition}
+          note="A word for both warriors to remember."
+        />
 
-        <ResultButtons onRematch={onRematch} onReturn={onReturn} onReview={onReview} rematchLabel="⚔️ Play Again" />
+        <ResultButtons
+          onRematch={onRematch}
+          onReturn={onReturn}
+          onReview={onReview}
+          rematchLabel="⚔️ Play Again"
+        />
       </div>
     </div>
   );
@@ -246,9 +265,7 @@ function LearningCard({
       <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-gold/80">
         The word was
       </div>
-      <div className="mt-1 font-display italic text-2xl text-gold drop-shadow">
-        {word}
-      </div>
+      <div className="mt-1 font-display italic text-2xl text-gold drop-shadow">{word}</div>
       <div className="mt-2 text-sm leading-snug text-white/85">{definition}</div>
       <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/55">
         {note}

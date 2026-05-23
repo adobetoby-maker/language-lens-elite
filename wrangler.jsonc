@@ -4,10 +4,8 @@
   "compatibility_date": "2026-05-10",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
-    "enabled": true
+    "enabled": true,
   },
   // The app lives at app.languagethreshold.com — root and www redirect via the redirect worker.
-  "routes": [
-    { "pattern": "app.languagethreshold.com/*", "zone_name": "languagethreshold.com" }
-  ]
+  "routes": [{ "pattern": "app.languagethreshold.com/*", "zone_name": "languagethreshold.com" }],
 }

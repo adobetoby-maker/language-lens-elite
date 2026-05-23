@@ -20,15 +20,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The exterior wall layout starts at this corner — work your way around the slab.",
-        target: "El trazado de la pared exterior empieza en esta esquina — trabaja alrededor de la losa.",
+        target:
+          "El trazado de la pared exterior empieza en esta esquina — trabaja alrededor de la losa.",
       },
       {
         en: "Check the diagonal measurements to make sure the foundation is square.",
-        target: "Verifica las medidas diagonales para asegurarte de que la cimentación esté cuadrada.",
+        target:
+          "Verifica las medidas diagonales para asegurarte de que la cimentación esté cuadrada.",
       },
       {
         en: "Mark your stud locations at sixteen inches on center starting from this end.",
-        target: "Marca las ubicaciones de los montantes a dieciséis pulgadas de centro a centro desde este extremo.",
+        target:
+          "Marca las ubicaciones de los montantes a dieciséis pulgadas de centro a centro desde este extremo.",
       },
       {
         en: "The load-bearing wall runs parallel to the ridge — do not move it without approval.",
@@ -36,11 +39,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We need a double top plate on every exterior wall before the roof package goes up.",
-        target: "Necesitamos doble placa superior en cada pared exterior antes de que suba la estructura del techo.",
+        target:
+          "Necesitamos doble placa superior en cada pared exterior antes de que suba la estructura del techo.",
       },
       {
         en: "That header over the garage opening requires two two-by-twelves with a half-inch spacer.",
-        target: "Ese dintel sobre la apertura del garaje requiere dos vigas de dos por doce con un separador de media pulgada.",
+        target:
+          "Ese dintel sobre la apertura del garaje requiere dos vigas de dos por doce con un separador de media pulgada.",
       },
       {
         en: "Plumb the corner before you nail it off — use the level on both faces.",
@@ -48,11 +53,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Pull the tape from the outside edge of the rim joist to get your bearing-wall measurement.",
-        target: "Mide desde el borde exterior de la viga de borde para obtener la medida de la pared de carga.",
+        target:
+          "Mide desde el borde exterior de la viga de borde para obtener la medida de la pared de carga.",
       },
       {
         en: "Once the sheathing is nailed off, we can call for the framing inspection.",
-        target: "Una vez que el revestimiento esté clavado, podemos pedir la inspección de encuadre.",
+        target:
+          "Una vez que el revestimiento esté clavado, podemos pedir la inspección de encuadre.",
       },
     ],
   },
@@ -69,7 +76,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "We need sixty two-by-fours at eight feet and twenty sheets of OSB.",
-        target: "Il nous faut soixante pièces de deux par quatre en huit pieds et vingt panneaux d'OSB.",
+        target:
+          "Il nous faut soixante pièces de deux par quatre en huit pieds et vingt panneaux d'OSB.",
       },
       {
         en: "Can you deliver the lumber package Monday morning before seven?",
@@ -81,11 +89,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The engineer specified LVL beams for the main carrying beam, not standard lumber.",
-        target: "L'ingénieur a spécifié des poutres LVL pour la poutre principale, pas du bois standard.",
+        target:
+          "L'ingénieur a spécifié des poutres LVL pour la poutre principale, pas du bois standard.",
       },
       {
         en: "Make sure the studs are kiln-dried — we can't frame with green lumber in this climate.",
-        target: "Assurez-vous que les montants sont séchés en four — on ne peut pas charpenter avec du bois vert dans ce climat.",
+        target:
+          "Assurez-vous que les montants sont séchés en four — on ne peut pas charpenter avec du bois vert dans ce climat.",
       },
       {
         en: "The ridge beam needs to be a four-by-twelve, not a two-by-twelve.",
@@ -93,15 +103,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "How many sheets of half-inch plywood do we need for the subfloor?",
-        target: "Combien de panneaux de contreplaqué d'un demi-pouce faut-il pour le sous-plancher ?",
+        target:
+          "Combien de panneaux de contreplaqué d'un demi-pouce faut-il pour le sous-plancher ?",
       },
       {
         en: "Stack the lumber off the ground on blocks so it doesn't absorb moisture overnight.",
-        target: "Empilez le bois surélevé sur des cales pour qu'il n'absorbe pas l'humidité cette nuit.",
+        target:
+          "Empilez le bois surélevé sur des cales pour qu'il n'absorbe pas l'humidité cette nuit.",
       },
       {
         en: "We're framing the second floor tomorrow — get the floor joists staged by end of day.",
-        target: "On construit le deuxième étage demain — faites mettre en place les solives de plancher avant la fin de journée.",
+        target:
+          "On construit le deuxième étage demain — faites mettre en place les solives de plancher avant la fin de journée.",
       },
     ],
   },
@@ -118,15 +131,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Set the king stud first, then nail the trimmer studs on both sides of the opening.",
-        target: "Setz zuerst den Königsständer, dann nagel die Futterhölzer auf beiden Seiten der Öffnung fest.",
+        target:
+          "Setz zuerst den Königsständer, dann nagel die Futterhölzer auf beiden Seiten der Öffnung fest.",
       },
       {
         en: "These rafters are cut at a six-twelve pitch — check the angle before you cut the whole bundle.",
-        target: "Diese Sparren sind auf ein Sechs-Zwölf-Gefälle geschnitten — prüf den Winkel, bevor du das ganze Bündel schneidest.",
+        target:
+          "Diese Sparren sind auf ein Sechs-Zwölf-Gefälle geschnitten — prüf den Winkel, bevor du das ganze Bündel schneidest.",
       },
       {
         en: "The wall is not plumb — brace it and adjust before you nail the sheathing.",
-        target: "Die Wand steht nicht lotrecht — verstreb sie und korrigier das, bevor du das Wandverkleidungsblech nagelst.",
+        target:
+          "Die Wand steht nicht lotrecht — verstreb sie und korrigier das, bevor du das Wandverkleidungsblech nagelst.",
       },
       {
         en: "We're framing a load-bearing wall here, so use double studs at every corner.",
@@ -134,15 +150,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Hand me the framing nailer — I need the thirty-five-degree nails for this header.",
-        target: "Reich mir den Rahmennagelpistole — ich brauche die 35-Grad-Nägel für diesen Sturz.",
+        target:
+          "Reich mir den Rahmennagelpistole — ich brauche die 35-Grad-Nägel für diesen Sturz.",
       },
       {
         en: "Mr. Hartmann, the ceiling joists are now in place — you can walk the floor upstairs.",
-        target: "Herr Hartmann, die Deckensparren sind jetzt eingebaut — Sie können oben über den Boden laufen.",
+        target:
+          "Herr Hartmann, die Deckensparren sind jetzt eingebaut — Sie können oben über den Boden laufen.",
       },
       {
         en: "Block between the studs at mid-height for fire blocking on this two-story wall.",
-        target: "Block zwischen die Ständer auf halber Höhe für den Brandschutz an dieser zweigeschossigen Wand.",
+        target:
+          "Block zwischen die Ständer auf halber Höhe für den Brandschutz an dieser zweigeschossigen Wand.",
       },
       {
         en: "The window rough opening is framed two inches wider than the unit size.",
@@ -150,7 +169,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Snap the layout on the top and bottom plates before you start standing walls.",
-        target: "Reiß die Aufteilung an Ober- und Unterplatte an, bevor du mit dem Aufstellen der Wände anfängst.",
+        target:
+          "Reiß die Aufteilung an Ober- und Unterplatte an, bevor du mit dem Aufstellen der Wände anfängst.",
       },
     ],
   },
@@ -167,15 +187,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "This beam carries the floor load from the center of the house to the foundation wall.",
-        target: "Questa trave porta il carico del pavimento dal centro della casa al muro di fondazione.",
+        target:
+          "Questa trave porta il carico del pavimento dal centro della casa al muro di fondazione.",
       },
       {
         en: "We need a post every eight feet under the main beam — no exceptions.",
-        target: "Ci vuole un pilastro ogni otto piedi sotto la trave principale — nessuna eccezione.",
+        target:
+          "Ci vuole un pilastro ogni otto piedi sotto la trave principale — nessuna eccezione.",
       },
       {
         en: "The engineer's plan calls for a six-by-ten LVL beam over this opening.",
-        target: "Il progetto dell'ingegnere prevede una trave LVL sei per dieci su questa apertura.",
+        target:
+          "Il progetto dell'ingegnere prevede una trave LVL sei per dieci su questa apertura.",
       },
       {
         en: "Lower the beam slowly — two people on each end, keep it level.",
@@ -183,15 +206,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The joist hangers need to be nailed with the manufacturer-specified nails, not screws.",
-        target: "Le staffe per le travi devono essere chiodate con i chiodi specificati dal produttore, non viti.",
+        target:
+          "Le staffe per le travi devono essere chiodate con i chiodi specificati dal produttore, non viti.",
       },
       {
         en: "Check the crown on each joist before you install it — crown always goes up.",
-        target: "Controlla la curvatura di ogni travetto prima di installarlo — la gobba va sempre verso l'alto.",
+        target:
+          "Controlla la curvatura di ogni travetto prima di installarlo — la gobba va sempre verso l'alto.",
       },
       {
         en: "The span is eighteen feet — we have to double the floor joists or upgrade to engineered lumber.",
-        target: "La campata è di diciotto piedi — dobbiamo raddoppiare i travetti o passare al legno strutturale.",
+        target:
+          "La campata è di diciotto piedi — dobbiamo raddoppiare i travetti o passare al legno strutturale.",
       },
       {
         en: "Blocking at mid-span keeps the joists from twisting under load.",
@@ -199,7 +225,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The rim joist goes around the entire perimeter before we set the floor joists.",
-        target: "La trave di bordo gira attorno all'intero perimetro prima che noi installiamo i travetti del pavimento.",
+        target:
+          "La trave di bordo gira attorno all'intero perimetro prima che noi installiamo i travetti del pavimento.",
       },
     ],
   },
@@ -265,7 +292,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Start the first sheet of sheathing at the bottom corner and keep it square to the layout.",
-        target: "Comece a primeira chapa de revestimento no canto inferior e mantenha-a alinhada com o gabarito.",
+        target:
+          "Comece a primeira chapa de revestimento no canto inferior e mantenha-a alinhada com o gabarito.",
       },
       {
         en: "Nail the OSB every six inches on the edges and twelve inches in the field.",
@@ -281,7 +309,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The inspector wants to see the shear wall nailing before we cover it with housewrap.",
-        target: "O inspetor quer ver a pregação do painel de cisalhamento antes de cobrir com o manta impermeável.",
+        target:
+          "O inspetor quer ver a pregação do painel de cisalhamento antes de cobrir com o manta impermeável.",
       },
       {
         en: "We're wrapping the house today — staple the housewrap tight with no sags.",
@@ -289,7 +318,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "That corner panel is short — rip another piece and fill it in before the inspector comes.",
-        target: "Aquela chapa de canto está curta — serrie outra peça e complete antes de o inspetor chegar.",
+        target:
+          "Aquela chapa de canto está curta — serrie outra peça e complete antes de o inspetor chegar.",
       },
       {
         en: "The load-bearing sheathing panels must have the grain oriented vertically.",
@@ -321,7 +351,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The pressure test shows a drop — there's a leak somewhere in the supply line.",
-        target: "La prueba de presión muestra una caída — hay una fuga en algún lugar de la línea de suministro.",
+        target:
+          "La prueba de presión muestra una caída — hay una fuga en algún lugar de la línea de suministro.",
       },
       {
         en: "That joint was never soldered properly — we'll have to cut it out and redo it.",
@@ -333,11 +364,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We need to locate the slab leak before we can determine the repair method.",
-        target: "Necesitamos localizar la fuga en la losa antes de determinar el método de reparación.",
+        target:
+          "Necesitamos localizar la fuga en la losa antes de determinar el método de reparación.",
       },
       {
         en: "The valve seat is worn — a new washer won't fix it, the whole valve needs to be replaced.",
-        target: "El asiento de la válvula está desgastado — una arandela nueva no lo arreglará, hay que reemplazar toda la válvula.",
+        target:
+          "El asiento de la válvula está desgastado — una arandela nueva no lo arreglará, hay que reemplazar toda la válvula.",
       },
       {
         en: "Run water in every fixture and check the meter to see if it's still moving.",
@@ -345,11 +378,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "There's a slow drip from the supply shut-off — I'll replace the packing nut.",
-        target: "Hay un goteo lento desde la llave de paso — voy a reemplazar la tuerca de empaque.",
+        target:
+          "Hay un goteo lento desde la llave de paso — voy a reemplazar la tuerca de empaque.",
       },
       {
         en: "This copper line has pinhole corrosion — the whole section needs to be replaced.",
-        target: "Esta tubería de cobre tiene corrosión de poros finos — hay que reemplazar toda la sección.",
+        target:
+          "Esta tubería de cobre tiene corrosión de poros finos — hay que reemplazar toda la sección.",
       },
     ],
   },
@@ -366,15 +401,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "We're running three-quarter-inch copper from the main to the water heater.",
-        target: "On tire du cuivre de trois quarts de pouce depuis l'arrivée principale jusqu'au chauffe-eau.",
+        target:
+          "On tire du cuivre de trois quarts de pouce depuis l'arrivée principale jusqu'au chauffe-eau.",
       },
       {
         en: "Clean the pipe end with emery cloth before applying flux — the solder won't stick to a dirty surface.",
-        target: "Nettoyez l'extrémité du tuyau avec du papier émeri avant d'appliquer le flux — la soudure n'adhère pas sur une surface sale.",
+        target:
+          "Nettoyez l'extrémité du tuyau avec du papier émeri avant d'appliquer le flux — la soudure n'adhère pas sur une surface sale.",
       },
       {
         en: "The fitting is a half-inch by half-inch tee — grab three of them from the truck.",
-        target: "Le raccord est un té d'un demi-pouce par un demi-pouce — prenez-en trois dans le camion.",
+        target:
+          "Le raccord est un té d'un demi-pouce par un demi-pouce — prenez-en trois dans le camion.",
       },
       {
         en: "Apply flux to both the fitting and the pipe end before you heat it.",
@@ -382,7 +420,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The drain line needs a two-percent slope minimum — check it with the level.",
-        target: "La ligne d'évacuation doit avoir au minimum une pente de deux pour cent — vérifiez avec le niveau.",
+        target:
+          "La ligne d'évacuation doit avoir au minimum une pente de deux pour cent — vérifiez avec le niveau.",
       },
       {
         en: "Use a coupling, not a union, on this hidden run behind the wall.",
@@ -390,7 +429,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "That elbow needs to be a long-radius sweep, not a sharp ninety — for the drain flow.",
-        target: "Ce coude doit avoir un grand rayon de courbure, pas un angle droit strict — pour l'écoulement du drain.",
+        target:
+          "Ce coude doit avoir un grand rayon de courbure, pas un angle droit strict — pour l'écoulement du drain.",
       },
       {
         en: "Pressure test at one hundred psi for ten minutes before we close up the wall.",
@@ -398,7 +438,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The water heater expansion tank needs to be installed on the cold-side supply line.",
-        target: "Le vase d'expansion du chauffe-eau doit être installé sur la ligne d'alimentation côté eau froide.",
+        target:
+          "Le vase d'expansion du chauffe-eau doit être installé sur la ligne d'alimentation côté eau froide.",
       },
     ],
   },
@@ -415,27 +456,33 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "We have to shut the main valve before we can replace the pressure reducing valve.",
-        target: "Wir müssen das Hauptabsperrventil schließen, bevor wir das Druckminderventil tauschen können.",
+        target:
+          "Wir müssen das Hauptabsperrventil schließen, bevor wir das Druckminderventil tauschen können.",
       },
       {
         en: "The pressure is at ninety PSI — that's way too high, we need a regulator.",
-        target: "Der Druck liegt bei neunzig PSI — das ist viel zu hoch, wir brauchen einen Druckminderer.",
+        target:
+          "Der Druck liegt bei neunzig PSI — das ist viel zu hoch, wir brauchen einen Druckminderer.",
       },
       {
         en: "Turn the handle clockwise to close, counterclockwise to open — never force it.",
-        target: "Dreh den Griff im Uhrzeigersinn zum Schließen, gegen den Uhrzeigersinn zum Öffnen — nie mit Gewalt.",
+        target:
+          "Dreh den Griff im Uhrzeigersinn zum Schließen, gegen den Uhrzeigersinn zum Öffnen — nie mit Gewalt.",
       },
       {
         en: "That ball valve is a quarter-turn — if the handle is inline with the pipe, it's open.",
-        target: "Das Kugelventil dreht nur ein Viertel — wenn der Griff parallel zur Leitung ist, ist es offen.",
+        target:
+          "Das Kugelventil dreht nur ein Viertel — wenn der Griff parallel zur Leitung ist, ist es offen.",
       },
       {
         en: "Frau Bauer, I'll need to turn your water off for about two hours to replace this valve.",
-        target: "Frau Bauer, ich muss Ihr Wasser für ungefähr zwei Stunden abstellen, um dieses Ventil zu ersetzen.",
+        target:
+          "Frau Bauer, ich muss Ihr Wasser für ungefähr zwei Stunden abstellen, um dieses Ventil zu ersetzen.",
       },
       {
         en: "Install a full-port ball valve here — the old gate valve is corroded and won't seat properly.",
-        target: "Bau hier ein Vollbohrungskugelventil ein — das alte Schieberventil ist korrodiert und schließt nicht mehr richtig.",
+        target:
+          "Bau hier ein Vollbohrungskugelventil ein — das alte Schieberventil ist korrodiert und schließt nicht mehr richtig.",
       },
       {
         en: "The pressure relief valve on the water heater is weeping — replace it before it fails completely.",
@@ -443,11 +490,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Label every shut-off valve in the utility room so the next plumber knows what controls what.",
-        target: "Beschrifte jedes Absperrventil im Technikraum, damit der nächste Installateur weiß, was was steuert.",
+        target:
+          "Beschrifte jedes Absperrventil im Technikraum, damit der nächste Installateur weiß, was was steuert.",
       },
       {
         en: "Bleed the air from the system at the highest fixture after you restore the water supply.",
-        target: "Entlüfte das System am höchsten Verbraucher, nachdem du die Wasserzufuhr wiederhergestellt hast.",
+        target:
+          "Entlüfte das System am höchsten Verbraucher, nachdem du die Wasserzufuhr wiederhergestellt hast.",
       },
     ],
   },
@@ -464,15 +513,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "The main drain is backing up — I need to run the snake before we do anything else.",
-        target: "Lo scarico principale è intasato — devo passare il serpente prima di fare qualsiasi altra cosa.",
+        target:
+          "Lo scarico principale è intasato — devo passare il serpente prima di fare qualsiasi altra cosa.",
       },
       {
         en: "The camera shows a root intrusion at the forty-foot mark in the sewer line.",
-        target: "La telecamera mostra un'intrusione di radici al metro dodici nella tubatura fognaria.",
+        target:
+          "La telecamera mostra un'intrusione di radici al metro dodici nella tubatura fognaria.",
       },
       {
         en: "We need to hydro-jet the main line before the blockage causes a backup in the basement.",
-        target: "Dobbiamo fare un'idropulitura della linea principale prima che l'ostruzione provochi un rigurgito nel seminterrato.",
+        target:
+          "Dobbiamo fare un'idropulitura della linea principale prima che l'ostruzione provochi un rigurgito nel seminterrato.",
       },
       {
         en: "The cleanout access is under that cover near the foundation — open it up.",
@@ -480,11 +532,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Check the slope on the drain line — it needs to drop a quarter inch per foot.",
-        target: "Controlla la pendenza della tubatura di scarico — deve scendere un quarto di pollice per piede.",
+        target:
+          "Controlla la pendenza della tubatura di scarico — deve scendere un quarto di pollice per piede.",
       },
       {
         en: "The trap on the floor drain is dry — fill it with water to block sewer gas.",
-        target: "Il sifone del pozzetto a pavimento è asciutto — riempilo d'acqua per bloccare i gas fognari.",
+        target:
+          "Il sifone del pozzetto a pavimento è asciutto — riempilo d'acqua per bloccare i gas fognari.",
       },
       {
         en: "That ABS fitting is cracked — cut it out and glue in a new coupling.",
@@ -492,11 +546,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The vent stack is blocked with debris — that's why all the drains are slow.",
-        target: "La colonna di ventilazione è ostruita da detriti — è per questo che tutti gli scarichi sono lenti.",
+        target:
+          "La colonna di ventilazione è ostruita da detriti — è per questo che tutti gli scarichi sono lenti.",
       },
       {
         en: "After we replace this section, we'll do a smoke test to confirm there are no other issues.",
-        target: "Dopo aver sostituito questo tratto, faremo una prova a fumo per confermare che non ci siano altri problemi.",
+        target:
+          "Dopo aver sostituito questo tratto, faremo una prova a fumo per confermare che non ci siano altri problemi.",
       },
     ],
   },
@@ -537,7 +593,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Light the pilot according to the label instructions — wait five minutes for the thermocouple to heat.",
-        target: "ラベルの指示に従ってパイロットに点火してください — 熱電対が熱くなるまで5分待ちます。",
+        target:
+          "ラベルの指示に従ってパイロットに点火してください — 熱電対が熱くなるまで5分待ちます。",
       },
       {
         en: "Check all connections with soapy water before leaving the job site.",
@@ -562,35 +619,43 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "The sewer lateral runs from the house to the street connection at a quarter-inch per foot slope.",
-        target: "O ramal de esgoto vai da casa até a ligação na rua com declive de um quarto de polegada por pé.",
+        target:
+          "O ramal de esgoto vai da casa até a ligação na rua com declive de um quarto de polegada por pé.",
       },
       {
         en: "We need a cleanout at every change of direction in the drain system.",
-        target: "Precisamos de um acesso de limpeza em cada mudança de direção no sistema de esgoto.",
+        target:
+          "Precisamos de um acesso de limpeza em cada mudança de direção no sistema de esgoto.",
       },
       {
         en: "The camera inspection showed a belly in the pipe at about twenty feet out.",
-        target: "A inspeção com câmera mostrou um afundamento no tubo a cerca de seis metros de distância.",
+        target:
+          "A inspeção com câmera mostrou um afundamento no tubo a cerca de seis metros de distância.",
       },
       {
         en: "Dig to the pipe carefully — it's only two feet down and you don't want to crack it.",
-        target: "Cave com cuidado até a tubulação — ela está a apenas sessenta centímetros de profundidade e você não quer rachá-la.",
+        target:
+          "Cave com cuidado até a tubulação — ela está a apenas sessenta centímetros de profundidade e você não quer rachá-la.",
       },
       {
         en: "The old cast iron pipe has to come out — replace it with four-inch PVC.",
-        target: "O tubo de ferro fundido antigo tem que sair — substitua por PVC de quatro polegadas.",
+        target:
+          "O tubo de ferro fundido antigo tem que sair — substitua por PVC de quatro polegadas.",
       },
       {
         en: "Prime and glue every joint — don't skip the primer on PVC, it's required by code.",
-        target: "Aplique primer e cola em todas as juntas — não pule o primer no PVC, é exigido pelo código.",
+        target:
+          "Aplique primer e cola em todas as juntas — não pule o primer no PVC, é exigido pelo código.",
       },
       {
         en: "The grease trap needs to be cleaned every three months or the drain will back up again.",
-        target: "A caixa de gordura precisa ser limpa a cada três meses ou o esgoto vai entupir de novo.",
+        target:
+          "A caixa de gordura precisa ser limpa a cada três meses ou o esgoto vai entupir de novo.",
       },
       {
         en: "We'll do a hydrostatic test before backfilling to confirm there are no leaks.",
-        target: "Faremos um teste hidrostático antes de aterrar para confirmar que não há vazamentos.",
+        target:
+          "Faremos um teste hidrostático antes de aterrar para confirmar que não há vazamentos.",
       },
       {
         en: "The municipality requires an inspection before you can backfill the sewer trench.",
@@ -614,11 +679,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Mix the joint compound to a peanut butter consistency — not too thick, not too thin.",
-        target: "Mezcla la masilla a una consistencia de mantequilla de maní — ni muy espesa ni muy líquida.",
+        target:
+          "Mezcla la masilla a una consistencia de mantequilla de maní — ni muy espesa ni muy líquida.",
       },
       {
         en: "Embed the tape in the first coat of mud before it dries — work out any bubbles.",
-        target: "Incrusta la cinta en la primera capa de masilla antes de que seque — elimina cualquier burbuja.",
+        target:
+          "Incrusta la cinta en la primera capa de masilla antes de que seque — elimina cualquier burbuja.",
       },
       {
         en: "The seam needs three coats minimum before it's ready for primer.",
@@ -626,7 +693,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Sand lightly between coats and wipe the dust before applying the next layer.",
-        target: "Lija ligeramente entre capas y limpia el polvo antes de aplicar la siguiente capa.",
+        target:
+          "Lija ligeramente entre capas y limpia el polvo antes de aplicar la siguiente capa.",
       },
       {
         en: "That corner bead is crooked — pull it and reset it before we mud over it.",
@@ -638,15 +706,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The texture coat needs to dry completely before the painter can prime.",
-        target: "La capa de textura debe secar completamente antes de que el pintor pueda dar el primer.",
+        target:
+          "La capa de textura debe secar completamente antes de que el pintor pueda dar el primer.",
       },
       {
         en: "Use hot mud for the first coat on this patch — it'll set faster and shrink less.",
-        target: "Usa masilla de fraguado rápido para la primera capa en este parche — fraguará más rápido y encoge menos.",
+        target:
+          "Usa masilla de fraguado rápido para la primera capa en este parche — fraguará más rápido y encoge menos.",
       },
       {
         en: "Check your seams with a low-angle light before you call the job done.",
-        target: "Revisa tus uniones con una luz rasante antes de decir que el trabajo está terminado.",
+        target:
+          "Revisa tus uniones con una luz rasante antes de decir que el trabajo está terminado.",
       },
     ],
   },
@@ -671,15 +742,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The butt joints are the hardest to hide — spread your coats wider on those.",
-        target: "Les joints de bout sont les plus difficiles à dissimuler — étalez vos couches plus largement sur ceux-là.",
+        target:
+          "Les joints de bout sont les plus difficiles à dissimuler — étalez vos couches plus largement sur ceux-là.",
       },
       {
         en: "Inside corners get paper tape, outside corners get metal or vinyl bead.",
-        target: "Les coins intérieurs reçoivent de la bande papier, les coins extérieurs reçoivent une baguette métallique ou en vinyle.",
+        target:
+          "Les coins intérieurs reçoivent de la bande papier, les coins extérieurs reçoivent une baguette métallique ou en vinyle.",
       },
       {
         en: "Let each coat dry completely — don't skip drying time or the finish will crack.",
-        target: "Laissez sécher chaque couche complètement — ne sautez pas le temps de séchage ou la finition se fissura.",
+        target:
+          "Laissez sécher chaque couche complètement — ne sautez pas le temps de séchage ou la finition se fissura.",
       },
       {
         en: "The finish coat should be so thin you can almost see through it.",
@@ -687,15 +761,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Use a twelve-inch knife for the second and third coats to get a flatter finish.",
-        target: "Utilisez un couteau de douze pouces pour les deuxième et troisième couches pour une finition plus plane.",
+        target:
+          "Utilisez un couteau de douze pouces pour les deuxième et troisième couches pour une finition plus plane.",
       },
       {
         en: "Sand only after the final coat is fully dry — use a hundred-and-twenty grit.",
-        target: "Ne poncez qu'après que la couche finale soit complètement sèche — utilisez du grain cent vingt.",
+        target:
+          "Ne poncez qu'après que la couche finale soit complètement sèche — utilisez du grain cent vingt.",
       },
       {
         en: "Wipe the wall with a damp sponge before priming — no dust, no loose particles.",
-        target: "Essuyez le mur avec une éponge humide avant d'appliquer le fond — ni poussière, ni particules.",
+        target:
+          "Essuyez le mur avec une éponge humide avant d'appliquer le fond — ni poussière, ni particules.",
       },
     ],
   },
@@ -720,7 +797,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The customer wants a smooth Level 5 finish — that means skim coat over the entire surface.",
-        target: "Der Kunde möchte eine glatte Level-5-Oberfläche — das bedeutet Glättputz über die gesamte Fläche.",
+        target:
+          "Der Kunde möchte eine glatte Level-5-Oberfläche — das bedeutet Glättputz über die gesamte Fläche.",
       },
       {
         en: "Sand the skim coat in long, even strokes — don't circle-scratch it.",
@@ -728,15 +806,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Herr Schneider, the finish coat has to cure for twenty-four hours before we can paint.",
-        target: "Herr Schneider, die Schlussschicht muss vierundzwanzig Stunden aushärten, bevor wir streichen können.",
+        target:
+          "Herr Schneider, die Schlussschicht muss vierundzwanzig Stunden aushärten, bevor wir streichen können.",
       },
       {
         en: "Mask off the trim before you start — overspray is almost impossible to remove from wood.",
-        target: "Kleb die Leisten ab, bevor du anfängst — Overspray auf Holz lässt sich kaum entfernen.",
+        target:
+          "Kleb die Leisten ab, bevor du anfängst — Overspray auf Holz lässt sich kaum entfernen.",
       },
       {
         en: "The popcorn texture has to be wet-scraped before we can re-texture this ceiling.",
-        target: "Die Popcorn-Textur muss nass abgekratzt werden, bevor wir diese Decke neu texturieren können.",
+        target:
+          "Die Popcorn-Textur muss nass abgekratzt werden, bevor wir diese Decke neu texturieren können.",
       },
       {
         en: "Mix the texture material to a thin, even consistency — no lumps.",
@@ -765,7 +846,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The outside corner took a hit — cut out that section and install a new piece of bead.",
-        target: "Lo spigolo esterno ha preso un colpo — taglia quella sezione e installa un pezzo nuovo di profilo.",
+        target:
+          "Lo spigolo esterno ha preso un colpo — taglia quella sezione e installa un pezzo nuovo di profilo.",
       },
       {
         en: "Feather the compound from the bead out to at least ten inches on each side.",
@@ -773,15 +855,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Use a corner tool for inside corners — it's faster and more consistent than a hand knife.",
-        target: "Usa il coltello angolare per gli angoli interni — è più veloce e uniforme del coltello a mano.",
+        target:
+          "Usa il coltello angolare per gli angoli interni — è più veloce e uniforme del coltello a mano.",
       },
       {
         en: "The vinyl bead is better than metal in humid areas because it won't rust through the finish.",
-        target: "Il profilo in vinile è meglio del metallo nelle aree umide perché non arrugginisce sotto la finitura.",
+        target:
+          "Il profilo in vinile è meglio del metallo nelle aree umide perché non arrugginisce sotto la finitura.",
       },
       {
         en: "Check that the corner bead is plumb before you mud it — fix it now, not later.",
-        target: "Controlla che il profilo angolare sia in piombo prima di stuccarlo — correggilo adesso, non dopo.",
+        target:
+          "Controlla che il profilo angolare sia in piombo prima di stuccarlo — correggilo adesso, non dopo.",
       },
       {
         en: "Three coats on all beads and let each one dry before sanding.",
@@ -789,11 +874,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Sand with a pole sander on the flat sections and a hand block near the corners.",
-        target: "Carteggia con la prolunga nelle sezioni piane e con il blocco a mano vicino agli angoli.",
+        target:
+          "Carteggia con la prolunga nelle sezioni piane e con il blocco a mano vicino agli angoli.",
       },
       {
         en: "When you're done, vacuum the dust and apply a coat of drywall primer before the painter arrives.",
-        target: "Quando hai finito, aspira la polvere e applica un fondo per cartongesso prima che arrivi il pittore.",
+        target:
+          "Quando hai finito, aspira la polvere e applica un fondo per cartongesso prima che arrivi il pittore.",
       },
     ],
   },
@@ -818,7 +905,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Use one hundred twenty grit for final sanding — anything coarser will scratch the surface.",
-        target: "最終研磨には120番のサンドペーパーを使ってください — それより粗いと表面に傷が付きます。",
+        target:
+          "最終研磨には120番のサンドペーパーを使ってください — それより粗いと表面に傷が付きます。",
       },
       {
         en: "A good finish coat is very thin — you should be able to see the tape through it.",
@@ -842,7 +930,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Wipe the wall with a slightly damp sponge after sanding — never use a dripping wet cloth.",
-        target: "研磨後は軽く湿らせたスポンジで壁を拭いてください — びしょびしょの布は使わないでください。",
+        target:
+          "研磨後は軽く湿らせたスポンジで壁を拭いてください — びしょびしょの布は使わないでください。",
       },
     ],
   },
@@ -863,23 +952,28 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Space the screws twelve inches apart in the field and eight inches on the edges.",
-        target: "Espaçe os parafusos trinta centímetros no miolo da chapa e vinte centímetros nas bordas.",
+        target:
+          "Espaçe os parafusos trinta centímetros no miolo da chapa e vinte centímetros nas bordas.",
       },
       {
         en: "If a screw tears through the paper, add another screw two inches away and fill the bad one.",
-        target: "Se um parafuso rasgou o papel, coloque outro a cinco centímetros e tampe o ruim com massa.",
+        target:
+          "Se um parafuso rasgou o papel, coloque outro a cinco centímetros e tampe o ruim com massa.",
       },
       {
         en: "Use drywall screws, not wood screws — they're designed not to pop.",
-        target: "Use parafusos para drywall, não para madeira — eles são projetados para não saltarem.",
+        target:
+          "Use parafusos para drywall, não para madeira — eles são projetados para não saltarem.",
       },
       {
         en: "The screw gun torque is set to stop when the head is just flush — adjust the clutch.",
-        target: "O torque da parafusadeira está ajustado para parar quando a cabeça está rente — ajuste a embreagem.",
+        target:
+          "O torque da parafusadeira está ajustado para parar quando a cabeça está rente — ajuste a embreagem.",
       },
       {
         en: "For heavy items on drywall, you need a toggle bolt or you have to hit a stud.",
-        target: "Para itens pesados no drywall, você precisa de uma bucha borboleta ou tem que pegar o montante.",
+        target:
+          "Para itens pesados no drywall, você precisa de uma bucha borboleta ou tem que pegar o montante.",
       },
       {
         en: "Mark the stud locations on the floor and ceiling before you hang the sheet.",
@@ -887,7 +981,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Count your screws — code requires a minimum number per sheet for fire rating.",
-        target: "Conte seus parafusos — o código exige um número mínimo por chapa para a classificação corta-fogo.",
+        target:
+          "Conte seus parafusos — o código exige um número mínimo por chapa para a classificação corta-fogo.",
       },
       {
         en: "Fill all the dimples with at least two coats of compound before sanding.",
@@ -915,15 +1010,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The NEC requires arc fault breakers on all bedroom circuits in new construction.",
-        target: "El Código Eléctrico Nacional requiere interruptores de falla de arco en todos los circuitos de dormitorios en construcción nueva.",
+        target:
+          "El Código Eléctrico Nacional requiere interruptores de falla de arco en todos los circuitos de dormitorios en construcción nueva.",
       },
       {
         en: "Run a dedicated twenty-amp circuit for the refrigerator — no shared outlets.",
-        target: "Instala un circuito dedicado de veinte amperios para el refrigerador — sin tomacorrientes compartidos.",
+        target:
+          "Instala un circuito dedicado de veinte amperios para el refrigerador — sin tomacorrientes compartidos.",
       },
       {
         en: "Strip the wire back three quarters of an inch — not more, or you'll have exposed copper at the connector.",
-        target: "Pela el cable tres cuartos de pulgada — no más, o tendrás cobre expuesto en el conector.",
+        target:
+          "Pela el cable tres cuartos de pulgada — no más, o tendrás cobre expuesto en el conector.",
       },
       {
         en: "The ground wire always goes to the green screw on the outlet.",
@@ -931,15 +1029,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We're rough-wiring today — keep your staples within twelve inches of every box.",
-        target: "Hoy hacemos el cableado en bruto — mantén tus grapas a menos de doce pulgadas de cada caja.",
+        target:
+          "Hoy hacemos el cableado en bruto — mantén tus grapas a menos de doce pulgadas de cada caja.",
       },
       {
         en: "Label every circuit in the panel before you close it up — the inspector will check.",
-        target: "Etiqueta cada circuito en el tablero antes de cerrarlo — el inspector lo revisará.",
+        target:
+          "Etiqueta cada circuito en el tablero antes de cerrarlo — el inspector lo revisará.",
       },
       {
         en: "All kitchen counter outlets must be GFCI protected within six feet of the sink.",
-        target: "Todos los tomacorrientes en la encimera de la cocina deben tener protección GFCI dentro de los seis pies del fregadero.",
+        target:
+          "Todos los tomacorrientes en la encimera de la cocina deben tener protección GFCI dentro de los seis pies del fregadero.",
       },
       {
         en: "The conduit run to the sub-panel needs to be strapped every four feet.",
@@ -960,15 +1061,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "This circuit is overloaded — move two of these outlets to a new twenty-amp circuit.",
-        target: "Ce circuit est surchargé — déplacez deux de ces prises vers un nouveau circuit de vingt ampères.",
+        target:
+          "Ce circuit est surchargé — déplacez deux de ces prises vers un nouveau circuit de vingt ampères.",
       },
       {
         en: "A double-pole breaker controls both legs of a two-forty-volt circuit.",
-        target: "Un disjoncteur bipolaire contrôle les deux phases d'un circuit à deux cent quarante volts.",
+        target:
+          "Un disjoncteur bipolaire contrôle les deux phases d'un circuit à deux cent quarante volts.",
       },
       {
         en: "The breaker keeps tripping because the load is too high — what appliances are on this circuit?",
-        target: "Le disjoncteur continue de sauter parce que la charge est trop élevée — quels appareils sont sur ce circuit ?",
+        target:
+          "Le disjoncteur continue de sauter parce que la charge est trop élevée — quels appareils sont sur ce circuit ?",
       },
       {
         en: "Calculate the load before you add any more circuits to this panel.",
@@ -976,19 +1080,23 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The panel has no available spaces — we'll need to install a sub-panel or upgrade the service.",
-        target: "Le tableau n'a plus de place disponible — il faut installer un sous-tableau ou augmenter le service.",
+        target:
+          "Le tableau n'a plus de place disponible — il faut installer un sous-tableau ou augmenter le service.",
       },
       {
         en: "Label every wire in the junction box before you make any connections.",
-        target: "Étiquetez chaque câble dans la boîte de jonction avant d'effectuer des connexions.",
+        target:
+          "Étiquetez chaque câble dans la boîte de jonction avant d'effectuer des connexions.",
       },
       {
         en: "The AFCI breaker protects against arc faults that can cause fires inside the walls.",
-        target: "Le disjoncteur AFCI protège contre les arcs électriques pouvant provoquer des incendies dans les murs.",
+        target:
+          "Le disjoncteur AFCI protège contre les arcs électriques pouvant provoquer des incendies dans les murs.",
       },
       {
         en: "Torque the neutral bus bar connections — loose neutrals cause voltage imbalances.",
-        target: "Serrez les connexions du rail de neutre au couple indiqué — les neutres desserrés provoquent des déséquilibres de tension.",
+        target:
+          "Serrez les connexions du rail de neutre au couple indiqué — les neutres desserrés provoquent des déséquilibres de tension.",
       },
       {
         en: "Never tie the neutral and ground together except at the main panel.",
@@ -1009,39 +1117,48 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "The main breaker is off — now verify at each circuit before you start working.",
-        target: "Der Hauptschalter ist aus — jetzt an jedem Stromkreis prüfen, bevor du anfängst zu arbeiten.",
+        target:
+          "Der Hauptschalter ist aus — jetzt an jedem Stromkreis prüfen, bevor du anfängst zu arbeiten.",
       },
       {
         en: "This sub-panel feeds the workshop — it's on a sixty-amp breaker at the main.",
-        target: "Dieser Unterverteiler versorgt die Werkstatt — er hängt an einem sechzig-Ampere-Sicherungsautomaten im Hauptverteiler.",
+        target:
+          "Dieser Unterverteiler versorgt die Werkstatt — er hängt an einem sechzig-Ampere-Sicherungsautomaten im Hauptverteiler.",
       },
       {
         en: "Torque the main lug connections to spec — a loose connection at this amperage will burn.",
-        target: "Zieh die Hauptklemmen auf Drehmoment nach Vorgabe fest — eine lose Verbindung bei dieser Stromstärke brennt durch.",
+        target:
+          "Zieh die Hauptklemmen auf Drehmoment nach Vorgabe fest — eine lose Verbindung bei dieser Stromstärke brennt durch.",
       },
       {
         en: "Herr Fischer, the panel upgrade means the power will be off for about four hours.",
-        target: "Herr Fischer, der Tausch des Verteilers bedeutet, dass der Strom etwa vier Stunden weg ist.",
+        target:
+          "Herr Fischer, der Tausch des Verteilers bedeutet, dass der Strom etwa vier Stunden weg ist.",
       },
       {
         en: "All circuits must be labeled in German and English on the schedule — it's a bilingual job site.",
-        target: "Alle Stromkreise müssen auf dem Schema auf Deutsch und Englisch beschriftet sein — es ist eine zweisprachige Baustelle.",
+        target:
+          "Alle Stromkreise müssen auf dem Schema auf Deutsch und Englisch beschriftet sein — es ist eine zweisprachige Baustelle.",
       },
       {
         en: "The arc fault breakers go in the bedroom circuits — it's required by the current code.",
-        target: "Die Brandschutzautomaten kommen in die Schlafzimmerkreise — das ist nach aktueller Norm vorgeschrieben.",
+        target:
+          "Die Brandschutzautomaten kommen in die Schlafzimmerkreise — das ist nach aktueller Norm vorgeschrieben.",
       },
       {
         en: "Bond the sub-panel enclosure to the equipment ground — don't float the cabinet.",
-        target: "Verbinde das Gehäuse des Unterverteilers mit dem Schutzleiter — lass das Gehäuse nicht ungeerdet.",
+        target:
+          "Verbinde das Gehäuse des Unterverteilers mit dem Schutzleiter — lass das Gehäuse nicht ungeerdet.",
       },
       {
         en: "Check for proper phasing before you close the panel and restore power.",
-        target: "Prüf die Phasenlage, bevor du den Verteiler schließt und den Strom wiederherstellst.",
+        target:
+          "Prüf die Phasenlage, bevor du den Verteiler schließt und den Strom wiederherstellst.",
       },
       {
         en: "The surge protector goes in right after the main breaker — whole-house protection.",
-        target: "Der Überspannungsschutz kommt direkt nach dem Hauptschalter — das schützt das ganze Haus.",
+        target:
+          "Der Überspannungsschutz kommt direkt nach dem Hauptschalter — das schützt das ganze Haus.",
       },
     ],
   },
@@ -1058,15 +1175,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "We're running EMT conduit along the ceiling in the commercial space — use one-inch for this run.",
-        target: "Stamo posando un conduit EMT a soffitto nello spazio commerciale — usa da un pollice per questo tratto.",
+        target:
+          "Stamo posando un conduit EMT a soffitto nello spazio commerciale — usa da un pollice per questo tratto.",
       },
       {
         en: "Bend the conduit with the hickey, not a conduit bender, for this short offset.",
-        target: "Piega il conduit con la piegatrice manuale, non con la piegatrice da banco, per questo piccolo offset.",
+        target:
+          "Piega il conduit con la piegatrice manuale, non con la piegatrice da banco, per questo piccolo offset.",
       },
       {
         en: "You need a pull box every hundred feet or at more than four ninety-degree bends.",
-        target: "Serve una cassetta di derivazione ogni trenta metri o dopo più di quattro curve a novanta gradi.",
+        target:
+          "Serve una cassetta di derivazione ogni trenta metri o dopo più di quattro curve a novanta gradi.",
       },
       {
         en: "Pull the wire through with fish tape — have someone feed from the other end.",
@@ -1074,7 +1194,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Use liquid-tight flexible conduit for the last two feet to any motor or equipment.",
-        target: "Usa il conduit flessibile a tenuta liquida per gli ultimi sessanta centimetri fino a qualsiasi motore o apparecchiatura.",
+        target:
+          "Usa il conduit flessibile a tenuta liquida per gli ultimi sessanta centimetri fino a qualsiasi motore o apparecchiatura.",
       },
       {
         en: "Strap the conduit every ten feet and within three feet of every box.",
@@ -1082,15 +1203,18 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The inspector cited us for exposed splices — all splices must be inside a box.",
-        target: "L'ispettore ci ha contestato le giunte a vista — tutte le giunte devono essere dentro una cassetta.",
+        target:
+          "L'ispettore ci ha contestato le giunte a vista — tutte le giunte devono essere dentro una cassetta.",
       },
       {
         en: "Install a junction box at the bend so we can pull the wire without damaging the insulation.",
-        target: "Installa una cassetta di derivazione alla curva così possiamo tirare il cavo senza danneggiare l'isolamento.",
+        target:
+          "Installa una cassetta di derivazione alla curva così possiamo tirare il cavo senza danneggiare l'isolamento.",
       },
       {
         en: "Use a de-burring tool on every conduit cut — sharp edges cut through wire insulation.",
-        target: "Usa la sbavaratrice su ogni taglio del conduit — i bordi taglienti rovinano l'isolamento del cavo.",
+        target:
+          "Usa la sbavaratrice su ogni taglio del conduit — i bordi taglienti rovinano l'isolamento del cavo.",
       },
     ],
   },
@@ -1139,7 +1263,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Keep the neutral and ground separate in sub-panels — they are only tied at the main.",
-        target: "サブパネルでは中性線とアース線を分けて配線してください — メインパネルだけで接続します。",
+        target:
+          "サブパネルでは中性線とアース線を分けて配線してください — メインパネルだけで接続します。",
       },
     ],
   },
@@ -1156,7 +1281,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "All bathroom outlets must be GFCI — code requires it within six feet of water.",
-        target: "Todas as tomadas de banheiro devem ser GFCI — o código exige dentro de um metro e oitenta de água.",
+        target:
+          "Todas as tomadas de banheiro devem ser GFCI — o código exige dentro de um metro e oitenta de água.",
       },
       {
         en: "The hot wire goes to the brass screw, neutral to silver, ground to green.",
@@ -1164,7 +1290,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "This outlet is a split receptacle — the tab between the screws is broken so each half is on its own switch.",
-        target: "Esta tomada é de circuito dividido — a aba entre os parafusos está removida para que cada metade tenha seu próprio interruptor.",
+        target:
+          "Esta tomada é de circuito dividido — a aba entre os parafusos está removida para que cada metade tenha seu próprio interruptor.",
       },
       {
         en: "Test every outlet with a receptacle tester before closing the wall.",
@@ -1172,11 +1299,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The outdoor outlet needs a weatherproof in-use cover — not just a standard plate.",
-        target: "A tomada externa precisa de uma tampa à prova d'água em uso — não apenas uma placa padrão.",
+        target:
+          "A tomada externa precisa de uma tampa à prova d'água em uso — não apenas uma placa padrão.",
       },
       {
         en: "Don't mix fifteen-amp and twenty-amp outlets on the same circuit — check the breaker.",
-        target: "Não misture tomadas de quinze e vinte ampères no mesmo circuito — verifique o disjuntor.",
+        target:
+          "Não misture tomadas de quinze e vinte ampères no mesmo circuito — verifique o disjuntor.",
       },
       {
         en: "Wire the three-way switches with a three-wire cable between them.",
@@ -1184,11 +1313,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The dimmer needs to be rated for the LED load — not all dimmers work with LEDs.",
-        target: "O dimmer precisa ser classificado para a carga LED — nem todos os dimmers funcionam com LED.",
+        target:
+          "O dimmer precisa ser classificado para a carga LED — nem todos os dimmers funcionam com LED.",
       },
       {
         en: "All outlet boxes must be flush with the drywall surface — add a box extension if needed.",
-        target: "Todas as caixas de tomada devem ficar niveladas com a superfície do drywall — adicione uma extensão se necessário.",
+        target:
+          "Todas as caixas de tomada devem ficar niveladas com a superfície do drywall — adicione uma extensão se necessário.",
       },
     ],
   },
@@ -1208,39 +1339,48 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "The irrigation controller has eight zones — we'll program each one for the plant type.",
-        target: "El controlador de riego tiene ocho zonas — vamos a programar cada una según el tipo de plantas.",
+        target:
+          "El controlador de riego tiene ocho zonas — vamos a programar cada una según el tipo de plantas.",
       },
       {
         en: "Check each head for full rotation and proper coverage before you backfill the trench.",
-        target: "Revisa cada cabezal para verificar rotación completa y cobertura correcta antes de rellenar la zanja.",
+        target:
+          "Revisa cada cabezal para verificar rotación completa y cobertura correcta antes de rellenar la zanja.",
       },
       {
         en: "The drip zone runs for forty minutes at low pressure — adjust the emitters to one gallon per hour.",
-        target: "La zona de goteo funciona cuarenta minutos a baja presión — ajusta los emisores a un galón por hora.",
+        target:
+          "La zona de goteo funciona cuarenta minutos a baja presión — ajusta los emisores a un galón por hora.",
       },
       {
         en: "The backflow preventer must be installed above ground and accessible for testing.",
-        target: "El dispositivo antirretorno debe instalarse sobre el nivel del suelo y ser accesible para pruebas.",
+        target:
+          "El dispositivo antirretorno debe instalarse sobre el nivel del suelo y ser accesible para pruebas.",
       },
       {
         en: "Overlap the spray pattern by thirty percent so you don't get dry spots between heads.",
-        target: "Superpone el patrón de aspersión un treinta por ciento para evitar puntos secos entre cabezales.",
+        target:
+          "Superpone el patrón de aspersión un treinta por ciento para evitar puntos secos entre cabezales.",
       },
       {
         en: "This zone has pressure issues — install a pressure regulator at the valve.",
-        target: "Esta zona tiene problemas de presión — instala un regulador de presión en la válvula.",
+        target:
+          "Esta zona tiene problemas de presión — instala un regulador de presión en la válvula.",
       },
       {
         en: "Winterize the system before the first freeze — blow it out with compressed air.",
-        target: "Prepara el sistema para el invierno antes de la primera helada — soplarlo con aire comprimido.",
+        target:
+          "Prepara el sistema para el invierno antes de la primera helada — soplarlo con aire comprimido.",
       },
       {
         en: "The customer wants a smart controller — it connects to weather data and adjusts run times automatically.",
-        target: "El cliente quiere un controlador inteligente — se conecta a datos climáticos y ajusta los tiempos de riego automáticamente.",
+        target:
+          "El cliente quiere un controlador inteligente — se conecta a datos climáticos y ajusta los tiempos de riego automáticamente.",
       },
       {
         en: "All valve boxes need to be labeled and accessible — don't bury them under mulch.",
-        target: "Todas las cajas de válvulas deben estar etiquetadas y accesibles — no las entierres bajo el mulch.",
+        target:
+          "Todas las cajas de válvulas deben estar etiquetadas y accesibles — no las entierres bajo el mulch.",
       },
     ],
   },
@@ -1257,39 +1397,48 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Dig the hole twice as wide as the root ball but no deeper than the root flare.",
-        target: "Creusez le trou deux fois plus large que la motte mais pas plus profond que le collet racinaire.",
+        target:
+          "Creusez le trou deux fois plus large que la motte mais pas plus profond que le collet racinaire.",
       },
       {
         en: "The root flare must be at or above grade — don't plant it too deep.",
-        target: "Le collet racinaire doit être au niveau du sol ou au-dessus — ne plantez pas trop profond.",
+        target:
+          "Le collet racinaire doit être au niveau du sol ou au-dessus — ne plantez pas trop profond.",
       },
       {
         en: "Backfill with the native soil — no amendments in the backfill for trees.",
-        target: "Remblayez avec le sol en place — sans amendements dans le remblai pour les arbres.",
+        target:
+          "Remblayez avec le sol en place — sans amendements dans le remblai pour les arbres.",
       },
       {
         en: "Water deeply on the day of planting, then every three days for the first two weeks.",
-        target: "Arrosez abondamment le jour de la plantation, puis tous les trois jours pendant les deux premières semaines.",
+        target:
+          "Arrosez abondamment le jour de la plantation, puis tous les trois jours pendant les deux premières semaines.",
       },
       {
         en: "Mulch around the base — keep it two inches from the trunk to prevent rot.",
-        target: "Paillez autour de la base — maintenez deux pouces d'espace depuis le tronc pour éviter la pourriture.",
+        target:
+          "Paillez autour de la base — maintenez deux pouces d'espace depuis le tronc pour éviter la pourriture.",
       },
       {
         en: "These ornamental grasses need to be divided every three years or they'll die out from the center.",
-        target: "Ces graminées ornementales doivent être divisées tous les trois ans ou elles mourront du centre.",
+        target:
+          "Ces graminées ornementales doivent être divisées tous les trois ans ou elles mourront du centre.",
       },
       {
         en: "The hedge row needs to be sheared at a slight bevel — wider at the base for light penetration.",
-        target: "La haie doit être taillée avec un léger biseau — plus large à la base pour laisser passer la lumière.",
+        target:
+          "La haie doit être taillée avec un léger biseau — plus large à la base pour laisser passer la lumière.",
       },
       {
         en: "Spring fertilization for the beds — use a slow-release formula at the label rate.",
-        target: "Fertilisation de printemps pour les massifs — utilisez une formule à libération lente selon les instructions de l'étiquette.",
+        target:
+          "Fertilisation de printemps pour les massifs — utilisez une formule à libération lente selon les instructions de l'étiquette.",
       },
       {
         en: "Pull the weeds before they go to seed — one weed this week is a hundred next month.",
-        target: "Arrachez les mauvaises herbes avant qu'elles montent en graine — une mauvaise herbe cette semaine, c'est cent le mois prochain.",
+        target:
+          "Arrachez les mauvaises herbes avant qu'elles montent en graine — une mauvaise herbe cette semaine, c'est cent le mois prochain.",
       },
     ],
   },
@@ -1310,19 +1459,23 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We're bringing in four inches of topsoil to raise the grade and improve drainage.",
-        target: "Wir bringen zehn Zentimeter Mutterboden ein, um das Niveau anzuheben und die Entwässerung zu verbessern.",
+        target:
+          "Wir bringen zehn Zentimeter Mutterboden ein, um das Niveau anzuheben und die Entwässerung zu verbessern.",
       },
       {
         en: "Compact the subgrade in layers before spreading topsoil — don't skip this step.",
-        target: "Verdichte den Untergrund lagenweise, bevor du Mutterboden aufträgst — diesen Schritt nicht überspringen.",
+        target:
+          "Verdichte den Untergrund lagenweise, bevor du Mutterboden aufträgst — diesen Schritt nicht überspringen.",
       },
       {
         en: "Herr und Frau König, das Regenwasser läuft momentan in Richtung Haus — das müssen wir ändern.",
-        target: "Herr und Frau König, das Regenwasser läuft momentan in Richtung Haus — das müssen wir ändern.",
+        target:
+          "Herr und Frau König, das Regenwasser läuft momentan in Richtung Haus — das müssen wir ändern.",
       },
       {
         en: "We're installing a French drain along the fence line to redirect the runoff.",
-        target: "Wir bauen einen Drainagegraben entlang der Grundstücksgrenze, um das Oberflächenwasser umzuleiten.",
+        target:
+          "Wir bauen einen Drainagegraben entlang der Grundstücksgrenze, um das Oberflächenwasser umzuleiten.",
       },
       {
         en: "The swale directs water to the corner where we'll put the dry creek bed.",
@@ -1330,7 +1483,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Check the grade with a laser level after compaction — it tends to settle.",
-        target: "Prüf das Gefälle nach dem Verdichten mit dem Lasernivelliergerät — es setzt sich meist noch.",
+        target:
+          "Prüf das Gefälle nach dem Verdichten mit dem Lasernivelliergerät — es setzt sich meist noch.",
       },
       {
         en: "Erosion control fabric goes down before the topsoil on this slope.",
@@ -1338,7 +1492,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The retaining wall has to be backfilled with gravel and have drain pipe at the base.",
-        target: "Die Stützmauer muss mit Kies hinterfüllt und am Fuß mit Drainagerohr versehen werden.",
+        target:
+          "Die Stützmauer muss mit Kies hinterfüllt und am Fuß mit Drainagerohr versehen werden.",
       },
     ],
   },
@@ -1355,19 +1510,23 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Spread the mulch three inches deep and keep it away from plant stems.",
-        target: "Distribuisci il pacciame di otto centimetri e tienilo lontano dai fusti delle piante.",
+        target:
+          "Distribuisci il pacciame di otto centimetri e tienilo lontano dai fusti delle piante.",
       },
       {
         en: "Pull the old mulch back before adding new — layering too deep suffocates roots.",
-        target: "Togli il vecchio pacciame prima di aggiungerne del nuovo — troppi strati soffocano le radici.",
+        target:
+          "Togli il vecchio pacciame prima di aggiungerne del nuovo — troppi strati soffocano le radici.",
       },
       {
         en: "We ordered five cubic yards of shredded hardwood — that covers about five hundred square feet at three inches.",
-        target: "Abbiamo ordinato quattro metri cubi di corteccia sminuzzata — copre circa cinquanta metri quadri a otto centimetri.",
+        target:
+          "Abbiamo ordinato quattro metri cubi di corteccia sminuzzata — copre circa cinquanta metri quadri a otto centimetri.",
       },
       {
         en: "The edging trench defines the bed line and keeps mulch out of the lawn.",
-        target: "Il solco del bordo definisce il contorno dell'aiuola e impedisce al pacciame di finire sul prato.",
+        target:
+          "Il solco del bordo definisce il contorno dell'aiuola e impedisce al pacciame di finire sul prato.",
       },
       {
         en: "Rubber mulch holds up better in play areas but doesn't improve the soil.",
@@ -1375,19 +1534,23 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "We added compost to the soil before mulching — it feeds the beds all season.",
-        target: "Abbiamo aggiunto compost al terreno prima di pacciamarlo — nutre le aiuole per tutta la stagione.",
+        target:
+          "Abbiamo aggiunto compost al terreno prima di pacciamarlo — nutre le aiuole per tutta la stagione.",
       },
       {
         en: "The drainage is poor in this corner — amend the soil with sand and compost before planting.",
-        target: "Il drenaggio in questo angolo è scarso — modifica il terreno con sabbia e compost prima di piantare.",
+        target:
+          "Il drenaggio in questo angolo è scarso — modifica il terreno con sabbia e compost prima di piantare.",
       },
       {
         en: "Test the soil pH before choosing plants — this area reads six point two, which is slightly acidic.",
-        target: "Testa il pH del suolo prima di scegliere le piante — quest'area segna sei virgola due, leggermente acido.",
+        target:
+          "Testa il pH del suolo prima di scegliere le piante — quest'area segna sei virgola due, leggermente acido.",
       },
       {
         en: "The customer wants a low-maintenance bed — choose native plants and mulch heavily.",
-        target: "Il cliente vuole un'aiuola di facile manutenzione — scegli piante autoctone e pacciama abbondantemente.",
+        target:
+          "Il cliente vuole un'aiuola di facile manutenzione — scegli piante autoctone e pacciama abbondantemente.",
       },
     ],
   },
@@ -1436,7 +1599,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Use a pole saw for branches above twelve feet — no climbing without a harness.",
-        target: "12フィート以上の枝には高枝のこぎりを使ってください — ハーネスなしでの登攀は禁止です。",
+        target:
+          "12フィート以上の枝には高枝のこぎりを使ってください — ハーネスなしでの登攀は禁止です。",
       },
     ],
   },
@@ -1453,11 +1617,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Mow at the highest setting during hot summer months — longer grass holds moisture better.",
-        target: "Corte na altura máxima nos meses quentes de verão — a grama mais alta retém melhor a umidade.",
+        target:
+          "Corte na altura máxima nos meses quentes de verão — a grama mais alta retém melhor a umidade.",
       },
       {
         en: "Edge the beds and walks before mowing so the clippings blow onto the grass, not the mulch.",
-        target: "Faça o meio-fio das canteiros e caminhos antes de cortar para que a grama cortada caia no gramado, não no mulch.",
+        target:
+          "Faça o meio-fio das canteiros e caminhos antes de cortar para que a grama cortada caia no gramado, não no mulch.",
       },
       {
         en: "Never remove more than a third of the blade length in a single mowing.",
@@ -1465,7 +1631,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The lawn needs aeration — it's compacted and water is pooling instead of soaking in.",
-        target: "O gramado precisa de aeração — está compactado e a água está empoçando em vez de penetrar.",
+        target:
+          "O gramado precisa de aeração — está compactado e a água está empoçando em vez de penetrar.",
       },
       {
         en: "Overseed the thin spots after aerating and top-dress with a quarter inch of compost.",
@@ -1473,7 +1640,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Apply pre-emergent herbicide before the soil temperature hits fifty-five degrees.",
-        target: "Aplique herbicida pré-emergente antes de a temperatura do solo atingir treze graus Celsius.",
+        target:
+          "Aplique herbicida pré-emergente antes de a temperatura do solo atingir treze graus Celsius.",
       },
       {
         en: "Blow the clippings off the driveway and sidewalk — don't leave them to stain.",
@@ -1481,11 +1649,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "The customer's lawn has grubs — apply a grub control product in late summer.",
-        target: "O gramado do cliente tem larvas de besouro — aplique um produto de controle de larvas no final do verão.",
+        target:
+          "O gramado do cliente tem larvas de besouro — aplique um produto de controle de larvas no final do verão.",
       },
       {
         en: "Water deeply once or twice a week rather than lightly every day — it builds deeper roots.",
-        target: "Regue fundo uma ou duas vezes por semana em vez de levemente todos os dias — isso estimula raízes mais profundas.",
+        target:
+          "Regue fundo uma ou duas vezes por semana em vez de levemente todos os dias — isso estimula raízes mais profundas.",
       },
     ],
   },
@@ -1717,7 +1887,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "Good morning, Mrs. Becker. You called about a problem with the work?",
-        target: "Guten Morgen, Frau Becker. Sie haben wegen eines Problems mit der Arbeit angerufen?",
+        target:
+          "Guten Morgen, Frau Becker. Sie haben wegen eines Problems mit der Arbeit angerufen?",
       },
       {
         en: "Yes, the new faucet in the bathroom is dripping again.",
@@ -1745,7 +1916,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Please test the faucet for a few days and call us if anything else comes up.",
-        target: "Bitte testen Sie den Hahn ein paar Tage und rufen Sie uns an, falls noch etwas auftritt.",
+        target:
+          "Bitte testen Sie den Hahn ein paar Tage und rufen Sie uns an, falls noch etwas auftritt.",
       },
       {
         en: "I'll send a follow-up email to confirm everything is fixed.",
@@ -1774,7 +1946,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "I need to see the pressure test holding at one hundred PSI for fifteen minutes.",
-        target: "Necesito ver la prueba de presión manteniéndose a cien PSI durante quince minutos.",
+        target:
+          "Necesito ver la prueba de presión manteniéndose a cien PSI durante quince minutos.",
       },
       {
         en: "The gauge has been steady since seven this morning — no drop at all.",
@@ -1786,11 +1959,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "All vents tie into the main stack and exit through the roof above the snow line.",
-        target: "Todas las ventilaciones se conectan a la columna principal y salen por el techo sobre la línea de nieve.",
+        target:
+          "Todas las ventilaciones se conectan a la columna principal y salen por el techo sobre la línea de nieve.",
       },
       {
         en: "I'm citing you on the cleanout access — it needs to be within five feet of the exterior wall.",
-        target: "Le voy a citar por el acceso al registro de limpieza — debe estar a menos de cinco pies del muro exterior.",
+        target:
+          "Le voy a citar por el acceso al registro de limpieza — debe estar a menos de cinco pies del muro exterior.",
       },
       {
         en: "We can relocate it today and call you back for a re-inspection tomorrow.",
@@ -1798,11 +1973,13 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "Everything else looks compliant — good slope on the drains and proper hanger spacing.",
-        target: "Todo lo demás cumple con el código — buena pendiente en los drenajes y separación correcta de los soportes.",
+        target:
+          "Todo lo demás cumple con el código — buena pendiente en los drenajes y separación correcta de los soportes.",
       },
       {
         en: "Once you fix the cleanout, you can sign off and move on to the cover inspection.",
-        target: "Una vez que arregle el registro, puede firmar el visto bueno y avanzar a la inspección de cierre.",
+        target:
+          "Una vez que arregle el registro, puede firmar el visto bueno y avanzar a la inspección de cierre.",
       },
       {
         en: "Thank you, inspector. We appreciate the quick turnaround on the re-inspection.",
@@ -1823,39 +2000,48 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     sentences: [
       {
         en: "We need to lock down the schedule before the framing crew finishes the second floor.",
-        target: "Il faut verrouiller le planning avant que l'équipe de charpente termine le deuxième étage.",
+        target:
+          "Il faut verrouiller le planning avant que l'équipe de charpente termine le deuxième étage.",
       },
       {
         en: "The electricians can rough in starting Wednesday if the inspector signs off on the framing.",
-        target: "Les électriciens peuvent commencer le passage des câbles mercredi si l'inspecteur valide la charpente.",
+        target:
+          "Les électriciens peuvent commencer le passage des câbles mercredi si l'inspecteur valide la charpente.",
       },
       {
         en: "Plumbers come in Thursday and Friday — they need access to the basement and the second-floor bathrooms.",
-        target: "Les plombiers viennent jeudi et vendredi — ils ont besoin d'accès au sous-sol et aux salles de bain de l'étage.",
+        target:
+          "Les plombiers viennent jeudi et vendredi — ils ont besoin d'accès au sous-sol et aux salles de bain de l'étage.",
       },
       {
         en: "HVAC needs to coordinate with plumbing on the bulkhead in the kitchen ceiling.",
-        target: "La CVC doit se coordonner avec la plomberie sur le caisson au plafond de la cuisine.",
+        target:
+          "La CVC doit se coordonner avec la plomberie sur le caisson au plafond de la cuisine.",
       },
       {
         en: "The drywall crew can't start until all the rough inspections pass — that's our critical path.",
-        target: "L'équipe de plaques de plâtre ne peut pas commencer avant que toutes les inspections soient validées — c'est notre chemin critique.",
+        target:
+          "L'équipe de plaques de plâtre ne peut pas commencer avant que toutes les inspections soient validées — c'est notre chemin critique.",
       },
       {
         en: "I need everyone to clean up at the end of each day — the next trade can't work in a mess.",
-        target: "J'ai besoin que tout le monde nettoie à la fin de chaque journée — le prochain corps de métier ne peut pas travailler dans le désordre.",
+        target:
+          "J'ai besoin que tout le monde nettoie à la fin de chaque journée — le prochain corps de métier ne peut pas travailler dans le désordre.",
       },
       {
         en: "Material deliveries are staggered to avoid blocking the driveway for other crews.",
-        target: "Les livraisons de matériaux sont échelonnées pour éviter de bloquer l'allée aux autres équipes.",
+        target:
+          "Les livraisons de matériaux sont échelonnées pour éviter de bloquer l'allée aux autres équipes.",
       },
       {
         en: "If anything slips, call me directly — don't tell another sub and create a chain reaction.",
-        target: "Si quelque chose dérape, appelez-moi directement — ne dites pas à un autre sous-traitant et créez une réaction en chaîne.",
+        target:
+          "Si quelque chose dérape, appelez-moi directement — ne dites pas à un autre sous-traitant et créez une réaction en chaîne.",
       },
       {
         en: "The owner is doing a walkthrough Friday afternoon — make sure your work is presentable.",
-        target: "Le propriétaire fait une visite vendredi après-midi — assurez-vous que votre travail soit présentable.",
+        target:
+          "Le propriétaire fait une visite vendredi après-midi — assurez-vous que votre travail soit présentable.",
       },
       {
         en: "Same time next week to reset the plan for the finishes phase.",
@@ -1896,7 +2082,8 @@ export const TRADES_SEEDS: LibrarySeed[] = [
       },
       {
         en: "If the plan and the field don't match, the plan governs — call the architect to confirm.",
-        target: "図面と現場が一致しない場合は、図面が優先します — 建築士に確認の電話をしてください。",
+        target:
+          "図面と現場が一致しない場合は、図面が優先します — 建築士に確認の電話をしてください。",
       },
       {
         en: "The legend at the bottom of the sheet explains every symbol on the drawing.",
@@ -1929,16 +2116,47 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Welcome. What seems to be the problem with your car today?", target: "어서 오세요. 오늘 차에 무슨 문제가 있으세요?" },
-      { en: "When I brake at high speed, the steering wheel shakes a lot.", target: "고속에서 브레이크를 밟으면 핸들이 많이 떨려요." },
-      { en: "How long has this been happening, and does it happen at low speeds too?", target: "그 증상이 시작된 지 얼마나 됐고, 저속에서도 그런가요?" },
-      { en: "About two weeks. At low speeds it is fine, but above eighty kilometers per hour it is bad.", target: "이 주 정도 됐어요. 저속에서는 괜찮은데 시속 팔십 킬로미터 이상이 되면 심해요." },
-      { en: "It sounds like a warped front brake disc — we will need to put it on the lift to confirm.", target: "앞 브레이크 디스크가 변형된 것 같습니다. 확실하게 보려면 리프트에 올려 봐야 해요." },
-      { en: "We will also check the brake pads and the wheel balance while it is up.", target: "올린 김에 브레이크 패드와 휠 밸런스도 함께 확인하겠습니다." },
-      { en: "The inspection takes about thirty minutes and there is no charge if you decide to do the repair here.", target: "점검은 삼십 분 정도 걸리며, 여기서 수리를 진행하시면 점검비는 따로 받지 않습니다." },
-      { en: "If both front discs need to be replaced, the parts and labor will be around three hundred fifty thousand won.", target: "앞 디스크 양쪽 다 교체해야 하면, 부품값과 공임을 합쳐서 약 삼십오만 원 정도입니다." },
-      { en: "I will call you with an estimate before we start any work, so please leave your phone number.", target: "작업을 시작하기 전에 견적 말씀드리려고 전화드릴 테니, 전화번호를 남겨 주세요." },
-      { en: "We can have the car ready by five o'clock today if you approve the repair before noon.", target: "정오 전에 수리 동의해 주시면 오늘 다섯 시까지 차를 준비해 드릴 수 있습니다." },
+      {
+        en: "Welcome. What seems to be the problem with your car today?",
+        target: "어서 오세요. 오늘 차에 무슨 문제가 있으세요?",
+      },
+      {
+        en: "When I brake at high speed, the steering wheel shakes a lot.",
+        target: "고속에서 브레이크를 밟으면 핸들이 많이 떨려요.",
+      },
+      {
+        en: "How long has this been happening, and does it happen at low speeds too?",
+        target: "그 증상이 시작된 지 얼마나 됐고, 저속에서도 그런가요?",
+      },
+      {
+        en: "About two weeks. At low speeds it is fine, but above eighty kilometers per hour it is bad.",
+        target: "이 주 정도 됐어요. 저속에서는 괜찮은데 시속 팔십 킬로미터 이상이 되면 심해요.",
+      },
+      {
+        en: "It sounds like a warped front brake disc — we will need to put it on the lift to confirm.",
+        target: "앞 브레이크 디스크가 변형된 것 같습니다. 확실하게 보려면 리프트에 올려 봐야 해요.",
+      },
+      {
+        en: "We will also check the brake pads and the wheel balance while it is up.",
+        target: "올린 김에 브레이크 패드와 휠 밸런스도 함께 확인하겠습니다.",
+      },
+      {
+        en: "The inspection takes about thirty minutes and there is no charge if you decide to do the repair here.",
+        target: "점검은 삼십 분 정도 걸리며, 여기서 수리를 진행하시면 점검비는 따로 받지 않습니다.",
+      },
+      {
+        en: "If both front discs need to be replaced, the parts and labor will be around three hundred fifty thousand won.",
+        target:
+          "앞 디스크 양쪽 다 교체해야 하면, 부품값과 공임을 합쳐서 약 삼십오만 원 정도입니다.",
+      },
+      {
+        en: "I will call you with an estimate before we start any work, so please leave your phone number.",
+        target: "작업을 시작하기 전에 견적 말씀드리려고 전화드릴 테니, 전화번호를 남겨 주세요.",
+      },
+      {
+        en: "We can have the car ready by five o'clock today if you approve the repair before noon.",
+        target: "정오 전에 수리 동의해 주시면 오늘 다섯 시까지 차를 준비해 드릴 수 있습니다.",
+      },
     ],
   },
 
@@ -1954,15 +2172,46 @@ export const TRADES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "I have finished the inspection of the entire unit, so let me walk you through what I found.", target: "세대 전체 점검을 마쳤으니, 발견한 사항들을 함께 살펴보도록 하겠습니다." },
-      { en: "Overall the wiring is in acceptable condition, but there are three issues that need attention.", target: "전반적으로 배선 상태는 양호한 편이지만, 손봐야 할 사항이 세 가지 있습니다." },
-      { en: "First, the kitchen outlets are not on a ground-fault circuit, which is required by current code.", target: "첫째, 주방 콘센트가 누전 차단 회로에 연결되어 있지 않은데, 이는 현행 규정상 의무 사항입니다." },
-      { en: "Second, the bathroom exhaust fan is wired to the lighting circuit, which causes the light to flicker.", target: "둘째, 욕실 환풍기가 조명 회로에 연결되어 있어서 불빛이 깜박거리는 원인이 되고 있습니다." },
-      { en: "Third, the panel inside the entryway closet has two breakers that show signs of overheating.", target: "셋째, 현관 수납장 안에 있는 분전반의 차단기 두 개에 과열 흔적이 보입니다." },
-      { en: "I recommend replacing those breakers immediately and adding a dedicated circuit for the air conditioner.", target: "해당 차단기는 즉시 교체하고, 에어컨 전용 회로를 추가하시는 것을 권해 드립니다." },
-      { en: "If you put off the breaker replacement, in the worst case it could cause a fire inside the wall.", target: "차단기 교체를 미루시면 최악의 경우 벽체 내부 화재로 이어질 수 있습니다." },
-      { en: "I have included photos and the relevant code references in the written report I will email you tonight.", target: "오늘 밤 이메일로 보내 드릴 보고서에 사진과 관련 규정 조항을 함께 첨부해 두었습니다." },
-      { en: "If you would like, I can send a quotation for all three repairs along with the report tomorrow morning.", target: "원하시면 세 가지 수리에 대한 견적서도 내일 오전에 보고서와 함께 보내 드릴 수 있습니다." },
+      {
+        en: "I have finished the inspection of the entire unit, so let me walk you through what I found.",
+        target: "세대 전체 점검을 마쳤으니, 발견한 사항들을 함께 살펴보도록 하겠습니다.",
+      },
+      {
+        en: "Overall the wiring is in acceptable condition, but there are three issues that need attention.",
+        target: "전반적으로 배선 상태는 양호한 편이지만, 손봐야 할 사항이 세 가지 있습니다.",
+      },
+      {
+        en: "First, the kitchen outlets are not on a ground-fault circuit, which is required by current code.",
+        target:
+          "첫째, 주방 콘센트가 누전 차단 회로에 연결되어 있지 않은데, 이는 현행 규정상 의무 사항입니다.",
+      },
+      {
+        en: "Second, the bathroom exhaust fan is wired to the lighting circuit, which causes the light to flicker.",
+        target:
+          "둘째, 욕실 환풍기가 조명 회로에 연결되어 있어서 불빛이 깜박거리는 원인이 되고 있습니다.",
+      },
+      {
+        en: "Third, the panel inside the entryway closet has two breakers that show signs of overheating.",
+        target: "셋째, 현관 수납장 안에 있는 분전반의 차단기 두 개에 과열 흔적이 보입니다.",
+      },
+      {
+        en: "I recommend replacing those breakers immediately and adding a dedicated circuit for the air conditioner.",
+        target: "해당 차단기는 즉시 교체하고, 에어컨 전용 회로를 추가하시는 것을 권해 드립니다.",
+      },
+      {
+        en: "If you put off the breaker replacement, in the worst case it could cause a fire inside the wall.",
+        target: "차단기 교체를 미루시면 최악의 경우 벽체 내부 화재로 이어질 수 있습니다.",
+      },
+      {
+        en: "I have included photos and the relevant code references in the written report I will email you tonight.",
+        target:
+          "오늘 밤 이메일로 보내 드릴 보고서에 사진과 관련 규정 조항을 함께 첨부해 두었습니다.",
+      },
+      {
+        en: "If you would like, I can send a quotation for all three repairs along with the report tomorrow morning.",
+        target:
+          "원하시면 세 가지 수리에 대한 견적서도 내일 오전에 보고서와 함께 보내 드릴 수 있습니다.",
+      },
     ],
   },
 ];

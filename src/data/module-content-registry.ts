@@ -80,13 +80,31 @@ function fromClinicalContext(ctx: ClinicalContextLike): ModuleAreaContext {
 }
 
 const MODULE_TO_AREA_MODULES = new Set([
-  "framer", "plumber", "drywall", "electrician", "landscaper",
-  "auto-mechanic", "truck-driver", "construction-foreman",
-  "dairy-farmer", "ranch-cowboy", "meatpacking-butcher",
-  "international-travel", "catholic-ministry",
-  "restaurant-hospitality", "legal-immigration", "k12-teacher",
-  "soccer", "hockey", "baseball", "tennis", "bowling",
-  "american-football", "lacrosse", "rugby", "sports-hobbies",
+  "framer",
+  "plumber",
+  "drywall",
+  "electrician",
+  "landscaper",
+  "auto-mechanic",
+  "truck-driver",
+  "construction-foreman",
+  "dairy-farmer",
+  "ranch-cowboy",
+  "meatpacking-butcher",
+  "international-travel",
+  "catholic-ministry",
+  "restaurant-hospitality",
+  "legal-immigration",
+  "k12-teacher",
+  "soccer",
+  "hockey",
+  "baseball",
+  "tennis",
+  "bowling",
+  "american-football",
+  "lacrosse",
+  "rugby",
+  "sports-hobbies",
   "or-evs",
   "fmg",
 ]);
@@ -110,7 +128,15 @@ export function getModuleAreaContext(
   }
 
   // ── Agriculture / travel / faith ──────────────────────────────────────────
-  if (["dairy-farmer", "ranch-cowboy", "meatpacking-butcher", "international-travel", "catholic-ministry"].includes(moduleId)) {
+  if (
+    [
+      "dairy-farmer",
+      "ranch-cowboy",
+      "meatpacking-butcher",
+      "international-travel",
+      "catholic-ministry",
+    ].includes(moduleId)
+  ) {
     const area = getAgriTravelFaithArea(moduleId, areaId);
     return area ? fromModuleArea(area as ModuleAreaLike) : null;
   }

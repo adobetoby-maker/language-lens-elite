@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  type ReactNode,
+} from "react";
 import type { TabKey } from "./app-state";
 
 /**
@@ -40,7 +48,7 @@ interface DailyChallengeData {
   lastCompletedDay: string | null;
   currentStreak: number;
   longestStreak: number;
-  totalCompletions: number;  // grand total of completed runs across all games
+  totalCompletions: number; // grand total of completed runs across all games
 }
 
 interface State {
@@ -88,7 +96,11 @@ function load(): DailyChallengeData {
 
 function save(d: DailyChallengeData) {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch { /* quota */ }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+  } catch {
+    /* quota */
+  }
 }
 
 function reducer(state: State, action: Action): State {
@@ -154,16 +166,20 @@ const Ctx = createContext<DailyChallengeContextValue | null>(null);
 
 // Cycle through games — one per weekday slot. Deterministic for any given UTC day.
 const GAME_CYCLE: { id: DailyChallengeGameId; tabKey: TabKey; title: string }[] = [
-  { id: "conjugation",    tabKey: "conjugation",    title: "Conjugation Drills" },
-  { id: "sentenceBuild",  tabKey: "sentenceBuild",  title: "Sentence Builder" },
+  { id: "conjugation", tabKey: "conjugation", title: "Conjugation Drills" },
+  { id: "sentenceBuild", tabKey: "sentenceBuild", title: "Sentence Builder" },
   { id: "listeningDrill", tabKey: "listeningDrill", title: "Listening Drill" },
-  { id: "wordMatch",      tabKey: "wordMatch",      title: "Word Match" },
-  { id: "idiomMaster",    tabKey: "idiomMaster",    title: "Idiom Master" },
-  { id: "falseFriends",   tabKey: "falseFriends",   title: "False Friends" },
-  { id: "match",          tabKey: "speak",          title: "Language Match" },
+  { id: "wordMatch", tabKey: "wordMatch", title: "Word Match" },
+  { id: "idiomMaster", tabKey: "idiomMaster", title: "Idiom Master" },
+  { id: "falseFriends", tabKey: "falseFriends", title: "False Friends" },
+  { id: "match", tabKey: "speak", title: "Language Match" },
 ];
 
-function pickGameForDay(dayString: string): { id: DailyChallengeGameId; tabKey: TabKey; title: string } {
+function pickGameForDay(dayString: string): {
+  id: DailyChallengeGameId;
+  tabKey: TabKey;
+  title: string;
+} {
   // Hash the day string into a stable slot.
   let h = 0;
   for (let i = 0; i < dayString.length; i++) {
@@ -186,7 +202,10 @@ export function DailyChallengeProvider({ children }: { children: ReactNode }) {
   const recordCompletion = useCallback(() => dispatch({ type: "RECORD_COMPLETION" }), []);
   const reset = useCallback(() => dispatch({ type: "RESET" }), []);
 
-  const isCompletedToday = useCallback(() => state.data.lastCompletedDay === todayUTC(), [state.data.lastCompletedDay]);
+  const isCompletedToday = useCallback(
+    () => state.data.lastCompletedDay === todayUTC(),
+    [state.data.lastCompletedDay],
+  );
   const todaysGame = useCallback(() => pickGameForDay(todayUTC()), []);
   const badge = useCallback(() => {
     const s = state.data.currentStreak;
@@ -220,10 +239,15 @@ export function useDailyChallenge() {
 
 export function badgeLabel(b: ReturnType<DailyChallengeContextValue["badge"]>): string {
   switch (b) {
-    case "habit": return "Habit (100d)";
-    case "disciplined": return "Disciplined (30d)";
-    case "devotee": return "Devotee (7d)";
-    case "returning": return "Returning (3d)";
-    default: return "";
+    case "habit":
+      return "Habit (100d)";
+    case "disciplined":
+      return "Disciplined (30d)";
+    case "devotee":
+      return "Devotee (7d)";
+    case "returning":
+      return "Returning (3d)";
+    default:
+      return "";
   }
 }

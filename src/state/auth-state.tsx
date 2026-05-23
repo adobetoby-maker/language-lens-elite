@@ -14,9 +14,13 @@ interface AuthContextValue {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string) => Promise<{ error: string | null }>;
+  signUp: (
+    email: string,
+    password: string,
+  ) => Promise<{ error: string | null; needsConfirmation: boolean }>;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
+  resetPassword: (email: string) => Promise<{ error: string | null }>;
 }
 
 const Ctx = createContext<AuthContextValue | null>(null);
@@ -56,16 +60,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = useCallback(async (email: string, password: string) => {
     const redirectUrl = `${window.location.origin}/`;
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { emailRedirectTo: redirectUrl },
     });
-    return { error: error?.message ?? null };
+    return {
+      error: error?.message ?? null,
+      needsConfirmation: !error && !data.session,
+    };
   }, []);
 
   const signIn = useCallback(async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (!error) return { error: null };
+    const msg = error.message.toLowerCase();
+    if (msg.includes("invalid") || msg.includes("credentials") || msg.includes("wrong"))
+      return { error: "Incorrect email or password." };
+    if (msg.includes("email not confirmed"))
+      return { error: "Please confirm your email first — check your inbox." };
+    if (msg.includes("too many"))
+      return { error: "Too many attempts. Wait a moment and try again." };
+    return { error: error.message };
+  }, []);
+
+  const resetPassword = useCallback(async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/`,
+    });
     return { error: error?.message ?? null };
   }, []);
 
@@ -74,8 +96,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<AuthContextValue>(
-    () => ({ user: session?.user ?? null, session, loading, signUp, signIn, signOut }),
-    [session, loading, signUp, signIn, signOut],
+    () => ({
+      user: session?.user ?? null,
+      session,
+      loading,
+      signUp,
+      signIn,
+      signOut,
+      resetPassword,
+    }),
+    [session, loading, signUp, signIn, signOut, resetPassword],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
@@ -85,11 +115,13 @@ const fallbackAuth: AuthContextValue = {
   user: null,
   session: null,
   loading: false,
-  signUp: async () => ({ error: "Auth not ready" }),
+  signUp: async () => ({ error: "Auth not ready", needsConfirmation: false }),
   signIn: async () => ({ error: "Auth not ready" }),
   signOut: async () => {},
+  resetPassword: async () => ({ error: "Auth not ready" }),
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const c = useContext(Ctx);
   // During SSR or if used outside provider, return a safe fallback so that

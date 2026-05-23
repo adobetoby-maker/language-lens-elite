@@ -11,11 +11,11 @@ const InputSchema = z.object({
 });
 
 export interface DailyStoryData {
-  story: string;           // 4-6 sentence story in target language
+  story: string; // 4-6 sentence story in target language
   vocabHighlights: string[]; // which vocab words appear in the story
-  comprehensionQ: string;  // question in English
-  correctAnswer: string;   // expected answer phrase (lenient match)
-  translation: string;     // English translation of the story
+  comprehensionQ: string; // question in English
+  correctAnswer: string; // expected answer phrase (lenient match)
+  translation: string; // English translation of the story
 }
 
 export const generateDailyStory = createServerFn({ method: "POST" })
@@ -57,7 +57,8 @@ ${vocabClause}
                 vocabHighlights: {
                   type: "array",
                   items: { type: "string" },
-                  description: "Which of the learner's vocab words appear in the story (exact forms used).",
+                  description:
+                    "Which of the learner's vocab words appear in the story (exact forms used).",
                 },
                 comprehensionQ: {
                   type: "string",
@@ -72,7 +73,13 @@ ${vocabClause}
                   description: "Plain English translation of the full story.",
                 },
               },
-              required: ["story", "vocabHighlights", "comprehensionQ", "correctAnswer", "translation"],
+              required: [
+                "story",
+                "vocabHighlights",
+                "comprehensionQ",
+                "correctAnswer",
+                "translation",
+              ],
               additionalProperties: false,
             },
           },

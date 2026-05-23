@@ -1,4 +1,17 @@
-import { Trophy, Swords, Repeat2, AlignLeft, Flame, Award, Headphones, Grid3x3, Quote, AlertTriangle, CalendarCheck, Sparkle } from "lucide-react";
+import {
+  Trophy,
+  Swords,
+  Repeat2,
+  AlignLeft,
+  Flame,
+  Award,
+  Headphones,
+  Grid3x3,
+  Quote,
+  AlertTriangle,
+  CalendarCheck,
+  Sparkle,
+} from "lucide-react";
 import { useApp, type TabKey } from "@/state/app-state";
 import { useConjugation, type LeaderboardKey as CKey } from "@/state/conjugation-state";
 import { useSentenceBuild, type SBLeaderboardKey } from "@/state/sentence-build-state";
@@ -34,7 +47,7 @@ interface GameDescriptor {
   title: string;
   blurb: string;
   Icon: React.ElementType;
-  accent: string;        // tailwind color class fragment (e.g. "amber", "emerald")
+  accent: string; // tailwind color class fragment (e.g. "amber", "emerald")
 }
 
 const GAMES: GameDescriptor[] = [
@@ -42,7 +55,8 @@ const GAMES: GameDescriptor[] = [
     id: "match",
     tabKey: "speak", // Match opens via overlay; lobby launch routes to opener
     title: "Language Match",
-    blurb: "Vocabulary battle — pick the correct definition. Climb the rank ladder Bronze → Unreal.",
+    blurb:
+      "Vocabulary battle — pick the correct definition. Climb the rank ladder Bronze → Unreal.",
     Icon: Swords,
     accent: "rose",
   },
@@ -112,14 +126,74 @@ export function GamesHub() {
   // `perfectRuns`, `totalCorrect`, `totalAttempts`) so aggStats works
   // uniformly. Word Match has a different shape (best time / flips) and is
   // projected separately.
-  const conjStats = aggStats([1, 2, 3].map((l) => conj.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as CKey]));
-  const sbStats = aggStats([1, 2, 3].map((l) => sb.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as SBLeaderboardKey]));
+  const conjStats = aggStats(
+    [1, 2, 3].map(
+      (l) => conj.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as CKey],
+    ),
+  );
+  const sbStats = aggStats(
+    [1, 2, 3].map(
+      (l) =>
+        sb.state.leaderboard[`${state.selectedLanguage}-${l as 1 | 2 | 3}` as SBLeaderboardKey],
+    ),
+  );
   // Use defensive `unknown as ...` casts because each game's leaderboard key
   // type is its own template literal — they're structurally compatible but
   // not assignable across modules without an unsafe cast.
-  const listeningStats = aggStats([1, 2, 3].map((l) => (listening.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
-  const idiomStats = aggStats([1, 2, 3].map((l) => (idiom.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
-  const ffStats = aggStats([1, 2, 3].map((l) => (falseFriends.state.leaderboard as Record<string, { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } | undefined>)[`${state.selectedLanguage}-${l}`]));
+  const listeningStats = aggStats(
+    [1, 2, 3].map(
+      (l) =>
+        (
+          listening.state.leaderboard as Record<
+            string,
+            | {
+                bestStreak: number;
+                currentStreak: number;
+                perfectRuns: number;
+                totalCorrect: number;
+                totalAttempts: number;
+              }
+            | undefined
+          >
+        )[`${state.selectedLanguage}-${l}`],
+    ),
+  );
+  const idiomStats = aggStats(
+    [1, 2, 3].map(
+      (l) =>
+        (
+          idiom.state.leaderboard as Record<
+            string,
+            | {
+                bestStreak: number;
+                currentStreak: number;
+                perfectRuns: number;
+                totalCorrect: number;
+                totalAttempts: number;
+              }
+            | undefined
+          >
+        )[`${state.selectedLanguage}-${l}`],
+    ),
+  );
+  const ffStats = aggStats(
+    [1, 2, 3].map(
+      (l) =>
+        (
+          falseFriends.state.leaderboard as Record<
+            string,
+            | {
+                bestStreak: number;
+                currentStreak: number;
+                perfectRuns: number;
+                totalCorrect: number;
+                totalAttempts: number;
+              }
+            | undefined
+          >
+        )[`${state.selectedLanguage}-${l}`],
+    ),
+  );
   // Word Match: project bestFlips/bestTime into the unified shape.
   const wmStats = projectWordMatch(wordMatch, state.selectedLanguage);
   // Match tracks at the MATCH level (not the question level), so we project
@@ -135,7 +209,15 @@ export function GamesHub() {
     totalAttempts: match.matchesPlayed ?? 0,
   };
 
-  const allRunGames = [conjStats, sbStats, listeningStats, idiomStats, ffStats, wmStats, matchStats];
+  const allRunGames = [
+    conjStats,
+    sbStats,
+    listeningStats,
+    idiomStats,
+    ffStats,
+    wmStats,
+    matchStats,
+  ];
   const grand = {
     correct: allRunGames.reduce((s, g) => s + g.totalCorrect, 0),
     attempts: allRunGames.reduce((s, g) => s + g.totalAttempts, 0),
@@ -179,12 +261,20 @@ export function GamesHub() {
         }}
         className="group flex w-full items-center gap-4 rounded-2xl border border-gold/50 bg-gradient-to-r from-gold/[0.12] via-gold/5 to-transparent px-5 py-4 text-left transition-all hover:border-gold/80 hover:from-gold/20"
       >
-        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${completedToday ? "bg-emerald-500/20 text-emerald-300" : "bg-gold/15 text-gold"}`}>
-          {completedToday ? <CalendarCheck className="h-6 w-6" strokeWidth={1.6} /> : <Sparkle className="h-6 w-6" strokeWidth={1.6} fill="currentColor" />}
+        <div
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${completedToday ? "bg-emerald-500/20 text-emerald-300" : "bg-gold/15 text-gold"}`}
+        >
+          {completedToday ? (
+            <CalendarCheck className="h-6 w-6" strokeWidth={1.6} />
+          ) : (
+            <Sparkle className="h-6 w-6" strokeWidth={1.6} fill="currentColor" />
+          )}
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">Today&apos;s Challenge</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
+              Today&apos;s Challenge
+            </span>
             {dailyBadge && (
               <span className="rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-gold">
                 <Flame className="mr-1 inline h-2.5 w-2.5" />
@@ -192,7 +282,9 @@ export function GamesHub() {
               </span>
             )}
           </div>
-          <div className="mt-0.5 font-display text-xl font-semibold text-foreground">{todays.title}</div>
+          <div className="mt-0.5 font-display text-xl font-semibold text-foreground">
+            {todays.title}
+          </div>
           <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
             {completedToday ? "Done today" : "Tap to play"}
             {" · "}Streak <span className="text-foreground">{daily.data.currentStreak}</span>
@@ -216,14 +308,23 @@ export function GamesHub() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {GAMES.map((g) => {
           const stats =
-            g.id === "match" ? matchStats :
-            g.id === "conjugation" ? conjStats :
-            g.id === "sentenceBuild" ? sbStats :
-            g.id === "listeningDrill" ? listeningStats :
-            g.id === "wordMatch" ? wmStats :
-            g.id === "idiomMaster" ? idiomStats :
-            ffStats;
-          const acc = stats.totalAttempts === 0 ? 0 : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
+            g.id === "match"
+              ? matchStats
+              : g.id === "conjugation"
+                ? conjStats
+                : g.id === "sentenceBuild"
+                  ? sbStats
+                  : g.id === "listeningDrill"
+                    ? listeningStats
+                    : g.id === "wordMatch"
+                      ? wmStats
+                      : g.id === "idiomMaster"
+                        ? idiomStats
+                        : ffStats;
+          const acc =
+            stats.totalAttempts === 0
+              ? 0
+              : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
           return (
             <button
               key={g.id}
@@ -237,7 +338,9 @@ export function GamesHub() {
                 </span>
               </div>
               <div>
-                <h3 className="font-display text-lg font-semibold leading-tight text-foreground">{g.title}</h3>
+                <h3 className="font-display text-lg font-semibold leading-tight text-foreground">
+                  {g.title}
+                </h3>
                 <p className="mt-1 text-xs leading-snug text-muted-foreground">{g.blurb}</p>
               </div>
               <div className="mt-auto grid grid-cols-3 gap-1 border-t border-border/40 pt-3">
@@ -254,7 +357,10 @@ export function GamesHub() {
       </div>
 
       {/* ── Module-specific games ──────────────────────────────────────── */}
-      <ModuleGamesSection language={state.selectedLanguage ?? "Spanish"} activeModule={state.activeModuleId ?? null} />
+      <ModuleGamesSection
+        language={state.selectedLanguage ?? "Spanish"}
+        activeModule={state.activeModuleId ?? null}
+      />
 
       {/* Cross-game achievements panel */}
       <CrossGameAchievements />
@@ -285,13 +391,31 @@ export function GamesHub() {
 function projectWordMatch(
   wm: ReturnType<typeof useWordMatch>,
   language: string,
-): { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number } {
+): {
+  bestStreak: number;
+  currentStreak: number;
+  perfectRuns: number;
+  totalCorrect: number;
+  totalAttempts: number;
+} {
   let perfectRuns = 0;
   let totalAttempts = 0;
   let totalCompleted = 0;
   for (const lvl of [1, 2, 3]) {
     const k = `${language}-${lvl}`;
-    const s = (wm.state.leaderboard as Record<string, { bestTimeMs: number; bestFlips: number; perfectGames: number; totalGames: number; totalCompleted: number } | undefined>)[k];
+    const s = (
+      wm.state.leaderboard as Record<
+        string,
+        | {
+            bestTimeMs: number;
+            bestFlips: number;
+            perfectGames: number;
+            totalGames: number;
+            totalCompleted: number;
+          }
+        | undefined
+      >
+    )[k];
     if (!s) continue;
     perfectRuns += s.perfectGames ?? 0;
     totalAttempts += s.totalGames ?? 0;
@@ -306,7 +430,18 @@ function projectWordMatch(
   };
 }
 
-function aggStats(buckets: (undefined | { bestStreak: number; currentStreak: number; perfectRuns: number; totalCorrect: number; totalAttempts: number })[]) {
+function aggStats(
+  buckets: (
+    | undefined
+    | {
+        bestStreak: number;
+        currentStreak: number;
+        perfectRuns: number;
+        totalCorrect: number;
+        totalAttempts: number;
+      }
+  )[],
+) {
   let bestStreak = 0;
   let perfectRuns = 0;
   let totalCorrect = 0;
@@ -321,12 +456,22 @@ function aggStats(buckets: (undefined | { bestStreak: number; currentStreak: num
   return { bestStreak, perfectRuns, totalCorrect, totalAttempts };
 }
 
-function Stat({ label, value, Icon }: { label: string; value: string | number; Icon: React.ElementType }) {
+function Stat({
+  label,
+  value,
+  Icon,
+}: {
+  label: string;
+  value: string | number;
+  Icon: React.ElementType;
+}) {
   return (
     <div className="rounded-2xl border border-border/60 bg-card/40 p-3">
       <div className="flex items-center gap-2">
         <Icon className="h-3 w-3 text-gold" />
-        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+          {label}
+        </span>
       </div>
       <div className="mt-1 font-display text-2xl font-semibold text-foreground">{value}</div>
     </div>
@@ -336,7 +481,9 @@ function Stat({ label, value, Icon }: { label: string; value: string | number; I
 function MiniStat({ label, value }: { label: string; value: string | number }) {
   return (
     <div>
-      <div className="font-mono text-[8px] uppercase tracking-[0.18em] text-muted-foreground">{label}</div>
+      <div className="font-mono text-[8px] uppercase tracking-[0.18em] text-muted-foreground">
+        {label}
+      </div>
       <div className="font-display text-sm font-semibold text-foreground">{value}</div>
     </div>
   );
@@ -358,16 +505,24 @@ const MODULE_GAMES: Record<string, { emoji: string; title: string; blurb: string
   soccer: {
     emoji: "⚽",
     title: "Soccer Positions",
-    blurb: "Tap positions on the field, name them in your target language, or find them by name. Switch formations.",
+    blurb:
+      "Tap positions on the field, name them in your target language, or find them by name. Switch formations.",
   },
   baseball: {
     emoji: "⚾",
     title: "Baseball Diamond",
-    blurb: "Identify all 9 defensive positions on the diamond, then drill dugout vocabulary — pitch types, calls, and plays.",
+    blurb:
+      "Identify all 9 defensive positions on the diamond, then drill dugout vocabulary — pitch types, calls, and plays.",
   },
 };
 
-function ModuleGamesSection({ language, activeModule }: { language: string; activeModule: string | null }) {
+function ModuleGamesSection({
+  language,
+  activeModule,
+}: {
+  language: string;
+  activeModule: string | null;
+}) {
   const { dispatch } = useApp();
   const available = Object.keys(MODULE_GAMES).filter((id) => {
     // Always show; highlight the active module.
@@ -379,7 +534,9 @@ function ModuleGamesSection({ language, activeModule }: { language: string; acti
   return (
     <div className="space-y-3">
       <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">⌘ Module Games</div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+          ⌘ Module Games
+        </div>
         <p className="mt-0.5 text-sm text-muted-foreground">
           Interactive field and diamond games tied to specific sport modules.
         </p>

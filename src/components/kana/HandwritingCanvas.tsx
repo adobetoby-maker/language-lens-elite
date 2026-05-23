@@ -2,7 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Undo2, Trash2, Sparkle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { recognizeHandwriting, type HandwritingResult } from "@/fns/handwriting-recognize.functions";
+import {
+  recognizeHandwriting,
+  type HandwritingResult,
+} from "@/fns/handwriting-recognize.functions";
 
 const CANVAS_SIZE = 400;
 const BRUSH_COLOR = "#e8dcc8"; // warm off-white stroke on dark canvas
@@ -34,8 +37,10 @@ export function HandwritingCanvas({ onRecognized }: Props) {
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
-    ctx.moveTo(CANVAS_SIZE / 2, 0); ctx.lineTo(CANVAS_SIZE / 2, CANVAS_SIZE);
-    ctx.moveTo(0, CANVAS_SIZE / 2); ctx.lineTo(CANVAS_SIZE, CANVAS_SIZE / 2);
+    ctx.moveTo(CANVAS_SIZE / 2, 0);
+    ctx.lineTo(CANVAS_SIZE / 2, CANVAS_SIZE);
+    ctx.moveTo(0, CANVAS_SIZE / 2);
+    ctx.lineTo(CANVAS_SIZE, CANVAS_SIZE / 2);
     ctx.stroke();
     ctx.setLineDash([]);
   }, []);
@@ -53,33 +58,39 @@ export function HandwritingCanvas({ onRecognized }: Props) {
     return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
   }, []);
 
-  const startDraw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
-    // Save state before this stroke
-    strokeHistoryRef.current.push(ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE));
-    isDrawingRef.current = true;
+  const startDraw = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      const canvas = canvasRef.current!;
+      const ctx = canvas.getContext("2d")!;
+      // Save state before this stroke
+      strokeHistoryRef.current.push(ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE));
+      isDrawingRef.current = true;
 
-    const { x, y } = getCoords(e);
-    ctx.strokeStyle = BRUSH_COLOR;
-    ctx.lineWidth = BRUSH_SIZE;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    setHasStrokes(true);
-    setResult(null);
-  }, [getCoords]);
+      const { x, y } = getCoords(e);
+      ctx.strokeStyle = BRUSH_COLOR;
+      ctx.lineWidth = BRUSH_SIZE;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      setHasStrokes(true);
+      setResult(null);
+    },
+    [getCoords],
+  );
 
-  const draw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (!isDrawingRef.current) return;
-    const ctx = canvasRef.current!.getContext("2d")!;
-    const { x, y } = getCoords(e);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-  }, [getCoords]);
+  const draw = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      if (!isDrawingRef.current) return;
+      const ctx = canvasRef.current!.getContext("2d")!;
+      const { x, y } = getCoords(e);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    },
+    [getCoords],
+  );
 
   const endDraw = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
@@ -106,8 +117,10 @@ export function HandwritingCanvas({ onRecognized }: Props) {
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
-    ctx.moveTo(CANVAS_SIZE / 2, 0); ctx.lineTo(CANVAS_SIZE / 2, CANVAS_SIZE);
-    ctx.moveTo(0, CANVAS_SIZE / 2); ctx.lineTo(CANVAS_SIZE, CANVAS_SIZE / 2);
+    ctx.moveTo(CANVAS_SIZE / 2, 0);
+    ctx.lineTo(CANVAS_SIZE / 2, CANVAS_SIZE);
+    ctx.moveTo(0, CANVAS_SIZE / 2);
+    ctx.lineTo(CANVAS_SIZE, CANVAS_SIZE / 2);
     ctx.stroke();
     ctx.setLineDash([]);
     strokeHistoryRef.current = [];
@@ -181,10 +194,15 @@ export function HandwritingCanvas({ onRecognized }: Props) {
           disabled={!hasStrokes || loading}
           className="ml-auto flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/10 px-4 py-2 text-xs font-medium text-gold transition-colors hover:bg-gold/20 disabled:opacity-40"
         >
-          {loading
-            ? <><RefreshCw className="h-3.5 w-3.5 animate-spin" /> Recognizing…</>
-            : <><Sparkle className="h-3.5 w-3.5" /> Recognize</>
-          }
+          {loading ? (
+            <>
+              <RefreshCw className="h-3.5 w-3.5 animate-spin" /> Recognizing…
+            </>
+          ) : (
+            <>
+              <Sparkle className="h-3.5 w-3.5" /> Recognize
+            </>
+          )}
         </button>
       </div>
 

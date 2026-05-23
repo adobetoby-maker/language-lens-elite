@@ -71,10 +71,7 @@ export function VoicePicker() {
           ✦ Voice for {accent}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onSelect={() => setVoiceURI(null)}
-          className="font-mono text-xs"
-        >
+        <DropdownMenuItem onSelect={() => setVoiceURI(null)} className="font-mono text-xs">
           <span className={voiceURI === null ? "text-gold" : "opacity-60"}>◈</span>
           <span className="flex-1">System default</span>
         </DropdownMenuItem>

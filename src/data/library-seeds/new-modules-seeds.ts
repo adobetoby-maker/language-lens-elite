@@ -1,7 +1,6 @@
 import type { LibrarySeed } from "./_types";
 
 export const NEW_MODULES_SEEDS: LibrarySeed[] = [
-
   // ── PHYSICAL THERAPY ──────────────────────────────────────────────────────
 
   {
@@ -15,16 +14,53 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Good morning, Mr. Torres. Today we are going to work on your hip range of motion and strengthening exercises.", target: "Buenos días, señor Torres. Hoy vamos a trabajar en el rango de movimiento de su cadera y los ejercicios de fortalecimiento." },
-      { en: "I need you to lie on your back with your knees bent and your feet flat on the table.", target: "Necesito que se acueste boca arriba con las rodillas dobladas y los pies planos sobre la mesa." },
-      { en: "On a scale of zero to ten, how would you rate your pain right now?", target: "En una escala del cero al diez, ¿cómo calificaría su dolor en este momento?" },
-      { en: "I want you to tighten the muscles in your thigh and hold the contraction for five seconds.", target: "Quiero que contraiga los músculos del muslo y mantenga la contracción durante cinco segundos." },
-      { en: "Straighten your knee as much as possible, then slowly lower your leg back down.", target: "Extienda la rodilla lo más posible, luego baje la pierna lentamente." },
-      { en: "Your range of motion has improved about ten degrees since last week — that is excellent progress.", target: "Su rango de movimiento ha mejorado unos diez grados desde la semana pasada — ese es un progreso excelente." },
-      { en: "When you walk, try to keep equal weight on both legs and avoid leaning to one side.", target: "Cuando camine, trate de distribuir el peso igual en ambas piernas y evite inclinarse hacia un lado." },
-      { en: "Here is your home exercise program — please do these three exercises twice a day.", target: "Aquí tiene su programa de ejercicios en casa — por favor haga estos tres ejercicios dos veces al día." },
-      { en: "You should use your walker until your surgeon clears you to walk without support.", target: "Debe usar su andador hasta que su cirujano le autorice a caminar sin apoyo." },
-      { en: "If you feel sharp or stabbing pain during any exercise, stop immediately and call our clinic.", target: "Si siente un dolor agudo o punzante durante cualquier ejercicio, deténgase de inmediato y llame a nuestra clínica." },
+      {
+        en: "Good morning, Mr. Torres. Today we are going to work on your hip range of motion and strengthening exercises.",
+        target:
+          "Buenos días, señor Torres. Hoy vamos a trabajar en el rango de movimiento de su cadera y los ejercicios de fortalecimiento.",
+      },
+      {
+        en: "I need you to lie on your back with your knees bent and your feet flat on the table.",
+        target:
+          "Necesito que se acueste boca arriba con las rodillas dobladas y los pies planos sobre la mesa.",
+      },
+      {
+        en: "On a scale of zero to ten, how would you rate your pain right now?",
+        target: "En una escala del cero al diez, ¿cómo calificaría su dolor en este momento?",
+      },
+      {
+        en: "I want you to tighten the muscles in your thigh and hold the contraction for five seconds.",
+        target:
+          "Quiero que contraiga los músculos del muslo y mantenga la contracción durante cinco segundos.",
+      },
+      {
+        en: "Straighten your knee as much as possible, then slowly lower your leg back down.",
+        target: "Extienda la rodilla lo más posible, luego baje la pierna lentamente.",
+      },
+      {
+        en: "Your range of motion has improved about ten degrees since last week — that is excellent progress.",
+        target:
+          "Su rango de movimiento ha mejorado unos diez grados desde la semana pasada — ese es un progreso excelente.",
+      },
+      {
+        en: "When you walk, try to keep equal weight on both legs and avoid leaning to one side.",
+        target:
+          "Cuando camine, trate de distribuir el peso igual en ambas piernas y evite inclinarse hacia un lado.",
+      },
+      {
+        en: "Here is your home exercise program — please do these three exercises twice a day.",
+        target:
+          "Aquí tiene su programa de ejercicios en casa — por favor haga estos tres ejercicios dos veces al día.",
+      },
+      {
+        en: "You should use your walker until your surgeon clears you to walk without support.",
+        target: "Debe usar su andador hasta que su cirujano le autorice a caminar sin apoyo.",
+      },
+      {
+        en: "If you feel sharp or stabbing pain during any exercise, stop immediately and call our clinic.",
+        target:
+          "Si siente un dolor agudo o punzante durante cualquier ejercicio, deténgase de inmediato y llame a nuestra clínica.",
+      },
     ],
   },
 
@@ -39,15 +75,51 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Madame Dubois, today we begin phase two of your rehabilitation after your knee replacement.", target: "Madame Dubois, aujourd'hui nous commençons la deuxième phase de votre rééducation après votre prothèse de genou." },
-      { en: "I will measure your range of motion before and after today's session to track your progress.", target: "Je vais mesurer votre amplitude de mouvement avant et après la séance d'aujourd'hui pour suivre vos progrès." },
-      { en: "Place your foot on the step and shift your weight forward onto your operated leg.", target: "Posez votre pied sur la marche et transférez votre poids vers l'avant sur votre jambe opérée." },
-      { en: "I would like you to do ten repetitions of this exercise, resting for thirty seconds between sets.", target: "Je voudrais que vous fassiez dix répétitions de cet exercice, en vous reposant trente secondes entre les séries." },
-      { en: "Your swelling has decreased significantly since last week — applying ice after exercise is helping.", target: "Votre gonflement a considérablement diminué depuis la semaine dernière — l'application de glace après l'exercice aide beaucoup." },
-      { en: "Keep your back straight and your core engaged while you perform the standing balance exercise.", target: "Gardez le dos droit et les abdominaux contractés pendant que vous effectuez l'exercice d'équilibre debout." },
-      { en: "You are allowed to put your full weight on the leg — do not be afraid to bear weight.", target: "Vous pouvez mettre tout votre poids sur la jambe — n'ayez pas peur de vous appuyer dessus." },
-      { en: "At home, elevate your leg above heart level for twenty minutes three times a day to reduce swelling.", target: "À la maison, surélevez votre jambe au-dessus du niveau du cœur pendant vingt minutes trois fois par jour pour réduire le gonflement." },
-      { en: "I am referring you to the hydrotherapy pool for your next session — the water reduces joint stress.", target: "Je vous adresse à la piscine de balnéothérapie pour votre prochaine séance — l'eau réduit le stress articulaire." },
+      {
+        en: "Madame Dubois, today we begin phase two of your rehabilitation after your knee replacement.",
+        target:
+          "Madame Dubois, aujourd'hui nous commençons la deuxième phase de votre rééducation après votre prothèse de genou.",
+      },
+      {
+        en: "I will measure your range of motion before and after today's session to track your progress.",
+        target:
+          "Je vais mesurer votre amplitude de mouvement avant et après la séance d'aujourd'hui pour suivre vos progrès.",
+      },
+      {
+        en: "Place your foot on the step and shift your weight forward onto your operated leg.",
+        target:
+          "Posez votre pied sur la marche et transférez votre poids vers l'avant sur votre jambe opérée.",
+      },
+      {
+        en: "I would like you to do ten repetitions of this exercise, resting for thirty seconds between sets.",
+        target:
+          "Je voudrais que vous fassiez dix répétitions de cet exercice, en vous reposant trente secondes entre les séries.",
+      },
+      {
+        en: "Your swelling has decreased significantly since last week — applying ice after exercise is helping.",
+        target:
+          "Votre gonflement a considérablement diminué depuis la semaine dernière — l'application de glace après l'exercice aide beaucoup.",
+      },
+      {
+        en: "Keep your back straight and your core engaged while you perform the standing balance exercise.",
+        target:
+          "Gardez le dos droit et les abdominaux contractés pendant que vous effectuez l'exercice d'équilibre debout.",
+      },
+      {
+        en: "You are allowed to put your full weight on the leg — do not be afraid to bear weight.",
+        target:
+          "Vous pouvez mettre tout votre poids sur la jambe — n'ayez pas peur de vous appuyer dessus.",
+      },
+      {
+        en: "At home, elevate your leg above heart level for twenty minutes three times a day to reduce swelling.",
+        target:
+          "À la maison, surélevez votre jambe au-dessus du niveau du cœur pendant vingt minutes trois fois par jour pour réduire le gonflement.",
+      },
+      {
+        en: "I am referring you to the hydrotherapy pool for your next session — the water reduces joint stress.",
+        target:
+          "Je vous adresse à la piscine de balnéothérapie pour votre prochaine séance — l'eau réduit le stress articulaire.",
+      },
     ],
   },
 
@@ -62,15 +134,51 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Good afternoon, Mr. Meier. Let us start with your balance assessment on the foam pad today.", target: "Guten Nachmittag, Herr Meier. Lassen Sie uns heute mit Ihrer Gleichgewichtsbeurteilung auf der Schaumstoffmatte beginnen." },
-      { en: "Stand with your feet hip-width apart and try to maintain your balance for thirty seconds.", target: "Stehen Sie mit hüftbreitem Abstand und versuchen Sie, das Gleichgewicht dreißig Sekunden zu halten." },
-      { en: "I want you to push against my hand — show me your maximum hip abductor strength.", target: "Ich möchte, dass Sie gegen meine Hand drücken — zeigen Sie mir Ihre maximale Hüftabduzentenkraft." },
-      { en: "Your left side is noticeably weaker than your right; we will focus on closing that gap.", target: "Ihre linke Seite ist merklich schwächer als die rechte; wir werden uns darauf konzentrieren, diesen Unterschied zu verringern." },
-      { en: "Lower yourself slowly into the chair — control the movement, do not drop down.", target: "Setzen Sie sich langsam auf den Stuhl — kontrollieren Sie die Bewegung, lassen Sie sich nicht fallen." },
-      { en: "The elastic band should feel like a moderate resistance — if it is too easy, switch to the red band.", target: "Das Theraband sollte sich wie ein mittlerer Widerstand anfühlen — wenn es zu leicht ist, wechseln Sie zum roten Band." },
-      { en: "For your home program, do the clamshell exercise lying on your non-operated side.", target: "Für Ihr Heimübungsprogramm führen Sie die Muschelschalenübung auf Ihrer nicht operierten Seite liegend durch." },
-      { en: "Pain during exercise is normal up to a three out of ten — above that, reduce the load.", target: "Schmerzen beim Training sind bis zu einer Drei von zehn normal — darüber hinaus reduzieren Sie die Belastung." },
-      { en: "Your gait pattern is improving — I can see you are loading through your heel now instead of the toes.", target: "Ihr Gangbild verbessert sich — ich sehe, dass Sie jetzt durch die Ferse belasten statt durch die Zehen." },
+      {
+        en: "Good afternoon, Mr. Meier. Let us start with your balance assessment on the foam pad today.",
+        target:
+          "Guten Nachmittag, Herr Meier. Lassen Sie uns heute mit Ihrer Gleichgewichtsbeurteilung auf der Schaumstoffmatte beginnen.",
+      },
+      {
+        en: "Stand with your feet hip-width apart and try to maintain your balance for thirty seconds.",
+        target:
+          "Stehen Sie mit hüftbreitem Abstand und versuchen Sie, das Gleichgewicht dreißig Sekunden zu halten.",
+      },
+      {
+        en: "I want you to push against my hand — show me your maximum hip abductor strength.",
+        target:
+          "Ich möchte, dass Sie gegen meine Hand drücken — zeigen Sie mir Ihre maximale Hüftabduzentenkraft.",
+      },
+      {
+        en: "Your left side is noticeably weaker than your right; we will focus on closing that gap.",
+        target:
+          "Ihre linke Seite ist merklich schwächer als die rechte; wir werden uns darauf konzentrieren, diesen Unterschied zu verringern.",
+      },
+      {
+        en: "Lower yourself slowly into the chair — control the movement, do not drop down.",
+        target:
+          "Setzen Sie sich langsam auf den Stuhl — kontrollieren Sie die Bewegung, lassen Sie sich nicht fallen.",
+      },
+      {
+        en: "The elastic band should feel like a moderate resistance — if it is too easy, switch to the red band.",
+        target:
+          "Das Theraband sollte sich wie ein mittlerer Widerstand anfühlen — wenn es zu leicht ist, wechseln Sie zum roten Band.",
+      },
+      {
+        en: "For your home program, do the clamshell exercise lying on your non-operated side.",
+        target:
+          "Für Ihr Heimübungsprogramm führen Sie die Muschelschalenübung auf Ihrer nicht operierten Seite liegend durch.",
+      },
+      {
+        en: "Pain during exercise is normal up to a three out of ten — above that, reduce the load.",
+        target:
+          "Schmerzen beim Training sind bis zu einer Drei von zehn normal — darüber hinaus reduzieren Sie die Belastung.",
+      },
+      {
+        en: "Your gait pattern is improving — I can see you are loading through your heel now instead of the toes.",
+        target:
+          "Ihr Gangbild verbessert sich — ich sehe, dass Sie jetzt durch die Ferse belasten statt durch die Zehen.",
+      },
     ],
   },
 
@@ -85,15 +193,49 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Signora Ricci, today we will practice walking on uneven surfaces to improve your confidence.", target: "Signora Ricci, oggi eserciteremo la camminata su superfici irregolari per migliorare la sua sicurezza." },
-      { en: "Step up with your stronger leg first, then bring the weaker leg up to meet it.", target: "Salga prima con la gamba più forte, poi porti la gamba più debole al suo livello." },
-      { en: "I need you to flex your ankle up toward your shin — this is called dorsiflexion.", target: "Ho bisogno che fletta la caviglia verso lo stinco — questo si chiama dorsiflessione." },
-      { en: "Try to walk the length of the parallel bars without holding on — I am right here beside you.", target: "Cerchi di percorrere l'intera lunghezza delle parallele senza tenersi — sono qui accanto a lei." },
-      { en: "Your pace has increased from forty to sixty steps per minute over the past two weeks.", target: "Il suo ritmo è aumentato da quaranta a sessanta passi al minuto nelle ultime due settimane." },
-      { en: "The slight limp you have is expected at this stage and will resolve as the muscle regains strength.", target: "La leggera zoppia che ha è normale in questa fase e si risolverà man mano che il muscolo riacquista forza." },
-      { en: "I recommend you continue using the cane outdoors for another two weeks before trying without it.", target: "Le consiglio di continuare a usare il bastone all'aperto per altre due settimane prima di provare senza." },
-      { en: "Perform the ankle pumps exercise every hour while you are sitting to prevent blood clots.", target: "Esegua l'esercizio di pompaggio della caviglia ogni ora mentre è seduta per prevenire i coaguli di sangue." },
-      { en: "Call us if you notice increased redness, warmth, or swelling in your calf.", target: "Ci chiami se nota aumento di arrossamento, calore o gonfiore nel polpaccio." },
+      {
+        en: "Signora Ricci, today we will practice walking on uneven surfaces to improve your confidence.",
+        target:
+          "Signora Ricci, oggi eserciteremo la camminata su superfici irregolari per migliorare la sua sicurezza.",
+      },
+      {
+        en: "Step up with your stronger leg first, then bring the weaker leg up to meet it.",
+        target: "Salga prima con la gamba più forte, poi porti la gamba più debole al suo livello.",
+      },
+      {
+        en: "I need you to flex your ankle up toward your shin — this is called dorsiflexion.",
+        target:
+          "Ho bisogno che fletta la caviglia verso lo stinco — questo si chiama dorsiflessione.",
+      },
+      {
+        en: "Try to walk the length of the parallel bars without holding on — I am right here beside you.",
+        target:
+          "Cerchi di percorrere l'intera lunghezza delle parallele senza tenersi — sono qui accanto a lei.",
+      },
+      {
+        en: "Your pace has increased from forty to sixty steps per minute over the past two weeks.",
+        target:
+          "Il suo ritmo è aumentato da quaranta a sessanta passi al minuto nelle ultime due settimane.",
+      },
+      {
+        en: "The slight limp you have is expected at this stage and will resolve as the muscle regains strength.",
+        target:
+          "La leggera zoppia che ha è normale in questa fase e si risolverà man mano che il muscolo riacquista forza.",
+      },
+      {
+        en: "I recommend you continue using the cane outdoors for another two weeks before trying without it.",
+        target:
+          "Le consiglio di continuare a usare il bastone all'aperto per altre due settimane prima di provare senza.",
+      },
+      {
+        en: "Perform the ankle pumps exercise every hour while you are sitting to prevent blood clots.",
+        target:
+          "Esegua l'esercizio di pompaggio della caviglia ogni ora mentre è seduta per prevenire i coaguli di sangue.",
+      },
+      {
+        en: "Call us if you notice increased redness, warmth, or swelling in your calf.",
+        target: "Ci chiami se nota aumento di arrossamento, calore o gonfiore nel polpaccio.",
+      },
     ],
   },
 
@@ -108,15 +250,45 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Yamada-san, I am going to show you the exercises you will continue at home.", target: "山田さん、ご自宅で続けていただく運動をご説明します。" },
-      { en: "This is a straight leg raise — lift the leg to about thirty centimeters off the bed and hold.", target: "これは下肢伸展挙上です。ベッドから約30センチ脚を持ち上げて、そのまま保持してください。" },
-      { en: "Perform each exercise ten times, twice a day — morning and evening works best.", target: "各運動を1日2回、朝と夜に10回ずつ行ってください。" },
-      { en: "If your pain level exceeds five out of ten during exercise, please reduce the repetitions.", target: "運動中に痛みが10段階で5以上になった場合は、回数を減らしてください。" },
-      { en: "Put an ice pack wrapped in a towel on your knee for fifteen minutes after exercising.", target: "運動後は、タオルに包んだ氷嚢を膝に15分間当ててください。" },
-      { en: "Use the handrail when going up or down stairs — always lead with the stronger leg going up.", target: "階段を上り下りするときは手すりを使ってください。上るときは必ず健側の足から出してください。" },
-      { en: "Your muscle strength is at four out of five, which means you are very close to normal function.", target: "筋力は5段階評価で4です。正常な機能まであと少しのところまで来ています。" },
-      { en: "We have scheduled your next appointment for two weeks from now — please bring your exercise log.", target: "次回の予約は2週間後に入れました。運動記録表をお持ちください。" },
-      { en: "If you have any questions about the exercises at home, please feel free to call our clinic.", target: "自宅での運動についてご不明な点がございましたら、遠慮なくクリニックにお電話ください。" },
+      {
+        en: "Yamada-san, I am going to show you the exercises you will continue at home.",
+        target: "山田さん、ご自宅で続けていただく運動をご説明します。",
+      },
+      {
+        en: "This is a straight leg raise — lift the leg to about thirty centimeters off the bed and hold.",
+        target:
+          "これは下肢伸展挙上です。ベッドから約30センチ脚を持ち上げて、そのまま保持してください。",
+      },
+      {
+        en: "Perform each exercise ten times, twice a day — morning and evening works best.",
+        target: "各運動を1日2回、朝と夜に10回ずつ行ってください。",
+      },
+      {
+        en: "If your pain level exceeds five out of ten during exercise, please reduce the repetitions.",
+        target: "運動中に痛みが10段階で5以上になった場合は、回数を減らしてください。",
+      },
+      {
+        en: "Put an ice pack wrapped in a towel on your knee for fifteen minutes after exercising.",
+        target: "運動後は、タオルに包んだ氷嚢を膝に15分間当ててください。",
+      },
+      {
+        en: "Use the handrail when going up or down stairs — always lead with the stronger leg going up.",
+        target:
+          "階段を上り下りするときは手すりを使ってください。上るときは必ず健側の足から出してください。",
+      },
+      {
+        en: "Your muscle strength is at four out of five, which means you are very close to normal function.",
+        target: "筋力は5段階評価で4です。正常な機能まであと少しのところまで来ています。",
+      },
+      {
+        en: "We have scheduled your next appointment for two weeks from now — please bring your exercise log.",
+        target: "次回の予約は2週間後に入れました。運動記録表をお持ちください。",
+      },
+      {
+        en: "If you have any questions about the exercises at home, please feel free to call our clinic.",
+        target:
+          "自宅での運動についてご不明な点がございましたら、遠慮なくクリニックにお電話ください。",
+      },
     ],
   },
 
@@ -131,15 +303,50 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Dona Maria, today we will work on balance exercises to reduce your risk of falling.", target: "Dona Maria, hoje vamos trabalhar exercícios de equilíbrio para reduzir seu risco de queda." },
-      { en: "Stand near the wall for safety and try to balance on one foot for ten seconds.", target: "Fique perto da parede por segurança e tente equilibrar em um pé por dez segundos." },
-      { en: "I noticed you are looking at the floor when you walk — try to keep your gaze forward.", target: "Percebi que você está olhando para o chão enquanto caminha — tente manter o olhar à frente." },
-      { en: "Your Timed Up and Go test result was eighteen seconds — our goal is to get it under twelve.", target: "Seu resultado no teste Timed Up and Go foi dezoito segundos — nossa meta é chegar abaixo de doze." },
-      { en: "I want you to practice the tandem stance — place one foot directly in front of the other.", target: "Quero que você pratique a posição em tandem — coloque um pé diretamente na frente do outro." },
-      { en: "Tighten your abdominal muscles before each step — this helps stabilize your spine.", target: "Contraia os músculos abdominais antes de cada passo — isso ajuda a estabilizar a coluna." },
-      { en: "Remove loose rugs, cords, and clutter from your home to prevent tripping hazards.", target: "Remova tapetes soltos, fios e objetos espalhados de sua casa para prevenir riscos de tropeço." },
-      { en: "The hip strengthening exercises are key to preventing falls — do not skip them.", target: "Os exercícios de fortalecimento do quadril são essenciais para prevenir quedas — não os pule." },
-      { en: "We will reassess your fall risk score in four weeks to measure your improvement.", target: "Vamos reavaliar seu escore de risco de queda em quatro semanas para medir sua melhora." },
+      {
+        en: "Dona Maria, today we will work on balance exercises to reduce your risk of falling.",
+        target:
+          "Dona Maria, hoje vamos trabalhar exercícios de equilíbrio para reduzir seu risco de queda.",
+      },
+      {
+        en: "Stand near the wall for safety and try to balance on one foot for ten seconds.",
+        target: "Fique perto da parede por segurança e tente equilibrar em um pé por dez segundos.",
+      },
+      {
+        en: "I noticed you are looking at the floor when you walk — try to keep your gaze forward.",
+        target:
+          "Percebi que você está olhando para o chão enquanto caminha — tente manter o olhar à frente.",
+      },
+      {
+        en: "Your Timed Up and Go test result was eighteen seconds — our goal is to get it under twelve.",
+        target:
+          "Seu resultado no teste Timed Up and Go foi dezoito segundos — nossa meta é chegar abaixo de doze.",
+      },
+      {
+        en: "I want you to practice the tandem stance — place one foot directly in front of the other.",
+        target:
+          "Quero que você pratique a posição em tandem — coloque um pé diretamente na frente do outro.",
+      },
+      {
+        en: "Tighten your abdominal muscles before each step — this helps stabilize your spine.",
+        target:
+          "Contraia os músculos abdominais antes de cada passo — isso ajuda a estabilizar a coluna.",
+      },
+      {
+        en: "Remove loose rugs, cords, and clutter from your home to prevent tripping hazards.",
+        target:
+          "Remova tapetes soltos, fios e objetos espalhados de sua casa para prevenir riscos de tropeço.",
+      },
+      {
+        en: "The hip strengthening exercises are key to preventing falls — do not skip them.",
+        target:
+          "Os exercícios de fortalecimento do quadril são essenciais para prevenir quedas — não os pule.",
+      },
+      {
+        en: "We will reassess your fall risk score in four weeks to measure your improvement.",
+        target:
+          "Vamos reavaliar seu escore de risco de queda em quatro semanas para medir sua melhora.",
+      },
     ],
   },
 
@@ -154,14 +361,39 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B1",
     sentences: [
-      { en: "Park Sŏnsaeng-nim, today we will start your hip strengthening exercises after the replacement surgery.", target: "박 선생님, 오늘부터 인공관절 수술 후 고관절 강화 운동을 시작하겠습니다." },
-      { en: "Lie on your back and slowly bring your knee up toward your chest — stop if you feel pain.", target: "등을 대고 누워서 무릎을 천천히 가슴 쪽으로 당기세요 — 통증이 느껴지면 멈추세요." },
-      { en: "How many steps did you walk yesterday? We want to gradually increase your daily distance.", target: "어제 몇 걸음 걸으셨나요? 매일 조금씩 거리를 늘려 가려고 합니다." },
-      { en: "Your range of motion has improved from 85 to 105 degrees this week — wonderful progress.", target: "이번 주에 관절 가동 범위가 85도에서 105도로 개선되었습니다 — 정말 훌륭한 진전입니다." },
-      { en: "Do not cross your legs or bend your hip past 90 degrees for the next six weeks.", target: "앞으로 6주 동안은 다리를 꼬거나 고관절을 90도 이상 굽히지 마세요." },
-      { en: "Squeeze the rubber ball ten times to maintain your grip strength during recovery.", target: "회복 기간 동안 악력을 유지하기 위해 고무공을 10번 쥐어짜세요." },
-      { en: "The elastic band exercise should feel like moderate effort — not too easy, not painful.", target: "탄성 밴드 운동은 적당히 힘들어야 합니다 — 너무 쉽지도, 아프지도 않게요." },
-      { en: "At home, apply ice for fifteen minutes after each exercise session to manage swelling.", target: "운동 후에는 집에서 15분간 얼음찜질을 하여 붓기를 관리해 주세요." },
+      {
+        en: "Park Sŏnsaeng-nim, today we will start your hip strengthening exercises after the replacement surgery.",
+        target: "박 선생님, 오늘부터 인공관절 수술 후 고관절 강화 운동을 시작하겠습니다.",
+      },
+      {
+        en: "Lie on your back and slowly bring your knee up toward your chest — stop if you feel pain.",
+        target: "등을 대고 누워서 무릎을 천천히 가슴 쪽으로 당기세요 — 통증이 느껴지면 멈추세요.",
+      },
+      {
+        en: "How many steps did you walk yesterday? We want to gradually increase your daily distance.",
+        target: "어제 몇 걸음 걸으셨나요? 매일 조금씩 거리를 늘려 가려고 합니다.",
+      },
+      {
+        en: "Your range of motion has improved from 85 to 105 degrees this week — wonderful progress.",
+        target:
+          "이번 주에 관절 가동 범위가 85도에서 105도로 개선되었습니다 — 정말 훌륭한 진전입니다.",
+      },
+      {
+        en: "Do not cross your legs or bend your hip past 90 degrees for the next six weeks.",
+        target: "앞으로 6주 동안은 다리를 꼬거나 고관절을 90도 이상 굽히지 마세요.",
+      },
+      {
+        en: "Squeeze the rubber ball ten times to maintain your grip strength during recovery.",
+        target: "회복 기간 동안 악력을 유지하기 위해 고무공을 10번 쥐어짜세요.",
+      },
+      {
+        en: "The elastic band exercise should feel like moderate effort — not too easy, not painful.",
+        target: "탄성 밴드 운동은 적당히 힘들어야 합니다 — 너무 쉽지도, 아프지도 않게요.",
+      },
+      {
+        en: "At home, apply ice for fifteen minutes after each exercise session to manage swelling.",
+        target: "운동 후에는 집에서 15분간 얼음찜질을 하여 붓기를 관리해 주세요.",
+      },
     ],
   },
 
@@ -178,16 +410,51 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning, welcome to Dr. Rivera's office. Do you have an appointment today?", target: "Buenos días, bienvenido al consultorio del doctor Rivera. ¿Tiene una cita hoy?" },
-      { en: "Can I have your full name and date of birth, please?", target: "¿Me puede dar su nombre completo y fecha de nacimiento, por favor?" },
-      { en: "I need to make a copy of your insurance card and a photo ID.", target: "Necesito sacar una copia de su tarjeta de seguro médico y una identificación con foto." },
-      { en: "Your copay today is thirty dollars — we accept cash, credit cards, and checks.", target: "Su copago de hoy es de treinta dólares — aceptamos efectivo, tarjetas de crédito y cheques." },
-      { en: "The doctor will be with you shortly — please have a seat in the waiting area.", target: "El doctor lo atenderá en breve — por favor tome asiento en la sala de espera." },
-      { en: "Do you have a referral from your primary care doctor for this visit?", target: "¿Tiene una referencia de su médico de atención primaria para esta visita?" },
-      { en: "Your insurance plan requires prior authorization for this procedure — I will contact them today.", target: "Su plan de seguro requiere autorización previa para este procedimiento — me comunicaré con ellos hoy." },
-      { en: "Would you like to schedule your follow-up appointment before you leave today?", target: "¿Desea programar su cita de seguimiento antes de irse hoy?" },
-      { en: "Please fill out this new patient intake form — it asks about your medical history and current medications.", target: "Por favor complete este formulario de ingreso para pacientes nuevos — pregunta sobre su historial médico y medicamentos actuales." },
-      { en: "If you need to cancel or reschedule, please call us at least 24 hours in advance.", target: "Si necesita cancelar o reprogramar, por favor llámenos con al menos 24 horas de anticipación." },
+      {
+        en: "Good morning, welcome to Dr. Rivera's office. Do you have an appointment today?",
+        target: "Buenos días, bienvenido al consultorio del doctor Rivera. ¿Tiene una cita hoy?",
+      },
+      {
+        en: "Can I have your full name and date of birth, please?",
+        target: "¿Me puede dar su nombre completo y fecha de nacimiento, por favor?",
+      },
+      {
+        en: "I need to make a copy of your insurance card and a photo ID.",
+        target:
+          "Necesito sacar una copia de su tarjeta de seguro médico y una identificación con foto.",
+      },
+      {
+        en: "Your copay today is thirty dollars — we accept cash, credit cards, and checks.",
+        target:
+          "Su copago de hoy es de treinta dólares — aceptamos efectivo, tarjetas de crédito y cheques.",
+      },
+      {
+        en: "The doctor will be with you shortly — please have a seat in the waiting area.",
+        target: "El doctor lo atenderá en breve — por favor tome asiento en la sala de espera.",
+      },
+      {
+        en: "Do you have a referral from your primary care doctor for this visit?",
+        target: "¿Tiene una referencia de su médico de atención primaria para esta visita?",
+      },
+      {
+        en: "Your insurance plan requires prior authorization for this procedure — I will contact them today.",
+        target:
+          "Su plan de seguro requiere autorización previa para este procedimiento — me comunicaré con ellos hoy.",
+      },
+      {
+        en: "Would you like to schedule your follow-up appointment before you leave today?",
+        target: "¿Desea programar su cita de seguimiento antes de irse hoy?",
+      },
+      {
+        en: "Please fill out this new patient intake form — it asks about your medical history and current medications.",
+        target:
+          "Por favor complete este formulario de ingreso para pacientes nuevos — pregunta sobre su historial médico y medicamentos actuales.",
+      },
+      {
+        en: "If you need to cancel or reschedule, please call us at least 24 hours in advance.",
+        target:
+          "Si necesita cancelar o reprogramar, por favor llámenos con al menos 24 horas de anticipación.",
+      },
     ],
   },
 
@@ -202,14 +469,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good afternoon, this is your first visit with us — I will need to collect some information.", target: "Bonjour, c'est votre première visite chez nous — j'aurai besoin de recueillir quelques informations." },
-      { en: "What is the name of your insurance company and your member identification number?", target: "Quel est le nom de votre compagnie d'assurance et votre numéro d'identification de membre ?" },
-      { en: "Do you have a family physician, or are you looking for a new primary care provider?", target: "Avez-vous un médecin de famille, ou cherchez-vous un nouveau prestataire de soins primaires ?" },
-      { en: "Our clinic is open Monday through Friday from eight in the morning to five in the afternoon.", target: "Notre clinique est ouverte du lundi au vendredi de huit heures du matin à cinq heures de l'après-midi." },
-      { en: "If your situation is urgent and you cannot reach us, please go to the nearest emergency room.", target: "Si votre situation est urgente et que vous ne pouvez pas nous joindre, veuillez vous rendre aux urgences les plus proches." },
-      { en: "I will send a reminder by text message the day before your appointment — is that alright?", target: "Je vous enverrai un rappel par message texte la veille de votre rendez-vous — est-ce que cela vous convient ?" },
-      { en: "Your deductible for this calendar year has been met, so today's visit is covered at one hundred percent.", target: "Votre franchise pour cette année civile a été atteinte, donc la visite d'aujourd'hui est couverte à cent pour cent." },
-      { en: "The specialist's office will contact you within three business days to schedule your appointment.", target: "Le cabinet du spécialiste vous contactera dans les trois jours ouvrables pour fixer votre rendez-vous." },
+      {
+        en: "Good afternoon, this is your first visit with us — I will need to collect some information.",
+        target:
+          "Bonjour, c'est votre première visite chez nous — j'aurai besoin de recueillir quelques informations.",
+      },
+      {
+        en: "What is the name of your insurance company and your member identification number?",
+        target:
+          "Quel est le nom de votre compagnie d'assurance et votre numéro d'identification de membre ?",
+      },
+      {
+        en: "Do you have a family physician, or are you looking for a new primary care provider?",
+        target:
+          "Avez-vous un médecin de famille, ou cherchez-vous un nouveau prestataire de soins primaires ?",
+      },
+      {
+        en: "Our clinic is open Monday through Friday from eight in the morning to five in the afternoon.",
+        target:
+          "Notre clinique est ouverte du lundi au vendredi de huit heures du matin à cinq heures de l'après-midi.",
+      },
+      {
+        en: "If your situation is urgent and you cannot reach us, please go to the nearest emergency room.",
+        target:
+          "Si votre situation est urgente et que vous ne pouvez pas nous joindre, veuillez vous rendre aux urgences les plus proches.",
+      },
+      {
+        en: "I will send a reminder by text message the day before your appointment — is that alright?",
+        target:
+          "Je vous enverrai un rappel par message texte la veille de votre rendez-vous — est-ce que cela vous convient ?",
+      },
+      {
+        en: "Your deductible for this calendar year has been met, so today's visit is covered at one hundred percent.",
+        target:
+          "Votre franchise pour cette année civile a été atteinte, donc la visite d'aujourd'hui est couverte à cent pour cent.",
+      },
+      {
+        en: "The specialist's office will contact you within three business days to schedule your appointment.",
+        target:
+          "Le cabinet du spécialiste vous contactera dans les trois jours ouvrables pour fixer votre rendez-vous.",
+      },
     ],
   },
 
@@ -224,14 +523,44 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning, may I see your insurance card and ID, please?", target: "Guten Morgen, darf ich Ihre Versicherungskarte und Ihren Personalausweis sehen, bitte?" },
-      { en: "Your insurance plan is with AOK — I need to verify your eligibility before the doctor can see you.", target: "Ihr Versicherungsplan läuft über die AOK — ich muss Ihre Anspruchsberechtigung prüfen, bevor der Arzt Sie sehen kann." },
-      { en: "For this specialist visit, you need a referral slip from your general practitioner.", target: "Für diesen Facharztbesuch benötigen Sie eine Überweisung von Ihrem Hausarzt." },
-      { en: "There is a ten-euro co-payment for today's visit that you can pay at the front desk.", target: "Für den heutigen Besuch fällt ein Eigenanteil von zehn Euro an, den Sie an der Rezeption bezahlen können." },
-      { en: "We received a request for your medical records — do you authorize us to release them?", target: "Wir haben eine Anfrage für Ihre Krankenakte erhalten — genehmigen Sie uns die Weitergabe?" },
-      { en: "Your next appointment is booked for Tuesday at two-thirty in the afternoon.", target: "Ihr nächster Termin ist für Dienstag um vierzehn Uhr dreißig gebucht." },
-      { en: "If you have any billing questions, our billing department is available on Tuesdays and Thursdays.", target: "Bei Fragen zur Abrechnung steht unsere Abrechnungsabteilung dienstags und donnerstags zur Verfügung." },
-      { en: "Please complete this health questionnaire while you wait — it will only take a few minutes.", target: "Bitte füllen Sie diesen Gesundheitsfragebogen aus, während Sie warten — es dauert nur wenige Minuten." },
+      {
+        en: "Good morning, may I see your insurance card and ID, please?",
+        target:
+          "Guten Morgen, darf ich Ihre Versicherungskarte und Ihren Personalausweis sehen, bitte?",
+      },
+      {
+        en: "Your insurance plan is with AOK — I need to verify your eligibility before the doctor can see you.",
+        target:
+          "Ihr Versicherungsplan läuft über die AOK — ich muss Ihre Anspruchsberechtigung prüfen, bevor der Arzt Sie sehen kann.",
+      },
+      {
+        en: "For this specialist visit, you need a referral slip from your general practitioner.",
+        target: "Für diesen Facharztbesuch benötigen Sie eine Überweisung von Ihrem Hausarzt.",
+      },
+      {
+        en: "There is a ten-euro co-payment for today's visit that you can pay at the front desk.",
+        target:
+          "Für den heutigen Besuch fällt ein Eigenanteil von zehn Euro an, den Sie an der Rezeption bezahlen können.",
+      },
+      {
+        en: "We received a request for your medical records — do you authorize us to release them?",
+        target:
+          "Wir haben eine Anfrage für Ihre Krankenakte erhalten — genehmigen Sie uns die Weitergabe?",
+      },
+      {
+        en: "Your next appointment is booked for Tuesday at two-thirty in the afternoon.",
+        target: "Ihr nächster Termin ist für Dienstag um vierzehn Uhr dreißig gebucht.",
+      },
+      {
+        en: "If you have any billing questions, our billing department is available on Tuesdays and Thursdays.",
+        target:
+          "Bei Fragen zur Abrechnung steht unsere Abrechnungsabteilung dienstags und donnerstags zur Verfügung.",
+      },
+      {
+        en: "Please complete this health questionnaire while you wait — it will only take a few minutes.",
+        target:
+          "Bitte füllen Sie diesen Gesundheitsfragebogen aus, während Sie warten — es dauert nur wenige Minuten.",
+      },
     ],
   },
 
@@ -246,14 +575,42 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning, do you have an appointment or are you a walk-in patient today?", target: "Buongiorno, ha un appuntamento o è un paziente senza prenotazione oggi?" },
-      { en: "May I see your health insurance card, please? Here in Italy, this is the tessera sanitaria.", target: "Posso vedere la sua tessera sanitaria, per favore?" },
-      { en: "The doctor is running about twenty minutes behind — I apologize for the wait.", target: "Il medico è in ritardo di circa venti minuti — mi scuso per l'attesa." },
-      { en: "Please update your address and phone number on this form if anything has changed.", target: "La prego di aggiornare indirizzo e numero di telefono su questo modulo se è cambiato qualcosa." },
-      { en: "Your prescription renewal has been sent electronically to your pharmacy.", target: "Il rinnovo della sua prescrizione è stato inviato elettronicamente alla sua farmacia." },
-      { en: "We have a patient portal online where you can view your test results and send messages to your doctor.", target: "Abbiamo un portale pazienti online dove può visualizzare i risultati degli esami e inviare messaggi al medico." },
-      { en: "The specialist's earliest available appointment is in three weeks — shall I book it for you?", target: "Il primo appuntamento disponibile con lo specialista è tra tre settimane — devo prenotarlo per lei?" },
-      { en: "Please bring your list of current medications to every appointment.", target: "La prego di portare il suo elenco di farmaci attuali ad ogni appuntamento." },
+      {
+        en: "Good morning, do you have an appointment or are you a walk-in patient today?",
+        target: "Buongiorno, ha un appuntamento o è un paziente senza prenotazione oggi?",
+      },
+      {
+        en: "May I see your health insurance card, please? Here in Italy, this is the tessera sanitaria.",
+        target: "Posso vedere la sua tessera sanitaria, per favore?",
+      },
+      {
+        en: "The doctor is running about twenty minutes behind — I apologize for the wait.",
+        target: "Il medico è in ritardo di circa venti minuti — mi scuso per l'attesa.",
+      },
+      {
+        en: "Please update your address and phone number on this form if anything has changed.",
+        target:
+          "La prego di aggiornare indirizzo e numero di telefono su questo modulo se è cambiato qualcosa.",
+      },
+      {
+        en: "Your prescription renewal has been sent electronically to your pharmacy.",
+        target:
+          "Il rinnovo della sua prescrizione è stato inviato elettronicamente alla sua farmacia.",
+      },
+      {
+        en: "We have a patient portal online where you can view your test results and send messages to your doctor.",
+        target:
+          "Abbiamo un portale pazienti online dove può visualizzare i risultati degli esami e inviare messaggi al medico.",
+      },
+      {
+        en: "The specialist's earliest available appointment is in three weeks — shall I book it for you?",
+        target:
+          "Il primo appuntamento disponibile con lo specialista è tra tre settimane — devo prenotarlo per lei?",
+      },
+      {
+        en: "Please bring your list of current medications to every appointment.",
+        target: "La prego di portare il suo elenco di farmaci attuali ad ogni appuntamento.",
+      },
     ],
   },
 
@@ -268,14 +625,38 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning. Do you have an appointment today, or are you a first-time patient?", target: "おはようございます。本日はご予約でしょうか、それとも初診でいらっしゃいますか？" },
-      { en: "May I have your health insurance card and photo identification, please?", target: "健康保険証と写真付きの身分証明書をお持ちいただけますか？" },
-      { en: "Please fill out this registration form with your name, date of birth, and address.", target: "こちらの問診票にお名前、生年月日、ご住所をご記入ください。" },
-      { en: "The doctor is currently seeing patients — your wait time will be approximately thirty minutes.", target: "現在、先生は診察中です。待ち時間は約30分になります。" },
-      { en: "Your copayment for today is 1,500 yen — will you be paying by cash or card?", target: "本日の自己負担額は1,500円です。現金とカード、どちらでお支払いになりますか？" },
-      { en: "I will send a reminder to your mobile phone the day before your next appointment.", target: "次回の予約前日に携帯電話へリマインダーをお送りします。" },
-      { en: "Please return this completed questionnaire to the reception desk before your appointment.", target: "ご記入いただいた問診票を診察前に受付窓口へお戻しください。" },
-      { en: "Your test results will be ready in three business days — we will contact you when they arrive.", target: "検査結果は3営業日後に出ます。結果が出次第、ご連絡いたします。" },
+      {
+        en: "Good morning. Do you have an appointment today, or are you a first-time patient?",
+        target: "おはようございます。本日はご予約でしょうか、それとも初診でいらっしゃいますか？",
+      },
+      {
+        en: "May I have your health insurance card and photo identification, please?",
+        target: "健康保険証と写真付きの身分証明書をお持ちいただけますか？",
+      },
+      {
+        en: "Please fill out this registration form with your name, date of birth, and address.",
+        target: "こちらの問診票にお名前、生年月日、ご住所をご記入ください。",
+      },
+      {
+        en: "The doctor is currently seeing patients — your wait time will be approximately thirty minutes.",
+        target: "現在、先生は診察中です。待ち時間は約30分になります。",
+      },
+      {
+        en: "Your copayment for today is 1,500 yen — will you be paying by cash or card?",
+        target: "本日の自己負担額は1,500円です。現金とカード、どちらでお支払いになりますか？",
+      },
+      {
+        en: "I will send a reminder to your mobile phone the day before your next appointment.",
+        target: "次回の予約前日に携帯電話へリマインダーをお送りします。",
+      },
+      {
+        en: "Please return this completed questionnaire to the reception desk before your appointment.",
+        target: "ご記入いただいた問診票を診察前に受付窓口へお戻しください。",
+      },
+      {
+        en: "Your test results will be ready in three business days — we will contact you when they arrive.",
+        target: "検査結果は3営業日後に出ます。結果が出次第、ご連絡いたします。",
+      },
     ],
   },
 
@@ -290,14 +671,43 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning, welcome. Are you here for a scheduled appointment or do you need urgent care?", target: "Bom dia, bem-vindo. Você está aqui para uma consulta agendada ou precisa de atendimento de urgência?" },
-      { en: "Can I see your health insurance card and a document with your CPF, please?", target: "Posso ver seu cartão de convênio e um documento com seu CPF, por favor?" },
-      { en: "Your plan requires a referral for specialist visits — do you have one from your family doctor?", target: "Seu plano exige encaminhamento para consultas com especialistas — você tem um do seu médico de família?" },
-      { en: "The doctor has availability on Wednesday morning and Friday afternoon — which do you prefer?", target: "O médico tem disponibilidade na quarta de manhã e na sexta à tarde — qual você prefere?" },
-      { en: "Your consultation fee today is forty reais — we accept all major credit cards and cash.", target: "O valor da consulta hoje é quarenta reais — aceitamos todos os cartões de crédito principais e dinheiro." },
-      { en: "Please update your contact information on our system — your phone number has changed, correct?", target: "Por favor, atualize suas informações de contato em nosso sistema — seu número de telefone mudou, certo?" },
-      { en: "We will send your prescription electronically to the pharmacy of your choice.", target: "Enviaremos sua receita eletronicamente para a farmácia de sua preferência." },
-      { en: "Your next appointment is confirmed for next Monday at ten in the morning.", target: "Sua próxima consulta está confirmada para próxima segunda-feira às dez da manhã." },
+      {
+        en: "Good morning, welcome. Are you here for a scheduled appointment or do you need urgent care?",
+        target:
+          "Bom dia, bem-vindo. Você está aqui para uma consulta agendada ou precisa de atendimento de urgência?",
+      },
+      {
+        en: "Can I see your health insurance card and a document with your CPF, please?",
+        target: "Posso ver seu cartão de convênio e um documento com seu CPF, por favor?",
+      },
+      {
+        en: "Your plan requires a referral for specialist visits — do you have one from your family doctor?",
+        target:
+          "Seu plano exige encaminhamento para consultas com especialistas — você tem um do seu médico de família?",
+      },
+      {
+        en: "The doctor has availability on Wednesday morning and Friday afternoon — which do you prefer?",
+        target:
+          "O médico tem disponibilidade na quarta de manhã e na sexta à tarde — qual você prefere?",
+      },
+      {
+        en: "Your consultation fee today is forty reais — we accept all major credit cards and cash.",
+        target:
+          "O valor da consulta hoje é quarenta reais — aceitamos todos os cartões de crédito principais e dinheiro.",
+      },
+      {
+        en: "Please update your contact information on our system — your phone number has changed, correct?",
+        target:
+          "Por favor, atualize suas informações de contato em nosso sistema — seu número de telefone mudou, certo?",
+      },
+      {
+        en: "We will send your prescription electronically to the pharmacy of your choice.",
+        target: "Enviaremos sua receita eletronicamente para a farmácia de sua preferência.",
+      },
+      {
+        en: "Your next appointment is confirmed for next Monday at ten in the morning.",
+        target: "Sua próxima consulta está confirmada para próxima segunda-feira às dez da manhã.",
+      },
     ],
   },
 
@@ -312,14 +722,38 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning. Is this your first visit to our clinic today?", target: "안녕하세요. 오늘 처음 방문하셨나요?" },
-      { en: "Please show me your health insurance card and identification.", target: "건강보험증과 신분증을 보여 주시겠습니까?" },
-      { en: "Please fill out this patient registration form with your personal and medical information.", target: "이 환자 등록 양식에 개인 정보와 병력을 기재해 주세요." },
-      { en: "Your appointment is at two o'clock — the doctor will be with you shortly after you are registered.", target: "예약 시간은 오후 2시입니다. 등록이 완료되면 곧 진료해 드리겠습니다." },
-      { en: "Your copayment today is ten thousand won — cash or card?", target: "오늘 본인 부담금은 1만 원입니다. 현금 또는 카드로 결제하시겠습니까?" },
-      { en: "We will call you when your test results are ready, usually within two business days.", target: "검사 결과가 나오면 연락드리겠습니다. 보통 영업일 기준 2일 이내입니다." },
-      { en: "Would you like to make a follow-up appointment before you leave today?", target: "오늘 가시기 전에 다음 진료 예약을 하시겠습니까?" },
-      { en: "If you need to cancel, please let us know at least one day in advance.", target: "취소하실 경우 최소 하루 전에 알려 주시기 바랍니다." },
+      {
+        en: "Good morning. Is this your first visit to our clinic today?",
+        target: "안녕하세요. 오늘 처음 방문하셨나요?",
+      },
+      {
+        en: "Please show me your health insurance card and identification.",
+        target: "건강보험증과 신분증을 보여 주시겠습니까?",
+      },
+      {
+        en: "Please fill out this patient registration form with your personal and medical information.",
+        target: "이 환자 등록 양식에 개인 정보와 병력을 기재해 주세요.",
+      },
+      {
+        en: "Your appointment is at two o'clock — the doctor will be with you shortly after you are registered.",
+        target: "예약 시간은 오후 2시입니다. 등록이 완료되면 곧 진료해 드리겠습니다.",
+      },
+      {
+        en: "Your copayment today is ten thousand won — cash or card?",
+        target: "오늘 본인 부담금은 1만 원입니다. 현금 또는 카드로 결제하시겠습니까?",
+      },
+      {
+        en: "We will call you when your test results are ready, usually within two business days.",
+        target: "검사 결과가 나오면 연락드리겠습니다. 보통 영업일 기준 2일 이내입니다.",
+      },
+      {
+        en: "Would you like to make a follow-up appointment before you leave today?",
+        target: "오늘 가시기 전에 다음 진료 예약을 하시겠습니까?",
+      },
+      {
+        en: "If you need to cancel, please let us know at least one day in advance.",
+        target: "취소하실 경우 최소 하루 전에 알려 주시기 바랍니다.",
+      },
     ],
   },
 
@@ -336,15 +770,50 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Good afternoon, Mr. Hernández. My name is Claudia and I am the hospital social worker assigned to your case.", target: "Buenas tardes, señor Hernández. Me llamo Claudia y soy la trabajadora social del hospital asignada a su caso." },
-      { en: "We are planning for your discharge in two days — I want to make sure you have the support you need at home.", target: "Estamos planeando su alta médica en dos días — quiero asegurarme de que tenga el apoyo necesario en casa." },
-      { en: "Do you have family members or friends who can help you with daily activities when you return home?", target: "¿Tiene familiares o amigos que puedan ayudarle con las actividades diarias cuando regrese a casa?" },
-      { en: "Are you currently receiving any government assistance programs, such as Medicaid or food stamps?", target: "¿Recibe actualmente algún programa de asistencia gubernamental, como Medicaid o cupones de alimentos?" },
-      { en: "I would like to refer you to a home health agency that can provide nursing visits three times a week.", target: "Me gustaría referirle a una agencia de salud en el hogar que puede brindarle visitas de enfermería tres veces por semana." },
-      { en: "This resource guide has information about local food banks, housing assistance, and transportation services.", target: "Esta guía de recursos contiene información sobre bancos de alimentos locales, asistencia de vivienda y servicios de transporte." },
-      { en: "Are there any safety concerns at home — do you feel safe where you live?", target: "¿Hay alguna preocupación de seguridad en casa — se siente seguro donde vive?" },
-      { en: "I am going to schedule a follow-up call with you next week to make sure the transition went smoothly.", target: "Voy a programar una llamada de seguimiento con usted la próxima semana para asegurarme de que la transición fue sin problemas." },
-      { en: "If at any point you feel overwhelmed or unsafe, please call this crisis hotline — it is available 24 hours a day.", target: "Si en algún momento se siente abrumado o inseguro, llame a esta línea de crisis — está disponible las 24 horas." },
+      {
+        en: "Good afternoon, Mr. Hernández. My name is Claudia and I am the hospital social worker assigned to your case.",
+        target:
+          "Buenas tardes, señor Hernández. Me llamo Claudia y soy la trabajadora social del hospital asignada a su caso.",
+      },
+      {
+        en: "We are planning for your discharge in two days — I want to make sure you have the support you need at home.",
+        target:
+          "Estamos planeando su alta médica en dos días — quiero asegurarme de que tenga el apoyo necesario en casa.",
+      },
+      {
+        en: "Do you have family members or friends who can help you with daily activities when you return home?",
+        target:
+          "¿Tiene familiares o amigos que puedan ayudarle con las actividades diarias cuando regrese a casa?",
+      },
+      {
+        en: "Are you currently receiving any government assistance programs, such as Medicaid or food stamps?",
+        target:
+          "¿Recibe actualmente algún programa de asistencia gubernamental, como Medicaid o cupones de alimentos?",
+      },
+      {
+        en: "I would like to refer you to a home health agency that can provide nursing visits three times a week.",
+        target:
+          "Me gustaría referirle a una agencia de salud en el hogar que puede brindarle visitas de enfermería tres veces por semana.",
+      },
+      {
+        en: "This resource guide has information about local food banks, housing assistance, and transportation services.",
+        target:
+          "Esta guía de recursos contiene información sobre bancos de alimentos locales, asistencia de vivienda y servicios de transporte.",
+      },
+      {
+        en: "Are there any safety concerns at home — do you feel safe where you live?",
+        target: "¿Hay alguna preocupación de seguridad en casa — se siente seguro donde vive?",
+      },
+      {
+        en: "I am going to schedule a follow-up call with you next week to make sure the transition went smoothly.",
+        target:
+          "Voy a programar una llamada de seguimiento con usted la próxima semana para asegurarme de que la transición fue sin problemas.",
+      },
+      {
+        en: "If at any point you feel overwhelmed or unsafe, please call this crisis hotline — it is available 24 hours a day.",
+        target:
+          "Si en algún momento se siente abrumado o inseguro, llame a esta línea de crisis — está disponible las 24 horas.",
+      },
     ],
   },
 
@@ -359,14 +828,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "I am a hospital social worker — my role is to connect you with services that can support your recovery.", target: "Je suis assistante sociale hospitalière — mon rôle est de vous mettre en contact avec des services qui peuvent soutenir votre rétablissement." },
-      { en: "Based on your income and family situation, you may be eligible for the RSA — a minimum income support payment.", target: "En fonction de vos revenus et de votre situation familiale, vous pourriez avoir droit au RSA — une prestation de revenu minimum." },
-      { en: "I can help you apply for housing assistance — the wait list is long but it is important to apply now.", target: "Je peux vous aider à faire une demande d'aide au logement — la liste d'attente est longue mais il est important de postuler maintenant." },
-      { en: "Would you be open to speaking with a mental health counselor about the stress you have been experiencing?", target: "Seriez-vous ouvert à parler avec un conseiller en santé mentale du stress que vous avez vécu ?" },
-      { en: "There is a community center two blocks away that offers free meals on weekdays and job placement services.", target: "Il y a un centre communautaire à deux rues d'ici qui propose des repas gratuits en semaine et des services de placement professionnel." },
-      { en: "Your discharge plan includes a home visit from a social worker within 48 hours of leaving the hospital.", target: "Votre plan de sortie comprend une visite à domicile d'une assistante sociale dans les 48 heures suivant votre départ de l'hôpital." },
-      { en: "Do you have transportation to your follow-up medical appointments, or do you need assistance arranging a ride?", target: "Avez-vous un moyen de transport pour vos rendez-vous médicaux de suivi, ou avez-vous besoin d'aide pour organiser un transport ?" },
-      { en: "I will document everything we discussed today and share it with your care team.", target: "Je vais documenter tout ce dont nous avons discuté aujourd'hui et le partager avec votre équipe soignante." },
+      {
+        en: "I am a hospital social worker — my role is to connect you with services that can support your recovery.",
+        target:
+          "Je suis assistante sociale hospitalière — mon rôle est de vous mettre en contact avec des services qui peuvent soutenir votre rétablissement.",
+      },
+      {
+        en: "Based on your income and family situation, you may be eligible for the RSA — a minimum income support payment.",
+        target:
+          "En fonction de vos revenus et de votre situation familiale, vous pourriez avoir droit au RSA — une prestation de revenu minimum.",
+      },
+      {
+        en: "I can help you apply for housing assistance — the wait list is long but it is important to apply now.",
+        target:
+          "Je peux vous aider à faire une demande d'aide au logement — la liste d'attente est longue mais il est important de postuler maintenant.",
+      },
+      {
+        en: "Would you be open to speaking with a mental health counselor about the stress you have been experiencing?",
+        target:
+          "Seriez-vous ouvert à parler avec un conseiller en santé mentale du stress que vous avez vécu ?",
+      },
+      {
+        en: "There is a community center two blocks away that offers free meals on weekdays and job placement services.",
+        target:
+          "Il y a un centre communautaire à deux rues d'ici qui propose des repas gratuits en semaine et des services de placement professionnel.",
+      },
+      {
+        en: "Your discharge plan includes a home visit from a social worker within 48 hours of leaving the hospital.",
+        target:
+          "Votre plan de sortie comprend une visite à domicile d'une assistante sociale dans les 48 heures suivant votre départ de l'hôpital.",
+      },
+      {
+        en: "Do you have transportation to your follow-up medical appointments, or do you need assistance arranging a ride?",
+        target:
+          "Avez-vous un moyen de transport pour vos rendez-vous médicaux de suivi, ou avez-vous besoin d'aide pour organiser un transport ?",
+      },
+      {
+        en: "I will document everything we discussed today and share it with your care team.",
+        target:
+          "Je vais documenter tout ce dont nous avons discuté aujourd'hui et le partager avec votre équipe soignante.",
+      },
     ],
   },
 
@@ -381,14 +882,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Hello, I am the social worker at this hospital — I would like to speak with you about your situation at home.", target: "Hallo, ich bin der Sozialarbeiter in diesem Krankenhaus — ich möchte mit Ihnen über Ihre Situation zu Hause sprechen." },
-      { en: "You mentioned that you have been feeling unsafe at home — can you tell me more about that?", target: "Sie erwähnten, dass Sie sich zu Hause unsicher fühlen — können Sie mir mehr darüber erzählen?" },
-      { en: "We have a confidential domestic violence shelter that can accommodate you and your children tonight.", target: "Wir haben ein vertrauliches Frauenhaus, das Sie und Ihre Kinder heute Nacht aufnehmen kann." },
-      { en: "I can refer you to the local Jobcenter to help you access Hartz IV benefits while you stabilize.", target: "Ich kann Sie an das lokale Jobcenter verweisen, damit Sie Hartz-IV-Leistungen erhalten, während Sie sich stabilisieren." },
-      { en: "Your children can stay enrolled in school — I will notify the school of the change in family situation.", target: "Ihre Kinder können in der Schule eingeschrieben bleiben — ich werde die Schule über die Änderung der familiären Situation informieren." },
-      { en: "This is a community outreach program that provides support to individuals dealing with substance use.", target: "Dies ist ein Gemeindeberatungsprogramm, das Menschen mit Suchtproblemen unterstützt." },
-      { en: "We respect your right to make your own decisions — my role is to give you information, not to judge.", target: "Wir respektieren Ihr Recht, eigene Entscheidungen zu treffen — meine Rolle ist es, Ihnen Informationen zu geben, nicht zu urteilen." },
-      { en: "Would you like me to contact your family on your behalf, or do you prefer to do that yourself?", target: "Soll ich in Ihrem Namen Ihre Familie kontaktieren, oder möchten Sie das lieber selbst tun?" },
+      {
+        en: "Hello, I am the social worker at this hospital — I would like to speak with you about your situation at home.",
+        target:
+          "Hallo, ich bin der Sozialarbeiter in diesem Krankenhaus — ich möchte mit Ihnen über Ihre Situation zu Hause sprechen.",
+      },
+      {
+        en: "You mentioned that you have been feeling unsafe at home — can you tell me more about that?",
+        target:
+          "Sie erwähnten, dass Sie sich zu Hause unsicher fühlen — können Sie mir mehr darüber erzählen?",
+      },
+      {
+        en: "We have a confidential domestic violence shelter that can accommodate you and your children tonight.",
+        target:
+          "Wir haben ein vertrauliches Frauenhaus, das Sie und Ihre Kinder heute Nacht aufnehmen kann.",
+      },
+      {
+        en: "I can refer you to the local Jobcenter to help you access Hartz IV benefits while you stabilize.",
+        target:
+          "Ich kann Sie an das lokale Jobcenter verweisen, damit Sie Hartz-IV-Leistungen erhalten, während Sie sich stabilisieren.",
+      },
+      {
+        en: "Your children can stay enrolled in school — I will notify the school of the change in family situation.",
+        target:
+          "Ihre Kinder können in der Schule eingeschrieben bleiben — ich werde die Schule über die Änderung der familiären Situation informieren.",
+      },
+      {
+        en: "This is a community outreach program that provides support to individuals dealing with substance use.",
+        target:
+          "Dies ist ein Gemeindeberatungsprogramm, das Menschen mit Suchtproblemen unterstützt.",
+      },
+      {
+        en: "We respect your right to make your own decisions — my role is to give you information, not to judge.",
+        target:
+          "Wir respektieren Ihr Recht, eigene Entscheidungen zu treffen — meine Rolle ist es, Ihnen Informationen zu geben, nicht zu urteilen.",
+      },
+      {
+        en: "Would you like me to contact your family on your behalf, or do you prefer to do that yourself?",
+        target:
+          "Soll ich in Ihrem Namen Ihre Familie kontaktieren, oder möchten Sie das lieber selbst tun?",
+      },
     ],
   },
 
@@ -403,14 +936,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "I am the hospital social worker — I want to make sure you have all the support you need after discharge.", target: "Sono l'assistente sociale dell'ospedale — voglio assicurarmi che lei abbia tutto il supporto necessario dopo la dimissione." },
-      { en: "The mental health center near your home offers free counseling sessions for patients in your situation.", target: "Il centro di salute mentale vicino a casa sua offre sessioni di consulenza gratuite per i pazienti nella sua situazione." },
-      { en: "Are you currently receiving a disability pension, or do we need to look into that for you?", target: "Riceve attualmente una pensione di invalidità, o dobbiamo esplorare questa possibilità per lei?" },
-      { en: "I can connect you with a volunteer visitor program — someone will come to your home once a week.", target: "Posso metterla in contatto con un programma di volontari visitatori — qualcuno verrà a casa sua una volta alla settimana." },
-      { en: "Your care coordinator at the community health center will manage all your appointments going forward.", target: "Il suo coordinatore delle cure al centro salute della comunità gestirà tutti i suoi appuntamenti d'ora in poi." },
-      { en: "Have you been able to eat regularly and sleep adequately over the past few weeks?", target: "È riuscito a mangiare regolarmente e a dormire adeguatamente nelle ultime settimane?" },
-      { en: "This is a 24-hour crisis line — please program this number into your phone before you leave today.", target: "Questo è un numero di crisi disponibile 24 ore — la prego di salvarlo sul suo telefono prima di andarsene oggi." },
-      { en: "I will follow up with you by phone in one week to see how you are settling in at home.", target: "La ricontatterò per telefono tra una settimana per vedere come si sta ambientando a casa." },
+      {
+        en: "I am the hospital social worker — I want to make sure you have all the support you need after discharge.",
+        target:
+          "Sono l'assistente sociale dell'ospedale — voglio assicurarmi che lei abbia tutto il supporto necessario dopo la dimissione.",
+      },
+      {
+        en: "The mental health center near your home offers free counseling sessions for patients in your situation.",
+        target:
+          "Il centro di salute mentale vicino a casa sua offre sessioni di consulenza gratuite per i pazienti nella sua situazione.",
+      },
+      {
+        en: "Are you currently receiving a disability pension, or do we need to look into that for you?",
+        target:
+          "Riceve attualmente una pensione di invalidità, o dobbiamo esplorare questa possibilità per lei?",
+      },
+      {
+        en: "I can connect you with a volunteer visitor program — someone will come to your home once a week.",
+        target:
+          "Posso metterla in contatto con un programma di volontari visitatori — qualcuno verrà a casa sua una volta alla settimana.",
+      },
+      {
+        en: "Your care coordinator at the community health center will manage all your appointments going forward.",
+        target:
+          "Il suo coordinatore delle cure al centro salute della comunità gestirà tutti i suoi appuntamenti d'ora in poi.",
+      },
+      {
+        en: "Have you been able to eat regularly and sleep adequately over the past few weeks?",
+        target:
+          "È riuscito a mangiare regolarmente e a dormire adeguatamente nelle ultime settimane?",
+      },
+      {
+        en: "This is a 24-hour crisis line — please program this number into your phone before you leave today.",
+        target:
+          "Questo è un numero di crisi disponibile 24 ore — la prego di salvarlo sul suo telefono prima di andarsene oggi.",
+      },
+      {
+        en: "I will follow up with you by phone in one week to see how you are settling in at home.",
+        target:
+          "La ricontatterò per telefono tra una settimana per vedere come si sta ambientando a casa.",
+      },
     ],
   },
 
@@ -425,14 +990,40 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "My name is Yamamoto and I am the medical social worker here at the hospital.", target: "私は山本と申します。当病院の医療ソーシャルワーカーです。" },
-      { en: "We are planning your discharge for Friday — I want to make sure there is someone to support you at home.", target: "金曜日の退院を予定しています。自宅でサポートしてくれる方がいるか確認したいと思います。" },
-      { en: "Have you applied for the long-term care insurance certification from your local municipality?", target: "市区町村に介護保険の認定申請はされていますか？" },
-      { en: "With a care level of 2, you are eligible for home visit care, day service, and rental of nursing equipment.", target: "要介護2であれば、訪問介護、デイサービス、福祉用具のレンタルが利用できます。" },
-      { en: "I would like to arrange a care manager meeting with you and your family before discharge.", target: "退院前に患者様とご家族、ケアマネジャーとで会議を設定したいと思います。" },
-      { en: "Are there any concerns about returning to your home — for example, steps, narrow doorways, or bathroom access?", target: "自宅に戻ることについて心配なことはありますか？例えば、段差、狭い通路、浴室へのアクセスなど。" },
-      { en: "The district social welfare council can provide volunteer support for grocery shopping and light housework.", target: "地域社会福祉協議会では、買い物や軽い家事のボランティアサポートを提供しています。" },
-      { en: "If you or your family ever feel overwhelmed, please do not hesitate to contact me directly.", target: "患者様やご家族が負担に感じることがあれば、遠慮なく直接ご連絡ください。" },
+      {
+        en: "My name is Yamamoto and I am the medical social worker here at the hospital.",
+        target: "私は山本と申します。当病院の医療ソーシャルワーカーです。",
+      },
+      {
+        en: "We are planning your discharge for Friday — I want to make sure there is someone to support you at home.",
+        target:
+          "金曜日の退院を予定しています。自宅でサポートしてくれる方がいるか確認したいと思います。",
+      },
+      {
+        en: "Have you applied for the long-term care insurance certification from your local municipality?",
+        target: "市区町村に介護保険の認定申請はされていますか？",
+      },
+      {
+        en: "With a care level of 2, you are eligible for home visit care, day service, and rental of nursing equipment.",
+        target: "要介護2であれば、訪問介護、デイサービス、福祉用具のレンタルが利用できます。",
+      },
+      {
+        en: "I would like to arrange a care manager meeting with you and your family before discharge.",
+        target: "退院前に患者様とご家族、ケアマネジャーとで会議を設定したいと思います。",
+      },
+      {
+        en: "Are there any concerns about returning to your home — for example, steps, narrow doorways, or bathroom access?",
+        target:
+          "自宅に戻ることについて心配なことはありますか？例えば、段差、狭い通路、浴室へのアクセスなど。",
+      },
+      {
+        en: "The district social welfare council can provide volunteer support for grocery shopping and light housework.",
+        target: "地域社会福祉協議会では、買い物や軽い家事のボランティアサポートを提供しています。",
+      },
+      {
+        en: "If you or your family ever feel overwhelmed, please do not hesitate to contact me directly.",
+        target: "患者様やご家族が負担に感じることがあれば、遠慮なく直接ご連絡ください。",
+      },
     ],
   },
 
@@ -447,14 +1038,45 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "I am the social worker on this unit — I am here to help you access the resources you need after leaving the hospital.", target: "Sou a assistente social desta unidade — estou aqui para ajudá-lo a acessar os recursos necessários após a alta hospitalar." },
-      { en: "Are you familiar with the CRAS — the Social Assistance Reference Center in your neighborhood?", target: "Você conhece o CRAS — o Centro de Referência de Assistência Social do seu bairro?" },
-      { en: "You may be eligible for the Bolsa Família program based on your family income and number of children.", target: "Você pode ser elegível para o programa Bolsa Família com base na renda familiar e no número de filhos." },
-      { en: "This is a shelter for families in crisis — they have spaces available and can accept you tonight.", target: "Este é um abrigo para famílias em crise — eles têm vagas disponíveis e podem te receber esta noite." },
-      { en: "I can help you apply for the BPC disability benefit — it pays one minimum wage per month.", target: "Posso te ajudar a solicitar o BPC — benefício de prestação continuada que paga um salário mínimo por mês." },
-      { en: "Have you been feeling depressed or anxious lately? There is no shame in asking for mental health support.", target: "Você tem se sentido deprimido ou ansioso ultimamente? Não há vergonha em pedir apoio à saúde mental." },
-      { en: "The CAPS — Psychosocial Care Center — offers free therapy and psychiatric follow-up in your area.", target: "O CAPS — Centro de Atenção Psicossocial — oferece terapia gratuita e acompanhamento psiquiátrico na sua região." },
-      { en: "I will call you in one week to follow up — please keep this number to reach me if anything comes up.", target: "Vou te ligar em uma semana para acompanhar. Guarde este número para me contactar se surgir qualquer coisa." },
+      {
+        en: "I am the social worker on this unit — I am here to help you access the resources you need after leaving the hospital.",
+        target:
+          "Sou a assistente social desta unidade — estou aqui para ajudá-lo a acessar os recursos necessários após a alta hospitalar.",
+      },
+      {
+        en: "Are you familiar with the CRAS — the Social Assistance Reference Center in your neighborhood?",
+        target: "Você conhece o CRAS — o Centro de Referência de Assistência Social do seu bairro?",
+      },
+      {
+        en: "You may be eligible for the Bolsa Família program based on your family income and number of children.",
+        target:
+          "Você pode ser elegível para o programa Bolsa Família com base na renda familiar e no número de filhos.",
+      },
+      {
+        en: "This is a shelter for families in crisis — they have spaces available and can accept you tonight.",
+        target:
+          "Este é um abrigo para famílias em crise — eles têm vagas disponíveis e podem te receber esta noite.",
+      },
+      {
+        en: "I can help you apply for the BPC disability benefit — it pays one minimum wage per month.",
+        target:
+          "Posso te ajudar a solicitar o BPC — benefício de prestação continuada que paga um salário mínimo por mês.",
+      },
+      {
+        en: "Have you been feeling depressed or anxious lately? There is no shame in asking for mental health support.",
+        target:
+          "Você tem se sentido deprimido ou ansioso ultimamente? Não há vergonha em pedir apoio à saúde mental.",
+      },
+      {
+        en: "The CAPS — Psychosocial Care Center — offers free therapy and psychiatric follow-up in your area.",
+        target:
+          "O CAPS — Centro de Atenção Psicossocial — oferece terapia gratuita e acompanhamento psiquiátrico na sua região.",
+      },
+      {
+        en: "I will call you in one week to follow up — please keep this number to reach me if anything comes up.",
+        target:
+          "Vou te ligar em uma semana para acompanhar. Guarde este número para me contactar se surgir qualquer coisa.",
+      },
     ],
   },
 
@@ -469,14 +1091,39 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "B2",
     sentences: [
-      { en: "Hello, I am Kim from the hospital social work department — I would like to discuss your discharge plan.", target: "안녕하세요, 저는 사회복지팀의 김입니다. 퇴원 계획에 대해 말씀드리고 싶습니다." },
-      { en: "Do you have family members who can support you at home after discharge?", target: "퇴원 후 집에서 돌봐 줄 가족이 계십니까?" },
-      { en: "Based on your condition, you may qualify for long-term care insurance — have you applied before?", target: "현재 상태를 보면 장기요양보험 대상이 되실 수 있습니다. 이전에 신청하신 적이 있으신가요?" },
-      { en: "The community welfare center near your home provides home visit services and meal delivery.", target: "댁 근처 주민복지센터에서는 방문 서비스와 식사 배달 서비스를 제공합니다." },
-      { en: "Are there any financial difficulties that might prevent you from purchasing your medications?", target: "약을 구입하는 데 어려움을 주는 경제적인 문제가 있으십니까?" },
-      { en: "I can refer you to a mental health center where you can speak with a counselor at no charge.", target: "비용 없이 상담사와 이야기할 수 있는 정신건강복지센터로 연계해 드릴 수 있습니다." },
-      { en: "Please do not hesitate to contact us if your situation changes after discharge.", target: "퇴원 후 상황이 바뀌면 언제든지 연락해 주십시오." },
-      { en: "We will share a copy of your discharge plan with your local community health center.", target: "퇴원 계획서 사본을 가까운 지역 보건소와 공유하겠습니다." },
+      {
+        en: "Hello, I am Kim from the hospital social work department — I would like to discuss your discharge plan.",
+        target: "안녕하세요, 저는 사회복지팀의 김입니다. 퇴원 계획에 대해 말씀드리고 싶습니다.",
+      },
+      {
+        en: "Do you have family members who can support you at home after discharge?",
+        target: "퇴원 후 집에서 돌봐 줄 가족이 계십니까?",
+      },
+      {
+        en: "Based on your condition, you may qualify for long-term care insurance — have you applied before?",
+        target:
+          "현재 상태를 보면 장기요양보험 대상이 되실 수 있습니다. 이전에 신청하신 적이 있으신가요?",
+      },
+      {
+        en: "The community welfare center near your home provides home visit services and meal delivery.",
+        target: "댁 근처 주민복지센터에서는 방문 서비스와 식사 배달 서비스를 제공합니다.",
+      },
+      {
+        en: "Are there any financial difficulties that might prevent you from purchasing your medications?",
+        target: "약을 구입하는 데 어려움을 주는 경제적인 문제가 있으십니까?",
+      },
+      {
+        en: "I can refer you to a mental health center where you can speak with a counselor at no charge.",
+        target: "비용 없이 상담사와 이야기할 수 있는 정신건강복지센터로 연계해 드릴 수 있습니다.",
+      },
+      {
+        en: "Please do not hesitate to contact us if your situation changes after discharge.",
+        target: "퇴원 후 상황이 바뀌면 언제든지 연락해 주십시오.",
+      },
+      {
+        en: "We will share a copy of your discharge plan with your local community health center.",
+        target: "퇴원 계획서 사본을 가까운 지역 보건소와 공유하겠습니다.",
+      },
     ],
   },
 
@@ -493,15 +1140,50 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Before entering the job site, everyone must put on their hard hat, safety glasses, and steel-toed boots.", target: "Antes de entrar a la obra, todos deben ponerse el casco, los lentes de seguridad y las botas con puntera de acero." },
-      { en: "OSHA requires that all workers complete a ten-hour safety training before starting on this project.", target: "OSHA requiere que todos los trabajadores completen diez horas de capacitación en seguridad antes de comenzar en este proyecto." },
-      { en: "Never remove your harness while working at a height of six feet or more above the ground.", target: "Nunca se quite el arnés mientras trabaja a una altura de seis pies o más sobre el suelo." },
-      { en: "Before you start any work on that electrical panel, you must perform lockout/tagout to isolate the energy.", target: "Antes de comenzar cualquier trabajo en ese tablero eléctrico, debe realizar el bloqueo y etiquetado para aislar la energía." },
-      { en: "There is a trench excavation over ten feet deep on the north side — proper shoring is required.", target: "Hay una excavación de trinchera de más de diez pies de profundidad en el lado norte — se requiere apuntalamiento adecuado." },
-      { en: "If you see an unsafe condition, stop work and report it to your foreman immediately.", target: "Si ve una condición insegura, detenga el trabajo y repórtelo a su capataz de inmediato." },
-      { en: "The toolbox talk this morning is about fall protection — please pay attention as this could save your life.", target: "La charla de seguridad de esta mañana es sobre protección contra caídas — por favor preste atención ya que esto podría salvarle la vida." },
-      { en: "Where are the first aid kits and fire extinguishers located on this site?", target: "¿Dónde están ubicados los botiquines de primeros auxilios y los extintores en esta obra?" },
-      { en: "In case of emergency, the assembly point is at the gate on Fifth Street.", target: "En caso de emergencia, el punto de reunión está en la puerta de la Calle Quinta." },
+      {
+        en: "Before entering the job site, everyone must put on their hard hat, safety glasses, and steel-toed boots.",
+        target:
+          "Antes de entrar a la obra, todos deben ponerse el casco, los lentes de seguridad y las botas con puntera de acero.",
+      },
+      {
+        en: "OSHA requires that all workers complete a ten-hour safety training before starting on this project.",
+        target:
+          "OSHA requiere que todos los trabajadores completen diez horas de capacitación en seguridad antes de comenzar en este proyecto.",
+      },
+      {
+        en: "Never remove your harness while working at a height of six feet or more above the ground.",
+        target:
+          "Nunca se quite el arnés mientras trabaja a una altura de seis pies o más sobre el suelo.",
+      },
+      {
+        en: "Before you start any work on that electrical panel, you must perform lockout/tagout to isolate the energy.",
+        target:
+          "Antes de comenzar cualquier trabajo en ese tablero eléctrico, debe realizar el bloqueo y etiquetado para aislar la energía.",
+      },
+      {
+        en: "There is a trench excavation over ten feet deep on the north side — proper shoring is required.",
+        target:
+          "Hay una excavación de trinchera de más de diez pies de profundidad en el lado norte — se requiere apuntalamiento adecuado.",
+      },
+      {
+        en: "If you see an unsafe condition, stop work and report it to your foreman immediately.",
+        target:
+          "Si ve una condición insegura, detenga el trabajo y repórtelo a su capataz de inmediato.",
+      },
+      {
+        en: "The toolbox talk this morning is about fall protection — please pay attention as this could save your life.",
+        target:
+          "La charla de seguridad de esta mañana es sobre protección contra caídas — por favor preste atención ya que esto podría salvarle la vida.",
+      },
+      {
+        en: "Where are the first aid kits and fire extinguishers located on this site?",
+        target:
+          "¿Dónde están ubicados los botiquines de primeros auxilios y los extintores en esta obra?",
+      },
+      {
+        en: "In case of emergency, the assembly point is at the gate on Fifth Street.",
+        target: "En caso de emergencia, el punto de reunión está en la puerta de la Calle Quinta.",
+      },
     ],
   },
 
@@ -516,14 +1198,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Before climbing the scaffold, inspect every plank and guardrail for damage.", target: "Avant de monter sur l'échafaudage, inspectez chaque planche et garde-corps pour tout dommage." },
-      { en: "You must wear a full-body harness and connect your lanyard to a certified anchor point.", target: "Vous devez porter un harnais intégral et connecter votre longe à un point d'ancrage certifié." },
-      { en: "The safety net below the scaffold must be installed before any overhead work begins.", target: "Le filet de sécurité sous l'échafaudage doit être installé avant le début de tout travail en hauteur." },
-      { en: "Never stand on the top two rungs of a ladder — this violates INRS safety regulations.", target: "Ne montez jamais sur les deux derniers échelons d'une échelle — cela enfreint les réglementations de sécurité de l'INRS." },
-      { en: "The leading edge of this floor must be protected with a guardrail system before the crew works near it.", target: "Le bord de ce plancher doit être protégé par un garde-corps avant que l'équipe travaille à proximité." },
-      { en: "All floor openings must be covered or guarded to prevent falls.", target: "Toutes les ouvertures dans le plancher doivent être couvertes ou protégées pour prévenir les chutes." },
-      { en: "If you witness a fall or near-miss, report it to the site supervisor and fill out an incident report.", target: "Si vous êtes témoin d'une chute ou d'un quasi-accident, signalez-le au chef de chantier et remplissez un rapport d'incident." },
-      { en: "Today's toolbox talk is about working safely in windy conditions at height.", target: "La causerie sécurité d'aujourd'hui porte sur le travail en sécurité en hauteur par temps venteux." },
+      {
+        en: "Before climbing the scaffold, inspect every plank and guardrail for damage.",
+        target:
+          "Avant de monter sur l'échafaudage, inspectez chaque planche et garde-corps pour tout dommage.",
+      },
+      {
+        en: "You must wear a full-body harness and connect your lanyard to a certified anchor point.",
+        target:
+          "Vous devez porter un harnais intégral et connecter votre longe à un point d'ancrage certifié.",
+      },
+      {
+        en: "The safety net below the scaffold must be installed before any overhead work begins.",
+        target:
+          "Le filet de sécurité sous l'échafaudage doit être installé avant le début de tout travail en hauteur.",
+      },
+      {
+        en: "Never stand on the top two rungs of a ladder — this violates INRS safety regulations.",
+        target:
+          "Ne montez jamais sur les deux derniers échelons d'une échelle — cela enfreint les réglementations de sécurité de l'INRS.",
+      },
+      {
+        en: "The leading edge of this floor must be protected with a guardrail system before the crew works near it.",
+        target:
+          "Le bord de ce plancher doit être protégé par un garde-corps avant que l'équipe travaille à proximité.",
+      },
+      {
+        en: "All floor openings must be covered or guarded to prevent falls.",
+        target:
+          "Toutes les ouvertures dans le plancher doivent être couvertes ou protégées pour prévenir les chutes.",
+      },
+      {
+        en: "If you witness a fall or near-miss, report it to the site supervisor and fill out an incident report.",
+        target:
+          "Si vous êtes témoin d'une chute ou d'un quasi-accident, signalez-le au chef de chantier et remplissez un rapport d'incident.",
+      },
+      {
+        en: "Today's toolbox talk is about working safely in windy conditions at height.",
+        target:
+          "La causerie sécurité d'aujourd'hui porte sur le travail en sécurité en hauteur par temps venteux.",
+      },
     ],
   },
 
@@ -538,14 +1252,45 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Before beginning any maintenance on the machine, you must complete the lockout/tagout procedure.", target: "Bevor Sie mit der Wartung der Maschine beginnen, müssen Sie das Lockout-/Tagout-Verfahren durchführen." },
-      { en: "Identify all energy sources for this machine — electrical, hydraulic, pneumatic, and gravitational.", target: "Identifizieren Sie alle Energiequellen dieser Maschine — elektrisch, hydraulisch, pneumatisch und gravitationsbedingt." },
-      { en: "Each worker must attach their own personal padlock — never share locks during a lockout.", target: "Jeder Arbeiter muss sein eigenes persönliches Vorhängeschloss anbringen — teilen Sie während eines Lockouts niemals Schlösser." },
-      { en: "Hard hats, high-visibility vests, and steel-toed boots are mandatory on this construction site.", target: "Schutzhelme, Warnwesten und Sicherheitsschuhe sind auf dieser Baustelle Pflicht." },
-      { en: "The excavation on the east side requires shoring — do not enter the trench without proper support.", target: "Die Ausgrabung auf der Ostseite erfordert Abstützung — betreten Sie den Graben nicht ohne ordentliche Abstützung." },
-      { en: "If you smell gas or see a damaged gas line, evacuate the area immediately and call emergency services.", target: "Wenn Sie Gas riechen oder eine beschädigte Gasleitung sehen, verlassen Sie sofort den Bereich und rufen Sie den Notdienst." },
-      { en: "The first aid station is located at the site entrance next to the foreman's trailer.", target: "Der Erste-Hilfe-Posten befindet sich am Baustelleneingang neben dem Anhänger des Vorarbeiters." },
-      { en: "Hazardous materials must be stored in labeled containers in the designated storage area.", target: "Gefahrstoffe müssen in gekennzeichneten Behältern im dafür vorgesehenen Lagerbereich aufbewahrt werden." },
+      {
+        en: "Before beginning any maintenance on the machine, you must complete the lockout/tagout procedure.",
+        target:
+          "Bevor Sie mit der Wartung der Maschine beginnen, müssen Sie das Lockout-/Tagout-Verfahren durchführen.",
+      },
+      {
+        en: "Identify all energy sources for this machine — electrical, hydraulic, pneumatic, and gravitational.",
+        target:
+          "Identifizieren Sie alle Energiequellen dieser Maschine — elektrisch, hydraulisch, pneumatisch und gravitationsbedingt.",
+      },
+      {
+        en: "Each worker must attach their own personal padlock — never share locks during a lockout.",
+        target:
+          "Jeder Arbeiter muss sein eigenes persönliches Vorhängeschloss anbringen — teilen Sie während eines Lockouts niemals Schlösser.",
+      },
+      {
+        en: "Hard hats, high-visibility vests, and steel-toed boots are mandatory on this construction site.",
+        target: "Schutzhelme, Warnwesten und Sicherheitsschuhe sind auf dieser Baustelle Pflicht.",
+      },
+      {
+        en: "The excavation on the east side requires shoring — do not enter the trench without proper support.",
+        target:
+          "Die Ausgrabung auf der Ostseite erfordert Abstützung — betreten Sie den Graben nicht ohne ordentliche Abstützung.",
+      },
+      {
+        en: "If you smell gas or see a damaged gas line, evacuate the area immediately and call emergency services.",
+        target:
+          "Wenn Sie Gas riechen oder eine beschädigte Gasleitung sehen, verlassen Sie sofort den Bereich und rufen Sie den Notdienst.",
+      },
+      {
+        en: "The first aid station is located at the site entrance next to the foreman's trailer.",
+        target:
+          "Der Erste-Hilfe-Posten befindet sich am Baustelleneingang neben dem Anhänger des Vorarbeiters.",
+      },
+      {
+        en: "Hazardous materials must be stored in labeled containers in the designated storage area.",
+        target:
+          "Gefahrstoffe müssen in gekennzeichneten Behältern im dafür vorgesehenen Lagerbereich aufbewahrt werden.",
+      },
     ],
   },
 
@@ -560,14 +1305,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning everyone — before we begin, let us review today's safety briefing.", target: "Buongiorno a tutti — prima di iniziare, esaminiamo il briefing sulla sicurezza di oggi." },
-      { en: "All workers on this site must wear high-visibility vests at all times.", target: "Tutti i lavoratori su questo cantiere devono indossare i giubbotti ad alta visibilità in ogni momento." },
-      { en: "Today we will be working near live electrical cables — maintain a safe distance of at least one meter.", target: "Oggi lavoreremo vicino a cavi elettrici attivi — mantenete una distanza di sicurezza di almeno un metro." },
-      { en: "Before lifting heavy materials, check the path is clear and use proper lifting technique to protect your back.", target: "Prima di sollevare materiali pesanti, verificate che il percorso sia libero e usate la tecnica di sollevamento corretta per proteggere la schiena." },
-      { en: "The crane operator must receive clear hand signals — only the designated signaler should communicate with the operator.", target: "L'operatore della gru deve ricevere segnali manuali chiari — solo il segnalatore designato deve comunicare con l'operatore." },
-      { en: "Never walk under a suspended load — wait until it has been safely lowered to the ground.", target: "Non camminare mai sotto un carico sospeso — aspettate che sia stato abbassato in sicurezza a terra." },
-      { en: "Report any injury, no matter how minor, to the site safety officer within one hour.", target: "Segnalate qualsiasi infortunio, per quanto lieve, al responsabile della sicurezza del cantiere entro un'ora." },
-      { en: "The emergency exit routes are marked in green on the site map posted at every entrance.", target: "Le vie di fuga di emergenza sono indicate in verde sulla mappa del cantiere affissa ad ogni ingresso." },
+      {
+        en: "Good morning everyone — before we begin, let us review today's safety briefing.",
+        target:
+          "Buongiorno a tutti — prima di iniziare, esaminiamo il briefing sulla sicurezza di oggi.",
+      },
+      {
+        en: "All workers on this site must wear high-visibility vests at all times.",
+        target:
+          "Tutti i lavoratori su questo cantiere devono indossare i giubbotti ad alta visibilità in ogni momento.",
+      },
+      {
+        en: "Today we will be working near live electrical cables — maintain a safe distance of at least one meter.",
+        target:
+          "Oggi lavoreremo vicino a cavi elettrici attivi — mantenete una distanza di sicurezza di almeno un metro.",
+      },
+      {
+        en: "Before lifting heavy materials, check the path is clear and use proper lifting technique to protect your back.",
+        target:
+          "Prima di sollevare materiali pesanti, verificate che il percorso sia libero e usate la tecnica di sollevamento corretta per proteggere la schiena.",
+      },
+      {
+        en: "The crane operator must receive clear hand signals — only the designated signaler should communicate with the operator.",
+        target:
+          "L'operatore della gru deve ricevere segnali manuali chiari — solo il segnalatore designato deve comunicare con l'operatore.",
+      },
+      {
+        en: "Never walk under a suspended load — wait until it has been safely lowered to the ground.",
+        target:
+          "Non camminare mai sotto un carico sospeso — aspettate che sia stato abbassato in sicurezza a terra.",
+      },
+      {
+        en: "Report any injury, no matter how minor, to the site safety officer within one hour.",
+        target:
+          "Segnalate qualsiasi infortunio, per quanto lieve, al responsabile della sicurezza del cantiere entro un'ora.",
+      },
+      {
+        en: "The emergency exit routes are marked in green on the site map posted at every entrance.",
+        target:
+          "Le vie di fuga di emergenza sono indicate in verde sulla mappa del cantiere affissa ad ogni ingresso.",
+      },
     ],
   },
 
@@ -582,14 +1359,39 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Good morning. Before we begin work, let us go over the safety rules for today.", target: "おはようございます。作業を始める前に、本日の安全規則を確認しましょう。" },
-      { en: "Everyone must wear a hard hat, safety glasses, and steel-toed boots on this site.", target: "この現場ではヘルメット、安全眼鏡、安全靴の着用が全員に義務付けられています。" },
-      { en: "When working at height, always attach your safety harness to a certified anchor point.", target: "高所作業の際は、必ず認定されたアンカーポイントに安全帯を取り付けてください。" },
-      { en: "Before starting work on any electrical equipment, perform the lockout/tagout procedure.", target: "電気設備での作業を開始する前に、ロックアウト・タグアウト手順を行ってください。" },
-      { en: "Keep the work area clean and free of debris to prevent tripping hazards.", target: "つまずきによる事故を防ぐため、作業エリアは常に清潔に保ち、がれきを取り除いてください。" },
-      { en: "The toolbox safety meeting is held every morning at seven-thirty — attendance is mandatory.", target: "毎朝7時30分にツールボックスミーティングを行います。参加は必須です。" },
-      { en: "If you discover an unsafe condition, report it immediately to your supervisor.", target: "安全でない状態を発見したら、直ちに上司に報告してください。" },
-      { en: "In case of a fire, evacuate immediately and gather at the assembly point near the site entrance.", target: "火災が発生した場合は直ちに避難し、現場入口付近の集合場所に集まってください。" },
+      {
+        en: "Good morning. Before we begin work, let us go over the safety rules for today.",
+        target: "おはようございます。作業を始める前に、本日の安全規則を確認しましょう。",
+      },
+      {
+        en: "Everyone must wear a hard hat, safety glasses, and steel-toed boots on this site.",
+        target: "この現場ではヘルメット、安全眼鏡、安全靴の着用が全員に義務付けられています。",
+      },
+      {
+        en: "When working at height, always attach your safety harness to a certified anchor point.",
+        target: "高所作業の際は、必ず認定されたアンカーポイントに安全帯を取り付けてください。",
+      },
+      {
+        en: "Before starting work on any electrical equipment, perform the lockout/tagout procedure.",
+        target: "電気設備での作業を開始する前に、ロックアウト・タグアウト手順を行ってください。",
+      },
+      {
+        en: "Keep the work area clean and free of debris to prevent tripping hazards.",
+        target:
+          "つまずきによる事故を防ぐため、作業エリアは常に清潔に保ち、がれきを取り除いてください。",
+      },
+      {
+        en: "The toolbox safety meeting is held every morning at seven-thirty — attendance is mandatory.",
+        target: "毎朝7時30分にツールボックスミーティングを行います。参加は必須です。",
+      },
+      {
+        en: "If you discover an unsafe condition, report it immediately to your supervisor.",
+        target: "安全でない状態を発見したら、直ちに上司に報告してください。",
+      },
+      {
+        en: "In case of a fire, evacuate immediately and gather at the assembly point near the site entrance.",
+        target: "火災が発生した場合は直ちに避難し、現場入口付近の集合場所に集まってください。",
+      },
     ],
   },
 
@@ -604,14 +1406,46 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Before starting work on this site, all workers must have their CREA registration and safety training certificates.", target: "Antes de iniciar o trabalho neste canteiro, todos os trabalhadores devem ter o registro no CREA e os certificados de treinamento em segurança." },
-      { en: "The NR-35 regulation requires fall protection equipment for any work at height above two meters.", target: "A norma NR-35 exige equipamentos de proteção contra quedas para qualquer trabalho em altura acima de dois metros." },
-      { en: "Never enter a confined space without completing the entry permit and notifying your supervisor.", target: "Nunca entre em um espaço confinado sem preencher a permissão de entrada e notificar seu supervisor." },
-      { en: "Your PPE kit includes a hard hat, safety glasses, gloves, ear protection, and safety boots.", target: "Seu kit de EPI inclui capacete, óculos de proteção, luvas, protetor auricular e botas de segurança." },
-      { en: "There is a DDS — daily safety dialogue — every morning before we begin work.", target: "Temos um DDS — diálogo diário de segurança — toda manhã antes de iniciarmos o trabalho." },
-      { en: "Signal to the crane operator using only the standard hand signals we reviewed in training.", target: "Sinalize para o operador da grua usando apenas os sinais manuais padronizados que revisamos no treinamento." },
-      { en: "Any workplace accident must be reported to the SESMT within 24 hours of occurrence.", target: "Todo acidente de trabalho deve ser comunicado ao SESMT em até 24 horas após a ocorrência." },
-      { en: "The fire extinguisher inspection record is posted by each extinguisher — report any expired equipment.", target: "O registro de inspeção do extintor está afixado ao lado de cada equipamento — informe qualquer equipamento vencido." },
+      {
+        en: "Before starting work on this site, all workers must have their CREA registration and safety training certificates.",
+        target:
+          "Antes de iniciar o trabalho neste canteiro, todos os trabalhadores devem ter o registro no CREA e os certificados de treinamento em segurança.",
+      },
+      {
+        en: "The NR-35 regulation requires fall protection equipment for any work at height above two meters.",
+        target:
+          "A norma NR-35 exige equipamentos de proteção contra quedas para qualquer trabalho em altura acima de dois metros.",
+      },
+      {
+        en: "Never enter a confined space without completing the entry permit and notifying your supervisor.",
+        target:
+          "Nunca entre em um espaço confinado sem preencher a permissão de entrada e notificar seu supervisor.",
+      },
+      {
+        en: "Your PPE kit includes a hard hat, safety glasses, gloves, ear protection, and safety boots.",
+        target:
+          "Seu kit de EPI inclui capacete, óculos de proteção, luvas, protetor auricular e botas de segurança.",
+      },
+      {
+        en: "There is a DDS — daily safety dialogue — every morning before we begin work.",
+        target:
+          "Temos um DDS — diálogo diário de segurança — toda manhã antes de iniciarmos o trabalho.",
+      },
+      {
+        en: "Signal to the crane operator using only the standard hand signals we reviewed in training.",
+        target:
+          "Sinalize para o operador da grua usando apenas os sinais manuais padronizados que revisamos no treinamento.",
+      },
+      {
+        en: "Any workplace accident must be reported to the SESMT within 24 hours of occurrence.",
+        target:
+          "Todo acidente de trabalho deve ser comunicado ao SESMT em até 24 horas após a ocorrência.",
+      },
+      {
+        en: "The fire extinguisher inspection record is posted by each extinguisher — report any expired equipment.",
+        target:
+          "O registro de inspeção do extintor está afixado ao lado de cada equipamento — informe qualquer equipamento vencido.",
+      },
     ],
   },
 
@@ -626,15 +1460,38 @@ export const NEW_MODULES_SEEDS: LibrarySeed[] = [
     available: true,
     level: "A2",
     sentences: [
-      { en: "Before starting work, all workers must attend the morning safety briefing.", target: "작업 시작 전 모든 작업자는 아침 안전 교육에 참석해야 합니다." },
-      { en: "A hard hat, safety vest, and steel-toed boots are mandatory on this construction site.", target: "이 건설 현장에서는 안전모, 안전 조끼, 안전화 착용이 의무입니다." },
-      { en: "When working at heights over two meters, you must wear a safety harness at all times.", target: "2미터 이상 고소 작업 시에는 항상 안전벨트를 착용해야 합니다." },
-      { en: "Never work alone in a confined space — always have a standby person outside.", target: "밀폐 공간에서는 절대 혼자 작업하지 마세요. 항상 외부에 대기자를 두어야 합니다." },
-      { en: "Before performing electrical work, confirm the power is locked out and tagged.", target: "전기 작업을 시작하기 전에 잠금 및 태그가 완료된 것을 확인하세요." },
-      { en: "If you notice any unsafe conditions, report them to the site safety manager immediately.", target: "안전하지 않은 상황을 발견하면 즉시 현장 안전 관리자에게 보고하세요." },
-      { en: "The emergency assembly point is marked with a green sign near the main gate.", target: "비상 대피 집결 장소는 정문 근처에 녹색 표지판으로 표시되어 있습니다." },
-      { en: "All work-related injuries, no matter how minor, must be recorded in the accident log.", target: "아무리 가벼운 부상이라도 모든 업무 관련 부상은 사고 대장에 기록해야 합니다." },
+      {
+        en: "Before starting work, all workers must attend the morning safety briefing.",
+        target: "작업 시작 전 모든 작업자는 아침 안전 교육에 참석해야 합니다.",
+      },
+      {
+        en: "A hard hat, safety vest, and steel-toed boots are mandatory on this construction site.",
+        target: "이 건설 현장에서는 안전모, 안전 조끼, 안전화 착용이 의무입니다.",
+      },
+      {
+        en: "When working at heights over two meters, you must wear a safety harness at all times.",
+        target: "2미터 이상 고소 작업 시에는 항상 안전벨트를 착용해야 합니다.",
+      },
+      {
+        en: "Never work alone in a confined space — always have a standby person outside.",
+        target: "밀폐 공간에서는 절대 혼자 작업하지 마세요. 항상 외부에 대기자를 두어야 합니다.",
+      },
+      {
+        en: "Before performing electrical work, confirm the power is locked out and tagged.",
+        target: "전기 작업을 시작하기 전에 잠금 및 태그가 완료된 것을 확인하세요.",
+      },
+      {
+        en: "If you notice any unsafe conditions, report them to the site safety manager immediately.",
+        target: "안전하지 않은 상황을 발견하면 즉시 현장 안전 관리자에게 보고하세요.",
+      },
+      {
+        en: "The emergency assembly point is marked with a green sign near the main gate.",
+        target: "비상 대피 집결 장소는 정문 근처에 녹색 표지판으로 표시되어 있습니다.",
+      },
+      {
+        en: "All work-related injuries, no matter how minor, must be recorded in the accident log.",
+        target: "아무리 가벼운 부상이라도 모든 업무 관련 부상은 사고 대장에 기록해야 합니다.",
+      },
     ],
   },
-
 ];

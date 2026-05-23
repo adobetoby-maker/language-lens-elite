@@ -5,19 +5,30 @@ import { MODULES, type AppModule } from "@/data/modules";
 import type { TabKey } from "@/state/app-state";
 
 const CATEGORY_ORDER: AppModule["category"][] = [
-  "English for Work", "Faith", "Medical", "Trades", "Service", "Education", "Agriculture", "Sports", "Travel",
+  "English for Work",
+  "Faith",
+  "Medical",
+  "Trades",
+  "Service",
+  "Education",
+  "Agriculture",
+  "Sports",
+  "Travel",
 ];
 
 const CATEGORY_META: Record<AppModule["category"], { emoji: string; color: string }> = {
-  "English for Work": { emoji: "🗣️", color: "text-indigo-400 border-indigo-400/40 bg-indigo-400/10" },
-  Faith:              { emoji: "🙏", color: "text-violet-400 border-violet-400/40 bg-violet-400/10" },
-  Medical:            { emoji: "🏥", color: "text-sky-400 border-sky-400/40 bg-sky-400/10" },
-  Trades:             { emoji: "🔧", color: "text-amber-400 border-amber-400/40 bg-amber-400/10" },
-  Service:            { emoji: "🍽️", color: "text-rose-400 border-rose-400/40 bg-rose-400/10" },
-  Education:          { emoji: "📚", color: "text-emerald-400 border-emerald-400/40 bg-emerald-400/10" },
-  Agriculture:        { emoji: "🌾", color: "text-lime-400 border-lime-400/40 bg-lime-400/10" },
-  Sports:             { emoji: "⚽", color: "text-orange-400 border-orange-400/40 bg-orange-400/10" },
-  Travel:             { emoji: "✈️", color: "text-cyan-400 border-cyan-400/40 bg-cyan-400/10" },
+  "English for Work": {
+    emoji: "🗣️",
+    color: "text-indigo-400 border-indigo-400/40 bg-indigo-400/10",
+  },
+  Faith: { emoji: "🙏", color: "text-violet-400 border-violet-400/40 bg-violet-400/10" },
+  Medical: { emoji: "🏥", color: "text-sky-400 border-sky-400/40 bg-sky-400/10" },
+  Trades: { emoji: "🔧", color: "text-amber-400 border-amber-400/40 bg-amber-400/10" },
+  Service: { emoji: "🍽️", color: "text-rose-400 border-rose-400/40 bg-rose-400/10" },
+  Education: { emoji: "📚", color: "text-emerald-400 border-emerald-400/40 bg-emerald-400/10" },
+  Agriculture: { emoji: "🌾", color: "text-lime-400 border-lime-400/40 bg-lime-400/10" },
+  Sports: { emoji: "⚽", color: "text-orange-400 border-orange-400/40 bg-orange-400/10" },
+  Travel: { emoji: "✈️", color: "text-cyan-400 border-cyan-400/40 bg-cyan-400/10" },
 };
 
 function moduleDestinationTab(moduleId: string): TabKey {
@@ -74,7 +85,9 @@ function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardPro
       </div>
 
       {/* Category badge */}
-      <span className={`mb-2 self-start rounded-full border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] ${meta.color}`}>
+      <span
+        className={`mb-2 self-start rounded-full border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] ${meta.color}`}
+      >
         {meta.emoji} {module.category}
       </span>
 
@@ -84,9 +97,7 @@ function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardPro
       </p>
 
       {/* Blurb */}
-      <p className="mb-4 flex-1 text-xs leading-relaxed text-foreground/75">
-        {module.blurb}
-      </p>
+      <p className="mb-4 flex-1 text-xs leading-relaxed text-foreground/75">{module.blurb}</p>
 
       {/* Vocab focus chips */}
       <div className="mb-4 flex flex-wrap gap-1">
@@ -130,9 +141,13 @@ function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardPro
             className="flex items-center gap-1.5 rounded-full border border-border/60 bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
           >
             {isPurchased ? (
-              <>Activate <ChevronRight className="h-3 w-3" /></>
+              <>
+                Activate <ChevronRight className="h-3 w-3" />
+              </>
             ) : (
-              <><Lock className="h-3 w-3" /> Preview</>
+              <>
+                <Lock className="h-3 w-3" /> Preview
+              </>
             )}
           </button>
         )}
@@ -198,7 +213,8 @@ export function ModulesPage() {
             </span>
           </div>
           <p className="mt-1 text-xs text-muted-foreground">
-            Choose a specialty module to focus your reading, tutor, and practice around your profession.
+            Choose a specialty module to focus your reading, tutor, and practice around your
+            profession.
           </p>
 
           {/* Search */}
@@ -277,7 +293,8 @@ export function ModulesPage() {
                             English for Work
                           </h2>
                           <p className="text-xs text-indigo-300/70">
-                            For professionals learning English on the job — native language as your foundation.
+                            For professionals learning English on the job — native language as your
+                            foundation.
                           </p>
                         </div>
                         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-indigo-400/60">
@@ -288,9 +305,7 @@ export function ModulesPage() {
                   ) : (
                     <div className="mb-4 flex items-center gap-3">
                       <span className="text-2xl">{meta.emoji}</span>
-                      <h2 className="font-display text-lg italic text-foreground">
-                        {category}
-                      </h2>
+                      <h2 className="font-display text-lg italic text-foreground">{category}</h2>
                       <div className="flex-1 border-t border-border/40" />
                       <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                         {modules.length} module{modules.length !== 1 ? "s" : ""}

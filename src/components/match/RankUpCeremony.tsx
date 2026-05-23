@@ -103,7 +103,9 @@ export function RankUpCeremony({ oldTier, newTier, onContinue }: Props) {
       {isUnreal && <div className="rank-aurora absolute inset-0 opacity-60" />}
 
       {/* White flash */}
-      {stage === "flash" && <div className="absolute inset-0 bg-white animate-[flashFade_0.2s_ease-out_forwards]" />}
+      {stage === "flash" && (
+        <div className="absolute inset-0 bg-white animate-[flashFade_0.2s_ease-out_forwards]" />
+      )}
 
       {/* Inrushing particles */}
       {stage === "rush" && <RushParticles color={color} />}

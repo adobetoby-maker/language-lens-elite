@@ -26,9 +26,7 @@ export function LeaderboardPanel({ onClose }: { onClose: () => void }) {
 
   const rows = useMemo(() => {
     const filtered =
-      tab === "language"
-        ? players.filter((p) => p.language === state.selectedLanguage)
-        : players;
+      tab === "language" ? players.filter((p) => p.language === state.selectedLanguage) : players;
 
     const me = {
       id: "me",
@@ -43,10 +41,7 @@ export function LeaderboardPanel({ onClose }: { onClose: () => void }) {
       isMe: true as const,
     };
 
-    const all = [
-      ...filtered.map((p) => ({ ...p, isMe: false as const })),
-      me,
-    ];
+    const all = [...filtered.map((p) => ({ ...p, isMe: false as const })), me];
     const key = tab === "alltime" ? "allTimePoints" : "weekPoints";
     all.sort((a, b) => (b[key] as number) - (a[key] as number));
     return all;
@@ -71,13 +66,9 @@ export function LeaderboardPanel({ onClose }: { onClose: () => void }) {
 
         <div className="mb-1 flex items-center gap-2 text-gold">
           <Trophy className="h-4 w-4" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-            ⚔ Leaderboard
-          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">⚔ Leaderboard</span>
         </div>
-        <h2 className="font-display text-3xl italic text-white">
-          Top Language Warriors
-        </h2>
+        <h2 className="font-display text-3xl italic text-white">Top Language Warriors</h2>
 
         {/* Tabs */}
         <div className="mt-5 inline-flex rounded-full border border-white/15 bg-white/5 p-1">
@@ -159,9 +150,7 @@ function Row({
           : "border-white/10 bg-white/[0.03]"
       }`}
     >
-      <div className="w-8 text-center font-display italic text-lg text-white/80">
-        {rank}
-      </div>
+      <div className="w-8 text-center font-display italic text-lg text-white/80">{rank}</div>
       <RankBadge tier={tier} badge={RANK_BADGE[tier]} size="sm" />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">

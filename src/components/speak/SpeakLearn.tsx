@@ -8,10 +8,7 @@ import { configureUtterance } from "@/lib/voices";
 import { celebrate, looseIncludes } from "@/lib/confetti";
 import { getModule } from "@/data/modules";
 import { matchesFocus } from "@/lib/module-filter";
-import {
-  ChallengePanel,
-  type SpeakChallenge,
-} from "@/components/speak/ChallengePanel";
+import { ChallengePanel, type SpeakChallenge } from "@/components/speak/ChallengePanel";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
@@ -255,9 +252,7 @@ export function SpeakLearn() {
           }
           try {
             const parsed = JSON.parse(data);
-            const delta = parsed?.choices?.[0]?.delta?.content as
-              | string
-              | undefined;
+            const delta = parsed?.choices?.[0]?.delta?.content as string | undefined;
             if (delta) {
               full += delta;
               appendToTurn(aiTurn.id, delta);
@@ -311,9 +306,7 @@ export function SpeakLearn() {
           },
         });
         toast(
-          challenge.kind === "reach"
-            ? "🎉 Reach word nailed!"
-            : "🎉 Grammar challenge cleared!",
+          challenge.kind === "reach" ? "🎉 Reach word nailed!" : "🎉 Grammar challenge cleared!",
           { description: `+${bonus} XP — ${challenge.hint}` },
         );
         setTipFor(userTurn.id, `Challenge complete: ${challenge.hint}`);
@@ -387,12 +380,9 @@ export function SpeakLearn() {
       >
         {isEmpty && !interim ? (
           <div className="flex h-full flex-col items-center justify-center text-center">
-            <p className="font-serif text-2xl text-foreground/70">
-              Your conversation begins here
-            </p>
+            <p className="font-serif text-2xl text-foreground/70">Your conversation begins here</p>
             <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-              Tap the microphone or pick a topic chip to start speaking{" "}
-              {language}.
+              Tap the microphone or pick a topic chip to start speaking {language}.
             </p>
           </div>
         ) : (
@@ -400,9 +390,7 @@ export function SpeakLearn() {
             {turns.map((t) => (
               <li
                 key={t.id}
-                className={
-                  t.role === "user" ? "flex justify-end" : "flex justify-start"
-                }
+                className={t.role === "user" ? "flex justify-end" : "flex justify-start"}
               >
                 <div className="max-w-[85%]">
                   <div
@@ -461,9 +449,7 @@ export function SpeakLearn() {
           <h1 className="font-serif text-4xl text-foreground">Speak & Learn</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             A patient {language} conversation partner. Tap, talk, learn.
-            {exchanges > 0 && (
-              <span className="ml-2 text-gold">· {exchanges} exchanges</span>
-            )}
+            {exchanges > 0 && <span className="ml-2 text-gold">· {exchanges} exchanges</span>}
           </p>
         </div>
         {turns.length > 0 && (
@@ -489,7 +475,6 @@ export function SpeakLearn() {
         onSpeakAloud={speakAloud}
       />
 
-
       {(() => {
         const mod = getModule(state.activeModuleId);
         if (!mod) return null;
@@ -500,9 +485,7 @@ export function SpeakLearn() {
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
                 ◈ In {mod.name}
               </span>
-              <span className="text-xs text-muted-foreground">
-                · roleplay as {mod.userRole}
-              </span>
+              <span className="text-xs text-muted-foreground">· roleplay as {mod.userRole}</span>
             </div>
             <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
               {mod.challengePrompts.map((p) => (

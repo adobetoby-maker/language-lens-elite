@@ -34,10 +34,7 @@ export function StatusBar() {
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:inline">
             XP
           </span>
-          <CountUp
-            value={state.xp}
-            className="font-mono text-xs font-medium text-foreground"
-          />
+          <CountUp value={state.xp} className="font-mono text-xs font-medium text-foreground" />
         </div>
         <span className="h-3 w-px shrink-0 bg-border/70" />
 
@@ -47,9 +44,7 @@ export function StatusBar() {
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:inline">
             Level
           </span>
-          <span className="font-mono text-xs font-medium text-foreground">
-            {state.tier}
-          </span>
+          <span className="font-mono text-xs font-medium text-foreground">{state.tier}</span>
         </div>
       </div>
     </div>

@@ -18,67 +18,70 @@ export interface KanaConvertResult {
  */
 export const convertKana = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => InputSchema.parse(input))
-  .handler(async ({ data }): Promise<{ result: KanaConvertResult | null; error: string | null }> => {
-    const KEY = process.env.ANTHROPIC_API_KEY;
-    if (!KEY) return { result: null, error: "AI is not configured" };
+  .handler(
+    async ({ data }): Promise<{ result: KanaConvertResult | null; error: string | null }> => {
+      const KEY = process.env.ANTHROPIC_API_KEY;
+      if (!KEY) return { result: null, error: "AI is not configured" };
 
-    const scriptLabel =
-      data.targetScript === "hiragana"
-        ? "hiragana (all kana, no kanji)"
-        : data.targetScript === "katakana"
-          ? "katakana (all kana, no kanji)"
-          : "natural Japanese (kanji + kana mixed)";
+      const scriptLabel =
+        data.targetScript === "hiragana"
+          ? "hiragana (all kana, no kanji)"
+          : data.targetScript === "katakana"
+            ? "katakana (all kana, no kanji)"
+            : "natural Japanese (kanji + kana mixed)";
 
-    const userPrompt = `Convert this Japanese text to ${scriptLabel}:\n\n"${data.text}"\n\nProvide:\n1. The full converted output\n2. A word-by-word breakdown with reading and English meaning for each word.`;
+      const userPrompt = `Convert this Japanese text to ${scriptLabel}:\n\n"${data.text}"\n\nProvide:\n1. The full converted output\n2. A word-by-word breakdown with reading and English meaning for each word.`;
 
-    try {
-      const client = new Anthropic({ apiKey: KEY });
-      const response = await client.messages.create({
-        model: "claude-haiku-4-5",
-        max_tokens: 1024,
-        system: "You are a Japanese linguistics expert. Always respond via the convert_kana tool.",
-        messages: [{ role: "user", content: userPrompt }],
-        tools: [
-          {
-            name: "convert_kana",
-            description: "Return the converted text and a word-level breakdown.",
-            input_schema: {
-              type: "object" as const,
-              properties: {
-                output: {
-                  type: "string",
-                  description: "The fully converted text.",
-                },
-                breakdown: {
-                  type: "array",
-                  description: "Word-by-word breakdown.",
-                  items: {
-                    type: "object",
-                    properties: {
-                      original: { type: "string", description: "Original word/chunk." },
-                      reading: { type: "string", description: "Hiragana reading of this chunk." },
-                      meaning: { type: "string", description: "Brief English meaning." },
+      try {
+        const client = new Anthropic({ apiKey: KEY });
+        const response = await client.messages.create({
+          model: "claude-haiku-4-5",
+          max_tokens: 1024,
+          system:
+            "You are a Japanese linguistics expert. Always respond via the convert_kana tool.",
+          messages: [{ role: "user", content: userPrompt }],
+          tools: [
+            {
+              name: "convert_kana",
+              description: "Return the converted text and a word-level breakdown.",
+              input_schema: {
+                type: "object" as const,
+                properties: {
+                  output: {
+                    type: "string",
+                    description: "The fully converted text.",
+                  },
+                  breakdown: {
+                    type: "array",
+                    description: "Word-by-word breakdown.",
+                    items: {
+                      type: "object",
+                      properties: {
+                        original: { type: "string", description: "Original word/chunk." },
+                        reading: { type: "string", description: "Hiragana reading of this chunk." },
+                        meaning: { type: "string", description: "Brief English meaning." },
+                      },
+                      required: ["original", "reading", "meaning"],
+                      additionalProperties: false,
                     },
-                    required: ["original", "reading", "meaning"],
-                    additionalProperties: false,
                   },
                 },
+                required: ["output", "breakdown"],
+                additionalProperties: false,
               },
-              required: ["output", "breakdown"],
-              additionalProperties: false,
             },
-          },
-        ],
-        tool_choice: { type: "tool", name: "convert_kana" },
-      });
+          ],
+          tool_choice: { type: "tool", name: "convert_kana" },
+        });
 
-      const toolUse = response.content.find((c) => c.type === "tool_use");
-      if (!toolUse || toolUse.type !== "tool_use") {
+        const toolUse = response.content.find((c) => c.type === "tool_use");
+        if (!toolUse || toolUse.type !== "tool_use") {
+          return { result: null, error: "Conversion failed." };
+        }
+        return { result: toolUse.input as KanaConvertResult, error: null };
+      } catch (e) {
+        console.error("convertKana failed", e);
         return { result: null, error: "Conversion failed." };
       }
-      return { result: toolUse.input as KanaConvertResult, error: null };
-    } catch (e) {
-      console.error("convertKana failed", e);
-      return { result: null, error: "Conversion failed." };
-    }
-  });
+    },
+  );

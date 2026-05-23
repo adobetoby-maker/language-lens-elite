@@ -31,8 +31,7 @@ export function MissionaryLessonReader() {
   const [wordReq, setWordReq] = useState<WordCardRequest | null>(null);
   const { rate, cycleRate, speak, speaking } = useMissionarySpeech();
 
-  const lesson: PmgLesson =
-    PMG_LESSONS.find((l) => l.id === activeLessonId) ?? PMG_LESSONS[0];
+  const lesson: PmgLesson = PMG_LESSONS.find((l) => l.id === activeLessonId) ?? PMG_LESSONS[0];
 
   const handleWord = (word: string, sentence: string, x: number, y: number) => {
     setWordReq({ word, sentence, language: state.selectedLanguage, x, y });
@@ -53,9 +52,9 @@ export function MissionaryLessonReader() {
             The five missionary lessons — clickable in {state.selectedLanguage}
           </h2>
           <p className="mt-1 max-w-3xl text-xs text-muted-foreground">
-            Tap any word in either column to see its translation, part of speech,
-            and conjugation in context. Reflect on the inline prompts and finish
-            each section with a short comprehension check.
+            Tap any word in either column to see its translation, part of speech, and conjugation in
+            context. Reflect on the inline prompts and finish each section with a short
+            comprehension check.
           </p>
         </div>
         <SpeedButton rate={rate} onCycle={cycleRate} size="md" />
@@ -104,13 +103,7 @@ export function MissionaryLessonReader() {
         </div>
       </div>
 
-      {wordReq && (
-        <WordCard
-          request={wordReq}
-          onClose={() => setWordReq(null)}
-          onXp={onXp}
-        />
-      )}
+      {wordReq && <WordCard request={wordReq} onClose={() => setWordReq(null)} onXp={onXp} />}
     </section>
   );
 }
@@ -155,10 +148,7 @@ function SectionBlock({
                 data-sentence-index={0}
                 className="text-[14px] leading-relaxed text-foreground/90"
               >
-                <ClickableText
-                  text={p.en}
-                  onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
-                />
+                <ClickableText text={p.en} onWordClick={(w, s, x, y) => onWord(w, s, x, y)} />
               </p>
               <p
                 data-pane="right"
@@ -172,10 +162,7 @@ function SectionBlock({
                     fading={speaking!.fading}
                   />
                 ) : (
-                  <ClickableText
-                    text={target}
-                    onWordClick={(w, s, x, y) => onWord(w, s, x, y)}
-                  />
+                  <ClickableText text={target} onWordClick={(w, s, x, y) => onWord(w, s, x, y)} />
                 )}
                 <button
                   type="button"
@@ -200,9 +187,7 @@ function SectionBlock({
         })}
       </div>
 
-      {section.quiz.length > 0 && (
-        <SectionQuiz quiz={section.quiz} sectionId={section.id} />
-      )}
+      {section.quiz.length > 0 && <SectionQuiz quiz={section.quiz} sectionId={section.id} />}
     </article>
   );
 }
@@ -214,9 +199,7 @@ function ReflectionInline({ prompt }: { prompt: string }) {
     <div className="flex items-start gap-2 rounded-lg border border-gold/30 bg-gold/[0.06] px-3 py-2">
       <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
       <div>
-        <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-gold/80">
-          Reflect
-        </div>
+        <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-gold/80">Reflect</div>
         <p className="mt-0.5 text-[12px] italic text-foreground/85">{prompt}</p>
       </div>
     </div>
@@ -225,13 +208,7 @@ function ReflectionInline({ prompt }: { prompt: string }) {
 
 // ───────────────────────── Quiz ─────────────────────────
 
-function SectionQuiz({
-  quiz,
-  sectionId,
-}: {
-  quiz: QuizQuestion[];
-  sectionId: string;
-}) {
+function SectionQuiz({ quiz, sectionId }: { quiz: QuizQuestion[]; sectionId: string }) {
   return (
     <div className="mt-5 rounded-xl border border-gold/30 bg-gold/[0.05] p-3">
       <div className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
@@ -277,14 +254,12 @@ function QuizItem({ q }: { q: QuizQuestion }) {
                 showState && isAnswer
                   ? "border-emerald-500/60 bg-emerald-500/10 text-foreground"
                   : showState && isPicked && !isAnswer
-                  ? "border-destructive/60 bg-destructive/10 text-foreground"
-                  : "border-border/60 bg-background/60 text-foreground/85 hover:border-gold/40"
+                    ? "border-destructive/60 bg-destructive/10 text-foreground"
+                    : "border-border/60 bg-background/60 text-foreground/85 hover:border-gold/40"
               } ${picked !== null ? "cursor-default" : "cursor-pointer"}`}
             >
               <span>{c}</span>
-              {showState && isAnswer && (
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-              )}
+              {showState && isAnswer && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />}
               {showState && isPicked && !isAnswer && (
                 <XCircle className="h-3.5 w-3.5 text-destructive" />
               )}
@@ -293,11 +268,7 @@ function QuizItem({ q }: { q: QuizQuestion }) {
         })}
       </div>
       {picked !== null && (
-        <p
-          className={`mt-2 text-[11px] ${
-            correct ? "text-emerald-600" : "text-muted-foreground"
-          }`}
-        >
+        <p className={`mt-2 text-[11px] ${correct ? "text-emerald-600" : "text-muted-foreground"}`}>
           {correct ? "✦ +5 XP — " : ""}
           {q.explanation}
         </p>
@@ -338,8 +309,7 @@ function SpokenText({
             style={
               isActive
                 ? {
-                    borderBottom:
-                      "1px solid color-mix(in oklab, var(--gold) 70%, transparent)",
+                    borderBottom: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)",
                     opacity: fading ? 0 : 1,
                     transition:
                       "opacity 400ms ease, border-color 400ms ease, text-shadow 400ms ease",

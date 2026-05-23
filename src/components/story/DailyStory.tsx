@@ -1,6 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { BookOpen, RefreshCw, ChevronDown, ChevronUp, Sparkle, CheckCircle2, XCircle } from "lucide-react";
+import {
+  BookOpen,
+  RefreshCw,
+  ChevronDown,
+  ChevronUp,
+  Sparkle,
+  CheckCircle2,
+  XCircle,
+} from "lucide-react";
 import { toast } from "sonner";
 import { useApp, VOCAB_MASTERY_THRESHOLD } from "@/state/app-state";
 import { getUltraPatterns } from "@/data/grammar-patterns";
@@ -125,7 +133,10 @@ export function DailyStory() {
           {ultraPattern.name}
         </span>
         {activeVocab.slice(0, 4).map((w) => (
-          <span key={w} className="rounded-full border border-gold/25 bg-gold/5 px-2.5 py-1 font-mono text-[10px] text-gold/80">
+          <span
+            key={w}
+            className="rounded-full border border-gold/25 bg-gold/5 px-2.5 py-1 font-mono text-[10px] text-gold/80"
+          >
             {w}
           </span>
         ))}
@@ -146,7 +157,9 @@ export function DailyStory() {
             {error}
           </div>
           <button
-            onClick={() => { void load(); }}
+            onClick={() => {
+              void load();
+            }}
             className="flex w-full items-center justify-center gap-2 rounded-xl border border-border/50 py-3 text-sm hover:bg-card/50 transition-colors"
           >
             <RefreshCw className="h-4 w-4" /> Try Again
@@ -165,8 +178,8 @@ export function DailyStory() {
 
             {story.vocabHighlights.length > 0 && (
               <p className="mt-3 text-xs text-muted-foreground/60">
-                <mark className="bg-gold/20 text-gold rounded px-0.5 mr-1">highlighted</mark>
-                = your vocab words
+                <mark className="bg-gold/20 text-gold rounded px-0.5 mr-1">highlighted</mark>= your
+                vocab words
               </p>
             )}
           </div>
@@ -177,7 +190,11 @@ export function DailyStory() {
             className="flex w-full items-center justify-between rounded-lg border border-border/40 bg-card/20 px-3 py-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             English translation
-            {showTranslation ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+            {showTranslation ? (
+              <ChevronUp className="h-3.5 w-3.5" />
+            ) : (
+              <ChevronDown className="h-3.5 w-3.5" />
+            )}
           </button>
           {showTranslation && (
             <div className="rounded-lg border border-border/30 bg-background/30 px-4 py-3 text-sm text-muted-foreground leading-relaxed">
@@ -193,7 +210,9 @@ export function DailyStory() {
               <input
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter" && answer.trim()) checkAnswer(); }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && answer.trim()) checkAnswer();
+                }}
                 placeholder={`Write in ${lang}…`}
                 className="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40"
                 autoFocus
@@ -207,16 +226,28 @@ export function DailyStory() {
               </button>
             </div>
           ) : (
-            <div className={`rounded-xl border p-4 space-y-2 ${
-              checked === "correct"
-                ? "border-emerald-500/30 bg-emerald-500/10"
-                : "border-amber-500/30 bg-amber-500/10"
-            }`}>
+            <div
+              className={`rounded-xl border p-4 space-y-2 ${
+                checked === "correct"
+                  ? "border-emerald-500/30 bg-emerald-500/10"
+                  : "border-amber-500/30 bg-amber-500/10"
+              }`}
+            >
               <div className="flex items-center gap-2">
                 {checked === "correct" ? (
-                  <><CheckCircle2 className="h-4 w-4 text-emerald-400" /><span className="text-sm font-semibold text-emerald-400">+15 XP — Great reading!</span></>
+                  <>
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span className="text-sm font-semibold text-emerald-400">
+                      +15 XP — Great reading!
+                    </span>
+                  </>
                 ) : (
-                  <><XCircle className="h-4 w-4 text-amber-400" /><span className="text-sm font-semibold text-amber-400">Not quite — here's the answer:</span></>
+                  <>
+                    <XCircle className="h-4 w-4 text-amber-400" />
+                    <span className="text-sm font-semibold text-amber-400">
+                      Not quite — here's the answer:
+                    </span>
+                  </>
                 )}
               </div>
               {checked === "wrong" && (
@@ -227,7 +258,9 @@ export function DailyStory() {
 
           {/* New story */}
           <button
-            onClick={() => { void load(); }}
+            onClick={() => {
+              void load();
+            }}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-card/30 border border-border/40 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-card/50 transition-colors"
           >
             <RefreshCw className="h-4 w-4" /> New Story

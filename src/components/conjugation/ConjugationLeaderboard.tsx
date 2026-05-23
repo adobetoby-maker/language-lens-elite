@@ -14,9 +14,16 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
     return LEVELS.map((level) => {
       const key: LeaderboardKey = `${language}-${level}` as LeaderboardKey;
       const stats = conj.state.leaderboard[key] ?? {
-        bestStreak: 0, currentStreak: 0, perfectRuns: 0, totalCorrect: 0, totalAttempts: 0,
+        bestStreak: 0,
+        currentStreak: 0,
+        perfectRuns: 0,
+        totalCorrect: 0,
+        totalAttempts: 0,
       };
-      const accuracy = stats.totalAttempts === 0 ? 0 : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
+      const accuracy =
+        stats.totalAttempts === 0
+          ? 0
+          : Math.round((stats.totalCorrect / stats.totalAttempts) * 100);
       return { level, ...stats, accuracy };
     });
   }, [conj.state.leaderboard, language]);
@@ -24,7 +31,16 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
   // Cross-language ranking by best-streak so users can see how each tongue
   // compares — useful when picking which language to grind today.
   const crossLang = useMemo(() => {
-    const langs: Language[] = ["Spanish", "French", "German", "Italian", "Japanese", "Korean", "Portuguese", "English"];
+    const langs: Language[] = [
+      "Spanish",
+      "French",
+      "German",
+      "Italian",
+      "Japanese",
+      "Korean",
+      "Portuguese",
+      "English",
+    ];
     return langs
       .map((l) => {
         let best = 0;
@@ -40,7 +56,13 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
           attempts += s.totalAttempts;
           correct += s.totalCorrect;
         }
-        return { language: l, bestStreak: best, perfectRuns: perfect, totalAttempts: attempts, accuracy: attempts ? Math.round((correct / attempts) * 100) : 0 };
+        return {
+          language: l,
+          bestStreak: best,
+          perfectRuns: perfect,
+          totalAttempts: attempts,
+          accuracy: attempts ? Math.round((correct / attempts) * 100) : 0,
+        };
       })
       .filter((r) => r.totalAttempts > 0)
       .sort((a, b) => b.bestStreak - a.bestStreak);
@@ -80,12 +102,26 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={r.level} className="border-b border-border/30 last:border-0 [&>td]:py-2.5">
+                  <tr
+                    key={r.level}
+                    className="border-b border-border/30 last:border-0 [&>td]:py-2.5"
+                  >
                     <td className="text-foreground">L{r.level}</td>
-                    <td className="text-foreground"><Flame className="mr-1 inline h-3 w-3 text-gold" />{r.bestStreak}</td>
-                    <td className={r.currentStreak >= 3 ? "text-gold" : "text-foreground/80"}>{r.currentStreak}</td>
-                    <td className="text-foreground"><Award className="mr-1 inline h-3 w-3 text-gold" />{r.perfectRuns}</td>
-                    <td className="text-foreground/80"><Target className="mr-1 inline h-3 w-3 text-emerald-400" />{r.accuracy}%</td>
+                    <td className="text-foreground">
+                      <Flame className="mr-1 inline h-3 w-3 text-gold" />
+                      {r.bestStreak}
+                    </td>
+                    <td className={r.currentStreak >= 3 ? "text-gold" : "text-foreground/80"}>
+                      {r.currentStreak}
+                    </td>
+                    <td className="text-foreground">
+                      <Award className="mr-1 inline h-3 w-3 text-gold" />
+                      {r.perfectRuns}
+                    </td>
+                    <td className="text-foreground/80">
+                      <Target className="mr-1 inline h-3 w-3 text-emerald-400" />
+                      {r.accuracy}%
+                    </td>
                     <td className="text-muted-foreground">{r.totalAttempts}</td>
                   </tr>
                 ))}
@@ -113,8 +149,14 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
                   <span className="text-foreground">{r.language}</span>
                 </span>
                 <span className="flex items-center gap-3 text-muted-foreground">
-                  <span><Flame className="mr-1 inline h-3 w-3 text-gold" />{r.bestStreak}</span>
-                  <span><Award className="mr-1 inline h-3 w-3 text-gold" />{r.perfectRuns}</span>
+                  <span>
+                    <Flame className="mr-1 inline h-3 w-3 text-gold" />
+                    {r.bestStreak}
+                  </span>
+                  <span>
+                    <Award className="mr-1 inline h-3 w-3 text-gold" />
+                    {r.perfectRuns}
+                  </span>
                   <span>{r.accuracy}%</span>
                 </span>
               </li>
@@ -139,7 +181,15 @@ export function ConjugationLeaderboard({ language }: { language: Language }) {
   );
 }
 
-function Badge({ label, threshold, icon }: { label: string; threshold: number; icon: "flame" | "zap" | "trophy" }) {
+function Badge({
+  label,
+  threshold,
+  icon,
+}: {
+  label: string;
+  threshold: number;
+  icon: "flame" | "zap" | "trophy";
+}) {
   const Icon = icon === "trophy" ? Trophy : icon === "zap" ? Award : Flame;
   return (
     <div className="flex items-center gap-1.5 rounded-md border border-border/50 bg-background/30 px-2 py-1.5">

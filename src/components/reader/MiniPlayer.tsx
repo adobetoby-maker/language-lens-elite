@@ -5,8 +5,7 @@ export function MiniPlayer() {
   const { playing, current, stop } = useSpeech();
   if (!playing || !current) return null;
 
-  const snippet =
-    current.text.length > 60 ? current.text.slice(0, 57) + "…" : current.text;
+  const snippet = current.text.length > 60 ? current.text.slice(0, 57) + "…" : current.text;
 
   return (
     <div

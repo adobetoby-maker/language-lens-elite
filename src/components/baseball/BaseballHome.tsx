@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronDown, ChevronRight } from "lucide-react";
 import { useApp } from "@/state/app-state";
-import {
-  getBallSportsContent,
-  type ModuleArea,
-} from "@/data/ball-sports-content";
+import { getBallSportsContent, type ModuleArea } from "@/data/ball-sports-content";
 import { BaseballPositionsGame } from "../games/BaseballPositionsGame";
-import {
-  BASEBALL_DUGOUT_VOCAB,
-  type BaseballDugoutVocab,
-} from "@/data/baseball-positions";
+import { BASEBALL_DUGOUT_VOCAB, type BaseballDugoutVocab } from "@/data/baseball-positions";
 
 const MODULE_ID = "baseball";
 
@@ -37,15 +31,13 @@ export function BaseballHome() {
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
       {/* Header */}
       <header className="mb-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">
-          ⚾ Baseball
-        </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">⚾ Baseball</p>
         <h1 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
           Baseball Language Trainer
         </h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Learn authentic baseball vocabulary — dugout strategy, field
-          positions, and the language players and fans actually use.
+          Learn authentic baseball vocabulary — dugout strategy, field positions, and the language
+          players and fans actually use.
         </p>
       </header>
 
@@ -99,8 +91,8 @@ function DiamondPanel() {
       {!openArea ? (
         <>
           <p className="mb-4 text-sm text-muted-foreground">
-            Pick an area of baseball conversation to explore — dugout chatter,
-            pitcher-catcher signs, at-bat approach, and more.
+            Pick an area of baseball conversation to explore — dugout chatter, pitcher-catcher
+            signs, at-bat approach, and more.
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {areas.map((area) => (
@@ -111,13 +103,9 @@ function DiamondPanel() {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{area.emoji}</span>
-                  <span className="font-display text-lg font-semibold">
-                    {area.name}
-                  </span>
+                  <span className="font-display text-lg font-semibold">{area.name}</span>
                 </div>
-                <p className="text-xs text-muted-foreground line-clamp-2">
-                  {area.blurb}
-                </p>
+                <p className="text-xs text-muted-foreground line-clamp-2">{area.blurb}</p>
                 <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-gold/80 group-hover:text-gold">
                   Open →
                 </span>
@@ -126,22 +114,13 @@ function DiamondPanel() {
           </div>
         </>
       ) : (
-        <AreaDetail
-          area={openArea}
-          onBack={() => setOpenId(null)}
-        />
+        <AreaDetail area={openArea} onBack={() => setOpenId(null)} />
       )}
     </div>
   );
 }
 
-function AreaDetail({
-  area,
-  onBack,
-}: {
-  area: ModuleArea;
-  onBack: () => void;
-}) {
+function AreaDetail({ area, onBack }: { area: ModuleArea; onBack: () => void }) {
   const [flashIndex, setFlashIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const vocab = area.vocab;
@@ -198,10 +177,7 @@ function AreaDetail({
           </h3>
           <ul className="space-y-2">
             {area.phrases.map((p, i) => (
-              <li
-                key={i}
-                className="rounded-lg border border-border/40 bg-background/40 p-3"
-              >
+              <li key={i} className="rounded-lg border border-border/40 bg-background/40 p-3">
                 <p className="text-sm text-foreground">{p.en}</p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                   {p.intent}
@@ -227,9 +203,7 @@ function AreaDetail({
               {vocab[flashIndex]}
             </span>
             {flipped ? (
-              <span className="text-xs text-gold">
-                Area: {area.name}
-              </span>
+              <span className="text-xs text-gold">Area: {area.name}</span>
             ) : (
               <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/60">
                 tap to flip
@@ -275,15 +249,11 @@ function PositionsPanel() {
           🏟️ Positions Quiz
         </p>
         <p className="text-sm text-muted-foreground">
-          Identify all nine fielding positions on the diamond. Tap a position
-          marker and select the correct name. Score is tracked as you go — try
-          to get a perfect round.
+          Identify all nine fielding positions on the diamond. Tap a position marker and select the
+          correct name. Score is tracked as you go — try to get a perfect round.
         </p>
       </div>
-      <BaseballPositionsGame
-        language={state.selectedLanguage}
-        onXp={handleXp}
-      />
+      <BaseballPositionsGame language={state.selectedLanguage} onXp={handleXp} />
     </div>
   );
 }
@@ -296,16 +266,11 @@ function DugoutVocabPanel() {
 
   // Determine which translation column to use
   const showLang = lang === "Portuguese" ? "pt" : "es";
-  const langLabel =
-    lang === "Portuguese"
-      ? "Portuguese"
-      : lang === "Spanish"
-        ? "Spanish"
-        : lang; // fallback to Spanish for others
+  const langLabel = lang === "Portuguese" ? "Portuguese" : lang === "Spanish" ? "Spanish" : lang; // fallback to Spanish for others
 
-  const [openCategories, setOpenCategories] = useState<
-    Record<string, boolean>
-  >({ "pitch-type": true });
+  const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({
+    "pitch-type": true,
+  });
 
   function toggleCategory(cat: string) {
     setOpenCategories((prev) => ({ ...prev, [cat]: !prev[cat] }));
@@ -327,10 +292,9 @@ function DugoutVocabPanel() {
           📋 Dugout Vocabulary Reference
         </p>
         <p className="text-sm text-muted-foreground">
-          Essential baseball terms grouped by category. Each card shows
-          English alongside{" "}
-          <span className="text-foreground">{langLabel}</span>. Expand a
-          category to study the word pairs.
+          Essential baseball terms grouped by category. Each card shows English alongside{" "}
+          <span className="text-foreground">{langLabel}</span>. Expand a category to study the word
+          pairs.
         </p>
       </div>
 
@@ -351,9 +315,7 @@ function DugoutVocabPanel() {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-xl">{meta.emoji}</span>
-                  <span className="font-display text-base font-semibold">
-                    {meta.label}
-                  </span>
+                  <span className="font-display text-base font-semibold">{meta.label}</span>
                   <span className="font-mono text-[10px] text-muted-foreground">
                     {words.length} terms
                   </span>
@@ -381,9 +343,7 @@ function DugoutVocabPanel() {
                         key={i}
                         className="grid grid-cols-2 gap-x-4 rounded-lg border border-border/40 bg-background/40 px-4 py-2.5"
                       >
-                        <span className="text-sm text-foreground font-medium">
-                          {word.en}
-                        </span>
+                        <span className="text-sm text-foreground font-medium">{word.en}</span>
                         <span className="text-sm text-muted-foreground">
                           {showLang === "pt" ? word.pt : word.es}
                         </span>

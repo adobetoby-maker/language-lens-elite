@@ -35,7 +35,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Language Threshold — A Premium Language Learning Experience" },
-      { name: "description", content: "Language Threshold is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese." },
+      {
+        name: "description",
+        content:
+          "Language Threshold is an editorial, immersive way to learn Spanish, French, German, Italian, Japanese, Korean and Portuguese.",
+      },
     ],
   }),
 });
@@ -86,43 +90,46 @@ function Index() {
                   <SpeechBridge>
                     <SpeakBridge>
                       <TutorProvider>
-                       <ConjugationProvider>
-                        <SentenceBuildProvider>
-                         <ListeningDrillProvider>
-                          <WordMatchProvider>
-                           <IdiomMasterProvider>
-                            <FalseFriendsProvider>
-                             <DailyChallengeProvider>
-                        <div className="flex min-h-screen bg-background text-foreground">
-                          {/* Left sidebar (desktop) + bottom nav (mobile) */}
-                          <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
+                        <ConjugationProvider>
+                          <SentenceBuildProvider>
+                            <ListeningDrillProvider>
+                              <WordMatchProvider>
+                                <IdiomMasterProvider>
+                                  <FalseFriendsProvider>
+                                    <DailyChallengeProvider>
+                                      <div className="flex min-h-screen bg-background text-foreground">
+                                        {/* Left sidebar (desktop) + bottom nav (mobile) */}
+                                        <AppSidebar onOpenMatch={() => setMatchOpen(true)} />
 
-                          {/* Main column */}
-                          <div className="flex min-w-0 flex-1 flex-col">
-                            <FreePreviewBanner />
-                            <TopNav />
-                            {/* Bottom padding always reserves room for the
+                                        {/* Main column */}
+                                        <div className="flex min-w-0 flex-1 flex-col">
+                                          <FreePreviewBanner />
+                                          <TopNav />
+                                          {/* Bottom padding always reserves room for the
                                 fixed bottom nav, on every viewport. */}
-                            <main className="flex-1 overflow-y-auto px-4 py-6 pb-[calc(4rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-10">
-                              <TabShell />
-                            </main>
-                          </div>
-                        </div>
+                                          <main className="flex-1 overflow-y-auto px-4 py-6 pb-[calc(6.5rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-10 lg:pb-[calc(4rem+env(safe-area-inset-bottom))]">
+                                            <TabShell />
+                                          </main>
+                                        </div>
+                                      </div>
 
-                        <WizardGate />
-                        <TutorPanel />
-                        <LevelUpOverlay />
-                        <CefrCompletionBridge />
-                        <MatchmakingOverlay open={matchOpen} onClose={() => setMatchOpen(false)} />
-                        <MatchAchievementsBridge />
-                        <DailyChallengeBridge />
-                             </DailyChallengeProvider>
-                            </FalseFriendsProvider>
-                           </IdiomMasterProvider>
-                          </WordMatchProvider>
-                         </ListeningDrillProvider>
-                        </SentenceBuildProvider>
-                       </ConjugationProvider>
+                                      <WizardGate />
+                                      <TutorPanel />
+                                      <LevelUpOverlay />
+                                      <CefrCompletionBridge />
+                                      <MatchmakingOverlay
+                                        open={matchOpen}
+                                        onClose={() => setMatchOpen(false)}
+                                      />
+                                      <MatchAchievementsBridge />
+                                      <DailyChallengeBridge />
+                                    </DailyChallengeProvider>
+                                  </FalseFriendsProvider>
+                                </IdiomMasterProvider>
+                              </WordMatchProvider>
+                            </ListeningDrillProvider>
+                          </SentenceBuildProvider>
+                        </ConjugationProvider>
                       </TutorProvider>
                       <Toaster
                         theme="dark"

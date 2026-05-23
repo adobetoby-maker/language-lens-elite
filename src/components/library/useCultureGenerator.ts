@@ -88,10 +88,7 @@ export function useCultureGenerator() {
           });
           if (cancelled) break;
           if (res.data) {
-            const len = Math.min(
-              res.data.targetLanguageText.length,
-              res.data.englishText.length,
-            );
+            const len = Math.min(res.data.targetLanguageText.length, res.data.englishText.length);
             const sentences = Array.from({ length: len }, (_, i) => ({
               en: res.data!.englishText[i],
               target: res.data!.targetLanguageText[i],

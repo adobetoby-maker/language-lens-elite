@@ -32,11 +32,7 @@ export function MorphologyCard({ morph }: { morph: MorphologyBreakdown }) {
             Base form · {morph.base.gloss}
           </div>
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <ChunkedWord
-              root={morph.base.root}
-              ending={morph.base.ending}
-              size="lg"
-            />
+            <ChunkedWord root={morph.base.root} ending={morph.base.ending} size="lg" />
             {morph.base.romanization && (
               <span className="font-mono text-[12px] tracking-wide text-muted-foreground">
                 {morph.base.romanization}
@@ -52,7 +48,9 @@ export function MorphologyCard({ morph }: { morph: MorphologyBreakdown }) {
               <tr className="bg-card/60 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 <th className="px-4 py-2 font-normal">Form</th>
                 <th className="px-4 py-2 font-normal">Root + ending</th>
-                <th className="hidden px-4 py-2 font-normal sm:table-cell">{state.nativeLanguage}</th>
+                <th className="hidden px-4 py-2 font-normal sm:table-cell">
+                  {state.nativeLanguage}
+                </th>
               </tr>
             </thead>
             <tbody>

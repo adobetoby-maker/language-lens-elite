@@ -73,8 +73,7 @@ export const RANK_FLAVOR: Record<RankTier, string> = {
   Platinum: "Borders mean nothing to those who speak many tongues.",
   Diamond: "Language bends to your will.",
   Champion: "You have conquered what most never attempt.",
-  Unreal:
-    "A legend. There are no more words — only those you haven't learned yet.",
+  Unreal: "A legend. There are no more words — only those you haven't learned yet.",
 };
 
 export const POINTS_PER_TIER = 100;
@@ -186,8 +185,7 @@ export function MatchProvider({ children }: { children: ReactNode }) {
           tier,
           points: clampPoints(parsed.points ?? 0),
           highestTier:
-            parsed.highestTier &&
-            RANK_ORDER.includes(parsed.highestTier as RankTier)
+            parsed.highestTier && RANK_ORDER.includes(parsed.highestTier as RankTier)
               ? (parsed.highestTier as RankTier)
               : tier,
           savedVocab: Array.isArray(parsed.savedVocab) ? parsed.savedVocab : [],
@@ -266,12 +264,10 @@ export function MatchProvider({ children }: { children: ReactNode }) {
       const losses = s.losses + (outcome === "defeat" ? 1 : 0);
       const ties = s.ties + (outcome === "tie" ? 1 : 0);
 
-      const currentWinStreak =
-        outcome === "victory" ? s.currentWinStreak + 1 : 0;
+      const currentWinStreak = outcome === "victory" ? s.currentWinStreak + 1 : 0;
       const longestWinStreak = Math.max(s.longestWinStreak, currentWinStreak);
 
-      const resilientUnlocked =
-        s.resilientUnlocked || (s.lostLastMatch && outcome === "victory");
+      const resilientUnlocked = s.resilientUnlocked || (s.lostLastMatch && outcome === "victory");
       const lostLastMatch = outcome === "defeat";
 
       return {
@@ -289,28 +285,23 @@ export function MatchProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const saveVocabWord = useCallback(
-    (w: Omit<SavedVocabWord, "id" | "savedAt">) => {
-      let added = false;
-      setState((s) => {
-        const exists = s.savedVocab.some(
-          (v) =>
-            v.word.toLowerCase() === w.word.toLowerCase() &&
-            v.language === w.language,
-        );
-        if (exists) return s;
-        added = true;
-        const entry: SavedVocabWord = {
-          ...w,
-          id: `${w.language}-${w.word}-${Date.now()}`,
-          savedAt: Date.now(),
-        };
-        return { ...s, savedVocab: [entry, ...s.savedVocab] };
-      });
-      return added;
-    },
-    [],
-  );
+  const saveVocabWord = useCallback((w: Omit<SavedVocabWord, "id" | "savedAt">) => {
+    let added = false;
+    setState((s) => {
+      const exists = s.savedVocab.some(
+        (v) => v.word.toLowerCase() === w.word.toLowerCase() && v.language === w.language,
+      );
+      if (exists) return s;
+      added = true;
+      const entry: SavedVocabWord = {
+        ...w,
+        id: `${w.language}-${w.word}-${Date.now()}`,
+        savedAt: Date.now(),
+      };
+      return { ...s, savedVocab: [entry, ...s.savedVocab] };
+    });
+    return added;
+  }, []);
 
   const removeVocabWord = useCallback((id: string) => {
     setState((s) => ({

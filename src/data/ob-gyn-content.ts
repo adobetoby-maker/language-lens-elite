@@ -95,7 +95,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "The epidural goes in your lower back — the anesthesiologist will numb the skin first so the placement itself isn't as painful as it sounds. Once it's working, your contractions will still be there but you'll feel them as pressure instead of pain. You'll still be able to push when it's time.",
     context:
       "Epidural analgesia counseling. The reassurance that pushing ability is preserved addresses the most common fear about epidurals and improves uptake among anxious patients.",
-    reference: "ACOG Committee Opinion #766 — Approaches to Limit Intervention During Labor and Birth",
+    reference:
+      "ACOG Committee Opinion #766 — Approaches to Limit Intervention During Labor and Birth",
   },
   {
     id: "csection-urgent-consent",
@@ -122,7 +123,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "Shoulder — I need McRoberts now. Pull her knees to her chest, hyperflexed. Suprapubic pressure, not fundal. I need the team in here.",
     context:
       "Shoulder dystocia team communication. McRoberts maneuver and suprapubic pressure are the first-line response. 'Not fundal' is critical — fundal pressure worsens the impaction. This is the literal call-and-response language used in obstetric emergency drills.",
-    reference: "ACOG Practice Bulletin #40 — Shoulder Dystocia; ALSO Course Shoulder Dystocia Drill",
+    reference:
+      "ACOG Practice Bulletin #40 — Shoulder Dystocia; ALSO Course Shoulder Dystocia Drill",
   },
 
   // ── Postpartum ───────────────────────────────────────────────────────────
@@ -133,7 +135,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "Before you go home, I want to make sure you know what to watch for. Heavy bleeding — soaking more than one pad an hour for two hours straight — call us. Fever over 100.4, foul-smelling discharge, redness or opening of your incision, calf pain, or shortness of breath — call us or go to the ER. And if you're feeling hopeless or having thoughts of harming yourself or the baby, that's also an emergency.",
     context:
       "Postpartum discharge warning signs — hemorrhage, infection, DVT, PE, and perinatal mood disorders. Including the mental health warning sign normalizes it and saves lives.",
-    reference: "ACOG Committee Opinion #736 — Optimizing Postpartum Care; ACOG #757 — Screening for Perinatal Depression",
+    reference:
+      "ACOG Committee Opinion #736 — Optimizing Postpartum Care; ACOG #757 — Screening for Perinatal Depression",
   },
   {
     id: "ppd-screening-positive",
@@ -142,7 +145,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "Your Edinburgh score today is a 14 — that's in the range that tells me you're struggling more than the typical new-mom exhaustion. What you're feeling has a name — postpartum depression — and it's the most common complication of childbirth that we know of. It also responds well to treatment. Can we talk about what support would feel right for you?",
     context:
       "Edinburgh Postnatal Depression Scale ≥13 is a positive screen. Normalizing PPD as 'the most common complication of childbirth' reduces shame and opens the conversation for treatment.",
-    reference: "ACOG Practice Bulletin #257 — Screening and Diagnosis of Mental Health Conditions During Pregnancy and the Postpartum Period",
+    reference:
+      "ACOG Practice Bulletin #257 — Screening and Diagnosis of Mental Health Conditions During Pregnancy and the Postpartum Period",
   },
   {
     id: "breastfeeding-support",
@@ -151,7 +155,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "It usually takes three to five days for your milk to come in fully. Until then, colostrum — the thick yellowish milk — is exactly what your baby needs; it's concentrated and nutritious. If the latch is painful, that's usually a positioning issue and a lactation consultant can fix it in one session.",
     context:
       "Breastfeeding initiation counseling. Setting the expectation for milk-coming-in timing prevents mothers from concluding they 'can't breastfeed' in the first 48 hours.",
-    reference: "ABM (Academy of Breastfeeding Medicine) Clinical Protocol #14 — Breastfeeding-Friendly Physician's Office",
+    reference:
+      "ABM (Academy of Breastfeeding Medicine) Clinical Protocol #14 — Breastfeeding-Friendly Physician's Office",
   },
 
   // ── Gynecology ────────────────────────────────────────────────────────────
@@ -200,7 +205,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "You're having regular contractions at 29 weeks. I want to admit you, start a medication to try to slow the contractions, and give you corticosteroids — a steroid shot that helps the baby's lungs mature faster, in case delivery happens sooner than we want. Our goal is to get you at least 48 hours further along.",
     context:
       "Preterm labor management — tocolysis + antenatal corticosteroids between 24–33+6 weeks. The '48 hours' goal explains why tocolysis doesn't need to work forever — just long enough for steroids to work.",
-    reference: "ACOG Practice Bulletin #171 — Management of Preterm Labor; SMFM Corticosteroid Guidelines",
+    reference:
+      "ACOG Practice Bulletin #171 — Management of Preterm Labor; SMFM Corticosteroid Guidelines",
   },
   {
     id: "placenta-previa-counseling",
@@ -220,7 +226,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "There are four main categories of birth control: long-acting methods that go in and you don't think about — like IUDs and implants — hormonal methods you take or wear regularly, barrier methods, and permanent options. What I want to know first is: are you done having children, or is it a question of timing?",
     context:
       "Contraception counseling framework — categorizing by duration before listing options prevents overwhelming the patient. The LARC-first structure reflects the highest efficacy tier.",
-    reference: "CDC Medical Eligibility Criteria for Contraceptive Use, 2024 — Tier 1 (LARC) Counseling",
+    reference:
+      "CDC Medical Eligibility Criteria for Contraceptive Use, 2024 — Tier 1 (LARC) Counseling",
   },
   {
     id: "iud-insertion-counseling",
@@ -240,7 +247,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "I want to go through what we found on the ultrasound carefully, and I want you to have time to absorb this. The anatomy scan showed findings consistent with a heart defect — specifically, it appears the left side of the heart has not developed normally. I'm going to explain what we know, what we don't know yet, and what your next steps are.",
     context:
       "Fetal cardiac anomaly counseling — using a structured disclosure ('what we know, what we don't, what's next') prevents the conversation from becoming a trauma dump. Slow and specific over fast and vague.",
-    reference: "ACOG Committee Opinion #693 — Counseling Following a Fetal Abnormality; SMFM Communication Guidelines",
+    reference:
+      "ACOG Committee Opinion #693 — Counseling Following a Fetal Abnormality; SMFM Communication Guidelines",
   },
   {
     id: "pregnancy-loss-communication",
@@ -249,7 +257,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "I'm so sorry — there is no heartbeat. I know this is devastating news. You don't have to make any decisions right now. When you're ready, I want to talk about what options you have for how we move forward — but there's no rush.",
     context:
       "Communicating intrauterine fetal demise or missed abortion. 'No heartbeat' is clearer than 'fetal demise' for patients in shock. 'No rush' on next steps is empirically important — patients who feel rushed make poorer decisions and have worse grief outcomes.",
-    reference: "ACOG Practice Bulletin #150 — Early Pregnancy Loss; Miscarriage Care Communication Guidelines",
+    reference:
+      "ACOG Practice Bulletin #150 — Early Pregnancy Loss; Miscarriage Care Communication Guidelines",
   },
 
   // ── OR Communication ──────────────────────────────────────────────────────
@@ -260,7 +269,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "Time out — patient name, procedure, consent signed for cesarean delivery. She's allergic to penicillin — we're using cefazolin and will crosscheck for cross-reactivity. Foley in, bladder down. Site and side correct. Anesthesia ready? Scrub and circulator check. Everyone good? Proceed.",
     context:
       "Cesarean delivery surgical time-out. Site and side verification is adapted for OB ('site' = lower uterine segment, 'side' = not applicable — modified protocol). Allergy crosscheck is critical in this patient population.",
-    reference: "ACOG/AAGL Surgical Safety Checklist Adaptation for OB — Joint Commission Universal Protocol",
+    reference:
+      "ACOG/AAGL Surgical Safety Checklist Adaptation for OB — Joint Commission Universal Protocol",
   },
   {
     id: "postpartum-hemorrhage-team",
@@ -269,7 +279,8 @@ export const OB_GYN_SCRIPTS: ObGynScript[] = [
       "I've got a PPH — EBL is already 1500 and climbing. I need massive transfusion protocol activated, two large-bore IVs if we don't have them, oxytocin running, and call the blood bank now. Is uterology here? I want to go to bakri balloon if bimanual massage and second-line uterotonics don't stop this.",
     context:
       "Postpartum hemorrhage team communication — ACOG CALM algorithm. Activating MTP, ordering uterotonics, and naming the next intervention (Bakri balloon) simultaneously is how experienced attendings run a PPH code.",
-    reference: "ACOG Practice Bulletin #183 — Postpartum Hemorrhage; Alliance for Innovation on Maternal Health (AIM) PPH Bundle",
+    reference:
+      "ACOG Practice Bulletin #183 — Postpartum Hemorrhage; Alliance for Innovation on Maternal Health (AIM) PPH Bundle",
   },
 ];
 
