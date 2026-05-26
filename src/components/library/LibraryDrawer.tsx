@@ -18,6 +18,7 @@ import { getModule } from "@/data/modules";
 import { partitionByFocus } from "@/lib/module-filter";
 import { AddTextModal } from "./AddTextModal";
 import type { CefrLevel } from "@/fns/grammar.functions";
+import { configureUtterance } from "@/lib/voices";
 
 const LEVEL_TONE: Record<CefrLevel, string> = {
   A1: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
@@ -508,7 +509,7 @@ function BattleVocabularySection({
   const speak = (word: SavedVocabWord) => {
     try {
       const u = new SpeechSynthesisUtterance(word.word);
-      u.lang = SPEECH_LOCALE[word.language];
+      configureUtterance(u, SPEECH_LOCALE[word.language]);
       u.rate = 0.9;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(u);

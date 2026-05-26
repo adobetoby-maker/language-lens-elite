@@ -22,10 +22,10 @@ const MONTHLY_PRICE_ID = import.meta.env.VITE_STRIPE_PRICE_MONTHLY as string | u
 const ANNUAL_PRICE_ID = import.meta.env.VITE_STRIPE_PRICE_ANNUAL as string | undefined;
 const FAMILY_PRICE_ID = import.meta.env.VITE_STRIPE_PRICE_FAMILY as string | undefined;
 
-// Fallback Payment Links (used until Stripe keys are configured in Cloudflare)
-const MONTHLY_PAYMENT_LINK = "https://buy.stripe.com/dRm6oJ91VcO95PX3UabfO00";
-const ANNUAL_PAYMENT_LINK = "https://buy.stripe.com/cNidRb3HB29vcelaiybfO04";
-const FAMILY_PAYMENT_LINK = "https://buy.stripe.com/dRm6oJ91VcO95PX3UabfO00";
+// Fallback Payment Links — live Stripe links created 2026-05-26
+const MONTHLY_PAYMENT_LINK = "https://buy.stripe.com/14A9AVemfg0l1zH8aqbfO08";
+const ANNUAL_PAYMENT_LINK = "https://buy.stripe.com/bJe7sN2Dx29v0vD76mbfO09";
+const FAMILY_PAYMENT_LINK = "https://buy.stripe.com/bJecN791V29v4LT76mbfO0a";
 
 async function startCheckout(
   priceId: string | undefined,

@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useApp, type Language } from "@/state/app-state";
 import { useMatch } from "@/state/match-state";
 import type { ReviewedWord } from "./BattleArena";
+import { configureUtterance } from "@/lib/voices";
 
 const SPEECH_LOCALE: Record<Language, string> = {
   Spanish: "es-CR",
@@ -99,7 +100,7 @@ function WordRow({ word }: { word: ReviewedWord }) {
       }
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(word.word);
-      u.lang = SPEECH_LOCALE[word.language];
+      configureUtterance(u, SPEECH_LOCALE[word.language]);
       u.rate = 0.9;
       window.speechSynthesis.speak(u);
     } catch {

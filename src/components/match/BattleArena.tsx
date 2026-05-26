@@ -5,6 +5,7 @@ import { RANK_BADGE, RANK_COLOR, RANK_TITLE, type RankTier } from "@/state/match
 import { celebrate } from "@/lib/confetti";
 import { generateBattleWord, type BattleWord } from "@/fns/battle.functions";
 import { RankBadge } from "./RankBadge";
+import { configureUtterance } from "@/lib/voices";
 
 const SPEECH_LOCALE: Record<Language, string> = {
   Spanish: "es-CR",
@@ -366,7 +367,7 @@ export function BattleArena({
       // the queue without a cancel first).
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(data.word.word);
-      u.lang = SPEECH_LOCALE[language];
+      configureUtterance(u, SPEECH_LOCALE[language]);
       u.rate = 0.9;
       window.speechSynthesis.speak(u);
     } catch {
