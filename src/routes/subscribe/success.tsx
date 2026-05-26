@@ -11,7 +11,7 @@ export const Route = createFileRoute("/subscribe/success")({
 });
 
 // Junior Linguist annual Stripe Payment Link — 50% off cross-sell
-const JUNIOR_50_OFF = "https://buy.stripe.com/dRm6oJ91VcO95PX3UabfO00";
+const JUNIOR_50_OFF = "https://buy.stripe.com/eVqeVf0vpcO9guB2Q6bfO0c";
 
 function SuccessPage() {
   const { refresh } = useSubscription();
