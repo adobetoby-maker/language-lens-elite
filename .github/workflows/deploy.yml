@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Workers
+name: Deploy to Vercel
 
 on:
   push:
@@ -25,18 +25,8 @@ jobs:
           VITE_STRIPE_PRICE_ANNUAL: "price_1TbKk4QjohgWhWid1m86409i"
           VITE_STRIPE_PRICE_FAMILY: "price_1TbKk5QjohgWhWidSuAbMeTq"
 
-      - name: Patch wrangler config
-        run: |
-          node -e "
-            const fs = require('fs');
-            const cfg = JSON.parse(fs.readFileSync('dist/client/wrangler.json','utf8'));
-            cfg.name = 'tanstack-start-ts';
-            cfg.routes = [{ pattern: 'app.languagethreshold.com/*', zone_name: 'languagethreshold.com' }];
-            fs.writeFileSync('dist/client/wrangler.json', JSON.stringify(cfg));
-          "
-
       - name: Deploy
-        run: npx wrangler deploy --config dist/client/wrangler.json
+        run: npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
