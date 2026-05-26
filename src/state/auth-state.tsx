@@ -19,6 +19,8 @@ interface AuthContextValue {
     password: string,
   ) => Promise<{ error: string | null; needsConfirmation: boolean }>;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithApple: () => Promise<void>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ error: string | null }>;
 }
@@ -84,6 +86,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error: error.message };
   }, []);
 
+  const signInWithGoogle = useCallback(async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: `${window.location.origin}/` },
+    });
+  }, []);
+
+  const signInWithApple = useCallback(async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "apple",
+      options: { redirectTo: `${window.location.origin}/` },
+    });
+  }, []);
+
   const resetPassword = useCallback(async (email: string) => {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/`,
@@ -102,6 +118,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       loading,
       signUp,
       signIn,
+      signInWithGoogle,
+      signInWithApple,
       signOut,
       resetPassword,
     }),
@@ -117,6 +135,8 @@ const fallbackAuth: AuthContextValue = {
   loading: false,
   signUp: async () => ({ error: "Auth not ready", needsConfirmation: false }),
   signIn: async () => ({ error: "Auth not ready" }),
+  signInWithGoogle: async () => {},
+  signInWithApple: async () => {},
   signOut: async () => {},
   resetPassword: async () => ({ error: "Auth not ready" }),
 };
