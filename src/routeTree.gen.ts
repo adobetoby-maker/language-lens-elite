@@ -10,17 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char91indexChar93RouteImport } from './routes/[index]'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SubscribeSuccessRouteImport } from './routes/subscribe/success'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
 import { Route as ApiSportsNewsRouteImport } from './routes/api.sports-news'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
 import { Route as ApiModuleFieldPrepRouteImport } from './routes/api.module-field-prep'
 import { Route as ApiFieldPrepRouteImport } from './routes/api.field-prep'
 import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
+import { Route as ApiCreateCheckoutRouteImport } from './routes/api.create-checkout'
 
 const Char91indexChar93Route = Char91indexChar93RouteImport.update({
   id: '/index',
   path: '/index',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -28,9 +37,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SubscribeSuccessRoute = SubscribeSuccessRouteImport.update({
+  id: '/subscribe/success',
+  path: '/subscribe/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiTutorRoute = ApiTutorRouteImport.update({
   id: '/api/tutor',
   path: '/api/tutor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe-webhook',
+  path: '/api/stripe-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSportsNewsRoute = ApiSportsNewsRouteImport.update({
@@ -58,80 +77,113 @@ const ApiDiscussionRoute = ApiDiscussionRouteImport.update({
   path: '/api/discussion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCreateCheckoutRoute = ApiCreateCheckoutRouteImport.update({
+  id: '/api/create-checkout',
+  path: '/api/create-checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
+  '/pricing': typeof PricingRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/api/tutor': typeof ApiTutorRoute
+  '/subscribe/success': typeof SubscribeSuccessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
+  '/pricing': typeof PricingRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/api/tutor': typeof ApiTutorRoute
+  '/subscribe/success': typeof SubscribeSuccessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/index': typeof Char91indexChar93Route
+  '/pricing': typeof PricingRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/api/tutor': typeof ApiTutorRoute
+  '/subscribe/success': typeof SubscribeSuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/index'
+    | '/pricing'
+    | '/api/create-checkout'
     | '/api/discussion'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
+    | '/api/stripe-webhook'
     | '/api/tutor'
+    | '/subscribe/success'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/index'
+    | '/pricing'
+    | '/api/create-checkout'
     | '/api/discussion'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
+    | '/api/stripe-webhook'
     | '/api/tutor'
+    | '/subscribe/success'
   id:
     | '__root__'
     | '/'
     | '/index'
+    | '/pricing'
+    | '/api/create-checkout'
     | '/api/discussion'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
     | '/api/sports-news'
+    | '/api/stripe-webhook'
     | '/api/tutor'
+    | '/subscribe/success'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
+  PricingRoute: typeof PricingRoute
+  ApiCreateCheckoutRoute: typeof ApiCreateCheckoutRoute
   ApiDiscussionRoute: typeof ApiDiscussionRoute
   ApiFieldPrepRoute: typeof ApiFieldPrepRoute
   ApiModuleFieldPrepRoute: typeof ApiModuleFieldPrepRoute
   ApiSpeakRoute: typeof ApiSpeakRoute
   ApiSportsNewsRoute: typeof ApiSportsNewsRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   ApiTutorRoute: typeof ApiTutorRoute
+  SubscribeSuccessRoute: typeof SubscribeSuccessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -143,6 +195,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91indexChar93RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -150,11 +209,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/subscribe/success': {
+      id: '/subscribe/success'
+      path: '/subscribe/success'
+      fullPath: '/subscribe/success'
+      preLoaderRoute: typeof SubscribeSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/tutor': {
       id: '/api/tutor'
       path: '/api/tutor'
       fullPath: '/api/tutor'
       preLoaderRoute: typeof ApiTutorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/stripe-webhook': {
+      id: '/api/stripe-webhook'
+      path: '/api/stripe-webhook'
+      fullPath: '/api/stripe-webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/sports-news': {
@@ -192,19 +265,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiDiscussionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/create-checkout': {
+      id: '/api/create-checkout'
+      path: '/api/create-checkout'
+      fullPath: '/api/create-checkout'
+      preLoaderRoute: typeof ApiCreateCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Char91indexChar93Route: Char91indexChar93Route,
+  PricingRoute: PricingRoute,
+  ApiCreateCheckoutRoute: ApiCreateCheckoutRoute,
   ApiDiscussionRoute: ApiDiscussionRoute,
   ApiFieldPrepRoute: ApiFieldPrepRoute,
   ApiModuleFieldPrepRoute: ApiModuleFieldPrepRoute,
   ApiSpeakRoute: ApiSpeakRoute,
   ApiSportsNewsRoute: ApiSportsNewsRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   ApiTutorRoute: ApiTutorRoute,
+  SubscribeSuccessRoute: SubscribeSuccessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
