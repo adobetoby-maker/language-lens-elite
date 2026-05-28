@@ -1,5 +1,13 @@
 import type { TabKey } from "@/state/app-state";
 
+export interface Lesson {
+  n: number;
+  title: string;
+  objective: string;
+  readingTemplate?: string;
+  steps: LessonStep[];
+}
+
 export interface LessonStep {
   tab: TabKey;
   tabLabel: string;
@@ -90,6 +98,12 @@ export const ld = (instruction: string, min = 5): S => ({
 export const ds = (instruction: string, min = 7): S => ({
   tab: "discussions",
   tabLabel: "Discussions",
+  instruction,
+  durationMin: min,
+});
+export const fi = (instruction: string, min = 7): S => ({
+  tab: "fishing",
+  tabLabel: "Sport Fishing",
   instruction,
   durationMin: min,
 });

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 import { toast } from "sonner";
 
 const GA_ID = import.meta.env.VITE_GA_ID as string | undefined
@@ -85,6 +86,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <Analytics />
         {GA_ID && (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />

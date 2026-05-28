@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char91indexChar93RouteImport } from './routes/[index]'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as FamilySetupRouteImport } from './routes/family-setup'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SubscribeSuccessRouteImport } from './routes/subscribe/success'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
@@ -19,8 +21,10 @@ import { Route as ApiSportsNewsRouteImport } from './routes/api.sports-news'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
 import { Route as ApiModuleFieldPrepRouteImport } from './routes/api.module-field-prep'
 import { Route as ApiFieldPrepRouteImport } from './routes/api.field-prep'
+import { Route as ApiFamilyAddKidRouteImport } from './routes/api.family-add-kid'
 import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
 import { Route as ApiCreateCheckoutRouteImport } from './routes/api.create-checkout'
+import { Route as ApiCancelSubscriptionRouteImport } from './routes/api.cancel-subscription'
 
 const Char91indexChar93Route = Char91indexChar93RouteImport.update({
   id: '/index',
@@ -30,6 +34,16 @@ const Char91indexChar93Route = Char91indexChar93RouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FamilySetupRoute = FamilySetupRouteImport.update({
+  id: '/family-setup',
+  path: '/family-setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -72,6 +86,11 @@ const ApiFieldPrepRoute = ApiFieldPrepRouteImport.update({
   path: '/api/field-prep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiFamilyAddKidRoute = ApiFamilyAddKidRouteImport.update({
+  id: '/api/family-add-kid',
+  path: '/api/family-add-kid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiDiscussionRoute = ApiDiscussionRouteImport.update({
   id: '/api/discussion',
   path: '/api/discussion',
@@ -82,13 +101,22 @@ const ApiCreateCheckoutRoute = ApiCreateCheckoutRouteImport.update({
   path: '/api/create-checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCancelSubscriptionRoute = ApiCancelSubscriptionRouteImport.update({
+  id: '/api/cancel-subscription',
+  path: '/api/cancel-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/family-setup': typeof FamilySetupRoute
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
+  '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/family-add-kid': typeof ApiFamilyAddKidRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
@@ -99,10 +127,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/family-setup': typeof FamilySetupRoute
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
+  '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/family-add-kid': typeof ApiFamilyAddKidRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
@@ -114,10 +146,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/family-setup': typeof FamilySetupRoute
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
+  '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
+  '/api/family-add-kid': typeof ApiFamilyAddKidRoute
   '/api/field-prep': typeof ApiFieldPrepRoute
   '/api/module-field-prep': typeof ApiModuleFieldPrepRoute
   '/api/speak': typeof ApiSpeakRoute
@@ -130,10 +166,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/account'
+    | '/family-setup'
     | '/index'
     | '/pricing'
+    | '/api/cancel-subscription'
     | '/api/create-checkout'
     | '/api/discussion'
+    | '/api/family-add-kid'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
@@ -144,10 +184,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/account'
+    | '/family-setup'
     | '/index'
     | '/pricing'
+    | '/api/cancel-subscription'
     | '/api/create-checkout'
     | '/api/discussion'
+    | '/api/family-add-kid'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
@@ -158,10 +202,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/account'
+    | '/family-setup'
     | '/index'
     | '/pricing'
+    | '/api/cancel-subscription'
     | '/api/create-checkout'
     | '/api/discussion'
+    | '/api/family-add-kid'
     | '/api/field-prep'
     | '/api/module-field-prep'
     | '/api/speak'
@@ -173,10 +221,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  FamilySetupRoute: typeof FamilySetupRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
   PricingRoute: typeof PricingRoute
+  ApiCancelSubscriptionRoute: typeof ApiCancelSubscriptionRoute
   ApiCreateCheckoutRoute: typeof ApiCreateCheckoutRoute
   ApiDiscussionRoute: typeof ApiDiscussionRoute
+  ApiFamilyAddKidRoute: typeof ApiFamilyAddKidRoute
   ApiFieldPrepRoute: typeof ApiFieldPrepRoute
   ApiModuleFieldPrepRoute: typeof ApiModuleFieldPrepRoute
   ApiSpeakRoute: typeof ApiSpeakRoute
@@ -200,6 +252,20 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/family-setup': {
+      id: '/family-setup'
+      path: '/family-setup'
+      fullPath: '/family-setup'
+      preLoaderRoute: typeof FamilySetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -258,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiFieldPrepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/family-add-kid': {
+      id: '/api/family-add-kid'
+      path: '/api/family-add-kid'
+      fullPath: '/api/family-add-kid'
+      preLoaderRoute: typeof ApiFamilyAddKidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/discussion': {
       id: '/api/discussion'
       path: '/api/discussion'
@@ -272,15 +345,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCreateCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/cancel-subscription': {
+      id: '/api/cancel-subscription'
+      path: '/api/cancel-subscription'
+      fullPath: '/api/cancel-subscription'
+      preLoaderRoute: typeof ApiCancelSubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  FamilySetupRoute: FamilySetupRoute,
   Char91indexChar93Route: Char91indexChar93Route,
   PricingRoute: PricingRoute,
+  ApiCancelSubscriptionRoute: ApiCancelSubscriptionRoute,
   ApiCreateCheckoutRoute: ApiCreateCheckoutRoute,
   ApiDiscussionRoute: ApiDiscussionRoute,
+  ApiFamilyAddKidRoute: ApiFamilyAddKidRoute,
   ApiFieldPrepRoute: ApiFieldPrepRoute,
   ApiModuleFieldPrepRoute: ApiModuleFieldPrepRoute,
   ApiSpeakRoute: ApiSpeakRoute,

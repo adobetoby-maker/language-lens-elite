@@ -50,6 +50,7 @@
     "@tanstack/react-start": "^1.167.14",
     "@tanstack/router-plugin": "^1.167.10",
     "@types/canvas-confetti": "^1.9.0",
+    "@vercel/analytics": "^2.0.1",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -94,6 +95,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "prettier": "^3.7.3",
+    "prisma": "^7.8.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1"

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { LogIn, LogOut, User as UserIcon } from "lucide-react";
+import { LogIn, LogOut, User as UserIcon, Users, Settings } from "lucide-react";
 import { useAuth } from "@/state/auth-state";
+import { useSubscription } from "@/state/subscription-state";
+import { useNavigate } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +15,8 @@ import { AuthModal } from "./AuthModal";
 
 export function AuthButton() {
   const { user, signOut, loading } = useAuth();
+  const { isActive } = useSubscription();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   if (loading) {
@@ -54,8 +58,25 @@ export function AuthButton() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onSelect={() => signOut()}
+          onSelect={() => navigate({ to: "/account" })}
           className="font-mono text-xs uppercase tracking-[0.16em]"
+        >
+          <Settings className="mr-2 h-3.5 w-3.5" />
+          Account & Settings
+        </DropdownMenuItem>
+        {isActive && (
+          <DropdownMenuItem
+            onSelect={() => navigate({ to: "/family-setup" })}
+            className="font-mono text-xs uppercase tracking-[0.16em]"
+          >
+            <Users className="mr-2 h-3.5 w-3.5" />
+            Family Setup
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onSelect={() => signOut()}
+          className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground"
         >
           <LogOut className="mr-2 h-3.5 w-3.5" />
           Sign out

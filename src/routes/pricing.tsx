@@ -26,6 +26,7 @@ const FAMILY_PRICE_ID = import.meta.env.VITE_STRIPE_PRICE_FAMILY as string | und
 const MONTHLY_PAYMENT_LINK = "https://buy.stripe.com/14A9AVemfg0l1zH8aqbfO08";
 const ANNUAL_PAYMENT_LINK = "https://buy.stripe.com/bJe7sN2Dx29v0vD76mbfO09";
 const FAMILY_PAYMENT_LINK = "https://buy.stripe.com/bJecN791V29v4LT76mbfO0a";
+const JUNIOR_ANNUAL_LINK = "https://buy.stripe.com/bJe8wRgun8xT6U1eyObfO0d";
 
 async function startCheckout(
   priceId: string | undefined,
@@ -77,7 +78,7 @@ const FEATURES_FREE = [
 export default function PricingPage() {
   const { user } = useAuth();
   const { isActive, status } = useSubscription();
-  const [billing, setBilling] = useState<"monthly" | "annual" | "family">("annual");
+  const [billing, setBilling] = useState<"monthly" | "annual" | "family" | "junior">("annual");
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async () => {
@@ -90,6 +91,8 @@ export default function PricingPage() {
       await startCheckout(MONTHLY_PRICE_ID, MONTHLY_PAYMENT_LINK, user.id, user.email ?? undefined);
     } else if (billing === "annual") {
       await startCheckout(ANNUAL_PRICE_ID, ANNUAL_PAYMENT_LINK, user.id, user.email ?? undefined);
+    } else if (billing === "junior") {
+      window.location.href = JUNIOR_ANNUAL_LINK;
     } else {
       await startCheckout(FAMILY_PRICE_ID, FAMILY_PAYMENT_LINK, user.id, user.email ?? undefined);
     }
@@ -160,6 +163,12 @@ export default function PricingPage() {
                     +JUNIOR
                   </span>
                 </button>
+                <button
+                  onClick={() => setBilling("junior")}
+                  className={`rounded-md px-3 py-2 font-medium transition-colors ${billing === "junior" ? "bg-gold text-background" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  🧒 Kids
+                </button>
               </div>
             </div>
 
@@ -206,6 +215,59 @@ export default function PricingPage() {
                   </button>
                   <p className="mt-3 text-center text-xs text-muted-foreground">
                     No credit card required during trial · Cancel before day 7 to pay nothing
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Junior Linguist tier */}
+            {billing === "junior" && (
+              <div className="rounded-2xl border border-violet-500/40 bg-card overflow-hidden mb-6">
+                <div className="bg-gradient-to-r from-violet-500/10 to-transparent border-b border-violet-500/20 px-6 py-5">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">🧒</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">
+                      Junior Linguist — Kids Plan
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-bold text-foreground">$79</span>
+                    <span className="text-muted-foreground text-sm">/year</span>
+                    <span className="text-xs line-through text-muted-foreground">$119.88</span>
+                  </div>
+                  <div className="mt-1 text-xs font-semibold text-violet-400">
+                    ~$6.58/month · Save 34%
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    7-day free trial — cancel anytime
+                  </div>
+                </div>
+                <div className="px-6 py-5">
+                  <ul className="space-y-2.5 mb-6">
+                    {[
+                      "Ages 4-12, designed for little learners",
+                      "18 themed vocabulary modules",
+                      "Flashcards, quizzes, and memory games",
+                      "AI tutor chat and pronunciation coach",
+                      "Daily stories + listening drills",
+                      "XP streaks and achievement badges",
+                      "Username-only login — no email needed",
+                    ].map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-violet-400 flex-shrink-0 mt-0.5" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={handleSubscribe}
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                  >
+                    {loading ? "Preparing checkout…" : <>Start free trial <ChevronRight className="h-4 w-4" /></>}
+                  </button>
+                  <p className="mt-3 text-center text-xs text-muted-foreground">
+                    7-day free trial · No credit card required
                   </p>
                 </div>
               </div>

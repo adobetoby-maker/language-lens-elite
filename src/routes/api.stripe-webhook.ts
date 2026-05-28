@@ -2,33 +2,34 @@ import { createFileRoute } from "@tanstack/react-router";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 
-async function updateSubscriptionStatus(
-  userId: string,
-  status: string,
-  stripeCustomerId?: string,
-) {
+async function getSupabaseAdmin() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("Supabase service role not configured");
+  return createClient(url, key);
+}
 
-  const client = createClient(url, key);
+async function updateProfileData(
+  userId: string,
+  patch: Record<string, unknown>,
+) {
+  const client = await getSupabaseAdmin();
 
-  // Fetch existing profile data first so we don't clobber other fields
   const { data: existing } = await client
     .from("profiles")
     .select("data")
     .eq("id", userId)
     .single();
 
-  const merged = {
-    ...(existing?.data ?? {}),
-    subscription_status: status,
-    ...(stripeCustomerId ? { stripe_customer_id: stripeCustomerId } : {}),
-  };
+  const merged = { ...(existing?.data ?? {}), ...patch };
 
   await client
     .from("profiles")
     .upsert({ id: userId, data: merged, updated_at: new Date().toISOString() });
+}
+
+function customerId(raw: Stripe.Subscription["customer"]): string | undefined {
+  return typeof raw === "string" ? raw : undefined;
 }
 
 export const Route = createFileRoute("/api/stripe-webhook")({
@@ -55,36 +56,99 @@ export const Route = createFileRoute("/api/stripe-webhook")({
         }
 
         try {
-          if (event.type === "checkout.session.completed") {
-            const session = event.data.object as Stripe.Checkout.Session;
-            const userId = session.client_reference_id ?? session.metadata?.userId;
-            if (userId) {
-              // If trial, status is 'trialing'; if paid immediately, 'active'
-              const status =
-                session.subscription
-                  ? "trialing" // trial starts on checkout; subscription.updated will flip to active
-                  : "active";
-              await updateSubscriptionStatus(
-                userId,
-                status,
-                typeof session.customer === "string" ? session.customer : undefined,
-              );
+          switch (event.type) {
+            // ── Trial / checkout ──────────────────────────────────────────
+            case "checkout.session.completed": {
+              const session = event.data.object as Stripe.Checkout.Session;
+              const userId = session.client_reference_id ?? session.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, {
+                  subscription_status: session.subscription ? "trialing" : "active",
+                  ...(typeof session.customer === "string"
+                    ? { stripe_customer_id: session.customer }
+                    : {}),
+                });
+              }
+              break;
             }
-          }
 
-          if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.created") {
-            const sub = event.data.object as Stripe.Subscription;
-            const userId = sub.metadata?.userId;
-            if (userId) {
-              await updateSubscriptionStatus(userId, sub.status, typeof sub.customer === "string" ? sub.customer : undefined);
+            // ── Subscription lifecycle ────────────────────────────────────
+            case "customer.subscription.created":
+            case "customer.subscription.updated": {
+              const sub = event.data.object as Stripe.Subscription;
+              const userId = sub.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, {
+                  subscription_status: sub.status,
+                  subscription_id: sub.id,
+                  period_end: sub.current_period_end,
+                  price_id: sub.items.data[0]?.price?.id ?? null,
+                  cancel_at_period_end: sub.cancel_at_period_end,
+                  ...(customerId(sub.customer)
+                    ? { stripe_customer_id: customerId(sub.customer) }
+                    : {}),
+                });
+              }
+              break;
             }
-          }
 
-          if (event.type === "customer.subscription.deleted") {
-            const sub = event.data.object as Stripe.Subscription;
-            const userId = sub.metadata?.userId;
-            if (userId) {
-              await updateSubscriptionStatus(userId, "canceled");
+            case "customer.subscription.deleted": {
+              const sub = event.data.object as Stripe.Subscription;
+              const userId = sub.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, { subscription_status: "canceled" });
+              }
+              break;
+            }
+
+            case "customer.subscription.paused": {
+              const sub = event.data.object as Stripe.Subscription;
+              const userId = sub.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, { subscription_status: "paused" });
+              }
+              break;
+            }
+
+            case "customer.subscription.resumed": {
+              const sub = event.data.object as Stripe.Subscription;
+              const userId = sub.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, { subscription_status: "active" });
+              }
+              break;
+            }
+
+            // ── Trial ending soon (fires 3 days before trial expires) ──────
+            case "customer.subscription.trial_will_end": {
+              const sub = event.data.object as Stripe.Subscription;
+              const userId = sub.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, { trial_ending_soon: true });
+              }
+              break;
+            }
+
+            // ── Payment events ────────────────────────────────────────────
+            case "invoice.payment_succeeded": {
+              const inv = event.data.object as Stripe.Invoice;
+              const userId = inv.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, {
+                  subscription_status: "active",
+                  last_payment_failed: false,
+                });
+              }
+              break;
+            }
+
+            case "invoice.payment_failed": {
+              const inv = event.data.object as Stripe.Invoice;
+              const userId = inv.metadata?.userId;
+              if (userId) {
+                await updateProfileData(userId, { last_payment_failed: true });
+              }
+              break;
             }
           }
         } catch (err) {

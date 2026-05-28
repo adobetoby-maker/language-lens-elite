@@ -39,6 +39,7 @@ function moduleDestinationTab(moduleId: string): TabKey {
   if (moduleId === "or-evs") return "orEvs";
   if (moduleId === "fmg") return "fmg";
   if (moduleId === "rock-climbing") return "climbing";
+  if (moduleId === "sport-fishing") return "fishing";
   return "reader";
 }
 

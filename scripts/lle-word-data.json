@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "medical-examinar",
+    "spanish": "examinar",
+    "english": "to examine",
+    "pronunciation": "examinar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for describing physical examinations: 'El médico examina al paciente' (The doctor examines the patient).",
+    "verbProfileId": "examinar",
+    "examples": [
+      {
+        "spanish": "El médico examina al paciente.",
+        "english": "The doctor examines the patient."
+      },
+      {
+        "spanish": "La enfermera examina los síntomas del paciente.",
+        "english": "The nurse examines the patient's symptoms."
+      }
+    ]
+  },
+  {
+    "id": "medical-inyectar",
+    "spanish": "inyectar",
+    "english": "to inject",
+    "pronunciation": "inyectar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb used when administering medications: 'Voy a inyectarle una dosis de antibiótico' (I'm going to inject you with an antibiotic dose).",
+    "verbProfileId": "inyectar",
+    "examples": [
+      {
+        "spanish": "El enfermero inyectó la vacuna al paciente.",
+        "english": "The nurse injected the vaccine into the patient."
+      },
+      {
+        "spanish": "El médico necesita inyectar anestesia antes de la cirugía.",
+        "english": "The doctor needs to inject anesthesia before surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-prescribir",
+    "spanish": "prescribir",
+    "english": "to prescribe",
+    "pronunciation": "prescribir",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for medical professionals: 'El médico prescribe antibióticos para la infección' (The doctor prescribes antibiotics for the infection).",
+    "verbProfileId": "prescribir",
+    "examples": [
+      {
+        "spanish": "El médico prescribió antibióticos para la infección.",
+        "english": "The doctor prescribed antibiotics for the infection."
+      },
+      {
+        "spanish": "La enfermera prescribió reposo absoluto durante una semana.",
+        "english": "The nurse prescribed complete rest for one week."
+      }
+    ]
+  },
+  {
+    "id": "medical-diagnosticar",
+    "spanish": "diagnosticar",
+    "english": "to diagnose",
+    "pronunciation": "diagnosticar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb used to report clinical findings: 'Le diagnosticamos diabetes' (We diagnosed him with diabetes).",
+    "verbProfileId": "diagnosticar",
+    "examples": [
+      {
+        "spanish": "El médico diagnosticó una infección bacteriana después de realizar los análisis.",
+        "english": "The doctor diagnosed a bacterial infection after running the tests."
+      },
+      {
+        "spanish": "Es importante diagnosticar la enfermedad en las primeras etapas para un mejor tratamiento.",
+        "english": "It is important to diagnose the disease in the early stages for better treatment."
+      }
+    ]
+  },
+  {
+    "id": "medical-suturar",
+    "spanish": "suturar",
+    "english": "to suture",
+    "pronunciation": "suturar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical verb used when describing wound closure techniques: 'El cirujano suturó la incisión con precisión.'",
+    "verbProfileId": "suturar",
+    "examples": [
+      {
+        "spanish": "El cirujano debe suturar la herida después de la operación.",
+        "english": "The surgeon must suture the wound after the operation."
+      },
+      {
+        "spanish": "La enfermera va a suturar los puntos con cuidado para evitar infecciones.",
+        "english": "The nurse is going to suture the stitches carefully to prevent infections."
+      }
+    ]
+  },
+  {
+    "id": "medical-hidratar",
+    "spanish": "hidratar",
+    "english": "to hydrate",
+    "pronunciation": "hidratar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in medical practice for patient care instructions: 'Hidrate al paciente cada dos horas' (Hydrate the patient every two hours).",
+    "verbProfileId": "hidratar",
+    "examples": [
+      {
+        "spanish": "Es importante hidratar al paciente después de la cirugía.",
+        "english": "It is important to hydrate the patient after surgery."
+      },
+      {
+        "spanish": "El enfermero necesita hidratar la piel del paciente quemado.",
+        "english": "The nurse needs to hydrate the burned patient's skin."
+      }
+    ]
+  },
+  {
+    "id": "medical-monitorear",
+    "spanish": "monitorear",
+    "english": "to monitor",
+    "pronunciation": "monitorear",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in medical contexts for continuous patient observation; e.g., 'Monitoreamos los signos vitales durante la cirugía' (We monitored vital signs during surgery).",
+    "verbProfileId": "monitorear",
+    "examples": [
+      {
+        "spanish": "El médico monitorea los signos vitales del paciente durante la cirugía.",
+        "english": "The doctor monitors the patient's vital signs during surgery."
+      },
+      {
+        "spanish": "Las enfermeras monitorean constantemente el ritmo cardíaco en la unidad de cuidados intensivos.",
+        "english": "The nurses constantly monitor the heart rate in the intensive care unit."
+      }
+    ]
+  },
+  {
+    "id": "medical-evaluar",
+    "spanish": "evaluar",
+    "english": "to evaluate",
+    "pronunciation": "evaluar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for documenting patient assessments: 'Evalúo los síntomas del paciente' (I evaluate the patient's symptoms).",
+    "verbProfileId": "evaluar",
+    "examples": [
+      {
+        "spanish": "El médico debe evaluar los síntomas del paciente cuidadosamente.",
+        "english": "The doctor must carefully evaluate the patient's symptoms."
+      },
+      {
+        "spanish": "La enfermera evaluará el progreso de la recuperación después de la cirugía.",
+        "english": "The nurse will evaluate the recovery progress after surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-reanimar",
+    "spanish": "reanimar",
+    "english": "to resuscitate",
+    "pronunciation": "reanimar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in emergency medicine; used when describing cardiopulmonary resuscitation procedures and patient recovery protocols.",
+    "verbProfileId": "reanimar",
+    "examples": [
+      {
+        "spanish": "Los paramédicos tuvieron que reanimar al paciente que sufrió un infarto.",
+        "english": "The paramedics had to resuscitate the patient who suffered a heart attack."
+      },
+      {
+        "spanish": "El equipo de urgencias logró reanimar al niño después de practicarle la reanimación cardiopulmonar.",
+        "english": "The emergency team managed to revive the child after performing CPR on him."
+      }
+    ]
+  },
+  {
+    "id": "medical-tratar",
+    "spanish": "tratar",
+    "english": "to treat",
+    "pronunciation": "tratar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb for describing patient care: 'Tratamos la infección con antibióticos' (We treat the infection with antibiotics).",
+    "verbProfileId": "tratar",
+    "examples": [
+      {
+        "spanish": "El médico trata la infección con antibióticos.",
+        "english": "The doctor treats the infection with antibiotics."
+      },
+      {
+        "spanish": "Vamos a tratar al paciente con una nueva terapia.",
+        "english": "We are going to treat the patient with a new therapy."
+      }
+    ]
+  },
+  {
+    "id": "medical-operar",
+    "spanish": "operar",
+    "english": "to operate",
+    "pronunciation": "operar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical verb; use present to describe procedures: 'El cirujano opera al paciente.' Use subjunctive in recommendations: 'Es necesario que lo operemos cuanto antes.'",
+    "verbProfileId": "operar",
+    "examples": [
+      {
+        "spanish": "El cirujano va a operar al paciente mañana por la mañana.",
+        "english": "The surgeon is going to operate on the patient tomorrow morning."
+      },
+      {
+        "spanish": "Los médicos operaron al niño de apendicitis hace una semana.",
+        "english": "The doctors operated on the child for appendicitis a week ago."
+      }
+    ]
+  },
+  {
+    "id": "medical-ingresar",
+    "spanish": "ingresar",
+    "english": "to admit (to hospital)",
+    "pronunciation": "ingresar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for hospital documentation: 'El paciente ingresó en la planta de cirugía ayer' (The patient was admitted to the surgical ward yesterday).",
+    "verbProfileId": "ingresar",
+    "examples": [
+      {
+        "spanish": "El paciente fue ingresado en el hospital después del accidente.",
+        "english": "The patient was admitted to the hospital after the accident."
+      },
+      {
+        "spanish": "La enfermera ingresó los datos médicos del nuevo paciente en el sistema.",
+        "english": "The nurse entered the patient's medical data into the system."
+      }
+    ]
+  },
+  {
+    "id": "medical-drenar",
+    "spanish": "drenar",
+    "english": "to drain",
+    "pronunciation": "drenar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential for describing fluid removal procedures: 'Drenamos el absceso quirúrgicamente' (We drained the abscess surgically).",
+    "verbProfileId": "drenar",
+    "examples": [
+      {
+        "spanish": "El cirujano necesita drenar el absceso para aliviar la infección.",
+        "english": "The surgeon needs to drain the abscess to relieve the infection."
+      },
+      {
+        "spanish": "Después de la operación, colocaron un tubo para drenar el líquido acumulado.",
+        "english": "After the surgery, they placed a tube to drain the accumulated fluid."
+      }
+    ]
+  },
+  {
+    "id": "medical-referir",
+    "spanish": "referir",
+    "english": "to refer",
+    "pronunciation": "referir",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential for medical contexts: 'Te refiero al cardiólogo' (I'm referring you to the cardiologist) or 'Se refiere a los síntomas' (It refers to the symptoms).",
+    "verbProfileId": "referir",
+    "examples": [
+      {
+        "spanish": "El paciente se refiere a un dolor persistente en el pecho.",
+        "english": "The patient refers to a persistent pain in the chest."
+      },
+      {
+        "spanish": "La enfermera refiere los síntomas del paciente al médico especialista.",
+        "english": "The nurse refers the patient's symptoms to the specialist doctor."
+      }
+    ]
+  },
+  {
+    "id": "medical-auscultar",
+    "spanish": "auscultar",
+    "english": "to auscultate",
+    "pronunciation": "auscultar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for describing physical examination procedures; use imperativeFormal when instructing patients to breathe deeply during lung auscultation.",
+    "verbProfileId": "auscultar",
+    "examples": [
+      {
+        "spanish": "El médico ausculta los pulmones del paciente con un estetoscopio.",
+        "english": "The doctor auscultates the patient's lungs with a stethoscope."
+      },
+      {
+        "spanish": "La enfermera ausculta el corazón para detectar cualquier soplo anormal.",
+        "english": "The nurse auscultates the heart to detect any abnormal murmur."
+      }
+    ]
+  },
+  {
+    "id": "medical-palpar",
+    "spanish": "palpar",
+    "english": "to palpate",
+    "pronunciation": "palpar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for physical examination; physicians use this to describe tactile assessment of organs and tissues.",
+    "verbProfileId": "palpar",
+    "examples": [
+      {
+        "spanish": "El médico palpó el abdomen del paciente para detectar cualquier anomalía.",
+        "english": "The doctor palpated the patient's abdomen to detect any abnormality."
+      },
+      {
+        "spanish": "La enfermera palpa la zona inflamada para evaluar el grado de sensibilidad.",
+        "english": "The nurse palpates the inflamed area to assess the degree of sensitivity."
+      }
+    ]
+  },
+  {
+    "id": "medical-radiografiar",
+    "spanish": "radiografiar",
+    "english": "to X-ray",
+    "pronunciation": "radiografiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in radiology departments; use to order or describe radiographic imaging procedures in patient assessment and documentation.",
+    "verbProfileId": "radiografiar",
+    "examples": [
+      {
+        "spanish": "El radiólogo necesita radiografiar el tobillo del paciente para detectar fracturas.",
+        "english": "The radiologist needs to X-ray the patient's ankle to detect fractures."
+      },
+      {
+        "spanish": "Vamos a radiografiar el pecho para verificar si hay neumonía.",
+        "english": "We are going to X-ray the chest to check for pneumonia."
+      }
+    ]
+  },
+  {
+    "id": "medical-analizar",
+    "spanish": "analizar",
+    "english": "to analyze",
+    "pronunciation": "analizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in medical contexts: 'Necesitamos analizar los resultados de laboratorio' (We need to analyze the lab results).",
+    "verbProfileId": "analizar",
+    "examples": [
+      {
+        "spanish": "El médico debe analizar los resultados de la biopsia.",
+        "english": "The doctor must analyze the biopsy results."
+      },
+      {
+        "spanish": "Necesitamos analizar la muestra de sangre para diagnosticar la enfermedad.",
+        "english": "We need to analyze the blood sample to diagnose the disease."
+      }
+    ]
+  },
+  {
+    "id": "medical-medicar",
+    "spanish": "medicar",
+    "english": "to medicate",
+    "pronunciation": "medicar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for prescribing medications: 'Necesitamos medicar al paciente con antibióticos.'",
+    "verbProfileId": "medicar",
+    "examples": [
+      {
+        "spanish": "El médico decidió medicar al paciente con antibióticos para tratar la infección.",
+        "english": "The doctor decided to medicate the patient with antibiotics to treat the infection."
+      },
+      {
+        "spanish": "Es necesario medicar al enfermo inmediatamente para aliviar su dolor.",
+        "english": "It is necessary to medicate the patient immediately to relieve his pain."
+      }
+    ]
+  },
+  {
+    "id": "medical-recetar",
+    "spanish": "recetar",
+    "english": "to prescribe",
+    "pronunciation": "recetar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for physicians: 'Le receto este medicamento tres veces al día' (I prescribe this medication three times daily).",
+    "verbProfileId": "recetar",
+    "examples": [
+      {
+        "spanish": "El médico le recetó antibióticos para la infección.",
+        "english": "The doctor prescribed antibiotics for the infection."
+      },
+      {
+        "spanish": "La doctora me recetó una nueva medicina para controlar la presión arterial.",
+        "english": "The doctor prescribed me a new medicine to control blood pressure."
+      }
+    ]
+  },
+  {
+    "id": "medical-hospitalizar",
+    "spanish": "hospitalizar",
+    "english": "to hospitalize",
+    "pronunciation": "hospitalizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for admitting patients; use 'Vamos a hospitalizarlo' to inform families of admission decisions.",
+    "verbProfileId": "hospitalizar",
+    "examples": [
+      {
+        "spanish": "El paciente fue hospitalizado después del accidente grave.",
+        "english": "The patient was hospitalized after the serious accident."
+      },
+      {
+        "spanish": "Decidieron hospitalizar al niño por la neumonía severa.",
+        "english": "They decided to hospitalize the child due to severe pneumonia."
+      }
+    ]
+  },
+  {
+    "id": "medical-transfundir",
+    "spanish": "transfundir",
+    "english": "to transfuse",
+    "pronunciation": "transfundir",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical term used to describe the administration of blood or blood products to a patient; commonly used in emergency, surgical, and hematology settings.",
+    "verbProfileId": "transfundir",
+    "examples": [
+      {
+        "spanish": "El cirujano necesita transfundir sangre al paciente durante la operación.",
+        "english": "The surgeon needs to transfuse blood to the patient during the operation."
+      },
+      {
+        "spanish": "Los médicos decidieron transfundir plasma fresco congelado para detener la hemorragia.",
+        "english": "The doctors decided to transfuse fresh frozen plasma to stop the hemorrhage."
+      }
+    ]
+  },
+  {
+    "id": "medical-intubar",
+    "spanish": "intubar",
+    "english": "to intubate",
+    "pronunciation": "intubar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical term for airway management; used in emergency, anesthesia, and critical care settings to describe placement of an endotracheal tube.",
+    "verbProfileId": "intubar",
+    "examples": [
+      {
+        "spanish": "El anestesiólogo necesita intubar al paciente antes de la cirugía.",
+        "english": "The anesthesiologist needs to intubate the patient before surgery."
+      },
+      {
+        "spanish": "Los médicos decidieron intubar al paciente porque sus niveles de oxígeno eran muy bajos.",
+        "english": "The doctors decided to intubate the patient because his oxygen levels were very low."
+      }
+    ]
+  },
+  {
+    "id": "medical-ventilar",
+    "spanish": "ventilar",
+    "english": "to ventilate",
+    "pronunciation": "ventilar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in respiratory medicine: 'Necesitamos ventilar al paciente mecánicamente' (We need to mechanically ventilate the patient).",
+    "verbProfileId": "ventilar",
+    "examples": [
+      {
+        "spanish": "Es necesario ventilar la sala de cirugía después de cada operación.",
+        "english": "It is necessary to ventilate the operating room after each surgery."
+      },
+      {
+        "spanish": "El respirador artificial ventila los pulmones del paciente en estado crítico.",
+        "english": "The artificial ventilator ventilates the lungs of the critically ill patient."
+      }
+    ]
+  },
+  {
+    "id": "medical-cateterizar",
+    "spanish": "cateterizar",
+    "english": "to catheterize",
+    "pronunciation": "cateterizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in cardiology and urology; use present tense for procedural explanations and preterite to document completed catheterizations in patient records.",
+    "verbProfileId": "cateterizar",
+    "examples": [
+      {
+        "spanish": "El cardiólogo necesita cateterizar al paciente para realizar el cateterismo cardíaco.",
+        "english": "The cardiologist needs to catheterize the patient to perform cardiac catheterization."
+      },
+      {
+        "spanish": "Los médicos decidieron cateterizar la vena central del paciente en la unidad de cuidados intensivos.",
+        "english": "The doctors decided to catheterize the patient's central vein in the intensive care unit."
+      }
+    ]
+  },
+  {
+    "id": "medical-desinfectar",
+    "spanish": "desinfectar",
+    "english": "to disinfect",
+    "pronunciation": "desinfectar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb used in hospital and clinical protocols to describe sterilization procedures: 'Desinfecte el área quirúrgica antes de la intervención' (Disinfect the surgical area before the procedure).",
+    "verbProfileId": "desinfectar",
+    "examples": [
+      {
+        "spanish": "Es importante desinfectar la herida antes de aplicar el vendaje.",
+        "english": "It is important to disinfect the wound before applying the bandage."
+      },
+      {
+        "spanish": "El enfermero desinfectó el área quirúrgica con alcohol.",
+        "english": "The nurse disinfected the surgical area with alcohol."
+      }
+    ]
+  },
+  {
+    "id": "medical-esterilizar",
+    "spanish": "esterilizar",
+    "english": "to sterilize",
+    "pronunciation": "esterilizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in surgical and laboratory settings; used when instructing staff on instrument sterilization protocols.",
+    "verbProfileId": "esterilizar",
+    "examples": [
+      {
+        "spanish": "El cirujano debe esterilizar todos los instrumentos antes de la operación.",
+        "english": "The surgeon must sterilize all instruments before the operation."
+      },
+      {
+        "spanish": "Es necesario esterilizar el equipo médico para prevenir infecciones.",
+        "english": "It is necessary to sterilize the medical equipment to prevent infections."
+      }
+    ]
+  },
+  {
+    "id": "medical-amputar",
+    "spanish": "amputar",
+    "english": "to amputate",
+    "pronunciation": "amputar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical verb used in medical consultations and operative reports to describe limb removal procedures.",
+    "verbProfileId": "amputar",
+    "examples": [
+      {
+        "spanish": "El cirujano tuvo que amputar la pierna del paciente debido a la gangrena.",
+        "english": "The surgeon had to amputate the patient's leg due to gangrene."
+      },
+      {
+        "spanish": "Decidieron amputar el dedo para prevenir la propagación de la infección.",
+        "english": "They decided to amputate the finger to prevent the spread of infection."
+      }
+    ]
+  },
+  {
+    "id": "medical-rehabilitar",
+    "spanish": "rehabilitar",
+    "english": "to rehabilitate",
+    "pronunciation": "rehabilitar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in physical therapy and recovery contexts; used when describing treatment plans for patients regaining function after injury or illness.",
+    "verbProfileId": "rehabilitar",
+    "examples": [
+      {
+        "spanish": "El fisioterapeuta va a rehabilitar al paciente después de la cirugía.",
+        "english": "The physical therapist is going to rehabilitate the patient after surgery."
+      },
+      {
+        "spanish": "Necesitamos rehabilitar su movilidad mediante ejercicios terapéuticos.",
+        "english": "We need to rehabilitate his mobility through therapeutic exercises."
+      }
+    ]
+  },
+  {
+    "id": "medical-fisioterapear",
+    "spanish": "fisioterapear",
+    "english": "to provide physical therapy",
+    "pronunciation": "fisioterapear",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Used by physiotherapists to document treatment sessions: 'Le fisioterapeo la lesión del hombro tres veces por semana.'",
+    "verbProfileId": "fisioterapear",
+    "examples": [
+      {
+        "spanish": "El fisioterapeuta va a fisioterapear al paciente después de la cirugía.",
+        "english": "The physical therapist is going to provide physical therapy to the patient after surgery."
+      },
+      {
+        "spanish": "Es importante fisioterapear la lesión para recuperar la movilidad completa.",
+        "english": "It is important to apply physical therapy to the injury to recover full mobility."
+      }
+    ]
+  },
+  {
+    "id": "medical-vacunar",
+    "spanish": "vacunar",
+    "english": "to vaccinate",
+    "pronunciation": "vacunar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb used to instruct patients on immunization protocols: 'Necesitamos vacunarle contra la gripe' (We need to vaccinate you against the flu).",
+    "verbProfileId": "vacunar",
+    "examples": [
+      {
+        "spanish": "El enfermero va a vacunar al niño contra la gripe.",
+        "english": "The nurse is going to vaccinate the child against the flu."
+      },
+      {
+        "spanish": "Es importante vacunar a todos los pacientes antes de la cirugía.",
+        "english": "It is important to vaccinate all patients before surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-inmunizar",
+    "spanish": "inmunizar",
+    "english": "to immunize",
+    "pronunciation": "inmunizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for vaccination programs and immunology protocols: 'El pediatra inmuniza a los niños contra el sarampión.'",
+    "verbProfileId": "inmunizar",
+    "examples": [
+      {
+        "spanish": "El pediatra va a inmunizar a los niños contra la poliomielitis.",
+        "english": "The pediatrician is going to immunize the children against polio."
+      },
+      {
+        "spanish": "Es importante inmunizar a los pacientes antes de viajar a zonas de riesgo.",
+        "english": "It is important to immunize patients before traveling to risk areas."
+      }
+    ]
+  },
+  {
+    "id": "medical-biopsiar",
+    "spanish": "biopsiar",
+    "english": "to perform a biopsy",
+    "pronunciation": "biopsiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in oncology and pathology: 'El médico biopsió el tejido sospechoso para confirmar el diagnóstico.'",
+    "verbProfileId": "biopsiar",
+    "examples": [
+      {
+        "spanish": "El cirujano decidió biopsiar el tejido sospechoso para descartar malignidad.",
+        "english": "The surgeon decided to biopsy the suspicious tissue to rule out malignancy."
+      },
+      {
+        "spanish": "Fue necesario biopsiar la lesión cutánea porque presentaba características atípicas.",
+        "english": "It was necessary to biopsy the skin lesion because it presented atypical characteristics."
+      }
+    ]
+  },
+  {
+    "id": "medical-endoscopiar",
+    "spanish": "endoscopiar",
+    "english": "to perform an endoscopy",
+    "pronunciation": "endoscopiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for gastroenterologists and surgeons documenting procedures: 'El médico endoscopió al paciente para evaluar la úlcera gástrica.'",
+    "verbProfileId": "endoscopiar",
+    "examples": [
+      {
+        "spanish": "El gastroenterólogo necesita endoscopiar al paciente para diagnosticar la úlcera.",
+        "english": "The gastroenterologist needs to perform an endoscopy on the patient to diagnose the ulcer."
+      },
+      {
+        "spanish": "Vamos a endoscopiar las vías respiratorias para buscar la causa de la tos persistente.",
+        "english": "We are going to endoscope the respiratory tract to find the cause of the persistent cough."
+      }
+    ]
+  },
+  {
+    "id": "medical-ecografiar",
+    "spanish": "ecografiar",
+    "english": "to perform an ultrasound",
+    "pronunciation": "ecografiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for radiologists and sonographers: 'Voy a ecografiarle el abdomen' (I'm going to perform an abdominal ultrasound on you).",
+    "verbProfileId": "ecografiar",
+    "examples": [
+      {
+        "spanish": "El radiólogo va a ecografiar el abdomen del paciente para detectar posibles anomalías.",
+        "english": "The radiologist is going to ultrasound the patient's abdomen to detect any possible abnormalities."
+      },
+      {
+        "spanish": "Necesitamos ecografiar el corazón del bebé durante el embarazo para asegurar su desarrollo correcto.",
+        "english": "We need to ultrasound the baby's heart during pregnancy to ensure its proper development."
+      }
+    ]
+  },
+  {
+    "id": "medical-extraer",
+    "spanish": "extraer",
+    "english": "to extract",
+    "pronunciation": "extraer",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for describing surgical procedures: 'El cirujano extrajo la muela' (The surgeon extracted the tooth) or 'Necesitamos extraer sangre' (We need to draw blood).",
+    "verbProfileId": "extraer",
+    "examples": [
+      {
+        "spanish": "El dentista necesita extraer la muela del juicio.",
+        "english": "The dentist needs to extract the wisdom tooth."
+      },
+      {
+        "spanish": "Los médicos extrajeron la bala del paciente durante la cirugía.",
+        "english": "The doctors extracted the bullet from the patient during surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-incisionar",
+    "spanish": "incisionar",
+    "english": "to incise",
+    "pronunciation": "incisionar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical verb used to describe making precise cuts during operative procedures; commonly used in surgical reports and operative instructions.",
+    "verbProfileId": "incisionar",
+    "examples": [
+      {
+        "spanish": "El cirujano decidió incisionar la piel para acceder al tumor.",
+        "english": "The surgeon decided to incise the skin to access the tumor."
+      },
+      {
+        "spanish": "El médico tuvo que incisionar el absceso para drenar la infección.",
+        "english": "The doctor had to incise the abscess to drain the infection."
+      }
+    ]
+  },
+  {
+    "id": "medical-irrigar",
+    "spanish": "irrigar",
+    "english": "to irrigate",
+    "pronunciation": "irrigar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical term: 'Voy a irrigar la herida con solución salina' (I will irrigate the wound with saline solution).",
+    "verbProfileId": "irrigar",
+    "examples": [
+      {
+        "spanish": "El cirujano debe irrigar la herida con solución salina estéril.",
+        "english": "The surgeon must irrigate the wound with sterile saline solution."
+      },
+      {
+        "spanish": "Durante la operación, irrigaremos la cavidad abdominal para prevenir infecciones.",
+        "english": "During the operation, we will irrigate the abdominal cavity to prevent infections."
+      }
+    ]
+  },
+  {
+    "id": "medical-comprimir",
+    "spanish": "comprimir",
+    "english": "to compress",
+    "pronunciation": "comprimir",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in medical practice for instructing patients to compress wounds, apply pressure, or during compression therapy procedures.",
+    "verbProfileId": "comprimir",
+    "examples": [
+      {
+        "spanish": "El médico debe comprimir la herida para detener la hemorragia.",
+        "english": "The doctor must compress the wound to stop the bleeding."
+      },
+      {
+        "spanish": "Necesitas comprimir la arteria durante cinco minutos para controlar el sangrado.",
+        "english": "You need to compress the artery for five minutes to control the bleeding."
+      }
+    ]
+  },
+  {
+    "id": "medical-inmovilizar",
+    "spanish": "inmovilizar",
+    "english": "to immobilize",
+    "pronunciation": "inmovilizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in orthopedic and emergency medicine: 'Necesitamos inmovilizar la fractura antes de trasladar al paciente' (We need to immobilize the fracture before transferring the patient).",
+    "verbProfileId": "inmovilizar",
+    "examples": [
+      {
+        "spanish": "El médico necesitaba inmovilizar el brazo fracturado del paciente con un yeso.",
+        "english": "The doctor needed to immobilize the patient's fractured arm with a cast."
+      },
+      {
+        "spanish": "Después del accidente, los paramédicos decidieron inmovilizar la columna vertebral del herido para evitar más daños.",
+        "english": "After the accident, the paramedics decided to immobilize the injured person's spine to prevent further injury."
+      }
+    ]
+  },
+  {
+    "id": "medical-resecar",
+    "spanish": "resecar",
+    "english": "to resect",
+    "pronunciation": "resecar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical verb used to describe tissue removal: 'El cirujano resecó el tumor maligno' (The surgeon resected the malignant tumor).",
+    "verbProfileId": "resecar",
+    "examples": [
+      {
+        "spanish": "El cirujano necesita resecar el tejido necrótico para prevenir la infección.",
+        "english": "The surgeon needs to resect the necrotic tissue to prevent infection."
+      },
+      {
+        "spanish": "Decidieron resecar la porción dañada del intestino durante la operación.",
+        "english": "They decided to resect the damaged portion of the intestine during surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-trasplantar",
+    "spanish": "trasplantar",
+    "english": "to transplant",
+    "pronunciation": "trasplantar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential surgical term used when discussing organ or tissue transplantation procedures with patients and medical teams.",
+    "verbProfileId": "trasplantar",
+    "examples": [
+      {
+        "spanish": "El cirujano va a trasplantar el órgano donado al paciente.",
+        "english": "The surgeon is going to transplant the donated organ to the patient."
+      },
+      {
+        "spanish": "Después de trasplantar el corazón, el médico monitorea la recuperación del paciente.",
+        "english": "After transplanting the heart, the doctor monitors the patient's recovery."
+      }
+    ]
+  },
+  {
+    "id": "medical-dializar",
+    "spanish": "dializar",
+    "english": "to dialyze",
+    "pronunciation": "dializar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for nephrologists and dialysis technicians: 'El paciente se dializa tres veces por semana' (The patient undergoes dialysis three times per week).",
+    "verbProfileId": "dializar",
+    "examples": [
+      {
+        "spanish": "El nefrólogo debe dializar al paciente tres veces por semana debido a su insuficiencia renal.",
+        "english": "The nephrologist must dialyze the patient three times a week due to his kidney failure."
+      },
+      {
+        "spanish": "Decidieron dializar al enfermo inmediatamente después de confirmar el diagnóstico de uremia.",
+        "english": "They decided to dialyze the patient immediately after confirming the diagnosis of uremia."
+      }
+    ]
+  },
+  {
+    "id": "medical-oxigenar",
+    "spanish": "oxigenar",
+    "english": "to oxygenate",
+    "pronunciation": "oxigenar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for respiratory care: 'Necesitamos oxigenar al paciente inmediatamente' (We need to oxygenate the patient immediately).",
+    "verbProfileId": "oxigenar",
+    "examples": [
+      {
+        "spanish": "El médico necesita oxigenar al paciente con una mascarilla de oxígeno.",
+        "english": "The doctor needs to oxygenate the patient with an oxygen mask."
+      },
+      {
+        "spanish": "Es importante oxigenar la sangre del paciente durante la cirugía.",
+        "english": "It is important to oxygenate the patient's blood during surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-sediar",
+    "spanish": "sediar",
+    "english": "to siege (medical tissue/lesion)",
+    "pronunciation": "sediar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Used in surgical and pathology contexts to describe the localization or encapsulation of infection, abscess, or pathological process within a defined anatomical region.",
+    "verbProfileId": "sediar",
+    "examples": [
+      {
+        "spanish": "El cirujano tuvo que sediar al paciente antes de la operación.",
+        "english": "The surgeon had to sedate the patient before the operation."
+      },
+      {
+        "spanish": "Es necesario sediar al enfermo para realizar el procedimiento dental.",
+        "english": "It is necessary to sedate the patient to perform the dental procedure."
+      }
+    ]
+  },
+  {
+    "id": "medical-anestesiar",
+    "spanish": "anestesiar",
+    "english": "to anesthetize",
+    "pronunciation": "anestesiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for anesthesiologists and surgeons to describe administering anesthesia to patients before procedures.",
+    "verbProfileId": "anestesiar",
+    "examples": [
+      {
+        "spanish": "El anestesiólogo debe anestesiar al paciente antes de la cirugía.",
+        "english": "The anesthesiologist must anesthetize the patient before surgery."
+      },
+      {
+        "spanish": "Vamos a anestesiar la zona afectada para realizar el procedimiento dental.",
+        "english": "We are going to anesthetize the affected area to perform the dental procedure."
+      }
+    ]
+  },
+  {
+    "id": "medical-desfilar",
+    "spanish": "desfilar",
+    "english": "to parade; to file past",
+    "pronunciation": "desfilar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Used in medical contexts to describe patient processions during hospital rounds or the sequential examination of patients in clinical settings.",
+    "verbProfileId": "desfilar",
+    "examples": [
+      {
+        "spanish": "Los estudiantes de medicina desfilan en la ceremonia de graduación del hospital.",
+        "english": "The medical students parade at the hospital graduation ceremony."
+      },
+      {
+        "spanish": "Durante la presentación clínica, los residentes desfilaron ante el jefe de departamento mostrando sus casos.",
+        "english": "During the clinical presentation, the residents paraded before the department head showing their cases."
+      }
+    ]
+  },
+  {
+    "id": "medical-sangrar",
+    "spanish": "sangrar",
+    "english": "to bleed",
+    "pronunciation": "sangrar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb for describing bleeding symptoms; use in patient assessments, wound care, and emergency protocols—e.g., 'El paciente sangra abundantemente' (The patient is bleeding heavily).",
+    "verbProfileId": "sangrar",
+    "examples": [
+      {
+        "spanish": "La herida sangra abundantemente y necesitamos detener la hemorragia.",
+        "english": "The wound is bleeding heavily and we need to stop the hemorrhage."
+      },
+      {
+        "spanish": "El paciente sigue sangrando después de la cirugía.",
+        "english": "The patient continues to bleed after surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-vomitar",
+    "spanish": "vomitar",
+    "english": "to vomit",
+    "pronunciation": "vomitar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in medical assessment: use to ask patients about nausea and vomiting symptoms, documented frequency, and associated conditions.",
+    "verbProfileId": "vomitar",
+    "examples": [
+      {
+        "spanish": "El paciente comenzó a vomitar después de la anestesia.",
+        "english": "The patient began to vomit after the anesthesia."
+      },
+      {
+        "spanish": "Si el niño sigue vomitando, debemos llevarlo al hospital.",
+        "english": "If the child continues to vomit, we must take him to the hospital."
+      }
+    ]
+  },
+  {
+    "id": "medical-agonizar",
+    "spanish": "agonizar",
+    "english": "to be dying; to be in agony",
+    "pronunciation": "agonizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in palliative care and end-of-life documentation to describe a patient's final moments or acute distress.",
+    "verbProfileId": "agonizar",
+    "examples": [
+      {
+        "spanish": "El paciente comenzó a agonizar después del accidente grave.",
+        "english": "The patient began to be in agony after the serious accident."
+      },
+      {
+        "spanish": "Sin tratamiento inmediato, el enfermo agonizará en intenso dolor.",
+        "english": "Without immediate treatment, the patient will be in severe agony."
+      }
+    ]
+  },
+  {
+    "id": "medical-reinfundir",
+    "spanish": "reinfundir",
+    "english": "to reinfuse",
+    "pronunciation": "reinfundir",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Used in transfusion and infusion protocols to describe the process of administering fluids or blood products back into a patient's circulatory system.",
+    "verbProfileId": "reinfundir",
+    "examples": [
+      {
+        "spanish": "El cirujano tuvo que reinfundir confianza al paciente antes de la operación.",
+        "english": "The surgeon had to restore confidence in the patient before the operation."
+      },
+      {
+        "spanish": "Los médicos reinfundieron esperanza en los familiares del enfermo grave.",
+        "english": "The doctors restored hope in the family members of the critically ill patient."
+      }
+    ]
+  },
+  {
+    "id": "medical-dilatar",
+    "spanish": "dilatar",
+    "english": "to dilate",
+    "pronunciation": "dilatar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in ophthalmology and cardiology; used to describe pupil dilation, blood vessel expansion, or cervical dilation during labor.",
+    "verbProfileId": "dilatar",
+    "examples": [
+      {
+        "spanish": "El oftalmólogo usó gotas para dilatar las pupilas del paciente.",
+        "english": "The ophthalmologist used drops to dilate the patient's pupils."
+      },
+      {
+        "spanish": "Durante el parto, el cuello uterino debe dilatar varios centímetros.",
+        "english": "During labor, the cervix must dilate several centimeters."
+      }
+    ]
+  },
+  {
+    "id": "medical-hipertensar",
+    "spanish": "hipertensar",
+    "english": "to cause hypertension",
+    "pronunciation": "hipertensar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Médicos utilizan este verbo para describir factores que elevan la presión arterial en pacientes.",
+    "verbProfileId": "hipertensar",
+    "examples": [
+      {
+        "spanish": "El estrés crónico puede hipertensar al paciente si no se controla adecuadamente.",
+        "english": "Chronic stress can cause hypertension in the patient if not controlled properly."
+      },
+      {
+        "spanish": "Los malos hábitos alimenticios hipertensan a muchos pacientes en la clínica.",
+        "english": "Poor eating habits cause hypertension in many patients at the clinic."
+      }
+    ]
+  },
+  {
+    "id": "medical-estabilizar",
+    "spanish": "estabilizar",
+    "english": "to stabilize",
+    "pronunciation": "estabilizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for describing patient stabilization: 'Estabilizamos al paciente después de la intervención quirúrgica.'",
+    "verbProfileId": "estabilizar",
+    "examples": [
+      {
+        "spanish": "El tratamiento ayudó a estabilizar la condición del paciente después del accidente.",
+        "english": "The treatment helped stabilize the patient's condition after the accident."
+      },
+      {
+        "spanish": "Los médicos utilizaron medicamentos para estabilizar los signos vitales del enfermo.",
+        "english": "The doctors used medications to stabilize the patient's vital signs."
+      }
+    ]
+  },
+  {
+    "id": "medical-monitorizar",
+    "spanish": "monitorizar",
+    "english": "to monitor",
+    "pronunciation": "monitorizar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in medical settings: 'Monitorizamos los signos vitales del paciente durante la cirugía' (We monitored the patient's vital signs during surgery).",
+    "verbProfileId": "monitorizar",
+    "examples": [
+      {
+        "spanish": "El cardiólogo debe monitorizar los signos vitales del paciente durante la cirugía.",
+        "english": "The cardiologist must monitor the patient's vital signs during surgery."
+      },
+      {
+        "spanish": "Es importante monitorizar la presión arterial y el nivel de oxígeno en sangre de los pacientes críticos.",
+        "english": "It is important to monitor blood pressure and blood oxygen levels in critical patients."
+      }
+    ]
+  },
+  {
+    "id": "medical-infiltrar",
+    "spanish": "infiltrar",
+    "english": "to infiltrate",
+    "pronunciation": "infiltrar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential in oncology and rheumatology: 'Infiltramos anestésico local en la zona' (We infiltrated local anesthetic in the area).",
+    "verbProfileId": "infiltrar",
+    "examples": [
+      {
+        "spanish": "El cáncer comenzó a infiltrar los tejidos sanos circundantes.",
+        "english": "The cancer began to infiltrate the surrounding healthy tissues."
+      },
+      {
+        "spanish": "La infección bacteriana logró infiltrar la barrera hematoencefálica.",
+        "english": "The bacterial infection managed to infiltrate the blood-brain barrier."
+      }
+    ]
+  },
+  {
+    "id": "medical-aspirar",
+    "spanish": "aspirar",
+    "english": "to aspirate",
+    "pronunciation": "aspirar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb used when performing aspiration procedures, such as needle aspiration or airway suctioning: 'Voy a aspirar la secreción' (I'm going to aspirate the secretion).",
+    "verbProfileId": "aspirar",
+    "examples": [
+      {
+        "spanish": "El paciente debe aspirar profundamente durante el examen pulmonar.",
+        "english": "The patient must breathe in deeply during the lung examination."
+      },
+      {
+        "spanish": "La enfermera aspiró las secreciones de las vías respiratorias del paciente.",
+        "english": "The nurse suctioned the secretions from the patient's airway."
+      }
+    ]
+  },
+  {
+    "id": "medical-laparoscopiar",
+    "spanish": "laparoscopiar",
+    "english": "to perform laparoscopy",
+    "pronunciation": "laparoscopiar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb in surgical contexts for describing minimally invasive diagnostic or therapeutic procedures performed with a laparoscope.",
+    "verbProfileId": "laparoscopiar",
+    "examples": [
+      {
+        "spanish": "El cirujano decidió laparoscopiar al paciente para diagnosticar la apendicitis.",
+        "english": "The surgeon decided to perform laparoscopy on the patient to diagnose appendicitis."
+      },
+      {
+        "spanish": "Fue necesario laparoscopiar a la mujer embarazada debido a los dolores abdominales persistentes.",
+        "english": "It was necessary to perform laparoscopy on the pregnant woman due to persistent abdominal pain."
+      }
+    ]
+  },
+  {
+    "id": "medical-tomar",
+    "spanish": "tomar",
+    "english": "to take",
+    "pronunciation": "tomar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential for medication instructions: 'Tome dos pastillas cada ocho horas' (Take two pills every eight hours).",
+    "verbProfileId": "tomar",
+    "examples": [
+      {
+        "spanish": "El paciente debe tomar la medicina tres veces al día.",
+        "english": "The patient must take the medicine three times a day."
+      },
+      {
+        "spanish": "Voy a tomar la presión arterial del paciente.",
+        "english": "I am going to take the patient's blood pressure."
+      }
+    ]
+  },
+  {
+    "id": "medical-controlar",
+    "spanish": "controlar",
+    "english": "to monitor/to control",
+    "pronunciation": "controlar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for patient care: 'Necesitamos controlar su presión arterial' (We need to monitor your blood pressure) or 'El paciente controla su diabetes bien' (The patient manages his diabetes well).",
+    "verbProfileId": "controlar",
+    "examples": [
+      {
+        "spanish": "El médico debe controlar la presión arterial del paciente regularmente.",
+        "english": "The doctor must monitor the patient's blood pressure regularly."
+      },
+      {
+        "spanish": "Es importante controlar el nivel de glucosa en pacientes diabéticos.",
+        "english": "It is important to control glucose levels in diabetic patients."
+      }
+    ]
+  },
+  {
+    "id": "medical-administrar",
+    "spanish": "administrar",
+    "english": "to administer",
+    "pronunciation": "administrar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb for medical practice: 'Se administra la medicación intravenosa' (The medication is administered intravenously).",
+    "verbProfileId": "administrar",
+    "examples": [
+      {
+        "spanish": "El enfermero administra la medicación al paciente cada cuatro horas.",
+        "english": "The nurse administers the medication to the patient every four hours."
+      },
+      {
+        "spanish": "El médico administra la vacuna contra la gripe a todos los pacientes de riesgo.",
+        "english": "The doctor administers the flu vaccine to all at-risk patients."
+      }
+    ]
+  },
+  {
+    "id": "medical-curar",
+    "spanish": "curar",
+    "english": "to cure",
+    "pronunciation": "curar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential medical verb for treatment outcomes; commonly used in phrases like 'curar una herida' (to heal a wound) or 'curar una enfermedad' (to cure a disease).",
+    "verbProfileId": "curar",
+    "examples": [
+      {
+        "spanish": "El médico cura la herida con antiséptico.",
+        "english": "The doctor treats the wound with antiseptic."
+      },
+      {
+        "spanish": "Este medicamento cura la infección rápidamente.",
+        "english": "This medication heals the infection quickly."
+      }
+    ]
+  },
+  {
+    "id": "medical-vendarar",
+    "spanish": "vendarar",
+    "english": "to bandage",
+    "pronunciation": "vendarar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Essential verb used to instruct patients: 'Vendare la herida cada día' (Bandage the wound daily).",
+    "verbProfileId": "vendarar",
+    "examples": [
+      {
+        "spanish": "El médico va a vendar la herida con una gasa estéril.",
+        "english": "The doctor is going to bandage the wound with sterile gauze."
+      },
+      {
+        "spanish": "La enfermera vendará el tobillo del paciente después de la cirugía.",
+        "english": "The nurse will bandage the patient's ankle after surgery."
+      }
+    ]
+  },
+  {
+    "id": "medical-enfermar",
+    "spanish": "enfermar",
+    "english": "to fall ill / to become sick",
+    "pronunciation": "enfermar",
+    "partOfSpeech": "verb",
+    "category": "medical",
+    "context": "Used to describe the onset or development of illness: 'El paciente enfermó hace dos semanas' (The patient became ill two weeks ago).",
+    "verbProfileId": "enfermar",
+    "examples": [
+      {
+        "spanish": "El paciente comenzó a enfermar después de la cirugía.",
+        "english": "The patient began to get sick after the surgery."
+      },
+      {
+        "spanish": "Si no tomas tus medicinas, podrías enfermar gravemente.",
+        "english": "If you don't take your medicine, you could become seriously ill."
+      }
+    ]
+  },
+  {
+    "id": "construction-instalar",
+    "spanish": "instalar",
+    "english": "to install",
+    "pronunciation": "instalar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential verb in construction: 'Instalamos la tubería ayer' (We installed the piping yesterday). Use present progressive for ongoing work: 'Están instalando los cables eléctricos' (They are installing the electrical wires).",
+    "verbProfileId": "instalar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores van a instalar las ventanas nuevas en la casa.",
+        "english": "The workers are going to install the new windows in the house."
+      },
+      {
+        "spanish": "Debemos instalar el sistema eléctrico antes de terminar la construcción.",
+        "english": "We must install the electrical system before finishing construction."
+      }
+    ]
+  },
+  {
+    "id": "construction-soldar",
+    "spanish": "soldar",
+    "english": "to weld",
+    "pronunciation": "soldar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction term: 'El obrero suelda las vigas metálicas con precisión' (The worker welds the metal beams precisely).",
+    "verbProfileId": "soldar",
+    "examples": [
+      {
+        "spanish": "El soldador necesita soldar las vigas de acero para construir el puente.",
+        "english": "The welder needs to weld the steel beams to build the bridge."
+      },
+      {
+        "spanish": "Vamos a soldar las tuberías de cobre en la nueva instalación de fontanería.",
+        "english": "We are going to weld the copper pipes in the new plumbing installation."
+      }
+    ]
+  },
+  {
+    "id": "construction-demoler",
+    "spanish": "demoler",
+    "english": "to demolish",
+    "pronunciation": "demoler",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction contexts: 'Vamos a demoler el edificio antiguo' (We are going to demolish the old building).",
+    "verbProfileId": "demoler",
+    "examples": [
+      {
+        "spanish": "Los trabajadores van a demoler el edificio antiguo la próxima semana.",
+        "english": "The workers are going to demolish the old building next week."
+      },
+      {
+        "spanish": "Necesitamos demoler esta pared para ampliar la cocina.",
+        "english": "We need to demolish this wall to expand the kitchen."
+      }
+    ]
+  },
+  {
+    "id": "construction-nivelar",
+    "spanish": "nivelar",
+    "english": "to level",
+    "pronunciation": "nivelar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for describing the process of making surfaces even or leveling ground and structures during building and site preparation work.",
+    "verbProfileId": "nivelar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores nivelan el terreno para construir la casa.",
+        "english": "The workers level the ground to build the house."
+      },
+      {
+        "spanish": "Necesitamos nivelar la base antes de colocar los cimientos.",
+        "english": "We need to level the base before laying the foundations."
+      }
+    ]
+  },
+  {
+    "id": "construction-excavar",
+    "spanish": "excavar",
+    "english": "to excavate",
+    "pronunciation": "excavar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for describing earthmoving operations: 'Los obreros excavan los cimientos' (The workers are excavating the foundations).",
+    "verbProfileId": "excavar",
+    "examples": [
+      {
+        "spanish": "Los obreros excavan el terreno para los cimientos del edificio.",
+        "english": "The workers excavate the ground for the building's foundation."
+      },
+      {
+        "spanish": "La máquina excavadora excava un pozo profundo en la obra.",
+        "english": "The excavator digs a deep hole at the construction site."
+      }
+    ]
+  },
+  {
+    "id": "construction-rellenar",
+    "spanish": "rellenar",
+    "english": "to fill in / to fill up",
+    "pronunciation": "rellenar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for directing workers to fill cavities, cracks, or gaps with mortar, concrete, or other materials.",
+    "verbProfileId": "rellenar",
+    "examples": [
+      {
+        "spanish": "Necesito rellenar este hueco en la pared con cemento.",
+        "english": "I need to fill this hole in the wall with cement."
+      },
+      {
+        "spanish": "Los trabajadores rellenan la zanja con grava y arena.",
+        "english": "The workers fill the trench with gravel and sand."
+      }
+    ]
+  },
+  {
+    "id": "construction-amarrar",
+    "spanish": "amarrar",
+    "english": "to tie/secure/moor",
+    "pronunciation": "amarrar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for securing materials, equipment, and loads; commonly used in safety protocols: 'Amarra bien las cuerdas antes de izar la carga.'",
+    "verbProfileId": "amarrar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores amarran las vigas de acero con cables de seguridad.",
+        "english": "The workers tie down the steel beams with safety cables."
+      },
+      {
+        "spanish": "Necesito amarrar bien esta carga antes de transportarla.",
+        "english": "I need to secure this load well before transporting it."
+      }
+    ]
+  },
+  {
+    "id": "construction-impermeabilizar",
+    "spanish": "impermeabilizar",
+    "english": "to waterproof",
+    "pronunciation": "impermeabilizar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential verb in construction: 'Necesitamos impermeabilizar la azotea antes de las lluvias' (We need to waterproof the roof before the rains).",
+    "verbProfileId": "impermeabilizar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores impermeabilizan el techo con una membrana sintética.",
+        "english": "The workers waterproof the roof with a synthetic membrane."
+      },
+      {
+        "spanish": "Es necesario impermeabilizar los cimientos antes de construir las paredes.",
+        "english": "It is necessary to waterproof the foundations before building the walls."
+      }
+    ]
+  },
+  {
+    "id": "construction-inspeccionar",
+    "spanish": "inspeccionar",
+    "english": "to inspect",
+    "pronunciation": "inspeccionar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential verb in construction for quality control: 'El ingeniero inspecciona los cimientos antes de continuar con la obra.'",
+    "verbProfileId": "inspeccionar",
+    "examples": [
+      {
+        "spanish": "El inspector debe inspeccionar todos los cimientos de la construcción.",
+        "english": "The inspector must inspect all the foundations of the construction."
+      },
+      {
+        "spanish": "Vamos a inspeccionar la calidad de los materiales antes de continuar con la obra.",
+        "english": "We are going to inspect the quality of the materials before continuing with the construction work."
+      }
+    ]
+  },
+  {
+    "id": "construction-cementar",
+    "spanish": "cementar",
+    "english": "to cement",
+    "pronunciation": "cementar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb used to describe bonding materials with cement in masonry and structural work applications.",
+    "verbProfileId": "cementar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores cementan los cimientos de la casa nueva.",
+        "english": "The workers cement the foundations of the new house."
+      },
+      {
+        "spanish": "Necesitamos cementar las grietas en las paredes antes de pintar.",
+        "english": "We need to cement the cracks in the walls before painting."
+      }
+    ]
+  },
+  {
+    "id": "construction-engrasar",
+    "spanish": "engrasar",
+    "english": "to grease",
+    "pronunciation": "engrasar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for lubricating machinery and equipment; workers must engrasar regularly to prevent mechanical failure.",
+    "verbProfileId": "engrasar",
+    "examples": [
+      {
+        "spanish": "El trabajador engrasa las máquinas de construcción cada semana.",
+        "english": "The worker greases the construction machines every week."
+      },
+      {
+        "spanish": "Necesitamos engrasar los rodillos del andamio antes de usarlo.",
+        "english": "We need to grease the scaffold rollers before using it."
+      }
+    ]
+  },
+  {
+    "id": "construction-tornillar",
+    "spanish": "tornillar",
+    "english": "to screw",
+    "pronunciation": "tornillar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for fastening materials with screws; commonly used in command forms on job sites: 'Tornilla esta placa al marco.'",
+    "verbProfileId": "tornillar",
+    "examples": [
+      {
+        "spanish": "El trabajador tornilla la placa de metal al marco de la puerta.",
+        "english": "The worker screws the metal plate to the door frame."
+      },
+      {
+        "spanish": "Necesitamos tornillar todas las vigas antes de continuar con la construcción.",
+        "english": "We need to screw all the beams before continuing with the construction."
+      }
+    ]
+  },
+  {
+    "id": "construction-atornillar",
+    "spanish": "atornillar",
+    "english": "to screw",
+    "pronunciation": "atornillar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential verb in construction: 'Atornilla los paneles al marco con cuidado' (Screw the panels to the frame carefully).",
+    "verbProfileId": "atornillar",
+    "examples": [
+      {
+        "spanish": "El carpintero atornilla la bisagra a la puerta.",
+        "english": "The carpenter screws the hinge to the door."
+      },
+      {
+        "spanish": "Necesito atornillar estas planchas de metal para armar la estructura.",
+        "english": "I need to screw these metal sheets together to assemble the structure."
+      }
+    ]
+  },
+  {
+    "id": "construction-taladrar",
+    "spanish": "taladrar",
+    "english": "to drill",
+    "pronunciation": "taladrar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb: 'Necesitamos taladrar agujeros en la pared antes de instalar los anclajes' (We need to drill holes in the wall before installing the anchors).",
+    "verbProfileId": "taladrar",
+    "examples": [
+      {
+        "spanish": "El contratista necesita taladrar la pared para instalar los cables eléctricos.",
+        "english": "The contractor needs to drill the wall to install the electrical wires."
+      },
+      {
+        "spanish": "Voy a taladrar varios agujeros en el hormigón para fijar las vigas de acero.",
+        "english": "I am going to drill several holes in the concrete to fix the steel beams."
+      }
+    ]
+  },
+  {
+    "id": "construction-cortar",
+    "spanish": "cortar",
+    "english": "to cut",
+    "pronunciation": "cortar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for instructing workers to cut materials, trim edges, or reduce dimensions on-site.",
+    "verbProfileId": "cortar",
+    "examples": [
+      {
+        "spanish": "El carpintero corta la madera con la sierra.",
+        "english": "The carpenter cuts the wood with the saw."
+      },
+      {
+        "spanish": "Necesitamos cortar los tubos de metal para la instalación.",
+        "english": "We need to cut the metal pipes for the installation."
+      }
+    ]
+  },
+  {
+    "id": "construction-lijar",
+    "spanish": "lijar",
+    "english": "to sand",
+    "pronunciation": "lijar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for finishing work; use with protective equipment: 'Lija la superficie antes de pintar' (Sand the surface before painting).",
+    "verbProfileId": "lijar",
+    "examples": [
+      {
+        "spanish": "El carpintero lija la madera para suavizar la superficie.",
+        "english": "The carpenter sands the wood to smooth the surface."
+      },
+      {
+        "spanish": "Necesito lijar esta pared antes de pintar.",
+        "english": "I need to sand this wall before painting."
+      }
+    ]
+  },
+  {
+    "id": "construction-pintar",
+    "spanish": "pintar",
+    "english": "to paint",
+    "pronunciation": "pintar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential construction verb for specifying painting tasks: 'Pinta las paredes de blanco' or 'Necesitamos pintar antes del viernes.'",
+    "verbProfileId": "pintar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores pintan las paredes de la casa nueva.",
+        "english": "The workers paint the walls of the new house."
+      },
+      {
+        "spanish": "Necesito pintar el marco de la ventana antes de instalarla.",
+        "english": "I need to paint the window frame before installing it."
+      }
+    ]
+  },
+  {
+    "id": "construction-sellar",
+    "spanish": "sellar",
+    "english": "to seal",
+    "pronunciation": "sellar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for describing waterproofing operations: 'Sellamos las grietas antes de aplicar el acabado' (We seal the cracks before applying the finish).",
+    "verbProfileId": "sellar",
+    "examples": [
+      {
+        "spanish": "El contratista sella la grieta en la pared con masilla.",
+        "english": "The contractor seals the crack in the wall with putty."
+      },
+      {
+        "spanish": "Debemos sellar todas las juntas antes de pintar.",
+        "english": "We must seal all the joints before painting."
+      }
+    ]
+  },
+  {
+    "id": "construction-aislar",
+    "spanish": "aislar",
+    "english": "to isolate",
+    "pronunciation": "aislar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for isolating work zones, materials, or thermal/acoustic sections during building projects.",
+    "verbProfileId": "aislar",
+    "examples": [
+      {
+        "spanish": "Necesitamos aislar la zona de construcción con vallas de seguridad.",
+        "english": "We need to isolate the construction area with safety fences."
+      },
+      {
+        "spanish": "El contratista decidió aislar la pared dañada antes de repararla.",
+        "english": "The contractor decided to isolate the damaged wall before repairing it."
+      }
+    ]
+  },
+  {
+    "id": "construction-encofrar",
+    "spanish": "encofrar",
+    "english": "to formwork / to frame with scaffolding",
+    "pronunciation": "encofrar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in Spanish construction terminology for describing the installation of formwork (cofra) around concrete structures during building projects.",
+    "verbProfileId": "encofrar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores encofraron la base de hormigón para la nueva estructura.",
+        "english": "The workers formworked the concrete base for the new structure."
+      },
+      {
+        "spanish": "Debemos encofrar las columnas antes de verter el cemento.",
+        "english": "We must form the columns before pouring the cement."
+      }
+    ]
+  },
+  {
+    "id": "construction-verter",
+    "spanish": "verter",
+    "english": "to pour, to spill, to dump",
+    "pronunciation": "verter",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction contexts: 'Vierte el concreto en el molde' (Pour the concrete into the mold) is a fundamental instruction on job sites.",
+    "verbProfileId": "verter",
+    "examples": [
+      {
+        "spanish": "Los trabajadores vierten el cemento en el molde para construir la base.",
+        "english": "The workers pour the cement into the mold to build the foundation."
+      },
+      {
+        "spanish": "Debemos verter el hormigón antes de que se endurezca.",
+        "english": "We must pour the concrete before it hardens."
+      }
+    ]
+  },
+  {
+    "id": "construction-vibrar",
+    "spanish": "vibrar",
+    "english": "to vibrate",
+    "pronunciation": "vibrar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for describing vibrating machinery, compactors, and equipment oscillation during work operations.",
+    "verbProfileId": "vibrar",
+    "examples": [
+      {
+        "spanish": "La hormigonera hace vibrar toda la estructura durante el vertido del cemento.",
+        "english": "The concrete mixer causes the entire structure to vibrate during the cement pour."
+      },
+      {
+        "spanish": "Los pilotes vibran cuando la máquina compactadora golpea el terreno.",
+        "english": "The pilings vibrate when the compacting machine strikes the ground."
+      }
+    ]
+  },
+  {
+    "id": "construction-compactar",
+    "spanish": "compactar",
+    "english": "to compact",
+    "pronunciation": "compactar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for describing soil compaction, asphalt compression, and material consolidation on job sites.",
+    "verbProfileId": "compactar",
+    "examples": [
+      {
+        "spanish": "Los trabajadores compactan el terreno antes de verter el concreto.",
+        "english": "The workers compact the ground before pouring the concrete."
+      },
+      {
+        "spanish": "Es necesario compactar la base del camino para que sea más resistente.",
+        "english": "It is necessary to compact the road base to make it more resistant."
+      }
+    ]
+  },
+  {
+    "id": "construction-medir",
+    "spanish": "medir",
+    "english": "to measure",
+    "pronunciation": "medir",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential in construction for specifying dimensions: 'Mide la altura de la pared' (Measure the wall height).",
+    "verbProfileId": "medir",
+    "examples": [
+      {
+        "spanish": "El carpintero mide la pared antes de instalar los estantes.",
+        "english": "The carpenter measures the wall before installing the shelves."
+      },
+      {
+        "spanish": "Debemos medir las dimensiones de la habitación para colocar las puertas correctamente.",
+        "english": "We must measure the dimensions of the room to install the doors correctly."
+      }
+    ]
+  },
+  {
+    "id": "construction-marcar",
+    "spanish": "marcar",
+    "english": "to mark",
+    "pronunciation": "marcar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential for construction work: 'Marca las líneas de corte con precisión' (Mark the cut lines precisely) or 'Hemos marcado los puntos de referencia' (We have marked the reference points).",
+    "verbProfileId": "marcar",
+    "examples": [
+      {
+        "spanish": "El contratista marca las líneas de construcción con tiza.",
+        "english": "The contractor marks the construction lines with chalk."
+      },
+      {
+        "spanish": "Necesito marcar los puntos donde van los cimientos.",
+        "english": "I need to mark the points where the foundations will go."
+      }
+    ]
+  },
+  {
+    "id": "construction-trazar",
+    "spanish": "trazar",
+    "english": "to trace, to draw, to layout",
+    "pronunciation": "trazar",
+    "partOfSpeech": "verb",
+    "category": "construction",
+    "context": "Essential verb in construction for describing how to sketch plans, outline routes, or mark building layouts on site.",
+    "verbProfileId": "trazar",
+    "examples": [
+      {
+        "spanish": "El arquitecto traza el plano de la nueva casa.",
+        "english": "The architect traces the blueprint of the new house."
+      },
+      {
+        "spanish": "Los trabajadores trazan las líneas para los cimientos.",
+        "english": "The workers trace the lines for the foundations."
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { CheckCircle, Sparkles } from "lucide-react";
+import { CheckCircle, Sparkles, Users } from "lucide-react";
 import { useSubscription } from "@/state/subscription-state";
 
 export const Route = createFileRoute("/subscribe/success")({
@@ -45,12 +45,21 @@ function SuccessPage() {
             construction, medical, sports, and more. Cancel any time before day 7 to pay nothing.
           </p>
 
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-3.5 text-sm font-bold text-background transition-opacity hover:opacity-90"
-          >
-            Start learning →
-          </Link>
+          <div className="flex flex-col items-center gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-3.5 text-sm font-bold text-background transition-opacity hover:opacity-90"
+            >
+              Start learning →
+            </Link>
+            <Link
+              to="/family-setup"
+              className="inline-flex items-center gap-2 text-xs text-violet-400 hover:opacity-80 underline underline-offset-2"
+            >
+              <Users className="h-3.5 w-3.5" />
+              Set up family / kid profiles →
+            </Link>
+          </div>
         </div>
 
         {/* Junior Linguist cross-sell */}

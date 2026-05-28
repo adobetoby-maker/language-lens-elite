@@ -78,8 +78,14 @@ const AppGuide = lazy(() => import("./guide/AppGuide").then((m) => ({ default: m
 const ClimbingHome = lazy(() =>
   import("./climbing/ClimbingHome").then((m) => ({ default: m.ClimbingHome })),
 );
+const FishingHome = lazy(() =>
+  import("./fishing/FishingHome").then((m) => ({ default: m.FishingHome })),
+);
 const FieldPrepRouter = lazy(() =>
   import("./modules/FieldPrepRouter").then((m) => ({ default: m.FieldPrepRouter })),
+);
+const DictionaryTab = lazy(() =>
+  import("./dictionary/DictionaryTab").then((m) => ({ default: m.DictionaryTab })),
 );
 
 /**
@@ -117,7 +123,9 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   story: DailyStory,
   guide: AppGuide,
   climbing: ClimbingHome,
+  fishing: FishingHome,
   fieldPrep: FieldPrepRouter,
+  dictionary: DictionaryTab,
 };
 
 if (import.meta.env.DEV) {

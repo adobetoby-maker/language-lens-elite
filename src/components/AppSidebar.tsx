@@ -24,9 +24,11 @@ import {
   Puzzle,
   ChevronDown,
   Shield,
+  LibraryBig,
 } from "lucide-react";
 import { useState } from "react";
 import { useApp, type TabKey, type Language } from "@/state/app-state";
+import { SaveProgressBanner } from "./SaveProgressBanner";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
 import { cn } from "@/lib/utils";
@@ -131,6 +133,7 @@ const TAB_ITEMS: {
   { key: "speak", label: "Speak & Learn", short: "Speak", Icon: Mic2 },
   { key: "penpal", label: "Pen Pal Practice", short: "Pen Pal", Icon: Mail },
   // ── Vocabulary ───────────────────────────────────────────────────────────────
+  { key: "dictionary", label: "Dictionary", short: "Dict.", Icon: LibraryBig },
   { key: "wordMatch", label: "Word Match", short: "Words", Icon: Grid3x3 },
   { key: "idiomMaster", label: "Idiom Master", short: "Idioms", Icon: Quote },
   { key: "falseFriends", label: "False Friends", short: "False Fr.", Icon: AlertTriangle },
@@ -266,6 +269,9 @@ export function AppSidebar({ onOpenMatch }: { onOpenMatch?: () => void }) {
             </button>
           </div>
         )}
+
+        {/* Save progress prompt for unauthenticated users */}
+        <SaveProgressBanner />
 
         {/* Status */}
         <div className="border-t border-border/40 px-2 py-4 space-y-2.5">

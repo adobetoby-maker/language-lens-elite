@@ -86,7 +86,9 @@ export type TabKey =
   | "story"
   | "guide"
   | "climbing"
-  | "fieldPrep";
+  | "fishing"
+  | "fieldPrep"
+  | "dictionary";
 
 // Learner CEFR-ish self level (used elsewhere for AI prompts)
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Fluent";

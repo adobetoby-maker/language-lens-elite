@@ -16,9 +16,10 @@ import {
   gr,
   ld,
   ds,
+  fi,
 } from "./curriculum-helpers";
 export type { LessonStep };
-export { r, sp, wm, pt, sb, ms, ot, ev, sc, bb, fm, gr, ld, ds };
+export { r, sp, wm, pt, sb, ms, ot, ev, sc, bb, fm, gr, ld, ds, fi };
 
 export interface Lesson {
   n: number;
@@ -78,6 +79,7 @@ const MODULE_PATTERNS: Record<string, string[]> = {
   "sports-hobbies": ["seed-{lang}-hobbies-gym"],
   "or-evs": ["seed-en-coffee-shop-hello"],
   fmg: ["seed-en-job-interview-basics"],
+  "sport-fishing": ["seed-{lang}-fishing-panga"],
 };
 
 const MEDICAL_KEYWORDS: Record<string, string> = {
@@ -2651,6 +2653,111 @@ const OREVS_LESSONS: Lesson[] = [
 
 // ─── Aggregate ────────────────────────────────────────────────────────────────
 
+// ─── Sport Fishing ────────────────────────────────────────────────────────────
+
+const FISHING_LESSONS: Lesson[] = [
+  {
+    n: 1,
+    title: "First Morning at the Dock",
+    objective: "Greet your captain and crew, ask about the plan for the day, and confirm departure time.",
+    steps: [
+      wm("Match: buenos días / buen día, capitán, marinero, ¿a qué hora salimos?, esta mañana. Focus on greeting vocabulary.", 5),
+      sp("Role-play arriving at the dock. Greet the captain by name, ask what time you leave, and ask what you're targeting today.", 6),
+      fi("Open the Fishing module → On the Boat tab. Read through the morning departure phrases. Say each one aloud.", 5),
+    ],
+  },
+  {
+    n: 2,
+    title: "Strike! The Fish is On",
+    objective: "Understand and react to the captain's strike commands — ¡Ahí va!, ¡Pégale!, ¡Dale dale!, ¡Suéltalo!",
+    steps: [
+      wm("Match: ¡Ahí va!, ¡Pégale!, ¡Dale dale!, ¡Suéltalo!, ¡Cuidado con la línea! Time yourself — under 10 seconds.", 5),
+      fi("Open the Fishing module → On the Boat tab. Read all 11 commands. Say the captain call, then the translation, out loud.", 7),
+      sp("Role-play a marlin strike from start to landing. Captain calls commands in Spanish — you react and describe the fight.", 6),
+    ],
+  },
+  {
+    n: 3,
+    title: "Species Names — What Did We Catch?",
+    objective: "Name the 10 target species in Spanish: roosterfish, marlin, sailfish, dorado, tuna, wahoo, jack, snapper, sierra, striped marlin.",
+    steps: [
+      wm("Match 10 species: pez gallo, marlín azul, pez vela, dorado, atún, wahoo/peto, jurel, pargo, sierra, marlín rayado. Under 60 seconds.", 5),
+      fi("Open Fishing module → Species tab. Read every entry. Focus on how the name connects to the fish's physical description.", 6),
+      sp("Your captain holds up a fish. You name it in Spanish and describe one physical feature. Cycle through all 10.", 6),
+    ],
+  },
+  {
+    n: 4,
+    title: "Reading the Water",
+    objective: "Understand what captains are looking for — birds, current, color breaks, and bait schools.",
+    steps: [
+      wm("Match: los pájaros, la corriente, agua azul, agua verde, el sargazo, las gaviotas, el fondo, la marea. Focus on environmental vocabulary.", 5),
+      sp("Describe what you see on the water to your captain — birds diving, a weed line, a color break — in Spanish.", 6),
+      fi("Open Fishing module → Culture tab. Read 'Los pájaros' and 'Agua azul vs. agua verde' entries in full.", 5),
+    ],
+  },
+  {
+    n: 5,
+    title: "The Tip — La Propina",
+    objective: "Understand the tipping culture, learn the vocabulary, and practice the end-of-day exchange.",
+    steps: [
+      fi("Open Fishing module → Culture tab. Read 'La propina — The Tip as Livelihood' and 'El Panga and Its Crew'. These are not optional vocabulary items — they are cultural obligations.", 6),
+      sp("Role-play the end of a full fishing day. Thank the captain and mate in Spanish, tip them with a handshake, and name the best moment of the trip.", 7),
+      wm("Match: la propina, el capitán, el marinero, muchas gracias, fue increíble, excelente trabajo. Warm down.", 4),
+    ],
+  },
+  {
+    n: 6,
+    title: "Fly Fishing the Flats",
+    objective: "Learn fly fishing-specific commands and vocabulary — cast direction, strip, set the hook, sight fishing.",
+    steps: [
+      wm("Match: la mosca, el lance, la recuperación, la vista, las aguas claras, el pez gallo, la caña de mosca, el carrete. Under 45 seconds.", 5),
+      sp("Your guide is sight-casting to a roosterfish. He calls direction changes and tells you when to cast and strip. Role-play the full sequence in Spanish.", 7),
+      fi("Open Fishing module → On the Boat tab. Focus on directional commands: a la derecha, a la izquierda, ¡Pégale!, ¡Suéltalo!", 5),
+    ],
+  },
+  {
+    n: 7,
+    title: "Conservation — Suéltalo",
+    objective: "Understand catch-and-release vocabulary and the cultural ethic around conservation on the East Cape.",
+    steps: [
+      fi("Open Fishing module → Culture tab. Read 'Suéltalo — The Release Ethic' and 'Cabo Pulmo' entries fully.", 6),
+      sp("Your captain signals to release a marlin. Describe the release — keeping it in the water, removing the hook, reviving the fish — all in Spanish.", 6),
+      wm("Match: suéltalo, la reserva marina, la captura y liberación, el pez vela, el marlín, Cabo Pulmo, la recuperación.", 4),
+    ],
+  },
+  {
+    n: 8,
+    title: "At the Dock and Marina",
+    objective: "Navigate the marina — asking questions, discussing the catch, buying ice and supplies.",
+    steps: [
+      wm("Match: el muelle, la marina, el hielo, la carnada, el combustible, ¿cuánto cuesta?, la hielera, el pesaje.", 5),
+      fi("Open Fishing module → At the Dock tab. Read all six phrases. Say each one twice.", 6),
+      sp("You've returned to the marina with a cooler full of dorado and tuna. Describe the day to another angler at the dock in Spanish.", 6),
+    ],
+  },
+  {
+    n: 9,
+    title: "Offshore Conditions and Safety",
+    objective: "Communicate about sea state, weather, and safety — including roughing it in beam seas.",
+    steps: [
+      wm("Match: el oleaje, las olas, el viento, el mareo, el chaleco salvavidas, ¿está bien?, no me siento bien, necesito agua.", 5),
+      sp("The sea is building on the return crossing. You're feeling queasy. Communicate with your captain about the conditions and your state — all in Spanish.", 6),
+      fi("Open Fishing module → On the Boat tab. Review safety-adjacent commands: watch the line, let it run, to the right/left.", 5),
+    ],
+  },
+  {
+    n: 10,
+    title: "The Full Day — Threshold",
+    objective: "String together a complete fishing day in Spanish — from dock greeting to final tip — with no English.",
+    steps: [
+      fi("Open Fishing module. Review all five sub-tabs from start to finish. Say each phrase aloud. Prepare for the full simulation.", 8),
+      sp("Full fishing day simulation: dock greeting, departure, first strike, fight, species identification, release or keep decision, lunch conversation, return, dock arrival, final tip and farewell. Stay in Spanish.", 10),
+      wm("Final warm-down: match 20 random items from species, boat commands, and dock phrases combined. Beat your Lesson 1 score.", 5),
+    ],
+  },
+];
+
 export const CURRICULA: Record<string, ModuleCurriculum> = {
   "lds-missionary": {
     moduleId: "lds-missionary",
@@ -2693,6 +2800,13 @@ export const CURRICULA: Record<string, ModuleCurriculum> = {
     threshold:
       "By Lesson 30, you can complete an entire hospital shift's communication — greetings, instructions, reporting, emergencies, and coworker coordination — entirely in English.",
     lessons: OREVS_LESSONS,
+  },
+  "sport-fishing": {
+    moduleId: "sport-fishing",
+    headline: "The Angler's Core 10",
+    threshold:
+      "By Lesson 10, you can run a complete day of fishing in Spanish — dock greeting, strike commands, species identification, conservation decisions, and a proper tip and farewell to your captain and crew.",
+    lessons: FISHING_LESSONS,
   },
 };
 
