@@ -29,8 +29,42 @@ function NotFoundComponent() {
   );
 }
 
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Language Threshold",
+  description:
+    "AI-powered language training for professionals. Spanish for nurses, construction, missions, sports, and more.",
+  url: "https://app.languagethreshold.com",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  image: "https://app.languagethreshold.com/icons/og-image.png",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Language Threshold",
+  url: "https://app.languagethreshold.com",
+};
+
 export const Route = createRootRoute({
   head: () => ({
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(softwareAppSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(websiteSchema),
+      },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
@@ -52,15 +86,23 @@ export const Route = createRootRoute({
           "Role-specific AI language training. Spanish for nurses, foremen, coaches, missionaries, and more.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://app.languagethreshold.com" },
+      { property: "og:site_name", content: "Language Threshold" },
+      { property: "og:image", content: "https://app.languagethreshold.com/icons/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Language Threshold — AI Language Training for Professionals" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Language Threshold — AI Language Training" },
       {
         name: "twitter:description",
         content: "Role-specific AI language training for professionals in the field.",
       },
+      { name: "twitter:image", content: "https://app.languagethreshold.com/icons/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: "https://app.languagethreshold.com" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png" },
