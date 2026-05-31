@@ -12,8 +12,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "harness",
     emoji: "🔗",
-    imgUrl:
-      "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/harness.jpg",
     names: {
       Spanish: "Arnés",
       Portuguese: "Arnês",
@@ -28,8 +27,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "carabiner",
     emoji: "🔒",
-    imgUrl:
-      "https://images.unsplash.com/photo-1590156562745-5d4a0a3e30b2?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/carabiner.jpg",
     names: {
       Spanish: "Mosquetón",
       Portuguese: "Mosquetão",
@@ -44,8 +42,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "rope",
     emoji: "🪢",
-    imgUrl:
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/rope.jpg",
     names: {
       Spanish: "Cuerda",
       Portuguese: "Corda",
@@ -60,8 +57,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "quickdraw",
     emoji: "⛓️",
-    imgUrl:
-      "https://images.unsplash.com/photo-1545021073-48e19e0b0ffe?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/quickdraw.jpg",
     names: {
       Spanish: "Exprés",
       Portuguese: "Expresso",
@@ -76,8 +72,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "chalk-bag",
     emoji: "🎒",
-    imgUrl:
-      "https://images.unsplash.com/photo-1526911550914-df67a0b0e0f1?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/chalk-bag.jpg",
     names: {
       Spanish: "Bolsa de Magnesio",
       Portuguese: "Saco de Magnésio",
@@ -92,8 +87,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "shoes",
     emoji: "👟",
-    imgUrl:
-      "https://images.unsplash.com/photo-1551958219-acbc595b5a2d?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/climbing-shoes.jpg",
     names: {
       Spanish: "Pies de Gato",
       Portuguese: "Sapatilha de Escalada",
@@ -108,8 +102,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "helmet",
     emoji: "⛑️",
-    imgUrl:
-      "https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/helmet.jpg",
     names: {
       Spanish: "Casco",
       Portuguese: "Capacete",
@@ -124,8 +117,7 @@ const GEAR_ITEMS: GearItem[] = [
   {
     id: "belay-device",
     emoji: "⚙️",
-    imgUrl:
-      "https://images.unsplash.com/photo-1534108733611-92c2af2a6aec?w=300&h=220&fit=crop&auto=format&q=70",
+    imgUrl: "/images/gear/belay-device.jpg",
     names: {
       Spanish: "Dispositivo de Aseguramiento",
       Portuguese: "Freio",
