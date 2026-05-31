@@ -3,7 +3,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Analytics } from "@vercel/analytics/react";
 import { toast } from "sonner";
 
-const GA_ID = import.meta.env.VITE_GA_ID as string | undefined
+const GA_ID = 'G-RP0TZ1MP7E'
 
 import appCss from "../styles.css?url";
 
