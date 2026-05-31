@@ -103,6 +103,7 @@ writeFileSync(
       { src: "/manifest\\.webmanifest", dest: "/manifest.webmanifest" },
       { src: "/sw\\.js", dest: "/sw.js" },
       { src: "/icons/(.*)", dest: "/icons/$1" },
+      { src: "/images/(.*)", dest: "/images/$1" },
       { src: "/(.*)", dest: "/" },
     ],
   }),
