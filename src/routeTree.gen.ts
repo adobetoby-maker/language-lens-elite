@@ -24,6 +24,7 @@ import { Route as ApiFieldPrepRouteImport } from './routes/api.field-prep'
 import { Route as ApiFamilyAddKidRouteImport } from './routes/api.family-add-kid'
 import { Route as ApiDiscussionRouteImport } from './routes/api.discussion'
 import { Route as ApiCreateCheckoutRouteImport } from './routes/api.create-checkout'
+import { Route as ApiCaptureEmailRouteImport } from './routes/api.capture-email'
 import { Route as ApiCancelSubscriptionRouteImport } from './routes/api.cancel-subscription'
 
 const Char91indexChar93Route = Char91indexChar93RouteImport.update({
@@ -101,6 +102,11 @@ const ApiCreateCheckoutRoute = ApiCreateCheckoutRouteImport.update({
   path: '/api/create-checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCaptureEmailRoute = ApiCaptureEmailRouteImport.update({
+  id: '/api/capture-email',
+  path: '/api/capture-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiCancelSubscriptionRoute = ApiCancelSubscriptionRouteImport.update({
   id: '/api/cancel-subscription',
   path: '/api/cancel-subscription',
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
   '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
+  '/api/capture-email': typeof ApiCaptureEmailRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/family-add-kid': typeof ApiFamilyAddKidRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
   '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
+  '/api/capture-email': typeof ApiCaptureEmailRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/family-add-kid': typeof ApiFamilyAddKidRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/index': typeof Char91indexChar93Route
   '/pricing': typeof PricingRoute
   '/api/cancel-subscription': typeof ApiCancelSubscriptionRoute
+  '/api/capture-email': typeof ApiCaptureEmailRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/discussion': typeof ApiDiscussionRoute
   '/api/family-add-kid': typeof ApiFamilyAddKidRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/index'
     | '/pricing'
     | '/api/cancel-subscription'
+    | '/api/capture-email'
     | '/api/create-checkout'
     | '/api/discussion'
     | '/api/family-add-kid'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/index'
     | '/pricing'
     | '/api/cancel-subscription'
+    | '/api/capture-email'
     | '/api/create-checkout'
     | '/api/discussion'
     | '/api/family-add-kid'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/index'
     | '/pricing'
     | '/api/cancel-subscription'
+    | '/api/capture-email'
     | '/api/create-checkout'
     | '/api/discussion'
     | '/api/family-add-kid'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   Char91indexChar93Route: typeof Char91indexChar93Route
   PricingRoute: typeof PricingRoute
   ApiCancelSubscriptionRoute: typeof ApiCancelSubscriptionRoute
+  ApiCaptureEmailRoute: typeof ApiCaptureEmailRoute
   ApiCreateCheckoutRoute: typeof ApiCreateCheckoutRoute
   ApiDiscussionRoute: typeof ApiDiscussionRoute
   ApiFamilyAddKidRoute: typeof ApiFamilyAddKidRoute
@@ -345,6 +358,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCreateCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/capture-email': {
+      id: '/api/capture-email'
+      path: '/api/capture-email'
+      fullPath: '/api/capture-email'
+      preLoaderRoute: typeof ApiCaptureEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/cancel-subscription': {
       id: '/api/cancel-subscription'
       path: '/api/cancel-subscription'
@@ -362,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91indexChar93Route: Char91indexChar93Route,
   PricingRoute: PricingRoute,
   ApiCancelSubscriptionRoute: ApiCancelSubscriptionRoute,
+  ApiCaptureEmailRoute: ApiCaptureEmailRoute,
   ApiCreateCheckoutRoute: ApiCreateCheckoutRoute,
   ApiDiscussionRoute: ApiDiscussionRoute,
   ApiFamilyAddKidRoute: ApiFamilyAddKidRoute,

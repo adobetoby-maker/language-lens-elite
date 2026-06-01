@@ -30,6 +30,7 @@ import { MissionBanner } from "./MissionBanner";
 import { PostSessionFeedback } from "./PostSessionFeedback";
 import { ltAnalytics } from "@/lib/lt-analytics";
 import { cn } from "@/lib/utils";
+import { useAiGate } from "@/state/ai-gate-state";
 
 const VOICE_MODE_KEY = "lt.fieldPrep.voiceMode.v1";
 
@@ -86,6 +87,7 @@ function speakAloud(
 
 export function FieldPrepMode() {
   const { state, dispatch } = useApp();
+  const { gated } = useAiGate();
   const { voiceURI } = useSpeech();
   const [phase, setPhase] = useState<"select" | "roleplay">("select");
   const [scenario, setScenario] = useState<RoleplayScenario | null>(null);
@@ -143,7 +145,11 @@ export function FieldPrepMode() {
     }
   }, [messages, streaming]);
 
-  const startScenario = async (s: RoleplayScenario) => {
+  const startScenario = (s: RoleplayScenario) => {
+    gated(() => doStartScenario(s));
+  };
+
+  const doStartScenario = async (s: RoleplayScenario) => {
     setScenario(s);
     setMessages([]);
     setInput("");
@@ -297,9 +303,14 @@ export function FieldPrepMode() {
     }
   };
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     const trimmed = input.trim();
     if (!trimmed || streaming || !scenario) return;
+    gated(() => doSendMessage(trimmed));
+  };
+
+  const doSendMessage = async (trimmed: string) => {
+    if (!scenario) return;
 
     const userMsg: FieldPrepMessage = {
       id: crypto.randomUUID(),

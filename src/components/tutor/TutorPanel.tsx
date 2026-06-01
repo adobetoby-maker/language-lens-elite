@@ -13,6 +13,7 @@ import { getOrthoArea } from "@/data/orthopedics-content";
 import { getModuleAreaContext } from "@/data/module-content-registry";
 import { getPatternsForLanguage } from "@/data/grammar-patterns";
 import { VOCAB_MASTERY_THRESHOLD } from "@/state/app-state";
+import { useAiGate } from "@/state/ai-gate-state";
 
 const LEVEL_TO_CEFR: Record<string, string> = {
   Beginner: "A1–A2",
@@ -50,6 +51,7 @@ export function TutorPanel() {
   const { selected } = useLibrary();
   const { lastWord } = useSpeech();
   const tutor = useTutor();
+  const { gated } = useAiGate();
 
   const threadId = selected.id;
   const messages = tutor.messagesFor(threadId);
@@ -82,9 +84,13 @@ export function TutorPanel() {
     [selected],
   );
 
-  const send = async (text: string) => {
+  const send = (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || streaming) return;
+    gated(() => doSend(trimmed));
+  };
+
+  const doSend = async (trimmed: string) => {
 
     setError(null);
     const userMsg: TutorMessage = {

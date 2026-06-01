@@ -10,6 +10,7 @@ import { getModule } from "@/data/modules";
 import { matchesFocus } from "@/lib/module-filter";
 import { ChallengePanel, type SpeakChallenge } from "@/components/speak/ChallengePanel";
 import { ModuleMatchPanel } from "@/components/modules/ModuleMatchPanel";
+import { useAiGate } from "@/state/ai-gate-state";
 
 const TOPIC_CHIPS: Record<Language, string[]> = {
   Spanish: [
@@ -82,6 +83,7 @@ function getRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
 
 export function SpeakLearn() {
   const { state, dispatch } = useApp();
+  const { gated } = useAiGate();
   const {
     turns,
     exchanges,
@@ -283,6 +285,10 @@ export function SpeakLearn() {
   const submitTurn = (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
+    gated(() => doSubmitTurn(trimmed));
+  };
+
+  const doSubmitTurn = (trimmed: string) => {
     if (sessionStartRef.current == null) sessionStartRef.current = Date.now();
     const userTurn = addTurn("user", trimmed);
 

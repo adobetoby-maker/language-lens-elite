@@ -123,8 +123,10 @@ export function OnboardingWizard() {
       dispatch({ type: "SET_ACTIVE_MODULE", payload: professionId });
     }
     dispatch({ type: "COMPLETE_ONBOARDING" });
-    // Route to Field Prep for hands-on modules; otherwise open the App Guide
-    if (professionId && FIELD_PREP_IDS.has(professionId)) {
+    // Missionary → open Discussion 1 directly (the structured lessons are there)
+    if (professionId === "lds-missionary") {
+      dispatch({ type: "SET_TAB", payload: "discussions" });
+    } else if (professionId && FIELD_PREP_IDS.has(professionId)) {
       dispatch({ type: "SET_TAB", payload: "fieldPrep" });
     } else {
       dispatch({ type: "SET_TAB", payload: "guide" });
@@ -257,7 +259,16 @@ export function OnboardingWizard() {
                     <p className="text-sm font-medium">{levelLabel}</p>
                   </div>
                 </div>
-                {professionId && FIELD_PREP_IDS.has(professionId) && (
+                {professionId === "lds-missionary" && (
+                  <div className="flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3">
+                    <span className="text-lg">📋</span>
+                    <p className="text-xs text-muted-foreground leading-snug">
+                      <span className="text-foreground font-medium">Discussion 1</span> opens
+                      next — La Restauración. Teach it word for word in your target language.
+                    </p>
+                  </div>
+                )}
+                {professionId && professionId !== "lds-missionary" && FIELD_PREP_IDS.has(professionId) && (
                   <div className="flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3">
                     <span className="text-lg">🎙️</span>
                     <p className="text-xs text-muted-foreground leading-snug">
@@ -266,7 +277,7 @@ export function OnboardingWizard() {
                     </p>
                   </div>
                 )}
-                {(!professionId || !FIELD_PREP_IDS.has(professionId)) && (
+                {(!professionId || (professionId !== "lds-missionary" && !FIELD_PREP_IDS.has(professionId))) && (
                   <div className="flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3">
                     <span className="text-lg">📖</span>
                     <p className="text-xs text-muted-foreground leading-snug">

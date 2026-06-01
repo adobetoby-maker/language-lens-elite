@@ -21,6 +21,7 @@ import {
   type InvestigatorType,
   type MissionaryLesson,
 } from "@/data/discussion-content";
+import { useAiGate } from "@/state/ai-gate-state";
 
 interface Turn {
   id: string;
@@ -131,6 +132,7 @@ function findConceptHits(text: string, concepts: string[]): string[] {
 
 export function MissionaryDiscussions() {
   const { state, dispatch: appDispatch } = useApp();
+  const { gated } = useAiGate();
   const [s, dispatch] = useReducer(reducer, initial);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -175,9 +177,14 @@ export function MissionaryDiscussions() {
   const speed = s.startedAt ? (s.topicsCompleted / Math.max(0.05, elapsedMin)).toFixed(2) : "0.00";
 
   // ----- Send a missionary turn -----
-  const sendTurn = async (raw: string) => {
+  const sendTurn = (raw: string) => {
     const text = raw.trim();
     if (!text || !topic || thinking) return;
+    gated(() => doSendTurn(text));
+  };
+
+  const doSendTurn = async (text: string) => {
+    if (!topic) return;
     setInput("");
 
     // Record concept hits before adding the turn so they show on the bubble.

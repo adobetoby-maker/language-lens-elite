@@ -23,6 +23,7 @@ import { TopNav } from "@/components/TopNav";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SubscriptionGate } from "@/components/SubscriptionGate";
 import { SubscriptionProvider } from "@/state/subscription-state";
+import { AiGateProvider } from "@/state/ai-gate-state";
 import { TabShell } from "@/components/TabShell";
 import { TutorPanel } from "@/components/tutor/TutorPanel";
 import { LevelUpOverlay } from "@/components/LevelUpOverlay";
@@ -62,6 +63,29 @@ function WizardGate() {
   return <OnboardingWizard />;
 }
 
+// Reads ?module= URL param once on mount and activates the module.
+// This powers the "Start Free →" CTAs from the marketing site.
+function UrlModuleBridge() {
+  const { state, dispatch } = useApp();
+
+  useEffect(() => {
+    if (!state.hydrated) return;
+    const params = new URLSearchParams(window.location.search);
+    const moduleId = params.get("module");
+    if (moduleId && moduleId !== state.activeModuleId) {
+      dispatch({ type: "PURCHASE_MODULE", payload: moduleId });
+      dispatch({ type: "SET_ACTIVE_MODULE", payload: moduleId });
+      if (moduleId === "lds-missionary") {
+        dispatch({ type: "SET_TAB", payload: "discussions" });
+      }
+    }
+  // Only run once after hydration
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.hydrated]);
+
+  return null;
+}
+
 function SpeechBridge({ children }: { children: ReactNode }) {
   const { state, dispatch } = useApp();
   return (
@@ -93,6 +117,7 @@ function Index() {
     <AppProvider>
       <AuthProvider>
         <SubscriptionProvider>
+        <AiGateProvider>
         <MatchProvider>
           <LeaderboardProvider>
             <LibraryProvider>
@@ -124,6 +149,7 @@ function Index() {
                                       </div>
 
                                       <WizardGate />
+                                      <UrlModuleBridge />
                                       <TutorPanel />
                                       <LevelUpOverlay />
                                       <CefrCompletionBridge />
@@ -159,6 +185,7 @@ function Index() {
             </LibraryProvider>
           </LeaderboardProvider>
         </MatchProvider>
+        </AiGateProvider>
         </SubscriptionProvider>
       </AuthProvider>
     </AppProvider>
