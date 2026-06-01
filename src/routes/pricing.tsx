@@ -52,13 +52,13 @@ async function startCheckout(
 }
 
 const FEATURES_PRO = [
-  "270 construction lessons across 9 trades",
-  "390 medical lessons across 13 specialties",
-  "AI word cards with morphology breakdown",
-  "Speaking practice with AI feedback",
-  "Grammar drills, games, and listening exercises",
-  "Conjugation trainer and sentence builder",
-  "Daily challenges + leaderboard",
+  "Every module — 660+ lessons across medical, construction, sports, missionary, climbing, and more",
+  "AI speaking partner with real-time feedback",
+  "AI grammar studio, tutor, and vocabulary tools",
+  "Field Prep: roleplay real on-the-job conversations",
+  "Listening drills, sentence builder, conjugation trainer",
+  "Daily challenges, leaderboard, and streak tracking",
+  "All future modules included — we add new professions constantly",
 ];
 
 const FEATURES_FAMILY = [
@@ -76,12 +76,14 @@ const FEATURES_FREE = [
 ];
 
 export default function PricingPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { isActive, status } = useSubscription();
   const [billing, setBilling] = useState<"monthly" | "annual" | "family" | "junior">("annual");
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async () => {
+    // Wait for auth to resolve — redirecting while loading sends logged-in users to /?redirect=pricing
+    if (authLoading) return;
     if (!user) {
       window.location.href = "/?redirect=pricing";
       return;
@@ -113,10 +115,10 @@ export default function PricingPage() {
             </span>
           </div>
           <h1 className="text-3xl font-bold text-foreground sm:text-4xl mb-3">
-            Professional language training
+            One plan. Every module.
           </h1>
           <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
-            Built for healthcare workers, tradespeople, and families — not classrooms.
+            Medical, construction, sports, missionary, climbing — all included. Built for people who use Spanish at work, not in a classroom.
           </p>
         </div>
 
@@ -151,7 +153,7 @@ export default function PricingPage() {
                 >
                   Annual
                   <span className="ml-1.5 rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-400">
-                    SAVE 35%
+                    BEST VALUE
                   </span>
                 </button>
                 <button
@@ -182,12 +184,14 @@ export default function PricingPage() {
                     </span>
                     <span className="text-muted-foreground text-sm">/month</span>
                     {billing === "annual" && (
-                      <span className="text-xs text-muted-foreground">billed $149/year</span>
+                      <span className="text-xs text-muted-foreground">billed $149/year · less than Rosetta Stone or Pimsleur</span>
                     )}
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground flex items-center gap-1">
                     <Sparkles className="h-3 w-3 text-gold" />
-                    First 7 days completely free — cancel anytime
+                    {billing === "annual"
+                      ? "All modules included · First 7 days free · Cancel anytime"
+                      : "First 7 days completely free — cancel anytime"}
                   </div>
                 </div>
                 <div className="px-6 py-5">
@@ -201,11 +205,13 @@ export default function PricingPage() {
                   </ul>
                   <button
                     onClick={handleSubscribe}
-                    disabled={loading}
+                    disabled={loading || authLoading}
                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-background transition-opacity hover:opacity-90 disabled:opacity-50"
                   >
                     {loading ? (
                       "Preparing checkout…"
+                    ) : authLoading ? (
+                      "Loading…"
                     ) : (
                       <>
                         Start free trial
@@ -261,7 +267,7 @@ export default function PricingPage() {
                   </ul>
                   <button
                     onClick={handleSubscribe}
-                    disabled={loading}
+                    disabled={loading || authLoading}
                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
                   >
                     {loading ? "Preparing checkout…" : <>Start free trial <ChevronRight className="h-4 w-4" /></>}
@@ -302,7 +308,7 @@ export default function PricingPage() {
                   </ul>
                   <button
                     onClick={handleSubscribe}
-                    disabled={loading}
+                    disabled={loading || authLoading}
                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
                   >
                     {loading ? "Preparing checkout…" : <>Start family plan <ChevronRight className="h-4 w-4" /></>}

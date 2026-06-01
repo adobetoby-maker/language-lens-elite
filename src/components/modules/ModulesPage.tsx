@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import { Search, Sparkles, CheckCircle2, Lock, ChevronRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { useApp } from "@/state/app-state";
+import { useSubscription } from "@/state/subscription-state";
 import { MODULES, type AppModule } from "@/data/modules";
 import type { TabKey } from "@/state/app-state";
 
@@ -51,10 +53,11 @@ interface ModuleCardProps {
   module: AppModule;
   isActive: boolean;
   isPurchased: boolean;
+  isSubscribed: boolean;
   onActivate: () => void;
 }
 
-function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardProps) {
+function ModuleCard({ module, isActive, isPurchased, isSubscribed, onActivate }: ModuleCardProps) {
   const meta = CATEGORY_META[module.category];
   const topVocab = module.vocabFocus.slice(0, 5);
 
@@ -117,16 +120,19 @@ function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardPro
         )}
       </div>
 
-      {/* Footer: price + action */}
+      {/* Footer: status + action */}
       <div className="flex items-center justify-between gap-2">
-        {isPurchased ? (
+        {isPurchased || isSubscribed ? (
           <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-emerald-400">
-            ✓ Included
+            ✓ Included with Pro
           </span>
         ) : (
-          <span className="font-mono text-[10px] text-muted-foreground">
-            {formatPrice(module.priceCents)}
-          </span>
+          <Link
+            to="/pricing"
+            className="font-mono text-[9px] uppercase tracking-[0.15em] text-gold/70 hover:text-gold transition-colors"
+          >
+            Pro plan →
+          </Link>
         )}
 
         {isActive ? (
@@ -159,6 +165,7 @@ function ModuleCard({ module, isActive, isPurchased, onActivate }: ModuleCardPro
 
 export function ModulesPage() {
   const { state, dispatch } = useApp();
+  const { isActive: isSubscribed } = useSubscription();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<AppModule["category"] | "All">("All");
 
@@ -322,6 +329,7 @@ export function ModulesPage() {
                         module={m}
                         isActive={state.activeModuleId === m.id}
                         isPurchased={state.purchasedModules.includes(m.id)}
+                        isSubscribed={isSubscribed}
                         onActivate={() => handleActivate(m)}
                       />
                     ))}

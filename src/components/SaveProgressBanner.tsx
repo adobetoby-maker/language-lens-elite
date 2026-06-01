@@ -12,7 +12,24 @@ export function SaveProgressBanner() {
   });
   const [authOpen, setAuthOpen] = useState(false);
 
-  if (loading || user || dismissed) return null;
+  if (user || dismissed) return null;
+
+  // Skeleton during auth resolution — holds layout space so banner doesn't pop in
+  if (loading) {
+    return (
+      <div className="mx-3 mb-3 rounded-xl border border-gold/10 bg-gold/[0.03] px-3 py-3 animate-pulse">
+        <div className="flex items-start gap-2.5">
+          <div className="h-4 w-4 rounded bg-gold/15 flex-shrink-0 mt-0.5" />
+          <div className="flex-1 space-y-2">
+            <div className="h-3 w-28 rounded bg-gold/15" />
+            <div className="h-2.5 w-full rounded bg-gold/10" />
+            <div className="h-2.5 w-3/4 rounded bg-gold/10" />
+            <div className="h-7 w-full rounded-lg bg-gold/15 mt-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
