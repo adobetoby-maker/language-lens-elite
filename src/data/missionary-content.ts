@@ -382,7 +382,7 @@ export const FREE_RESOURCES = [
   },
   {
     label: "Gospel Library app",
-    url: "https://www.churchofjesuschrist.org/study/help/support/gospel-library-mobile-application",
+    url: "https://www.churchofjesuschrist.org/study/get-started-with-the-gospel-library-app",
     note: "All scriptures, manuals, and General Conference talks offline and free.",
   },
 ] as const;

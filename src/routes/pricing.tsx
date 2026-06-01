@@ -364,6 +364,71 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* Affiliate section — language learning tools */}
+        <div className="mt-8 rounded-xl border border-border bg-card/40 px-5 py-5">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+            Tools that accelerate your progress
+          </p>
+          <div className="space-y-3">
+            <a
+              href="https://www.amazon.com/s?k=Pimsleur+Spanish+audio&tag=langthresh-20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-background/50 px-4 py-3 text-sm hover:border-gold/40 transition-colors group"
+            >
+              <span className="text-lg leading-none mt-0.5">🎧</span>
+              <div className="min-w-0">
+                <p className="font-medium text-foreground group-hover:text-gold transition-colors">
+                  Pimsleur Spanish Audio Course
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Train your ear during commutes. Spaced-repetition audio built for adult learners.
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5 ml-auto group-hover:text-gold transition-colors" />
+            </a>
+
+            <a
+              href="https://www.amazon.com/s?k=Sony+WH1000XM5+noise+cancelling+headphones&tag=langthresh-20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-background/50 px-4 py-3 text-sm hover:border-gold/40 transition-colors group"
+            >
+              <span className="text-lg leading-none mt-0.5">🎵</span>
+              <div className="min-w-0">
+                <p className="font-medium text-foreground group-hover:text-gold transition-colors">
+                  Sony WH-1000XM5 Headphones
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Noise-cancelling focus for listening drills. The difference between distracted and immersed.
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5 ml-auto group-hover:text-gold transition-colors" />
+            </a>
+
+            <a
+              href="https://www.amazon.com/s?k=Spanish+vocabulary+flashcards&tag=langthresh-20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-background/50 px-4 py-3 text-sm hover:border-gold/40 transition-colors group"
+            >
+              <span className="text-lg leading-none mt-0.5">📇</span>
+              <div className="min-w-0">
+                <p className="font-medium text-foreground group-hover:text-gold transition-colors">
+                  Spanish Vocabulary Flashcards
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Physical cards for hands-on review — great offline companion to your digital practice.
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5 ml-auto group-hover:text-gold transition-colors" />
+            </a>
+          </div>
+          <p className="mt-3 text-[10px] text-muted-foreground/60 leading-relaxed">
+            As an Amazon Associate we earn from qualifying purchases. This does not affect our recommendations.
+          </p>
+        </div>
+
         <div className="mt-8 text-center text-xs text-muted-foreground border-t border-border pt-6">
           Questions? Email{" "}
           <span className="text-foreground">support@languagethreshold.com</span>
