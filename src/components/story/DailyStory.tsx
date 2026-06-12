@@ -108,7 +108,7 @@ export function DailyStory() {
       <div className="flex flex-col items-center justify-center gap-4 py-20 text-center px-6">
         <BookOpen className="h-10 w-10 text-muted-foreground/30" />
         <p className="text-muted-foreground text-sm">
-          No patterns available for {lang} yet — Daily Story coming soon.
+          Daily Story is not yet available for {lang}. Switch to Spanish for full story content.
         </p>
       </div>
     );

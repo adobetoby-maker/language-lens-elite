@@ -243,7 +243,7 @@ export function PenPalPad() {
         <PenLine className="h-10 w-10 text-gold/40" strokeWidth={1.2} />
         <h2 className="font-display text-2xl font-semibold">Pen Pal Practice</h2>
         <p className="text-sm text-muted-foreground max-w-sm">
-          Pen Pal Practice is coming soon for <strong>{state.selectedLanguage}</strong>. Switch to
+          Pen Pal Practice is not yet available for <strong>{state.selectedLanguage}</strong>. Switch to
           Spanish, French, Japanese, Korean, German, Portuguese, or Italian to get started.
         </p>
       </div>

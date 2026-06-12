@@ -514,7 +514,7 @@ export function PatternLab() {
       <div className="flex flex-col items-center justify-center gap-4 py-20 text-center px-6">
         <BookOpen className="h-10 w-10 text-muted-foreground/30" />
         <p className="text-muted-foreground text-sm">
-          Grammar patterns for {lang} are coming soon.
+          Grammar patterns for {lang} are not yet available. Switch to Spanish for the full pattern library.
         </p>
       </div>
     );

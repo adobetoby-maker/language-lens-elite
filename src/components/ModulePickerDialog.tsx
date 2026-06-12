@@ -5,14 +5,7 @@ import { MODULES, getModule, moduleSupportsLanguage } from "@/data/modules";
 import type { AppModule } from "@/data/modules";
 import type { Language } from "@/state/app-state";
 
-const COMING_SOON_LANGUAGES = new Set<Language>([
-  "French",
-  "German",
-  "Italian",
-  "Japanese",
-  "Korean",
-  "Portuguese",
-]);
+const COMING_SOON_LANGUAGES = new Set<Language>([]);
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
