@@ -20,7 +20,11 @@ interface Props {
   children: ReactNode;
 }
 
-export function SubscriptionGate({ currentTab, children }: Props) {
+export function SubscriptionGate({ currentTab: _currentTab, children }: Props) {
+  // DEMO MODE — all paywalls disabled
+  return <>{children}</>;
+
+  // eslint-disable-next-line no-unreachable
   const { isActive, loading: subLoading } = useSubscription();
   const { user, loading: authLoading } = useAuth();
   const { state } = useApp();

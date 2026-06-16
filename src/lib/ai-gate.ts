@@ -54,21 +54,7 @@ export function markEmailCaptured(email: string): void {
  *   count >= FREE_LIMIT && email captured && !beta → paywall
  *   subscribed → always open (caller checks subscription separately)
  */
-export function checkGate(isSubscribed: boolean): GateStatus {
-  if (isSubscribed) return "open";
-
-  const count = getCallCount();
-
-  // First N-1 calls are always free
-  if (count < AI_GATE_FREE_LIMIT - 1) return "open";
-
-  // At or past the trigger threshold
-  const emailCaptured = isEmailCaptured();
-
-  if (!emailCaptured) return "email-required";
-
-  // Email captured — check if beta is still active
-  if (isBetaFree()) return "open";
-
-  return "paywall";
+export function checkGate(_isSubscribed: boolean): GateStatus {
+  // DEMO MODE — AI gate disabled
+  return "open";
 }

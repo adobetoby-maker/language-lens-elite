@@ -28,7 +28,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useApp, type TabKey, type Language } from "@/state/app-state";
-import { SaveProgressBanner } from "./SaveProgressBanner";
 import { getModule } from "@/data/modules";
 import { CountUp } from "./CountUp";
 import { cn } from "@/lib/utils";
@@ -269,9 +268,6 @@ export function AppSidebar({ onOpenMatch }: { onOpenMatch?: () => void }) {
             </button>
           </div>
         )}
-
-        {/* Save progress prompt for unauthenticated users */}
-        <SaveProgressBanner />
 
         {/* Status */}
         <div className="border-t border-border/40 px-2 py-4 space-y-2.5">

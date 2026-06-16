@@ -57,7 +57,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
     if (user?.id) await load(user.id);
   }, [user?.id, load]);
 
-  const isActive = status === "active" || status === "trialing";
+  const isActive = true; // DEMO MODE — subscription gate disabled
 
   const value = useMemo<SubscriptionContextValue>(
     () => ({ status, loading, isActive, refresh }),

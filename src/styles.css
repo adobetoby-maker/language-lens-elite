@@ -2,11 +2,12 @@
 @source "../src";
 @import "tw-animate-css";
 
-/* Google Fonts loaded via <link> in src/routes/__root.tsx (CSS @import would be reordered after Tailwind's expanded rules and break the build). */
+/* Fonts loaded via <link> in src/routes/__root.tsx — CSS @import is reordered by Tailwind's transformer */
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -119,10 +120,18 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-mono);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-feature-settings: "kern" 1, "calt" 1, "liga" 1;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
     text-rendering: optimizeLegibility;
+  }
+
+  code, kbd, pre,
+  .font-mono,
+  [class*="font-mono"] {
+    font-family: var(--font-mono);
   }
 
   h1,
@@ -141,6 +150,16 @@
   }
   .font-mono {
     font-family: var(--font-mono);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .reader-prose {
+    font-size: 1.0625rem; /* 17px — more comfortable for Spanish sentences */
+    line-height: 1.8;
+    letter-spacing: 0.01em;
   }
 
   .gold-underline {

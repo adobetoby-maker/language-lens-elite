@@ -21,6 +21,7 @@ import { DailyChallengeProvider } from "@/state/daily-challenge-state";
 import { DailyChallengeBridge } from "@/components/games/DailyChallengeBridge";
 import { TopNav } from "@/components/TopNav";
 import { AppSidebar } from "@/components/AppSidebar";
+import { SaveProgressBanner } from "@/components/SaveProgressBanner";
 import { SubscriptionGate } from "@/components/SubscriptionGate";
 import { SubscriptionProvider } from "@/state/subscription-state";
 import { AiGateProvider } from "@/state/ai-gate-state";
@@ -140,6 +141,7 @@ function Index() {
                                         {/* Main column */}
                                         <div className="flex min-w-0 flex-1 flex-col">
                                           <TopNav />
+                                          <SaveProgressBanner />
                                           {/* Bottom padding always reserves room for the
                                 fixed bottom nav, on every viewport. */}
                                           <main className="flex-1 overflow-y-auto px-4 py-6 pb-[calc(6.5rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-10 lg:pb-[calc(4rem+env(safe-area-inset-bottom))]">

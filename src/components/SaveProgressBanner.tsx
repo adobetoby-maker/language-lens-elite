@@ -14,18 +14,15 @@ export function SaveProgressBanner() {
 
   if (user || dismissed) return null;
 
-  // Skeleton during auth resolution — holds layout space so banner doesn't pop in
+  // Skeleton during auth resolution
   if (loading) {
     return (
-      <div className="mx-3 mb-3 rounded-xl border border-gold/10 bg-gold/[0.03] px-3 py-3 animate-pulse">
-        <div className="flex items-start gap-2.5">
-          <div className="h-4 w-4 rounded bg-gold/15 flex-shrink-0 mt-0.5" />
-          <div className="flex-1 space-y-2">
-            <div className="h-3 w-28 rounded bg-gold/15" />
-            <div className="h-2.5 w-full rounded bg-gold/10" />
-            <div className="h-2.5 w-3/4 rounded bg-gold/10" />
-            <div className="h-7 w-full rounded-lg bg-gold/15 mt-1" />
-          </div>
+      <div className="border-b border-gold/10 bg-gold/[0.03] px-4 py-2.5 animate-pulse sm:px-6">
+        <div className="flex items-center gap-3">
+          <div className="h-4 w-4 rounded bg-gold/15 flex-shrink-0" />
+          <div className="flex-1 h-3 rounded bg-gold/15" />
+          <div className="h-7 w-28 rounded-lg bg-gold/15 flex-shrink-0" />
+          <div className="h-4 w-4 rounded bg-gold/10 flex-shrink-0" />
         </div>
       </div>
     );
@@ -33,24 +30,20 @@ export function SaveProgressBanner() {
 
   return (
     <>
-      <div className="mx-3 mb-3 rounded-xl border border-gold/25 bg-gold/5 px-3 py-3">
-        <div className="flex items-start gap-2.5">
-          <Bookmark className="h-4 w-4 flex-shrink-0 mt-0.5 text-gold" />
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-foreground leading-tight mb-1">
-              Save your progress
-            </p>
-            <p className="text-[11px] text-muted-foreground leading-relaxed mb-2.5">
-              Your XP and streaks live on this device. Create a free account to sync across devices.
-            </p>
-            <button
-              type="button"
-              onClick={() => setAuthOpen(true)}
-              className="w-full rounded-lg bg-gold px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-midnight font-semibold hover:opacity-90 transition-opacity"
-            >
-              Save progress →
-            </button>
-          </div>
+      <div className="border-b border-gold/20 bg-gold/[0.04] px-4 py-2.5 sm:px-6">
+        <div className="flex items-center gap-3">
+          <Bookmark className="h-4 w-4 flex-shrink-0 text-gold" />
+          <p className="flex-1 text-xs text-muted-foreground leading-snug min-w-0">
+            <span className="font-semibold text-foreground">Save your progress —</span>{" "}
+            your XP and streaks live on this device. Create a free account to sync across devices.
+          </p>
+          <button
+            type="button"
+            onClick={() => setAuthOpen(true)}
+            className="flex-shrink-0 rounded-lg bg-gold px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-midnight font-semibold hover:opacity-90 transition-opacity"
+          >
+            Save progress →
+          </button>
           <button
             type="button"
             onClick={() => {

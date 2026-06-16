@@ -6,6 +6,7 @@ import { toast } from "sonner";
 const GA_ID = 'G-RP0TZ1MP7E'
 
 import appCss from "../styles.css?url";
+import interCss from "@fontsource-variable/inter/opsz.css?url";
 
 function NotFoundComponent() {
   return (
@@ -101,6 +102,7 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: "https://app.languagethreshold.com/icons/og-image.png" },
     ],
     links: [
+      { rel: "stylesheet", href: interCss },
       { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: "https://app.languagethreshold.com" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
