@@ -104,6 +104,8 @@ writeFileSync(
       { src: "/sw\\.js", dest: "/sw.js" },
       { src: "/icons/(.*)", dest: "/icons/$1" },
       { src: "/images/(.*)", dest: "/images/$1" },
+      { src: "/qa-status\\.json", dest: "/qa-status.json" },
+      { src: "/qa-badge\\.svg", dest: "/qa-badge.svg" },
       { src: "/(.*)", dest: "/" },
     ],
   }),
