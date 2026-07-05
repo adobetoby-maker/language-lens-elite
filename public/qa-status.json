@@ -1,0 +1,32 @@
+{
+  "schema": "atlas-full-monte/1",
+  "runs": [
+    {
+      "iteration": 1,
+      "date": "2026-07-05",
+      "ts": "2026-07-05T18:37:47+00:00",
+      "url": "https://language-lens-elite.worker-bee.app",
+      "pages_tested": 5,
+      "errors_found": 1,
+      "errors_fixed": 1,
+      "beauty": 7.1,
+      "result": "pass",
+      "report": "lingualens-2026-07-05.md",
+      "agent": "eyes-v2 (batch-A)"
+    }
+  ],
+  "latest": {
+    "iteration": 1,
+    "date": "2026-07-05",
+    "ts": "2026-07-05T18:37:47+00:00",
+    "url": "https://language-lens-elite.worker-bee.app",
+    "pages_tested": 5,
+    "errors_found": 1,
+    "errors_fixed": 1,
+    "beauty": 7.1,
+    "result": "pass",
+    "report": "lingualens-2026-07-05.md",
+    "agent": "eyes-v2 (batch-A)"
+  },
+  "slug": "lingualens"
+}
