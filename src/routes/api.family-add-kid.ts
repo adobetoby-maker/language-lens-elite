@@ -45,7 +45,7 @@ export const Route = createFileRoute("/api/family-add-kid")({
         const email = kidEmail(username.trim());
         const { data, error } = await admin.auth.admin.createUser({
           email,
-          password: pin,
+          password: pin + pin,
           user_metadata: {
             display_name: username.trim(),
             is_kid: true,
