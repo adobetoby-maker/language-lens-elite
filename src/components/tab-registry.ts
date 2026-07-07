@@ -87,6 +87,9 @@ const FieldPrepRouter = lazy(() =>
 const DictionaryTab = lazy(() =>
   import("./dictionary/DictionaryTab").then((m) => ({ default: m.DictionaryTab })),
 );
+const FlashcardDecks = lazy(() =>
+  import("./flashcards/FlashcardDecks").then((m) => ({ default: m.FlashcardDecks })),
+);
 
 /**
  * Exhaustive map of every TabKey -> component.
@@ -126,6 +129,7 @@ export const TAB_COMPONENTS: Record<TabKey, ComponentType> = {
   fishing: FishingHome,
   fieldPrep: FieldPrepRouter,
   dictionary: DictionaryTab,
+  flashcards: FlashcardDecks,
 };
 
 if (import.meta.env.DEV) {
