@@ -21,6 +21,7 @@ export interface LibrarySeed {
   section: "culture"; // all seeds go into the culture section
   available: true; // always true for pre-built content
   level?: CefrLevel; // CEFR reading level (A1..C2). Optional during back-label migration.
+  category?: string; // Library category (Medical, Trades, Sports, Faith, Culture, ...). Optional; registration may default.
   sentences: SeedSentence[]; // 8–12 sentence pairs
 }
 

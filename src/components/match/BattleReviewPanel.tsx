@@ -5,6 +5,7 @@ import { useApp, type Language } from "@/state/app-state";
 import { useMatch } from "@/state/match-state";
 import type { ReviewedWord } from "./BattleArena";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 
 const SPEECH_LOCALE: Record<Language, string> = {
   Spanish: "es-CR",
@@ -97,6 +98,10 @@ function WordRow({ word }: { word: ReviewedWord }) {
         !window.speechSynthesis ||
         typeof SpeechSynthesisUtterance === "undefined"
       ) {
+        return;
+      }
+      if (needsRemoteTTS(SPEECH_LOCALE[word.language])) {
+        void speakRemote(word.word, SPEECH_LOCALE[word.language], { rate: 0.9 });
         return;
       }
       window.speechSynthesis.cancel();

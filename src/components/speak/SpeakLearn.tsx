@@ -5,6 +5,7 @@ import { useApp, type Language } from "@/state/app-state";
 import { useSpeak } from "@/state/speak-state";
 import { ACCENTS_BY_LANGUAGE, useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 import { celebrate, looseIncludes } from "@/lib/confetti";
 import { getModule } from "@/data/modules";
 import { matchesFocus } from "@/lib/module-filter";
@@ -153,7 +154,12 @@ export function SpeakLearn() {
   }, [addSeconds, dispatch, language]);
 
   const speakAloud = (text: string) => {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
+    if (typeof window === "undefined") return;
+    if (needsRemoteTTS(accent)) {
+      void speakRemote(text, accent, { rate: 1 });
+      return;
+    }
+    if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     configureUtterance(u, accent, voiceURI);

@@ -11,6 +11,7 @@ import {
 import { toast } from "sonner";
 import type { Language } from "./app-state";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote, stopRemoteTTS } from "@/lib/tts";
 
 export type SpeechMode = "word" | "sentence" | "paragraph";
 
@@ -166,6 +167,7 @@ export function SpeechProvider({
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
+    stopRemoteTTS();
     setPlaying(false);
     setCurrent(null);
     setActiveSentenceIndex(-1);
@@ -190,6 +192,7 @@ export function SpeechProvider({
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
+    stopRemoteTTS();
     setPlaying(false);
     setCurrent(null);
     setActiveSentenceIndex(-1);
@@ -218,7 +221,21 @@ export function SpeechProvider({
 
   const speakOne = useCallback(
     (text: string, sentenceIndex: number, mode: SpeechMode, onEnd?: () => void) => {
-      if (typeof window === "undefined" || !window.speechSynthesis) return;
+      if (typeof window === "undefined") return;
+      if (needsRemoteTTS(accent)) {
+        setPlaying(true);
+        setCurrent({ mode, sentenceIndex, text });
+        if (sentenceIndex >= 0) setActiveSentenceIndex(sentenceIndex);
+        void speakRemote(text, accent, {
+          rate,
+          onend: () => {
+            if (sentenceIndex >= 0) incListened();
+            onEnd?.();
+          },
+        });
+        return;
+      }
+      if (!window.speechSynthesis) return;
       const u = new SpeechSynthesisUtterance(text);
       configureUtterance(u, accent, voiceURI);
       u.rate = rate;

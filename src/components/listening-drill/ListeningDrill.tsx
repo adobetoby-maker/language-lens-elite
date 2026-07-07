@@ -16,6 +16,7 @@ import { MODULES } from "@/data/modules";
 import { useListeningDrill, type LDLeaderboardKey } from "@/state/listening-drill-state";
 import { generateListeningDrill, type ListeningDrillLevel } from "@/fns/listening-drill.functions";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 
 const LEVEL_LABELS: Record<ListeningDrillLevel, { name: string; sub: string }> = {
   1: { name: "Level 1", sub: "Easy — 4-7 words, A2" },
@@ -36,7 +37,12 @@ const SPEECH_LOCALE: Record<Language, string> = {
 };
 
 function speak(text: string, language: Language) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  if (typeof window === "undefined") return;
+  if (needsRemoteTTS(SPEECH_LOCALE[language])) {
+    void speakRemote(text, SPEECH_LOCALE[language], { rate: 0.9 });
+    return;
+  }
+  if (!("speechSynthesis" in window)) return;
   try {
     // Safari deadlocks if you call speak() while a previous utterance is
     // still queued or speaking. Cancel first, always.

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote, stopRemoteTTS } from "@/lib/tts";
 import { useSpeech } from "@/state/speech-state";
 import type { Language } from "@/state/app-state";
 
@@ -75,6 +76,21 @@ export function useMissionarySpeech() {
       const localeCode = accent || LOCALE[lang];
       const words = text.match(/\S+/g) ?? [];
       if (words.length === 0) return;
+
+      if (needsRemoteTTS(localeCode)) {
+        stopRemoteTTS();
+        setSpeaking({ id, index: 0, fading: false });
+        void speakRemote(text, localeCode, {
+          rate,
+          onend: () => {
+            setSpeaking((s) => (s && s.id === id ? { ...s, fading: true } : s));
+            window.setTimeout(() => {
+              setSpeaking((s) => (s && s.id === id ? null : s));
+            }, 450);
+          },
+        });
+        return;
+      }
 
       window.speechSynthesis.cancel();
       setSpeaking({ id, index: 0, fading: false });

@@ -16,6 +16,7 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SubscribeSuccessRouteImport } from './routes/subscribe/success'
 import { Route as ApiTutorRouteImport } from './routes/api.tutor'
+import { Route as ApiTtsRouteImport } from './routes/api.tts'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
 import { Route as ApiSportsNewsRouteImport } from './routes/api.sports-news'
 import { Route as ApiSpeakRouteImport } from './routes/api.speak'
@@ -60,6 +61,11 @@ const SubscribeSuccessRoute = SubscribeSuccessRouteImport.update({
 const ApiTutorRoute = ApiTutorRouteImport.update({
   id: '/api/tutor',
   path: '/api/tutor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTtsRoute = ApiTtsRouteImport.update({
+  id: '/api/tts',
+  path: '/api/tts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/api/tts': typeof ApiTtsRoute
   '/api/tutor': typeof ApiTutorRoute
   '/subscribe/success': typeof SubscribeSuccessRoute
 }
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/api/tts': typeof ApiTtsRoute
   '/api/tutor': typeof ApiTutorRoute
   '/subscribe/success': typeof SubscribeSuccessRoute
 }
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/api/speak': typeof ApiSpeakRoute
   '/api/sports-news': typeof ApiSportsNewsRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/api/tts': typeof ApiTtsRoute
   '/api/tutor': typeof ApiTutorRoute
   '/subscribe/success': typeof SubscribeSuccessRoute
 }
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/api/speak'
     | '/api/sports-news'
     | '/api/stripe-webhook'
+    | '/api/tts'
     | '/api/tutor'
     | '/subscribe/success'
   fileRoutesByTo: FileRoutesByTo
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/api/speak'
     | '/api/sports-news'
     | '/api/stripe-webhook'
+    | '/api/tts'
     | '/api/tutor'
     | '/subscribe/success'
   id:
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/api/speak'
     | '/api/sports-news'
     | '/api/stripe-webhook'
+    | '/api/tts'
     | '/api/tutor'
     | '/subscribe/success'
   fileRoutesById: FileRoutesById
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   ApiSpeakRoute: typeof ApiSpeakRoute
   ApiSportsNewsRoute: typeof ApiSportsNewsRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
+  ApiTtsRoute: typeof ApiTtsRoute
   ApiTutorRoute: typeof ApiTutorRoute
   SubscribeSuccessRoute: typeof SubscribeSuccessRoute
 }
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/api/tutor'
       fullPath: '/api/tutor'
       preLoaderRoute: typeof ApiTutorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/tts': {
+      id: '/api/tts'
+      path: '/api/tts'
+      fullPath: '/api/tts'
+      preLoaderRoute: typeof ApiTtsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/stripe-webhook': {
@@ -391,6 +411,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSpeakRoute: ApiSpeakRoute,
   ApiSportsNewsRoute: ApiSportsNewsRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
+  ApiTtsRoute: ApiTtsRoute,
   ApiTutorRoute: ApiTutorRoute,
   SubscribeSuccessRoute: SubscribeSuccessRoute,
 }

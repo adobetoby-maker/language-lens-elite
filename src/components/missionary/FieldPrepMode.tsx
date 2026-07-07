@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { useApp } from "@/state/app-state";
 import { useSpeech } from "@/state/speech-state";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 import { ClickableText } from "@/components/reader/ClickableText";
 import { WordCard, type WordCardRequest } from "@/components/reader/WordCard";
 import { getMissionArea } from "@/data/missionary-content";
@@ -75,6 +76,10 @@ function speakAloud(
   const clean = text.replace(/[*_`~#[\]]/g, "").trim();
   if (!clean) {
     onEnd?.();
+    return;
+  }
+  if (needsRemoteTTS(locale)) {
+    void speakRemote(clean, locale, { onend: onEnd });
     return;
   }
   const utter = new SpeechSynthesisUtterance(clean);

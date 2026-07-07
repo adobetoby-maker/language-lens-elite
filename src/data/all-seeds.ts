@@ -1410,5 +1410,5 @@ export const ALL_SEEDS: LibraryEntry[] = [
   ...(FINANCE_BUSINESS_SEEDS as LibraryEntry[]).map(tag("Finance")),
   ...(KOREAN_MODULE_SEEDS as LibraryEntry[]).map(tag("Korean")),
   ...(NEW_MODULES_SEEDS as LibraryEntry[]).map((e) => ({ ...e, category: e.category ?? "Other" })),
-  ...(PASHTO_SEEDS as LibraryEntry[]).map(tag("Pashto")),
+  ...(PASHTO_SEEDS as LibraryEntry[]).map((e) => ({ ...e, category: e.category ?? "Culture" })),
 ];

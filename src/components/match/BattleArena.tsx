@@ -6,6 +6,7 @@ import { celebrate } from "@/lib/confetti";
 import { generateBattleWord, type BattleWord } from "@/fns/battle.functions";
 import { RankBadge } from "./RankBadge";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 
 const SPEECH_LOCALE: Record<Language, string> = {
   Spanish: "es-CR",
@@ -366,6 +367,10 @@ export function BattleArena({
       // Cancel any in-flight utterance before starting a new one (Safari is
       // particularly stateful here — back-to-back speak() calls can deadlock
       // the queue without a cancel first).
+      if (needsRemoteTTS(SPEECH_LOCALE[language])) {
+        void speakRemote(data.word.word, SPEECH_LOCALE[language], { rate: 0.9 });
+        return;
+      }
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(data.word.word);
       configureUtterance(u, SPEECH_LOCALE[language]);

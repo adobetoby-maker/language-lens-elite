@@ -6,6 +6,7 @@ import { useSpeech } from "@/state/speech-state";
 import { useTutor } from "@/state/tutor-state";
 import { useApp, type Language } from "@/state/app-state";
 import { configureUtterance } from "@/lib/voices";
+import { needsRemoteTTS, speakRemote } from "@/lib/tts";
 import { FuriganaText } from "./FuriganaText";
 
 const LOCALE: Record<Language, string> = {
@@ -144,10 +145,16 @@ export function WordCard({
   }, [request.word, request.sentence, request.language, state.nativeLanguage, lookup]);
 
   const speak = () => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined") return;
     const text = card?.headword ?? request.word;
+    const remoteLocale = accent || LOCALE[request.language];
+    if (needsRemoteTTS(remoteLocale)) {
+      void speakRemote(text, remoteLocale, { rate: 0.9 });
+      return;
+    }
+    if (!("speechSynthesis" in window)) return;
     const utter = new SpeechSynthesisUtterance(text);
-    const locale = accent || LOCALE[request.language];
+    const locale = remoteLocale;
     configureUtterance(utter, locale, voiceURI);
     utter.rate = 0.9;
     window.speechSynthesis.cancel();
