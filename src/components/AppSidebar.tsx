@@ -47,6 +47,7 @@ const LANGUAGES: Language[] = [
   "Japanese",
   "Korean",
   "Portuguese",
+  "Pashto",
   "English",
 ];
 

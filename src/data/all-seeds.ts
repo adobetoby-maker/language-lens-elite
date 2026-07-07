@@ -24,6 +24,7 @@ import { COOKING_FOOD_SEEDS } from "@/data/library-seeds/cooking-food-seeds";
 import { FINANCE_BUSINESS_SEEDS } from "@/data/library-seeds/finance-business-seeds";
 import { KOREAN_MODULE_SEEDS } from "@/data/library-seeds/korean-module-seeds";
 import { NEW_MODULES_SEEDS } from "@/data/library-seeds/new-modules-seeds";
+import { PASHTO_SEEDS } from "@/data/library-seeds/pashto-seeds";
 
 // Suppress unused-type warnings for types used only in inline object literals below
 type _BookChapter = BookChapter;
@@ -1409,4 +1410,5 @@ export const ALL_SEEDS: LibraryEntry[] = [
   ...(FINANCE_BUSINESS_SEEDS as LibraryEntry[]).map(tag("Finance")),
   ...(KOREAN_MODULE_SEEDS as LibraryEntry[]).map(tag("Korean")),
   ...(NEW_MODULES_SEEDS as LibraryEntry[]).map((e) => ({ ...e, category: e.category ?? "Other" })),
+  ...(PASHTO_SEEDS as LibraryEntry[]).map(tag("Pashto")),
 ];

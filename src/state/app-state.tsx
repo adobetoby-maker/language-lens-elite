@@ -20,6 +20,7 @@ export type Language =
   | "Japanese"
   | "Korean"
   | "Portuguese"
+  | "Pashto"
   | "English";
 
 // The learner's native ("translation") language — used for the left pane,
@@ -661,6 +662,7 @@ function migrate(raw: unknown): PersistedShape {
     "Japanese",
     "Korean",
     "Portuguese",
+    "Pashto",
     "English",
   ];
   if (data.selectedLanguage && !validLangs.includes(data.selectedLanguage)) {

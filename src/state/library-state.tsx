@@ -60,6 +60,7 @@ const FLAG_BY_LANGUAGE: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  Pashto: "🇦🇫",
   English: "🇬🇧",
 };
 
