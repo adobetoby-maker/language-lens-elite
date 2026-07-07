@@ -86,6 +86,7 @@ const SPEECH_LOCALE: Record<Language, string> = {
   Japanese: "ja-JP",
   Korean: "ko-KR",
   Portuguese: "pt-BR",
+  Pashto: "ps-AF",
   English: "en-US",
 };
 

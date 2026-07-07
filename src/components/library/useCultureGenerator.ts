@@ -12,6 +12,7 @@ const COUNTRIES_BY_LANGUAGE: Record<Language, string[]> = {
   Japanese: ["Japan"],
   Korean: ["South Korea"],
   Portuguese: ["Brazil", "Portugal"],
+  Pashto: ["Afghanistan", "Pakistan"],
   English: ["United Kingdom", "United States", "Australia"],
 };
 

@@ -49,6 +49,7 @@ const FLAGS: Record<Language, string> = {
   Japanese: "🇯🇵",
   Korean: "🇰🇷",
   Portuguese: "🇧🇷",
+  Pashto: "🇦🇫",
   English: "🇬🇧",
 };
 
@@ -60,6 +61,7 @@ const LANGS: Language[] = [
   "Japanese",
   "Korean",
   "Portuguese",
+  "Pashto",
   "English",
 ];
 

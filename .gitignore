@@ -40,3 +40,4 @@ CREDENTIALS.md
 /src/generated/prisma
 .env
 .env.local
+.env*

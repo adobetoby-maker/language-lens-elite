@@ -55,6 +55,12 @@ const TOPIC_CHIPS: Record<Language, string[]> = {
     "Qual é sua comida favorita? 🍽️",
     "Vamos falar sobre viagens ✈️",
   ],
+  Pashto: [
+    "خپل ښار راته وښایه 🏙️",
+    "خپل سهار تشریح کړه ☀️",
+    "ستا خوښ خواړه کوم دي؟ 🍽️",
+    "راځه چې د سفر خبرې وکړو ✈️",
+  ],
   English: [
     "Tell me about your city 🏙️",
     "Describe your morning ☀️",

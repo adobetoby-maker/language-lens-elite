@@ -46,6 +46,7 @@ const LANG_CODES: Record<Language, string> = {
   Japanese: "ja",
   Korean: "ko",
   Portuguese: "pt",
+  Pashto: "ps",
   English: "en",
 };
 
